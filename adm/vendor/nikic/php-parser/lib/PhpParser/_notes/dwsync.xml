@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="Builder.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="BuilderFactory.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="BuilderHelpers.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="Comment.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="ConstExprEvaluationException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="ConstExprEvaluator.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="Error.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="ErrorHandler.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="JsonDecoder.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="Lexer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="NameContext.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="Node.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="NodeAbstract.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="NodeDumper.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="NodeFinder.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="NodeTraverser.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="NodeTraverserInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="NodeVisitor.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="NodeVisitorAbstract.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="Parser.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="ParserAbstract.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="ParserFactory.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+<file name="PrettyPrinterAbstract.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133183803370000000" remote="133537796400000000" Dst="0" />
+</dwsync>

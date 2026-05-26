@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="AbstractLogger.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132645144270000000" remote="133537796400000000" Dst="0" />
+<file name="InvalidArgumentException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132645144270000000" remote="133537796400000000" Dst="0" />
+<file name="LoggerAwareInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132645144270000000" remote="133537796400000000" Dst="0" />
+<file name="LoggerAwareTrait.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132645144270000000" remote="133537796400000000" Dst="0" />
+<file name="LoggerInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132645144270000000" remote="133537796400000000" Dst="0" />
+<file name="LoggerTrait.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132645144270000000" remote="133537796400000000" Dst="0" />
+<file name="LogLevel.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132645144270000000" remote="133537796400000000" Dst="0" />
+<file name="NullLogger.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132645144270000000" remote="133537796400000000" Dst="0" />
+</dwsync>

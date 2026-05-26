@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="Assert.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="DataProviderTestSuite.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="ErrorTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="ExceptionWrapper.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="ExecutionOrderDependency.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="IncompleteTest.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="IncompleteTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="InvalidParameterGroupException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="Reorderable.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="SelfDescribing.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="SkippedTest.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="SkippedTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="Test.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="TestBuilder.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="TestFailure.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="TestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="TestListener.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="TestListenerDefaultImplementation.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="TestResult.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="TestSuite.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="TestSuiteIterator.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="WarningTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+</dwsync>

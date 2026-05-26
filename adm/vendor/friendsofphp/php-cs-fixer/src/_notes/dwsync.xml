@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="AbstractDoctrineAnnotationFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="AbstractFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="AbstractFopenFlagFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="AbstractFunctionReferenceFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="AbstractLinesBeforeNamespaceFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="AbstractNoUselessElseFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="AbstractPhpdocToTypeDeclarationFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="AbstractPhpdocTypesFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="AbstractProxyFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="Config.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="ConfigInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="FileReader.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="FileRemoval.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="Finder.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="FixerFactory.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="FixerFileProcessedEvent.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="FixerNameValidator.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="PharChecker.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="PharCheckerInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="Preg.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="PregException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="StdinFileInfo.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="ToolInfo.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="ToolInfoInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="Utils.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="WhitespacesFixerConfig.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="WordMatcher.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+</dwsync>

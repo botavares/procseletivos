@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "@govbr-ds/core": "^3.7.0",
+    "npm": "^11.8.0"
+  },
+  "name": "estagiarios",
+  "version": "1.0.0",
+  "description": "## What is CodeIgniter?",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/botavares/estagiarios.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/botavares/estagiarios/issues"
+  },
+  "homepage": "https://github.com/botavares/estagiarios#readme"
+}

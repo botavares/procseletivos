@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="ClassReferenceNameCasingFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="ConstantCaseFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="IntegerLiteralCaseFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="LowercaseKeywordsFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="LowercaseStaticReferenceFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="MagicConstantCasingFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="MagicMethodCasingFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="NativeFunctionCasingFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="NativeFunctionTypeDeclarationCasingFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+</dwsync>

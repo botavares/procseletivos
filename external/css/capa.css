@@ -1,0 +1,302 @@
+.area-instrucoes{
+    margin-top:10px;
+    padding:20px;
+    min-height:175px;
+}
+.area-instrucoes h1{
+    font-size:2.986em;
+    font-weight: 600;
+    margin:0;
+}
+.area-instrucoes p{
+    font-size:1.2em;
+}
+.manifesto-container{
+    display: flex;
+    flex-wrap:wrap;
+}
+.manifesto-container .col-lg-6{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bloco-manifesto{
+    min-height:150px;
+    
+}
+.bloco-manifesto a{
+    width: 100%;
+    display: block;
+    height:inherit;
+}
+.bloco-manifesto img{
+    width: 100%;
+    /*height: 100%;*/
+}
+
+.bloco-formulario{
+   min-height:400px;
+}
+.bloco-formulario fieldset{
+    padding:0;
+    margin-bottom:0.8em;
+}
+.box-manifestacao {
+  /*background-color: aquamarine;*/
+  padding: 20px 5px;
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s; 
+}
+.box-manifestacao:hover{
+    cursor: pointer;
+    -webkit-box-shadow: 0px 0px 30px rgba(215, 224, 252, 0.45);
+    -moz-box-shadow: 0px 0px 30px rgba(215, 224, 252, 0.45);
+    box-shadow: 0px 0px 30px rgba(215, 224, 252, 0.45); 
+}
+.box-manifestacao span{
+    padding:0;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+.box-manifestacao h3, .box-manifestacao p{
+    color: black;
+    text-align: left;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.pagination{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+  
+  .pagination .paginate_button{
+    margin: 5px;
+    padding: 5px 10px;
+    border: solid thin rgb(43, 43, 175);
+    border-radius: 5px;
+    background-color: rgb(43, 43, 175);
+    color: #fff;
+    cursor: pointer;
+  }
+  .paginate_button{
+    list-style:none;
+    
+  }
+  .paginate_button:hover{
+    background-color: #4603ff;
+    color: rgb(6, 6, 243);
+  }
+  .paginate_button a.page-link{
+    text-decoration: none;
+    font-size:16px;
+    color:#fff;
+    font-weight: 400;
+  }
+  .titulo-box{
+    
+    background-color: #2b69c0;
+    padding: 10px;
+    margin-bottom: 5px;
+    
+}
+.titulo-box span{
+    font-size:16px;
+    font-weight: 600;
+    color:#FFF;
+    text-align: center;
+    text-transform: uppercase;
+    
+}
+
+/*===========================================
+SELECT PADRAO GOV BR
+=============================================*/
+/* Container do select para estilizar com ícones */
+.select-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Estilizando o próprio select */
+.select-container select {
+    display: block;
+    width: 100%;
+    padding: 10px 40px 10px 40px;
+    font-size: 16px;
+    
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    appearance: none; /* Remove estilo padrão do select */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    background-image: none;
+    position: relative;
+    z-index: 1;
+}
+
+/* Estilo para as opções */
+.select-container option {
+    font-size: 16px;
+    border-bottom: 1px solid #ccc; /* Linha divisória entre os options */
+}
+
+/* Remove a última linha divisória */
+.select-container option:last-child {
+    border-bottom: none;
+}
+
+/* Estilo para o ícone da lupa à esquerda */
+.select-container .fa-search {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #999;
+    z-index: 2;
+}
+
+/* Estilo para o ícone de dropdown à direita */
+.select-container .fa-angle-down {
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #999;
+    z-index: 2;
+    transition: box-shadow 0.3s ease;
+}
+
+/* Efeito de hover no ícone de dropdown */
+.select-container .fa-angle-down:hover {
+    box-shadow: 0 0 10px rgba(173, 216, 230, 0.8); /* Sombra azul claro */
+    border-radius: 60%;
+    background-color:0 0 10px rgba(173, 216, 230, 0.8); /* Sombra azul claro */
+}
+  
+  
+ 
+  /*=================================================================================================FIM SELECT GOV BR==================================================================================================*/
+
+.full-link{
+    display: block;
+            width: 100%;
+            height: 60px;
+            text-align: left;
+            padding-right: 10px;
+}
+
+.br-card:hover{
+    cursor: pointer;
+}
+
+.card-title{
+    padding:0;
+    margin:0;
+}
+
+.card-header {
+    position: relative;
+    height:70px;
+    padding:0;
+    margin:0;
+    display: flex; /* Ativa Flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    overflow: hidden;
+    
+}
+
+.card-header img{
+    
+    max-width: 100%; /* Limita a largura da imagem ao tamanho do card */
+    max-height: 100%; /* Limita a altura da imagem ao tamanho do card */
+    object-fit: contain; /* Mantém a proporção da imagem */
+}
+
+.expand-collapse-link {
+    cursor: pointer;
+    display: block;
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.card-header i, .card-header span{
+    position: absolute;
+    right: 10px; /* Ajuste conforme necessário */
+    top: 50%;
+    transform: translateY(-50%);
+}
+.card p strong, .card li strong{
+    color: #000;
+    font-weight: bold;
+}
+.container strong{
+	color: #000;
+    font-weight: bold;
+}
+.navbar-brand img{
+    width:200%;
+}
+
+/*=====================================================================================*/
+@media (max-width: 768px) {
+    .vlibras-icon {
+        display: none;
+    }
+    .area-instrucoes h1{
+        font-size:1.5em;
+        margin-bottom:5px;
+    }
+    .area-instrucoes p{
+        font-size:1.2em;
+        text-indent:1.2em;
+        text-align:justify;
+
+    }
+    .area-botoes{
+        text-align:center;
+    }
+   
+    .container .botao-servico{
+        text-align:center;
+    }
+    .bloco-manifesto img{
+        width: 33%;
+    }
+    .bloco-manifesto .nome-manifesto{
+        text-align:center;
+    }
+    .voltar{
+        margin: 0 auto;
+    }
+    #avatar-sign-in-right-name-span{
+        font-size: 0.6em;
+    }
+    #avatar-sign-in-right-profile-span{
+        display:none;
+    }
+    .select-container select {
+        font-size: 14px;
+        padding: 8px 35px 8px 35px;
+    }
+
+    .select-container .fa-search, 
+    .select-container .fa-angle-down {
+        font-size: 14px;
+    }
+}

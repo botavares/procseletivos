@@ -1,0 +1,203 @@
+CRITICAL - 2026-02-03 09:05:46 --> Undefined variable $totalTime
+in SYSTEMPATH\Debug\Toolbar\Views\toolbar.tpl.php on line 40.
+ 1 SYSTEMPATH\Debug\Toolbar\Views\toolbar.tpl.php(40): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $totalTime', 'SYSTEMPATH\\Debug\\Toolbar\\Views\\toolbar.tpl.php', 40)
+ 2 SYSTEMPATH\Debug\Toolbar.php(511): include('SYSTEMPATH\\Debug\\Toolbar\\Views\\toolbar.tpl.php')
+ 3 SYSTEMPATH\Debug\Toolbar.php(474): CodeIgniter\Debug\Toolbar->format([...], 'html')
+ 4 APPPATH\Config\Events.php(46): CodeIgniter\Debug\Toolbar->respond()
+ 5 SYSTEMPATH\Events\Events.php(149): CodeIgniter\Events\Events::Config\{closure}()
+ 6 SYSTEMPATH\CodeIgniter.php(350): CodeIgniter\Events\Events::trigger('pre_system')
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 09:06:37 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 287.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(287): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 287)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(24)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:34:56 --> Undefined property: stdClass::$ds_edital
+in APPPATH\Views\pages\Transparencia\Transparencia_view.php on line 69.
+ 1 APPPATH\Views\pages\Transparencia\Transparencia_view.php(69): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$ds_edital', 'APPPATH\\Views\\pages\\Transparencia\\Transparencia_view.php', 69)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\Transparencia\\Transparencia_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('pages/Transparencia/Transparencia_view', [], true)
+ 5 APPPATH\Views\layoutSimples.php(3): view('pages/Transparencia/Transparencia_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutSimples.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutSimples', [], true)
+ 9 APPPATH\Controllers\Transparencia.php(93): view('layoutSimples', [...])
+10 APPPATH\Controllers\Transparencia.php(45): App\Controllers\Transparencia->renderPagina([...])
+11 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+12 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+13 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:35:10 --> Undefined property: stdClass::$ds_edital
+in APPPATH\Views\pages\Transparencia\Transparencia_view.php on line 69.
+ 1 APPPATH\Views\pages\Transparencia\Transparencia_view.php(69): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$ds_edital', 'APPPATH\\Views\\pages\\Transparencia\\Transparencia_view.php', 69)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\Transparencia\\Transparencia_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('pages/Transparencia/Transparencia_view', [], true)
+ 5 APPPATH\Views\layoutSimples.php(3): view('pages/Transparencia/Transparencia_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutSimples.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutSimples', [], true)
+ 9 APPPATH\Controllers\Transparencia.php(93): view('layoutSimples', [...])
+10 APPPATH\Controllers\Transparencia.php(45): App\Controllers\Transparencia->renderPagina([...])
+11 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+12 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+13 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:49:02 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(0)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:49:08 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(0)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:50:27 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(0)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:50:29 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(12)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:50:38 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(5)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:50:46 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(0)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:50:50 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(0)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:50:52 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(2)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:50:56 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(5)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:51:28 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(0)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:52:03 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(2)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:52:16 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(5)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:52:25 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(6)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:53:31 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(2)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:53:41 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(5)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:53:54 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(12)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-03 16:54:07 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(34)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

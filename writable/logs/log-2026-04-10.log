@@ -1,0 +1,446 @@
+CRITICAL - 2026-04-10 08:33:54 --> Attempt to read property "ds_quantidade" on array
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 138.
+ 1 APPPATH\Views\pages\FormularioClassificatorio_view.php(138): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "ds_quantidade" on array', 'APPPATH\\Views\\pages\\FormularioClassificatorio_view.php', 138)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioClassificatorio_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(312): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-10 08:39:57 --> Call to undefined method App\Models\CadastradosEscolaridadesModel::dadosEscolaridades
+in SYSTEMPATH\Model.php on line 841.
+ 1 APPPATH\Controllers\Cadastros.php(256): CodeIgniter\Model->__call('dadosEscolaridades', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-04-10 08:44:34 --> mysqli_sql_exception: Column 'fk_id_cargo' in where clause is ambiguous in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Models\CadastradosEscolaridadesModel.php(31): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(256): App\Models\CadastradosEscolaridadesModel->dadosEscolaridade('2472', '16', '23')
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-04-10 08:44:34 --> Column 'fk_id_cargo' in where clause is ambiguous
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_cadastrados_escolaridades`
+JOIN `tb_escolaridades` ON `tb_escolaridades`.`pk_id_escolaridade` = `tb_cadastrados_escolaridades`.`fk_id_escolaridade`
+JOIN `tb_cargos_escolaridades_editais` ON `tb_cargos_escolaridades_editais`.`fk_id_cargo` = `tb_cadastrados_escolaridades`.`fk_id_cargo` AND `tb_cargos_escolaridades_editais`.`fk_id_escolaridade` = `tb_cadastrados_escolaridades`.`fk_id_escolaridade`
+WHERE `fk_id_cadastrado` = :fk_id_cadastrado:
+AND `fk_id_cargo` = :fk_id_cargo:
+AND `fk_id_edital` = :fk_id_edital:', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\CadastradosEscolaridadesModel.php(31): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(256): App\Models\CadastradosEscolaridadesModel->dadosEscolaridade('2472', '16', '23')
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-04-10 08:45:14 --> mysqli_sql_exception: Unknown column 'tb_escolaridades.ds_escolaridade' in 'field list' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Models\CadastradosEscolaridadesModel.php(31): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(256): App\Models\CadastradosEscolaridadesModel->dadosEscolaridade('2472', '16', '23')
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-04-10 08:45:14 --> Unknown column 'tb_escolaridades.ds_escolaridade' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cadastrados_escolaridades`.*, `tb_escolaridades`.`ds_escolaridade`, `tb_escolaridades`.`ds_tipo_campo`, `tb_cargos_escolaridades_editais`.`pk_id_cargo_escolaridade`
+FROM `tb_cadastrados_escolaridades`
+JOIN `tb_escolaridades` ON `tb_escolaridades`.`pk_id_escolaridade` = `tb_cadastrados_escolaridades`.`fk_id_escolaridade`
+JOIN `tb_cargos_escolaridades_editais` ON `tb_cargos_escolaridades_editais`.`fk_id_cargo` = `tb_cadastrados_escolaridades`.`fk_id_cargo` AND `tb_cargos_escolaridades_editais`.`fk_id_escolaridade` = `tb_cadastrados_escolaridades`.`fk_id_escolaridade`
+WHERE `fk_id_cadastrado` = :fk_id_cadastrado:
+AND `fk_id_cargo` = :fk_id_cargo:
+AND `fk_id_edital` = :fk_id_edital:', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\CadastradosEscolaridadesModel.php(31): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(256): App\Models\CadastradosEscolaridadesModel->dadosEscolaridade('2472', '16', '23')
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-04-10 08:45:30 --> mysqli_sql_exception: Unknown column 'tb_escolaridades.ds_tipo_campo' in 'field list' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Models\CadastradosEscolaridadesModel.php(31): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(256): App\Models\CadastradosEscolaridadesModel->dadosEscolaridade('2472', '16', '23')
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-04-10 08:45:30 --> Unknown column 'tb_escolaridades.ds_tipo_campo' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cadastrados_escolaridades`.*, `tb_escolaridades`.`ds_nome_escolaridade`, `tb_escolaridades`.`ds_tipo_campo`, `tb_cargos_escolaridades_editais`.`pk_id_cargo_escolaridade`
+FROM `tb_cadastrados_escolaridades`
+JOIN `tb_escolaridades` ON `tb_escolaridades`.`pk_id_escolaridade` = `tb_cadastrados_escolaridades`.`fk_id_escolaridade`
+JOIN `tb_cargos_escolaridades_editais` ON `tb_cargos_escolaridades_editais`.`fk_id_cargo` = `tb_cadastrados_escolaridades`.`fk_id_cargo` AND `tb_cargos_escolaridades_editais`.`fk_id_escolaridade` = `tb_cadastrados_escolaridades`.`fk_id_escolaridade`
+WHERE `fk_id_cadastrado` = :fk_id_cadastrado:
+AND `fk_id_cargo` = :fk_id_cargo:
+AND `fk_id_edital` = :fk_id_edital:', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\CadastradosEscolaridadesModel.php(31): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(256): App\Models\CadastradosEscolaridadesModel->dadosEscolaridade('2472', '16', '23')
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-04-10 08:46:04 --> mysqli_sql_exception: Unknown column 'tb_cargos_escolaridades_editais.pk_id_cargo_escolaridade' in 'field list' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Models\CadastradosEscolaridadesModel.php(31): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(256): App\Models\CadastradosEscolaridadesModel->dadosEscolaridade('2472', '16', '23')
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-04-10 08:46:04 --> Unknown column 'tb_cargos_escolaridades_editais.pk_id_cargo_escolaridade' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cadastrados_escolaridades`.*, `tb_escolaridades`.`ds_nome_escolaridade`, `tb_cargos_escolaridades_editais`.`ds_tipo_campo`, `tb_cargos_escolaridades_editais`.`pk_id_cargo_escolaridade`
+FROM `tb_cadastrados_escolaridades`
+JOIN `tb_escolaridades` ON `tb_escolaridades`.`pk_id_escolaridade` = `tb_cadastrados_escolaridades`.`fk_id_escolaridade`
+JOIN `tb_cargos_escolaridades_editais` ON `tb_cargos_escolaridades_editais`.`fk_id_cargo` = `tb_cadastrados_escolaridades`.`fk_id_cargo` AND `tb_cargos_escolaridades_editais`.`fk_id_escolaridade` = `tb_cadastrados_escolaridades`.`fk_id_escolaridade`
+WHERE `fk_id_cadastrado` = :fk_id_cadastrado:
+AND `fk_id_cargo` = :fk_id_cargo:
+AND `fk_id_edital` = :fk_id_edital:', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\CadastradosEscolaridadesModel.php(31): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(256): App\Models\CadastradosEscolaridadesModel->dadosEscolaridade('2472', '16', '23')
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-04-10 08:47:00 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '))
+FROM `tb_cadastrados_escolaridades`
+JOIN `tb_escolaridades` ON `tb_escolarida' at line 1 in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Models\CadastradosEscolaridadesModel.php(31): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(256): App\Models\CadastradosEscolaridadesModel->dadosEscolaridade('2472', '16', '23')
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-04-10 08:47:00 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '))
+FROM `tb_cadastrados_escolaridades`
+JOIN `tb_escolaridades` ON `tb_escolarida' at line 1
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cadastrados_escolaridades`.*, `tb_escolaridades`.`ds_nome_escolaridade`, tb_cargos_escolaridades_editais.ds_tipo_campo))
+FROM `tb_cadastrados_escolaridades`
+JOIN `tb_escolaridades` ON `tb_escolaridades`.`pk_id_escolaridade` = `tb_cadastrados_escolaridades`.`fk_id_escolaridade`
+JOIN `tb_cargos_escolaridades_editais` ON `tb_cargos_escolaridades_editais`.`fk_id_cargo` = `tb_cadastrados_escolaridades`.`fk_id_cargo` AND `tb_cargos_escolaridades_editais`.`fk_id_escolaridade` = `tb_cadastrados_escolaridades`.`fk_id_escolaridade`
+WHERE `fk_id_cadastrado` = :fk_id_cadastrado:
+AND `fk_id_cargo` = :fk_id_cargo:
+AND `fk_id_edital` = :fk_id_edital:', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\CadastradosEscolaridadesModel.php(31): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(256): App\Models\CadastradosEscolaridadesModel->dadosEscolaridade('2472', '16', '23')
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-04-10 08:48:13 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '))
+FROM `tb_cadastrados_escolaridades`
+JOIN `tb_escolaridades` ON `tb_escolarida' at line 1 in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Models\CadastradosEscolaridadesModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(256): App\Models\CadastradosEscolaridadesModel->dadosEscolaridade('2472', '16', '23')
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-04-10 08:48:13 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '))
+FROM `tb_cadastrados_escolaridades`
+JOIN `tb_escolaridades` ON `tb_escolarida' at line 1
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cadastrados_escolaridades`.*, `tb_escolaridades`.`ds_nome_escolaridade`, tb_cargos_escolaridades_editais.ds_tipo_campo))
+FROM `tb_cadastrados_escolaridades`
+JOIN `tb_escolaridades` ON `tb_escolaridades`.`pk_id_escolaridade` = `tb_cadastrados_escolaridades`.`fk_id_escolaridade`
+JOIN `tb_cargos_escolaridades_editais` ON `tb_cargos_escolaridades_editais`.`fk_id_cargo` = `tb_cadastrados_escolaridades`.`fk_id_cargo` AND `tb_cargos_escolaridades_editais`.`fk_id_escolaridade` = `tb_cadastrados_escolaridades`.`fk_id_escolaridade`
+WHERE `fk_id_cadastrado` = :fk_id_cadastrado:
+AND `fk_id_cargo` = :fk_id_cargo:
+AND `fk_id_edital` = :fk_id_edital:', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\CadastradosEscolaridadesModel.php(30): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(256): App\Models\CadastradosEscolaridadesModel->dadosEscolaridade('2472', '16', '23')
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-04-10 08:53:58 --> mysqli_sql_exception: Unknown column 'cee.fk_id_edital' in 'on clause' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `ce`.*, ...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `ce`.*, ...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `ce`.*, ...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `ce`.*, ...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Models\CadastradosEscolaridadesModel.php(47): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(256): App\Models\CadastradosEscolaridadesModel->dadosEscolaridade(2472, 16, 23)
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-04-10 08:53:58 --> Unknown column 'cee.fk_id_edital' in 'on clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `ce`.*, `e`.`ds_nome_escolaridade`, `cee`.`ds_tipo_campo`
+FROM (`tb_cadastrados_escolaridades`, `tb_cadastrados_escolaridades` as `ce`)
+INNER JOIN `tb_escolaridades` as `e` ON `e`.`pk_id_escolaridade` = `ce`.`fk_id_escolaridade`
+INNER JOIN `tb_cargos_escolaridades_editais` as `cee` ON `cee`.`fk_id_cargo` = `ce`.`fk_id_cargo` AND `cee`.`fk_id_escolaridade` = `ce`.`fk_id_escolaridade` AND `cee`.`fk_id_edital` = `ce`.`fk_id_edital`
+WHERE `ce`.`fk_id_cadastrado` = :ce.fk_id_cadastrado:
+AND `ce`.`fk_id_cargo` = :ce.fk_id_cargo:
+AND `ce`.`fk_id_edital` = :ce.fk_id_edital:', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\CadastradosEscolaridadesModel.php(47): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(256): App\Models\CadastradosEscolaridadesModel->dadosEscolaridade(2472, 16, 23)
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-10 08:55:00 --> syntax error, unexpected identifier "inner", expecting ")"
+in APPPATH\Models\CadastradosEscolaridadesModel.php on line 39.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('APPPATH\\Models\\CadastradosEscolaridadesModel.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\CadastradosEscolaridadesModel')
+ 3 APPPATH\Controllers\Cadastros.php(255): CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\CadastradosEscolaridadesModel')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-04-10 08:57:16 --> mysqli_sql_exception: Unknown column 'ce.pk_id_cadastrado_escolaridade' in 'group statement' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `ce`.*, ...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `ce`.*, ...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `ce`.*, ...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `ce`.*, ...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Models\CadastradosEscolaridadesModel.php(47): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(256): App\Models\CadastradosEscolaridadesModel->dadosEscolaridade(2472, 16, 23)
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-04-10 08:57:16 --> Unknown column 'ce.pk_id_cadastrado_escolaridade' in 'group statement'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `ce`.*, `e`.`ds_nome_escolaridade`, `cee`.`ds_tipo_campo`
+FROM (`tb_cadastrados_escolaridades`, `tb_cadastrados_escolaridades` as `ce`)
+INNER JOIN `tb_escolaridades` as `e` ON `e`.`pk_id_escolaridade` = `ce`.`fk_id_escolaridade`
+INNER JOIN `tb_cargos_escolaridades_editais` as `cee` ON `cee`.`fk_id_cargo` = `ce`.`fk_id_cargo` AND `cee`.`fk_id_escolaridade` = `ce`.`fk_id_escolaridade`
+WHERE `ce`.`fk_id_cadastrado` = :ce.fk_id_cadastrado:
+AND `ce`.`fk_id_cargo` = :ce.fk_id_cargo:
+AND `ce`.`fk_id_edital` = :ce.fk_id_edital:
+GROUP BY `ce`.`pk_id_cadastrado_escolaridade`', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\CadastradosEscolaridadesModel.php(47): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(256): App\Models\CadastradosEscolaridadesModel->dadosEscolaridade(2472, 16, 23)
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-04-10 09:02:19 --> mysqli_sql_exception: Unknown column 'cee.fk_id_edital' in 'on clause' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `ce`.*, ...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `ce`.*, ...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `ce`.*, ...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `ce`.*, ...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Models\CadastradosEscolaridadesModel.php(48): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(256): App\Models\CadastradosEscolaridadesModel->dadosEscolaridade(2472, 16, 23)
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-04-10 09:02:19 --> Unknown column 'cee.fk_id_edital' in 'on clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `ce`.*, `e`.`ds_nome_escolaridade`, `cee`.`ds_tipo_campo`
+FROM (`tb_cadastrados_escolaridades`, `tb_cadastrados_escolaridades` as `ce`)
+INNER JOIN `tb_escolaridades` as `e` ON `e`.`pk_id_escolaridade` = `ce`.`fk_id_escolaridade`
+LEFT JOIN `tb_cargos_escolaridades_editais` as `cee` ON `cee`.`fk_id_cargo` = `ce`.`fk_id_cargo` AND `cee`.`fk_id_escolaridade` = `ce`.`fk_id_escolaridade` AND `cee`.`fk_id_edital` = `ce`.`fk_id_edital`
+WHERE `ce`.`fk_id_cadastrado` = :ce.fk_id_cadastrado:
+AND `ce`.`fk_id_cargo` = :ce.fk_id_cargo:
+AND `ce`.`fk_id_edital` = :ce.fk_id_edital:
+GROUP BY `ce`.`fk_id_cadastrado`', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\CadastradosEscolaridadesModel.php(48): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(256): App\Models\CadastradosEscolaridadesModel->dadosEscolaridade(2472, 16, 23)
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-10 09:15:45 --> Attempt to read property "ds_quantidade" on array
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 138.
+ 1 APPPATH\Views\pages\FormularioClassificatorio_view.php(138): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "ds_quantidade" on array', 'APPPATH\\Views\\pages\\FormularioClassificatorio_view.php', 138)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioClassificatorio_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(309): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-10 10:00:19 --> Attempt to read property "ds_quantidade" on array
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 135.
+ 1 APPPATH\Views\pages\FormularioClassificatorio_view.php(135): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "ds_quantidade" on array', 'APPPATH\\Views\\pages\\FormularioClassificatorio_view.php', 135)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioClassificatorio_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(309): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-10 10:16:41 --> Undefined variable $dadosAperfeicoamentos
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 186.
+ 1 APPPATH\Views\pages\FormularioClassificatorio_view.php(186): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dadosAperfeicoamentos', 'APPPATH\\Views\\pages\\FormularioClassificatorio_view.php', 186)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioClassificatorio_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(309): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-10 14:46:30 --> Class "App\Services\GovBrService" not found
+in APPPATH\Controllers\Cadastros.php on line 24.
+ 1 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-10 14:46:30 --> Class "App\Services\GovBrService" not found
+in APPPATH\Controllers\Cadastros.php on line 24.
+ 1 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-10 16:40:45 --> Undefined variable $dadosEscolaridadesSalvos
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 123.
+ 1 APPPATH\Views\pages\FormularioClassificatorio_view.php(123): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dadosEscolaridadesSalvos', 'APPPATH\\Views\\pages\\FormularioClassificatorio_view.php', 123)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioClassificatorio_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(311): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-10 16:41:09 --> Undefined variable $dadosEscolaridades
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 123.
+ 1 APPPATH\Views\pages\FormularioClassificatorio_view.php(123): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dadosEscolaridades', 'APPPATH\\Views\\pages\\FormularioClassificatorio_view.php', 123)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioClassificatorio_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(311): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-10 16:46:54 --> Undefined variable $valorInput
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 136.
+ 1 APPPATH\Views\pages\FormularioClassificatorio_view.php(136): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $valorInput', 'APPPATH\\Views\\pages\\FormularioClassificatorio_view.php', 136)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioClassificatorio_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(311): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-10 16:50:21 --> Undefined variable $dadosEscolaridade
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 123.
+ 1 APPPATH\Views\pages\FormularioClassificatorio_view.php(123): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dadosEscolaridade', 'APPPATH\\Views\\pages\\FormularioClassificatorio_view.php', 123)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioClassificatorio_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(130): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('23', '16', '2472')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

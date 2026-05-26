@@ -1,0 +1,95 @@
+ERROR - 2026-03-27 08:15:04 --> mysqli_sql_exception: Unknown column 'e.fk_id_edital' in 'where clause' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_edit...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_edit...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_edit...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_edit...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Models\EditaisCargosModel.php(52): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(73): App\Models\EditaisCargosModel->getEditaisAtivosCargos()
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-03-27 08:15:04 --> Unknown column 'e.fk_id_edital' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_editais_cargos`.*, `tb_editais`.*, `tb_cargos`.*
+FROM `tb_editais_cargos`
+JOIN `tb_editais` ON `tb_editais`.`pk_id_edital` = `tb_editais_cargos`.`fk_id_edital`
+JOIN `tb_cargos` ON `tb_cargos`.`pk_id_cargo` = `tb_editais_cargos`.`fk_id_cargo`
+WHERE 
+            EXISTS (
+                SELECT 1 FROM tb_cargos_experiencias_editais e
+                WHERE e.fk_id_cargo = tb_editais_cargos.fk_id_cargo
+                AND e.fk_id_edital = tb_editais_cargos.fk_id_edital
+            )
+            OR EXISTS (
+                SELECT 1 FROM tb_cargos_aperfeicoamentos_editais a
+                WHERE a.fk_id_cargo = tb_editais_cargos.fk_id_cargo
+                AND a.fk_id_edital = tb_editais_cargos.fk_id_edital
+            )
+            OR EXISTS (
+                SELECT 1 FROM tb_cargos_escolaridades_editais s
+                WHERE s.fk_id_cargo = tb_editais_cargos.fk_id_cargo
+                AND s.fk_id_edital = tb_editais_cargos.fk_id_edital
+            )
+        
+AND `tb_editais`.`ds_status` = :tb_editais.ds_status:
+ORDER BY `tb_editais`.`ds_data_inicial` DESC', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\EditaisCargosModel.php(52): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(73): App\Models\EditaisCargosModel->getEditaisAtivosCargos()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-03-27 08:32:02 --> mysqli_sql_exception: Unknown column 'tb_editais.ds_data_final' in 'where clause' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_edit...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_edit...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_edit...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_edit...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Models\EditaisCargosModel.php(55): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(73): App\Models\EditaisCargosModel->getEditaisAtivosCargos()
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-03-27 08:32:02 --> Unknown column 'tb_editais.ds_data_final' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_editais_cargos`.*, `tb_editais`.*, `tb_cargos`.*
+FROM `tb_editais_cargos`
+JOIN `tb_editais` ON `tb_editais`.`pk_id_edital` = `tb_editais_cargos`.`fk_id_edital`
+JOIN `tb_cargos` ON `tb_cargos`.`pk_id_cargo` = `tb_editais_cargos`.`fk_id_cargo`
+WHERE `tb_editais`.`ds_status` = :tb_editais.ds_status:
+AND `tb_editais`.`ds_data_inicial` <= :tb_editais.ds_data_inicial:
+AND `tb_editais`.`ds_data_final` >= :tb_editais.ds_data_final:
+AND 
+            EXISTS (
+                SELECT 1 FROM tb_cargos_experiencias_editais e
+                WHERE e.fk_id_cargo = tb_editais_cargos.fk_id_cargo
+            )
+            OR EXISTS (
+                SELECT 1 FROM tb_cargos_aperfeicoamentos_editais a
+                WHERE a.fk_id_cargo = tb_editais_cargos.fk_id_cargo
+            )
+            OR EXISTS (
+                SELECT 1 FROM tb_cargos_escolaridades_editais s
+                WHERE s.fk_id_cargo = tb_editais_cargos.fk_id_cargo
+            )
+        
+ORDER BY `tb_editais`.`ds_data_inicial` DESC', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\EditaisCargosModel.php(55): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(73): App\Models\EditaisCargosModel->getEditaisAtivosCargos()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="ActualValueIsNotAnObjectException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="AssertionFailedError.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="CodeCoverageException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="ComparisonMethodDoesNotAcceptParameterTypeException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="ComparisonMethodDoesNotDeclareBoolReturnTypeException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="ComparisonMethodDoesNotDeclareExactlyOneParameterException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="ComparisonMethodDoesNotDeclareParameterTypeException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="ComparisonMethodDoesNotExistException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="CoveredCodeNotExecutedException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="Error.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="Exception.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="ExpectationFailedException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="IncompleteTestError.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="InvalidArgumentException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="InvalidCoversTargetException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="InvalidDataProviderException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="MissingCoversAnnotationException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="NoChildTestSuiteException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="OutputError.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="PHPTAssertionFailedError.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="RiskyTestError.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="SkippedTestError.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="SkippedTestSuiteError.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="SyntheticError.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="SyntheticSkippedError.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="UnintentionallyCoveredCodeError.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="Warning.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+</dwsync>

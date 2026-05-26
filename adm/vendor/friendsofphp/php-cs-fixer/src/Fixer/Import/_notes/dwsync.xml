@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="FullyQualifiedStrictTypesFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="GlobalNamespaceImportFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="GroupImportFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="NoLeadingImportSlashFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="NoUnneededImportAliasFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="NoUnusedImportsFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="OrderedImportsFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="SingleImportPerStatementFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="SingleLineAfterImportsFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+</dwsync>

@@ -1,0 +1,131 @@
+CRITICAL - 2026-05-12 09:29:17 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: external/img/bg-login.jpg'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-12 09:29:17 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: external/img/materiais.png'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-12 09:43:25 --> Trait "App\Traits\FormataNumeroEditalTrait" not found
+in APPPATH\Services\Classificacao\ClassificacaoProcessorService.php on line 13.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-12 09:44:20 --> Trait "App\Traits\FormataNumeroEditalTrait" not found
+in APPPATH\Services\Classificacao\ClassificacaoProcessorService.php on line 13.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-12 09:44:25 --> Trait "App\Traits\FormataNumeroEditalTrait" not found
+in APPPATH\Services\Classificacao\ClassificacaoProcessorService.php on line 13.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-12 09:44:38 --> Uncaught TypeError: App\Services\Classificacao\DTO\ResultadoClassificacaoDTO::__construct(): Argument #4 ($ds_nome_cargo) must be of type string, null given, called in C:\laragon\www\servicos\procseletivos\adm\app\Services\Classificacao\ClassificacaoProcessorService.php on line 43 and defined in C:\laragon\www\servicos\procseletivos\adm\app\Services\Classificacao\DTO\ResultadoClassificacaoDTO.php:11
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Services\Classificacao\ClassificacaoProcessorService.php(43): App\Services\Classificacao\DTO\ResultadoClassificacaoDTO->__construct(2887, 'ADELIA JESSICA ...', 'T\xC3\xA9cnico de Seg...', NULL, '1991-11-09', 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 5.0, 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Services\Classificacao\ClassificacaoService.php(22): App\Services\Classificacao\ClassificacaoProcessorService->processar(23, 16)
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Classificacoes.php(75): App\Services\Classificacao\ClassificacaoService->reprocessar(23, 16)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Classificacoes->reprocessar('23', '16')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Classificacoes))
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#7 {main}
+  thrown
+in APPPATH\Services\Classificacao\DTO\ResultadoClassificacaoDTO.php on line 11.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-12 09:45:19 --> Uncaught TypeError: App\Services\Classificacao\DTO\ResultadoClassificacaoDTO::__construct(): Argument #4 ($ds_nome_cargo) must be of type string, null given, called in C:\laragon\www\servicos\procseletivos\adm\app\Services\Classificacao\ClassificacaoProcessorService.php on line 43 and defined in C:\laragon\www\servicos\procseletivos\adm\app\Services\Classificacao\DTO\ResultadoClassificacaoDTO.php:11
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Services\Classificacao\ClassificacaoProcessorService.php(43): App\Services\Classificacao\DTO\ResultadoClassificacaoDTO->__construct(2887, 'ADELIA JESSICA ...', 'T\xC3\xA9cnico de Seg...', NULL, '1991-11-09', 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 5.0, 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Services\Classificacao\ClassificacaoService.php(22): App\Services\Classificacao\ClassificacaoProcessorService->processar(23, 16)
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Classificacoes.php(75): App\Services\Classificacao\ClassificacaoService->reprocessar(23, 16)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Classificacoes->reprocessar('23', '16')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Classificacoes))
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#7 {main}
+  thrown
+in APPPATH\Services\Classificacao\DTO\ResultadoClassificacaoDTO.php on line 11.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-12 09:49:25 --> Uncaught TypeError: App\Services\Editais\EditalService::listarEditalId(): Return value must be of type array, stdClass returned in C:\laragon\www\servicos\procseletivos\adm\app\Services\Editais\EditalService.php:125
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Services\Classificacao\ClassificacaoProcessorService.php(30): App\Services\Editais\EditalService->listarEditalId(23)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Services\Classificacao\ClassificacaoService.php(22): App\Services\Classificacao\ClassificacaoProcessorService->processar(23, 16)
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Classificacoes.php(75): App\Services\Classificacao\ClassificacaoService->reprocessar(23, 16)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Classificacoes->reprocessar('23', '16')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Classificacoes))
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#7 {main}
+  thrown
+in APPPATH\Services\Editais\EditalService.php on line 125.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-12 10:21:00 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: external/img/bg-login.jpg'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-12 10:21:00 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: external/img/materiais.png'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-12 10:21:07 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: Recursos'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-12 10:25:36 --> Uncaught ErrorException: Undefined array key "pk_id_cadastrado" in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\Classificacoes_view.php:77
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\Classificacoes_view.php(77): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\laragon\\www\\...', 77)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Classificacoes.php(69): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Classificacoes->index('23', '16')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Classificacoes))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\Classificacoes_view.php on line 77.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-12 10:26:03 --> Uncaught ErrorException: Undefined array key "fk_id_cadastrado" in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\Classificacoes_view.php:77
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\Classificacoes_view.php(77): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\laragon\\www\\...', 77)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Classificacoes.php(69): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Classificacoes->index('23', '16')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Classificacoes))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\Classificacoes_view.php on line 77.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()

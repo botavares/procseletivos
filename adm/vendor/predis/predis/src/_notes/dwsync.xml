@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="Autoloader.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="Client.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="ClientContextInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="ClientException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="ClientInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="CommunicationException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="NotSupportedException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="PredisException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+</dwsync>

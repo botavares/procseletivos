@@ -1,0 +1,1178 @@
+CRITICAL - 2026-05-07 08:48:17 --> Uncaught BadMethodCallException: Call to undefined method App\Models\CandidatosModel::listarCandidatoId in C:\laragon\www\servicos\procseletivos\adm\system\Model.php:841
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): CodeIgniter\Model->__call('listarCandidato...', Array)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2887')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2887')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in SYSTEMPATH\Model.php on line 841.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 08:50:44 --> Uncaught BadMethodCallException: Call to undefined method App\Models\CandidatosModel::listarCandidatoId in C:\laragon\www\servicos\procseletivos\adm\system\Model.php:841
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): CodeIgniter\Model->__call('listarCandidato...', Array)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2887')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2887')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in SYSTEMPATH\Model.php on line 841.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 08:51:42 --> Uncaught BadMethodCallException: Call to undefined method App\Models\CandidatosModel::listarExperienciaCandidato in C:\laragon\www\servicos\procseletivos\adm\system\Model.php:841
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(37): CodeIgniter\Model->__call('listarExperienc...', Array)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2887')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2887')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in SYSTEMPATH\Model.php on line 841.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 08:54:17 --> syntax error, unexpected variable "$this"
+in APPPATH\Models\CandidatosModel.php on line 148.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:07:41 --> Uncaught ErrorException: Undefined variable $canais in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php:54
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 54)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(303): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\dadosCandidato_view.php on line 54.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:08:30 --> Uncaught ErrorException: Undefined variable $canais in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php:54
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 54)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(303): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\dadosCandidato_view.php on line 54.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:22:06 --> Uncaught ErrorException: Attempt to read property "candidato" on array in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php:96
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php(96): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\laragon\\www\\...', 96)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(303): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\dadosCandidato_view.php on line 96.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:22:53 --> Uncaught Error: Cannot use object of type stdClass as array in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php:96
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(303): view('layoutDash', Array)
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\dadosCandidato_view.php on line 96.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:32:18 --> Uncaught ErrorException: Undefined property: stdClass::$ds_data_nascimento in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php:35
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php(35): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 35)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(303): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\dadosCandidato_view.php on line 35.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:32:50 --> Uncaught ErrorException: Undefined property: stdClass::$dt_nascimento in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php:35
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php(35): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 35)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(303): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\dadosCandidato_view.php on line 35.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:33:18 --> Uncaught ErrorException: Undefined property: stdClass::$dt_nascimento in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php:35
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php(35): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 35)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(303): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\dadosCandidato_view.php on line 35.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:39:53 --> syntax error, unexpected token "<"
+in APPPATH\Views\pages\candidatos\dadosCandidato_view.php on line 46.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:40:02 --> Uncaught ErrorException: Attempt to read property "ds_nome" on array in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php:93
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php(93): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\laragon\\www\\...', 93)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(303): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\dadosCandidato_view.php on line 93.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:50:03 --> Uncaught ErrorException: Undefined array key "aperfeicamentos" in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php:102
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php(102): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\laragon\\www\\...', 102)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(303): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\dadosCandidato_view.php on line 102.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:50:08 --> Uncaught ErrorException: Undefined array key "aperfeicamento" in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php:102
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php(102): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\laragon\\www\\...', 102)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(303): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\dadosCandidato_view.php on line 102.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:51:17 --> Uncaught ErrorException: Undefined property: stdClass::$ds_nome_aperfeicoamento in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php:63
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 63)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(303): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\dadosCandidato_view.php on line 63.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:51:40 --> Uncaught ErrorException: Undefined property: stdClass::$fk_id_aperfeicoamento in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php:64
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 64)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(303): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\dadosCandidato_view.php on line 64.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:52:03 --> Uncaught ErrorException: Undefined property: stdClass::$fk_id_aperfeicoamento in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php:64
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 64)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(303): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\dadosCandidato_view.php on line 64.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:56:46 --> Uncaught ErrorException: Undefined property: stdClass::$ds_data_final in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Editais_view.php:67
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Editais_view.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 67)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Editais_...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('/pages/Editais_...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(60): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(42): App\Controllers\Editais->listarParaGrid('ativos', '', 'pages', 'Editais')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->index()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\Editais_view.php on line 67.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:56:53 --> Uncaught Error: Class "App\Models\CursosModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Vagas.php:18
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\Vagas->__construct()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\Vagas.php on line 18.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:56:56 --> Uncaught Error: Class "App\Models\ConvocadosModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Convocados.php:73
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Convocados->convocados('')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Convocados))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\Convocados.php on line 73.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:57:54 --> Uncaught ErrorException: Undefined property: stdClass::$fk_id_edital in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php:72
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 72)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(303): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2915')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\dadosCandidato_view.php on line 72.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 09:59:25 --> syntax error, unexpected floating-point number ".23", expecting "," or ";"
+in APPPATH\Views\pages\candidatos\dadosCandidato_view.php on line 72.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 11:20:57 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: external/img/bg-login.jpg'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 11:20:57 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: external/img/materiais.png'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-05-07 11:35:02 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`ds_tipo_experiencia`
+FROM `tb_cadastrados_experiencias` `exp`
+JOIN `tb_experie' at line 1 in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `exp`.`f...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `exp`.`f...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `exp`.`f...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `exp`.`f...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(145): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(37): App\Models\CandidatosModel->listarExperienciaCandidato('23', '16', '2885')
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2885')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2885')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-05-07 11:35:02 --> Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`ds_tipo_experiencia`
+FROM `tb_cadastrados_experiencias` `exp`
+JOIN `tb_experie' at line 1 in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `exp`.`f...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `exp`.`f...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `exp`.`f...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `exp`.`f...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(145): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(37): App\Models\CandidatosModel->listarExperienciaCandidato('23', '16', '2885')
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2885')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2885')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`ds_tipo_experiencia`
+FROM `tb_cadastrados_experiencias` `exp`
+JOIN `tb_experie' at line 1 in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `exp`.`f...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `exp`.`f...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `exp`.`f...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(145): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(37): App\Models\CandidatosModel->listarExperienciaCandidato('23', '16', '2885')
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2885')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2885')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`ds_tipo_experiencia`
+FROM `tb_cadastrados_experiencias` `exp`
+JOIN `tb_experie' at line 1 in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `exp`.`f...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(145): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(37): App\Models\CandidatosModel->listarExperienciaCandidato('23', '16', '2885')
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2885')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2885')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:02:47 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: Classificacoes/exportarXlsx/23/16'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:04:30 --> Uncaught ErrorException: Undefined property: stdClass::$ds_data_final in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Editais_view.php:67
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Editais_view.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 67)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Editais_...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('/pages/Editais_...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(60): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(42): App\Controllers\Editais->listarParaGrid('ativos', '', 'pages', 'Editais')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->index()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\Editais_view.php on line 67.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:05:38 --> Uncaught Error: Class "App\Controllers\EditaisCargosModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php:114
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(84): App\Controllers\Editais->renderFormulario(Array)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->formularioAlteracao('23')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#5 {main}
+  thrown
+in APPPATH\Controllers\Editais.php on line 114.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:07:45 --> Uncaught ErrorException: Undefined array key "cursos" in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php:126
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(126): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\laragon\\www\\...', 126)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(84): App\Controllers\Editais->renderFormulario(Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->formularioAlteracao('23')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Controllers\Editais.php on line 126.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:08:02 --> Uncaught ErrorException: Undefined array key "abrangencias" in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php:127
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(127): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\laragon\\www\\...', 127)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(84): App\Controllers\Editais->renderFormulario(Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->formularioAlteracao('23')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Controllers\Editais.php on line 127.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:08:15 --> Uncaught ErrorException: Undefined property: stdClass::$ds_data_final in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formEditais_view.php:81
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formEditais_view.php(81): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 81)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/alteracoe...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/alteracoe...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(120): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(84): App\Controllers\Editais->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->formularioAlteracao('23')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\alteracoes\formEditais_view.php on line 81.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:09:04 --> Uncaught ErrorException: Undefined property: stdClass::$ds_data_final in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formEditais_view.php:81
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formEditais_view.php(81): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 81)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/alteracoe...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/alteracoe...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(120): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(84): App\Controllers\Editais->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->formularioAlteracao('23')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\alteracoes\formEditais_view.php on line 81.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:09:35 --> Uncaught ErrorException: Undefined variable $cursos in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formEditais_view.php:94
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formEditais_view.php(94): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 94)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/alteracoe...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/alteracoe...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(120): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(84): App\Controllers\Editais->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->formularioAlteracao('23')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+
+Next TypeError: count(): Argument #1 ($value) must be of type Countable|array, null given in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formEditais_view.php:94
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/alteracoe...', Array, true)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/alteracoe...')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(120): view('layoutDash', Array)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(84): App\Controllers\Editais->renderFormulario(Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->formularioAlteracao('23')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\alteracoes\formEditais_view.php on line 94.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:09:57 --> Uncaught ErrorException: Undefined property: stdClass::$pk_id_curso in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formEditais_view.php:110
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formEditais_view.php(110): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 110)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/alteracoe...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/alteracoe...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(120): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(84): App\Controllers\Editais->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->formularioAlteracao('23')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\alteracoes\formEditais_view.php on line 110.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:10:15 --> Uncaught ErrorException: Undefined property: stdClass::$pk_id_curso in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formEditais_view.php:110
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formEditais_view.php(110): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 110)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/alteracoe...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/alteracoe...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(120): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(84): App\Controllers\Editais->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->formularioAlteracao('23')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\alteracoes\formEditais_view.php on line 110.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:10:22 --> Uncaught ErrorException: Undefined property: stdClass::$ds_nome_curso in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formEditais_view.php:117
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formEditais_view.php(117): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 117)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/alteracoe...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/alteracoe...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(120): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(84): App\Controllers\Editais->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->formularioAlteracao('23')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\alteracoes\formEditais_view.php on line 117.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:11:14 --> Uncaught ErrorException: Undefined variable $cursos in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formEditais_view.php:95
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formEditais_view.php(95): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 95)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/cadastros...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/cadastros...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(120): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(76): App\Controllers\Editais->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->formularioCadastro()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+
+Next TypeError: count(): Argument #1 ($value) must be of type Countable|array, null given in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formEditais_view.php:95
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/cadastros...', Array, true)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/cadastros...')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(120): view('layoutDash', Array)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(76): App\Controllers\Editais->renderFormulario(Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->formularioCadastro()
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\cadastros\formEditais_view.php on line 95.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:11:45 --> Uncaught ErrorException: Undefined variable $cursos in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formEditais_view.php:95
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formEditais_view.php(95): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 95)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/cadastros...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/cadastros...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(120): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(76): App\Controllers\Editais->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->formularioCadastro()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+
+Next TypeError: count(): Argument #1 ($value) must be of type Countable|array, null given in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formEditais_view.php:95
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/cadastros...', Array, true)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/cadastros...')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(120): view('layoutDash', Array)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(76): App\Controllers\Editais->renderFormulario(Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->formularioCadastro()
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\cadastros\formEditais_view.php on line 95.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:17:34 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Página não encontrada: Candidatos in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('P\xC3\xA1gina n\xC3\xA3o en...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:24:07 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: Cargos'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:24:34 --> Uncaught Error: Class "App\Models\AbrangenciasModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php:26
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\Cargos->__construct()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\Cargos.php on line 26.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:25:05 --> Uncaught Error: Class "App\Services\Cargos\CargoGridService" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php:45
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(38): App\Controllers\Cargos->listarParaGrid('', 'pages', 'Cargos')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->index()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#5 {main}
+  thrown
+in APPPATH\Controllers\Cargos.php on line 45.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:26:09 --> Uncaught ErrorException: Undefined variable $cursos in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Cargos_view.php:64
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Cargos_view.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 64)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Cargos_v...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('/pages/Cargos_v...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(52): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(38): App\Controllers\Cargos->listarParaGrid('', 'pages', 'Cargos')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->index()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\Cargos_view.php on line 64.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:26:34 --> Uncaught ErrorException: Undefined variable $Cargos in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Cargos_view.php:64
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Cargos_view.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 64)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Cargos_v...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('/pages/Cargos_v...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(52): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(38): App\Controllers\Cargos->listarParaGrid('', 'pages', 'Cargos')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->index()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\Cargos_view.php on line 64.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:26:48 --> Uncaught ErrorException: Undefined property: stdClass::$ds_nome_Cargo in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Cargos_view.php:69
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Cargos_view.php(69): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 69)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Cargos_v...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('/pages/Cargos_v...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(52): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(38): App\Controllers\Cargos->listarParaGrid('', 'pages', 'Cargos')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->index()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\Cargos_view.php on line 69.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:26:55 --> Uncaught ErrorException: Undefined property: stdClass::$pk_id_Cargo in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Cargos_view.php:77
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Cargos_view.php(77): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 77)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Cargos_v...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('/pages/Cargos_v...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(52): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(38): App\Controllers\Cargos->listarParaGrid('', 'pages', 'Cargos')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->index()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\Cargos_view.php on line 77.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:27:15 --> Uncaught ErrorException: Undefined variable $abrangencias in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargos_view.php:44
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargos_view.php(44): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 44)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/cadastros...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/cadastros...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(109): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(69): App\Controllers\Cargos->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->formularioCadastro()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\cadastros\formCargos_view.php on line 44.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:28:31 --> Uncaught ErrorException: Attempt to read property "pk_id_curso" on null in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formCargos_view.php:28
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formCargos_view.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\laragon\\www\\...', 28)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/alteracoe...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/alteracoe...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(109): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(77): App\Controllers\Cargos->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->formularioAlteracao('12')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\alteracoes\formCargos_view.php on line 28.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:28:57 --> Uncaught ErrorException: Attempt to read property "pk_id_Cargo" on null in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formCargos_view.php:28
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formCargos_view.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\laragon\\www\\...', 28)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/alteracoe...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/alteracoe...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(109): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(77): App\Controllers\Cargos->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->formularioAlteracao('12')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\alteracoes\formCargos_view.php on line 28.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 12:29:08 --> Uncaught ErrorException: Attempt to read property "pk_id_cargo" on null in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formCargos_view.php:28
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formCargos_view.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\laragon\\www\\...', 28)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/alteracoe...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/alteracoe...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(109): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(77): App\Controllers\Cargos->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->formularioAlteracao('12')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\alteracoes\formCargos_view.php on line 28.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 14:14:24 --> Uncaught ErrorException: Undefined variable $id in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formCargos_view.php:28
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formCargos_view.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 28)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/alteracoe...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/alteracoe...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(109): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(77): App\Controllers\Cargos->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->formularioAlteracao('12')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\alteracoes\formCargos_view.php on line 28.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 14:16:58 --> Uncaught ErrorException: Undefined variable $id in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formCargos_view.php:28
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formCargos_view.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 28)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/alteracoe...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/alteracoe...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(109): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(77): App\Controllers\Cargos->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->formularioAlteracao('12')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\alteracoes\formCargos_view.php on line 28.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 14:22:27 --> Uncaught Error: Class "App\Controllers\CargoModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php:106
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(77): App\Controllers\Cargos->renderFormulario(Array)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->formularioAlteracao('12')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#5 {main}
+  thrown
+in APPPATH\Controllers\Cargos.php on line 106.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 14:27:45 --> Uncaught ErrorException: Undefined variable $id in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formCargos_view.php:28
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formCargos_view.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 28)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/alteracoe...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/alteracoe...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(107): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(75): App\Controllers\Cargos->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->formularioAlteracao('12')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\alteracoes\formCargos_view.php on line 28.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 14:32:07 --> Uncaught ErrorException: Undefined property: stdClass::$ds_email_secretaria in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Secretarias_view.php:69
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Secretarias_view.php(69): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 69)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Secretar...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('/pages/Secretar...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Secretarias.php(48): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Secretarias->index()
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Secretarias))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\Secretarias_view.php on line 69.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 14:34:42 --> Uncaught ErrorException: Undefined property: stdClass::$ds_email_secretaria in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Secretarias_view.php:69
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Secretarias_view.php(69): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 69)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Secretar...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('/pages/Secretar...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Secretarias.php(48): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Secretarias->index()
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Secretarias))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\Secretarias_view.php on line 69.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 14:34:54 --> Uncaught ErrorException: Undefined property: stdClass::$ds_email_secretaria in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Secretarias_view.php:69
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Secretarias_view.php(69): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 69)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Secretar...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('/pages/Secretar...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Secretarias.php(48): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Secretarias->index()
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Secretarias))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\Secretarias_view.php on line 69.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 14:39:38 --> Uncaught Error: Class "App\Models\CursosModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Services\Relatorios\RelatoriosFormService.php:27
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Relatorios.php(52): App\Services\Relatorios\RelatoriosFormService->candidatosPorCurso()
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Relatorios.php(65): App\Controllers\Relatorios->renderFormulario(Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Relatorios->formCandidatosPorCurso()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Relatorios))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Services\Relatorios\RelatoriosFormService.php on line 27.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 14:40:25 --> Uncaught Error: Class "App\Models\CursosModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Services\Relatorios\RelatoriosFormService.php:27
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Relatorios.php(52): App\Services\Relatorios\RelatoriosFormService->candidatosPorCurso()
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Relatorios.php(65): App\Controllers\Relatorios->renderFormulario(Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Relatorios->formCandidatosPorCurso()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Relatorios))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Services\Relatorios\RelatoriosFormService.php on line 27.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 14:48:58 --> Uncaught ErrorException: Undefined variable $contratosExpirando in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Dashboard_view.php:73
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Dashboard_view.php(73): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 73)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Dashboar...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('/pages/Dashboar...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Dashboard.php(74): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Dashboard->index()
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\Dashboard_view.php on line 73.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 14:49:47 --> Uncaught ErrorException: Undefined variable $contratosExpirando in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Dashboard_view.php:73
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Dashboard_view.php(73): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 73)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Dashboar...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('/pages/Dashboar...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Dashboard.php(74): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Dashboard->index()
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\Dashboard_view.php on line 73.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 14:50:50 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Página não encontrada: Candidatos in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('P\xC3\xA1gina n\xC3\xA3o en...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 14:51:32 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Página não encontrada: Candidatos in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('P\xC3\xA1gina n\xC3\xA3o en...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 14:57:44 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Página não encontrada: Candidatos in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('P\xC3\xA1gina n\xC3\xA3o en...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 14:57:51 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Página não encontrada: Candidatos in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('P\xC3\xA1gina n\xC3\xA3o en...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 14:58:23 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Página não encontrada: Candidatos in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('P\xC3\xA1gina n\xC3\xA3o en...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 14:59:34 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Página não encontrada: Candidatos in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('P\xC3\xA1gina n\xC3\xA3o en...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 15:07:48 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Controller ou seu método não foi encontrado: \App\Controllers\Convocados::convocados in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Controller ou s...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 15:11:08 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Controller ou seu método não foi encontrado: \App\Controllers\Convocados::convocados in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Controller ou s...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-07 15:11:24 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Controller ou seu método não foi encontrado: \App\Controllers\Convocados::convocados in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Controller ou s...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()

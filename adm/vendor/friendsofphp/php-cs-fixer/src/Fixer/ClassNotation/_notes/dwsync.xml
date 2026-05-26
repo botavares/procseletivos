@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="ClassAttributesSeparationFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="ClassDefinitionFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="FinalClassFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="FinalInternalClassFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="FinalPublicMethodForAbstractClassFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="NoBlankLinesAfterClassOpeningFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="NoNullPropertyInitializationFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="NoPhp4ConstructorFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="NoUnneededFinalMethodFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="OrderedClassElementsFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="OrderedInterfacesFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="OrderedTraitsFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="ProtectedToPrivateFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="SelfAccessorFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="SelfStaticAccessorFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="SingleClassElementPerStatementFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="SingleTraitInsertPerStatementFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="VisibilityRequiredFixer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+</dwsync>

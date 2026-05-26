@@ -1,0 +1,518 @@
+CRITICAL - 2026-05-21 09:43:56 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: external/img/bg-login.jpg'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 09:43:56 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: external/img/materiais.png'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 13:40:17 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: external/img/bg-login.jpg'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 13:40:17 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: external/img/materiais.png'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 13:40:49 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: Candidatos/formSituacaoCandidato/23/16/2887'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 13:44:02 --> Uncaught ErrorException: Attempt to read property "ds_nome" on array in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php:33
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php(33): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\laragon\\www\\...', 33)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(337): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\FormSituacaoCandidato_view.php on line 33.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 13:44:29 --> Uncaught ErrorException: Undefined array key "ds_nome" in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php:33
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php(33): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\laragon\\www\\...', 33)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(337): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\FormSituacaoCandidato_view.php on line 33.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 13:45:51 --> Uncaught Error: Cannot use object of type stdClass as array in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php:28
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(337): view('layoutDash', Array)
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\FormSituacaoCandidato_view.php on line 28.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 13:46:23 --> syntax error, unexpected token "[", expecting identifier or variable or "{" or "$"
+in APPPATH\Views\pages\candidatos\FormSituacaoCandidato_view.php on line 28.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 13:46:36 --> Uncaught ErrorException: Undefined array key 0 in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php:28
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\laragon\\www\\...', 28)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(337): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\FormSituacaoCandidato_view.php on line 28.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 13:47:01 --> Uncaught ErrorException: Attempt to read property "candidato" on array in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php:28
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\laragon\\www\\...', 28)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(337): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\FormSituacaoCandidato_view.php on line 28.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 13:54:38 --> Uncaught ErrorException: Attempt to read property "idCandidato" on array in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php:329
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(329): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\laragon\\www\\...', 329)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#5 {main}
+  thrown
+in APPPATH\Controllers\Candidatos.php on line 329.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 13:55:28 --> Uncaught ErrorException: Attempt to read property "idEdital" on array in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php:330
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(330): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\laragon\\www\\...', 330)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#5 {main}
+  thrown
+in APPPATH\Controllers\Candidatos.php on line 330.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 13:55:46 --> Uncaught ErrorException: Undefined property: App\Controllers\Candidatos::$cargosModel in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php:333
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(333): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 333)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#5 {main}
+  thrown
+in APPPATH\Controllers\Candidatos.php on line 333.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 13:56:01 --> Uncaught Error: Object of class App\Models\CargosModel could not be converted to string in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php:333
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\Candidatos.php on line 333.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 13:56:32 --> Uncaught Error: Object of class App\Models\CargosModel could not be converted to string in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php:333
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\Candidatos.php on line 333.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 13:57:01 --> Uncaught Error: Object of class App\Models\CargosModel could not be converted to string in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php:333
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\Candidatos.php on line 333.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 14:03:58 --> Uncaught ErrorException: Undefined variable $escolaridade in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php:57
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php(57): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 57)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(350): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\FormSituacaoCandidato_view.php on line 57.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 14:05:13 --> Uncaught ErrorException: Undefined variable $escolaridade in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php:57
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php(57): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 57)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(350): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\FormSituacaoCandidato_view.php on line 57.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 14:05:33 --> Uncaught ErrorException: Undefined variable $escolaridade in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php:59
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 59)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(350): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\FormSituacaoCandidato_view.php on line 59.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 14:11:24 --> Uncaught Error: Class "App\Controllers\SituacaoService" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php:335
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\Candidatos.php on line 335.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 14:11:57 --> Uncaught Error: Class "App\Services\Candidatos\AbstractCrudService" not found in C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\SituacaoService.php:6
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Autoloader\Autoloader.php(312): include_once()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Services\\Ca...')
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(336): CodeIgniter\Autoloader\Autoloader->loadClass('App\\Services\\Ca...')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+  thrown
+in APPPATH\Services\Candidatos\SituacaoService.php on line 6.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 14:12:57 --> Uncaught ArgumentCountError: Too few arguments to function App\Services\Candidatos\SituacaoService::__construct(), 0 passed in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php on line 336 and exactly 1 expected in C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\SituacaoService.php:12
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(336): App\Services\Candidatos\SituacaoService->__construct()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#5 {main}
+  thrown
+in APPPATH\Services\Candidatos\SituacaoService.php on line 12.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 14:17:36 --> Uncaught TypeError: App\Services\Candidatos\SituacaoService::__construct(): Argument #1 ($repositorySituacao) must be of type App\Repositories\Contracts\Candidatos\SituacaoRepositoryInterface, null given, called in C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php on line 44 and defined in C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\SituacaoService.php:12
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php(44): App\Services\Candidatos\SituacaoService->__construct(NULL)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Config\BaseService.php(193): Config\Services::SituacaoService(false)
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php(42): CodeIgniter\Config\BaseService::getSharedInstance('situacaoservice')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1007): Config\Services::SituacaoService()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(336): service('SituacaoService')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+  thrown
+in APPPATH\Services\Candidatos\SituacaoService.php on line 12.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 14:23:12 --> Uncaught Error: Class "App\Repositories\Candidatos\SituacaoRepository" not found in C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php:44
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Config\BaseService.php(193): Config\Services::situacaoRepository(false)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php(42): CodeIgniter\Config\BaseService::getSharedInstance('situacaoreposit...')
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php(52): Config\Services::situacaoRepository()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Config\BaseService.php(193): Config\Services::SituacaoService(false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php(50): CodeIgniter\Config\BaseService::getSharedInstance('situacaoservice')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1007): Config\Services::SituacaoService()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(336): service('SituacaoService')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+  thrown
+in APPPATH\Config\Services.php on line 44.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 14:28:26 --> Uncaught TypeError: App\Services\Candidatos\SituacaoService::__construct(): Argument #1 ($repositorySituacao) must be of type App\Repositories\Contracts\Candidatos\SituacaoRepositoryInterface, null given, called in C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php on line 44 and defined in C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\SituacaoService.php:12
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php(44): App\Services\Candidatos\SituacaoService->__construct(NULL)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Config\BaseService.php(193): Config\Services::SituacaoService(false)
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php(42): CodeIgniter\Config\BaseService::getSharedInstance('situacaoservice')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1007): Config\Services::SituacaoService()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(336): service('SituacaoService')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+  thrown
+in APPPATH\Services\Candidatos\SituacaoService.php on line 12.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 14:33:06 --> Uncaught TypeError: App\Services\Candidatos\SituacaoService::__construct(): Argument #1 ($repositorySituacao) must be of type App\Repositories\Contracts\Candidatos\SituacaoRepositoryInterface, null given, called in C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php on line 44 and defined in C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\SituacaoService.php:12
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php(44): App\Services\Candidatos\SituacaoService->__construct(NULL)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Config\BaseService.php(193): Config\Services::SituacaoService(false)
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php(42): CodeIgniter\Config\BaseService::getSharedInstance('situacaoservice')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1007): Config\Services::SituacaoService()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(336): service('SituacaoService')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+  thrown
+in APPPATH\Services\Candidatos\SituacaoService.php on line 12.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 14:52:37 --> Uncaught TypeError: App\Services\Candidatos\SituacaoService::__construct(): Argument #1 ($repositorySituacao) must be of type App\Repositories\Contracts\Candidatos\SituacaoRepositoryInterface, null given, called in C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php on line 44 and defined in C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\SituacaoService.php:12
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php(44): App\Services\Candidatos\SituacaoService->__construct(NULL)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Config\BaseService.php(193): Config\Services::SituacaoService(false)
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php(42): CodeIgniter\Config\BaseService::getSharedInstance('situacaoservice')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1007): Config\Services::SituacaoService()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(336): service('SituacaoService')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+  thrown
+in APPPATH\Services\Candidatos\SituacaoService.php on line 12.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 15:00:43 --> Uncaught TypeError: App\Services\Candidatos\SituacaoService::__construct(): Argument #1 ($situacaoModel) must be of type App\Models\SituacaoModel, null given, called in C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php on line 45 and defined in C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\SituacaoService.php:15
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php(45): App\Services\Candidatos\SituacaoService->__construct(NULL)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Config\BaseService.php(193): Config\Services::situacaoService(false)
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php(42): CodeIgniter\Config\BaseService::getSharedInstance('situacaoservice')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1007): Config\Services::situacaoService()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(336): service('situacaoService')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+  thrown
+in APPPATH\Services\Candidatos\SituacaoService.php on line 15.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 15:02:19 --> Uncaught TypeError: App\Services\Candidatos\SituacaoService::__construct(): Argument #1 ($situacaoModel) must be of type App\Models\SituacaoModel, null given, called in C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php on line 45 and defined in C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\SituacaoService.php:15
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php(45): App\Services\Candidatos\SituacaoService->__construct(NULL)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Config\BaseService.php(193): Config\Services::situacaoService(false)
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php(42): CodeIgniter\Config\BaseService::getSharedInstance('situacaoservice')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1007): Config\Services::situacaoService()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(336): service('situacaoService')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+  thrown
+in APPPATH\Services\Candidatos\SituacaoService.php on line 15.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 15:03:29 --> Uncaught Error: Call to a member function getCandidatoCargoEdital() on null in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php:337
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\Candidatos.php on line 337.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 15:06:25 --> Uncaught ErrorException: Undefined variable $situacao in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php:59
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 59)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(353): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\FormSituacaoCandidato_view.php on line 59.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 15:07:59 --> Uncaught TypeError: App\Services\Candidatos\SituacaoService::__construct(): Argument #1 ($situacaoModel) must be of type App\Models\SituacaoModel, null given, called in C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php on line 46 and defined in C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\SituacaoService.php:15
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php(46): App\Services\Candidatos\SituacaoService->__construct(NULL)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Config\BaseService.php(193): Config\Services::situacaoService(false)
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Config\Services.php(43): CodeIgniter\Config\BaseService::getSharedInstance('situacaoservice')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1007): Config\Services::situacaoService()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(336): service('situacaoService')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+  thrown
+in APPPATH\Services\Candidatos\SituacaoService.php on line 15.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 15:09:03 --> Uncaught ErrorException: Undefined variable $situacao in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php:59
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 59)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(353): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\FormSituacaoCandidato_view.php on line 59.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 15:14:21 --> Uncaught ErrorException: Attempt to read property "situacao" on null in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php:59
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\FormSituacaoCandidato_view.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read...', 'C:\\laragon\\www\\...', 59)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(354): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->formSituacaoCandidato('23', '16', '2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\FormSituacaoCandidato_view.php on line 59.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 15:32:39 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'post: Candidatos/registrarSituacao'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 15:33:34 --> Uncaught Error: Typed property App\Services\Base\AbstractCrudService::$db must not be accessed before initialization in C:\laragon\www\servicos\procseletivos\adm\app\Services\Base\AbstractCrudService.php:20
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\SituacaoService.php(34): App\Services\Base\AbstractCrudService->transactional(Object(Closure))
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(383): App\Services\Candidatos\SituacaoService->salvar(Object(App\DTOs\Domain\Candidatos\SituacaoDTO))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->registrarSituacao()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Services\Base\AbstractCrudService.php on line 20.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-21 15:39:32 --> Uncaught TypeError: App\Services\Candidatos\SituacaoService::atualizar(): Argument #1 ($id) must be of type int, null given, called in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php on line 379 and defined in C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\SituacaoService.php:42
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(379): App\Services\Candidatos\SituacaoService->atualizar(NULL, Object(App\DTOs\Domain\Candidatos\SituacaoDTO))
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->registrarSituacao()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#5 {main}
+  thrown
+in APPPATH\Services\Candidatos\SituacaoService.php on line 42.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()

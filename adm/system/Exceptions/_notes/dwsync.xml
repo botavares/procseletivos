@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="AlertError.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="CastException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="ConfigException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="CriticalError.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="DebugTraceableTrait.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="DownloadException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="EmergencyError.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="ExceptionInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="FrameworkException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="HasExitCodeInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="HTTPExceptionInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="ModelException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="PageNotFoundException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="TestException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+</dwsync>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="CustomFilterIterator.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133187103480000000" remote="133537796400000000" Dst="0" />
+<file name="DateRangeFilterIterator.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133187103480000000" remote="133537796400000000" Dst="0" />
+<file name="DepthRangeFilterIterator.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133187103480000000" remote="133537796400000000" Dst="0" />
+<file name="ExcludeDirectoryFilterIterator.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133187103480000000" remote="133537796400000000" Dst="0" />
+<file name="FilecontentFilterIterator.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133187103480000000" remote="133537796400000000" Dst="0" />
+<file name="FilenameFilterIterator.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133187103480000000" remote="133537796400000000" Dst="0" />
+<file name="FileTypeFilterIterator.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133187103480000000" remote="133537796400000000" Dst="0" />
+<file name="LazyIterator.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133187103480000000" remote="133537796400000000" Dst="0" />
+<file name="MultiplePcreFilterIterator.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133187103480000000" remote="133537796400000000" Dst="0" />
+<file name="PathFilterIterator.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133187103480000000" remote="133537796400000000" Dst="0" />
+<file name="RecursiveDirectoryIterator.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133187103480000000" remote="133537796400000000" Dst="0" />
+<file name="SizeRangeFilterIterator.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133187103480000000" remote="133537797000000000" Dst="0" />
+<file name="SortableIterator.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133187103480000000" remote="133537797000000000" Dst="0" />
+<file name="VcsIgnoredFilterIterator.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133187103480000000" remote="133537797000000000" Dst="0" />
+</dwsync>

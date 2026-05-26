@@ -1,0 +1,123 @@
+CRITICAL - 2026-04-08 11:31:57 --> Object of class stdClass could not be converted to string
+in SYSTEMPATH\Database\Query.php on line 329.
+ 1 SYSTEMPATH\Database\Query.php(329): implode(',', [...])
+ 2 SYSTEMPATH\Database\Query.php(310): CodeIgniter\Database\Query->matchNamedBinds('UPDATE `tb_cadastrados_protocolo` SET `fk_id_cadastrado` = :fk_id_cadastrado:, `fk_id_secretaria` = :fk_id_secretaria:, `fk_id_cargo` = :fk_id_cargo:, `fk_id_edital` = :fk_id_edital:
+WHERE `tb_cadastrados_protocolo`.`pk_id_processo` IN :tb_cadastrados_protocolo.pk_id_processo:', [...])
+ 3 SYSTEMPATH\Database\Query.php(159): CodeIgniter\Database\Query->compileBinds()
+ 4 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\Query->getQuery()
+ 5 SYSTEMPATH\Database\BaseBuilder.php(2462): CodeIgniter\Database\BaseConnection->query('UPDATE `tb_cadastrados_protocolo` SET `fk_id_cadastrado` = :fk_id_cadastrado:, `fk_id_secretaria` = :fk_id_secretaria:, `fk_id_cargo` = :fk_id_cargo:, `fk_id_edital` = :fk_id_edital:
+WHERE `tb_cadastrados_protocolo`.`pk_id_processo` IN :tb_cadastrados_protocolo.pk_id_processo:', [...], false)
+ 6 SYSTEMPATH\Model.php(395): CodeIgniter\Database\BaseBuilder->update()
+ 7 SYSTEMPATH\BaseModel.php(943): CodeIgniter\Model->doUpdate([...], [...])
+ 8 SYSTEMPATH\Model.php(755): CodeIgniter\BaseModel->update([...], [...])
+ 9 APPPATH\Controllers\Cadastros.php(623): CodeIgniter\Model->update([...], [...])
+10 APPPATH\Controllers\Cadastros.php(520): App\Controllers\Cadastros->gravarProtocolo([...], [...])
+11 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+12 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+13 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-08 11:49:54 --> Object of class stdClass could not be converted to string
+in SYSTEMPATH\Database\Query.php on line 329.
+ 1 SYSTEMPATH\Database\Query.php(329): implode(',', [...])
+ 2 SYSTEMPATH\Database\Query.php(310): CodeIgniter\Database\Query->matchNamedBinds('UPDATE `tb_cadastrados_protocolo` SET `fk_id_cadastrado` = :fk_id_cadastrado:, `fk_id_secretaria` = :fk_id_secretaria:, `fk_id_cargo` = :fk_id_cargo:, `fk_id_edital` = :fk_id_edital:
+WHERE `tb_cadastrados_protocolo`.`pk_id_processo` IN :tb_cadastrados_protocolo.pk_id_processo:', [...])
+ 3 SYSTEMPATH\Database\Query.php(159): CodeIgniter\Database\Query->compileBinds()
+ 4 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\Query->getQuery()
+ 5 SYSTEMPATH\Database\BaseBuilder.php(2462): CodeIgniter\Database\BaseConnection->query('UPDATE `tb_cadastrados_protocolo` SET `fk_id_cadastrado` = :fk_id_cadastrado:, `fk_id_secretaria` = :fk_id_secretaria:, `fk_id_cargo` = :fk_id_cargo:, `fk_id_edital` = :fk_id_edital:
+WHERE `tb_cadastrados_protocolo`.`pk_id_processo` IN :tb_cadastrados_protocolo.pk_id_processo:', [...], false)
+ 6 SYSTEMPATH\Model.php(395): CodeIgniter\Database\BaseBuilder->update()
+ 7 SYSTEMPATH\BaseModel.php(943): CodeIgniter\Model->doUpdate([...], [...])
+ 8 SYSTEMPATH\Model.php(755): CodeIgniter\BaseModel->update([...], [...])
+ 9 APPPATH\Controllers\Cadastros.php(624): CodeIgniter\Model->update([...], [...])
+10 APPPATH\Controllers\Cadastros.php(520): App\Controllers\Cadastros->gravarProtocolo([...], [...])
+11 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+12 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+13 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-08 15:45:25 --> The action you requested is not allowed.
+in SYSTEMPATH\Security\Security.php on line 306.
+ 1 SYSTEMPATH\Security\Security.php(306): CodeIgniter\Security\Exceptions\SecurityException::forDisallowedAction()
+ 2 SYSTEMPATH\Filters\CSRF.php(55): CodeIgniter\Security\Security->verify(Object(CodeIgniter\HTTP\IncomingRequest))
+ 3 SYSTEMPATH\Filters\Filters.php(173): CodeIgniter\Filters\CSRF->before(Object(CodeIgniter\HTTP\IncomingRequest), null)
+ 4 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('Cadastros/registrarDadosClassificatorios', 'before')
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-08 15:46:08 --> Object of class stdClass could not be converted to string
+in SYSTEMPATH\Database\Query.php on line 329.
+ 1 SYSTEMPATH\Database\Query.php(329): implode(',', [...])
+ 2 SYSTEMPATH\Database\Query.php(310): CodeIgniter\Database\Query->matchNamedBinds('UPDATE `tb_cadastrados_protocolo` SET `fk_id_cadastrado` = :fk_id_cadastrado:, `fk_id_secretaria` = :fk_id_secretaria:, `fk_id_cargo` = :fk_id_cargo:, `fk_id_edital` = :fk_id_edital:
+WHERE `tb_cadastrados_protocolo`.`pk_id_processo` IN :tb_cadastrados_protocolo.pk_id_processo:', [...])
+ 3 SYSTEMPATH\Database\Query.php(159): CodeIgniter\Database\Query->compileBinds()
+ 4 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\Query->getQuery()
+ 5 SYSTEMPATH\Database\BaseBuilder.php(2462): CodeIgniter\Database\BaseConnection->query('UPDATE `tb_cadastrados_protocolo` SET `fk_id_cadastrado` = :fk_id_cadastrado:, `fk_id_secretaria` = :fk_id_secretaria:, `fk_id_cargo` = :fk_id_cargo:, `fk_id_edital` = :fk_id_edital:
+WHERE `tb_cadastrados_protocolo`.`pk_id_processo` IN :tb_cadastrados_protocolo.pk_id_processo:', [...], false)
+ 6 SYSTEMPATH\Model.php(395): CodeIgniter\Database\BaseBuilder->update()
+ 7 SYSTEMPATH\BaseModel.php(943): CodeIgniter\Model->doUpdate([...], [...])
+ 8 SYSTEMPATH\Model.php(755): CodeIgniter\BaseModel->update([...], [...])
+ 9 APPPATH\Controllers\Cadastros.php(624): CodeIgniter\Model->update([...], [...])
+10 APPPATH\Controllers\Cadastros.php(520): App\Controllers\Cadastros->gravarProtocolo([...], [...])
+11 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+12 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+13 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-08 15:46:46 --> syntax error, unexpected token ";"
+in APPPATH\Controllers\Cadastros.php on line 632.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('APPPATH\\Controllers\\Cadastros.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Cadastros')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Cadastros')
+ 4 SYSTEMPATH\CodeIgniter.php(892): class_exists('\\App\\Controllers\\Cadastros', true)
+ 5 SYSTEMPATH\CodeIgniter.php(486): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-08 15:47:53 --> Object of class stdClass could not be converted to string
+in SYSTEMPATH\Database\Query.php on line 335.
+ 1 SYSTEMPATH\Database\Query.php(335): strtr('UPDATE `tb_cadastrados_protocolo` SET `fk_id_cadastrado` = :fk_id_cadastrado.1:, `fk_id_secretaria` = :fk_id_secretaria.1:, `fk_id_edital` = :fk_id_edital.1:, `fk_id_cargo` = :fk_id_cargo.1:, `ds_cpf_cadastrado` = :ds_cpf_cadastrado:, `ds_protocolo` = :ds_protocolo:, `ds_data_protocolo` = :ds_data_protocolo:, `ds_hora_protocolo` = :ds_hora_protocolo:
+WHERE `fk_id_cadastrado` = :fk_id_cadastrado:
+AND `fk_id_secretaria` = :fk_id_secretaria:
+AND `fk_id_cargo` = :fk_id_cargo:
+AND `fk_id_edital` = :fk_id_edital:', [...])
+ 2 SYSTEMPATH\Database\Query.php(310): CodeIgniter\Database\Query->matchNamedBinds('UPDATE `tb_cadastrados_protocolo` SET `fk_id_cadastrado` = :fk_id_cadastrado.1:, `fk_id_secretaria` = :fk_id_secretaria.1:, `fk_id_edital` = :fk_id_edital.1:, `fk_id_cargo` = :fk_id_cargo.1:, `ds_cpf_cadastrado` = :ds_cpf_cadastrado:, `ds_protocolo` = :ds_protocolo:, `ds_data_protocolo` = :ds_data_protocolo:, `ds_hora_protocolo` = :ds_hora_protocolo:
+WHERE `fk_id_cadastrado` = :fk_id_cadastrado:
+AND `fk_id_secretaria` = :fk_id_secretaria:
+AND `fk_id_cargo` = :fk_id_cargo:
+AND `fk_id_edital` = :fk_id_edital:', [...])
+ 3 SYSTEMPATH\Database\Query.php(159): CodeIgniter\Database\Query->compileBinds()
+ 4 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\Query->getQuery()
+ 5 SYSTEMPATH\Database\BaseBuilder.php(2462): CodeIgniter\Database\BaseConnection->query('UPDATE `tb_cadastrados_protocolo` SET `fk_id_cadastrado` = :fk_id_cadastrado.1:, `fk_id_secretaria` = :fk_id_secretaria.1:, `fk_id_edital` = :fk_id_edital.1:, `fk_id_cargo` = :fk_id_cargo.1:, `ds_cpf_cadastrado` = :ds_cpf_cadastrado:, `ds_protocolo` = :ds_protocolo:, `ds_data_protocolo` = :ds_data_protocolo:, `ds_hora_protocolo` = :ds_hora_protocolo:
+WHERE `fk_id_cadastrado` = :fk_id_cadastrado:
+AND `fk_id_secretaria` = :fk_id_secretaria:
+AND `fk_id_cargo` = :fk_id_cargo:
+AND `fk_id_edital` = :fk_id_edital:', [...], false)
+ 6 SYSTEMPATH\Model.php(395): CodeIgniter\Database\BaseBuilder->update()
+ 7 SYSTEMPATH\BaseModel.php(943): CodeIgniter\Model->doUpdate(null, [...])
+ 8 SYSTEMPATH\Model.php(755): CodeIgniter\BaseModel->update(null, [...])
+ 9 APPPATH\Controllers\Cadastros.php(632): CodeIgniter\Model->update()
+10 APPPATH\Controllers\Cadastros.php(520): App\Controllers\Cadastros->gravarProtocolo([...], [...])
+11 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+12 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+13 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-08 15:56:29 --> 
+in SYSTEMPATH\HTTP\RedirectResponse.php on line 60.
+ 1 SYSTEMPATH\HTTP\RedirectResponse.php(60): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('Cadastros/sucessoClassificatorio')
+ 2 APPPATH\Controllers\Cadastros.php(523): CodeIgniter\HTTP\RedirectResponse->route(false, [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-08 15:57:28 --> 
+in SYSTEMPATH\HTTP\RedirectResponse.php on line 60.
+ 1 SYSTEMPATH\HTTP\RedirectResponse.php(60): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('Cadastros/sucessoClassificatorio')
+ 2 APPPATH\Controllers\Cadastros.php(523): CodeIgniter\HTTP\RedirectResponse->route(false, [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-08 15:59:01 --> 
+in SYSTEMPATH\HTTP\RedirectResponse.php on line 60.
+ 1 SYSTEMPATH\HTTP\RedirectResponse.php(60): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('Cadastros/sucessoClassificatorio')
+ 2 APPPATH\Controllers\Cadastros.php(523): CodeIgniter\HTTP\RedirectResponse->route(false, [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

@@ -1,0 +1,340 @@
+/*
+  c:/laragon/www/servicos/external/css/padroes.css
+
+*/
+
+/*===============================================================================
+COMPONENTES HTML
+===============================================================================*/
+a{
+  text-decoration: none; 
+}
+
+/*===============================================================================
+CORES PADRONIZADAS
+================================================================================*/
+.darkblue{background-color: darkblue;}
+.blue{background-color: blue;}
+
+.azul{color:#2b69c0;}
+.verde{color:#00ff00;}
+.branco{color:#FFF;}
+.preto{color:#000;}
+.vermelho{color:#F00}
+.branco{color: white;}
+.silver{color:silver;}
+
+.bluelight{background-color: #2b69c0;}
+
+
+.bg-verde{background-color: #537c53;}
+.bg-lima{background-color: #c6e2c6;}
+.bg-aco{background-color: #d6d6d6;}
+.bg-laranja-claro{background-color: #f1cfac;}
+
+
+
+.azul-claro{color:#789dd1;}
+.bg-white{background-color: white;}
+
+
+.font-blue{color:#2b69c0;}
+.font-black{color:#000;}
+.font-red{color:#F00}
+
+/*===============================================================================
+CORES GRADIENTES
+===============================================================================*/
+.grad-blue-blulight {
+  background-image: linear-gradient(to right, #1855b6 , #6793d2);
+}
+
+/*===============================================================================
+POSICIONAMENTOS
+===============================================================================*/
+.sidebyside{
+    display: flex;
+    flex-direction: row;
+}
+/*===============================================================================
+ESPAÇAMENTOS E MARGENS
+===============================================================================*/
+/*PADDINGS*/
+.pdd-0{padding: 0;}
+.pdd-5{padding: 5px;}
+.pdd-10{padding: 10px;}
+.pdd-15{padding: 15px;}
+.pdd-20{padding: 20px;}
+.pdd-25{padding: 25px;}
+.pdd-30{padding: 30px;}
+.pdd-35{padding: 35px;}
+.pdd-40{padding: 40px;}
+.pdd-45{padding: 45px;}
+.pdd-bottom-0{padding-bottom: 0;}
+.pdd-bottom-15{padding-bottom: 15px;}
+.pdd-bottom-20{padding-bottom: 20px;}
+.pdd-bottom-25{padding-bottom: 25px;}
+.pdd-bottom-30{padding-bottom: 30px;}
+.pdd-bottom-35{padding-bottom: 35px;}
+.pdd-bottom-40{padding-bottom: 40px;}
+.pdd-bottom-45{padding-bottom: 45px;}
+
+.pdd-top-0{padding-top: 0;}
+.pdd-top-15{padding-top: 15px;}
+.pdd-top-20{padding-top: 20px;}
+.pdd-top-25{padding-top: 25px;}
+.pdd-top-30{padding-top: 30px;}
+.pdd-top-35{padding-top: 35px;}
+.pdd-top-40{padding-top: 40px;}
+.pdd-top-45{padding-top: 45px;}
+
+
+/*MARGINS*/
+.mrg-0{margin: 0;}
+.mrg-5{margin: 5px;}
+.mrg-10{margin: 10px;}
+.mrg-15{margin: 15px;}
+.mrg-20{margin: 20px;}
+.mrg-25{margin: 25px;}
+.mrg-30{margin: 30px;}
+.mrg-35{margin: 35px;}
+.mrg-40{margin: 40px;}
+.mrg-45{margin: 45px;}
+
+.mrg-top{margin-top: 0px;}
+.mrg-top-10{margin-top: 10px;}
+.mrg-top-15{margin-top: 15px;}
+.mrg-top-20{margin-top: 20px;}
+.mrg-top-25{margin-top: 25px;}
+.mrg-top-30{margin-top: 30px;}
+
+.mrg-bottom{margin-bottom: 0px;}
+.mrg-bottom-10{margin-bottom: 10px;}
+.mrg-bottom-15{margin-bottom: 15px;}
+.mrg-bottom-20{margin-bottom: 20px;}
+.mrg-bottom-25{margin-bottom: 25px;}
+.mrg-bottom-30{margin-bottom: 30px;}
+
+.mrg-right-10{margin-bottom: 10px;}
+
+.no-border-bottom{border-bottom: none;}
+.border-bottom{border-bottom: 1px solid #CCC;}
+
+/*===============================================================================
+TAMANHOS DE FONTES
+===============================================================================*/
+.font-10{font-size: 10px;}
+.font-12{font-size: 12px;}
+.font-14{font-size: 14px;}
+.font-16{font-size: 16px;}
+.font-18{font-size: 18px;}
+.font-20{font-size: 20px;}
+.font-22{font-size: 22px;}
+.font-24{font-size: 24px;}
+.font-26{font-size: 26px;}
+.font-28{font-size: 28px;}
+.font-30{font-size: 30px;}
+.font-32{font-size: 32px;}
+.font-34{font-size: 34px;}
+.font-36{font-size: 36px;}
+.font-38{font-size: 38px;}
+.font-40{font-size: 40px;}
+.font-42{font-size: 42px;}
+.font-44{font-size: 44px;}
+
+.font-em-2{font-size: 2em;}
+.font-em-4{font-size: 4em;}
+
+.pointer{
+  cursor: pointer;
+}
+
+.area-alertas{
+  height: 12%;
+}
+/*===============================================================================
+ALINHAMENTO DE TEXTOS
+===============================================================================*/
+.ta-left{
+  text-align:left;
+}
+.ta-right{
+  text-align:right;
+}
+.ta-center{
+  text-align:center;
+}
+.ta-just{
+  text-align:justify;
+}
+.border{
+  border: 1px solid #dddddd;
+}
+
+/*===============================================================================
+PARAGRAFOS
+===============================================================================*/
+.paragrafo{
+  text-align: justify;
+  text-indent:2em;
+}
+.paragrafo:first-letter{
+  font-weight: bold;
+}
+.paragrafo-primeira-letra-grande{
+  text-align: justify;
+}
+.paragrafo-primeira-letra-grande:first-letter{
+    font-size: 3rem;
+    font-weight: bold;
+    color: #000;
+    float: left;
+    line-height: 1;
+    padding-top: 0.1em;
+    padding-right: 0.05em;
+    padding-bottom: 0.1em;
+    padding-left: 0.05em;
+  
+}
+
+/*===============================================================================
+BORDAS
+===============================================================================*/ 
+.no-border{
+      border: none;
+ }
+ .border-white-top{
+     border-top: 1px solid white;
+ }
+ .border-white-bottom{
+  border-bottom: 1px solid white;
+}
+.border-silver-bottom{
+  border-bottom: 1px solid #dddddd;
+}
+
+.border-white-left{
+  border-left: 1px solid white;
+}
+.border-white-right{
+  border-right: 1px solid white;
+}
+.border-white{
+  border: 1px solid white;
+}
+
+ /*===================================================================================
+ BLOCOS DE CONSTRUÇÃO
+ ===================================================================================*/
+ 
+ .bloco-central{
+    height:400px;
+ }
+
+
+.icone-search{
+  margin-left: -40px;
+}
+
+.centra-vertical{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	height: inherit;
+}
+.centra-horizontal{
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	/*height: inherit;*/
+}
+.centrado{
+	margin: 0 auto;	
+}
+
+  .chanfrado{
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+  }
+  .chanfrado-topo{
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+  }
+  .arredondado{
+    -webkit-border-radius: 70px;
+    -moz-border-radius: 70px;
+    border-radius: 70px;
+  }
+  .card ul li{
+    list-style:disc;
+    margin-left: 20px;
+    text-indent: 0.5em;
+  }
+  .card ul ul li{
+    list-style:circle;
+    margin-left: 40px;
+    text-indent: 0.5em;
+  }
+
+  
+  select {
+    appearance: none; /* Remove o estilo padrão do navegador */
+    -webkit-appearance: none; /* Para navegadores Webkit */
+    -moz-appearance: none; /* Para navegadores Firefox */
+    background-color: #ffffff; /* Cor de fundo cinza claro, similar ao gov.br */
+    border: 1px solid #747575; /* Borda azul padrão gov.br */
+    border-radius: 4px; /* Arredonda as bordas */
+    color: #212529; /* Texto em preto */
+    font-size: 16px; /* Tamanho da fonte */
+    padding: 10px 40px 10px 15px; /* Espaçamento interno */
+    width: 100%; /* Ocupa todo o espaço do container */
+    height: 45px; /* Altura fixa */
+    cursor: pointer; /* Cursor de ponteiro para interação */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="%23007bff" d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0L160 284.1l96.5-96.3c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.4 9.5-24.6 9.5-34 0z"/></svg>'); /* Seta similar ao Font Awesome */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px 12px;
+}
+
+/* Remove o outline padrão ao focar */
+select:focus {
+    outline: none;
+    border-color: #0056b3; /* Cor de foco da borda */
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Adiciona um efeito de foco similar ao gov.br */
+}
+select:hover{
+  background-color: #d4d3d3; /* Cor de fundo cinza claro, similar ao gov.br */
+}
+select option {
+    background-color: #ffffff; /* Cor de fundo cinza claro, similar ao gov.br */
+    width:100%;
+    color: #212529; /* Texto em preto */
+    font-size: 14px; /* Tamanho da fonte */
+    padding: 0; /* Espaçamento interno */
+    cursor: pointer; /* Cursor de ponteiro para interação */
+}
+.select option:hover {
+  background-color: #ffffff; /* Cor de fundo cinza claro, similar ao gov.br */
+}
+.errorMensagem{
+  color:red;
+  font-size: 16px;
+  font-weight:bold;
+  text-align: left;
+}
+
+
+
+/* Ajustes de responsividade */
+@media (max-width: 768px) {
+  select {
+      font-size: 14px; /* Ajusta o tamanho da fonte em telas menores */
+      padding: 8px 35px 8px 15px; /* Ajusta o padding para telas menores */
+  }
+}

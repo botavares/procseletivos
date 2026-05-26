@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="AliasedFixerOption.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="AllowedValueSubset.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="AliasedFixerOptionBuilder.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="DeprecatedFixerOption.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="DeprecatedFixerOptionInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="FixerConfigurationResolver.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="FixerConfigurationResolverInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="FixerOption.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="FixerOptionBuilder.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="FixerOptionInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+<file name="InvalidOptionsForEnvException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133117181300000000" remote="133537796400000000" Dst="0" />
+</dwsync>

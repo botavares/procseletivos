@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="CLIRequest.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="ContentSecurityPolicy.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="CURLRequest.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="DownloadResponse.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="Header.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="IncomingRequest.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="Message.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="MessageInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="MessageTrait.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="Negotiate.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="OutgoingRequest.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="OutgoingRequestInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="RedirectResponse.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="Request.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="RequestInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="RequestTrait.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="Response.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="ResponseInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="ResponseTrait.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="URI.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="UserAgent.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+</dwsync>

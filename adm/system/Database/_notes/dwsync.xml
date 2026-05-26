@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="BaseConnection.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="BaseBuilder.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="BasePreparedQuery.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="BaseResult.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="BaseUtils.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="Config.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="ConnectionInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="Database.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="Forge.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="Migration.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="MigrationRunner.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="ModelFactory.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="PreparedQueryInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="Query.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="QueryInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="RawSql.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="ResultInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="Seeder.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+</dwsync>

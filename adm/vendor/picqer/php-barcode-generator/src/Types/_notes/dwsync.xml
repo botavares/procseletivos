@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="TypeCodabar.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeCode11.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeCode128.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeCode128A.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeCode128B.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeCode128C.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeCode32.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeCode39.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeCode39Checksum.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeCode39Extended.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeCode39ExtendedChecksum.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeCode93.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeEan13.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeEan8.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeEanUpcBase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeIntelligentMailBarcode.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeInterleaved25.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeInterleaved25Checksum.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeITF14.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeKix.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeMsi.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeMsiChecksum.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypePharmacode.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypePharmacodeTwoCode.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypePlanet.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypePostnet.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeRms4cc.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeStandard2of5.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeStandard2of5Checksum.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeTelepen.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeUpcA.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeUpcE.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeUpcExtension2.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="TypeUpcExtension5.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+</dwsync>

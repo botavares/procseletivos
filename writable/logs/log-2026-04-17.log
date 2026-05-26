@@ -1,0 +1,287 @@
+CRITICAL - 2026-04-17 09:43:42 --> App\Services\Transparencia\TransparenciaFormService::__construct(): Argument #2 ($cargosModel) must be of type App\Models\CargosModel, App\Models\CandidatosModel given, called in /var/www/html/administracao/procseletivos/app/Controllers/Transparencia.php on line 93
+in APPPATH/Services/Transparencia/TransparenciaFormService.php on line 12.
+ 1 APPPATH/Controllers/Transparencia.php(93): App\Services\Transparencia\TransparenciaFormService->__construct()
+ 2 APPPATH/Controllers/Transparencia.php(48): App\Controllers\Transparencia->renderPagina()
+ 3 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Transparencia->index()
+ 4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-04-17 11:43:23 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`bd_processos_seletivos_administracao`.`tb_cadastrados_protocolo`, CONSTRAINT `fk_protocolo_cadastrado` FOREIGN KEY (`fk_id_cadastrado`) REFERENCES `tb_cadastrados` (`pk_id_cadastrado`)) in /var/www/html/administracao/procseletivos/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /var/www/html/administracao/procseletivos/system/Database/MySQLi/Connection.php(295): mysqli->query()
+#1 /var/www/html/administracao/procseletivos/system/Database/BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/administracao/procseletivos/system/Database/BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/administracao/procseletivos/system/Database/BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/administracao/procseletivos/system/Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+#5 /var/www/html/administracao/procseletivos/system/BaseModel.php(782): CodeIgniter\Model->doInsert()
+#6 /var/www/html/administracao/procseletivos/system/Model.php(729): CodeIgniter\BaseModel->insert()
+#7 /var/www/html/administracao/procseletivos/app/Services/ProtocoloService.php(52): CodeIgniter\Model->insert()
+#8 /var/www/html/administracao/procseletivos/app/Controllers/Cadastros.php(202): App\Services\ProtocoloService->salvar()
+#9 /var/www/html/administracao/procseletivos/system/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+#10 /var/www/html/administracao/procseletivos/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#11 /var/www/html/administracao/procseletivos/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#12 /var/www/html/administracao/procseletivos/index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-04-17 11:43:23 --> Cannot add or update a child row: a foreign key constraint fails (`bd_processos_seletivos_administracao`.`tb_cadastrados_protocolo`, CONSTRAINT `fk_protocolo_cadastrado` FOREIGN KEY (`fk_id_cadastrado`) REFERENCES `tb_cadastrados` (`pk_id_cadastrado`))
+in SYSTEMPATH/Database/BaseConnection.php on line 645.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH/BaseModel.php(782): CodeIgniter\Model->doInsert()
+ 4 SYSTEMPATH/Model.php(729): CodeIgniter\BaseModel->insert()
+ 5 APPPATH/Services/ProtocoloService.php(52): CodeIgniter\Model->insert()
+ 6 APPPATH/Controllers/Cadastros.php(202): App\Services\ProtocoloService->salvar()
+ 7 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 8 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+10 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 11:59:27 --> Attempt to read property "ds_cpf" on null
+in APPPATH/Controllers/Cadastros.php on line 200.
+ 1 APPPATH/Controllers/Cadastros.php(200): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 12:10:06 --> Attempt to read property "ds_cpf" on null
+in APPPATH/Controllers/Cadastros.php on line 199.
+ 1 APPPATH/Controllers/Cadastros.php(199): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 12:11:01 --> Attempt to read property "ds_cpf" on null
+in APPPATH/Controllers/Cadastros.php on line 199.
+ 1 APPPATH/Controllers/Cadastros.php(199): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 12:24:59 --> Undefined property: App\Services\ProtocoloService::$candidatoModel
+in APPPATH/Services/ProtocoloService.php on line 17.
+ 1 APPPATH/Services/ProtocoloService.php(17): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 APPPATH/Controllers/Cadastros.php(193): App\Services\ProtocoloService->buscarOuGerar()
+ 3 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 12:25:58 --> Undefined property: App\Services\ProtocoloService::$candidatoModel
+in APPPATH/Services/ProtocoloService.php on line 18.
+ 1 APPPATH/Services/ProtocoloService.php(18): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 APPPATH/Controllers/Cadastros.php(193): App\Services\ProtocoloService->buscarOuGerar()
+ 3 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 12:26:19 --> Undefined property: App\Services\ProtocoloService::$candidatosModel
+in APPPATH/Services/ProtocoloService.php on line 18.
+ 1 APPPATH/Services/ProtocoloService.php(18): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 APPPATH/Controllers/Cadastros.php(193): App\Services\ProtocoloService->buscarOuGerar()
+ 3 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 12:28:38 --> Call to undefined method App\DTOs\ProtocoloDTO::fromDados()
+in APPPATH/Services/ProtocoloService.php on line 35.
+ 1 APPPATH/Controllers/Cadastros.php(193): App\Services\ProtocoloService->buscarOuGerar()
+ 2 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 14:23:28 --> The action you requested is not allowed.
+in SYSTEMPATH/Security/Security.php on line 306.
+ 1 SYSTEMPATH/Security/Security.php(306): CodeIgniter\Security\Exceptions\SecurityException::forDisallowedAction()
+ 2 SYSTEMPATH/Filters/CSRF.php(55): CodeIgniter\Security\Security->verify()
+ 3 SYSTEMPATH/Filters/Filters.php(173): CodeIgniter\Filters\CSRF->before()
+ 4 SYSTEMPATH/CodeIgniter.php(473): CodeIgniter\Filters\Filters->run()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 14:24:27 --> Call to undefined method App\Services\ProtocoloService::buscarPorCandidato()
+in APPPATH/Controllers/Cadastros.php on line 48.
+ 1 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 2 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 4 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 14:24:58 --> Call to undefined method App\Services\CandidatoService::buscarPorGovId()
+in APPPATH/Controllers/Cadastros.php on line 190.
+ 1 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 2 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 4 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 14:25:27 --> Call to undefined method App\Services\CandidatoService::buscarPorId()
+in APPPATH/Controllers/Cadastros.php on line 190.
+ 1 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 2 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 4 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 14:26:26 --> Call to undefined method App\Services\CandidatoService::buscarPorId()
+in APPPATH/Controllers/Cadastros.php on line 190.
+ 1 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 2 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 4 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 14:27:10 --> Call to undefined method App\Services\CandidatoService::buscarPorId()
+in APPPATH/Controllers/Cadastros.php on line 190.
+ 1 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 2 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 4 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 14:43:42 --> Call to undefined method App\Services\ProtocoloService::salvar()
+in APPPATH/Controllers/Cadastros.php on line 202.
+ 1 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 2 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 4 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 14:49:50 --> Call to undefined method App\Services\ProtocoloService::buscarPorCandidato()
+in APPPATH/Controllers/Cadastros.php on line 48.
+ 1 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 2 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 4 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 14:50:48 --> Call to undefined method App\Services\ProtocoloService::buscarPorCandidato()
+in APPPATH/Controllers/Cadastros.php on line 48.
+ 1 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 2 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 4 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 15:23:14 --> Call to undefined method App\Services\CandidatoService::buscarPorGovId()
+in APPPATH/Controllers/Cadastros.php on line 72.
+ 1 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->dadosCandidato()
+ 2 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 4 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 15:26:58 --> Undefined property: App\DTOs\CandidatoDTO::$idCadastrado
+in APPPATH/Services/CandidatoService.php on line 40.
+ 1 APPPATH/Services/CandidatoService.php(40): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 APPPATH/Controllers/Cadastros.php(165): App\Services\CandidatoService->salvar()
+ 3 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosPessosais()
+ 4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 15:29:58 --> App\Services\CandidatoService::buscarPorId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/administracao/procseletivos/app/Services/CandidatoService.php on line 40
+in APPPATH/Services/CandidatoService.php on line 18.
+ 1 APPPATH/Services/CandidatoService.php(40): App\Services\CandidatoService->buscarPorId()
+ 2 APPPATH/Controllers/Cadastros.php(165): App\Services\CandidatoService->salvar()
+ 3 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosPessosais()
+ 4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 15:41:05 --> Undefined property: App\DTOs\CandidatoDTO::$idCadastrado
+in APPPATH/Services/CandidatoService.php on line 40.
+ 1 APPPATH/Services/CandidatoService.php(40): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 APPPATH/Controllers/Cadastros.php(165): App\Services\CandidatoService->salvar()
+ 3 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosPessosais()
+ 4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 15:41:38 --> App\Services\CandidatoService::buscarPorId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/administracao/procseletivos/app/Services/CandidatoService.php on line 40
+in APPPATH/Services/CandidatoService.php on line 18.
+ 1 APPPATH/Services/CandidatoService.php(40): App\Services\CandidatoService->buscarPorId()
+ 2 APPPATH/Controllers/Cadastros.php(165): App\Services\CandidatoService->salvar()
+ 3 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosPessosais()
+ 4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 16:22:10 --> Class "App\Models\CadastradosAperfeicoamentoModel" not found
+in APPPATH/Services/CandidatoService.php on line 26.
+ 1 APPPATH/Controllers/Cadastros.php(23): App\Services\CandidatoService->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 3 SYSTEMPATH/CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 16:32:25 --> The action you requested is not allowed.
+in SYSTEMPATH/Security/Security.php on line 306.
+ 1 SYSTEMPATH/Security/Security.php(306): CodeIgniter\Security\Exceptions\SecurityException::forDisallowedAction()
+ 2 SYSTEMPATH/Filters/CSRF.php(55): CodeIgniter\Security\Security->verify()
+ 3 SYSTEMPATH/Filters/Filters.php(173): CodeIgniter\Filters\CSRF->before()
+ 4 SYSTEMPATH/CodeIgniter.php(473): CodeIgniter\Filters\Filters->run()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 16:32:28 --> Class "App\Models\CadastradosAperfeicoamentoModel" not found
+in APPPATH/Services/CandidatoService.php on line 26.
+ 1 APPPATH/Controllers/Cadastros.php(23): App\Services\CandidatoService->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 3 SYSTEMPATH/CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 16:32:29 --> Class "App\Models\CadastradosAperfeicoamentoModel" not found
+in APPPATH/Services/CandidatoService.php on line 26.
+ 1 APPPATH/Controllers/Cadastros.php(23): App\Services\CandidatoService->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 3 SYSTEMPATH/CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 16:32:30 --> Class "App\Models\CadastradosAperfeicoamentoModel" not found
+in APPPATH/Services/CandidatoService.php on line 26.
+ 1 APPPATH/Controllers/Cadastros.php(23): App\Services\CandidatoService->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 3 SYSTEMPATH/CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 16:32:31 --> Class "App\Models\CadastradosAperfeicoamentoModel" not found
+in APPPATH/Services/CandidatoService.php on line 26.
+ 1 APPPATH/Controllers/Cadastros.php(23): App\Services\CandidatoService->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 3 SYSTEMPATH/CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 16:32:35 --> Class "App\Models\CadastradosAperfeicoamentoModel" not found
+in APPPATH/Services/CandidatoService.php on line 26.
+ 1 APPPATH/Controllers/Cadastros.php(23): App\Services\CandidatoService->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 3 SYSTEMPATH/CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 16:32:55 --> Class "App\Models\CadastradosAperfeicoamentoModel" not found
+in APPPATH/Services/CandidatoService.php on line 26.
+ 1 APPPATH/Controllers/Cadastros.php(23): App\Services\CandidatoService->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 3 SYSTEMPATH/CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 16:34:01 --> Class "App\Models\CadastradosAperfeicoamentoModel" not found
+in APPPATH/Services/CandidatoService.php on line 26.
+ 1 APPPATH/Controllers/Cadastros.php(23): App\Services\CandidatoService->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 3 SYSTEMPATH/CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 16:34:24 --> Class "App\Models\CadastradosAperfeicoamentoModel" not found
+in APPPATH/Services/CandidatoService.php on line 26.
+ 1 APPPATH/Controllers/Cadastros.php(23): App\Services\CandidatoService->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 3 SYSTEMPATH/CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 16:34:24 --> Class "App\Models\CadastradosAperfeicoamentoModel" not found
+in APPPATH/Services/CandidatoService.php on line 26.
+ 1 APPPATH/Controllers/Cadastros.php(23): App\Services\CandidatoService->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 3 SYSTEMPATH/CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 16:36:23 --> Class "App\Models\CadastradosProtocoloModel" not found
+in APPPATH/Services/ProtocoloService.php on line 13.
+ 1 APPPATH/Controllers/Cadastros.php(25): App\Services\ProtocoloService->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 3 SYSTEMPATH/CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 16:37:19 --> Call to undefined method App\Services\CandidatoService::buscarPorId()
+in APPPATH/Controllers/Cadastros.php on line 190.
+ 1 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 2 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 4 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 16:38:31 --> Call to undefined method App\DTOs\ProtocoloDTO::fromDados()
+in APPPATH/Services/ProtocoloService.php on line 22.
+ 1 APPPATH/Controllers/Cadastros.php(194): App\Services\ProtocoloService->buscarOuGerar()
+ 2 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-17 16:39:40 --> Attempt to read property "ds_cpf" on null
+in APPPATH/Controllers/Cadastros.php on line 200.
+ 1 APPPATH/Controllers/Cadastros.php(200): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()

@@ -1,0 +1,293 @@
+CRITICAL - 2026-04-07 11:30:50 --> Undefined variable $acao
+in APPPATH\Controllers\Cadastros.php on line 492.
+ 1 APPPATH\Controllers\Cadastros.php(492): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $acao', 'APPPATH\\Controllers\\Cadastros.php', 492)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 11:31:33 --> Undefined array key "ds_cpf"
+in APPPATH\Controllers\Cadastros.php on line 507.
+ 1 APPPATH\Controllers\Cadastros.php(507): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "ds_cpf"', 'APPPATH\\Controllers\\Cadastros.php', 507)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 11:35:32 --> Undefined property: App\Controllers\Cadastros::$input
+in APPPATH\Controllers\Cadastros.php on line 514.
+ 1 APPPATH\Controllers\Cadastros.php(514): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Cadastros::$input', 'APPPATH\\Controllers\\Cadastros.php', 514)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 11:35:46 --> Call to undefined method CodeIgniter\HTTP\IncomingRequest::getUserIP()
+in APPPATH\Controllers\Cadastros.php on line 514.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 11:45:20 --> Call to undefined method CodeIgniter\HTTP\IncomingRequest::getUserIP()
+in APPPATH\Controllers\Cadastros.php on line 514.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 11:49:18 --> Undefined variable $acao
+in APPPATH\Controllers\Cadastros.php on line 518.
+ 1 APPPATH\Controllers\Cadastros.php(518): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $acao', 'APPPATH\\Controllers\\Cadastros.php', 518)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 11:50:08 --> Undefined array key "acao"
+in APPPATH\Controllers\Cadastros.php on line 624.
+ 1 APPPATH\Controllers\Cadastros.php(624): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "acao"', 'APPPATH\\Controllers\\Cadastros.php', 624)
+ 2 APPPATH\Controllers\Cadastros.php(529): App\Controllers\Cadastros->gravarProtocolo([...], [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 11:52:23 --> Undefined array key "acao"
+in APPPATH\Controllers\Cadastros.php on line 625.
+ 1 APPPATH\Controllers\Cadastros.php(625): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "acao"', 'APPPATH\\Controllers\\Cadastros.php', 625)
+ 2 APPPATH\Controllers\Cadastros.php(529): App\Controllers\Cadastros->gravarProtocolo([...], [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 11:53:12 --> Undefined array key 0
+in APPPATH\Controllers\Cadastros.php on line 625.
+ 1 APPPATH\Controllers\Cadastros.php(625): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'APPPATH\\Controllers\\Cadastros.php', 625)
+ 2 APPPATH\Controllers\Cadastros.php(529): App\Controllers\Cadastros->gravarProtocolo([...], [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 11:53:55 --> Undefined array key "acao"
+in APPPATH\Controllers\Cadastros.php on line 625.
+ 1 APPPATH\Controllers\Cadastros.php(625): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "acao"', 'APPPATH\\Controllers\\Cadastros.php', 625)
+ 2 APPPATH\Controllers\Cadastros.php(529): App\Controllers\Cadastros->gravarProtocolo([...], [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 14:01:54 --> The action you requested is not allowed.
+in SYSTEMPATH\Security\Security.php on line 306.
+ 1 SYSTEMPATH\Security\Security.php(306): CodeIgniter\Security\Exceptions\SecurityException::forDisallowedAction()
+ 2 SYSTEMPATH\Filters\CSRF.php(55): CodeIgniter\Security\Security->verify(Object(CodeIgniter\HTTP\IncomingRequest))
+ 3 SYSTEMPATH\Filters\Filters.php(173): CodeIgniter\Filters\CSRF->before(Object(CodeIgniter\HTTP\IncomingRequest), null)
+ 4 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('Cadastros/registrarDadosClassificatorios', 'before')
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 14:02:54 --> Undefined array key "acao"
+in APPPATH\Controllers\Cadastros.php on line 625.
+ 1 APPPATH\Controllers\Cadastros.php(625): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "acao"', 'APPPATH\\Controllers\\Cadastros.php', 625)
+ 2 APPPATH\Controllers\Cadastros.php(529): App\Controllers\Cadastros->gravarProtocolo([...], [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 14:14:38 --> Undefined array key "acao"
+in APPPATH\Controllers\Cadastros.php on line 625.
+ 1 APPPATH\Controllers\Cadastros.php(625): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "acao"', 'APPPATH\\Controllers\\Cadastros.php', 625)
+ 2 APPPATH\Controllers\Cadastros.php(529): App\Controllers\Cadastros->gravarProtocolo([...], [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 14:20:27 --> Undefined array key "acao"
+in APPPATH\Controllers\Cadastros.php on line 625.
+ 1 APPPATH\Controllers\Cadastros.php(625): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "acao"', 'APPPATH\\Controllers\\Cadastros.php', 625)
+ 2 APPPATH\Controllers\Cadastros.php(529): App\Controllers\Cadastros->gravarProtocolo([...], [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 14:27:13 --> Undefined array key "acao"
+in APPPATH\Controllers\Cadastros.php on line 624.
+ 1 APPPATH\Controllers\Cadastros.php(624): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "acao"', 'APPPATH\\Controllers\\Cadastros.php', 624)
+ 2 APPPATH\Controllers\Cadastros.php(529): App\Controllers\Cadastros->gravarProtocolo([...], [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 14:29:57 --> Undefined property: App\Controllers\Cadastros::$Crud
+in APPPATH\Controllers\Cadastros.php on line 632.
+ 1 APPPATH\Controllers\Cadastros.php(632): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Cadastros::$Crud', 'APPPATH\\Controllers\\Cadastros.php', 632)
+ 2 APPPATH\Controllers\Cadastros.php(529): App\Controllers\Cadastros->gravarProtocolo([...], [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 14:42:08 --> Não há dados para update.
+in SYSTEMPATH\BaseModel.php on line 924.
+ 1 SYSTEMPATH\BaseModel.php(924): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+ 2 SYSTEMPATH\Model.php(755): CodeIgniter\BaseModel->update([...], [])
+ 3 APPPATH\Controllers\Cadastros.php(633): CodeIgniter\Model->update([...], [...])
+ 4 APPPATH\Controllers\Cadastros.php(529): App\Controllers\Cadastros->gravarProtocolo([...], [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 14:42:25 --> Não há dados para update.
+in SYSTEMPATH\BaseModel.php on line 924.
+ 1 SYSTEMPATH\BaseModel.php(924): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset('update')
+ 2 SYSTEMPATH\Model.php(755): CodeIgniter\BaseModel->update([...], [])
+ 3 APPPATH\Controllers\Cadastros.php(633): CodeIgniter\Model->update([...], [...])
+ 4 APPPATH\Controllers\Cadastros.php(529): App\Controllers\Cadastros->gravarProtocolo([...], [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 14:48:52 --> valid_time não é uma regra válida.
+in SYSTEMPATH\Validation\Validation.php on line 320.
+ 1 SYSTEMPATH\Validation\Validation.php(320): CodeIgniter\Validation\Exceptions\ValidationException::forRuleNotFound('valid_time')
+ 2 SYSTEMPATH\Validation\Validation.php(170): CodeIgniter\Validation\Validation->processRules('ds_hora_protocolo', 'ds_hora_protocolo', '14:48:52', [...], [...])
+ 3 SYSTEMPATH\BaseModel.php(1453): CodeIgniter\Validation\Validation->run([...], null, null)
+ 4 SYSTEMPATH\BaseModel.php(745): CodeIgniter\BaseModel->validate([...])
+ 5 SYSTEMPATH\Model.php(729): CodeIgniter\BaseModel->insert([...], true)
+ 6 APPPATH\Controllers\Cadastros.php(640): CodeIgniter\Model->insert([...])
+ 7 APPPATH\Controllers\Cadastros.php(529): App\Controllers\Cadastros->gravarProtocolo([...], [...])
+ 8 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 9 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+10 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 14:49:10 --> 
+in SYSTEMPATH\HTTP\RedirectResponse.php on line 60.
+ 1 SYSTEMPATH\HTTP\RedirectResponse.php(60): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('Cadastros/sucessoClassificatorio')
+ 2 APPPATH\Controllers\Cadastros.php(531): CodeIgniter\HTTP\RedirectResponse->route(false, [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 14:50:26 --> 
+in SYSTEMPATH\HTTP\RedirectResponse.php on line 60.
+ 1 SYSTEMPATH\HTTP\RedirectResponse.php(60): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('Cadastros/sucessoClassificatorio')
+ 2 APPPATH\Controllers\Cadastros.php(531): CodeIgniter\HTTP\RedirectResponse->route(false, [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 14:51:19 --> 
+in SYSTEMPATH\HTTP\RedirectResponse.php on line 60.
+ 1 SYSTEMPATH\HTTP\RedirectResponse.php(60): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('Cadastros/sucessoClassificatorio')
+ 2 APPPATH\Controllers\Cadastros.php(531): CodeIgniter\HTTP\RedirectResponse->route(false, [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 14:55:07 --> The action you requested is not allowed.
+in SYSTEMPATH\Security\Security.php on line 306.
+ 1 SYSTEMPATH\Security\Security.php(306): CodeIgniter\Security\Exceptions\SecurityException::forDisallowedAction()
+ 2 SYSTEMPATH\Filters\CSRF.php(55): CodeIgniter\Security\Security->verify(Object(CodeIgniter\HTTP\IncomingRequest))
+ 3 SYSTEMPATH\Filters\Filters.php(173): CodeIgniter\Filters\CSRF->before(Object(CodeIgniter\HTTP\IncomingRequest), null)
+ 4 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('Cadastros/registrarDadosClassificatorios', 'before')
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 15:03:43 --> Attempt to read property "ds_cpf" on null
+in APPPATH\Controllers\Cadastros.php on line 411.
+ 1 APPPATH\Controllers\Cadastros.php(411): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "ds_cpf" on null', 'APPPATH\\Controllers\\Cadastros.php', 411)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 15:39:46 --> syntax error, unexpected variable "$dadosExperiencia"
+in APPPATH\Controllers\Cadastros.php on line 426.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('APPPATH\\Controllers\\Cadastros.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Cadastros')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Cadastros')
+ 4 SYSTEMPATH\CodeIgniter.php(892): class_exists('\\App\\Controllers\\Cadastros', true)
+ 5 SYSTEMPATH\CodeIgniter.php(486): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 15:40:10 --> syntax error, unexpected token "public", expecting end of file
+in APPPATH\Controllers\Cadastros.php on line 529.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('APPPATH\\Controllers\\Cadastros.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Cadastros')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Cadastros')
+ 4 SYSTEMPATH\CodeIgniter.php(892): class_exists('\\App\\Controllers\\Cadastros', true)
+ 5 SYSTEMPATH\CodeIgniter.php(486): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 15:40:36 --> Attempt to read property "ds_obrigatorio" on null
+in APPPATH\Controllers\Cadastros.php on line 428.
+ 1 APPPATH\Controllers\Cadastros.php(428): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "ds_obrigatorio" on null', 'APPPATH\\Controllers\\Cadastros.php', 428)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 15:40:54 --> Attempt to read property "ds_obrigatorio" on null
+in APPPATH\Controllers\Cadastros.php on line 428.
+ 1 APPPATH\Controllers\Cadastros.php(428): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "ds_obrigatorio" on null', 'APPPATH\\Controllers\\Cadastros.php', 428)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 15:41:31 --> Attempt to read property "ds_obrigatorio" on null
+in APPPATH\Controllers\Cadastros.php on line 428.
+ 1 APPPATH\Controllers\Cadastros.php(428): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "ds_obrigatorio" on null', 'APPPATH\\Controllers\\Cadastros.php', 428)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 15:47:21 --> Attempt to read property "ds_obrigatorio" on null
+in APPPATH\Controllers\Cadastros.php on line 428.
+ 1 APPPATH\Controllers\Cadastros.php(428): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "ds_obrigatorio" on null', 'APPPATH\\Controllers\\Cadastros.php', 428)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 15:47:51 --> Undefined constant "App\Controllers\experienciaCargo"
+in APPPATH\Controllers\Cadastros.php on line 427.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 15:51:15 --> Attempt to read property "ds_obrigatorio" on string
+in APPPATH\Controllers\Cadastros.php on line 429.
+ 1 APPPATH\Controllers\Cadastros.php(429): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "ds_obrigatorio" on string', 'APPPATH\\Controllers\\Cadastros.php', 429)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 16:01:16 --> Attempt to read property "ds_obrigatorio" on string
+in APPPATH\Controllers\Cadastros.php on line 429.
+ 1 APPPATH\Controllers\Cadastros.php(429): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "ds_obrigatorio" on string', 'APPPATH\\Controllers\\Cadastros.php', 429)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 16:02:27 --> Cannot access offset of type string on string
+in APPPATH\Controllers\Cadastros.php on line 429.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 16:03:04 --> Attempt to read property "ds_obrigatorio" on string
+in APPPATH\Controllers\Cadastros.php on line 429.
+ 1 APPPATH\Controllers\Cadastros.php(429): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "ds_obrigatorio" on string', 'APPPATH\\Controllers\\Cadastros.php', 429)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 16:10:34 --> Attempt to read property "ds_protocolo" on null
+in APPPATH\Controllers\Cadastros.php on line 489.
+ 1 APPPATH\Controllers\Cadastros.php(489): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "ds_protocolo" on null', 'APPPATH\\Controllers\\Cadastros.php', 489)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 16:21:06 --> Undefined variable $numeroEdital
+in APPPATH\Controllers\Cadastros.php on line 491.
+ 1 APPPATH\Controllers\Cadastros.php(491): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $numeroEdital', 'APPPATH\\Controllers\\Cadastros.php', 491)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-04-07 16:21:25 --> 
+in SYSTEMPATH\HTTP\RedirectResponse.php on line 60.
+ 1 SYSTEMPATH\HTTP\RedirectResponse.php(60): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('Cadastros/sucessoClassificatorio')
+ 2 APPPATH\Controllers\Cadastros.php(522): CodeIgniter\HTTP\RedirectResponse->route(false, [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

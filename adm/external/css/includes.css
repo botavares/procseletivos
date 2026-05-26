@@ -1,0 +1,119 @@
+body,html{
+	background-color:rgba(245,245,245,1.00);
+	width:auto;
+	overflow-x:hidden;
+	overflow-y: auto;
+	font-size:16px;
+}
+.black{color:#000;}
+.modal{
+	overflow-y: scroll;
+}
+.body-capa{padding:0; margin:0;width:100%;}
+
+.btn-preto{
+	background-color: #000;
+	color:#FFF;
+	border-color: #000;
+}
+
+.btn-marrom{
+	background-color: #46302A;
+	color:#FFF;
+	border-color: #46302A;
+
+}
+.btn-marrom:hover{
+	background-color: #583E3B;
+	color:#FFF;
+	border-color: #583E3B;
+	
+}
+
+.tabela tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.tituloPagina{
+	font-size:28px!important;
+	text-align:center;
+}
+.porta-mensagem{
+	margin: 0 auto;
+}
+
+.icones{text-align:center;padding:2%;}
+.icones img{width:60px;}
+
+.icones a{
+	padding:2%;
+	position: relative;
+  	display: inline-block;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	-webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.1);
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 0px 0px rgba(0,0,0,0.1);
+  	transition: all 0.3s ease-in-out;
+	
+	 }
+
+.icones a:hover{
+	transform: scale(1.1, 1.1);
+	-webkit-box-shadow: 9px 11px 14px -8px rgba(0,0,0,0.47);
+	-moz-box-shadow: 9px 11px 14px -8px rgba(0,0,0,0.47);
+	box-shadow: 9px 11px 14px -8px rgba(0,0,0,0.47);
+}
+.icones a p{
+	font-size:1.2em;
+	color:#000;
+}
+
+
+/*=============================================================
+	Sugestão de @media retirado do site:
+	https://www.w3schools.com/css/css_rwd_mediaqueries.asp
+==============================================================*/
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+	#banner-principal{height:550px; 
+	}
+	#texto-apresentacao{height:450px;
+	overflow-y: none;
+	margin:15% auto;
+	}
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	#sistema{font-size:2.1em;}
+	#subtitulo{font-size:1.0em}
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+	#sistema{font-size:2.5em;}
+	#subtitulo{font-size:1.3em}
+} 
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	#sistema{font-size:3.0em;}
+	#subtitulo{font-size:1.5em}
+	.formAdmin{
+		width:60%;
+		display:block; 
+		margin: 0 auto;
+	}
+	.formEditor{
+		width:75%;
+		display:block; 
+		margin: 0 auto;
+	}
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+	#banner-principal .bloco-servico{min-height: 450px; height:inherit;}
+	.bloco-servico a{font-size:18px;}
+	#sistema{font-size:4.0em;}
+	#subtitulo{font-size:2.0em}
+
+	
+}

@@ -1,0 +1,546 @@
+CRITICAL - 2026-02-04 08:52:13 --> View themes, no current section.
+in SYSTEMPATH\View\View.php on line 394.
+ 1 APPPATH\Views\pages\Transparencia\Transparencia_view.php(50): CodeIgniter\View\View->endSection()
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\Transparencia\\Transparencia_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('pages/Transparencia/Transparencia_view', [], true)
+ 5 APPPATH\Views\layoutSimples.php(3): view('pages/Transparencia/Transparencia_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutSimples.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutSimples', [], true)
+ 9 APPPATH\Controllers\Transparencia.php(93): view('layoutSimples', [...])
+10 APPPATH\Controllers\Transparencia.php(45): App\Controllers\Transparencia->renderPagina([...])
+11 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+12 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+13 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-04 08:52:13 --> View themes, no current section.
+in SYSTEMPATH\View\View.php on line 394.
+ 1 APPPATH\Views\pages\Transparencia\Transparencia_view.php(50): CodeIgniter\View\View->endSection()
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\Transparencia\\Transparencia_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('pages/Transparencia/Transparencia_view', [], true)
+ 5 APPPATH\Views\layoutSimples.php(3): view('pages/Transparencia/Transparencia_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutSimples.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutSimples', [], true)
+ 9 APPPATH\Controllers\Transparencia.php(93): view('layoutSimples', [...])
+10 APPPATH\Controllers\Transparencia.php(45): App\Controllers\Transparencia->renderPagina([...])
+11 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+12 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+13 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-04 08:52:53 --> View themes, no current section.
+in SYSTEMPATH\View\View.php on line 394.
+ 1 APPPATH\Views\pages\Transparencia\Transparencia_view.php(50): CodeIgniter\View\View->endSection()
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\Transparencia\\Transparencia_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('pages/Transparencia/Transparencia_view', [], true)
+ 5 APPPATH\Views\layoutSimples.php(3): view('pages/Transparencia/Transparencia_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutSimples.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutSimples', [], true)
+ 9 APPPATH\Controllers\Transparencia.php(93): view('layoutSimples', [...])
+10 APPPATH\Controllers\Transparencia.php(45): App\Controllers\Transparencia->renderPagina([...])
+11 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+12 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+13 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-04 08:54:40 --> Arquivo inválido: layout/layout_dsgov.php
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('layout/layout_dsgov.php')
+ 2 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->render('layout/layout_dsgov', [], true)
+ 3 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('pages/Transparencia/Transparencia_view', [], true)
+ 4 APPPATH\Views\layoutSimples.php(3): view('pages/Transparencia/Transparencia_view')
+ 5 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutSimples.php')
+ 6 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutSimples', [], true)
+ 8 APPPATH\Controllers\Transparencia.php(93): view('layoutSimples', [...])
+ 9 APPPATH\Controllers\Transparencia.php(45): App\Controllers\Transparencia->renderPagina([...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-04 08:58:30 --> Arquivo inválido: layout/layout_dsgov.php
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('layout/layout_dsgov.php')
+ 2 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->render('layout/layout_dsgov', [], true)
+ 3 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('pages/Transparencia/Transparencia_view', [], true)
+ 4 APPPATH\Views\layoutSimples.php(3): view('pages/Transparencia/Transparencia_view')
+ 5 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutSimples.php')
+ 6 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutSimples', [], true)
+ 8 APPPATH\Controllers\Transparencia.php(93): view('layoutSimples', [...])
+ 9 APPPATH\Controllers\Transparencia.php(45): App\Controllers\Transparencia->renderPagina([...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-04 08:58:59 --> Allowed memory size of 536870912 bytes exhausted (tried to allocate 188416 bytes)
+in APPPATH\Views\partialviews\header.php on line 26.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-02-04 09:13:48 --> Allowed memory size of 536870912 bytes exhausted (tried to allocate 188416 bytes)
+in APPPATH\Views\partialviews\header.php on line 26.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-02-04 09:18:36 --> Allowed memory size of 536870912 bytes exhausted (tried to allocate 188416 bytes)
+in APPPATH\Views\partialviews\header.php on line 26.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-02-04 09:27:25 --> count(): Argument #1 ($value) must be of type Countable|array, null given
+in APPPATH\Controllers\Transparencia.php on line 74.
+ 1 APPPATH\Controllers\Transparencia.php(74): count(null)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->debugQueries()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-04 10:16:11 --> Allowed memory size of 536870912 bytes exhausted (tried to allocate 221184 bytes)
+in SYSTEMPATH\View\View.php on line 213.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-02-04 10:24:28 --> Allowed memory size of 1073741824 bytes exhausted (tried to allocate 233472 bytes)
+in APPPATH\Views\partialviews\header.php on line 404.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-02-04 10:25:36 --> Allowed memory size of 1073741824 bytes exhausted (tried to allocate 188416 bytes)
+in APPPATH\Views\partialviews\header.php on line 26.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-02-04 10:26:29 --> Allowed memory size of 2147483648 bytes exhausted (tried to allocate 188416 bytes)
+in APPPATH\Views\partialviews\header.php on line 26.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-02-04 10:27:13 --> Allowed memory size of 4294967296 bytes exhausted (tried to allocate 188416 bytes)
+in APPPATH\Views\partialviews\header.php on line 26.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-02-04 10:31:10 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(8)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-04 10:31:22 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 288.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(288): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 288)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(79): App\Services\Transparencia\TransparenciaService->listarCandidatosPorCurso([...])
+ 3 APPPATH\Controllers\Transparencia.php(136): App\Services\Transparencia\TransparenciaFormService->listarCandidatosPorCurso(8)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->filtrarPorCurso()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-04 11:37:32 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 90.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 90)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(52): App\Services\Transparencia\TransparenciaService->listarCandidatos([...])
+ 3 APPPATH\Controllers\Transparencia.php(70): App\Services\Transparencia\TransparenciaFormService->listarCandidatos()
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->carregarTabela()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-04 11:37:37 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 90.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 90)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(52): App\Services\Transparencia\TransparenciaService->listarCandidatos([...])
+ 3 APPPATH\Controllers\Transparencia.php(70): App\Services\Transparencia\TransparenciaFormService->listarCandidatos()
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->carregarTabela()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-04 11:37:40 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 90.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 90)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(52): App\Services\Transparencia\TransparenciaService->listarCandidatos([...])
+ 3 APPPATH\Controllers\Transparencia.php(70): App\Services\Transparencia\TransparenciaFormService->listarCandidatos()
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->carregarTabela()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-04 11:41:18 --> Undefined variable $cursos
+in APPPATH\Views\pages\Transparencia\Transparencia_view.php on line 15.
+ 1 APPPATH\Views\pages\Transparencia\Transparencia_view.php(15): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $cursos', 'APPPATH\\Views\\pages\\Transparencia\\Transparencia_view.php', 15)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\Transparencia\\Transparencia_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('pages/Transparencia/Transparencia_view', [], true)
+ 5 APPPATH\Views\layoutSimples.php(3): view('pages/Transparencia/Transparencia_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutSimples.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutSimples', [], true)
+ 9 APPPATH\Controllers\Transparencia.php(118): view('layoutSimples', [...])
+10 APPPATH\Controllers\Transparencia.php(46): App\Controllers\Transparencia->renderPagina([...])
+11 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+12 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+13 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-04 11:44:19 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 90.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 90)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(57): App\Services\Transparencia\TransparenciaService->listarCandidatos([...])
+ 3 APPPATH\Controllers\Transparencia.php(74): App\Services\Transparencia\TransparenciaFormService->listarCandidatos()
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->carregarTabela()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-04 11:44:48 --> Attempt to read property "total" on null
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 90.
+ 1 APPPATH\Services\Transparencia\TransparenciaService.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "total" on null', 'APPPATH\\Services\\Transparencia\\TransparenciaService.php', 90)
+ 2 APPPATH\Services\Transparencia\TransparenciaFormService.php(57): App\Services\Transparencia\TransparenciaService->listarCandidatos([...])
+ 3 APPPATH\Controllers\Transparencia.php(74): App\Services\Transparencia\TransparenciaFormService->listarCandidatos()
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->carregarTabela()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-04 13:25:18 --> Call to undefined method CodeIgniter\Database\MySQLi\Builder::resetQueryPart()
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 86.
+ 1 APPPATH\Services\Transparencia\TransparenciaFormService.php(57): App\Services\Transparencia\TransparenciaService->listarCandidatos([...])
+ 2 APPPATH\Controllers\Transparencia.php(114): App\Services\Transparencia\TransparenciaFormService->listarCandidatos()
+ 3 APPPATH\Controllers\Transparencia.php(46): App\Controllers\Transparencia->renderPagina([...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-04 13:26:03 --> Call to undefined method CodeIgniter\Database\MySQLi\Builder::resetQueryPart()
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 86.
+ 1 APPPATH\Services\Transparencia\TransparenciaFormService.php(57): App\Services\Transparencia\TransparenciaService->listarCandidatos([...])
+ 2 APPPATH\Controllers\Transparencia.php(114): App\Services\Transparencia\TransparenciaFormService->listarCandidatos()
+ 3 APPPATH\Controllers\Transparencia.php(46): App\Controllers\Transparencia->renderPagina([...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-02-04 13:30:33 --> mysqli_sql_exception: Not unique table/alias: 'dp' in C:\laragon\www\servicos\estagiarios\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\estagiarios\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `dp`.`pk...', 0)
+#1 C:\laragon\www\servicos\estagiarios\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dp`.`pk...')
+#2 C:\laragon\www\servicos\estagiarios\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dp`.`pk...')
+#3 C:\laragon\www\servicos\estagiarios\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `dp`.`pk...', Array, false)
+#4 C:\laragon\www\servicos\estagiarios\app\Services\Transparencia\TransparenciaService.php(109): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\estagiarios\app\Services\Transparencia\TransparenciaFormService.php(57): App\Services\Transparencia\TransparenciaService->listarCandidatos(Array)
+#6 C:\laragon\www\servicos\estagiarios\app\Controllers\Transparencia.php(114): App\Services\Transparencia\TransparenciaFormService->listarCandidatos()
+#7 C:\laragon\www\servicos\estagiarios\app\Controllers\Transparencia.php(46): App\Controllers\Transparencia->renderPagina(Array)
+#8 C:\laragon\www\servicos\estagiarios\system\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+#9 C:\laragon\www\servicos\estagiarios\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+#10 C:\laragon\www\servicos\estagiarios\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\estagiarios\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-02-04 13:30:33 --> Not unique table/alias: 'dp'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `dp`.`pk_id_candidato`, `dp`.`ds_nome`, `dp`.`ds_nascimento`, `da`.`ds_periodo`, `ed`.`ds_numero_edital`, `c`.`ds_nome_curso`, CASE
+            -- CONTRATO COM ADITIVO ATIVO
+            WHEN EXISTS (
+                SELECT 1 FROM tb_dados_contratos c1
+                INNER JOIN tb_dados_aditivos a1 
+                    ON a1.fk_id_contrato = c1.pk_id_contrato
+                WHERE c1.fk_id_candidato = dp.pk_id_candidato
+                  AND c1.ds_status = 1
+                  AND a1.ds_status = 1
+            ) THEN \'contrato_aditivo\'
+
+            -- CONTRATO ATIVO
+            WHEN EXISTS (
+                SELECT 1 FROM tb_dados_contratos c2
+                WHERE c2.fk_id_candidato = dp.pk_id_candidato
+                  AND c2.ds_status = 1
+            ) THEN \'contratado\'
+
+            -- CONVOCADO (SEM CONTRATO ATIVO)
+            WHEN NOT EXISTS (
+                SELECT 1 FROM tb_dados_contratos c3
+                WHERE c3.fk_id_candidato = dp.pk_id_candidato
+                  AND c3.ds_status = 1
+            )
+            AND EXISTS (
+                SELECT 1 FROM tb_dados_convocacao co1
+                WHERE co1.fk_id_candidato = dp.pk_id_candidato
+                  AND co1.ds_status = 1
+            ) THEN \'convocado\'
+
+            ELSE \'fila_espera\'
+        END
+     AS situacao, CASE
+                WHEN EXISTS (
+                    SELECT 1 FROM tb_dados_contratos c1
+                    WHERE c1.fk_id_candidato = dp.pk_id_candidato
+                    AND c1.ds_status = 1
+                )
+                THEN s.ds_nome_setor
+                ELSE NULL
+            END AS ds_nome_setor, COUNT(DISTINCT dp.pk_id_candidato) AS total
+FROM (`tb_dados_pessoais`, `tb_dados_pessoais` `dp`, `tb_dados_pessoais` `dp`)
+LEFT JOIN `tb_dados_academicos` `da` ON `da`.`pk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_cursos` `c` ON `c`.`pk_id_curso` = `da`.`fk_id_curso`
+LEFT JOIN `tb_editais_candidatos` `ec` ON `ec`.`fk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_editais` `ed` ON `ed`.`pk_id_edital` = `ec`.`fk_id_edital`
+LEFT JOIN `tb_dados_contratos` `dc` ON `dc`.`fk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_setores` `s` ON `s`.`pk_id_setor` = `dc`.`fk_id_setor`
+LEFT JOIN `tb_dados_academicos` `da` ON `da`.`pk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_cursos` `c` ON `c`.`pk_id_curso` = `da`.`fk_id_curso`
+LEFT JOIN `tb_editais_candidatos` `ec` ON `ec`.`fk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_editais` `ed` ON `ed`.`pk_id_edital` = `ec`.`fk_id_edital`
+LEFT JOIN `tb_dados_contratos` `dc` ON `dc`.`fk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_setores` `s` ON `s`.`pk_id_setor` = `dc`.`fk_id_setor`
+GROUP BY `dp`.`pk_id_candidato`', [], false)
+ 2 APPPATH\Services\Transparencia\TransparenciaService.php(109): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Services\Transparencia\TransparenciaFormService.php(57): App\Services\Transparencia\TransparenciaService->listarCandidatos([...])
+ 4 APPPATH\Controllers\Transparencia.php(114): App\Services\Transparencia\TransparenciaFormService->listarCandidatos()
+ 5 APPPATH\Controllers\Transparencia.php(46): App\Controllers\Transparencia->renderPagina([...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-02-04 13:31:53 --> mysqli_sql_exception: Not unique table/alias: 'dp' in C:\laragon\www\servicos\estagiarios\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\estagiarios\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `dp`.`pk...', 0)
+#1 C:\laragon\www\servicos\estagiarios\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dp`.`pk...')
+#2 C:\laragon\www\servicos\estagiarios\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dp`.`pk...')
+#3 C:\laragon\www\servicos\estagiarios\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `dp`.`pk...', Array, false)
+#4 C:\laragon\www\servicos\estagiarios\app\Services\Transparencia\TransparenciaService.php(109): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\estagiarios\app\Services\Transparencia\TransparenciaFormService.php(57): App\Services\Transparencia\TransparenciaService->listarCandidatos(Array)
+#6 C:\laragon\www\servicos\estagiarios\app\Controllers\Transparencia.php(114): App\Services\Transparencia\TransparenciaFormService->listarCandidatos()
+#7 C:\laragon\www\servicos\estagiarios\app\Controllers\Transparencia.php(46): App\Controllers\Transparencia->renderPagina(Array)
+#8 C:\laragon\www\servicos\estagiarios\system\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+#9 C:\laragon\www\servicos\estagiarios\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+#10 C:\laragon\www\servicos\estagiarios\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\estagiarios\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-02-04 13:31:53 --> Not unique table/alias: 'dp'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `dp`.`pk_id_candidato`, `dp`.`ds_nome`, `dp`.`ds_nascimento`, `da`.`ds_periodo`, `ed`.`ds_numero_edital`, `c`.`ds_nome_curso`, CASE
+            -- CONTRATO COM ADITIVO ATIVO
+            WHEN EXISTS (
+                SELECT 1 FROM tb_dados_contratos c1
+                INNER JOIN tb_dados_aditivos a1 
+                    ON a1.fk_id_contrato = c1.pk_id_contrato
+                WHERE c1.fk_id_candidato = dp.pk_id_candidato
+                  AND c1.ds_status = 1
+                  AND a1.ds_status = 1
+            ) THEN \'contrato_aditivo\'
+
+            -- CONTRATO ATIVO
+            WHEN EXISTS (
+                SELECT 1 FROM tb_dados_contratos c2
+                WHERE c2.fk_id_candidato = dp.pk_id_candidato
+                  AND c2.ds_status = 1
+            ) THEN \'contratado\'
+
+            -- CONVOCADO (SEM CONTRATO ATIVO)
+            WHEN NOT EXISTS (
+                SELECT 1 FROM tb_dados_contratos c3
+                WHERE c3.fk_id_candidato = dp.pk_id_candidato
+                  AND c3.ds_status = 1
+            )
+            AND EXISTS (
+                SELECT 1 FROM tb_dados_convocacao co1
+                WHERE co1.fk_id_candidato = dp.pk_id_candidato
+                  AND co1.ds_status = 1
+            ) THEN \'convocado\'
+
+            ELSE \'fila_espera\'
+        END
+     AS situacao, CASE
+                WHEN EXISTS (
+                    SELECT 1 FROM tb_dados_contratos c1
+                    WHERE c1.fk_id_candidato = dp.pk_id_candidato
+                    AND c1.ds_status = 1
+                )
+                THEN s.ds_nome_setor
+                ELSE NULL
+            END AS ds_nome_setor, COUNT(DISTINCT tb_dados_pessoais.pk_id_candidato) AS total
+FROM (`tb_dados_pessoais`, `tb_dados_pessoais` `dp`, `tb_dados_pessoais` `dp`)
+LEFT JOIN `tb_dados_academicos` `da` ON `da`.`pk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_cursos` `c` ON `c`.`pk_id_curso` = `da`.`fk_id_curso`
+LEFT JOIN `tb_editais_candidatos` `ec` ON `ec`.`fk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_editais` `ed` ON `ed`.`pk_id_edital` = `ec`.`fk_id_edital`
+LEFT JOIN `tb_dados_contratos` `dc` ON `dc`.`fk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_setores` `s` ON `s`.`pk_id_setor` = `dc`.`fk_id_setor`
+LEFT JOIN `tb_dados_academicos` `da` ON `da`.`pk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_cursos` `c` ON `c`.`pk_id_curso` = `da`.`fk_id_curso`
+LEFT JOIN `tb_editais_candidatos` `ec` ON `ec`.`fk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_editais` `ed` ON `ed`.`pk_id_edital` = `ec`.`fk_id_edital`
+LEFT JOIN `tb_dados_contratos` `dc` ON `dc`.`fk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_setores` `s` ON `s`.`pk_id_setor` = `dc`.`fk_id_setor`
+GROUP BY `dp`.`pk_id_candidato`', [], false)
+ 2 APPPATH\Services\Transparencia\TransparenciaService.php(109): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Services\Transparencia\TransparenciaFormService.php(57): App\Services\Transparencia\TransparenciaService->listarCandidatos([...])
+ 4 APPPATH\Controllers\Transparencia.php(114): App\Services\Transparencia\TransparenciaFormService->listarCandidatos()
+ 5 APPPATH\Controllers\Transparencia.php(46): App\Controllers\Transparencia->renderPagina([...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-02-04 13:32:25 --> mysqli_sql_exception: Not unique table/alias: 'dp' in C:\laragon\www\servicos\estagiarios\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\estagiarios\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `dp`.`pk...', 0)
+#1 C:\laragon\www\servicos\estagiarios\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dp`.`pk...')
+#2 C:\laragon\www\servicos\estagiarios\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dp`.`pk...')
+#3 C:\laragon\www\servicos\estagiarios\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `dp`.`pk...', Array, false)
+#4 C:\laragon\www\servicos\estagiarios\app\Services\Transparencia\TransparenciaService.php(109): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\estagiarios\app\Services\Transparencia\TransparenciaFormService.php(57): App\Services\Transparencia\TransparenciaService->listarCandidatos(Array)
+#6 C:\laragon\www\servicos\estagiarios\app\Controllers\Transparencia.php(114): App\Services\Transparencia\TransparenciaFormService->listarCandidatos()
+#7 C:\laragon\www\servicos\estagiarios\app\Controllers\Transparencia.php(46): App\Controllers\Transparencia->renderPagina(Array)
+#8 C:\laragon\www\servicos\estagiarios\system\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+#9 C:\laragon\www\servicos\estagiarios\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+#10 C:\laragon\www\servicos\estagiarios\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\estagiarios\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-02-04 13:32:25 --> Not unique table/alias: 'dp'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `dp`.`pk_id_candidato`, `dp`.`ds_nome`, `dp`.`ds_nascimento`, `da`.`ds_periodo`, `ed`.`ds_numero_edital`, `c`.`ds_nome_curso`, CASE
+            -- CONTRATO COM ADITIVO ATIVO
+            WHEN EXISTS (
+                SELECT 1 FROM tb_dados_contratos c1
+                INNER JOIN tb_dados_aditivos a1 
+                    ON a1.fk_id_contrato = c1.pk_id_contrato
+                WHERE c1.fk_id_candidato = dp.pk_id_candidato
+                  AND c1.ds_status = 1
+                  AND a1.ds_status = 1
+            ) THEN \'contrato_aditivo\'
+
+            -- CONTRATO ATIVO
+            WHEN EXISTS (
+                SELECT 1 FROM tb_dados_contratos c2
+                WHERE c2.fk_id_candidato = dp.pk_id_candidato
+                  AND c2.ds_status = 1
+            ) THEN \'contratado\'
+
+            -- CONVOCADO (SEM CONTRATO ATIVO)
+            WHEN NOT EXISTS (
+                SELECT 1 FROM tb_dados_contratos c3
+                WHERE c3.fk_id_candidato = dp.pk_id_candidato
+                  AND c3.ds_status = 1
+            )
+            AND EXISTS (
+                SELECT 1 FROM tb_dados_convocacao co1
+                WHERE co1.fk_id_candidato = dp.pk_id_candidato
+                  AND co1.ds_status = 1
+            ) THEN \'convocado\'
+
+            ELSE \'fila_espera\'
+        END
+     AS situacao, CASE
+                WHEN EXISTS (
+                    SELECT 1 FROM tb_dados_contratos c1
+                    WHERE c1.fk_id_candidato = dp.pk_id_candidato
+                    AND c1.ds_status = 1
+                )
+                THEN s.ds_nome_setor
+                ELSE NULL
+            END AS ds_nome_setor, COUNT(DISTINCT dp.pk_id_candidato) AS total
+FROM (`tb_dados_pessoais`, `tb_dados_pessoais` `dp`, `tb_dados_pessoais` `dp`)
+LEFT JOIN `tb_dados_academicos` `da` ON `da`.`pk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_cursos` `c` ON `c`.`pk_id_curso` = `da`.`fk_id_curso`
+LEFT JOIN `tb_editais_candidatos` `ec` ON `ec`.`fk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_editais` `ed` ON `ed`.`pk_id_edital` = `ec`.`fk_id_edital`
+LEFT JOIN `tb_dados_contratos` `dc` ON `dc`.`fk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_setores` `s` ON `s`.`pk_id_setor` = `dc`.`fk_id_setor`
+LEFT JOIN `tb_dados_academicos` `da` ON `da`.`pk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_cursos` `c` ON `c`.`pk_id_curso` = `da`.`fk_id_curso`
+LEFT JOIN `tb_editais_candidatos` `ec` ON `ec`.`fk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_editais` `ed` ON `ed`.`pk_id_edital` = `ec`.`fk_id_edital`
+LEFT JOIN `tb_dados_contratos` `dc` ON `dc`.`fk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_setores` `s` ON `s`.`pk_id_setor` = `dc`.`fk_id_setor`
+GROUP BY `dp`.`pk_id_candidato`', [], false)
+ 2 APPPATH\Services\Transparencia\TransparenciaService.php(109): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Services\Transparencia\TransparenciaFormService.php(57): App\Services\Transparencia\TransparenciaService->listarCandidatos([...])
+ 4 APPPATH\Controllers\Transparencia.php(114): App\Services\Transparencia\TransparenciaFormService->listarCandidatos()
+ 5 APPPATH\Controllers\Transparencia.php(46): App\Controllers\Transparencia->renderPagina([...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-04 13:54:25 --> Call to undefined function App\Services\Transparencia\orderBy()
+in APPPATH\Services\Transparencia\TransparenciaService.php on line 72.
+ 1 APPPATH\Services\Transparencia\TransparenciaFormService.php(57): App\Services\Transparencia\TransparenciaService->listarCandidatos([...])
+ 2 APPPATH\Controllers\Transparencia.php(114): App\Services\Transparencia\TransparenciaFormService->listarCandidatos()
+ 3 APPPATH\Controllers\Transparencia.php(46): App\Controllers\Transparencia->renderPagina([...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-02-04 14:03:03 --> mysqli_sql_exception: Unknown column 'c.pk_id_candidato' in 'group statement' in C:\laragon\www\servicos\estagiarios\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\estagiarios\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `dp`.`pk...', 0)
+#1 C:\laragon\www\servicos\estagiarios\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `dp`.`pk...')
+#2 C:\laragon\www\servicos\estagiarios\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `dp`.`pk...')
+#3 C:\laragon\www\servicos\estagiarios\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `dp`.`pk...', Array, false)
+#4 C:\laragon\www\servicos\estagiarios\app\Services\Transparencia\TransparenciaService.php(118): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\estagiarios\app\Services\Transparencia\TransparenciaFormService.php(57): App\Services\Transparencia\TransparenciaService->listarCandidatos(Array)
+#6 C:\laragon\www\servicos\estagiarios\app\Controllers\Transparencia.php(114): App\Services\Transparencia\TransparenciaFormService->listarCandidatos()
+#7 C:\laragon\www\servicos\estagiarios\app\Controllers\Transparencia.php(46): App\Controllers\Transparencia->renderPagina(Array)
+#8 C:\laragon\www\servicos\estagiarios\system\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+#9 C:\laragon\www\servicos\estagiarios\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+#10 C:\laragon\www\servicos\estagiarios\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\estagiarios\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-02-04 14:03:03 --> Unknown column 'c.pk_id_candidato' in 'group statement'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `dp`.`pk_id_candidato`, `dp`.`ds_nome`, `dp`.`ds_nascimento`, `da`.`ds_periodo`, `ed`.`ds_numero_edital`, `c`.`ds_nome_curso`, CASE
+            -- CONTRATO COM ADITIVO ATIVO
+            WHEN EXISTS (
+                SELECT 1 FROM tb_dados_contratos c1
+                INNER JOIN tb_dados_aditivos a1 
+                    ON a1.fk_id_contrato = c1.pk_id_contrato
+                WHERE c1.fk_id_candidato = dp.pk_id_candidato
+                  AND c1.ds_status = 1
+                  AND a1.ds_status = 1
+            ) THEN \'contrato_aditivo\'
+
+            -- CONTRATO ATIVO
+            WHEN EXISTS (
+                SELECT 1 FROM tb_dados_contratos c2
+                WHERE c2.fk_id_candidato = dp.pk_id_candidato
+                  AND c2.ds_status = 1
+            ) THEN \'contratado\'
+
+            -- CONVOCADO (SEM CONTRATO ATIVO)
+            WHEN NOT EXISTS (
+                SELECT 1 FROM tb_dados_contratos c3
+                WHERE c3.fk_id_candidato = dp.pk_id_candidato
+                  AND c3.ds_status = 1
+            )
+            AND EXISTS (
+                SELECT 1 FROM tb_dados_convocacao co1
+                WHERE co1.fk_id_candidato = dp.pk_id_candidato
+                  AND co1.ds_status = 1
+            ) THEN \'convocado\'
+
+            ELSE \'fila_espera\'
+        END
+     AS situacao, CASE
+                WHEN EXISTS (
+                    SELECT 1 FROM tb_dados_contratos c1
+                    WHERE c1.fk_id_candidato = dp.pk_id_candidato
+                    AND c1.ds_status = 1
+                )
+                THEN s.ds_nome_setor
+                ELSE NULL
+            END AS ds_nome_setor
+FROM (`tb_dados_pessoais`, `tb_dados_pessoais` `dp`)
+LEFT JOIN `tb_dados_academicos` `da` ON `da`.`pk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_cursos` `c` ON `c`.`pk_id_curso` = `da`.`fk_id_curso`
+LEFT JOIN `tb_editais_candidatos` `ec` ON `ec`.`fk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_editais` `ed` ON `ed`.`pk_id_edital` = `ec`.`fk_id_edital`
+LEFT JOIN `tb_dados_contratos` `dc` ON `dc`.`fk_id_candidato` = `dp`.`pk_id_candidato`
+LEFT JOIN `tb_setores` `s` ON `s`.`pk_id_setor` = `dc`.`fk_id_setor`
+GROUP BY `c`.`pk_id_candidato`
+ORDER BY `ed`.`pk_id_edital` ASC, `da`.`ds_periodo` DESC, `dp`.`ds_nascimento` ASC, `dp`.`ds_nome` ASC, `dp`.`ds_nome` ASC
+ LIMIT 10', [], false)
+ 2 APPPATH\Services\Transparencia\TransparenciaService.php(118): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Services\Transparencia\TransparenciaFormService.php(57): App\Services\Transparencia\TransparenciaService->listarCandidatos([...])
+ 4 APPPATH\Controllers\Transparencia.php(114): App\Services\Transparencia\TransparenciaFormService->listarCandidatos()
+ 5 APPPATH\Controllers\Transparencia.php(46): App\Controllers\Transparencia->renderPagina([...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-02-04 15:58:20 --> Undefined variable $nomeManifesto
+in APPPATH\Views\pages\Editais_view.php on line 43.
+ 1 APPPATH\Views\pages\Editais_view.php(43): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $nomeManifesto', 'APPPATH\\Views\\pages\\Editais_view.php', 43)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\Editais_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/Editais_view', [], true)
+ 5 APPPATH\Views\layoutSimples.php(3): view('/pages/Editais_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutSimples.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutSimples', [], true)
+ 9 APPPATH\Controllers\Editais.php(35): view('layoutSimples', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Editais->index()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

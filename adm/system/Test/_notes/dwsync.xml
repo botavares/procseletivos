@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="bootstrap.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="CIDatabaseTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="CIUnitTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="ConfigFromArrayTrait.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="ControllerResponse.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="ControllerTester.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="ControllerTestTrait.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="DatabaseTestTrait.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="DOMParser.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="Fabricator.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="FeatureResponse.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="FeatureTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="FeatureTestTrait.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="FilterTestTrait.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="PhpStreamWrapper.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="ReflectionHelper.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="StreamFilterTrait.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="TestLogger.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+<file name="TestResponse.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537795800000000" Dst="0" />
+</dwsync>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="Exception.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132898790450000000" remote="133537796400000000" Dst="0" />
+<file name="InvalidPreReleaseSuffixException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132898790450000000" remote="133537796400000000" Dst="0" />
+<file name="InvalidVersionException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132898790450000000" remote="133537796400000000" Dst="0" />
+<file name="NoBuildMetaDataException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132898790450000000" remote="133537796400000000" Dst="0" />
+<file name="NoPreReleaseSuffixException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132898790450000000" remote="133537796400000000" Dst="0" />
+<file name="UnsupportedVersionConstraintException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132898790450000000" remote="133537796400000000" Dst="0" />
+</dwsync>

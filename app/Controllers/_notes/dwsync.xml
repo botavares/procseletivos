@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="BaseController.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181695670000000" remote="133537797000000000" Dst="0" />
+<file name="Dashboard.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133440340177231753" remote="133537797000000000" Dst="0" />
+<file name="Home.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133536021714716048" remote="133537797000000000" Dst="0" />
+<file name="Login.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133440235310434843" remote="133537797000000000" Dst="0" />
+<file name="Microsservicos.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133517258500757995" remote="133537797000000000" Dst="0" />
+<file name="Telefones.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133536179790360125" remote="133537797000000000" Dst="0" />
+<file name="_Alunos.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133482607523434758" remote="133537797000000000" Dst="0" />
+<file name="_AlunosAPI.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133439267127243792" remote="133537797000000000" Dst="0" />
+<file name="_Escola.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133198343546733791" remote="133537797000000000" Dst="0" />
+<file name="_Inicio.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133197539682501043" remote="133537797000000000" Dst="0" />
+<file name="Microsservicos.php" server="10.1.1.56//var/www/docker/servicos/govdigital/" local="133687390294666264" remote="133687498200000000" Dst="0" />
+<file name="Home.php" server="10.1.1.56//var/www/docker/servicos/govdigital/" local="133634642927218917" remote="133634775600000000" Dst="0" />
+<file name="Servidores.php" server="10.1.1.56//var/www/docker/servicos/govdigital/" local="133548137827142398" remote="133548245400000000" Dst="0" />
+<file name="BaseController.php" server="10.1.1.56//var/www/docker/servicos/govdigital/" local="133181695670000000" remote="133572604800000000" Dst="0" />
+<file name="Dashboard.php" server="10.1.1.56//var/www/docker/servicos/govdigital/" local="133440340177231753" remote="133572604800000000" Dst="0" />
+<file name="Login.php" server="10.1.1.56//var/www/docker/servicos/govdigital/" local="133440235310434843" remote="133572604800000000" Dst="0" />
+<file name="Telefones.php" server="10.1.1.56//var/www/docker/servicos/govdigital/" local="133591473348561143" remote="133591581000000000" Dst="0" />
+<file name="_Alunos.php" server="10.1.1.56//var/www/docker/servicos/govdigital/" local="133482607523434758" remote="133572604800000000" Dst="0" />
+<file name="_AlunosAPI.php" server="10.1.1.56//var/www/docker/servicos/govdigital/" local="133439267127243792" remote="133572604800000000" Dst="0" />
+<file name="_Escola.php" server="10.1.1.56//var/www/docker/servicos/govdigital/" local="133198343546733791" remote="133572604800000000" Dst="0" />
+<file name="_Inicio.php" server="10.1.1.56//var/www/docker/servicos/govdigital/" local="133197539682501043" remote="133572604800000000" Dst="0" />
+</dwsync>

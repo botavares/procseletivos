@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="Command.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="CommandInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="Factory.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="FactoryInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="PrefixableCommandInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="RawCommand.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="RawFactory.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="RedisFactory.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="ScriptCommand.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+</dwsync>

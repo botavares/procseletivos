@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="BadMethodCallException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="CannotUseAddMethodsException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="CannotUseOnlyMethodsException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="ClassAlreadyExistsException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="ClassIsFinalException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="ClassIsReadonlyException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="ConfigurableMethodsAlreadyInitializedException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="DuplicateMethodException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="Exception.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="IncompatibleReturnValueException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="InvalidMethodNameException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="MatchBuilderNotFoundException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="MatcherAlreadyRegisteredException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="MethodCannotBeConfiguredException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="MethodNameAlreadyConfiguredException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="MethodNameNotConfiguredException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="MethodParametersAlreadyConfiguredException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="OriginalConstructorInvocationRequiredException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="ReflectionException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="ReturnValueNotConfiguredException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="RuntimeException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="SoapExtensionNotAvailableException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="UnknownClassException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="UnknownTraitException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+<file name="UnknownTypeException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133181731440000000" remote="133537796400000000" Dst="0" />
+</dwsync>

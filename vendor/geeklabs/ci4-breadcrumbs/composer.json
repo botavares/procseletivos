@@ -1,0 +1,32 @@
+{
+  "name": "geeklabs/breadcrumbs",
+  "type": "library",
+  "description": "Breadcrumb navigation for CodeIgniter 4",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Geeklabs",
+      "email": "geeklabsonline@gmail.com"
+    }
+  ],
+  "keywords": [
+    "breadcrumbs",
+    "CodeIgniter 4",
+    "navigation",
+    "menu"
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": "^8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Geeklabs\\Breadcrumbs\\": "src/"
+    }
+  },
+  "extra": {
+    "spark-commands": [
+      "Geeklabs\\Breadcrumbs\\Commands\\BreadcrumbPublish"
+    ]
+  }
+}

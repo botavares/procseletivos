@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="DirectoryIterationTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="FilenameTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="Issue104TestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="PermissionsTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="QuotaTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="UnlinkTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamAbstractContentTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamBlockTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamContainerIteratorTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamDirectoryIssue134TestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamDirectoryIssue18TestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamDirectoryTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamExLockTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamFileTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamGlobTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamResolveIncludePathTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamUmaskTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamWrapperAlreadyRegisteredTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamWrapperBaseTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamWrapperDirSeparatorTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamWrapperDirTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamWrapperFileTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamWrapperFileTimesTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamWrapperFlockTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamWrapperLargeFileTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamWrapperQuotaTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamWrapperSetOptionTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamWrapperStreamSelectTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamWrapperTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamWrapperUnregisterTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamWrapperWithoutRootTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+<file name="vfsStreamZipTestCase.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132900553620000000" remote="133537796400000000" Dst="0" />
+</dwsync>

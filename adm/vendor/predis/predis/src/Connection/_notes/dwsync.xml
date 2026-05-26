@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="AbstractConnection.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="AggregateConnectionInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="CompositeConnectionInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="CompositeStreamConnection.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="ConnectionException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="ConnectionInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="Factory.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="FactoryInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="NodeConnectionInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="Parameters.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="ParametersInterface.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="PhpiredisSocketConnection.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="PhpiredisStreamConnection.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="StreamConnection.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="WebdisConnection.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+</dwsync>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="BarcodeException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="InvalidCharacterException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="InvalidCheckDigitException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="InvalidFormatException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="InvalidLengthException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+<file name="UnknownTypeException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133393283320000000" remote="133537796400000000" Dst="0" />
+</dwsync>

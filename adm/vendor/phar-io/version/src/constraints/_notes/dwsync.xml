@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="AbstractVersionConstraint.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132898790450000000" remote="133537796400000000" Dst="0" />
+<file name="AndVersionConstraintGroup.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132898790450000000" remote="133537796400000000" Dst="0" />
+<file name="AnyVersionConstraint.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132898790450000000" remote="133537796400000000" Dst="0" />
+<file name="ExactVersionConstraint.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132898790450000000" remote="133537796400000000" Dst="0" />
+<file name="GreaterThanOrEqualToVersionConstraint.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132898790450000000" remote="133537796400000000" Dst="0" />
+<file name="OrVersionConstraintGroup.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132898790450000000" remote="133537796400000000" Dst="0" />
+<file name="SpecificMajorAndMinorVersionConstraint.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132898790450000000" remote="133537796400000000" Dst="0" />
+<file name="SpecificMajorVersionConstraint.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132898790450000000" remote="133537796400000000" Dst="0" />
+<file name="VersionConstraint.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132898790450000000" remote="133537796400000000" Dst="0" />
+</dwsync>

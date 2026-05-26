@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="custom_cluster_distributor.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="debuggable_connection.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="dispatcher_loop.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="executing_redis_commands.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="key_prefixing.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="lua_scripting_abstraction.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="monitor_consumer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="pipelining_commands.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="pubsub_consumer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="redis_collections_iterators.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="replication_complex.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="replication_sentinel.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="replication_simple.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="session_handler.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="shared.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+<file name="transaction_using_cas.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133184626550000000" remote="133537796400000000" Dst="0" />
+</dwsync>

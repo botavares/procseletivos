@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="Annotation.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133155605020000000" remote="133537795800000000" Dst="0" />
+<file name="AnnotationException.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133155605020000000" remote="133537795800000000" Dst="0" />
+<file name="AnnotationReader.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133155605020000000" remote="133537795800000000" Dst="0" />
+<file name="AnnotationRegistry.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133155605020000000" remote="133537795800000000" Dst="0" />
+<file name="CachedReader.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133155605020000000" remote="133537795800000000" Dst="0" />
+<file name="DocLexer.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133155605020000000" remote="133537795800000000" Dst="0" />
+<file name="DocParser.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133155605020000000" remote="133537795800000000" Dst="0" />
+<file name="FileCacheReader.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133155605020000000" remote="133537795800000000" Dst="0" />
+<file name="ImplicitlyIgnoredAnnotationNames.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133155605020000000" remote="133537795800000000" Dst="0" />
+<file name="IndexedReader.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133155605020000000" remote="133537795800000000" Dst="0" />
+<file name="NamedArgumentConstructorAnnotation.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133155605020000000" remote="133537795800000000" Dst="0" />
+<file name="PhpParser.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133155605020000000" remote="133537795800000000" Dst="0" />
+<file name="PsrCachedReader.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133155605020000000" remote="133537795800000000" Dst="0" />
+<file name="Reader.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133155605020000000" remote="133537795800000000" Dst="0" />
+<file name="SimpleAnnotationReader.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133155605020000000" remote="133537795800000000" Dst="0" />
+<file name="TokenParser.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="133155605020000000" remote="133537795800000000" Dst="0" />
+</dwsync>

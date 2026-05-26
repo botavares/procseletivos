@@ -1,0 +1,758 @@
+ERROR - 2026-03-25 07:13:45 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_dados_pessoais' doesn't exist in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(62): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-03-25 07:13:45 --> Table 'bd_processos_seletivos_administracao.tb_dados_pessoais' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_dados_pessoais`
+WHERE `ds_cpf` = :ds_cpf:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 4 APPPATH\Controllers\Cadastros.php(62): CodeIgniter\BaseModel->first()
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-03-25 07:14:22 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_dados_pessoais' doesn't exist in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(62): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-03-25 07:14:22 --> Table 'bd_processos_seletivos_administracao.tb_dados_pessoais' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_dados_pessoais`
+WHERE `ds_cpf` = :ds_cpf:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 4 APPPATH\Controllers\Cadastros.php(62): CodeIgniter\BaseModel->first()
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 07:27:21 --> Undefined property: stdClass::$fk_id_gov
+in APPPATH\Controllers\Cadastros.php on line 64.
+ 1 APPPATH\Controllers\Cadastros.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$fk_id_gov', 'APPPATH\\Controllers\\Cadastros.php', 64)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 07:28:06 --> Undefined property: stdClass::$fk_id_gov
+in APPPATH\Controllers\Cadastros.php on line 64.
+ 1 APPPATH\Controllers\Cadastros.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$fk_id_gov', 'APPPATH\\Controllers\\Cadastros.php', 64)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-03-25 07:29:57 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\app\Controllers\Home.php(31): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Home->index()
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-03-25 07:29:57 --> Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_dados_academicos`
+WHERE `pk_id_candidato` = :pk_id_candidato:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 4 APPPATH\Controllers\Home.php(31): CodeIgniter\BaseModel->first()
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-03-25 07:31:01 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\app\Controllers\Home.php(31): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Home->index()
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-03-25 07:31:01 --> Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_dados_academicos`
+WHERE `pk_id_candidato` = :pk_id_candidato:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 4 APPPATH\Controllers\Home.php(31): CodeIgniter\BaseModel->first()
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-03-25 07:34:14 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\app\Controllers\Home.php(31): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Home->index()
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-03-25 07:34:14 --> Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_dados_academicos`
+WHERE `pk_id_cadastrado` = :pk_id_cadastrado:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 4 APPPATH\Controllers\Home.php(31): CodeIgniter\BaseModel->first()
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-03-25 07:35:50 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\app\Controllers\Home.php(31): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Home->index()
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-03-25 07:35:50 --> Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_dados_academicos`
+WHERE `pk_id_cadastrado` = :pk_id_cadastrado:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 4 APPPATH\Controllers\Home.php(31): CodeIgniter\BaseModel->first()
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 07:42:16 --> Class "App\Controllers\CandidatosModel" not found
+in APPPATH\Controllers\Home.php on line 28.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 07:43:43 --> Undefined property: stdClass::$fk_id_gov
+in APPPATH\Controllers\Cadastros.php on line 64.
+ 1 APPPATH\Controllers\Cadastros.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$fk_id_gov', 'APPPATH\\Controllers\\Cadastros.php', 64)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 07:43:43 --> Undefined property: stdClass::$fk_id_gov
+in APPPATH\Controllers\Cadastros.php on line 64.
+ 1 APPPATH\Controllers\Cadastros.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$fk_id_gov', 'APPPATH\\Controllers\\Cadastros.php', 64)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 07:44:36 --> Undefined property: stdClass::$pk_id_candidato
+in APPPATH\Controllers\Cadastros.php on line 72.
+ 1 APPPATH\Controllers\Cadastros.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$pk_id_candidato', 'APPPATH\\Controllers\\Cadastros.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-03-25 07:45:18 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(72): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-03-25 07:45:18 --> Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_dados_academicos`
+WHERE `pk_id_cadastrado` = :pk_id_cadastrado:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 4 APPPATH\Controllers\Cadastros.php(72): CodeIgniter\BaseModel->first()
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-03-25 07:49:16 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(72): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-03-25 07:49:16 --> Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_dados_academicos`
+WHERE `pk_id_cadastrado` = :pk_id_cadastrado:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 4 APPPATH\Controllers\Cadastros.php(72): CodeIgniter\BaseModel->first()
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 07:53:06 --> Undefined variable $edital
+in APPPATH\Controllers\Cadastros.php on line 95.
+ 1 APPPATH\Controllers\Cadastros.php(95): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $edital', 'APPPATH\\Controllers\\Cadastros.php', 95)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 07:58:13 --> Undefined variable $edital
+in APPPATH\Controllers\Cadastros.php on line 95.
+ 1 APPPATH\Controllers\Cadastros.php(95): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $edital', 'APPPATH\\Controllers\\Cadastros.php', 95)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 07:58:28 --> Undefined variable $status
+in APPPATH\Controllers\Cadastros.php on line 95.
+ 1 APPPATH\Controllers\Cadastros.php(95): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $status', 'APPPATH\\Controllers\\Cadastros.php', 95)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 07:58:32 --> Undefined variable $dadosContrato
+in APPPATH\Controllers\Cadastros.php on line 96.
+ 1 APPPATH\Controllers\Cadastros.php(96): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dadosContrato', 'APPPATH\\Controllers\\Cadastros.php', 96)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 07:59:00 --> Undefined variable $edital
+in APPPATH\Views\pages\EstagiariosEscolher_view.php on line 52.
+ 1 APPPATH\Views\pages\EstagiariosEscolher_view.php(52): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $edital', 'APPPATH\\Views\\pages\\EstagiariosEscolher_view.php', 52)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\EstagiariosEscolher_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/EstagiariosEscolher_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/EstagiariosEscolher_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(98): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 08:12:56 --> Undefined variable $edital
+in APPPATH\Views\pages\OpcoesCadastro_view.php on line 52.
+ 1 APPPATH\Views\pages\OpcoesCadastro_view.php(52): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $edital', 'APPPATH\\Views\\pages\\OpcoesCadastro_view.php', 52)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\OpcoesCadastro_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/OpcoesCadastro_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/OpcoesCadastro_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(98): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 10:24:42 --> syntax error, unexpected token "else", expecting end of file
+in APPPATH\Views\pages\OpcoesCadastro_view.php on line 87.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/OpcoesCadastro_view', [], true)
+ 3 APPPATH\Views\layoutLogado.php(3): view('/pages/OpcoesCadastro_view')
+ 4 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 5 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 7 APPPATH\Controllers\Cadastros.php(98): view('layoutLogado', [...])
+ 8 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 9 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+10 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 10:24:50 --> syntax error, unexpected token "endif", expecting end of file
+in APPPATH\Views\pages\OpcoesCadastro_view.php on line 101.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/OpcoesCadastro_view', [], true)
+ 3 APPPATH\Views\layoutLogado.php(3): view('/pages/OpcoesCadastro_view')
+ 4 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 5 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 7 APPPATH\Controllers\Cadastros.php(98): view('layoutLogado', [...])
+ 8 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 9 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+10 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 10:24:57 --> syntax error, unexpected token "else", expecting end of file
+in APPPATH\Views\pages\OpcoesCadastro_view.php on line 104.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/OpcoesCadastro_view', [], true)
+ 3 APPPATH\Views\layoutLogado.php(3): view('/pages/OpcoesCadastro_view')
+ 4 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 5 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 7 APPPATH\Controllers\Cadastros.php(98): view('layoutLogado', [...])
+ 8 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 9 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+10 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 10:25:02 --> syntax error, unexpected token "endif", expecting end of file
+in APPPATH\Views\pages\OpcoesCadastro_view.php on line 117.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/OpcoesCadastro_view', [], true)
+ 3 APPPATH\Views\layoutLogado.php(3): view('/pages/OpcoesCadastro_view')
+ 4 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 5 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 7 APPPATH\Controllers\Cadastros.php(98): view('layoutLogado', [...])
+ 8 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 9 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+10 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 10:25:08 --> Undefined variable $edital
+in APPPATH\Views\pages\OpcoesCadastro_view.php on line 62.
+ 1 APPPATH\Views\pages\OpcoesCadastro_view.php(62): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $edital', 'APPPATH\\Views\\pages\\OpcoesCadastro_view.php', 62)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\OpcoesCadastro_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/OpcoesCadastro_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/OpcoesCadastro_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(98): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 10:25:42 --> Undefined variable $dadosContrato
+in APPPATH\Views\pages\OpcoesCadastro_view.php on line 60.
+ 1 APPPATH\Views\pages\OpcoesCadastro_view.php(60): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dadosContrato', 'APPPATH\\Views\\pages\\OpcoesCadastro_view.php', 60)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\OpcoesCadastro_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/OpcoesCadastro_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/OpcoesCadastro_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(98): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 10:26:02 --> Undefined variable $edital
+in APPPATH\Views\pages\OpcoesCadastro_view.php on line 56.
+ 1 APPPATH\Views\pages\OpcoesCadastro_view.php(56): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $edital', 'APPPATH\\Views\\pages\\OpcoesCadastro_view.php', 56)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\OpcoesCadastro_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/OpcoesCadastro_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/OpcoesCadastro_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(98): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 10:26:39 --> Undefined variable $status
+in APPPATH\Views\pages\OpcoesCadastro_view.php on line 119.
+ 1 APPPATH\Views\pages\OpcoesCadastro_view.php(119): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $status', 'APPPATH\\Views\\pages\\OpcoesCadastro_view.php', 119)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\OpcoesCadastro_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/OpcoesCadastro_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/OpcoesCadastro_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(98): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 10:26:54 --> Undefined variable $situacao
+in APPPATH\Views\pages\OpcoesCadastro_view.php on line 122.
+ 1 APPPATH\Views\pages\OpcoesCadastro_view.php(122): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $situacao', 'APPPATH\\Views\\pages\\OpcoesCadastro_view.php', 122)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\OpcoesCadastro_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/OpcoesCadastro_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/OpcoesCadastro_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(98): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 11:20:54 --> Class "CargosModel" not found
+in APPPATH\Views\pages\OpcoesCadastro_view.php on line 122.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/OpcoesCadastro_view', [], true)
+ 4 APPPATH\Views\layoutLogado.php(3): view('/pages/OpcoesCadastro_view')
+ 5 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 6 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 8 APPPATH\Controllers\Cadastros.php(86): view('layoutLogado', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 11:22:41 --> Undefined property: stdClass::$ds_nome_cargo
+in APPPATH\Views\pages\OpcoesCadastro_view.php on line 125.
+ 1 APPPATH\Views\pages\OpcoesCadastro_view.php(125): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$ds_nome_cargo', 'APPPATH\\Views\\pages\\OpcoesCadastro_view.php', 125)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\OpcoesCadastro_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/OpcoesCadastro_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/OpcoesCadastro_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(86): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 13:46:27 --> Undefined property: stdClass::$ds_nome_curso
+in APPPATH\Views\pages\OpcoesCadastro_view.php on line 171.
+ 1 APPPATH\Views\pages\OpcoesCadastro_view.php(171): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$ds_nome_curso', 'APPPATH\\Views\\pages\\OpcoesCadastro_view.php', 171)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\OpcoesCadastro_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/OpcoesCadastro_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/OpcoesCadastro_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(86): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 13:58:14 --> Attempt to read property "ds_numero_edital" on array
+in APPPATH\Controllers\Cadastros.php on line 63.
+ 1 APPPATH\Controllers\Cadastros.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "ds_numero_edital" on array', 'APPPATH\\Controllers\\Cadastros.php', 63)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 14:03:36 --> Attempt to read property "ds_numero_edital" on array
+in APPPATH\Controllers\Cadastros.php on line 64.
+ 1 APPPATH\Controllers\Cadastros.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "ds_numero_edital" on array', 'APPPATH\\Controllers\\Cadastros.php', 64)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 14:05:00 --> Undefined variable $numeroEdital
+in APPPATH\Controllers\Cadastros.php on line 82.
+ 1 APPPATH\Controllers\Cadastros.php(82): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $numeroEdital', 'APPPATH\\Controllers\\Cadastros.php', 82)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-03-25 14:30:59 --> mysqli_sql_exception: Unknown column 'ds_outra_pne' in 'field list' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('UPDATE `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(2462): CodeIgniter\Database\BaseConnection->query('UPDATE `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(395): CodeIgniter\Database\BaseBuilder->update()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(943): CodeIgniter\Model->doUpdate(Array, Array)
+#6 C:\laragon\www\servicos\procseletivos\system\Model.php(755): CodeIgniter\BaseModel->update(Array, Array)
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(388): CodeIgniter\Model->update('2826', Array)
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosPessosais()
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-03-25 14:30:59 --> Unknown column 'ds_outra_pne' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2462): CodeIgniter\Database\BaseConnection->query('UPDATE `tb_cadastrados` SET `fk_id_gov` = :fk_id_gov:, `ds_nome` = :ds_nome:, `ds_cpf` = :ds_cpf:, `ds_nascimento` = :ds_nascimento:, `fk_id_pne` = :fk_id_pne:, `ds_outra_pne` = :ds_outra_pne:, `ds_cep` = :ds_cep:, `ds_rua` = :ds_rua:, `ds_numero` = :ds_numero:, `ds_complemento` = :ds_complemento:, `ds_nome_bairro` = :ds_nome_bairro:, `ds_cidade` = :ds_cidade:, `ds_uf` = :ds_uf:, `ds_celular` = :ds_celular:, `ds_fixo` = :ds_fixo:, `ds_email` = :ds_email:, `ds_data_cadastro` = :ds_data_cadastro:, `ds_hora_cadastro` = :ds_hora_cadastro:, `ds_data_alteracao` = :ds_data_alteracao:, `ds_hora_alteracao` = :ds_hora_alteracao:, `ds_ip_cadastro` = :ds_ip_cadastro:
+WHERE `tb_cadastrados`.`pk_id_cadastrado` IN :tb_cadastrados.pk_id_cadastrado:', [...], false)
+ 2 SYSTEMPATH\Model.php(395): CodeIgniter\Database\BaseBuilder->update()
+ 3 SYSTEMPATH\BaseModel.php(943): CodeIgniter\Model->doUpdate([...], [...])
+ 4 SYSTEMPATH\Model.php(755): CodeIgniter\BaseModel->update([...], [...])
+ 5 APPPATH\Controllers\Cadastros.php(388): CodeIgniter\Model->update('2826', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosPessosais()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-03-25 14:32:31 --> mysqli_sql_exception: Unknown column 'ds_data_alteracao' in 'field list' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('UPDATE `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(2462): CodeIgniter\Database\BaseConnection->query('UPDATE `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(395): CodeIgniter\Database\BaseBuilder->update()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(943): CodeIgniter\Model->doUpdate(Array, Array)
+#6 C:\laragon\www\servicos\procseletivos\system\Model.php(755): CodeIgniter\BaseModel->update(Array, Array)
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(388): CodeIgniter\Model->update('2826', Array)
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosPessosais()
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-03-25 14:32:31 --> Unknown column 'ds_data_alteracao' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2462): CodeIgniter\Database\BaseConnection->query('UPDATE `tb_cadastrados` SET `fk_id_gov` = :fk_id_gov:, `ds_nome` = :ds_nome:, `ds_cpf` = :ds_cpf:, `ds_nascimento` = :ds_nascimento:, `fk_id_pne` = :fk_id_pne:, `ds_outra_pne` = :ds_outra_pne:, `ds_cep` = :ds_cep:, `ds_rua` = :ds_rua:, `ds_numero` = :ds_numero:, `ds_complemento` = :ds_complemento:, `ds_nome_bairro` = :ds_nome_bairro:, `ds_cidade` = :ds_cidade:, `ds_uf` = :ds_uf:, `ds_celular` = :ds_celular:, `ds_fixo` = :ds_fixo:, `ds_email` = :ds_email:, `ds_data_cadastro` = :ds_data_cadastro:, `ds_hora_cadastro` = :ds_hora_cadastro:, `ds_data_alteracao` = :ds_data_alteracao:, `ds_hora_alteracao` = :ds_hora_alteracao:, `ds_ip_cadastro` = :ds_ip_cadastro:
+WHERE `tb_cadastrados`.`pk_id_cadastrado` IN :tb_cadastrados.pk_id_cadastrado:', [...], false)
+ 2 SYSTEMPATH\Model.php(395): CodeIgniter\Database\BaseBuilder->update()
+ 3 SYSTEMPATH\BaseModel.php(943): CodeIgniter\Model->doUpdate([...], [...])
+ 4 SYSTEMPATH\Model.php(755): CodeIgniter\BaseModel->update([...], [...])
+ 5 APPPATH\Controllers\Cadastros.php(388): CodeIgniter\Model->update('2826', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosPessosais()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-03-25 14:32:53 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(220): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosAcademicos('2472')
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-03-25 14:32:53 --> Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_dados_academicos`
+WHERE `pk_id_cadastrado` = :pk_id_cadastrado:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 4 APPPATH\Controllers\Cadastros.php(220): CodeIgniter\BaseModel->first()
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosAcademicos('2472')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-03-25 14:38:13 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(220): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosAcademicos('2472')
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-03-25 14:38:13 --> Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_dados_academicos`
+WHERE `pk_id_cadastrado` = :pk_id_cadastrado:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 4 APPPATH\Controllers\Cadastros.php(220): CodeIgniter\BaseModel->first()
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosAcademicos('2472')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-03-25 14:50:03 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(217): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosAcademicos('2472')
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-03-25 14:50:03 --> Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_dados_academicos`
+WHERE `pk_id_cadastrado` = :pk_id_cadastrado:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 4 APPPATH\Controllers\Cadastros.php(217): CodeIgniter\BaseModel->first()
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosAcademicos('2472')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 15:00:35 --> Undefined variable $acao
+in APPPATH\Views\pages\FormularioPessoais_view.php on line 16.
+ 1 APPPATH\Views\pages\FormularioPessoais_view.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $acao', 'APPPATH\\Views\\pages\\FormularioPessoais_view.php', 16)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioPessoais_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioPessoais_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioPessoais_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(189): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosCandidato('23', '16', '2472')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 15:01:08 --> Undefined variable $acao
+in APPPATH\Views\pages\FormularioPessoais_view.php on line 16.
+ 1 APPPATH\Views\pages\FormularioPessoais_view.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $acao', 'APPPATH\\Views\\pages\\FormularioPessoais_view.php', 16)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioPessoais_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioPessoais_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioPessoais_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(189): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosCandidato('23', '16', '2472')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 15:03:35 --> Undefined variable $acao
+in APPPATH\Views\pages\FormularioPessoais_view.php on line 46.
+ 1 APPPATH\Views\pages\FormularioPessoais_view.php(46): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $acao', 'APPPATH\\Views\\pages\\FormularioPessoais_view.php', 46)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioPessoais_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioPessoais_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioPessoais_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(189): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosCandidato('23', '16', '2472')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 15:03:50 --> Undefined variable $acao
+in APPPATH\Views\pages\FormularioPessoais_view.php on line 122.
+ 1 APPPATH\Views\pages\FormularioPessoais_view.php(122): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $acao', 'APPPATH\\Views\\pages\\FormularioPessoais_view.php', 122)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioPessoais_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioPessoais_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioPessoais_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(189): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosCandidato('23', '16', '2472')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 15:04:00 --> Undefined variable $acao
+in APPPATH\Views\pages\FormularioPessoais_view.php on line 259.
+ 1 APPPATH\Views\pages\FormularioPessoais_view.php(259): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $acao', 'APPPATH\\Views\\pages\\FormularioPessoais_view.php', 259)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioPessoais_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioPessoais_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioPessoais_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(189): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosCandidato('23', '16', '2472')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-03-25 15:04:12 --> Undefined variable $acao
+in APPPATH\Views\pages\FormularioPessoais_view.php on line 364.
+ 1 APPPATH\Views\pages\FormularioPessoais_view.php(364): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $acao', 'APPPATH\\Views\\pages\\FormularioPessoais_view.php', 364)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioPessoais_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioPessoais_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioPessoais_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(189): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosCandidato('23', '16', '2472')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-03-25 15:09:47 --> mysqli_sql_exception: Column 'ds_data_alteracao' cannot be null in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tb...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(782): CodeIgniter\Model->doInsert(Array)
+#6 C:\laragon\www\servicos\procseletivos\system\Model.php(729): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(379): CodeIgniter\Model->insert(Array)
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosPessosais()
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-03-25 15:09:47 --> Column 'ds_data_alteracao' cannot be null
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb_cadastrados` (`fk_id_gov`, `ds_nome`, `ds_cpf`, `ds_nascimento`, `fk_id_pne`, `ds_outra_pne`, `ds_cep`, `ds_rua`, `ds_numero`, `ds_complemento`, `ds_nome_bairro`, `ds_cidade`, `ds_uf`, `ds_celular`, `ds_fixo`, `ds_email`, `ds_data_cadastro`, `ds_hora_cadastro`, `ds_data_alteracao`, `ds_hora_alteracao`, `ds_ip_cadastro`) VALUES (:fk_id_gov:, :ds_nome:, :ds_cpf:, :ds_nascimento:, :fk_id_pne:, :ds_outra_pne:, :ds_cep:, :ds_rua:, :ds_numero:, :ds_complemento:, :ds_nome_bairro:, :ds_cidade:, :ds_uf:, :ds_celular:, :ds_fixo:, :ds_email:, :ds_data_cadastro:, :ds_hora_cadastro:, :ds_data_alteracao:, :ds_hora_alteracao:, :ds_ip_cadastro:)', [...], false)
+ 2 SYSTEMPATH\Model.php(329): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(729): CodeIgniter\BaseModel->insert([...], true)
+ 5 APPPATH\Controllers\Cadastros.php(379): CodeIgniter\Model->insert([...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosPessosais()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

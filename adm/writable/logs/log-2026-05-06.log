@@ -1,0 +1,1172 @@
+CRITICAL - 2026-05-06 15:02:44 --> Uncaught CodeIgniter\Router\Exceptions\RouterException in C:\laragon\www\servicos\procseletivos\adm\system\Helpers\url_helper.php:566
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Helpers\url_helper.php(566): CodeIgniter\Router\Exceptions\RouterException::forInvalidRoute('login.teste')
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Capa_view.php(35): url_to('login.teste')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Capa_vie...', Array, true)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutSimples.php(3): view('/pages/Capa_vie...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutSimples', Array, true)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Home.php(25): view('layoutSimples', Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Home->index()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in SYSTEMPATH\Helpers\url_helper.php on line 566.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-06 15:03:46 --> Uncaught CodeIgniter\Router\Exceptions\RouterException in C:\laragon\www\servicos\procseletivos\adm\system\Helpers\url_helper.php:566
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Helpers\url_helper.php(566): CodeIgniter\Router\Exceptions\RouterException::forInvalidRoute('login.teste')
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Capa_view.php(35): url_to('login.teste')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Capa_vie...', Array, true)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutSimples.php(3): view('/pages/Capa_vie...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutSimples', Array, true)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Home.php(25): view('layoutSimples', Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Home->index()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in SYSTEMPATH\Helpers\url_helper.php on line 566.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-06 15:05:49 --> Uncaught Error: Class "App\Models\CursosModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Convocados.php:56
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Convocados->index('23', '16')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Convocados))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\Convocados.php on line 56.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-06 15:15:24 --> Uncaught Error: Class "App\Models\AcademicosModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Convocados.php:114
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Convocados->formularioConvocar('2887')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Convocados))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\Convocados.php on line 114.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-06 15:15:53 --> Uncaught ErrorException: Undefined property: stdClass::$ds_data_final in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Editais_view.php:67
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Editais_view.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 67)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Editais_...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('/pages/Editais_...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(60): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(42): App\Controllers\Editais->listarParaGrid('ativos', '', 'pages', 'Editais')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->index()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\Editais_view.php on line 67.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-06 15:22:24 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: Convocados/exibirDados/2887'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-06 15:23:44 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: Convocados/exibirDados/2887'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-06 15:23:56 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Método do Controller não foi encontrado: exibirDados in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('M\xC3\xA9todo do Cont...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-06 15:44:53 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Página não encontrada: dadosCandidato in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('P\xC3\xA1gina n\xC3\xA3o en...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-06 15:47:17 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Página não encontrada: dadosCandidato in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('P\xC3\xA1gina n\xC3\xA3o en...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-05-06 15:48:04 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_dado...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_dado...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_dado...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_dado...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(133): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(287): App\Services\Candidatos\CandidatosService->listarCandidatoId('2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-05-06 15:48:04 --> Uncaught mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_dado...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_dado...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_dado...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_dado...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(133): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(287): App\Services\Candidatos\CandidatosService->listarCandidatoId('2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_dado...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_dado...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_dado...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(133): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('2887')
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(287): App\Services\Candidatos\CandidatosService->listarCandidatoId('2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_dados_academicos' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_dado...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(133): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('2887')
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(287): App\Services\Candidatos\CandidatosService->listarCandidatoId('2887')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('2887')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-05-06 15:53:08 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_cadastrados_experiencia' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_dado...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_dado...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_dado...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_dado...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(135): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(287): App\Services\Candidatos\CandidatosService->listarCandidatoId('2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-05-06 15:53:08 --> Uncaught mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_cadastrados_experiencia' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_dado...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_dado...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_dado...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_dado...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(135): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(287): App\Services\Candidatos\CandidatosService->listarCandidatoId('2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_cadastrados_experiencia' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_dado...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_dado...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_dado...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(135): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('2887')
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(287): App\Services\Candidatos\CandidatosService->listarCandidatoId('2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_cadastrados_experiencia' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_dado...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(135): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('2887')
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(287): App\Services\Candidatos\CandidatosService->listarCandidatoId('2887')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('2887')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-05-06 15:53:23 --> mysqli_sql_exception: Unknown table 'bd_processos_seletivos_administracao.tb_dados_pessoais' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_dado...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_dado...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_dado...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_dado...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(135): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(287): App\Services\Candidatos\CandidatosService->listarCandidatoId('2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-05-06 15:53:23 --> Uncaught mysqli_sql_exception: Unknown table 'bd_processos_seletivos_administracao.tb_dados_pessoais' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_dado...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_dado...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_dado...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_dado...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(135): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(287): App\Services\Candidatos\CandidatosService->listarCandidatoId('2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown table 'bd_processos_seletivos_administracao.tb_dados_pessoais' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_dado...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_dado...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_dado...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(135): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('2887')
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(287): App\Services\Candidatos\CandidatosService->listarCandidatoId('2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown table 'bd_processos_seletivos_administracao.tb_dados_pessoais' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_dado...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(135): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('2887')
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(287): App\Services\Candidatos\CandidatosService->listarCandidatoId('2887')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('2887')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-05-06 15:54:03 --> mysqli_sql_exception: Unknown table 'bd_processos_seletivos_administracao.tb_dados_academicos' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(135): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(287): App\Services\Candidatos\CandidatosService->listarCandidatoId('2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-05-06 15:54:03 --> Uncaught mysqli_sql_exception: Unknown table 'bd_processos_seletivos_administracao.tb_dados_academicos' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(135): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(287): App\Services\Candidatos\CandidatosService->listarCandidatoId('2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown table 'bd_processos_seletivos_administracao.tb_dados_academicos' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(135): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('2887')
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(287): App\Services\Candidatos\CandidatosService->listarCandidatoId('2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown table 'bd_processos_seletivos_administracao.tb_dados_academicos' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(135): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('2887')
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(287): App\Services\Candidatos\CandidatosService->listarCandidatoId('2887')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('2887')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-06 15:54:59 --> Uncaught ErrorException: Undefined property: stdClass::$ds_protocolo in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php:296
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(296): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 296)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('2887')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#5 {main}
+  thrown
+in APPPATH\Controllers\Candidatos.php on line 296.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-06 15:56:57 --> Uncaught Error: Class "App\Models\CursosModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cursos.php:25
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\Cursos->__construct()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\Cursos.php on line 25.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-06 16:07:11 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: Candidatos/exibirDados/23/16/2887'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-06 16:07:35 --> Uncaught ErrorException: Undefined variable $edital in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php:289
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 289)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2887')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#5 {main}
+  thrown
+in APPPATH\Controllers\Candidatos.php on line 289.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-06 16:08:45 --> Uncaught ErrorException: Undefined variable $edital in C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php:36
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 36)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2887')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2887')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Services\Candidatos\CandidatosService.php on line 36.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-05-06 16:24:33 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_cursos' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(151): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-05-06 16:24:33 --> Uncaught mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_cursos' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(151): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_cursos' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(151): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2887')
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_cursos' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(151): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2887')
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2887')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2887')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-05-06 16:25:02 --> mysqli_sql_exception: Not unique table/alias: 'tb_cursos_aperfeicoamentos' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(151): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-05-06 16:25:02 --> Uncaught mysqli_sql_exception: Not unique table/alias: 'tb_cursos_aperfeicoamentos' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(151): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Not unique table/alias: 'tb_cursos_aperfeicoamentos' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(151): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2887')
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2887')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2887')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Not unique table/alias: 'tb_cursos_aperfeicoamentos' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(151): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2887')
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2887')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2887')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-05-06 16:28:29 --> Uncaught ErrorException: Undefined variable $canais in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php:54
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\candidatos\dadosCandidato_view.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 54)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/candidato...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/candidato...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(303): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2887')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\candidatos\dadosCandidato_view.php on line 54.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-05-06 16:34:03 --> mysqli_sql_exception: Not unique table/alias: 'tb_escolaridades' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(153): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-05-06 16:34:03 --> Uncaught mysqli_sql_exception: Not unique table/alias: 'tb_escolaridades' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(153): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Not unique table/alias: 'tb_escolaridades' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(153): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Not unique table/alias: 'tb_escolaridades' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(153): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-05-06 16:36:48 --> mysqli_sql_exception: Unknown column 'tb_escolaridades.pk_id_escolaridade' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(152): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-05-06 16:36:48 --> Uncaught mysqli_sql_exception: Unknown column 'tb_escolaridades.pk_id_escolaridade' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(152): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tb_escolaridades.pk_id_escolaridade' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(152): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tb_escolaridades.pk_id_escolaridade' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(152): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-05-06 16:37:44 --> mysqli_sql_exception: Unknown column 'tb_cadastrados_aperfeicoamentos.fk_id_curso' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(153): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-05-06 16:37:44 --> Uncaught mysqli_sql_exception: Unknown column 'tb_cadastrados_aperfeicoamentos.fk_id_curso' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(153): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tb_cadastrados_aperfeicoamentos.fk_id_curso' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(153): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tb_cadastrados_aperfeicoamentos.fk_id_curso' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(153): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-05-06 16:41:07 --> mysqli_sql_exception: Unknown column 'tb_escolaridades.pk_id_escolaridade' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(155): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-05-06 16:41:07 --> Uncaught mysqli_sql_exception: Unknown column 'tb_escolaridades.pk_id_escolaridade' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(155): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tb_escolaridades.pk_id_escolaridade' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(155): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tb_escolaridades.pk_id_escolaridade' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(155): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-05-06 16:42:32 --> mysqli_sql_exception: Unknown column 'tb_cadastrados_escolaridades.fk_id_escolaridade' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(156): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-05-06 16:42:32 --> Uncaught mysqli_sql_exception: Unknown column 'tb_cadastrados_escolaridades.fk_id_escolaridade' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(156): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tb_cadastrados_escolaridades.fk_id_escolaridade' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(156): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tb_cadastrados_escolaridades.fk_id_escolaridade' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(156): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-05-06 16:43:00 --> mysqli_sql_exception: Unknown column 'ce1.fk_id_escolaridade' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(156): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-05-06 16:43:00 --> Uncaught mysqli_sql_exception: Unknown column 'ce1.fk_id_escolaridade' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(156): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ce1.fk_id_escolaridade' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(156): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ce1.fk_id_escolaridade' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(156): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-05-06 16:44:17 --> mysqli_sql_exception: Unknown column 'ce1.pk_id_cadastrado' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(219): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-05-06 16:44:17 --> Uncaught mysqli_sql_exception: Unknown column 'ce1.pk_id_cadastrado' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_cada...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(219): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ce1.pk_id_cadastrado' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_cada...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_cada...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(219): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ce1.pk_id_cadastrado' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cada...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(219): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-05-06 16:47:41 --> mysqli_sql_exception: Unknown column 'e1.pk_id_escolaridade' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `c`.*, `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `c`.*, `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `c`.*, `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `c`.*, `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(229): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-05-06 16:47:41 --> Uncaught mysqli_sql_exception: Unknown column 'e1.pk_id_escolaridade' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `c`.*, `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `c`.*, `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `c`.*, `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `c`.*, `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(229): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'e1.pk_id_escolaridade' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `c`.*, `...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `c`.*, `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `c`.*, `...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(229): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'e1.pk_id_escolaridade' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `c`.*, `...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(229): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-05-06 16:48:14 --> mysqli_sql_exception: Unknown column 'ce2.pk_id_cadastrado' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `c`.*, `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `c`.*, `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `c`.*, `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `c`.*, `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(229): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-05-06 16:48:14 --> Uncaught mysqli_sql_exception: Unknown column 'ce2.pk_id_cadastrado' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `c`.*, `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `c`.*, `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `c`.*, `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `c`.*, `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(229): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ce2.pk_id_cadastrado' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `c`.*, `...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `c`.*, `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `c`.*, `...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(229): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ce2.pk_id_cadastrado' in 'on clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `c`.*, `...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CandidatosModel.php(229): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\CandidatosService.php(36): App\Models\CandidatosModel->listarCandidatoId('23', '16', '2892')
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Candidatos.php(289): App\Services\Candidatos\CandidatosService->listarCandidatoId('23', '16', '2892')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Candidatos->exibirDados('23', '16', '2892')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Candidatos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()

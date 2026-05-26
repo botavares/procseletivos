@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="Cache.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="CLI.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="Core.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="Database.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="Email.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="Files.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="Filters.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="Format.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="HTTP.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="Images.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="Language.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="Log.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="Migrations.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="Number.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="Pager.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="README.md" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="Router.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="Session.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="Time.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="Validation.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="View.php" server="C:/laragon/www/cadescolar/" local="132181258880000000" remote="132181258880000000" Dst="0" />
+<file name="Cache.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="CLI.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="Core.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="Database.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="Email.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="Files.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="Filters.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="Format.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="HTTP.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="Images.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="Language.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="Log.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="Migrations.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="Number.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="Pager.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="README.md" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="Router.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="Session.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="Time.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="Validation.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+<file name="View.php" server="10.1.1.56//var/www/html/servicos/govdigital/" local="132181258880000000" remote="133537795200000000" Dst="0" />
+</dwsync>
