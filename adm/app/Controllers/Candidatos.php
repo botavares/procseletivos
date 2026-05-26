@@ -375,9 +375,16 @@ class Candidatos extends BaseController{
         $dadosSituacaoExistente = $situacaoService->getCandidatoCargoEdital($idEdital,$idCargo,$idCandidato);
         
         if($dadosSituacaoExistente !== null){
-            //atualizar
-            $situacaoService->atualizar($dadosSituacaoExistente->id, $situacaoDTO);
-            return redirect()->back()->with('mensagemSuccess', 'Situação atualizada com sucesso.');
+            if($situacao > 0){
+                //atualizar
+                $situacaoService->atualizar($dadosSituacaoExistente->id, $situacaoDTO);
+                return redirect()->back()->with('mensagemSuccess', 'Situação atualizada com sucesso.');
+            }else{
+                //excluir
+                $situacaoService->excluir($dadosSituacaoExistente->id);
+                return redirect()->back()->with('mensagemSuccess', 'Situação excluída com sucesso.');
+            }
+            
         }else{
             //salvar
             $situacaoService->salvar($situacaoDTO);

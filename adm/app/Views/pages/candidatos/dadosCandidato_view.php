@@ -37,6 +37,26 @@
                                         <span class="text-clean "><?= date('d/m/Y', strtotime($dadosCandidato['candidato']->ds_nascimento));?></span>
                                         <input type="hidden" id="input-data-nascimento" name="ds_data_nascimento"  value="<?= date('d/m/Y', strtotime($dadosCandidato['candidato']->ds_nascimento));?>" readonly>
                                     </div>
+                                    <div class="row">
+                                        <div class="form-group col-lg-6 col-sm-12">
+                                            <label for="">Endereço</label></br>
+                                            <span class="text-clean "><?= strtoupper($dadosCandidato['candidato']->ds_rua.', '.
+                                                                                    $dadosCandidato['candidato']->ds_numero.' - '.
+                                                                                    $dadosCandidato['candidato']->ds_nome_bairro).' - '.
+                                                                                    $dadosCandidato['candidato']->ds_cidade.' - '.
+                                                                                    $dadosCandidato['candidato']->ds_uf?></span>
+                                            <input type="hidden" id="input-endereco" name="ds_rua"  value="<?= $dadosCandidato['candidato']->ds_rua;?>" readonly>
+                                            <input type="hidden" id="input-endereco" name="ds_numero"  value="<?= $dadosCandidato['candidato']->ds_numero;?>" readonly>
+                                            <input type="hidden" id="input-endereco" name="ds_nome_bairro"  value="<?= $dadosCandidato['candidato']->ds_nome_bairro;?>" readonly>
+                                            <input type="hidden" id="input-endereco" name="ds_cep"  value="<?= $dadosCandidato['candidato']->ds_cep;?>" readonly>
+                                            <input type="hidden" id="input-endereco" name="ds_cidade"  value="<?= $dadosCandidato['candidato']->ds_cidade;?>" readonly>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-sm-12">
+                                            <label for="">Telefone</label></br>
+                                            <span class="text-clean "><?= mask($dadosCandidato['candidato']->ds_celular, '(##) # ####-####'); ?></span>
+                                            <input type="hidden" id="input-telefone" name="ds_celular"  value="<?= $dadosCandidato['candidato']->ds_celular;?>" readonly>
+                                        </div>
+                                            </div>
                                     <div class="form-group col-sm-12">
                                         <label for="">E-mail</label></br>
                                         <span class="text-clean "><?= $dadosCandidato['candidato']->ds_email;?></span>

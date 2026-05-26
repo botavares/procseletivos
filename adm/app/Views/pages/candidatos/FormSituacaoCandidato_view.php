@@ -55,6 +55,12 @@
 									<div class="col-sm-10">
 										<span class="text text-danger"><?php echo session()->getFlashdata('errors')['situacao'] ?? ''?></span> 
                                         <select class="form-control" name="situacao" required>
+											<option value="">Selecione</option>
+											<?php if($dadosSituacao->situacao == null):?>
+												<option value="0" selected>AGUARDANDO</option>
+											<?php else: ?>
+												<option value="0" <?= $dadosSituacao->situacao == 0 ? 'selected' : '' ?>>AGUARDANDO</option>
+											<?php endif ?>
                                             <option value="1" <?= $dadosSituacao->situacao == 1 ? 'selected' : '' ?>>CONVOCADO</option>
 											<option value="2" <?= $dadosSituacao->situacao == 2 ? 'selected' : '' ?>>CONTRATADO</option>
 											<option value="3" <?= $dadosSituacao->situacao == 3 ? 'selected' : '' ?>>DESCLASSIFICADO</option>
