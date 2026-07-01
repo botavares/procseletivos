@@ -1,0 +1,188 @@
+CRITICAL - 2026-07-01 07:57:37 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Controller ou seu método não foi encontrado: \App\Controllers\Setores::index in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Controller ou s...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-07-01 07:58:36 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_setores' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_seto...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_seto...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_seto...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_seto...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\SetoresModel.php(35): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Setores.php(19): App\Models\SetoresModel->setoresSecretarias()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\Setores->__construct()
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-07-01 07:58:36 --> Uncaught mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_setores' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_seto...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_seto...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_seto...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_seto...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\SetoresModel.php(35): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Setores.php(19): App\Models\SetoresModel->setoresSecretarias()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\Setores->__construct()
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_setores' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_seto...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_seto...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_seto...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Models\SetoresModel.php(35): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Setores.php(19): App\Models\SetoresModel->setoresSecretarias()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\Setores->__construct()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_setores' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_seto...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\SetoresModel.php(35): CodeIgniter\BaseModel->findAll()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Setores.php(19): App\Models\SetoresModel->setoresSecretarias()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\Setores->__construct()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-07-01 07:59:14 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_setores' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_seto...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_seto...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_seto...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_seto...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\SetoresModel.php(35): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Setores.php(19): App\Models\SetoresModel->setoresSecretarias()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\Setores->__construct()
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-07-01 07:59:14 --> Uncaught mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_setores' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_seto...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_seto...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_seto...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_seto...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Models\SetoresModel.php(35): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Setores.php(19): App\Models\SetoresModel->setoresSecretarias()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\Setores->__construct()
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_setores' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_seto...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_seto...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_seto...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Models\SetoresModel.php(35): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Setores.php(19): App\Models\SetoresModel->setoresSecretarias()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\Setores->__construct()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_setores' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_seto...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\SetoresModel.php(35): CodeIgniter\BaseModel->findAll()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Setores.php(19): App\Models\SetoresModel->setoresSecretarias()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\Setores->__construct()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-07-01 08:01:49 --> Uncaught ErrorException: Undefined property: stdClass::$ds_email_secretaria in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Secretarias_view.php:69
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Secretarias_view.php(69): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 69)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Secretar...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('/pages/Secretar...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Secretarias.php(48): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Secretarias->index()
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Secretarias))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\Secretarias_view.php on line 69.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-07-01 08:05:52 --> Uncaught ErrorException: Undefined property: stdClass::$ds_secretario_diretor in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formSecretarias_view.php:63
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\alteracoes\formSecretarias_view.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 63)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/alteracoe...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/alteracoe...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Secretarias.php(94): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Secretarias->formularioAlteracao('3')
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Secretarias))
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+  thrown
+in APPPATH\Views\pages\alteracoes\formSecretarias_view.php on line 63.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-07-01 09:15:56 --> Uncaught Error: Class "App\Models\CursosModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Vagas.php:18
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\Vagas->__construct()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\Vagas.php on line 18.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-07-01 09:16:29 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: Home'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()

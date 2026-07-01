@@ -59,10 +59,10 @@
 								<div class="form-group row">
 									<label for="input-nome" class="col-form-label col-sm-2">Nome do secretário(a)</label>
 									<div class="col-sm-10">
-                                    	<span class="text text-danger"><?php echo session()->getFlashdata('errors')['ds_secretario_diretor'] ?? ''?></span> 
-										<input type="text" class="form-control" id="input-nome" name="ds_secretario_diretor" value="<?php echo set_value('ds_secretario_diretor',$dados->ds_secretario_diretor);?>" required >
-										<?php if(isset($error['ds_secretario_diretor'])):?>
-											<span class="text text-danger"><?php echo $error['ds_secretario_diretor'] ?? ''?></span>
+                                    	<span class="text text-danger"><?php echo session()->getFlashdata('errors')['ds_nome_secretario'] ?? ''?></span> 
+										<input type="text" class="form-control" id="input-nome" name="ds_nome_secretario" value="<?php echo set_value('ds_nome_secretario',$dados->ds_nome_secretario);?>" required >
+										<?php if(isset($error['ds_nome_secretario'])):?>
+											<span class="text text-danger"><?php echo $error['ds_nome_secretario'] ?? ''?></span>
 										<?php endif ?>
 									</div>
 								</div>

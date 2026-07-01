@@ -90,14 +90,14 @@
                             <p>Secretarias</p>
                         </a>
                     </li>
-
+<!--
                     <li class="nav-item">
                         <a href="<?= site_url('Setores') ?>" class="nav-link">
                             <i class="nav-icon fas fa-sitemap"></i>
                             <p>Setores</p>
                         </a>
                     </li>
-
+-->
                     <li class="nav-item">
                         <a href="<?= site_url('Login/formAlterarSenha') ?>" class="nav-link">
                             <i class="nav-icon fas fa-file-alt"></i>

@@ -21,7 +21,7 @@
                             </h3>
 							
 						</div>
-						<a href="<?php echo base_url("Vagas")?>" type="button" class="btn btn-warning col-md-2 mlef20 mtop10 chanfrado" data-dismiss="modal">Voltar</a>
+						<a href="<?php echo base_url("Dashboard")?>" type="button" class="btn btn-warning col-md-2 mlef20 mtop10 chanfrado" data-dismiss="modal">Voltar</a>
 						<div class="card-body">
 							<form id="forVagas" class="formAdmin form-horizontal col-md-12 col-lg-12" method="POST" action="<?php echo base_url()."/Login/alterarSenha"?>">
 

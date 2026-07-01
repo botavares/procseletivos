@@ -14,7 +14,16 @@ class SecretariasModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['ds_nome_secretaria', 'ds_sigla_secretaria','ds_email_secretaria','ds_telefone_secretaria','ds_secretario_diretor'];
+    protected $allowedFields    = [
+        'ds_nome_secretaria',
+        'ds_nome_secretario',
+        'ds_responsavel_processo',
+        'ds_sigla_secretaria',
+        'ds_email_secretaria',
+        'ds_telefone_secretaria',
+        
+        
+     ];
 
     // Dates
     protected $useTimestamps = false;
@@ -28,7 +37,8 @@ class SecretariasModel extends Model
         'ds_nome_secretaria' => 'required',
         'ds_sigla_secretaria' => 'required',
         'ds_email_secretaria' => 'required',
-        'ds_telefone_secretaria' => 'required',
+        'ds_nome_secretario' => 'required',
+        'ds_responsavel_processo' => 'required'
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
