@@ -224,7 +224,8 @@ class Classificacoes extends BaseController{
 
         $col = 1;
         foreach ($headers as $header) {
-            $cell = $sheet->getCellByColumnAndRow($col, 1);
+            $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col) . '1';
+            $cell = $sheet->getCell($cellCoord);
             $cell->setValue($header);
             $cell->getStyle()->getFont()->setBold(true);
             $cell->getStyle()->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('B4C7E7');
@@ -235,22 +236,26 @@ class Classificacoes extends BaseController{
 
         $row = 2;
         foreach ($classificacoes as $classificacao) {
-            $sheet->setCellValueByColumnAndRow(1, $row, $classificacao['ds_posicao']);
-            $sheet->setCellValueByColumnAndRow(2, $row, $classificacao['ds_nome_candidato']);
-            $sheet->setCellValueByColumnAndRow(3, $row, $classificacao['ds_nome_cargo']);
-            $sheet->setCellValueByColumnAndRow(4, $row, $classificacao['nr_total_experiencias']);
-            $sheet->setCellValueByColumnAndRow(5, $row, $classificacao['nr_total_graduacao']);
-            $sheet->setCellValueByColumnAndRow(6, $row, $classificacao['nr_total_posgraduacao']);
-            $sheet->setCellValueByColumnAndRow(7, $row, $classificacao['nr_total_mestrado']);
-            $sheet->setCellValueByColumnAndRow(8, $row, $classificacao['nr_total_doutorado']);
-            $sheet->setCellValueByColumnAndRow(9, $row, $classificacao['nr_total_aperfeicoamentos']);
-            $sheet->setCellValueByColumnAndRow(10, $row, $classificacao['nr_total_pontos']);
-            $sheet->setCellValueByColumnAndRow(11, $row, $classificacao['ds_possui_pne'] ? 'Sim' : 'Não');
-            $sheet->setCellValueByColumnAndRow(12, $row, $classificacao['dt_processamento']);
+            $dadosLinha = [
+                $classificacao['ds_posicao'],
+                $classificacao['ds_nome_candidato'],
+                $classificacao['ds_nome_cargo'],
+                $classificacao['nr_total_experiencias'],
+                $classificacao['nr_total_graduacao'],
+                $classificacao['nr_total_posgraduacao'],
+                $classificacao['nr_total_mestrado'],
+                $classificacao['nr_total_doutorado'],
+                $classificacao['nr_total_aperfeicoamentos'],
+                $classificacao['nr_total_pontos'],
+                $classificacao['ds_possui_pne'] ? 'Sim' : 'Não',
+                $classificacao['dt_processamento'],
+            ];
 
-            for ($c = 1; $c <= 12; $c++) {
-                $sheet->getCellByColumnAndRow($c, $row)->getStyle()->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
-                $sheet->getCellByColumnAndRow($c, $row)->getStyle()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+            for ($c = 0; $c < count($dadosLinha); $c++) {
+                $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($c + 1) . $row;
+                $sheet->setCellValue($cellCoord, $dadosLinha[$c]);
+                $sheet->getCell($cellCoord)->getStyle()->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
+                $sheet->getCell($cellCoord)->getStyle()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
             }
 
             $row++;
@@ -266,8 +271,8 @@ class Classificacoes extends BaseController{
         $editalInfo = $editaisModel->find($edital);
         $cargoInfo  = $cargosModel->find($cargo);
 
-        $nomeEdital = $editalInfo['ds_numero_edital'] ?? 'edital';
-        $nomeCargo  = $cargoInfo['ds_nome_cargo']   ?? 'cargo';
+        $nomeEdital = $editalInfo->ds_numero_edital ?? 'edital';
+        $nomeCargo  = $cargoInfo->ds_nome_cargo   ?? 'cargo';
 
         $safeEdital = preg_replace('/[^A-Za-z0-9_-]/', '_', $nomeEdital);
         $safeCargo  = preg_replace('/[^A-Za-z0-9_-]/', '_', $nomeCargo);
@@ -281,6 +286,35 @@ class Classificacoes extends BaseController{
         $writer->save('php://output');
         exit;
     }
+    public function gerarPdf($edital, $cargo){
+        $service = new ClassificacaoService();
+        $classificacoes = $service->listarClassificacao((int)$edital, (int)$cargo);
+
+        if (empty($classificacoes)) {
+            return redirect()->back()
+                ->with('error', 'A classificação está vazia. Execute o reprocessamento antes de gerar o PDF.');
+        }
+
+        $editaisModel = new EditaisModel();
+        $cargosModel  = new CargosModel();
+
+        $editalInfo = $editaisModel->find($edital);
+        $cargoInfo  = $cargosModel->find($cargo);
+
+        $nomeEdital = $editalInfo->ds_numero_edital ?? 'edital';
+        $nomeCargo  = $cargoInfo->ds_nome_cargo   ?? 'cargo';
+
+        $dados = [
+            'classificacoes' => $classificacoes,
+            'nomeEdital'     => $nomeEdital,
+            'nomeCargo'      => $nomeCargo,
+            'dataGeracao'    => date('d/m/Y H:i:s'),
+        ];
+
+        $dompdf = new Dompdf();
+        imprimir($dompdf, 'ClassificacaoPorCargo', $dados);
+    }
+
      /*===============================================================================
             FUNÇÃO: salvarEscolha;
             OBJETIVO: Salvar a escolha do edital e curso e redirecionar para a listagem de candidatos;

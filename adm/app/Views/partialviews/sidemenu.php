@@ -90,14 +90,7 @@
                             <p>Secretarias</p>
                         </a>
                     </li>
-<!--
-                    <li class="nav-item">
-                        <a href="<?= site_url('Setores') ?>" class="nav-link">
-                            <i class="nav-icon fas fa-sitemap"></i>
-                            <p>Setores</p>
-                        </a>
-                    </li>
--->
+
                     <li class="nav-item">
                         <a href="<?= site_url('Login/formAlterarSenha') ?>" class="nav-link">
                             <i class="nav-icon fas fa-file-alt"></i>
@@ -117,7 +110,15 @@
                         </a>
                     </li>
 
-                    
+                    <li class="nav-item">
+                        <a href="#"
+                           class="nav-link"
+                           data-toggle="modal"
+                           data-target="#escolhaRelatorioClassificacao">
+                            <i class="nav-icon fas fa-trophy"></i>
+                            <p>Classificação por Cargo</p>
+                        </a>
+                    </li>
 
                 <?php endif; ?>
 
@@ -126,11 +127,10 @@
     </div>
 </aside>
 
+<!-- MODAL RELATÓRIOS -->
 <div class="modal fade" id="relatorios" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
         <div class="modal-content shadow-lg">
-
-            <!-- HEADER -->
             <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title d-flex align-items-center" id="modalLabel">
                     <i class="fas fa-file-text-o mr-2"></i> Relatórios
@@ -139,48 +139,75 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
-            <!-- BODY -->
             <div class="modal-body">
                 <p class="text-muted mb-3 text-center">
                     Selecione o relatório que deseja emitir
                 </p>
-
                 <div class="list-group">
-					<!--CANDIDATOS POR CURSO-->
-					<div class="mb-2">
-						<a href="<?= site_url('Relatorios/formCandidatosPorCurso') . '?voltar=' . urlencode($origem) ?>"
-						class="list-group-item list-group-item-action d-flex align-items-center"
-						target="_blank">
-							<i class="fas fa-users fa-lg text-info mr-3"></i>
-							<div>
-								<strong>Candidatos por Curso</strong><br>
-								<small class="text-muted">Lista de candidatos vinculados ao curso</small>
-							</div>
-						</a>
-					</div>
-					<!--CANDIDATOS POR ABRANGÊNCIA-->
-					<div class="mb-2">
-						<a href="<?= site_url('Relatorios/formCandidatosPorAbrangencia') . '?voltar=' . urlencode($origem) ?>"
-						class="list-group-item list-group-item-action d-flex align-items-center"
-						target="_blank">
-							<i class="fas fa-users fa-lg text-info mr-3"></i>
-							<div>
-								<strong>Candidatos por Abrangência</strong><br>
-								<small class="text-muted">Lista de candidatos de acordo com a abrangência de seu curso.</small>
-							</div>
-						</a>
-					</div>
+                    <div class="mb-2">
+                        <a href="#"
+                           data-toggle="modal"
+                           data-target="#escolhaRelatorioClassificacao"
+                           data-dismiss="modal"
+                           class="list-group-item list-group-item-action d-flex align-items-center">
+                            <i class="fas fa-trophy fa-lg text-warning mr-3"></i>
+                            <div>
+                                <strong>Classificação por Cargo</strong><br>
+                                <small class="text-muted">Gerar classificação em PDF ou CSV</small>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
-
-            <!-- FOOTER -->
             <div class="modal-footer bg-light">
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
                     <i class="fa fa-arrow-left"></i> Retornar
                 </button>
             </div>
+        </div>
+    </div>
+</div>
 
+<!-- MODAL CLASSIFICAÇÃO POR CARGO -->
+<div class="modal fade" id="escolhaRelatorioClassificacao" tabindex="-1" role="dialog" aria-labelledby="modalClassLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content shadow-lg">
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title d-flex align-items-center" id="modalClassLabel">
+                    <i class="fas fa-trophy mr-2"></i> Classificação por Cargo
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formRelatorioClassificacao">
+                    <input type="hidden" id="csrf-classificacao" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
+                    <div class="form-group">
+                        <label for="edital-classificacao">Edital</label>
+                        <select class="form-control" id="edital-classificacao" name="edital" required>
+                            <option value="">Selecione um Edital</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cargo-class">Cargo</label>
+                        <select class="form-control" id="cargo-class" name="cargo" required disabled>
+                            <option value="">Selecione um cargo</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer bg-light">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                    <i class="fa fa-arrow-left"></i> Retornar
+                </button>
+                <a href="#" id="btn-gerar-pdf" class="btn btn-danger disabled" target="_blank" onclick="return validarFormClass();">
+                    <i class="fas fa-file-pdf"></i> PDF
+                </a>
+                <a href="#" id="btn-gerar-csv" class="btn btn-success disabled" target="_blank" onclick="return validarFormClass();">
+                    <i class="fas fa-file-excel"></i> CSV
+                </a>
+            </div>
         </div>
     </div>
 </div>

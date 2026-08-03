@@ -211,6 +211,15 @@ class Editais extends BaseController{
             ->setJSON(['erro' => 'Edital não informado']);
     }
 
+    public function editaisAtivos(){
+        $modelEditais = new EditaisModel();
+        $editaisAtivos = $modelEditais->where('ds_status','1')->findAll();
+        return $this->response->setJSON([
+            'editais' => $editaisAtivos,
+            csrf_token() => csrf_hash()
+        ]);
+    }
+
 
     public function deletar(){
         try {

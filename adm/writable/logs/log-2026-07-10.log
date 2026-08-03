@@ -1,0 +1,142 @@
+CRITICAL - 2026-07-10 11:41:21 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: external/img/bg-login.jpg'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-07-10 11:41:21 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: external/img/materiais.png'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-07-10 11:44:27 --> Uncaught Error: Class "App\Models\CursosModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Services\Relatorios\RelatoriosFormService.php:27
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Relatorios.php(52): App\Services\Relatorios\RelatoriosFormService->candidatosPorCurso()
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Relatorios.php(65): App\Controllers\Relatorios->renderFormulario(Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Relatorios->formCandidatosPorCurso()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Relatorios))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Services\Relatorios\RelatoriosFormService.php on line 27.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-07-10 11:46:36 --> Uncaught Error: Class "App\Models\CursosModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Services\Relatorios\RelatoriosFormService.php:27
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Relatorios.php(52): App\Services\Relatorios\RelatoriosFormService->candidatosPorCurso()
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Relatorios.php(65): App\Controllers\Relatorios->renderFormulario(Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Relatorios->formCandidatosPorCurso()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Relatorios))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Services\Relatorios\RelatoriosFormService.php on line 27.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-07-10 11:49:37 --> Uncaught Error: Class "App\Models\CursosModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Services\Relatorios\RelatoriosFormService.php:27
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Relatorios.php(52): App\Services\Relatorios\RelatoriosFormService->candidatosPorCurso()
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Relatorios.php(65): App\Controllers\Relatorios->renderFormulario(Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Relatorios->formCandidatosPorCurso()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Relatorios))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Services\Relatorios\RelatoriosFormService.php on line 27.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-07-10 11:50:27 --> Uncaught Error: Class "App\Models\CursosModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Services\Relatorios\RelatoriosFormService.php:27
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Relatorios.php(52): App\Services\Relatorios\RelatoriosFormService->candidatosPorCurso()
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Relatorios.php(65): App\Controllers\Relatorios->renderFormulario(Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Relatorios->formCandidatosPorCurso()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Relatorios))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Services\Relatorios\RelatoriosFormService.php on line 27.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-07-10 11:55:02 --> Uncaught Error: Class "App\Models\CursosModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Services\Relatorios\RelatoriosFormService.php:27
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Relatorios.php(52): App\Services\Relatorios\RelatoriosFormService->candidatosPorCurso()
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Relatorios.php(65): App\Controllers\Relatorios->renderFormulario(Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Relatorios->formCandidatosPorCurso()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Relatorios))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Services\Relatorios\RelatoriosFormService.php on line 27.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-07-10 12:41:49 --> Uncaught Error: Cannot use object of type stdClass as array in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Classificacoes.php:299
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Classificacoes->gerarPdf('23', '16')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Classificacoes))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\Classificacoes.php on line 299.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-07-10 12:41:54 --> Uncaught Error: Call to undefined method PhpOffice\PhpSpreadsheet\Worksheet\Worksheet::getCellByColumnAndRow() in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Classificacoes.php:227
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Classificacoes->exportarXlsx('23', '16')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Classificacoes))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\Classificacoes.php on line 227.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-07-10 12:42:46 --> Uncaught Error: Cannot use object of type stdClass as array in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Classificacoes.php:299
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Classificacoes->gerarPdf('23', '16')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Classificacoes))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\Classificacoes.php on line 299.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-07-10 12:44:39 --> Uncaught CodeIgniter\Security\Exceptions\SecurityException: The action you requested is not allowed. in C:\laragon\www\servicos\procseletivos\adm\system\Security\Security.php:306
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Security\Security.php(306): CodeIgniter\Security\Exceptions\SecurityException::forDisallowedAction()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Filters\CSRF.php(55): CodeIgniter\Security\Security->verify(Object(CodeIgniter\HTTP\IncomingRequest))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Filters\Filters.php(173): CodeIgniter\Filters\CSRF->before(Object(CodeIgniter\HTTP\IncomingRequest), NULL)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('Editais/getCarg...', 'before')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in SYSTEMPATH\Security\Security.php on line 306.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-07-10 12:45:31 --> Uncaught CodeIgniter\Security\Exceptions\SecurityException: The action you requested is not allowed. in C:\laragon\www\servicos\procseletivos\adm\system\Security\Security.php:306
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Security\Security.php(306): CodeIgniter\Security\Exceptions\SecurityException::forDisallowedAction()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Filters\CSRF.php(55): CodeIgniter\Security\Security->verify(Object(CodeIgniter\HTTP\IncomingRequest))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Filters\Filters.php(173): CodeIgniter\Filters\CSRF->before(Object(CodeIgniter\HTTP\IncomingRequest), NULL)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('Editais/getCarg...', 'before')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in SYSTEMPATH\Security\Security.php on line 306.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-07-10 12:47:22 --> Uncaught Error: Call to undefined method PhpOffice\PhpSpreadsheet\Worksheet\Worksheet::getCellByColumnAndRow() in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Classificacoes.php:227
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Classificacoes->exportarXlsx('23', '16')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Classificacoes))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\Classificacoes.php on line 227.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()

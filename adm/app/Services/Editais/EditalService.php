@@ -59,7 +59,7 @@ class EditalService extends AbstractCrudService{
             $model->update($id, $edital);
 
             // Atualiza relações cursos/abrangências
-            $relTable = $db->table('tb_editais_cursos');
+            $relTable = $db->table('tb_editais_cargos');
 
             // Remove antigos
             $relTable->where('fk_id_edital', $id)->delete();
@@ -70,7 +70,7 @@ class EditalService extends AbstractCrudService{
                     'fk_id_edital' => $id,
                     $relacoes['modo'] === '1'
                         ? 'fk_id_abrangencia'
-                        : 'fk_id_curso' => $item,
+                        : 'fk_id_cargo' => $item,
                 ]);
             }
 
@@ -106,15 +106,15 @@ class EditalService extends AbstractCrudService{
 
         } else {
 
-            $db->table('tb_editais_cursos')
+            $db->table('tb_editais_cargos')
                ->where('fk_id_edital', $id)
                ->delete();
 
-            $db->table('tb_editais_cursos')
+            $db->table('tb_editais_cargos')
                ->insertBatch(
                    array_map(fn($c) => [
                        'fk_id_edital' => $id,
-                       'fk_id_curso'  => $c
+                       'fk_id_cargo'  => $c
                    ], $relacoes['itens'])
                );
         }
@@ -130,7 +130,7 @@ class EditalService extends AbstractCrudService{
 
         $db = $this->db;
 
-        $db->table('tb_editais_cursos')
+        $db->table('tb_editais_cargos')
            ->where('fk_id_edital', $id)
            ->delete();
 

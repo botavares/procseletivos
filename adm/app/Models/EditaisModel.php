@@ -9,38 +9,31 @@ class EditaisModel extends Model{
     protected $primaryKey = 'pk_id_edital';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
-       'ds_modo','ds_numero_edital','ds_exige_enem','ds_data_inicial','ds_data_final','ds_status','ds_arquivo_edital'
+       'ds_numero_edital','ds_data_inicial','ds_data_termino','ds_status','ds_arquivo_edital'
     ];
 
     protected $validationRules = [
         'ds_numero_edital'=>'required',
         'ds_data_inicial'=>'required',
-        'ds_data_final'=>'required',
+        'ds_data_termino'=>'required',
         'ds_status'=>'required',
         
     ];
     //mensagens de validação
     protected $validationMessages = [
-        'ds_modo' => [
-            'required' => 'O campo Modo é obrigatório.'
-        ],
         'ds_numero_edital' => [
-            'required' => 'O campo Número do Edital é obrigatório.' 
-        ],
-        'ds_exige_enem' => [
-            'required' => 'O campo Exige ENEM é obrigatório.'
+            'required' => 'O campo Número do Edital é obrigatório.'
         ],
         'ds_data_inicial' => [
             'required' => 'O campo Data Inicial é obrigatório.'
         ],
-        'ds_data_final' => [
-            'required' => 'O campo Data Final é obrigatório.'
+        'ds_data_termino' => [
+            'required' => 'O campo Data Término é obrigatório.'
         ],
         'ds_status' => [
-            'required' => 'O campo Status é obrigatório.'        
+            'required' => 'O campo Status é obrigatório.'
         ]
-        
-        ];
+    ];
 
     protected $returnType = 'object';
 

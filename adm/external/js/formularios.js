@@ -511,10 +511,121 @@ $(document).ready(function($){
         			$("#" + idInicio).focus();
     			});
 
-			}else{
-				$(".btnRelatorio").prop('disabled',false)
-			}
-		});
+		}else{
+			$(".btnRelatorio").prop('disabled',false)
+		}
+	});
 
 
+});
+
+/*==================================================================================
+SCRIPT DO MODAL CLASSIFICAÇÃO POR CARGO (sidemenu.php)
+==================================================================================*/
+$(document).ready(function() {
+    var path = window.location.origin + '/' + window.location.pathname.split('/').slice(1, 4).join('/') + '/';
+    if (!path.endsWith('/')) path += '/';
+
+    function updateCSFR(response) {
+        var csrfName = $('#csrf-classificacao').attr('name');
+        if (response[csrfName]) {
+            $('#csrf-classificacao').val(response[csrfName]);
+            console.log('CSRF atualizado:', csrfName, response[csrfName]);
+        } else {
+            console.warn('CSRF não encontrado na resposta. Nome esperado:', csrfName, 'Chaves:', Object.keys(response));
+        }
+    }
+
+    // Carrega editais ao abrir o modal
+    $('#escolhaRelatorioClassificacao').on('show.bs.modal', function() {
+        // Reseta o select de cargo para evitar dados de consulta anterior
+        $('#cargo-class').html('<option value="">Selecione um cargo</option>').prop('disabled', true);
+        $('#btn-gerar-pdf, #btn-gerar-csv').addClass('disabled').attr('href', '#');
+        
+        $.ajax({
+            url: path + 'Editais/editaisAtivos',
+            dataType: 'json',
+            type: 'GET',
+            success: function(response) {
+                updateCSFR(response);
+                var options = '<option value="">Selecione um Edital</option>';
+                if (response.editais && response.editais.length) {
+                    for (var i = 0; i < response.editais.length; i++) {
+                        var num = response.editais[i].ds_numero_edital;
+                        var fmt = num.substring(0, num.length - 4) + '/' + num.substring(num.length - 4);
+                        options += '<option value="' + response.editais[i].pk_id_edital + '">' + fmt + '</option>';
+                    }
+                }
+                $('#edital-classificacao').html(options);
+            },
+            error: function(xhr) {
+                console.error('Erro ao carregar editais:', xhr.status, xhr.responseText);
+                $('#edital-classificacao').html('<option value="">Erro ao carregar editais</option>');
+            }
+        });
+    });
+
+    // Carrega cargos ao trocar edital
+    $(document).on('change', '#edital-classificacao', function() {
+        var idEdital = $(this).val();
+        var csrfName = $('#csrf-classificacao').attr('name');
+        var csrfHash = $('#csrf-classificacao').val();
+
+        if (!idEdital) {
+            $('#cargo-class').html('<option value="">Selecione um cargo</option>').prop('disabled', true);
+            atualizarLinks();
+            return;
+        }
+
+        $.ajax({
+            url: path + 'Editais/getCargosByEdital',
+            dataType: 'json',
+            type: 'POST',
+            data: {
+                [csrfName]: csrfHash,
+                idEdital: idEdital
+            },
+            success: function(response) {
+                updateCSFR(response);
+                var options = '<option value="">Selecione um cargo</option>';
+                if (response.cargos && response.cargos.length) {
+                    for (var i = 0; i < response.cargos.length; i++) {
+                        options += '<option value="' + response.cargos[i].pk_id_cargo + '">' +
+                                    response.cargos[i].ds_nome_cargo + '</option>';
+                    }
+                }
+                $('#cargo-class').html(options).prop('disabled', false);
+                atualizarLinks();
+            },
+            error: function(xhr, status, error) {
+                console.error('Erro AJAX:', status, error, xhr.responseText);
+                alert('Erro ao buscar cargos. Verifique sua sessão ou token CSRF.');
+            }
+        });
+    });
+
+    $(document).on('change', '#cargo-class', atualizarLinks);
+
+    function atualizarLinks() {
+        var edital = $('#edital-classificacao').val();
+        var cargo  = $('#cargo-class').val();
+        var base   = path + 'Classificacoes/';
+        if (edital && cargo) {
+            $('#btn-gerar-pdf').attr('href', base + 'gerarPdf/' + edital + '/' + cargo).removeClass('disabled');
+            $('#btn-gerar-csv').attr('href', base + 'exportarXlsx/' + edital + '/' + cargo).removeClass('disabled');
+        } else {
+            $('#btn-gerar-pdf').attr('href', '#').addClass('disabled');
+            $('#btn-gerar-csv').attr('href', '#').addClass('disabled');
+        }
+    }
+
+    window.validarFormClass = function() {
+        var edital = $('#edital-classificacao').val();
+        var cargo  = $('#cargo-class').val();
+        if (!edital || !cargo) {
+            alert('Selecione o edital e o cargo.');
+            return false;
+        }
+        return true;
+    };
 });

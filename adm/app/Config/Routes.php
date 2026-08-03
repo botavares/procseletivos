@@ -45,7 +45,9 @@ $routes->get('/Classificacoes/(:num)/(:num)', 'Classificacoes::index/$1/$2', ['a
 
 $routes->get('/Classificacoes/gerarClassificacao/(:num)/(:num)/(:num)', 'Classificacoes::gerarClassificacao/$1/$2/$3', ['as'=>'Classificacoes.gerarClassificacao']);
 $routes->get('/Classificacoes/reprocessar/(:num)/(:num)', 'Classificacoes::reprocessar/$1/$2', ['as'=>'Classificacoes.reprocessar']);
+$routes->get('/Classificacoes/gerarPdf/(:num)/(:num)', 'Classificacoes::gerarPdf/$1/$2', ['as'=>'Classificacoes.gerarPdf']);
 $routes->get('/Classificacoes/exportarXlsx/(:num)/(:num)', 'Classificacoes::exportarXlsx/$1/$2', ['as'=>'Classificacoes.exportarXlsx']);
+$routes->get('/Editais/editaisAtivos', 'Editais::editaisAtivos');
 $routes->post('/Classificacoes/salvarEscolha', 'Classificacoes::salvarEscolha');
 
 $routes->get('/Recursos/(:num)/(:num)/(:num)', 'Recursos::index/$1/$2/$3', ['as'=>'Recursos']);

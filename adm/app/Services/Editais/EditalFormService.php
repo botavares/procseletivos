@@ -12,7 +12,7 @@ class EditalFormService extends AbstractFormService
     $numero = str_pad($numero, 6, '0', STR_PAD_LEFT);
 
     $dataInicial = $this->request->getPost('ds_data_inicial');
-    $dataFinal   = $this->request->getPost('ds_data_final');
+    $dataFinal   = $this->request->getPost('ds_data_termino');
 
     if (!$dataInicial || !$dataFinal) {
         throw new Exception('Datas inválidas ou não informadas');
@@ -31,26 +31,30 @@ class EditalFormService extends AbstractFormService
         throw new Exception('Formato de data inválido');
     };
      
+    $edital = [
+        'ds_numero_edital' => $numero,
+        'ds_data_inicial'  => $parseDate($dataInicial),
+        'ds_data_termino'  => $parseDate($dataFinal),
+        'ds_status'        => $this->request->getPost('ds_status'),
+        'ds_arquivo_edital'=> $numero . '.pdf',
+    ];
+
+    $pkId = (int) $this->request->getPost('pk_id_edital');
+    if ($pkId > 0) {
+        $edital['pk_id_edital'] = $pkId;
+    }
+
     return [
         'acao' => $this->request->getPost('action') ?? 'create',
 
-        'edital' => [
-            'pk_id_edital'     => (int) $this->request->getPost('pk_id_edital'),
-            'ds_numero_edital' => $numero,
-            'ds_modo'          => $this->request->getPost('ds_modo') ?? '0',
-            'ds_exige_enem'    => $this->request->getPost('ds_exige_enem') ?? '0',
-            'ds_data_inicial'  => $parseDate($dataInicial),
-            'ds_data_final'    => $parseDate($dataFinal),
-            'ds_status'        => $this->request->getPost('ds_status'),
-            'ds_arquivo_edital'=> $numero . '.pdf',
-        ],
+        'edital' => $edital,
 
         'relacoes' => [
             'modo'  => $this->request->getPost('ds_modo')?? '0',
             'itens' => $this->request->getPost(
                 $this->request->getPost('ds_modo') === '1'
                     ? 'ds_abrangencias'
-                    : 'ds_cursos'
+                    : 'ds_cargos'
             ) ?? [],
         ],
     ];
@@ -62,12 +66,12 @@ class EditalFormService extends AbstractFormService
         
         $this->require($data['edital'], 'ds_numero_edital', 'Número do edital é obrigatório');
 
-        if ($data['edital']['ds_data_final'] < $data['edital']['ds_data_inicial']) {
+        if ($data['edital']['ds_data_termino'] < $data['edital']['ds_data_inicial']) {
             throw new Exception('Data final deve ser maior que a inicial');
         }
 
         if ($data['relacoes']['modo'] === '0' && empty($data['relacoes']['itens'])) {
-            throw new Exception('Selecione ao menos um curso');
+            throw new Exception('Selecione ao menos um cargo');
         }
 
         // 🔹 Unicidade ignorando o próprio registro no UPDATE
