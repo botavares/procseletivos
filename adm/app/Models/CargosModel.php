@@ -14,8 +14,6 @@ class CargosModel extends Model{
 
     protected $validationRules = [
         'ds_nome_cargo' => 'required',
-        'fk_id_secretaria' => 'required'
-        
     ];
 
     protected $returnType = 'object';

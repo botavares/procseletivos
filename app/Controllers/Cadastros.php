@@ -11,26 +11,25 @@ use App\Services\PdfService;
 use App\Services\GovBrService;
 
 
-class Cadastros extends BaseController
-{
+class Cadastros extends BaseController{
     protected CandidatoService $candidatoService;
     protected ClassificatorioService $classificatorioService;
     protected ProtocoloService $protocoloService;
     protected PdfService $pdfService;
     protected GovBrService $govBrService;
-    public function __construct()
-    {
+    
+    public function __construct(){
         $this->candidatoService = new CandidatoService();
         $this->classificatorioService = new ClassificatorioService();
         $this->protocoloService = new ProtocoloService();
         $this->pdfService = new PdfService();
         $this->govBrService = new GovBrService();
     }
+
     /**
      * Página inicial de cadastros
      */
-    public function index($camada1 = '', $camada2 = 'pages', $page = 'OpcoesCadastro')
-    {
+    public function index($camada1 = '', $camada2 = 'pages', $page = 'OpcoesCadastro'){
         if (!is_file(APPPATH . "Views/{$camada1}/{$camada2}/{$page}_view.php")) {
             throw PageNotFoundException::forPageNotFound();
         }
@@ -189,11 +188,7 @@ class Cadastros extends BaseController
             $mensagem = $resultado['acao'] === 'create' 
                 ? 'Registro gravado com sucesso' 
                 : 'Registro alterado com sucesso';
-            return redirect()->route('dadosClassificatorios',[
-                23,
-                16,
-                $resultado['id']
-            ])->with('mensagemSuccess', $mensagem);
+            return redirect()->route('Cadastros')->with('mensagemSuccess', $mensagem);
         }
         
         return redirect()->route('dadosPessoais', [$dto->fkIdGov])

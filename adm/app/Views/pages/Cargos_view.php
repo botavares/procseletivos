@@ -67,11 +67,31 @@
 						  <tr>
 							  
 							<td align="left"><?php echo $valueCargos->ds_nome_cargo?></td>
+							<td align="center"><?php echo $valueCargos->ds_carga_horaria ?></td>
 
 							  <?php
 								$tokenName = csrf_token();
 								$tokenHash = csrf_hash();
 							?>
+							
+							<td align="center">
+								<a class="editarCargos pointer btn btn-primary" data-id="<?php echo $valueCargos->pk_id_cargo?>" 
+								href="<?php echo base_url("/Cargos/formularioCargosExperiencia")."/".$valueCargos->pk_id_cargo?>">
+									Experiências do cargo
+								</a>
+							</td>
+							<td align="center">
+								<a class="editarCargos pointer btn btn-primary" data-id="<?php echo $valueCargos->pk_id_cargo?>" 
+								href="<?php echo base_url("/Cargos/formularioEscolaridade")."/".$valueCargos->pk_id_cargo?>">
+									Escolaridade do cargo
+								</a>
+							</td>
+							<td align="center">
+								<a class="editarCargos pointer btn btn-primary" data-id="<?php echo $valueCargos->pk_id_cargo?>" 
+								href="<?php echo base_url("/Cargos/formularioCursos")."/".$valueCargos->pk_id_cargo?>">
+									Cursos do cargo
+								</a>
+							</td>
 
 							<td align="center">
 								<a class="editarCargos pointer" data-id="<?php echo $valueCargos->pk_id_cargo?>" 
