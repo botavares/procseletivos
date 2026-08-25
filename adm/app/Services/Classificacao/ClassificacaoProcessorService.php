@@ -97,7 +97,8 @@ class ClassificacaoProcessorService
             return 
                 $b->nr_total_pontos <=> $a->nr_total_pontos
                 ?: $b->nr_total_experiencias <=> $a->nr_total_experiencias
-                ?: $b->nr_total_graduacao <=> $a->nr_total_graduacao
+                ?: $b->nr_total_doutorado <=> $a->nr_total_doutorado
+                ?: $b->nr_total_mestrado <=> $a->nr_total_mestrado
                 ?: $b->nr_total_posgraduacao <=> $a->nr_total_posgraduacao
                 ?: strtotime($a->ds_nascimento) <=> strtotime($b->ds_nascimento);
             });

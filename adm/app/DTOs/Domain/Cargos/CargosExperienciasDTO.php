@@ -4,7 +4,7 @@ namespace App\DTOs\Domain\Cargos;
 
 class CargosExperienciasDTO
 {
-    public ?int $pk_id_cargos_experiencias = null;
+    public ?int $pk_id_cargos_experiencia = null;
     public ?int $fk_id_cargo = null;
     public ?int $fk_id_experiencia = null;
     public ?int $ds_quantidade_minima = null;
@@ -15,7 +15,7 @@ class CargosExperienciasDTO
     public static function fromRequest(array $data): self
     {
         $dto = new self();
-        $dto->pk_id_cargos_experiencias = !empty($data['pk_id_cargos_experiencias']) ? (int) $data['pk_id_cargos_experiencias'] : null;
+        $dto->pk_id_cargos_experiencia = !empty($data['pk_id_cargos_experiencia']) ? (int) $data['pk_id_cargos_experiencia'] : null;
         $dto->fk_id_cargo               = !empty($data['fk_id_cargo']) ? (int) $data['fk_id_cargo'] : null;
         $dto->fk_id_experiencia         = !empty($data['fk_id_experiencia']) ? (int) $data['fk_id_experiencia'] : null;
         $dto->ds_quantidade_minima      = isset($data['ds_quantidade_minima']) && $data['ds_quantidade_minima'] !== '' ? (int) $data['ds_quantidade_minima'] : null;
@@ -36,8 +36,8 @@ class CargosExperienciasDTO
             'ds_tipo_campo'        => $this->ds_tipo_campo,
         ];
 
-        if ($this->pk_id_cargos_experiencias !== null) {
-            $data['pk_id_cargos_experiencias'] = $this->pk_id_cargos_experiencias;
+        if ($this->pk_id_cargos_experiencia !== null) {
+            $data['pk_id_cargos_experiencia'] = $this->pk_id_cargos_experiencia;
         }
 
         return $data;

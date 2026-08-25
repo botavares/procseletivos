@@ -22,8 +22,20 @@ class TransparenciaService
         $edital    = (int) ($params['edital'] ?? 0);
         $busca     = trim((string) ($params['search'] ?? ''));
 
+        // Se nenhum edital for informado, filtra automaticamente pelos ativos
+        $editaisAtivos = [];
+        if ($edital <= 0) {
+            $editaisAtivos = array_column(
+                $this->db->table('tb_editais')->where('ds_status', 1)->select('pk_id_edital')->get()->getResultArray(),
+                'pk_id_edital'
+            );
+        }
+
+        // Verifica quais colunas de pontuação estão vazias para o filtro atual
+        $colunasOcultas = $this->obterColunasOcultas($cargo, $edital, $busca, $editaisAtivos);
+
         $builder = $this->db->table('tb_classificacao c');
-        $builder->select('c.ds_posicao, c.ds_nome_candidato, c.ds_nome_cargo, c.fk_id_edital,c.ds_nome_edital, c.dt_nascimento, c.nr_total_pontos, c.nr_total_experiencias, c.nr_total_graduacao, c.nr_total_posgraduacao, c.nr_total_aperfeicoamentos, c.fk_id_candidato, c.ds_possui_pne, sc.situacao');
+        $builder->select('c.ds_posicao, c.ds_nome_candidato, c.ds_nome_cargo, c.fk_id_edital,c.ds_nome_edital, c.dt_nascimento, c.nr_total_pontos, c.nr_total_experiencias, c.nr_total_graduacao, c.nr_total_posgraduacao, c.nr_total_mestrado, c.nr_total_doutorado, c.nr_total_aperfeicoamentos, c.fk_id_candidato, c.ds_possui_pne, sc.situacao');
         $builder->join('tb_situacao_candidato sc', 'sc.fk_id_candidato = c.fk_id_candidato AND sc.fk_id_cargo = c.fk_id_cargo AND sc.fk_id_edital = c.fk_id_edital', 'left');
 
         if ($cargo > 0) {
@@ -32,6 +44,8 @@ class TransparenciaService
 
         if ($edital > 0) {
             $builder->where('c.fk_id_edital', $edital);
+        } elseif (!empty($editaisAtivos)) {
+            $builder->whereIn('c.fk_id_edital', $editaisAtivos);
         }
 
         if ($busca !== '') {
@@ -61,8 +75,67 @@ class TransparenciaService
             'dados' => $dados,
             'paginacao' => $this->calcularPaginacao($pagina, $porPagina, $total),
             'filtros' => $params,
-            'total' => $total
+            'total' => $total,
+            'colunas_ocultas' => $colunasOcultas,
         ];
+    }
+
+    /**
+     * Verifica quais colunas de pontuação possuem todos os valores zerados
+     * ou nulos para o conjunto de registros filtrado.
+     */
+    private function obterColunasOcultas(int $cargo, int $edital, string $busca, array $editaisAtivos = []): array
+    {
+        $builder = $this->db->table('tb_classificacao c');
+
+        if ($cargo > 0) {
+            $builder->where('c.fk_id_cargo', $cargo);
+        }
+
+        if ($edital > 0) {
+            $builder->where('c.fk_id_edital', $edital);
+        } elseif (!empty($editaisAtivos)) {
+            $builder->whereIn('c.fk_id_edital', $editaisAtivos);
+        }
+
+        if ($busca !== '') {
+            $builder->like('c.ds_nome_candidato', $busca);
+        }
+
+        $row = $builder->select('
+            MAX(c.nr_total_experiencias) as max_experiencias,
+            MAX(c.nr_total_doutorado) as max_doutorado,
+            MAX(c.nr_total_mestrado) as max_mestrado,
+            MAX(c.nr_total_posgraduacao) as max_posgraduacao,
+            MAX(c.nr_total_graduacao) as max_graduacao,
+            MAX(c.nr_total_aperfeicoamentos) as max_aperfeicoamentos
+        ')->get()->getRow();
+
+        $ocultas = [];
+        if (!$row) {
+            return $ocultas;
+        }
+
+        if (empty($row->max_experiencias) || (float)$row->max_experiencias == 0) {
+            $ocultas[] = 'experiencias';
+        }
+        if (empty($row->max_doutorado) || (float)$row->max_doutorado == 0) {
+            $ocultas[] = 'doutorado';
+        }
+        if (empty($row->max_mestrado) || (float)$row->max_mestrado == 0) {
+            $ocultas[] = 'mestrado';
+        }
+        if (empty($row->max_posgraduacao) || (float)$row->max_posgraduacao == 0) {
+            $ocultas[] = 'posgraduacao';
+        }
+        if (empty($row->max_graduacao) || (float)$row->max_graduacao == 0) {
+            $ocultas[] = 'graduacao';
+        }
+        if (empty($row->max_aperfeicoamentos) || (float)$row->max_aperfeicoamentos == 0) {
+            $ocultas[] = 'aperfeicoamentos';
+        }
+
+        return $ocultas;
     }
 
     /**

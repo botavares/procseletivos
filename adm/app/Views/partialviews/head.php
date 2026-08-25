@@ -1,4 +1,3 @@
-<body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
 	<div class="wrapper">
 		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
 

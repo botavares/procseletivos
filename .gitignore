@@ -1,0 +1,10 @@
+# Ignorar sessões e debugbars do CodeIgniter
+writable/session/*
+writable/debugbar/*
+
+# Ignorar sessões e debugbars da aplicação admin
+adm/writable/session/*
+adm/writable/debugbar/*
+
+# Arquivo temporário de verificação
+temp_check_fields.php

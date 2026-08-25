@@ -28,4 +28,17 @@ class CargosModel extends Model{
             ->findAll();
     }
 
+    /**
+     * Retorna os cargos vinculados a um edital específico.
+     */
+    public function cargosPorEdital(int $fk_id_edital)
+    {
+        return $this->select('tb_cargos.*')
+            ->join('tb_editais_cargos', 'tb_editais_cargos.fk_id_cargo = tb_cargos.pk_id_cargo')
+            ->where('tb_editais_cargos.fk_id_edital', $fk_id_edital)
+            ->groupBy('tb_cargos.pk_id_cargo')
+            ->orderBy('tb_cargos.ds_nome_cargo', 'ASC')
+            ->findAll();
+    }
+
 }

@@ -1,12 +1,9 @@
 <div class="content-wrapper">
     <section class="content pt-3">
         <div class="container-fluid">
-
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-12">
-
                     <div class="card card-outline card-primary shadow-sm">
-
                         <!-- HEADER -->
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h3 class="card-title m-0">
@@ -14,7 +11,6 @@
                                 <?= esc($titulo) ?>
                             </h3>
                         </div>
-
                         <!-- TOOLBOX -->
                         <div class="card-toolbox mt-2 mb-2 d-flex flex-row">
                             <div class="mb-2 ml-1 mr-2">
@@ -40,68 +36,101 @@
                         <div class="card-body">
 
                             <?php
-                                // Normaliza $cargoExperiencia para objeto, caso venha como array
-                                if ($cargoExperiencia !== null && is_array($cargoExperiencia)) {
-                                    $cargoExperiencia = (object) $cargoExperiencia;
+                                // Normaliza $cargoEscolaridade para objeto, caso venha como array
+                                if ($cargoEscolaridade !== null && is_array($cargoEscolaridade)) {
+                                    $cargoEscolaridade = (object) $cargoEscolaridade;
                                 }
 
                                 // Helper para recuperar valor preenchido (banco > old > default)
-                                $val = function($campo, $default = '') use ($cargoExperiencia) {
-                                    if ($cargoExperiencia && property_exists($cargoExperiencia, $campo) && $cargoExperiencia->$campo !== null) {
-                                        return $cargoExperiencia->$campo;
+                                $val = function($campo, $default = '') use ($cargoEscolaridade) {
+                                    if ($cargoEscolaridade && property_exists($cargoEscolaridade, $campo) && $cargoEscolaridade->$campo !== null) {
+                                        return $cargoEscolaridade->$campo;
                                     }
                                     return old($campo) ?? $default;
                                 };
                             ?>
 
-                            <form id="formExperienciasCargo"
+                            <form id="formEscolaridadesCargo"
                                   method="POST"
-                                  action="<?= site_url('CargosExperiencias/registrarAssociacaoCargoExperiencia') ?>">
+                                  action="<?= site_url('CargosEscolaridades/registrarAssociacaoCargoEscolaridade') ?>">
 
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="fk_id_cargo" value="<?= esc($cargo->pk_id_cargo) ?>">
                                 <input type="hidden" name="acao" value="<?= esc($acao) ?>">
 
-                                <!-- EXPERIÊNCIA -->
+
+
+                               
+
+                                <!-- ESCOLARIDADE -->
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label>Experiência *</label>
-                                        <select class="form-control" name="fk_id_experiencia" required>
+                                        <label>Nome da escolaridade</label>
+                                        <select class="form-control" name="fk_id_escolaridade" required>
                                             <option value="">Selecione</option>
-                                            <?php foreach ($experiencias as $exp): ?>
+                                            <?php foreach ($escolaridades as $esc): ?>
                                                 <?php
                                                     $selected = '';
-                                                    if ($cargoExperiencia && $cargoExperiencia->fk_id_experiencia == $exp->pk_id_experiencia) {
+                                                    if ($cargoEscolaridade && $cargoEscolaridade->fk_id_escolaridade == $esc->pk_id_escolaridade) {
                                                         $selected = 'selected';
-                                                    } elseif (old('fk_id_experiencia') == $exp->pk_id_experiencia) {
+                                                    } elseif (old('fk_id_escolaridade') == $esc->pk_id_escolaridade) {
                                                         $selected = 'selected';
                                                     }
                                                 ?>
-                                                <option value="<?= esc($exp->pk_id_experiencia) ?>" <?= $selected ?>>
-                                                    <?= esc($exp->ds_nome_experiencia) ?>
+                                                <option value="<?= esc($esc->pk_id_escolaridade) ?>" <?= $selected ?>>
+                                                    <?= esc($esc->ds_nome_escolaridade) ?>
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
                                 </div>
 
+                                 <!-- TIPO DE CAMPO -->
+                                <div class="form-group">
+                                    <label>Como será informada a escolaridade?</label>
+                                    <?php
+                                        $tipoCampo = '';
+                                        if ($cargoEscolaridade && property_exists($cargoEscolaridade, 'ds_tipo_campo') && $cargoEscolaridade->ds_tipo_campo !== null) {
+                                            $tipoCampo = $cargoEscolaridade->ds_tipo_campo;
+                                        } elseif (old('ds_tipo_campo') !== null) {
+                                            $tipoCampo = old('ds_tipo_campo');
+                                        }
+                                    ?>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_digitar" value="INPUT" <?= $tipoCampo === 'INPUT' ? 'checked' : '' ?>>
+                                        <label class="form-check-label" for="tipo_campo_digitar">
+                                            O candidato vai digitar o total de cursos concluidos (ideal para mais de uma pós-graduação, mestrado ou doutorado).
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_escolher" value="CHECK" <?= $tipoCampo === 'CHECK' ? 'checked' : '' ?>>
+                                        <label class="form-check-label" for="tipo_campo_escolher">
+                                            O candidato vai apontar se possui o determinado curso. 
+                                        </label>
+                                    </div>
+                                </div>
+
+
                                 <!-- QUANTIDADE MÍNIMA / MÁXIMA -->
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label>Quantidade mínima de experiência</label>
+                                        <label>Pontuação por curso</label>
                                         <input type="number"
                                                class="form-control"
-                                               name="ds_quantidade_minima"
-                                               value="<?= esc($val('ds_quantidade_minima')) ?>"
+                                               name="ds_pontuacao_minima"
+                                               id="pontuacao_minima"
+                                               value="<?= esc($val('ds_pontuacao_minima')) ?>"
                                                min="0">
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label>Quantidade máxima de experiência</label>
+                                        <label>Pontuação máxima </label>
                                         <input type="number"
                                                class="form-control"
-                                               name="ds_quantidade_maxima"
-                                               value="<?= esc($val('ds_quantidade_maxima')) ?>"
+                                               name="ds_pontuacao_maxima"
+                                               id="pontuacao_maxima"
+                                               value="<?= esc($val('ds_pontuacao_maxima')) ?>"
                                                min="0">
                                     </div>
                                 </div>
@@ -114,35 +143,11 @@
                                                step="any"
                                                class="form-control"
                                                name="ds_multiplicador"
+                                               id="multiplicador"
                                                value="<?= esc($val('ds_multiplicador')) ?>">
                                         <small class="form-text text-muted">
                                             O multiplicador será usado para indicar a pontuação de acordo com a quantidade de experiência do candidato.
                                         </small>
-                                    </div>
-                                </div>
-
-                                <!-- TIPO DE CAMPO -->
-                                <div class="form-group">
-                                    <label>Como será informada a experiência?</label>
-                                    <?php
-                                        $tipoCampo = '';
-                                        if ($cargoExperiencia && property_exists($cargoExperiencia, 'ds_tipo_campo') && $cargoExperiencia->ds_tipo_campo !== null) {
-                                            $tipoCampo = $cargoExperiencia->ds_tipo_campo;
-                                        } elseif (old('ds_tipo_campo') !== null) {
-                                            $tipoCampo = old('ds_tipo_campo');
-                                        }
-                                    ?>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_digitar" value="INPUT" <?= $tipoCampo === 'INPUT' ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="tipo_campo_digitar">
-                                            O candidato vai digitar o total de experiência que ele possui
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_escolher" value="SELECT" <?= $tipoCampo === 'SELECT' ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="tipo_campo_escolher">
-                                            O candidato vai escolher o valor oferecido a ele (recomendado)
-                                        </label>
                                     </div>
                                 </div>
 
@@ -163,34 +168,34 @@
 
                             <hr class="mt-5 mb-4">
 
-                            <!-- DATATABLE: EXPERIÊNCIAS PARA ESSE CARGO -->
+                            <!-- DATATABLE: ESCOLARIDADES PARA ESSE CARGO -->
                             <h5 class="mb-3 text-primary">
                                 <i class="fas fa-list mr-1"></i>
-                                Experiências para esse cargo:
+                                Escolaridades para esse cargo:
                             </h5>
 
-                            <table id="tabela-experiencias-cargo" class="table table-striped table-bordered">
+                            <table id="tabela-escolaridades-cargo" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Descrição da experiência</th>
-                                        <th>Quantidade mínima</th>
-                                        <th>Quantidade máxima</th>
+                                        <th>Descrição da escolaridade</th>
+                                        <th>Pontuação mínima</th>
+                                        <th>Pontuação máxima</th>
                                         <th>Campo</th>
                                         <th class="text-center">Retirar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php if (!empty($experienciasDoCargo)): ?>
-                                        <?php foreach ($experienciasDoCargo as $item): ?>
+                                    <?php if (!empty($escolaridadesDoCargo)): ?>
+                                        <?php foreach ($escolaridadesDoCargo as $item): ?>
                                             <tr>
-                                                <td><?= esc($item->ds_nome_experiencia) ?></td>
-                                                <td><?= esc($item->ds_quantidade_minima) ?></td>
-                                                <td><?= esc($item->ds_quantidade_maxima) ?></td>
+                                                <td><?= esc($item->ds_nome_escolaridade) ?></td>
+                                                <td><?= esc($item->ds_pontuacao_minima) ?></td>
+                                                <td><?= esc($item->ds_pontuacao_maxima) ?></td>
                                                 <td><?= esc($item->ds_tipo_campo) ?></td>
                                                 <td class="text-center">
-                                                    <button type="button" class="btn btn-danger btn-sm btn-retirar-experiencia"
-                                                            data-id="<?= esc($item->pk_id_cargos_experiencia) ?>"
-                                                            data-nome="<?= esc($item->ds_nome_experiencia) ?>">
+                                                    <button type="button" class="btn btn-danger btn-sm btn-retirar-escolaridade"
+                                                            data-id="<?= esc($item->pk_id_cargos_escolaridade) ?>"
+                                                            data-nome="<?= esc($item->ds_nome_escolaridade) ?>">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </td>
@@ -198,7 +203,7 @@
                                         <?php endforeach; ?>
                                     <?php else: ?>
                                         <tr>
-                                            <td colspan="5" class="text-center">Nenhuma experiência associada a este cargo.</td>
+                                            <td colspan="5" class="text-center">Nenhuma escolaridade associada a este cargo.</td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>
@@ -214,13 +219,13 @@
     </section>
 </div>
 
-<!-- Modal de Confirmação: Retirar Experiência do Cargo -->
-<div class="modal fade" id="modalRetirarExperiencia" tabindex="-1" role="dialog" aria-labelledby="modalRetirarLabel" aria-hidden="true">
+<!-- Modal de Confirmação: Retirar Escolaridade do Cargo -->
+<div class="modal fade" id="modalRetirarEscolaridade" tabindex="-1" role="dialog" aria-labelledby="modalRetirarLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form method="POST" action="<?= site_url('CargosExperiencias/deletarAssociacaoCargoExperiencia') ?>">
+            <form method="POST" action="<?= site_url('CargosEscolaridades/deletarAssociacaoCargoEscolaridade') ?>">
                 <?= csrf_field() ?>
-                <input type="hidden" name="pk_id_cargos_experiencia" id="retirar_pk_id" />
+                <input type="hidden" name="pk_id_cargos_escolaridades" id="retirar_pk_id" />
 
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalRetirarLabel">
@@ -233,7 +238,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <p>Deseja realmente retirar a experiência <strong id="retirar_nome_experiencia"></strong> deste cargo?</p>
+                    <p>Deseja realmente retirar a escolaridade <strong id="retirar_nome_escolaridade"></strong> deste cargo?</p>
                 </div>
 
                 <div class="modal-footer">
@@ -253,7 +258,7 @@
 <script>
     $(document).ready(function() {
         // DataTable
-        var table = $('#tabela-experiencias-cargo').DataTable({
+        var table = $('#tabela-escolaridades-cargo').DataTable({
             language: {
                 url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json"
             },
@@ -267,13 +272,13 @@
         });
 
         // Abrir modal ao clicar em retirar
-        $(document).on('click', '.btn-retirar-experiencia', function() {
+        $(document).on('click', '.btn-retirar-escolaridade', function() {
             var id   = $(this).data('id');
             var nome = $(this).data('nome');
 
             $('#retirar_pk_id').val(id);
-            $('#retirar_nome_experiencia').text(nome);
-            $('#modalRetirarExperiencia').modal('show');
+            $('#retirar_nome_escolaridade').text(nome);
+            $('#modalRetirarEscolaridade').modal('show');
         });
     });
 </script>

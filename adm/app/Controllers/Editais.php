@@ -29,8 +29,6 @@ class Editais extends BaseController{
         
         $this->editaisData = [
            'cargos'         => $modelCargos->orderBy('ds_nome_cargo', 'asc')->findAll(),
-           
-          
         ];
       
     }
@@ -39,12 +37,22 @@ class Editais extends BaseController{
     *LISTAGENS (PREENCHER O GRID INICIAL DAS MINHAS TELAS)
     =============================================================*/
     public function index($camada1 = '',$camada2 = 'pages', $page = 'Editais') {
+        // direciona para a função de listar dados para preenchimento do grid
         return $this->listarParaGrid('ativos', $camada1, $camada2, $page);
     }
     public function encerrados($camada1 = '',$camada2 = 'pages', $page = 'Editais') {
+        // direciona para a função de listar dados para preenchimento do grid
         return $this->listarParaGrid('encerrados', $camada1, $camada2, $page);
     }
 
+    /**
+     * Lista os editais para preenchimento do grid
+     * 
+     * @param string $tipo Tipo de grid (ativos ou encerrados)
+     * @param string $camada1 Primeira camada da view
+     * @param string $camada2 Segunda camada da view
+     * @param string $page Nome da view
+     */
     private function listarParaGrid(string $tipo,string $camada1,string $camada2,string $page) {
         $this->validarSessao();
         $this->validarView($camada1, $camada2, $page);
@@ -125,7 +133,6 @@ class Editais extends BaseController{
             "dados"                 =>  $dados,
             "cargos"			    =>	$this->editaisData['cargos'],
             "cargosEditais"		    =>	$cargosEditais,
-            
             "titulo"			    =>	$config['acao'] === 'create' ? 'Criar Edital' : 'Alterar Edital',
             'user'				    =>	session('nome'),
         ]);

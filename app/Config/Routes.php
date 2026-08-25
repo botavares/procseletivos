@@ -97,6 +97,7 @@ $routes->get('api/cep', 'Api\CepController::buscar');
 
 $routes->get('transparencia', 'Transparencia::index');
 $routes->get('transparencia/carregarTabela', 'Transparencia::carregarTabela');
+$routes->get('transparencia/carregarCargosPorEdital', 'Transparencia::carregarCargosPorEdital');
 
 
 $routes->get('teste', 'teste::index');

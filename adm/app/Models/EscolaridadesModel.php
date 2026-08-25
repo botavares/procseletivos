@@ -13,4 +13,8 @@ class EscolaridadesModel extends Model{
     ];
 
     protected $returnType = 'object';
+
+     public function listarEscolaridadesOrdenadas(){
+        return $this->orderBy('ds_nome_escolaridade', 'ASC')->findAll();
+    }
 }

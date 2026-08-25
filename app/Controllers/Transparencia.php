@@ -106,6 +106,25 @@ class Transparencia extends BaseController
     }
 
     /* =====================================================
+     * Retorna os cargos de um edital via AJAX
+     * ===================================================== */
+    public function carregarCargosPorEdital()
+    {
+        if (!$this->request->isAJAX()) {
+            throw new PageNotFoundException();
+        }
+
+        $editalId = (int) $this->request->getGet('edital');
+
+        $cargosModel = new CargosModel();
+        $cargos = $editalId > 0
+            ? $cargosModel->cargosPorEdital($editalId)
+            : $cargosModel->cargosEditaisAtivos();
+
+        return $this->response->setJSON($cargos);
+    }
+
+    /* =====================================================
      * Validações auxiliares
      * ===================================================== */
 

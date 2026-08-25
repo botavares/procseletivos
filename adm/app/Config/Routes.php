@@ -58,10 +58,16 @@ $routes->get('/Cargos', 'Cargos::index');
 $routes->get('/Cargos/formularioCadastro', 'Cargos::formularioCadastro', ['as'=>'Cargos.formularioCadastro']);
 $routes->post('/Cargos/registrar', 'Cargos::registrar');
 $routes->get('/Cargos/formularioAlteracao/(:num)', 'Cargos::formularioAlteracao/$1', ['as'=>'Cargos.formularioAlteracao']);
-$routes->get('/Cargos/formularioCargosExperiencia/(:num)', 'Cargos::formularioCargosExperiencia/$1', ['as'=>'Cargos.formularioCargosExperiencia']);
-$routes->post('/Cargos/registrarExperiencia', 'Cargos::registrarExperiencia');
-$routes->post('/Cargos/deletarExperiencia', 'Cargos::deletarExperiencia');
 $routes->post('/Cargos/deletar', 'Cargos::deletar');
+
+$routes->get('/CargosExperiencias/formularioCargosExperiencia/(:num)', 'CargosExperiencias::formularioCargosExperiencia/$1', ['as'=>'CargosExperiencias.formularioCargosExperiencia']);
+$routes->post('/CargosExperiencias/registrarAssociacaoCargoExperiencia', 'CargosExperiencias::registrarAssociacaoCargoExperiencia');
+$routes->post('/CargosExperiencias/deletarAssociacaoCargoExperiencia', 'CargosExperiencias::deletarAssociacaoCargoExperiencia');
+
+$routes->get('/CargosEscolaridades/formularioCargosEscolaridade/(:num)', 'CargosEscolaridades::formularioCargosEscolaridade/$1', ['as'=>'CargosEscolaridades.formularioCargosEscolaridade']);
+$routes->post('/CargosEscolaridades/registrarAssociacaoCargoEscolaridade', 'CargosEscolaridades::registrarAssociacaoCargoEscolaridade');
+$routes->post('/CargosEscolaridades/deletarAssociacaoCargoEscolaridade', 'CargosEscolaridades::deletarAssociacaoCargoEscolaridade');
+
 
 $routes->get('/Instituicoes', 'Instituicoes::index');
 $routes->get('/Instituicoes/formularioCadastro', 'Instituicoes::formularioCadastro', ['as'=>'Instituicoes.formularioCadastro']);

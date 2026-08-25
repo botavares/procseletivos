@@ -10,7 +10,7 @@ class CargosExperienciasFormService extends AbstractFormService
     protected function normalize(): array
     {
         $data = [
-            'pk_id_cargos_experiencias' => $this->request->getPost('pk_id_cargos_experiencias'),
+            'pk_id_cargos_experiencia' => $this->request->getPost('pk_id_cargos_experiencia'),
             'fk_id_cargo'               => $this->request->getPost('fk_id_cargo'),
             'fk_id_experiencia'         => $this->request->getPost('fk_id_experiencia'),
             'ds_quantidade_minima'      => $this->request->getPost('ds_quantidade_minima'),

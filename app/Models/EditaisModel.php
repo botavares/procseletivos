@@ -34,4 +34,12 @@ class EditaisModel extends Model{
                     ->first();
     }
 
+    /**
+     * Retorna todos os editais (ativos e inativos) ordenados pelo ID descendente.
+     */
+    public function listarTodosEditais()
+    {
+        return $this->orderBy('pk_id_edital', 'DESC')->findAll();
+    }
+
 }

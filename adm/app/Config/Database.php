@@ -29,7 +29,7 @@ class Database extends Config
         'hostname' => '10.1.1.22',
         'username' => 'breno',
         'password' => 'br2013',
-        'database' => 'bd_processos_seletivos_administracao',
+        'database' => 'teste_bd_processos_seletivos_administracao',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,

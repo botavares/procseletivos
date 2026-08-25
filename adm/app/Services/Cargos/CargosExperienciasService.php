@@ -15,7 +15,7 @@ class CargosExperienciasService extends AbstractCrudService
 
     /**
      * Salva (insert ou update) a associação de experiência ao cargo.
-     * Se pk_id_cargos_experiencias estiver presente, faz update.
+     * Se pk_id_cargos_experiencia estiver presente, faz update.
      * Caso contrário, verifica se já existe associação para o mesmo cargo + experiência
      * e atualiza; se não existir, insere um novo registro.
      */
@@ -24,11 +24,11 @@ class CargosExperienciasService extends AbstractCrudService
             $model = new CargosExperienciasModel();
 
             // Se já temos o ID, é update direto
-            if ($dto->pk_id_cargos_experiencias !== null) {
-                if (! $model->update($dto->pk_id_cargos_experiencias, $dto->toArray())) {
+            if ($dto->pk_id_cargos_experiencia !== null) {
+                if (! $model->update($dto->pk_id_cargos_experiencia, $dto->toArray())) {
                     throw new \RuntimeException('Erro ao atualizar associação de experiência ao cargo.');
                 }
-                return $dto->pk_id_cargos_experiencias;
+                return $dto->pk_id_cargos_experiencia;
             }
 
             // Verifica se já existe associação para o mesmo cargo + experiência
@@ -38,16 +38,24 @@ class CargosExperienciasService extends AbstractCrudService
                 ->first();
 
             if ($existente) {
-                $id = is_array($existente) ? $existente['pk_id_cargos_experiencias'] : $existente->pk_id_cargos_experiencias;
+                $id = is_array($existente) ? $existente['pk_id_cargos_experiencia'] : $existente->pk_id_cargos_experiencia;
                 if (! $model->update($id, $dto->toArray())) {
                     throw new \RuntimeException('Já existe uma associação para cargo e experiência.');
                 }
                 return (int) $id;
             }
 
-            // Insere novo registro
-            $model->insert($dto->toArray());
-            $insertId = $model->getInsertID();
+            // Insere novo registro (tabela sem auto-increment)
+            $insertData = $dto->toArray();
+            // garante que a chave primária será incluída no insert
+            if (!isset($insertData['pk_id_cargos_experiencia']) || $insertData['pk_id_cargos_experiencia'] === null) {
+                // Busca o maior pk_id_cargos_experiencia existente e incrementa
+                $max = $model->selectMax('pk_id_cargos_experiencia')->first();
+                $nextId = is_array($max) ? ($max['pk_id_cargos_experiencia'] ?? 0) + 1 : ($max->pk_id_cargos_experiencia ?? 0) + 1;
+                $insertData['pk_id_cargos_experiencia'] = $nextId;
+            }
+            $model->insert($insertData);
+            $insertId = $insertData['pk_id_cargos_experiencia'];
 
             if (empty($insertId)) {
                 throw new \RuntimeException('Erro ao salvar associação de experiência ao cargo.');

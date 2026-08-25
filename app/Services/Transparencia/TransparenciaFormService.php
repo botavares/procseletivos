@@ -33,9 +33,7 @@ class TransparenciaFormService
 
         $cargos = $this->cargosModel->cargosEditaisAtivos();
 
-        $editais = $this->editaisModel
-            ->orderBy('pk_id_edital', 'DESC')
-            ->findAll();
+        $editais = $this->editaisModel->listarTodosEditais();
 
         return array_merge(
             $service->listarClassificacao($params),

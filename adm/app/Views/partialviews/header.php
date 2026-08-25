@@ -37,9 +37,16 @@
 
 	<script type="text/javascript">
    		var path = '<?php echo base_url(); ?>'
-          
 	</script>
 
+	<!-- jQuery e Bootstrap carregados no header para permitir scripts inline nas views -->
+	<script src="<?php echo base_url("external/admlte/plugins/jquery/jquery.min.js")?>"></script>
+	<script src="<?php echo base_url("external/admlte/plugins/bootstrap/js/bootstrap.bundle.min.js")?>"></script>
+
+	<!-- DataTables core (necessário para scripts inline nas views) -->
+	<script src="<?php echo base_url("external/admlte/plugins/datatables/jquery.dataTables.js")?>"></script>
+	<script src="<?php echo base_url("external/admlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js")?>"></script>
+	<script src="<?php echo base_url("external/admlte/plugins/datatables-responsive/js/dataTables.responsive.min.js")?>"></script>
+	<script src="<?php echo base_url("external/admlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js")?>"></script>
 </head>
-<body>
- 
+<body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
