@@ -1,0 +1,15 @@
+CRITICAL - 2026-08-28 07:52:48 --> Undefined variable $aperfeicoamentosClassificatorias
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 62.
+ 1 APPPATH\Views\pages\FormularioClassificatorio_view.php(62): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $aperfeicoamentosClassificatorias', 'APPPATH\\Views\\pages\\FormularioClassificatorio_view.php', 62)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioClassificatorio_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(175): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

@@ -34,18 +34,23 @@ class EditaisCargosModel extends Model{
 
         ->groupStart()
             ->where("EXISTS (
-                SELECT 1 FROM tb_cargos_experiencias_editais e
+                SELECT 1 FROM tb_cargos_experiencias e
                 WHERE e.fk_id_cargo = tb_editais_cargos.fk_id_cargo
             )", null, false)
 
             ->orWhere("EXISTS (
-                SELECT 1 FROM tb_cargos_aperfeicoamentos_editais a
+                SELECT 1 FROM tb_cargos_aperfeicoamentos a
                 WHERE a.fk_id_cargo = tb_editais_cargos.fk_id_cargo
             )", null, false)
 
             ->orWhere("EXISTS (
-                SELECT 1 FROM tb_cargos_escolaridades_editais s
+                SELECT 1 FROM tb_cargos_escolaridades s
                 WHERE s.fk_id_cargo = tb_editais_cargos.fk_id_cargo
+            )", null, false)
+
+            ->orWhere("EXISTS (
+                SELECT 1 FROM tb_cargos_criterios_adicionais c
+                WHERE c.fk_id_cargo = tb_editais_cargos.fk_id_cargo
             )", null, false)
         ->groupEnd()
 

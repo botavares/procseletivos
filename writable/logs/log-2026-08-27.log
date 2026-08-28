@@ -1,0 +1,426 @@
+CRITICAL - 2026-08-27 08:46:55 --> Class "App\Services\AbstractCrudService" not found
+in APPPATH\Services\EditaisService.php on line 9.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(312): include_once()
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('APPPATH\\Services\\EditaisService.php')
+ 3 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Services\\EditaisService')
+ 4 APPPATH\Config\Services.php(83): CodeIgniter\Autoloader\Autoloader->loadClass('App\\Services\\EditaisService')
+ 5 SYSTEMPATH\Config\BaseService.php(193): Config\Services::editaisService(false)
+ 6 APPPATH\Config\Services.php(81): CodeIgniter\Config\BaseService::getSharedInstance('editaisservice')
+ 7 SYSTEMPATH\Common.php(1007): Config\Services::editaisService()
+ 8 APPPATH\Controllers\Cadastros.php(28): service('editaisService')
+ 9 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+10 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 08:47:35 --> Call to undefined method App\Models\CriteriosAdicionaisModel::listarRequisistosCriteriosAdicionais
+in SYSTEMPATH\Model.php on line 841.
+ 1 APPPATH\Services\ClassificatorioService.php(61): CodeIgniter\Model->__call('listarRequisistosCriteriosAdicionais', [...])
+ 2 APPPATH\Controllers\Cadastros.php(147): App\Services\ClassificatorioService->buscarRequisitos(8)
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 08:48:17 --> Call to undefined method App\Models\ExperienciasModel::listarExperienciaDoCargo
+in SYSTEMPATH\Model.php on line 841.
+ 1 APPPATH\Services\ClassificatorioService.php(68): CodeIgniter\Model->__call('listarExperienciaDoCargo', [...])
+ 2 APPPATH\Controllers\Cadastros.php(148): App\Services\ClassificatorioService->buscarExperiencias(27, 8)
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 08:49:44 --> Undefined array key "experienciaClassificatoria"
+in APPPATH\Controllers\Cadastros.php on line 183.
+ 1 APPPATH\Controllers\Cadastros.php(183): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "experienciaClassificatoria"', 'APPPATH\\Controllers\\Cadastros.php', 183)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 09:01:07 --> Undefined variable $edital
+in APPPATH\Views\pages\OpcoesCadastro_view.php on line 140.
+ 1 APPPATH\Views\pages\OpcoesCadastro_view.php(140): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $edital', 'APPPATH\\Views\\pages\\OpcoesCadastro_view.php', 140)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\OpcoesCadastro_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/OpcoesCadastro_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/OpcoesCadastro_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(86): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 09:14:19 --> Undefined property: stdClass::$ds_obrigatorio
+in APPPATH\Services\ClassificatorioService.php on line 133.
+ 1 APPPATH\Services\ClassificatorioService.php(133): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$ds_obrigatorio', 'APPPATH\\Services\\ClassificatorioService.php', 133)
+ 2 APPPATH\Services\ClassificatorioService.php(115): App\Services\ClassificatorioService->extrairExperienciasDoPost([...], 27, 8)
+ 3 APPPATH\Controllers\Cadastros.php(239): App\Services\ClassificatorioService->processarFormulario([...], 2973, 8, 27)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 09:15:00 --> Undefined property: stdClass::$ds_obrigatorio
+in APPPATH\Services\ClassificatorioService.php on line 143.
+ 1 APPPATH\Services\ClassificatorioService.php(143): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$ds_obrigatorio', 'APPPATH\\Services\\ClassificatorioService.php', 143)
+ 2 APPPATH\Services\ClassificatorioService.php(115): App\Services\ClassificatorioService->extrairExperienciasDoPost([...], 27, 8)
+ 3 APPPATH\Controllers\Cadastros.php(239): App\Services\ClassificatorioService->processarFormulario([...], 2973, 8, 27)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 09:15:13 --> Undefined property: stdClass::$ds_multiplicador
+in APPPATH\Services\ClassificatorioService.php on line 145.
+ 1 APPPATH\Services\ClassificatorioService.php(145): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$ds_multiplicador', 'APPPATH\\Services\\ClassificatorioService.php', 145)
+ 2 APPPATH\Services\ClassificatorioService.php(115): App\Services\ClassificatorioService->extrairExperienciasDoPost([...], 27, 8)
+ 3 APPPATH\Controllers\Cadastros.php(239): App\Services\ClassificatorioService->processarFormulario([...], 2973, 8, 27)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 09:18:29 --> Undefined array key "status"
+in APPPATH\Services\ClassificatorioService.php on line 167.
+ 1 APPPATH\Services\ClassificatorioService.php(167): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "status"', 'APPPATH\\Services\\ClassificatorioService.php', 167)
+ 2 APPPATH\Services\ClassificatorioService.php(116): App\Services\ClassificatorioService->salvarExperiencias(2973, [...], 8, 27)
+ 3 APPPATH\Controllers\Cadastros.php(239): App\Services\ClassificatorioService->processarFormulario([...], 2973, 8, 27)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 09:19:21 --> Undefined property: stdClass::$ds_obrigatorio
+in APPPATH\Services\ClassificatorioService.php on line 202.
+ 1 APPPATH\Services\ClassificatorioService.php(202): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$ds_obrigatorio', 'APPPATH\\Services\\ClassificatorioService.php', 202)
+ 2 APPPATH\Services\ClassificatorioService.php(118): App\Services\ClassificatorioService->extrairEscolaridadesDoPost([...], 27, 8)
+ 3 APPPATH\Controllers\Cadastros.php(239): App\Services\ClassificatorioService->processarFormulario([...], 2973, 8, 27)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 09:22:20 --> Undefined property: stdClass::$ds_multiplicador
+in APPPATH\Services\ClassificatorioService.php on line 204.
+ 1 APPPATH\Services\ClassificatorioService.php(204): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$ds_multiplicador', 'APPPATH\\Services\\ClassificatorioService.php', 204)
+ 2 APPPATH\Services\ClassificatorioService.php(118): App\Services\ClassificatorioService->extrairEscolaridadesDoPost([...], 27, 8)
+ 3 APPPATH\Controllers\Cadastros.php(239): App\Services\ClassificatorioService->processarFormulario([...], 2973, 8, 27)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 09:24:17 --> Undefined array key "status"
+in APPPATH\Services\ClassificatorioService.php on line 219.
+ 1 APPPATH\Services\ClassificatorioService.php(219): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "status"', 'APPPATH\\Services\\ClassificatorioService.php', 219)
+ 2 APPPATH\Services\ClassificatorioService.php(119): App\Services\ClassificatorioService->salvarEscolaridades(2973, [...], 8, 27)
+ 3 APPPATH\Controllers\Cadastros.php(239): App\Services\ClassificatorioService->processarFormulario([...], 2973, 8, 27)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 09:24:33 --> Undefined property: stdClass::$fk_id_criterio_adicional
+in APPPATH\Services\ClassificatorioService.php on line 267.
+ 1 APPPATH\Services\ClassificatorioService.php(267): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$fk_id_criterio_adicional', 'APPPATH\\Services\\ClassificatorioService.php', 267)
+ 2 APPPATH\Services\ClassificatorioService.php(124): App\Services\ClassificatorioService->extrairCriteriosAdicionaisDoPost([...], 27, 8)
+ 3 APPPATH\Controllers\Cadastros.php(239): App\Services\ClassificatorioService->processarFormulario([...], 2973, 8, 27)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 09:26:32 --> Undefined property: stdClass::$pk_id_criterio_adicional
+in APPPATH\Services\ClassificatorioService.php on line 267.
+ 1 APPPATH\Services\ClassificatorioService.php(267): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$pk_id_criterio_adicional', 'APPPATH\\Services\\ClassificatorioService.php', 267)
+ 2 APPPATH\Services\ClassificatorioService.php(124): App\Services\ClassificatorioService->extrairCriteriosAdicionaisDoPost([...], 27, 8)
+ 3 APPPATH\Controllers\Cadastros.php(239): App\Services\ClassificatorioService->processarFormulario([...], 2973, 8, 27)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-27 09:27:16 --> mysqli_sql_exception: Unknown column 'fk_id_cadastrado' in 'where clause' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('DELETE FROM `tb...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `tb...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `tb...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(2777): CodeIgniter\Database\BaseConnection->query('DELETE FROM `tb...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(1065): CodeIgniter\Model->doDelete(NULL, false)
+#6 C:\laragon\www\servicos\procseletivos\app\Services\ClassificatorioService.php(288): CodeIgniter\BaseModel->delete()
+#7 C:\laragon\www\servicos\procseletivos\app\Services\ClassificatorioService.php(125): App\Services\ClassificatorioService->salvarCriteriosAdicionais(2973, Array, 8, 27)
+#8 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(239): App\Services\ClassificatorioService->processarFormulario(Array, 2973, 8, 27)
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#11 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2026-08-27 09:27:16 --> Unknown column 'fk_id_cadastrado' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2777): CodeIgniter\Database\BaseConnection->query('DELETE FROM `tb_cargos_criterios_adicionais`
+WHERE `fk_id_cadastrado` = :fk_id_cadastrado:
+AND `fk_id_cargo` = :fk_id_cargo:
+AND `fk_id_edital` = :fk_id_edital:', [...], false)
+ 2 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 3 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete(null, false)
+ 4 APPPATH\Services\ClassificatorioService.php(288): CodeIgniter\BaseModel->delete()
+ 5 APPPATH\Services\ClassificatorioService.php(125): App\Services\ClassificatorioService->salvarCriteriosAdicionais(2973, [], 8, 27)
+ 6 APPPATH\Controllers\Cadastros.php(239): App\Services\ClassificatorioService->processarFormulario([...], 2973, 8, 27)
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-27 09:30:53 --> mysqli_sql_exception: Unknown column 'tb_cargos_experiencias.ds_quantidade_minima' in 'field list' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\app\Models\ExperienciasModel.php(39): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\app\Services\ClassificatorioService.php(58): App\Models\ExperienciasModel->listarRequisitosExperiencias(8)
+#6 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(144): App\Services\ClassificatorioService->buscarRequisitos(8)
+#7 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-27 09:30:53 --> Unknown column 'tb_cargos_experiencias.ds_quantidade_minima' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cargos_experiencias`.`fk_id_cargo`, `tb_cargos_experiencias`.`fk_id_experiencia`, `tb_experiencias`.`ds_nome_experiencia`, `tb_cargos_experiencias`.`ds_tipo_campo`, `tb_cargos`.`ds_nome_cargo`, `tb_cargos_experiencias`.`ds_quantidade_minima`, `tb_cargos_experiencias`.`ds_quantidade_maxima`, `tb_experiencias`.`ds_tipo_experiencia`
+FROM `tb_cargos_experiencias`
+JOIN `tb_experiencias` ON `tb_experiencias`.`pk_id_experiencia` = `tb_cargos_experiencias`.`fk_id_experiencia`
+JOIN `tb_cargos` ON `tb_cargos`.`pk_id_cargo` = `tb_cargos_experiencias`.`fk_id_cargo`
+WHERE `tb_cargos`.`pk_id_cargo` = :tb_cargos.pk_id_cargo:
+ORDER BY `tb_cargos_experiencias`.`ds_tipo_campo` ASC, `tb_experiencias`.`ds_tipo_experiencia` ASC', [...], false)
+ 2 APPPATH\Models\ExperienciasModel.php(39): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Services\ClassificatorioService.php(58): App\Models\ExperienciasModel->listarRequisitosExperiencias(8)
+ 4 APPPATH\Controllers\Cadastros.php(144): App\Services\ClassificatorioService->buscarRequisitos(8)
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 09:31:47 --> Undefined property: stdClass::$ds_quantidade_maxima
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 57.
+ 1 APPPATH\Views\pages\FormularioClassificatorio_view.php(57): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$ds_quantidade_maxima', 'APPPATH\\Views\\pages\\FormularioClassificatorio_view.php', 57)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioClassificatorio_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(204): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 10:20:23 --> Undefined array key "criterioAdicional1"
+in APPPATH\Services\ClassificatorioService.php on line 259.
+ 1 APPPATH\Services\ClassificatorioService.php(259): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "criterioAdicional1"', 'APPPATH\\Services\\ClassificatorioService.php', 259)
+ 2 APPPATH\Services\ClassificatorioService.php(124): App\Services\ClassificatorioService->extrairCriteriosAdicionaisDoPost([...], 27, 8)
+ 3 APPPATH\Controllers\Cadastros.php(239): App\Services\ClassificatorioService->processarFormulario([...], 2973, 8, 27)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 10:22:56 --> Undefined property: stdClass::$ds_obrigatorio
+in APPPATH\Services\ClassificatorioService.php on line 264.
+ 1 APPPATH\Services\ClassificatorioService.php(264): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$ds_obrigatorio', 'APPPATH\\Services\\ClassificatorioService.php', 264)
+ 2 APPPATH\Services\ClassificatorioService.php(124): App\Services\ClassificatorioService->extrairCriteriosAdicionaisDoPost([...], 27, 8)
+ 3 APPPATH\Controllers\Cadastros.php(239): App\Services\ClassificatorioService->processarFormulario([...], 2973, 8, 27)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 10:23:17 --> Undefined property: stdClass::$ds_multiplicador
+in APPPATH\Services\ClassificatorioService.php on line 266.
+ 1 APPPATH\Services\ClassificatorioService.php(266): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$ds_multiplicador', 'APPPATH\\Services\\ClassificatorioService.php', 266)
+ 2 APPPATH\Services\ClassificatorioService.php(124): App\Services\ClassificatorioService->extrairCriteriosAdicionaisDoPost([...], 27, 8)
+ 3 APPPATH\Controllers\Cadastros.php(239): App\Services\ClassificatorioService->processarFormulario([...], 2973, 8, 27)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 11:32:31 --> Undefined variable $modelCargos
+in APPPATH\Services\ComprovanteService.php on line 19.
+ 1 APPPATH\Services\ComprovanteService.php(19): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $modelCargos', 'APPPATH\\Services\\ComprovanteService.php', 19)
+ 2 APPPATH\Config\Services.php(134): App\Services\ComprovanteService->__construct()
+ 3 SYSTEMPATH\Config\BaseService.php(193): Config\Services::comprovanteService(false)
+ 4 APPPATH\Config\Services.php(132): CodeIgniter\Config\BaseService::getSharedInstance('comprovanteservice')
+ 5 SYSTEMPATH\Common.php(1007): Config\Services::comprovanteService()
+ 6 APPPATH\Controllers\Cadastros.php(31): service('comprovanteService')
+ 7 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 8 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 11:34:53 --> Undefined variable $modelCargos
+in APPPATH\Services\ComprovanteService.php on line 19.
+ 1 APPPATH\Services\ComprovanteService.php(19): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $modelCargos', 'APPPATH\\Services\\ComprovanteService.php', 19)
+ 2 APPPATH\Config\Services.php(134): App\Services\ComprovanteService->__construct()
+ 3 SYSTEMPATH\Config\BaseService.php(193): Config\Services::comprovanteService(false)
+ 4 APPPATH\Config\Services.php(132): CodeIgniter\Config\BaseService::getSharedInstance('comprovanteservice')
+ 5 SYSTEMPATH\Common.php(1007): Config\Services::comprovanteService()
+ 6 APPPATH\Controllers\Cadastros.php(31): service('comprovanteService')
+ 7 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 8 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 11:35:31 --> Undefined variable $modelCandidatos
+in APPPATH\Services\ComprovanteService.php on line 19.
+ 1 APPPATH\Services\ComprovanteService.php(19): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $modelCandidatos', 'APPPATH\\Services\\ComprovanteService.php', 19)
+ 2 APPPATH\Config\Services.php(134): App\Services\ComprovanteService->__construct()
+ 3 SYSTEMPATH\Config\BaseService.php(193): Config\Services::comprovanteService(false)
+ 4 APPPATH\Config\Services.php(132): CodeIgniter\Config\BaseService::getSharedInstance('comprovanteservice')
+ 5 SYSTEMPATH\Common.php(1007): Config\Services::comprovanteService()
+ 6 APPPATH\Controllers\Cadastros.php(31): service('comprovanteService')
+ 7 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 8 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 11:36:45 --> Undefined property: App\Controllers\Cadastros::$compraventeService
+in APPPATH\Controllers\Cadastros.php on line 283.
+ 1 APPPATH\Controllers\Cadastros.php(283): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Cadastros::$compraventeService', 'APPPATH\\Controllers\\Cadastros.php', 283)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->gerarComprovante('27', '8', '2973')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 11:37:37 --> Attempt to read property "fk_id_pne" on null
+in APPPATH\Services\ComprovanteService.php on line 34.
+ 1 APPPATH\Services\ComprovanteService.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "fk_id_pne" on null', 'APPPATH\\Services\\ComprovanteService.php', 34)
+ 2 APPPATH\Controllers\Cadastros.php(283): App\Services\ComprovanteService->gerarComprovante('27', '8', '2973')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->gerarComprovante('27', '8', '2973')
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 11:40:46 --> Attempt to read property "fk_id_pne" on null
+in APPPATH\Services\ComprovanteService.php on line 34.
+ 1 APPPATH\Services\ComprovanteService.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "fk_id_pne" on null', 'APPPATH\\Services\\ComprovanteService.php', 34)
+ 2 APPPATH\Controllers\Cadastros.php(283): App\Services\ComprovanteService->gerarComprovante('27', '8', '2973')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->gerarComprovante('27', '8', '2973')
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 12:12:29 --> Undefined property: stdClass::$fk_id_criterio_adicional
+in APPPATH\Services\ClassificatorioService.php on line 97.
+ 1 APPPATH\Services\ClassificatorioService.php(97): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$fk_id_criterio_adicional', 'APPPATH\\Services\\ClassificatorioService.php', 97)
+ 2 [internal function]: App\Services\ClassificatorioService->App\Services\{closure}(Object(stdClass))
+ 3 APPPATH\Services\ClassificatorioService.php(97): array_map(Object(Closure), [...])
+ 4 APPPATH\Controllers\Cadastros.php(144): App\Services\ClassificatorioService->buscarDadosCadastrados(2973, 8, 27)
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 12:18:34 --> Undefined array key 1
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 241.
+ 1 APPPATH\Views\pages\FormularioClassificatorio_view.php(241): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 1', 'APPPATH\\Views\\pages\\FormularioClassificatorio_view.php', 241)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioClassificatorio_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(201): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 12:21:45 --> Attempt to read property "fk_id_criterio" on array
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 239.
+ 1 APPPATH\Views\pages\FormularioClassificatorio_view.php(239): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "fk_id_criterio" on array', 'APPPATH\\Views\\pages\\FormularioClassificatorio_view.php', 239)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioClassificatorio_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(201): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 12:26:28 --> Cannot use object of type stdClass as array
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 251.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 4 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 5 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 6 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 8 APPPATH\Controllers\Cadastros.php(201): view('layoutLogado', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 12:27:14 --> Cannot use object of type stdClass as array
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 261.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 4 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 5 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 6 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 8 APPPATH\Controllers\Cadastros.php(201): view('layoutLogado', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 12:28:20 --> Undefined array key 1
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 241.
+ 1 APPPATH\Views\pages\FormularioClassificatorio_view.php(241): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 1', 'APPPATH\\Views\\pages\\FormularioClassificatorio_view.php', 241)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioClassificatorio_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(201): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 12:34:47 --> Undefined array key "criteriosAdicionaisIndexadas"
+in APPPATH\Controllers\Cadastros.php on line 172.
+ 1 APPPATH\Controllers\Cadastros.php(172): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "criteriosAdicionaisIndexadas"', 'APPPATH\\Controllers\\Cadastros.php', 172)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 12:35:01 --> Undefined array key "criteriosAdicionaisIndexados"
+in APPPATH\Controllers\Cadastros.php on line 172.
+ 1 APPPATH\Controllers\Cadastros.php(172): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "criteriosAdicionaisIndexados"', 'APPPATH\\Controllers\\Cadastros.php', 172)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 13:47:30 --> The action you requested is not allowed.
+in SYSTEMPATH\Security\Security.php on line 306.
+ 1 SYSTEMPATH\Security\Security.php(306): CodeIgniter\Security\Exceptions\SecurityException::forDisallowedAction()
+ 2 SYSTEMPATH\Filters\CSRF.php(55): CodeIgniter\Security\Security->verify(Object(CodeIgniter\HTTP\IncomingRequest))
+ 3 SYSTEMPATH\Filters\Filters.php(173): CodeIgniter\Filters\CSRF->before(Object(CodeIgniter\HTTP\IncomingRequest), null)
+ 4 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('Cadastros/registrarDadosClassificatorios', 'before')
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 13:47:52 --> Undefined array key "escolaridade8"
+in APPPATH\Services\ClassificatorioService.php on line 209.
+ 1 APPPATH\Services\ClassificatorioService.php(209): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "escolaridade8"', 'APPPATH\\Services\\ClassificatorioService.php', 209)
+ 2 APPPATH\Services\ClassificatorioService.php(148): App\Services\ClassificatorioService->extrairEscolaridadesDoPost([...], 27, 8)
+ 3 APPPATH\Controllers\Cadastros.php(213): App\Services\ClassificatorioService->processarFormulario([...], 2973, 8, 27)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 14:15:58 --> Undefined array key "escolaridade8"
+in APPPATH\Services\ClassificatorioService.php on line 210.
+ 1 APPPATH\Services\ClassificatorioService.php(210): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "escolaridade8"', 'APPPATH\\Services\\ClassificatorioService.php', 210)
+ 2 APPPATH\Services\ClassificatorioService.php(148): App\Services\ClassificatorioService->extrairEscolaridadesDoPost([...], 27, 8)
+ 3 APPPATH\Controllers\Cadastros.php(214): App\Services\ClassificatorioService->processarFormulario([...], 2973, 8, 27)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-27 14:18:41 --> Undefined array key "escolaridade8"
+in APPPATH\Services\ClassificatorioService.php on line 210.
+ 1 APPPATH\Services\ClassificatorioService.php(210): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "escolaridade8"', 'APPPATH\\Services\\ClassificatorioService.php', 210)
+ 2 APPPATH\Services\ClassificatorioService.php(148): App\Services\ClassificatorioService->extrairEscolaridadesDoPost([...], 27, 8)
+ 3 APPPATH\Controllers\Cadastros.php(214): App\Services\ClassificatorioService->processarFormulario([...], 2973, 8, 27)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->registrarDadosClassificatorios()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

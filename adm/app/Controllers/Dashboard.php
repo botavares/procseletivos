@@ -55,7 +55,7 @@ class Dashboard extends BaseController{
         }*/
     
         $modelEditais = new EditaisModel();
-        $editaisAtivos = $modelEditais->where('ds_status','1')->findAll();
+        $editaisAtivos = $modelEditais->findAll();
         
 
         $parametros = [

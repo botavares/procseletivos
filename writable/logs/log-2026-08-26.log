@@ -1,0 +1,600 @@
+CRITICAL - 2026-08-26 12:05:34 --> Undefined property: App\Controllers\Cadastros::$sessaoService
+in APPPATH\Controllers\Cadastros.php on line 364.
+ 1 APPPATH\Controllers\Cadastros.php(364): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Cadastros::$sessaoService', 'APPPATH\\Controllers\\Cadastros.php', 364)
+ 2 APPPATH\Controllers\Cadastros.php(41): App\Controllers\Cadastros->loginLocal()
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-26 12:05:34 --> Undefined property: App\Controllers\Cadastros::$sessaoService
+in APPPATH\Controllers\Cadastros.php on line 364.
+ 1 APPPATH\Controllers\Cadastros.php(364): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Cadastros::$sessaoService', 'APPPATH\\Controllers\\Cadastros.php', 364)
+ 2 APPPATH\Controllers\Cadastros.php(41): App\Controllers\Cadastros->loginLocal()
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-26 12:07:15 --> Cannot assign null to property App\Controllers\Cadastros::$sessaoService of type App\Services\Base\SessaoService
+in APPPATH\Controllers\Cadastros.php on line 29.
+ 1 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-26 12:08:39 --> Interface "App\Contracts\ISessaoService" not found
+in APPPATH\Services\Base\SessaoService.php on line 11.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(312): include_once()
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('APPPATH\\Services\\Base\\SessaoService.php')
+ 3 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Services\\Base\\SessaoService')
+ 4 APPPATH\Config\Services.php(42): CodeIgniter\Autoloader\Autoloader->loadClass('App\\Services\\Base\\SessaoService')
+ 5 SYSTEMPATH\Config\BaseService.php(193): Config\Services::sessao(false)
+ 6 APPPATH\Config\Services.php(40): CodeIgniter\Config\BaseService::getSharedInstance('sessao')
+ 7 SYSTEMPATH\Common.php(1007): Config\Services::sessao()
+ 8 APPPATH\Controllers\Cadastros.php(29): service('sessao')
+ 9 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+10 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-26 12:09:27 --> mysqli_sql_exception: Table 'teste_bd_processos_seletivos_administracao.tb_cargos_experiencias_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_edit...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_edit...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_edit...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_edit...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Models\EditaisCargosModel.php(53): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(65): App\Models\EditaisCargosModel->getEditaisAtivosCargos()
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-26 12:09:27 --> Table 'teste_bd_processos_seletivos_administracao.tb_cargos_experiencias_editais' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_editais_cargos`.*, `tb_editais`.*, `tb_cargos`.*
+FROM `tb_editais_cargos`
+JOIN `tb_editais` ON `tb_editais`.`pk_id_edital` = `tb_editais_cargos`.`fk_id_edital`
+JOIN `tb_cargos` ON `tb_cargos`.`pk_id_cargo` = `tb_editais_cargos`.`fk_id_cargo`
+WHERE `tb_editais`.`ds_status` = :tb_editais.ds_status:
+AND   (
+EXISTS (
+                SELECT 1 FROM tb_cargos_experiencias_editais e
+                WHERE e.fk_id_cargo = tb_editais_cargos.fk_id_cargo
+            )
+OR EXISTS (
+                SELECT 1 FROM tb_cargos_aperfeicoamentos_editais a
+                WHERE a.fk_id_cargo = tb_editais_cargos.fk_id_cargo
+            )
+OR EXISTS (
+                SELECT 1 FROM tb_cargos_escolaridades_editais s
+                WHERE s.fk_id_cargo = tb_editais_cargos.fk_id_cargo
+            )
+ )
+ORDER BY `tb_editais`.`ds_data_inicial` DESC', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\EditaisCargosModel.php(53): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(65): App\Models\EditaisCargosModel->getEditaisAtivosCargos()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-26 12:17:29 --> Class "App\Models\CargosExperienciasEditaisModel" not found
+in APPPATH\Services\ClassificatorioService.php on line 34.
+ 1 APPPATH\Controllers\Cadastros.php(25): App\Services\ClassificatorioService->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 3 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-26 12:19:28 --> mysqli_sql_exception: Table 'teste_bd_processos_seletivos_administracao.tb_cargos_experiencias_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_edit...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_edit...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_edit...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_edit...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Models\EditaisCargosModel.php(53): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(65): App\Models\EditaisCargosModel->getEditaisAtivosCargos()
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-26 12:19:28 --> Table 'teste_bd_processos_seletivos_administracao.tb_cargos_experiencias_editais' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_editais_cargos`.*, `tb_editais`.*, `tb_cargos`.*
+FROM `tb_editais_cargos`
+JOIN `tb_editais` ON `tb_editais`.`pk_id_edital` = `tb_editais_cargos`.`fk_id_edital`
+JOIN `tb_cargos` ON `tb_cargos`.`pk_id_cargo` = `tb_editais_cargos`.`fk_id_cargo`
+WHERE `tb_editais`.`ds_status` = :tb_editais.ds_status:
+AND   (
+EXISTS (
+                SELECT 1 FROM tb_cargos_experiencias_editais e
+                WHERE e.fk_id_cargo = tb_editais_cargos.fk_id_cargo
+            )
+OR EXISTS (
+                SELECT 1 FROM tb_cargos_aperfeicoamentos_editais a
+                WHERE a.fk_id_cargo = tb_editais_cargos.fk_id_cargo
+            )
+OR EXISTS (
+                SELECT 1 FROM tb_cargos_escolaridades_editais s
+                WHERE s.fk_id_cargo = tb_editais_cargos.fk_id_cargo
+            )
+ )
+ORDER BY `tb_editais`.`ds_data_inicial` DESC', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\EditaisCargosModel.php(53): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(65): App\Models\EditaisCargosModel->getEditaisAtivosCargos()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-26 12:22:46 --> mysqli_sql_exception: Table 'teste_bd_processos_seletivos_administracao.tb_cargos_escolaridades_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\app\Models\EscolaridadesModel.php(35): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\app\Services\ClassificatorioService.php(54): App\Models\EscolaridadesModel->listarStatusEscolaridades(8, '1')
+#6 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(142): App\Services\ClassificatorioService->buscarRequisitos(8)
+#7 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-26 12:22:46 --> Table 'teste_bd_processos_seletivos_administracao.tb_cargos_escolaridades_editais' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cargos_escolaridades_editais`.`fk_id_escolaridade`, `tb_cargos_escolaridades_editais`.`fk_id_cargo`, `tb_escolaridades`.`ds_nome_escolaridade`, `tb_cargos_escolaridades_editais`.`ds_obrigatorio`, `tb_cargos_escolaridades_editais`.`ds_pontuacao_minima`, `tb_cargos_escolaridades_editais`.`ds_pontuacao_maxima`, `tb_cargos_escolaridades_editais`.`ds_multiplicador`, `tb_cargos_escolaridades_editais`.`ds_tipo_campo`
+FROM `tb_cargos_escolaridades_editais`
+JOIN `tb_escolaridades` ON `tb_cargos_escolaridades_editais`.`fk_id_escolaridade` = `tb_escolaridades`.`pk_id_escolaridade`
+JOIN `tb_cargos` ON `tb_cargos_escolaridades_editais`.`fk_id_cargo` = `tb_cargos`.`pk_id_cargo`
+WHERE `tb_cargos`.`pk_id_cargo` = :tb_cargos.pk_id_cargo:
+AND `tb_cargos_escolaridades_editais`.`ds_obrigatorio` = :tb_cargos_escolaridades_editais.ds_obrigatorio:
+ORDER BY `tb_escolaridades`.`fk_id_nivel` ASC', [...], false)
+ 2 APPPATH\Models\EscolaridadesModel.php(35): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Services\ClassificatorioService.php(54): App\Models\EscolaridadesModel->listarStatusEscolaridades(8, '1')
+ 4 APPPATH\Controllers\Cadastros.php(142): App\Services\ClassificatorioService->buscarRequisitos(8)
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-26 12:24:02 --> mysqli_sql_exception: Unknown column 'tb_cargos_escolaridades.ds_obrigatorio' in 'field list' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\app\Models\EscolaridadesModel.php(35): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\app\Services\ClassificatorioService.php(54): App\Models\EscolaridadesModel->listarStatusEscolaridades(8, '1')
+#6 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(142): App\Services\ClassificatorioService->buscarRequisitos(8)
+#7 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-26 12:24:02 --> Unknown column 'tb_cargos_escolaridades.ds_obrigatorio' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cargos_escolaridades`.`fk_id_escolaridade`, `tb_cargos_escolaridades`.`fk_id_cargo`, `tb_escolaridades`.`ds_nome_escolaridade`, `tb_cargos_escolaridades`.`ds_obrigatorio`, `tb_cargos_escolaridades`.`ds_pontuacao_minima`, `tb_cargos_escolaridades`.`ds_pontuacao_maxima`, `tb_cargos_escolaridades`.`ds_multiplicador`, `tb_cargos_escolaridades`.`ds_tipo_campo`
+FROM `tb_cargos_escolaridades`
+JOIN `tb_escolaridades` ON `tb_cargos_escolaridades`.`fk_id_escolaridade` = `tb_escolaridades`.`pk_id_escolaridade`
+JOIN `tb_cargos` ON `tb_cargos_escolaridades`.`fk_id_cargo` = `tb_cargos`.`pk_id_cargo`
+WHERE `tb_cargos`.`pk_id_cargo` = :tb_cargos.pk_id_cargo:
+AND `tb_cargos_escolaridades`.`ds_obrigatorio` = :tb_cargos_escolaridades.ds_obrigatorio:
+ORDER BY `tb_escolaridades`.`fk_id_nivel` ASC', [...], false)
+ 2 APPPATH\Models\EscolaridadesModel.php(35): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Services\ClassificatorioService.php(54): App\Models\EscolaridadesModel->listarStatusEscolaridades(8, '1')
+ 4 APPPATH\Controllers\Cadastros.php(142): App\Services\ClassificatorioService->buscarRequisitos(8)
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-26 12:24:29 --> mysqli_sql_exception: Unknown column 'tb_cargos_escolaridades.ds_multiplicador' in 'field list' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\app\Models\EscolaridadesModel.php(35): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\app\Services\ClassificatorioService.php(54): App\Models\EscolaridadesModel->listarStatusEscolaridades(8, '1')
+#6 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(142): App\Services\ClassificatorioService->buscarRequisitos(8)
+#7 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-26 12:24:29 --> Unknown column 'tb_cargos_escolaridades.ds_multiplicador' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cargos_escolaridades`.`fk_id_escolaridade`, `tb_cargos_escolaridades`.`fk_id_cargo`, `tb_escolaridades`.`ds_nome_escolaridade`, `tb_cargos_escolaridades`.`ds_pontuacao_minima`, `tb_cargos_escolaridades`.`ds_pontuacao_maxima`, `tb_cargos_escolaridades`.`ds_multiplicador`, `tb_cargos_escolaridades`.`ds_tipo_campo`
+FROM `tb_cargos_escolaridades`
+JOIN `tb_escolaridades` ON `tb_cargos_escolaridades`.`fk_id_escolaridade` = `tb_escolaridades`.`pk_id_escolaridade`
+JOIN `tb_cargos` ON `tb_cargos_escolaridades`.`fk_id_cargo` = `tb_cargos`.`pk_id_cargo`
+WHERE `tb_cargos`.`pk_id_cargo` = :tb_cargos.pk_id_cargo:
+ORDER BY `tb_escolaridades`.`fk_id_nivel` ASC', [...], false)
+ 2 APPPATH\Models\EscolaridadesModel.php(35): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Services\ClassificatorioService.php(54): App\Models\EscolaridadesModel->listarStatusEscolaridades(8, '1')
+ 4 APPPATH\Controllers\Cadastros.php(142): App\Services\ClassificatorioService->buscarRequisitos(8)
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-26 12:24:45 --> mysqli_sql_exception: Table 'teste_bd_processos_seletivos_administracao.tb_cargos_aperfeicoamentos_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\app\Models\AperfeicoamentosModel.php(40): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\app\Services\ClassificatorioService.php(56): App\Models\AperfeicoamentosModel->listarStatusAperfeicoamentos(8, '1')
+#6 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(142): App\Services\ClassificatorioService->buscarRequisitos(8)
+#7 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-26 12:24:45 --> Table 'teste_bd_processos_seletivos_administracao.tb_cargos_aperfeicoamentos_editais' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cargos`.`pk_id_cargo`, `tb_cargos_aperfeicoamentos_editais`.`fk_id_curso`, `tb_cursos_aperfeicoamentos`.`ds_nome_curso`, `tb_cargos_aperfeicoamentos_editais`.`ds_obrigatorio`, `tb_cargos_aperfeicoamentos_editais`.`ds_tipo_campo`, `tb_cargos_aperfeicoamentos_editais`.`ds_pontuacao_minima`, `tb_cargos_aperfeicoamentos_editais`.`ds_pontuacao_maxima`
+FROM `tb_cargos_aperfeicoamentos_editais`
+JOIN `tb_cursos_aperfeicoamentos` ON `tb_cargos_aperfeicoamentos_editais`.`fk_id_curso` = `tb_cursos_aperfeicoamentos`.`pk_id_curso`
+JOIN `tb_cargos` ON `tb_cargos_aperfeicoamentos_editais`.`fk_id_cargo` = `tb_cargos`.`pk_id_cargo`
+WHERE `tb_cargos`.`pk_id_cargo` = :tb_cargos.pk_id_cargo:
+AND `tb_cargos_aperfeicoamentos_editais`.`ds_obrigatorio` = :tb_cargos_aperfeicoamentos_editais.ds_obrigatorio:', [...], false)
+ 2 APPPATH\Models\AperfeicoamentosModel.php(40): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Services\ClassificatorioService.php(56): App\Models\AperfeicoamentosModel->listarStatusAperfeicoamentos(8, '1')
+ 4 APPPATH\Controllers\Cadastros.php(142): App\Services\ClassificatorioService->buscarRequisitos(8)
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-26 12:25:55 --> mysqli_sql_exception: Unknown column 'tb_cargos_aperfeicoamentos.ds_obrigatorio' in 'field list' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\app\Models\AperfeicoamentosModel.php(40): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\app\Services\ClassificatorioService.php(56): App\Models\AperfeicoamentosModel->listarStatusAperfeicoamentos(8, '1')
+#6 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(142): App\Services\ClassificatorioService->buscarRequisitos(8)
+#7 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-26 12:25:55 --> Unknown column 'tb_cargos_aperfeicoamentos.ds_obrigatorio' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cargos`.`pk_id_cargo`, `tb_cargos_aperfeicoamentos`.`fk_id_curso`, `tb_cursos_aperfeicoamentos`.`ds_nome_curso`, `tb_cargos_aperfeicoamentos`.`ds_obrigatorio`, `tb_cargos_aperfeicoamentos`.`ds_tipo_campo`, `tb_cargos_aperfeicoamentos`.`ds_pontuacao_minima`, `tb_cargos_aperfeicoamentos`.`ds_pontuacao_maxima`
+FROM `tb_cargos_aperfeicoamentos`
+JOIN `tb_cursos_aperfeicoamentos` ON `tb_cargos_aperfeicoamentos`.`fk_id_curso` = `tb_cursos_aperfeicoamentos`.`pk_id_curso`
+JOIN `tb_cargos` ON `tb_cargos_aperfeicoamentos`.`fk_id_cargo` = `tb_cargos`.`pk_id_cargo`
+WHERE `tb_cargos`.`pk_id_cargo` = :tb_cargos.pk_id_cargo:
+AND `tb_cargos_aperfeicoamentos`.`ds_obrigatorio` = :tb_cargos_aperfeicoamentos.ds_obrigatorio:', [...], false)
+ 2 APPPATH\Models\AperfeicoamentosModel.php(40): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Services\ClassificatorioService.php(56): App\Models\AperfeicoamentosModel->listarStatusAperfeicoamentos(8, '1')
+ 4 APPPATH\Controllers\Cadastros.php(142): App\Services\ClassificatorioService->buscarRequisitos(8)
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-26 12:26:38 --> mysqli_sql_exception: Table 'teste_bd_processos_seletivos_administracao.tb_cargos_experiencias_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\app\Models\ExperienciasModel.php(41): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\app\Services\ClassificatorioService.php(65): App\Models\ExperienciasModel->listarExperienciaDoCargo(27, 8)
+#6 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(143): App\Services\ClassificatorioService->buscarExperiencias(27, 8)
+#7 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-08-26 12:26:38 --> Table 'teste_bd_processos_seletivos_administracao.tb_cargos_experiencias_editais' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_cargos_experiencias_editais`.`fk_id_cargo`, `tb_cargos_experiencias_editais`.`fk_id_experiencia`, `tb_experiencias`.`ds_nome_experiencia`, `tb_cargos_experiencias_editais`.`ds_tipo_campo`, `tb_cargos`.`ds_nome_cargo`, `tb_cargos_experiencias_editais`.`ds_quantidade_minima`, `tb_cargos_experiencias_editais`.`ds_quantidade_maxima`, `tb_experiencias`.`ds_tipo_experiencia`, `tb_cargos_experiencias_editais`.`ds_obrigatorio`, `tb_cargos_experiencias_editais`.`ds_multiplicador`
+FROM `tb_cargos_experiencias_editais`
+JOIN `tb_experiencias` ON `tb_experiencias`.`pk_id_experiencia` = `tb_cargos_experiencias_editais`.`fk_id_experiencia`
+JOIN `tb_cargos` ON `tb_cargos`.`pk_id_cargo` = `tb_cargos_experiencias_editais`.`fk_id_cargo`
+WHERE `tb_cargos`.`pk_id_cargo` = :tb_cargos.pk_id_cargo:
+ORDER BY `tb_cargos_experiencias_editais`.`ds_tipo_campo` ASC, `tb_experiencias`.`ds_tipo_experiencia` ASC', [...], false)
+ 2 APPPATH\Models\ExperienciasModel.php(41): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Services\ClassificatorioService.php(65): App\Models\ExperienciasModel->listarExperienciaDoCargo(27, 8)
+ 4 APPPATH\Controllers\Cadastros.php(143): App\Services\ClassificatorioService->buscarExperiencias(27, 8)
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-26 12:27:45 --> Undefined property: stdClass::$ds_obrigatorio
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 55.
+ 1 APPPATH\Views\pages\FormularioClassificatorio_view.php(55): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$ds_obrigatorio', 'APPPATH\\Views\\pages\\FormularioClassificatorio_view.php', 55)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioClassificatorio_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(186): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-26 14:07:45 --> mysqli_sql_exception: Unknown column 'fk_id_cadastrado' in 'where clause' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Services\ClassificatorioService.php(91): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(144): App\Services\ClassificatorioService->buscarDadosCadastrados(2973, 8, 27)
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-26 14:07:45 --> Unknown column 'fk_id_cadastrado' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_cargos_criterios_adicionais`
+WHERE `fk_id_cadastrado` = :fk_id_cadastrado:
+AND `fk_id_cargo` = :fk_id_cargo:
+AND `fk_id_edital` = :fk_id_edital:', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Services\ClassificatorioService.php(91): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(144): App\Services\ClassificatorioService->buscarDadosCadastrados(2973, 8, 27)
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-26 14:15:26 --> mysqli_sql_exception: Unknown column 'fk_id_cadastrado' in 'where clause' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Services\ClassificatorioService.php(91): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(144): App\Services\ClassificatorioService->buscarDadosCadastrados(2973, 8, 27)
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-26 14:15:26 --> Unknown column 'fk_id_cadastrado' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_cargos_criterios_adicionais`
+WHERE `fk_id_cadastrado` = :fk_id_cadastrado:
+AND `fk_id_cargo` = :fk_id_cargo:
+AND `fk_id_edital` = :fk_id_edital:', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Services\ClassificatorioService.php(91): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(144): App\Services\ClassificatorioService->buscarDadosCadastrados(2973, 8, 27)
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-26 14:20:52 --> mysqli_sql_exception: Unknown column 'fk_id_cadastrado' in 'where clause' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Services\ClassificatorioService.php(91): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(144): App\Services\ClassificatorioService->buscarDadosCadastrados(2973, 8, 27)
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-26 14:20:52 --> Unknown column 'fk_id_cadastrado' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_cargos_criterios_adicionais`
+WHERE `fk_id_cadastrado` = :fk_id_cadastrado:
+AND `fk_id_cargo` = :fk_id_cargo:
+AND `fk_id_edital` = :fk_id_edital:', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Services\ClassificatorioService.php(91): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(144): App\Services\ClassificatorioService->buscarDadosCadastrados(2973, 8, 27)
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-26 14:23:44 --> mysqli_sql_exception: Unknown column 'fk_id_cadastrado' in 'where clause' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Services\ClassificatorioService.php(96): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(144): App\Services\ClassificatorioService->buscarDadosCadastrados(2973, 8, 27)
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-26 14:23:44 --> Unknown column 'fk_id_cadastrado' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_cargos_criterios_adicionais`
+WHERE `fk_id_cadastrado` = :fk_id_cadastrado:
+AND `fk_id_cargo` = :fk_id_cargo:
+AND `fk_id_edital` = :fk_id_edital:', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Services\ClassificatorioService.php(96): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(144): App\Services\ClassificatorioService->buscarDadosCadastrados(2973, 8, 27)
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-26 14:30:40 --> mysqli_sql_exception: Unknown column 'fk_id_cadastrado' in 'where clause' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Services\ClassificatorioService.php(94): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(144): App\Services\ClassificatorioService->buscarDadosCadastrados(2973, 8, 27)
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-26 14:30:40 --> Unknown column 'fk_id_cadastrado' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_cargos_criterios_adicionais`
+WHERE `fk_id_cadastrado` = :fk_id_cadastrado:
+AND `fk_id_cargo` = :fk_id_cargo:
+AND `fk_id_edital` = :fk_id_edital:', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Services\ClassificatorioService.php(94): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(144): App\Services\ClassificatorioService->buscarDadosCadastrados(2973, 8, 27)
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-26 14:32:44 --> mysqli_sql_exception: Unknown column 'fk_id_cadastrado' in 'where clause' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Services\ClassificatorioService.php(94): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(144): App\Services\ClassificatorioService->buscarDadosCadastrados(2973, 8, 27)
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-26 14:32:44 --> Unknown column 'fk_id_cadastrado' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_cargos_criterios_adicionais`
+WHERE `fk_id_cadastrado` = :fk_id_cadastrado:
+AND `fk_id_cargo` = :fk_id_cargo:
+AND `fk_id_edital` = :fk_id_edital:', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Services\ClassificatorioService.php(94): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(144): App\Services\ClassificatorioService->buscarDadosCadastrados(2973, 8, 27)
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2026-08-26 14:38:32 --> mysqli_sql_exception: Unknown column 'fk_id_cadastrado' in 'where clause' in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\app\Services\ClassificatorioService.php(94): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\app\Controllers\Cadastros.php(144): App\Services\ClassificatorioService->buscarDadosCadastrados(2973, 8, 27)
+#8 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+#9 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+#10 C:\laragon\www\servicos\procseletivos\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\servicos\procseletivos\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2026-08-26 14:38:32 --> Unknown column 'fk_id_cadastrado' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_cargos_criterios_adicionais`
+WHERE `fk_id_cadastrado` = :fk_id_cadastrado:
+AND `fk_id_cargo` = :fk_id_cargo:
+AND `fk_id_edital` = :fk_id_edital:', [...], false)
+ 2 SYSTEMPATH\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Services\ClassificatorioService.php(94): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Cadastros.php(144): App\Services\ClassificatorioService->buscarDadosCadastrados(2973, 8, 27)
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-26 14:51:06 --> Undefined property: App\Services\ClassificatorioService::$criteriosAdicionaisModel
+in APPPATH\Services\ClassificatorioService.php on line 63.
+ 1 APPPATH\Services\ClassificatorioService.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Services\\ClassificatorioService::$criteriosAdicionaisModel', 'APPPATH\\Services\\ClassificatorioService.php', 63)
+ 2 APPPATH\Controllers\Cadastros.php(142): App\Services\ClassificatorioService->buscarRequisitos(8)
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-26 14:51:58 --> Class "App\Services\CriteriosAdicionaisModel" not found
+in APPPATH\Services\ClassificatorioService.php on line 35.
+ 1 APPPATH\Controllers\Cadastros.php(25): App\Services\ClassificatorioService->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Cadastros->__construct()
+ 3 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-26 14:57:07 --> Call to undefined method App\Models\CriteriosAdicionaisModel::listarStatusCriteriosAdicionais
+in SYSTEMPATH\Model.php on line 841.
+ 1 APPPATH\Services\ClassificatorioService.php(66): CodeIgniter\Model->__call('listarStatusCriteriosAdicionais', [...])
+ 2 APPPATH\Controllers\Cadastros.php(142): App\Services\ClassificatorioService->buscarRequisitos(8)
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-26 15:04:20 --> Unclosed '{' on line 240
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 304.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 3 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 4 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 5 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 7 APPPATH\Controllers\Cadastros.php(193): view('layoutLogado', [...])
+ 8 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+ 9 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+10 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-26 15:04:58 --> Undefined array key "ds_nome_criterio"
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 282.
+ 1 APPPATH\Views\pages\FormularioClassificatorio_view.php(282): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "ds_nome_criterio"', 'APPPATH\\Views\\pages\\FormularioClassificatorio_view.php', 282)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioClassificatorio_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(193): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-08-26 15:11:15 --> Undefined array key "ds_nome_criterio"
+in APPPATH\Views\pages\FormularioClassificatorio_view.php on line 269.
+ 1 APPPATH\Views\pages\FormularioClassificatorio_view.php(269): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "ds_nome_criterio"', 'APPPATH\\Views\\pages\\FormularioClassificatorio_view.php', 269)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\pages\\FormularioClassificatorio_view.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('/pages/FormularioClassificatorio_view', [], true)
+ 5 APPPATH\Views\layoutLogado.php(3): view('/pages/FormularioClassificatorio_view')
+ 6 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\layoutLogado.php')
+ 7 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('layoutLogado', [], true)
+ 9 APPPATH\Controllers\Cadastros.php(194): view('layoutLogado', [...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Cadastros->dadosClassificatorios('27', '8', '2973')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cadastros))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

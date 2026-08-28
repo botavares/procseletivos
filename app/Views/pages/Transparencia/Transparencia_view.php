@@ -38,7 +38,7 @@
          type="text" 
          placeholder="Digite o nome do candidato">
 </div>
-<div id="tabela-container" class="br-table" data-search="data-search" data-selection="data-selection" data-collapse="data-collapse" data-random="data-random">
+<div id="tabela-container">
   
 </div>
     

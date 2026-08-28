@@ -315,6 +315,113 @@ class Classificacoes extends BaseController{
         imprimir($dompdf, 'ClassificacaoPorCargo', $dados);
     }
 
+    public function exportarTabela($edital, $cargo){
+        $dadosJson  = $this->request->getPost('dados');
+        $titulosJson = $this->request->getPost('titulos');
+
+        $dados = json_decode($dadosJson, true);
+        $titulos = json_decode($titulosJson, true);
+
+        if (empty($dados) || empty($titulos)) {
+            return redirect()->back()
+                ->with('error', 'Nenhum dado foi recebido para exportação. Verifique se a tabela possui registros.');
+        }
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setTitle('Classificação');
+
+        $editaisModel = new EditaisModel();
+        $cargosModel  = new CargosModel();
+        $editalInfo = $editaisModel->find($edital);
+        $cargoInfo  = $cargosModel->find($cargo);
+
+        $nomeEdital = $editalInfo->ds_numero_edital ?? 'edital';
+        $nomeCargo  = $cargoInfo->ds_nome_cargo   ?? 'cargo';
+
+        // Linha 1: Título institucional
+        $sheet->mergeCells('A1:J1');
+        $sheet->setCellValue('A1', 'PREFEITURA MUNICIPAL DE DIVINÓPOLIS');
+        $sheet->getStyle('A1')->getFont()->setBold(true)->setSize(14)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('FFFFFF'));
+        $sheet->getStyle('A1')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('1F4E78');
+        $sheet->getStyle('A1')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
+        $sheet->getRowDimension(1)->setRowHeight(28);
+
+        // Linha 2: Edital e Cargo
+        $sheet->mergeCells('A2:J2');
+        $sheet->setCellValue('A2', "Edital: {$nomeEdital}  |  Cargo: {$nomeCargo}");
+        $sheet->getStyle('A2')->getFont()->setBold(true)->setSize(11)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('FFFFFF'));
+        $sheet->getStyle('A2')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('305496');
+        $sheet->getStyle('A2')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
+        $sheet->getRowDimension(2)->setRowHeight(22);
+
+        // Linha 3: Data de geração
+        $sheet->mergeCells('A3:J3');
+        $sheet->setCellValue('A3', 'Classificação gerada em ' . date('d/m/Y H:i:s'));
+        $sheet->getStyle('A3')->getFont()->setItalic(true)->setSize(10)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('444444'));
+        $sheet->getStyle('A3')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('F2F2F2');
+        $sheet->getStyle('A3')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
+        $sheet->getRowDimension(3)->setRowHeight(20);
+
+        // Linha 5: Cabeçalho da tabela
+        $linhaCabecalho = 5;
+        $col = 1;
+        foreach ($titulos as $header) {
+            $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col) . $linhaCabecalho;
+            $sheet->setCellValue($cellCoord, $header);
+            $sheet->getStyle($cellCoord)->getFont()->setBold(true)->setSize(11)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('FFFFFF'));
+            $sheet->getStyle($cellCoord)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('305496');
+            $sheet->getStyle($cellCoord)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
+            $sheet->getStyle($cellCoord)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN)->getColor()->setRGB('D9D9D9');
+            $sheet->getRowDimension($linhaCabecalho)->setRowHeight(22);
+            $col++;
+        }
+
+        // Dados
+        $row = $linhaCabecalho + 1;
+        foreach ($dados as $linha) {
+            $col = 1;
+            foreach ($titulos as $header) {
+                $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col) . $row;
+                $valor = $linha[$header] ?? '';
+                $sheet->setCellValue($cellCoord, $valor);
+                $sheet->getStyle($cellCoord)->getFont()->setSize(11);
+                $sheet->getStyle($cellCoord)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
+                $sheet->getStyle($cellCoord)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN)->getColor()->setRGB('D9D9D9');
+
+                // Zebra striping
+                if ($row % 2 == 0) {
+                    $sheet->getStyle($cellCoord)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('F8F9FA');
+                } else {
+                    $sheet->getStyle($cellCoord)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('FFFFFF');
+                }
+
+                $col++;
+            }
+            $sheet->getRowDimension($row)->setRowHeight(20);
+            $row++;
+        }
+
+        // Auto-size nas colunas usadas
+        $totalCols = count($titulos);
+        foreach (range(1, $totalCols) as $colIndex) {
+            $sheet->getColumnDimensionByColumn($colIndex)->setAutoSize(true);
+        }
+
+        // Nome do arquivo
+        $safeEdital = preg_replace('/[^A-Za-z0-9_-]/', '_', $nomeEdital);
+        $safeCargo  = preg_replace('/[^A-Za-z0-9_-]/', '_', $nomeCargo);
+        $fileName   = "Classificacao_{$safeEdital}_{$safeCargo}_" . date('Ymd_His') . ".xlsx";
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header("Content-Disposition: attachment; filename=\"{$fileName}\"");
+        header('Cache-Control: max-age=0');
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save('php://output');
+        exit;
+    }
+
      /*===============================================================================
             FUNÇÃO: salvarEscolha;
             OBJETIVO: Salvar a escolha do edital e curso e redirecionar para a listagem de candidatos;

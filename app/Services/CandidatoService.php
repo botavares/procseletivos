@@ -1,17 +1,21 @@
 <?php
 namespace App\Services;
+
 use App\DTOs\CandidatoDTO;
 use App\Models\CandidatosModel;
 use App\Models\DeficienciasModel;
+
 class CandidatoService
 {
     protected CandidatosModel $candidatosModel;
     protected DeficienciasModel $deficienciasModel;
+
     public function __construct()
     {
         $this->candidatosModel = new CandidatosModel();
         $this->deficienciasModel = new DeficienciasModel();
     }
+
     /**
      * Busca candidato pelo ID
      */
@@ -19,6 +23,7 @@ class CandidatoService
     {
         return $this->candidatosModel->find($id);
     }
+
     /**
      * Busca candidato pelo CPF
      */
@@ -27,23 +32,29 @@ class CandidatoService
         $cpfLimpo = preg_replace('/[^0-9]/', '', $cpf);
         return $this->candidatosModel->where('ds_cpf', $cpfLimpo)->first();
     }
+
     /**
-     * Cria ou atualiza candidato
+     * Cria ou atualiza candidato.
+     * O Service gerencia timestamps e IP, não o DTO.
      */
-    public function salvar(CandidatoDTO $dto, string $acao): array
+    public function salvar(CandidatoDTO $dto, string $acao, ?object $request = null): array
     {
         $isCreate = $acao === 'create';
-        
+        $dados = $dto->toArray();
+
         if ($isCreate) {
-            $dados = $dto->toArray(true);
+            $dados['ds_data_cadastro']  = date('Y-m-d');
+            $dados['ds_hora_cadastro']  = date('H:i:s');
+            $dados['ds_ip_cadastro']    = $this->obterIp($request);
+
             $id = $this->candidatosModel->insert($dados);
-            
+
             if ($id === false) {
                 $erros = $this->candidatosModel->errors();
                 log_message('error', 'Erro ao inserir candidato: ' . json_encode($erros));
                 return ['sucesso' => false, 'erro' => $erros ?: 'Erro ao salvar candidato', 'acao' => 'create'];
             }
-            
+
             return ['sucesso' => true, 'id' => $id, 'acao' => 'create'];
 
         } else {
@@ -51,19 +62,33 @@ class CandidatoService
             if (!$candidato) {
                 return ['sucesso' => false, 'erro' => 'Candidato não encontrado'];
             }
-            
-            $dados = $dto->toArray(false);
+
+            $dados['ds_data_alteracao'] = date('Y-m-d');
+            $dados['ds_hora_alteracao'] = date('H:i:s');
+
             $resultado = $this->candidatosModel->update($candidato->pk_id_cadastrado, $dados);
-            
+
             if ($resultado === false) {
                 $erros = $this->candidatosModel->errors();
                 log_message('error', 'Erro ao atualizar candidato: ' . json_encode($erros));
                 return ['sucesso' => false, 'erro' => $erros ?: 'Erro ao atualizar candidato', 'acao' => 'update'];
             }
-            
+
             return ['sucesso' => true, 'id' => $candidato->pk_id_cadastrado, 'acao' => 'update'];
         }
     }
+
+    /**
+     * Obtém o IP da requisição de forma segura
+     */
+    private function obterIp(?object $request): ?string
+    {
+        if ($request !== null && method_exists($request, 'getIPAddress')) {
+            return $request->getIPAddress();
+        }
+        return $_SERVER['REMOTE_ADDR'] ?? null;
+    }
+
     /**
      * Vincula ID Gov ao candidato existente
      */
@@ -71,6 +96,7 @@ class CandidatoService
     {
         return $this->candidatosModel->update($candidatoId, ['fk_id_gov' => $govId]);
     }
+
     /**
      * Verifica status de registro do candidato
      */
@@ -79,6 +105,7 @@ class CandidatoService
         $candidato = $this->buscarPorCpf($cpf);
         return $candidato ? 'registrado' : 'naoregistrado';
     }
+
     /**
      * Busca deficiência do candidato
      */
@@ -89,6 +116,7 @@ class CandidatoService
         }
         return $this->deficienciasModel->where('pk_id_pne', $idPne)->first();
     }
+
     /**
      * Lista todas as deficiências
      */

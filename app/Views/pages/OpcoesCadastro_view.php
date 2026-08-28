@@ -115,16 +115,16 @@
    <legend>Cargos Disponíveis</legend>
     <div class="row mt-4">
       <?php 
-        foreach($editais as $edital){
-            if($edital->fk_id_cargo != null){
-                $ano = substr($edital->ds_numero_edital, -4);            // últimos 4 dígitos → ano
-                        $numero = substr($edital->ds_numero_edital, 0, -4);      // o que sobra → número do edital
+        foreach($cargosAtivos as $cargo){
+            if($cargo->fk_id_cargo != null){
+                $ano = substr($cargo->ds_numero_edital, -4);            // últimos 4 dígitos → ano
+                        $numero = substr($cargo->ds_numero_edital, 0, -4);      // o que sobra → número do edital
                         // remove zeros à esquerda
                         $numero = ltrim($numero, "0");
                         $numeroEdital =  $numero . '/' . $ano;
       ?>
     <div class="col-12 col-md-6 col-lg-6 mb-3">
-      <a href="<?= base_url("Cadastros/dadosClassificatorios/".$edital->fk_id_edital."/".$edital->fk_id_cargo."/".$candidato) ?>" class="text-decoration-none">
+      <a href="<?= base_url("Cadastros/dadosClassificatorios/".$cargo->fk_id_edital."/".$cargo->fk_id_cargo."/".$candidato) ?>" class="text-decoration-none">
         <div class="br-card hover h-100">
         <div class="card-content">
           <div class="d-flex align-items-center">
@@ -137,7 +137,7 @@
 
             <div>
               <h4 class="mb-1 text-weight-semi-bold text-gray-80">
-                <?php echo $edital->ds_nome_cargo;?>
+                <?php echo $cargo->ds_nome_cargo;?>
               </h4>
               <p class="mb-0 text-gray-60">
                 Edital <?php echo $numeroEdital;?>

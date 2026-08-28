@@ -14,9 +14,9 @@ class PdfService
     /**
      * Gera comprovante de inscrição
      */
-    public function gerarComprovante(array $dados): string{
+    public function gerarPdf(array $dados, string $documento): string{
         
-        $html = view('impressos/comprovante', $dados);
+        $html = view('impressos/' . $documento, $dados);
         
         $this->dompdf->loadHtml($html);
         $this->dompdf->setPaper('A4', 'portrait');

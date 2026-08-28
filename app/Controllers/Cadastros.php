@@ -4,26 +4,32 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Controllers\BaseController;
 use App\DTOs\CandidatoDTO;
+use App\Services\Base\SessaoService;
 use App\Services\CandidatoService;
 use App\Services\ClassificatorioService;
+use App\Services\EditaisService;
+use App\Services\ComprovanteService;
 use App\Services\ProtocoloService;
-use App\Services\PdfService;
 use App\Services\GovBrService;
 
 
 class Cadastros extends BaseController{
     protected CandidatoService $candidatoService;
     protected ClassificatorioService $classificatorioService;
+    protected EditaisService $editaisService;
+    protected ComprovanteService $comprovanteService;
     protected ProtocoloService $protocoloService;
-    protected PdfService $pdfService;
     protected GovBrService $govBrService;
+    protected SessaoService $sessaoService;
     
     public function __construct(){
-        $this->candidatoService = new CandidatoService();
-        $this->classificatorioService = new ClassificatorioService();
-        $this->protocoloService = new ProtocoloService();
-        $this->pdfService = new PdfService();
-        $this->govBrService = new GovBrService();
+        $this->candidatoService = service('candidatoService');
+        $this->classificatorioService = service('classificatorioService');
+        $this->editaisService = service('editaisService');
+        $this->comprovanteService = service('comprovanteService');
+        $this->protocoloService = service('protocoloService');
+        $this->govBrService = service('govBrService');
+        $this->sessaoService = service('sessao');
     }
 
     /**
@@ -33,11 +39,18 @@ class Cadastros extends BaseController{
         if (!is_file(APPPATH . "Views/{$camada1}/{$camada2}/{$page}_view.php")) {
             throw PageNotFoundException::forPageNotFound();
         }
+
+        $loginMode = env('LOGIN_MODE', 'govbr');
+        if ($loginMode === 'local') {
+            if (!checklogged()) {
+                return $this->loginLocal();
+            }
+        }
         if (!checklogged()) {
             $urlToGov = "https://app.prefeituradivinopolis.com.br/app/7ddde5c6897f39b7b139238d0dd94d7f?destino=Cadastros";
             return redirect()->to($urlToGov);
         }
-        $dataSession = $_SESSION;
+        $dataSession = $this->sessaoService->obterUsuario();
         
         $candidato = $this->candidatoService->buscarPorCpf($dataSession['cpf']);
         $idCandidato = $candidato->pk_id_cadastrado ?? null;    
@@ -52,33 +65,32 @@ class Cadastros extends BaseController{
         }else{
             $protocolos = [];
         }
-        $editais = (new \App\Models\EditaisCargosModel())->getEditaisAtivosCargos();
-        
-        
+        //Buscando todos cargos com editais Ativos
+        $cargosAtivos = $this->editaisService->buscarEditaisAtivosCargos();
 
+        /*Parametros para carga na página de Opções de Cadastro*/
         $parametros = [
-            'camada1' => $camada1,
-            'camada2' => $camada2,
-            'pagina' => $page,
-            'status' => $candidato ? 'registrado' : 'naoregistrado',
-            'editais' => $editais,
-            'candidato' => $idCandidato ?? null,
-            'params' => $dataSession,
-            'protocolos' => $protocolos,
-            'titulo' => ucfirst('Dados Pessoais e Acadêmicos'),
-            'dataAtual' => date('d/m/Y'),
+            'camada1'       => $camada1,
+            'camada2'       => $camada2,
+            'pagina'        => $page,
+            'status'        => $candidato ? 'registrado' : 'naoregistrado',
+            'cargosAtivos'  => $cargosAtivos,
+            'candidato'     => $idCandidato ?? null,
+            'params'        => $dataSession,
+            'protocolos'    => $protocolos,
+            'titulo'        => ucfirst('Dados Pessoais e Acadêmicos'),
+            'dataAtual'     => date('d/m/Y'),
         ];
         return view('layoutLogado', $parametros);
     }
     /**
      * Formulário de dados pessoais
      */
-    public function dadosCandidato($camada1 = '', $camada2 = 'pages', $page = 'FormularioPessoais')
-    {
+    public function dadosCandidato($camada1 = '', $camada2 = 'pages', $page = 'FormularioPessoais'){
         if (!checklogged()) {
             return redirect()->to('Home');
         }
-        $dataSession = $_SESSION;
+        $dataSession = $this->sessaoService->obterUsuario();
         $candidato = $this->candidatoService->buscarPorCpf($dataSession['cpf']);
         
         $acao = $candidato ? 'update' : 'create';
@@ -114,76 +126,63 @@ class Cadastros extends BaseController{
      */
     public function dadosClassificatorios($edital, $cargo, $id, $camada1 = '', $camada2 = 'pages', $page = 'FormularioClassificatorio'){
         
-        $editalModel = new \App\Models\EditaisModel();
-        $dadosEdital = $editalModel->where('pk_id_edital', $edital)->first($edital);
-        $dataInicialEdital = date('d/m/Y', strtotime($dadosEdital->ds_data_inicial));
-        $dataFinalEdital = date('d/m/Y', strtotime($dadosEdital->ds_data_termino));
-        //se hoje não estiver entre a data inicial e final do edital, redireciona para a página de opções de cadastro
-        $hoje = date('Y-m-d');
-        if ($hoje < $dadosEdital->ds_data_inicial || $hoje > $dadosEdital->ds_data_termino) {
-            return redirect()->route('Cadastros')->with('mensagemError', "O período de cadastro para este edital é de {$dataInicialEdital} a {$dataFinalEdital}.");
+        $editalAtivo = $this->editaisService->estaAtivo($edital);
+        if($editalAtivo !== true){
+            return redirect()->route('Cadastros')->with('mensagemError', $editalAtivo['mensagemError']);
         }
+        
 
         if (!checklogged()) {
             return redirect()->to('Home');
         }
-        $dataSession = $_SESSION;
+        $dataSession = $this->sessaoService->obterUsuario();
         $dadosCargo = $this->classificatorioService->buscarDadosCargo($cargo);
         $requisitos = $this->classificatorioService->buscarRequisitos($cargo);
-        $experiencias = $this->classificatorioService->buscarExperiencias($edital, $cargo);
         $cadastrados = $this->classificatorioService->buscarDadosCadastrados($id, $cargo, $edital);
-
-        $escolaridadesIndexadas = [];
-
-        if (!empty($cadastrados['escolaridades'])) {
-            foreach ($cadastrados['escolaridades'] as $esc) {
-                $escolaridadesIndexadas[$esc->fk_id_escolaridade] = $esc->ds_quantidade;
-            }
-        }
-
-        $aperfeicoamentosIndexados = [];
-        if (!empty($cadastrados['aperfeicoamentos'])) {
-            foreach ($cadastrados['aperfeicoamentos'] as $ap) {
-                $aperfeicoamentosIndexados[$ap->fk_id_curso] = $ap->ds_quantidade ?? 1;
-            }
-        }
         
         $parametros = [
             'camada1' => $camada1,
             'camada2' => $camada2,
             'pagina' => $page,
             'params' => $dataSession,
-            'experienciaProfissional' => $experiencias,
-            'experienciasSalvas' => $cadastrados['experienciasSalvas'],
-            // Dados classificatórios completos
-            'escolaridadesClassificatorias' => $requisitos['escolaridadesClassificatorias'],
-            'aperfeicoamentoClassificatorios' => $requisitos['aperfeicoamentosClassificatorios'],
-            // Arrays completos dos dados já salvos (para preencher inputs)
-            'dadosEscolaridade' => $escolaridadesIndexadas,
-            'dadosAperfeicoamento' => $aperfeicoamentosIndexados,
-            'dadosExperiencia' => $cadastrados['experiencias'],
+            
+            
+            // Dados classificatórios completos para construção do formulário 
+            'experienciasClassificatorias'          => $requisitos['experienciasClassificatorias'],
+            'escolaridadesClassificatorias'         => $requisitos['escolaridadesClassificatorias'],
+            'aperfeicoamentoClassificatorios'       => $requisitos['aperfeicoamentosClassificatorios'],
+            'criteriosAdicionaisClassificatorios'   => $requisitos['criteriosAdicionaisClassificatorios'],
+            // Arrays completos dos dados já salvos (para preencher inputs quando carrega dados cadastrados do candidato)
+            'dadosEscolaridadeIndexado'         => $cadastrados['escolaridadesIndexadas'],
+            'dadosAperfeicoamentoIndexado'      => $cadastrados['aperfeicoamentosIndexados'],
+            'dadosCriterioAdicionalIndexado'    => $cadastrados['criteriosAdicionaisIndexados'],
+            'dadosCriterioAdicional'            => $cadastrados['criteriosAdicionais'],
+            'dadosExperiencia'                  => $cadastrados['experiencias'],
+            'experienciasSalvas'                => $cadastrados['experienciasSalvas'],
             // IDs para checkboxes
-            'idsEscolaridadesCandidato' => $cadastrados['idsEscolaridades'],
-            'idsAperfeicoamentosCandidato' => $cadastrados['idsAperfeicoamentos'],
-            'idCandidato' => $id,
-            'idCargo' => $cargo,
-            'idEdital' => $edital,
-            'titulo' => ucfirst('Registrar seus dados acadêmicos'),
-            'dataAtual' => date('d/m/Y'),
-            'saudacao' => $this->getSaudacao(),
-            'cargos' => $dadosCargo,
+            'idsEscolaridadesCandidato'         => $cadastrados['idsEscolaridades'],
+            'idsAperfeicoamentosCandidato'      => $cadastrados['idsAperfeicoamentos'],
+            'idsCriteriosAdicionaisCandidato'   => $cadastrados['idsCriteriosAdicionais'],
+            // Dados do cargo, edital e candidato
+            'idCandidato'   => $id,
+            'idCargo'       => $cargo,
+            'idEdital'      => $edital,
+            'titulo'        => ucfirst('Registrar seus dados acadêmicos e profissionais'),
+            'dataAtual'     => date('d/m/Y'),
+            'saudacao'      => $this->getSaudacao(),
+            'cargos'        => $dadosCargo,
         ];
         return view('layoutLogado', $parametros);
     }
     /**
      * Salva dados pessoais
      */
-    public function registrarDadosPessosais(){
+    public function registrarDadosPessoais(){
         if ($this->request->getMethod() !== 'post') {
             return redirect()->back();
         }
         $dto = CandidatoDTO::fromArray($this->request->getPost());
-        $resultado = $this->candidatoService->salvar($dto, $this->request->getPost('acao'));
+        $resultado = $this->candidatoService->salvar($dto, $this->request->getPost('acao'), $this->request);
         if ($resultado['sucesso']) {
             $mensagem = $resultado['acao'] === 'create' 
                 ? 'Registro gravado com sucesso' 
@@ -198,29 +197,28 @@ class Cadastros extends BaseController{
     /**
      * Salva dados classificatórios
      */
-    public function registrarDadosClassificatorios()
-    {
+    public function registrarDadosClassificatorios(){
         if ($this->request->getMethod() !== 'post') {
             return redirect()->to('Home');
         }
         $post = $this->request->getPost();
-        $cargoId = $post['idCargo'];
-        $editalId = $post['idEdital'];
-        $candidatoId = $post['idCandidato'];
+        
+        $cargoId = $post['idCargo'] ?? null;
+        $editalId = $post['idEdital'] ?? null;
+        $candidatoId = $post['idCandidato'] ?? null;
+        
         // Processa classificatório
         $this->classificatorioService->processarFormulario($post, $candidatoId, $cargoId, $editalId);
-        // Gera/Atualiza protocolo
-        $candidato = $this->candidatoService->buscarPorId($candidatoId);
-        $dadosCargo = $this->classificatorioService->buscarDadosCargo($cargoId);
         
+        // Gera/Atualiza protocolo 
         $protocoloDto = $this->protocoloService->buscarOuGerar(
             $candidatoId, 
             $cargoId, 
-            $editalId, 
-            $dadosCargo->fk_id_secretaria ?? null
+            $editalId
         );
         
         $this->protocoloService->salvar($protocoloDto);
+        
         // Redireciona para tela de sucesso
         return redirect()->route('sucessoClassificatorio', [$candidatoId, $cargoId, $editalId])
             ->with('mensagemSuccess', 'Registro atualizado com sucesso!');
@@ -252,65 +250,24 @@ class Cadastros extends BaseController{
      * para evitar problemas de buffer no Firefox
      */
     public function gerarComprovante($idEdital, $idCargo, $idCandidato){
-        $modelCargos            = new \App\Models\CargosModel();
-        $modelCandidatos        = new \App\Models\CandidatosModel();
-        $modelProtocolos        = new \App\Models\ProtocolosModel();
-        $modelEditais            = new \App\Models\EditaisModel();
-
-        $dadosCandidatos    = $modelCandidatos->where('pk_id_cadastrado', $idCandidato)->first();
-        $nomeCargo          = $modelCargos->where('pk_id_cargo', $idCargo)->select('ds_nome_cargo')->first();
-        $dadosEdital        = $modelEditais->where('pk_id_edital', $idEdital)->first();
-        $dadosProtocolos    = $modelProtocolos->where('fk_id_cadastrado', $idCandidato)
-                                              -> where('fk_id_cargo', $idCargo)
-                                              -> where('fk_id_edital', $idEdital)
-                                              ->first();
-
-        if(!$dadosProtocolos){
-             return redirect()->route('home')->with('mensagemError', 'Protocolo não encontrado para este candidato, cargo e edital.');
-
-        }else{
-            // Formata o número do edital com a máscara 012026 para 01/2026
-            $ano = substr($dadosEdital->ds_numero_edital, -4);            // últimos 4 dígitos → ano
-            $numero = substr($dadosEdital->ds_numero_edital, 0, -4);      // o que sobra → número do edital
-            // remove zeros à esquerda
-            $numero = ltrim($numero, "0");
-            $numeroEdital = "Edital " .$numero . '/' . $ano;
-
+        
+        $comprovante = $this->comprovanteService->gerarComprovanteCompleto($idEdital, $idCargo, $idCandidato);
+        
+        if ($comprovante->erro !== null) {
+            return redirect()->route('home')->with('mensagemError', $comprovante->erro);
         }
 
-		$def = $this->pdfService->formatarDeficiencia(
-            $dadosCandidatos->fk_id_pne,
-            $dadosCandidatos->ds_outra_pne
-        );
-
-        
-        $dados = array(
-            'brasao'            =>  imageToBase64(ROOTPATH . '/external/img/brasao.png'),
-			'fundo'		        =>	imageToBase64(ROOTPATH . '/external/img/fundo.jpg'),
-            'edital'            =>  $numeroEdital,
-            'dadosPessoais'     =>  $dadosCandidatos,
-            'protocolo'         =>  $dadosProtocolos->ds_protocolo,
-            'nascimento'        =>  date('d/m/Y', strtotime($dadosCandidatos->ds_nascimento)),
-            'nomeCargo'         =>  $nomeCargo->ds_nome_cargo,
-            'deficiencia'       =>  $def,
-            'dataCadastro'      =>  date('d/m/Y', strtotime($dadosCandidatos->ds_data_cadastro)),
-            'horaCadastro'      =>  date('H:i:s', strtotime($dadosCandidatos->ds_hora_cadastro)),
-            //'ip'                =>  $dadosCandidatos->pk_id_cadastrado,
-        );
-        $pdfContent = $this->pdfService->gerarComprovante($dados);
-
-        if (!$pdfContent) {
+        if (!$comprovante->conteudo) {
             return $this->response
                 ->setStatusCode(ResponseInterface::HTTP_INTERNAL_SERVER_ERROR)
                 ->setJSON(['error' => 'Erro ao gerar PDF']);
         }
 
         return $this->response
-            ->setHeader('Content-Type', 'application/pdf')
-            ->setHeader('Content-Disposition', 'attachment; filename="comprovante_candidato_'.$idCandidato.'.pdf"')
+            ->setHeader('Content-Type', $comprovante->tipoMime)
+            ->setHeader('Content-Disposition', 'attachment; filename="' . $comprovante->nomeArquivo . '"')
             ->setHeader('Content-coding', 'none')
-            ->setBody($pdfContent);
-    
+            ->setBody($comprovante->conteudo);
 
     }
 
@@ -343,6 +300,25 @@ class Cadastros extends BaseController{
         log_message('info', "Usuário {$dataSession['nome']} ({$dataSession['cpf']}) autenticado via Gov.BR");
         return redirect()->to($destino);
     }
+    public function loginLocal(){
+        $dataSession = [
+            'su'        => '1234567',
+            'id'        => '69',
+            'email'     => 'breno.o.tavares@gmail.com',
+            'nome'      => 'Breno Oliveira Tavares',
+            'cpf'       => '03455783686',
+            'logged_in' => true
+        ];
+
+        $this->sessaoService->definirUsuario($dataSession);
+
+        $destino = "Cadastros";//$this->request->getVar('destino');
+        if ($destino) {
+            return redirect()->to(base_url($destino));
+        }
+
+        return redirect()->to(base_url());
+    }
     /**
      * Logout
      */
@@ -371,10 +347,5 @@ class Cadastros extends BaseController{
             'ds_cidade' => $candidato->ds_cidade ?? '',
         ];
     }
-    private function formatarNumeroEdital(string $numero): string
-    {
-        $ano = substr($numero, -4);
-        $num = ltrim(substr($numero, 0, -4), "0");
-        return "Edital {$num}/{$ano}";
-    }
+    
 }

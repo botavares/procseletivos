@@ -20,7 +20,7 @@ function colunaVisivel(string $nome, array $ocultas): bool {
             <div class="table-title">Classificação dos Candidatos</div>
         </div>
     </div>
-    <table class="br-table">
+    <table class="br-table" data-search="data-search" data-selection="data-selection" data-collapse="data-collapse" data-random="data-random">
         <caption>Título da Tabela</caption>
         <thead>
         <tr>

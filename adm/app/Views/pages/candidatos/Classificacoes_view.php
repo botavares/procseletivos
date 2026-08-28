@@ -82,14 +82,67 @@
 						  <?php } ?>
                       </tbody>
                     </table>
-					<a href="<?php echo base_url("Dashboard")?>" type="button" class="btn btn-warning col-md-2 mtop10 chanfrado mbot10">Voltar</a>
-				</div>
+							<a href="<?php echo base_url("Dashboard")?>" type="button" class="btn btn-warning col-md-2 mtop10 chanfrado mbot10">Voltar</a>
+							<button type="button" id="btnExportarPlanilha" class="btn btn-success col-md-2 mtop10 chanfrado mbot10 float-right">
+								<i class="fas fa-file-excel"></i> Exportar Planilha
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-</div>		
+</div>
+
+<script>
+document.getElementById('btnExportarPlanilha').addEventListener('click', function () {
+	var table = $('#tabela-paginada').DataTable();
+	var dados = [];
+	var titulos = [];
+
+	table.columns().every(function (index) {
+		if (index < table.columns().count() - 1) {
+			titulos.push(this.header().textContent.trim());
+		}
+	});
+
+	table.rows({ search: 'applied' }).every(function () {
+		var row = this.data();
+		var linha = {};
+		for (var i = 0; i < titulos.length; i++) {
+			linha[titulos[i]] = row[i] !== undefined ? $('<div>').html(row[i]).text().trim() : '';
+		}
+		dados.push(linha);
+	});
+
+	var form = document.createElement('form');
+	form.method = 'POST';
+	form.action = '<?php echo base_url("Classificacoes/exportarTabela/" . $idEdital . "/" . $idCargo) ?>';
+	form.style.display = 'none';
+
+	var inputDados = document.createElement('input');
+	inputDados.type = 'hidden';
+	inputDados.name = 'dados';
+	inputDados.value = JSON.stringify(dados);
+	form.appendChild(inputDados);
+
+	var inputTitulos = document.createElement('input');
+	inputTitulos.type = 'hidden';
+	inputTitulos.name = 'titulos';
+	inputTitulos.value = JSON.stringify(titulos);
+	form.appendChild(inputTitulos);
+
+	var inputCsrf = document.createElement('input');
+	inputCsrf.type = 'hidden';
+	inputCsrf.name = '<?php echo csrf_token(); ?>';
+	inputCsrf.value = '<?php echo csrf_hash(); ?>';
+	form.appendChild(inputCsrf);
+
+	document.body.appendChild(form);
+	form.submit();
+	document.body.removeChild(form);
+});
+</script>
 <footer class="main-footer">
 <div class="float-right d-none d-sm-block">
 
