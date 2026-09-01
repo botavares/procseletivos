@@ -33,7 +33,7 @@ class TransparenciaFormService
 
         $cargos = $this->cargosModel->cargosEditaisAtivos();
 
-        $editais = $this->editaisModel->listarTodosEditais();
+        $editais = $this->editaisModel->listarEditaisVisiveis();
 
         return array_merge(
             $service->listarClassificacao($params),

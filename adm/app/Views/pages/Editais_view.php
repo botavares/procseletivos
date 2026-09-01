@@ -1,3 +1,4 @@
+<?php use App\Enums\EditalStatusEnum; ?>
 <div class="content-wrapper">
 	<section class="content-header">
 		<div class="container-fluid">
@@ -66,7 +67,20 @@
 							<td align="center"><?php echo date('d/m/Y', strtotime($valueEditais->ds_data_inicial));?></td>
 							<td align="center"><?php echo date('d/m/Y', strtotime($valueEditais->ds_data_termino));?></td>
 							<?php
-								$status = ($valueEditais->ds_status == 1) ? 'Ativo' : 'Encerrado';
+								switch($valueEditais->ds_status){
+									case EditalStatusEnum::INATIVO->value:
+										$status = 'Inativo';
+										break;
+									case EditalStatusEnum::ATIVO->value:
+										$status = 'Ativo';
+										break;
+									case EditalStatusEnum::PUBLICADO->value:
+										$status = 'Publicado';
+										break;
+									case EditalStatusEnum::ENCERRADO->value:
+										$status = 'Encerrado';
+										break;
+								}
 							?>
 							<td align="center"><?php echo $status;?></td>
 							  <?php

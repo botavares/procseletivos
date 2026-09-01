@@ -1,3 +1,6 @@
+<legend class="font-18 bold mrg-0" >Experiência</legend>
+<hr>
+<div class=" mrg-bottom-50">
 <?php
 foreach($experienciasClassificatorias as $valueExperiencia){
     
@@ -11,12 +14,12 @@ foreach($experienciasClassificatorias as $valueExperiencia){
     if($valueExperiencia->ds_tipo_campo == 'SELECT'){
         $totalDeAnos = ($valueExperiencia->ds_pontuacao_maxima/$valueExperiencia->ds_pontuacao_minima);
 ?>
-        <legend class="font-18 bold mrg-0" >Experiência <?= $valueExperiencia->ds_nome_experiencia?></legend>
-        <hr>
-        <div class=" mrg-bottom-30">
+        
+        
+        
             <fieldset class="experiencia">
                 <div class="col-sm-10 col-lg-12">
-                    <label for="select-experiencia" class="text-normal"></label>
+                    <label for="select-experiencia" class="text-normal">Experiência <?= $valueExperiencia->ds_nome_experiencia?></label>
                     <div class="select-container mt-3">
                         <i class="fas fa-search"></i>
                         <select id="<?= $nomeCampo?>" class="select-experiencia form-control" name="<?= $nomeCampo?>" required>
@@ -38,8 +41,10 @@ foreach($experienciasClassificatorias as $valueExperiencia){
                     </div>
                 </div>
             </fieldset>
-        </div>
+        
     <?php 
     }
 }
+
 ?>
+</div>

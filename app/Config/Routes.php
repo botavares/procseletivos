@@ -41,8 +41,8 @@ $routes->get('/Cadastros', 'Cadastros::index');
 $routes->get('/cadastros', 'Cadastros::index');
 
 $routes->get('/Cadastros/dadosCandidato', 'Cadastros::dadosCandidato', ['as'=>'dadosCandidato']);
-$routes->get('/Cadastros/registrarDadosPessosais', 'Cadastros::registrarDadosPessosais');
-$routes->post('/Cadastros/registrarDadosPessosais', 'Cadastros::registrarDadosPessosais');
+$routes->get('/Cadastros/registrarDadosPessoais', 'Cadastros::registrarDadosPessoais');
+$routes->post('/Cadastros/registrarDadosPessoais', 'Cadastros::registrarDadosPessoais');
 $routes->get('/Cadastros/sucessoPessoais/(:num)', 'Cadastros::sucessoPessoais/$1' , ['as'=>'sucessoPessoais']);
 $routes->get('/Cadastros/Error/(:num)', 'Cadastros::Error/$1' , ['as'=>'Error']);
 $routes->get('/Cadastros/verificar/([A-F0-9\-]{35})','Cadastros::verificar/$1',['as' => 'Cadastros.verificar']);

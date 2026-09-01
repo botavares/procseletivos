@@ -4,6 +4,7 @@ namespace App\Services\Editais;
 
 use App\Models\EditaisModel;
 use App\Services\Base\AbstractGridService;
+use App\Enums\EditalStatusEnum;
 
 class EditalGridService extends AbstractGridService
 {
@@ -20,13 +21,19 @@ class EditalGridService extends AbstractGridService
         ->setOrder('ds_data_inicial', 'asc');
     }
 
-    public function ativos(): array
-    {
-        return $this->get(['ds_status' => '1']);
+    public function ativos(): array{
+        //editais ds_status 1 e 2
+        $ativos     = $this->get(['ds_status' => EditalStatusEnum::ATIVO->value]);
+        $publicados = $this->get(['ds_status' => EditalStatusEnum::PUBLICADO->value]);
+
+        return [
+            'data'    => array_merge($ativos['data'], $publicados['data']),
+            'columns' => $this->columns,
+        ];
     }
 
     public function encerrados(): array
     {
-        return $this->get(['ds_status' => '0']);
+        return $this->get(['ds_status' => EditalStatusEnum::ENCERRADO->value]);
     }
 }

@@ -23,9 +23,9 @@ class App extends BaseConfig
      * environments.
      * */
 
-    //public string $baseURL = 'https://servicos.prefeituradivinopolis.com.br/administracao/procseletivos/';
+    public string $baseURL = 'https://servicos.prefeituradivinopolis.com.br/administracao/procseletivos/';
     
-	public string $baseURL = 'http://localhost/servicos/procseletivos/';
+	//public string $baseURL = 'http://localhost/servicos/procseletivos/';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.

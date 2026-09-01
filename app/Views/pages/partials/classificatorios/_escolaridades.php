@@ -3,7 +3,7 @@
     <div class="mrg-bottom-30">
         <fieldset class="experiencia">
             <div class="br-input mb-4 mt-4col-sm-10 col-lg-12">
-                <label class="text-normal">Aponte sua escolaridade:</label>
+                <label class="text-normal">Escolaridades mencionadas no edital: </label>
 
                 <?php foreach($escolaridadesClassificatorias as $escolaridade):
 
@@ -31,7 +31,7 @@
                                 <?= $checked ?>
                             >
                             <label for="checkbox-escolaridade<?= $idEscolaridade ?>">
-                                <?= $escolaridade->ds_nome_escolaridade ?>
+                                <?= $escolaridade->ds_nome_escolaridade ?><?php if($escolaridade->ds_instrucao): ?><i class = "fas fa-info-circle" aria-hidden="true" title="<?= $escolaridade->ds_instrucao ?>"></i><?php endif; ?>
                             </label>
                         </div>
                     <?php endif; ?>
@@ -41,10 +41,11 @@
                         <div class="mt-3">
                             <label for="input-escolaridade<?= $idEscolaridade ?>" class="text-normal">
                                 <?= $escolaridade->ds_nome_escolaridade ?>
-                            </label>
+                            </label><?php if($escolaridade->ds_instrucao): ?><i class = "fas fa-info-circle" aria-hidden="true" title="<?= $escolaridade->ds_instrucao ?>"></i><?php endif; ?>
                             <input
                                 type="number"
                                 min="0"
+                                placeholder ="Total de cursos"
                                 id="input-escolaridade<?= $idEscolaridade ?>"
                                 name="escolaridade<?= $idEscolaridade ?>"
                                 value="<?= old("escolaridade".$idEscolaridade, $quantidade) ?>"

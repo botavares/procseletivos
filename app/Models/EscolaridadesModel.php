@@ -10,6 +10,7 @@ class EscolaridadesModel extends Model{
     protected $useAutoIncrement = true;
     protected $allowedFields = [
         'ds_nome_escolaridade',
+        'ds_instrucao',
         'fk_id_nivel',
     ];
 
@@ -24,6 +25,7 @@ class EscolaridadesModel extends Model{
                 'tb_cargos_escolaridades.fk_id_escolaridade',
                 'tb_cargos_escolaridades.fk_id_cargo',
                 'tb_escolaridades.ds_nome_escolaridade',
+                'tb_escolaridades.ds_instrucao',
                 
                 'tb_cargos_escolaridades.ds_pontuacao_minima',
                 'tb_cargos_escolaridades.ds_pontuacao_maxima',

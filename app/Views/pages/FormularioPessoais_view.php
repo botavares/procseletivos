@@ -50,7 +50,7 @@
             			<a  class="br-button primary voltar" href="<?php echo base_url("Cadastros")?>"><i class="fas fa-arrow-left"></i> Voltar</a>
         			</div>
 					<section class="bloco-formulario">
-					<form id="formulario-dadosformulario" action="<?php echo base_url("Cadastros/registrarDadosPessosais")?>" method="post">
+					<form id="formulario-dadosformulario" action="<?php echo base_url("Cadastros/registrarDadosPessoais")?>" method="post">
 							<input type="hidden" value="<?= csrf_hash(); ?>" name="<?= csrf_token(); ?>" id="csrf">
 							<input type="hidden" name="acao" value="<?php echo $acao?>">
 							<input type="hidden" name="fk_id_gov" value="<?php echo set_value('fk_id_gov',$params['id']);?>">

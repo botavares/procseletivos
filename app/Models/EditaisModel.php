@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 
+use App\Enums\EditalStatusEnum;
 use CodeIgniter\Model;
 
 class EditaisModel extends Model{
@@ -40,6 +41,21 @@ class EditaisModel extends Model{
     public function listarTodosEditais()
     {
         return $this->orderBy('pk_id_edital', 'DESC')->findAll();
+    }
+
+    /**
+     * Retorna editais em que o ds_status seja INATIVO ou ATIVO (0 ou 1),
+     * excluindo AGUARDANDO (2), ordenados pelo ID descendente.
+     */
+    public function listarEditaisVisiveis()
+    {
+        return $this
+            ->whereIn('ds_status', [
+                EditalStatusEnum::INATIVO->value,
+                EditalStatusEnum::ATIVO->value,
+            ])
+            ->orderBy('pk_id_edital', 'DESC')
+            ->findAll();
     }
 
 }
