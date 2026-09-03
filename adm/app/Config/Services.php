@@ -32,4 +32,43 @@ class Services extends BaseService
 
         return new \App\Services\Cargos\CargoService();
     }
+    public static function cargoFormService($getShared = true)
+    {
+        if ($getShared) {
+            return static::getSharedInstance('cargoFormService');
+        }
+
+        return new \App\Services\Cargos\CargoFormService();
+    }
+    public static function cargosCursosFormService($getShared = true)
+    {
+        if ($getShared) {
+            return static::getSharedInstance('cargosCursosFormService');
+        }
+
+        return new \App\Services\Cargos\CargosCursosFormService();
+    }
+    public static function cargosCursosService($getShared = true)
+    {
+        if ($getShared) {
+            return static::getSharedInstance('cargosCursosService');
+        }
+
+        return new \App\Services\Cargos\CargosCursosService();
+    }
+    public static function cargosCriteriosFormService($getShared = true)
+    {
+        if ($getShared) {
+            return static::getSharedInstance('cargosCriteriosFormService');
+        }
+
+        return new \App\Services\Cargos\CargosCriteriosFormService();
+    }
+    public static function cargosCriteriosService($getShared = true){
+        if ($getShared) {
+            return static::getSharedInstance('cargosCriteriosService');
+        }
+
+        return new \App\Services\Cargos\CargosCriteriosService();
+    }
 }

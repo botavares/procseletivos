@@ -8,7 +8,7 @@
              class="brand-image img-circle elevation-3"
              style="opacity: .9">
         <span class="brand-text font-weight-light small">
-            <?= esc($titulo) ?>
+            Processos Seletivos
         </span>
     </a>
 

@@ -1,0 +1,864 @@
+CRITICAL - 2026-09-02 14:00:13 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: external/img/materiais.png'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 14:00:13 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: external/img/bg-login.jpg'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-02 14:00:33 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_cargos_experiencias_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(43): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-09-02 14:00:33 --> Uncaught mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_cargos_experiencias_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(43): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_cargos_experiencias_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(43): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_cargos_experiencias_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(43): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-02 14:00:44 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_cargos_escolaridades_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosEscolaridades.php(45): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosEscolaridades->formularioCargosEscolaridade('12')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosEscolaridades))
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-09-02 14:00:44 --> Uncaught mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_cargos_escolaridades_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosEscolaridades.php(45): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosEscolaridades->formularioCargosEscolaridade('12')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosEscolaridades))
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_cargos_escolaridades_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosEscolaridades.php(45): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosEscolaridades->formularioCargosEscolaridade('12')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosEscolaridades))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_cargos_escolaridades_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosEscolaridades.php(45): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosEscolaridades->formularioCargosEscolaridade('12')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosEscolaridades))
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 14:00:47 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: CargosCursos/formularioCargosCursos/12'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 14:00:58 --> Uncaught ErrorException: Undefined array key "titulo" in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php:153
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(153): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\laragon\\www\\...', 153)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(64): App\Controllers\Cargos->renderFormulario(Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->formularioCadastro()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Controllers\Cargos.php on line 153.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 14:01:47 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: external/img/materiais.png'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 14:01:47 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: external/img/bg-login.jpg'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 14:02:09 --> Uncaught ErrorException: Undefined array key "titulo" in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php:153
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(153): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\laragon\\www\\...', 153)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(64): App\Controllers\Cargos->renderFormulario(Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->formularioCadastro()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Controllers\Cargos.php on line 153.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 14:04:34 --> Uncaught ErrorException: Undefined array key "titulo" in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php:130
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(130): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\laragon\\www\\...', 130)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(64): App\Controllers\Cargos->renderFormulario(Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->formularioCadastro()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Controllers\Cargos.php on line 130.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 14:07:02 --> Uncaught ErrorException: Undefined array key "titulo" in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php:152
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(152): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\laragon\\www\\...', 152)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(64): App\Controllers\Cargos->renderFormulario(Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->formularioCadastro()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Controllers\Cargos.php on line 152.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 14:07:18 --> Uncaught ErrorException: Undefined variable $titulo in C:\laragon\www\servicos\procseletivos\adm\app\Views\partialviews\header.php:14
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\partialviews\header.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 14)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('partialviews/he...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(2): view('partialviews/he...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(164): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(64): App\Controllers\Cargos->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->formularioCadastro()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\partialviews\header.php on line 14.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 14:08:07 --> Uncaught ErrorException: Undefined variable $titulo in C:\laragon\www\servicos\procseletivos\adm\app\Views\partialviews\sidemenu.php:11
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\partialviews\sidemenu.php(11): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 11)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('partialviews/si...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(4): view('partialviews/si...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(164): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(64): App\Controllers\Cargos->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->formularioCadastro()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\partialviews\sidemenu.php on line 11.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 14:08:42 --> Uncaught ErrorException: Undefined variable $titulo in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargos_view.php:17
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargos_view.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 17)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/cadastros...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/cadastros...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(164): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Cargos.php(64): App\Controllers\Cargos->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Cargos->formularioCadastro()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cargos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\cadastros\formCargos_view.php on line 17.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-02 14:09:36 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_cargos_experiencias_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(43): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-09-02 14:09:36 --> Uncaught mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_cargos_experiencias_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(43): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_cargos_experiencias_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(43): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_cargos_experiencias_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(43): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-02 14:10:36 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_cargos_experiencias_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosExperienciasModel.php(48): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(51): App\Models\CargosExperienciasModel->listarExperienciasDoCargo('12')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-09-02 14:10:36 --> Uncaught mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_cargos_experiencias_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosExperienciasModel.php(48): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(51): App\Models\CargosExperienciasModel->listarExperienciasDoCargo('12')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_cargos_experiencias_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosExperienciasModel.php(48): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(51): App\Models\CargosExperienciasModel->listarExperienciasDoCargo('12')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_cargos_experiencias_editais' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosExperienciasModel.php(48): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(51): App\Models\CargosExperienciasModel->listarExperienciasDoCargo('12')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#7 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-02 14:11:24 --> mysqli_sql_exception: Unknown column 'tb_cargos_experiencias.ds_obrigatorio' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosExperienciasModel.php(48): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(51): App\Models\CargosExperienciasModel->listarExperienciasDoCargo('12')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-09-02 14:11:24 --> Uncaught mysqli_sql_exception: Unknown column 'tb_cargos_experiencias.ds_obrigatorio' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosExperienciasModel.php(48): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(51): App\Models\CargosExperienciasModel->listarExperienciasDoCargo('12')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tb_cargos_experiencias.ds_obrigatorio' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosExperienciasModel.php(48): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(51): App\Models\CargosExperienciasModel->listarExperienciasDoCargo('12')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tb_cargos_experiencias.ds_obrigatorio' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosExperienciasModel.php(48): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(51): App\Models\CargosExperienciasModel->listarExperienciasDoCargo('12')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#7 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-02 14:12:02 --> mysqli_sql_exception: Unknown column 'tb_cargos_experiencias.ds_quantidade_minima' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosExperienciasModel.php(46): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(51): App\Models\CargosExperienciasModel->listarExperienciasDoCargo('12')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-09-02 14:12:02 --> Uncaught mysqli_sql_exception: Unknown column 'tb_cargos_experiencias.ds_quantidade_minima' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosExperienciasModel.php(46): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(51): App\Models\CargosExperienciasModel->listarExperienciasDoCargo('12')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tb_cargos_experiencias.ds_quantidade_minima' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosExperienciasModel.php(46): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(51): App\Models\CargosExperienciasModel->listarExperienciasDoCargo('12')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tb_cargos_experiencias.ds_quantidade_minima' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosExperienciasModel.php(46): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(51): App\Models\CargosExperienciasModel->listarExperienciasDoCargo('12')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#7 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 14:13:40 --> Uncaught ErrorException: Undefined property: stdClass::$ds_quantidade_minima in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosExperiencia_view.php:187
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosExperiencia_view.php(187): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 187)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/cadastros...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/cadastros...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(108): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosExperiencias.php(53): App\Controllers\CargosExperiencias->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosExperiencias->formularioCargosExperiencia('12')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosExperiencias))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\cadastros\formCargosExperiencia_view.php on line 187.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-02 14:29:45 --> mysqli_sql_exception: Unknown column 'tb_cargos_escolaridades.ds_obrigatorio' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosEscolaridadesModel.php(48): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosEscolaridades.php(53): App\Models\CargosEscolaridadesModel->listarEscolaridadesDoCargo('8')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosEscolaridades->formularioCargosEscolaridade('8')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosEscolaridades))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-09-02 14:29:45 --> Uncaught mysqli_sql_exception: Unknown column 'tb_cargos_escolaridades.ds_obrigatorio' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosEscolaridadesModel.php(48): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosEscolaridades.php(53): App\Models\CargosEscolaridadesModel->listarEscolaridadesDoCargo('8')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosEscolaridades->formularioCargosEscolaridade('8')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosEscolaridades))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tb_cargos_escolaridades.ds_obrigatorio' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosEscolaridadesModel.php(48): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosEscolaridades.php(53): App\Models\CargosEscolaridadesModel->listarEscolaridadesDoCargo('8')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosEscolaridades->formularioCargosEscolaridade('8')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosEscolaridades))
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tb_cargos_escolaridades.ds_obrigatorio' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosEscolaridadesModel.php(48): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosEscolaridades.php(53): App\Models\CargosEscolaridadesModel->listarEscolaridadesDoCargo('8')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosEscolaridades->formularioCargosEscolaridade('8')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosEscolaridades))
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#7 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 14:31:39 --> Uncaught ErrorException: Undefined property: stdClass::$ds_nome_escolaridade in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosEscolaridade_view.php:191
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosEscolaridade_view.php(191): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 191)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/cadastros...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/cadastros...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosEscolaridades.php(110): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosEscolaridades.php(55): App\Controllers\CargosEscolaridades->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosEscolaridades->formularioCargosEscolaridade('8')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosEscolaridades))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\cadastros\formCargosEscolaridade_view.php on line 191.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 14:46:14 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: CargosCursos/formularioCargosCursos/12'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 14:52:40 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: CargosCursos/formularioCargosCursos/12'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 14:58:50 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: CargosCursos/formularioCargosCursos/12'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 14:59:24 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: CargosCursos/formularioCargosCursos/12'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 14:59:45 --> Uncaught Error: Class "App\Models\CursosModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php:38
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\CargosCursos.php on line 38.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 15:04:35 --> Uncaught BadMethodCallException: Call to undefined method App\Models\CursosModel::listarCursosOrdenados in C:\laragon\www\servicos\procseletivos\adm\system\Model.php:841
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(38): CodeIgniter\Model->__call('listarCursosOrd...', Array)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#5 {main}
+  thrown
+in SYSTEMPATH\Model.php on line 841.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 15:07:50 --> Uncaught BadMethodCallException: Call to undefined method App\Models\CursosModel::listarCursosOrdenados in C:\laragon\www\servicos\procseletivos\adm\system\Model.php:841
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(38): CodeIgniter\Model->__call('listarCursosOrd...', Array)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#5 {main}
+  thrown
+in SYSTEMPATH\Model.php on line 841.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 15:08:26 --> Uncaught BadMethodCallException: Call to undefined method App\Models\CursosModel::listarCursosOrdenados in C:\laragon\www\servicos\procseletivos\adm\system\Model.php:841
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(38): CodeIgniter\Model->__call('listarCursosOrd...', Array)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#5 {main}
+  thrown
+in SYSTEMPATH\Model.php on line 841.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 15:08:36 --> Uncaught Error: Class "App\Models\CargosCursosModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php:41
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\CargosCursos.php on line 41.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-02 15:13:55 --> mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_cursos' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosCursosModel.php(41): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(51): App\Models\CargosCursosModel->listarCursosDoCargo('12')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-09-02 15:13:55 --> Uncaught mysqli_sql_exception: Table 'bd_processos_seletivos_administracao.tb_cursos' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosCursosModel.php(41): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(51): App\Models\CargosCursosModel->listarCursosDoCargo('12')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_cursos' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosCursosModel.php(41): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(51): App\Models\CargosCursosModel->listarCursosDoCargo('12')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Table 'bd_processos_seletivos_administracao.tb_cursos' doesn't exist in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosCursosModel.php(41): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(51): App\Models\CargosCursosModel->listarCursosDoCargo('12')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#7 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-02 15:20:26 --> mysqli_sql_exception: Unknown column 'tb_cargos_aperfeicoamentos.pk_id_cargos_aperfeicoamento' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosCursosModel.php(40): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(51): App\Models\CargosCursosModel->listarCursosDoCargo('12')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-09-02 15:20:26 --> Uncaught mysqli_sql_exception: Unknown column 'tb_cargos_aperfeicoamentos.pk_id_cargos_aperfeicoamento' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosCursosModel.php(40): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(51): App\Models\CargosCursosModel->listarCursosDoCargo('12')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tb_cargos_aperfeicoamentos.pk_id_cargos_aperfeicoamento' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosCursosModel.php(40): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(51): App\Models\CargosCursosModel->listarCursosDoCargo('12')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tb_cargos_aperfeicoamentos.pk_id_cargos_aperfeicoamento' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosCursosModel.php(40): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(51): App\Models\CargosCursosModel->listarCursosDoCargo('12')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#7 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-02 15:21:58 --> mysqli_sql_exception: Unknown column 'tb_cargos_aperfeicoamentos.pk_id_cargos_aperfeicoamento' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosCursosModel.php(40): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(51): App\Models\CargosCursosModel->listarCursosDoCargo('12')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2026-09-02 15:21:58 --> Uncaught mysqli_sql_exception: Unknown column 'tb_cargos_aperfeicoamentos.pk_id_cargos_aperfeicoamento' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `tb_carg...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosCursosModel.php(40): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(51): App\Models\CargosCursosModel->listarCursosDoCargo('12')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tb_cargos_aperfeicoamentos.pk_id_cargos_aperfeicoamento' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_carg...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_carg...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosCursosModel.php(40): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(51): App\Models\CargosCursosModel->listarCursosDoCargo('12')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tb_cargos_aperfeicoamentos.pk_id_cargos_aperfeicoamento' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT `tb_carg...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Models\CargosCursosModel.php(40): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(51): App\Models\CargosCursosModel->listarCursosDoCargo('12')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#7 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 15:22:47 --> Uncaught ErrorException: Undefined variable $cargoExperiencia in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosCursos_view.php:44
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosCursos_view.php(44): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 44)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/cadastros...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/cadastros...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(108): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(53): App\Controllers\CargosCursos->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\cadastros\formCargosCursos_view.php on line 44.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-02 16:01:54 --> Uncaught ErrorException: Undefined variable $cargoExperiencia in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosCursos_view.php:44
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosCursos_view.php(44): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 44)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/cadastros...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/cadastros...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(108): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(53): App\Controllers\CargosCursos->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\cadastros\formCargosCursos_view.php on line 44.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()

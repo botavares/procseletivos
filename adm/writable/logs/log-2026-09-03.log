@@ -1,0 +1,782 @@
+CRITICAL - 2026-09-03 06:58:11 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: external/img/bg-login.jpg'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 06:58:11 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: external/img/materiais.png'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 06:58:32 --> Uncaught ErrorException: Undefined variable $experiencias in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosCursos_view.php:71
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosCursos_view.php(71): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\laragon\\www\\...', 71)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/cadastros...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/cadastros...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(108): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(53): App\Controllers\CargosCursos->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\cadastros\formCargosCursos_view.php on line 71.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 06:58:52 --> Uncaught ErrorException: Undefined property: stdClass::$pk_id_experiencia in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosCursos_view.php:76
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosCursos_view.php(76): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 76)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/cadastros...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/cadastros...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(108): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(53): App\Controllers\CargosCursos->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\cadastros\formCargosCursos_view.php on line 76.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 06:59:53 --> Uncaught ErrorException: Undefined property: stdClass::$pk_id_curso_aperfeicoamento in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosCursos_view.php:76
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosCursos_view.php(76): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 76)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/cadastros...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/cadastros...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(108): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(53): App\Controllers\CargosCursos->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\cadastros\formCargosCursos_view.php on line 76.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 07:00:34 --> Uncaught ErrorException: Undefined property: stdClass::$ds_nome_experiencia in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosCursos_view.php:81
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosCursos_view.php(81): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 81)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/cadastros...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/cadastros...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(108): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(53): App\Controllers\CargosCursos->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\cadastros\formCargosCursos_view.php on line 81.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 07:00:49 --> Uncaught ErrorException: Undefined property: stdClass::$ds_nome_experiencia in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosCursos_view.php:81
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosCursos_view.php(81): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 81)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/cadastros...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/cadastros...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(108): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php(53): App\Controllers\CargosCursos->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->formularioCargosCursos('12')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\cadastros\formCargosCursos_view.php on line 81.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 07:06:23 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'post: CargosExperiencias/registrarAssociacaocargoCurso'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 07:11:27 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'post: CargosExperiencias/registrarAssociacaocargoCurso'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 07:11:43 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'post: CargosCursos/registrarAssociacaocargoCurso'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 07:13:02 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'post: CargosCursos/registrarAssociacaocargoCursos'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 07:13:54 --> Uncaught Error: Class "App\Controllers\CargosCursosFormService" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php:116
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->registrarAssociacaoCargoCursos()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\CargosCursos.php on line 116.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 07:37:32 --> Uncaught Error: Class "App\Controllers\CargosCursosFormService" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php:116
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->registrarAssociacaoCargoCursos()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\CargosCursos.php on line 116.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 07:40:41 --> Uncaught Error: Class "App\Services\Cargos\CargosCursosService" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCursos.php:121
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCursos->registrarAssociacaoCargoCursos()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCursos))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\CargosCursos.php on line 121.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 07:47:16 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'post: CargosCursos/deletarAssociacaocargoCurso'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 07:48:07 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'post: CargosCursos/deletarAssociacaoCargoCurso'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 07:59:48 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Controller ou seu método não foi encontrado: \App\Controllers\CargosCriterios::formularioCargosCriterios in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Controller ou s...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 08:20:19 --> Uncaught Error: Class "App\Models\CriteriosModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php:20
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\CargosCriterios.php on line 20.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 08:23:05 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Método do Controller não foi encontrado: formularioCargosCriterios in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('M\xC3\xA9todo do Cont...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 08:25:14 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: CargosCriterios/formularioCargosCriterio/12'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 08:26:17 --> Uncaught Error: Class "App\Models\CargosCriteriosAdicionaisModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php:43
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCriterios->formularioCargosCriterio('12')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCriterios))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\CargosCriterios.php on line 43.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 08:30:17 --> Uncaught Error: Class "App\Models\CargosCriteriosAdicionaisModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php:20
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\CargosCriterios.php on line 20.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 08:30:39 --> Uncaught Error: Class "App\Models\CargosCargosCriteriosAdicionaisModel" not found in C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php:43
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCriterios->formularioCargosCriterio('12')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCriterios))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#4 {main}
+  thrown
+in APPPATH\Controllers\CargosCriterios.php on line 43.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 08:31:05 --> Cannot use App\Models\CargosCriteriosAdicionaisModel as CargosCriteriosAdicionaisModel because the name is already in use
+in APPPATH\Controllers\CargosCriterios.php on line 7.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-03 08:31:21 --> mysqli_sql_exception: Unknown column 'fk_id_cargo' in 'where clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(44): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCriterios->formularioCargosCriterio('12')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCriterios))
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-09-03 08:31:21 --> Uncaught mysqli_sql_exception: Unknown column 'fk_id_cargo' in 'where clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(44): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCriterios->formularioCargosCriterio('12')
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCriterios))
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'fk_id_cargo' in 'where clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(44): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCriterios->formularioCargosCriterio('12')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCriterios))
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'fk_id_cargo' in 'where clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(44): CodeIgniter\BaseModel->first()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCriterios->formularioCargosCriterio('12')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCriterios))
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-03 08:36:11 --> mysqli_sql_exception: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-09-03 08:36:11 --> Uncaught mysqli_sql_exception: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-03 08:37:26 --> mysqli_sql_exception: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-09-03 08:37:26 --> Uncaught mysqli_sql_exception: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-03 08:38:45 --> mysqli_sql_exception: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-09-03 08:38:45 --> Uncaught mysqli_sql_exception: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-03 08:39:13 --> mysqli_sql_exception: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-09-03 08:39:13 --> Uncaught mysqli_sql_exception: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-03 08:39:17 --> mysqli_sql_exception: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-09-03 08:39:17 --> Uncaught mysqli_sql_exception: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-03 08:40:40 --> mysqli_sql_exception: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2026-09-03 08:40:40 --> Uncaught mysqli_sql_exception: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:300
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'ds_nome_criterio' in 'order clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php:645
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(240): CodeIgniter\Database\BaseBuilder->get()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#3 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(23): CodeIgniter\BaseModel->findAll()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(906): App\Controllers\CargosCriterios->__construct()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+#6 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+  thrown
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 08:45:02 --> Uncaught BadMethodCallException: Call to undefined method App\Models\CriteriosAdicionaisModel::listarCriteriosOrdenadas in C:\laragon\www\servicos\procseletivos\adm\system\Model.php:841
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(40): CodeIgniter\Model->__call('listarCriterios...', Array)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCriterios->formularioCargosCriterio('12')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCriterios))
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#5 {main}
+  thrown
+in SYSTEMPATH\Model.php on line 841.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 08:45:17 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Página não encontrada: formularioCargosCriterio in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('P\xC3\xA1gina n\xC3\xA3o en...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 08:49:54 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Página não encontrada: formularioCargosCriterio in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('P\xC3\xA1gina n\xC3\xA3o en...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 08:50:06 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Página não encontrada: formularioCargosCriterio in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('P\xC3\xA1gina n\xC3\xA3o en...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 08:50:31 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Página não encontrada: formularioCargosCriterio in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('P\xC3\xA1gina n\xC3\xA3o en...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 09:24:35 --> Uncaught ErrorException: Undefined property: stdClass::$pk_id_cargos_criterio in C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosCriterios_view.php:188
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\cadastros\formCargosCriterios_view.php(188): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', 'C:\\laragon\\www\\...', 188)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('pages/cadastros...', Array, true)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutDash.php(5): view('pages/cadastros...')
+#5 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutDash', Array, true)
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(110): view('layoutDash', Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(55): App\Controllers\CargosCriterios->renderFormulario(Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCriterios->formularioCargosCriterio('8')
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCriterios))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in APPPATH\Views\pages\cadastros\formCargosCriterios_view.php on line 188.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 09:26:14 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'post: CargosCriterios/registrarAssociacaoCargoCriterio'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-03 09:29:43 --> mysqli_sql_exception: Unknown column 'pk_id_cargos_criterio' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT MAX(`pk_...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT MAX(`pk_...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT MAX(`pk_...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT MAX(`pk_...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Model.php(267): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Cargos\CargosCriteriosService.php(53): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Base\AbstractCrudService.php(24): App\Services\Cargos\CargosCriteriosService->App\Services\Cargos\{closure}()
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Services\Cargos\CargosCriteriosService.php(23): App\Services\Base\AbstractCrudService->transactional(Object(Closure))
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\CargosCriterios.php(124): App\Services\Cargos\CargosCriteriosService->salvar(Object(App\DTOs\Domain\Cargos\CargosCriteriosDTO))
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\CargosCriterios->registrarAssociacaoCargoCriterio()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CargosCriterios))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+CRITICAL - 2026-09-03 14:01:54 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: CargosCursos/formularioCargosCursos/12'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 14:03:13 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: CargosCursos/formularioCargosCursos/12'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()

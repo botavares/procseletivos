@@ -40,45 +40,45 @@
                         <div class="card-body">
 
                             <?php
-                                // Normaliza $cargoExperiencia para objeto, caso venha como array
-                                if ($cargoExperiencia !== null && is_array($cargoExperiencia)) {
-                                    $cargoExperiencia = (object) $cargoExperiencia;
+                                // Normaliza $cargoCurso para objeto, caso venha como array
+                                if ($cargoCurso !== null && is_array($cargoCurso)) {
+                                    $cargoCurso = (object) $cargoCurso;
                                 }
 
                                 // Helper para recuperar valor preenchido (banco > old > default)
-                                $val = function($campo, $default = '') use ($cargoExperiencia) {
-                                    if ($cargoExperiencia && property_exists($cargoExperiencia, $campo) && $cargoExperiencia->$campo !== null) {
-                                        return $cargoExperiencia->$campo;
+                                $val = function($campo, $default = '') use ($cargoCurso) {
+                                    if ($cargoCurso && property_exists($cargoCurso, $campo) && $cargoCurso->$campo !== null) {
+                                        return $cargoCurso->$campo;
                                     }
                                     return old($campo) ?? $default;
                                 };
                             ?>
 
-                            <form id="formExperienciasCargo"
+                            <form id="formCursosCargo"
                                   method="POST"
-                                  action="<?= site_url('CargosExperiencias/registrarAssociacaoCargoExperiencia') ?>">
+                                  action="<?= site_url('CargosCursos/registrarAssociacaoCargoCursos') ?>">
 
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="fk_id_cargo" value="<?= esc($cargo->pk_id_cargo) ?>">
                                 <input type="hidden" name="acao" value="<?= esc($acao) ?>">
 
-                                <!-- EXPERIÊNCIA -->
+                                <!-- Cursos de aperfeiçoamento -->
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label>Experiência *</label>
-                                        <select class="form-control" name="fk_id_experiencia" required>
+                                        <label>Cursos de aperfeiçoamento *</label>
+                                        <select class="form-control" name="fk_id_curso" required>
                                             <option value="">Selecione</option>
-                                            <?php foreach ($experiencias as $exp): ?>
+                                            <?php foreach ($cursos as $exp): ?>
                                                 <?php
                                                     $selected = '';
-                                                    if ($cargoExperiencia && $cargoExperiencia->fk_id_experiencia == $exp->pk_id_experiencia) {
+                                                    if ($cargoCurso && $cargoCurso->fk_id_curso == $exp->pk_id_curso) {
                                                         $selected = 'selected';
-                                                    } elseif (old('fk_id_experiencia') == $exp->pk_id_experiencia) {
+                                                    } elseif (old('fk_id_curso') == $exp->pk_id_curso) {
                                                         $selected = 'selected';
                                                     }
                                                 ?>
-                                                <option value="<?= esc($exp->pk_id_experiencia) ?>" <?= $selected ?>>
-                                                    <?= esc($exp->ds_nome_experiencia) ?>
+                                                <option value="<?= esc($exp->pk_id_curso) ?>" <?= $selected ?>>
+                                                    <?= esc($exp->ds_nome_curso) ?>
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>
@@ -88,37 +88,37 @@
                                 <!-- PONTUAÇÃO MÍNIMA / MÁXIMA -->
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label>Pontuação por cada experiência </label>
+                                        <label>Pontuação por cada cursos de aperfeiçoamento </label>
                                         <input type="number"
                                                class="form-control"
                                                name="ds_pontuacao_minima"
                                                value="<?= esc($val('ds_pontuacao_minima')) ?>"
                                                min="0">
                                                <small class="form-text text-muted">
-                                                   Insira aqui quantos ponto cada experiência terá. 
+                                                   Insira aqui quantos ponto cada cursos de aperfeiçoamento terá. 
                                                </small>
                                     </div>
                                    
 
                                     <div class="form-group col-md-6">
-                                        <label>Pontuação máxima da experiência</label>
+                                        <label>Pontuação máxima do cursos de aperfeiçoamento</label>
                                         <input type="number"
                                                class="form-control"
                                                name="ds_pontuacao_maxima"
                                                value="<?= esc($val('ds_pontuacao_maxima')) ?>"
                                                min="0">
                                                <small class="form-text text-muted">
-                                                   Insira qual é a pontuação máxima que o candidato pode obter com essa experiência.
+                                                   Insira qual é a pontuação máxima que o candidato pode obter com esse cursos de aperfeiçoamento.
                                                </small>
                                     </div>
                                 </div>
                                 <!-- TIPO DE CAMPO -->
                                 <div class="form-group">
-                                    <label>Como o candidato irá preencher os dados dessa experiência?</label>
+                                    <label>Como o candidato irá preencher os dados desse curso de aperfeiçoamento?</label>
                                     <?php
                                         $tipoCampo = '';
-                                        if ($cargoExperiencia && property_exists($cargoExperiencia, 'ds_tipo_campo') && $cargoExperiencia->ds_tipo_campo !== null) {
-                                            $tipoCampo = $cargoExperiencia->ds_tipo_campo;
+                                        if ($cargoCurso && property_exists($cargoCurso, 'ds_tipo_campo') && $cargoCurso->ds_tipo_campo !== null) {
+                                            $tipoCampo = $cargoCurso->ds_tipo_campo;
                                         } elseif (old('ds_tipo_campo') !== null) {
                                             $tipoCampo = old('ds_tipo_campo');
                                         }
@@ -126,13 +126,13 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_digitar" value="INPUT" <?= $tipoCampo === 'INPUT' ? 'checked' : '' ?>>
                                         <label class="form-check-label" for="tipo_campo_digitar">
-                                            O candidato vai digitar o total de experiência que ele possui
+                                            O candidato vai digitar o total de cursos de aperfeiçoamento que ele possui. (Recomendado)
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_escolher" value="SELECT" <?= $tipoCampo === 'SELECT' ? 'checked' : '' ?>>
                                         <label class="form-check-label" for="tipo_campo_escolher">
-                                            O candidato vai escolher o valor oferecido a ele (recomendado)
+                                            O candidato vai escolher o valor oferecido a ele.
                                         </label>
                                     </div>
                                 </div>
@@ -154,16 +154,16 @@
 
                             <hr class="mt-5 mb-4">
 
-                            <!-- DATATABLE: EXPERIÊNCIAS PARA ESSE CARGO -->
+                            <!-- DATATABLE: Cursos de aperfeiçoamentoS PARA ESSE CARGO -->
                             <h5 class="mb-3 text-primary">
                                 <i class="fas fa-list mr-1"></i>
-                                Experiências para esse cargo:
+                                Cursos de aperfeiçoamentos para esse cargo:
                             </h5>
 
-                            <table id="tabela-experiencias-cargo" class="table table-striped table-bordered">
+                            <table id="tabela-cursos-cargo" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Descrição da experiência</th>
+                                        <th>Descrição do Curso de Aperfeiçoamento</th>
                                         <th>Pontuação mínima</th>
                                         <th>Pontuação máxima</th>
                                         <th>Campo</th>
@@ -171,17 +171,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php if (!empty($experienciasDoCargo)): ?>
-                                        <?php foreach ($experienciasDoCargo as $item): ?>
+                                    <?php if (!empty($cursosDoCargo)): ?>
+                                        <?php foreach ($cursosDoCargo as $item): ?>
                                             <tr>
-                                                <td><?= esc($item->ds_nome_experiencia) ?></td>
+                                                <td><?= esc($item->ds_nome_curso) ?></td>
                                                 <td><?= esc($item->ds_pontuacao_minima) ?></td>
                                                 <td><?= esc($item->ds_pontuacao_maxima) ?></td>
                                                 <td><?= esc($item->ds_tipo_campo) ?></td>
                                                 <td class="text-center">
-                                                    <button type="button" class="btn btn-danger btn-sm btn-retirar-experiencia"
-                                                            data-id="<?= esc($item->pk_id_cargos_experiencia) ?>"
-                                                            data-nome="<?= esc($item->ds_nome_experiencia) ?>">
+                                                    <button type="button" class="btn btn-danger btn-sm btn-retirar-curso"
+                                                            data-id="<?= esc($item->pk_id_cargo_aperfeicoamento) ?>"
+                                                            data-nome="<?= esc($item->ds_nome_curso) ?>">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </td>
@@ -189,7 +189,7 @@
                                         <?php endforeach; ?>
                                     <?php else: ?>
                                         <tr>
-                                            <td colspan="5" class="text-center">Nenhuma experiência associada a este cargo.</td>
+                                            <td colspan="5" class="text-center">Nenhuma Cursos de aperfeiçoamento associada a este cargo.</td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>
@@ -205,13 +205,13 @@
     </section>
 </div>
 
-<!-- Modal de Confirmação: Retirar Experiência do Cargo -->
-<div class="modal fade" id="modalRetirarExperiencia" tabindex="-1" role="dialog" aria-labelledby="modalRetirarLabel" aria-hidden="true">
+<!-- Modal de Confirmação: Retirar Cursos de aperfeiçoamento do Cargo -->
+<div class="modal fade" id="modalRetirarCurso" tabindex="-1" role="dialog" aria-labelledby="modalRetirarLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form method="POST" action="<?= site_url('CargosExperiencias/deletarAssociacaoCargoExperiencia') ?>">
+            <form method="POST" action="<?= site_url('CargosCursos/deletarAssociacaoCargoCursos') ?>">
                 <?= csrf_field() ?>
-                <input type="hidden" name="pk_id_cargos_experiencia" id="retirar_pk_id" />
+                <input type="hidden" name="pk_id_cargo_aperfeicoamento" id="retirar_pk_id" />
 
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalRetirarLabel">
@@ -224,7 +224,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <p>Deseja realmente retirar a experiência <strong id="retirar_nome_experiencia"></strong> deste cargo?</p>
+                    <p>Deseja realmente retirar a Cursos de aperfeiçoamento <strong id="retirar_nome_curso"></strong> deste cargo?</p>
                 </div>
 
                 <div class="modal-footer">
@@ -244,7 +244,7 @@
 <script>
     $(document).ready(function() {
         // DataTable
-        var table = $('#tabela-experiencias-cargo').DataTable({
+        var table = $('#tabela-cursos-cargo').DataTable({
             language: {
                 url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json"
             },
@@ -258,13 +258,13 @@
         });
 
         // Abrir modal ao clicar em retirar
-        $(document).on('click', '.btn-retirar-experiencia', function() {
+        $(document).on('click', '.btn-retirar-curso', function() {
             var id   = $(this).data('id');
             var nome = $(this).data('nome');
 
             $('#retirar_pk_id').val(id);
-            $('#retirar_nome_experiencia').text(nome);
-            $('#modalRetirarExperiencia').modal('show');
+            $('#retirar_nome_curso').text(nome);
+            $('#modalRetirarCurso').modal('show');
         });
     });
 </script>

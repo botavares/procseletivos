@@ -127,7 +127,6 @@ class Cargos extends BaseController{
         // criação de um config defaut
         $config = array_merge([
             'id'                   => null,
-            
             'camada1'              => 'pages',
             'camada2'              => 'cadastros',
             'page'                 => 'formCargos',
@@ -150,7 +149,7 @@ class Cargos extends BaseController{
             'pagina'                =>  $config['page'],
             'acao'                  =>  $config['acao'],
             "dados"                 =>  $dados,
-            "titulo"			    =>	$config['titulo'],
+            
             'user'				    =>	session('nome'),
         ];
 

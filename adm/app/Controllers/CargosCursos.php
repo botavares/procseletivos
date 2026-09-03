@@ -3,30 +3,28 @@ namespace App\Controllers;
 use DateTime;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use App\Models\CargosModel;
-use App\Models\EscolaridadesModel;
-use App\Models\CargosEscolaridadesModel;
+use App\Models\CursosModel;
+use App\Models\CargosCursosModel;
 use App\Services\LogsService;
-use App\Services\Cargos\CargosEscolaridadesFormService;
-use App\Services\Cargos\CargosEscolaridadesService;
+use App\Services\Cargos\CargosCursosFormService;
+use App\Services\Cargos\CargosCursosService;
 
 
-class CargosEscolaridades extends BaseController{
+class CargosCursos extends BaseController{
 
-    protected $escolaridadesData;
+    protected $cargosData;
     
 
     public function __construct(){
         $modelCargos = new CargosModel();
-        $modelEscolaridades = new EscolaridadesModel();
-
+        
         $this->cargosData = [
            'cargos' => $modelCargos->orderBy('ds_nome_cargo', 'asc')->findAll(),
-           'escolaridades' => $modelEscolaridades->orderBy('ds_nome_escolaridade', 'asc')->findAll(),
         ];
       
     }
 
-    public function formularioCargosEscolaridade($id, $camada1 = 'pages', $camada2 = 'cadastros', $page = 'formCargosEscolaridade'){
+    public function formularioCargosCurso($id, $camada1 = 'pages', $camada2 = 'cadastros', $page = 'formCargosCursos'){
         $this->validarSessao();
 
         $cargo = (new CargosModel())->find($id);
@@ -37,32 +35,32 @@ class CargosEscolaridades extends BaseController{
                 ->with('mensagemError', 'Cargo não encontrado');
         }
 
-        $escolaridades = (new EscolaridadesModel())->listarEscolaridadesOrdenadas();
+        $cursos = (new CursosModel())->listarCursosOrdenados();
         
-        // Busca os dados da associação cargo + escolaridade (se existir)
-        $cargoEscolaridade = (new CargosEscolaridadesModel())
-                                ->where('fk_id_cargo', $id)
-                                ->first();
-        if($cargoEscolaridade){
+        // Busca os dados da associação cargo + curso (se existir)
+        $cargoCurso = (new CargosCursosModel())
+                            ->where('fk_id_cargo', $id)
+                            ->first();
+        if($cargoCurso){
             $action = 'update';
         }else{
             $action = 'create';
         }
 
-        // Busca TODAS as escolaridades já associadas a esse cargo
-        $escolaridadesDoCargo = (new CargosEscolaridadesModel())->listarEscolaridadesDoCargo($id);
+        // Busca TODAS os cursos já associados a esse cargo
+        $cursosDoCargo = (new CargosCursosModel())->listarCursosDoCargo($id);
 
         return $this->renderFormulario([
                                         'id'                    => $id,
                                         'acao'                  => $action,
                                         'camada1'               => 'pages',
                                         'camada2'               => 'cadastros',
-                                        'page'                  => 'formCargosEscolaridade',
-                                        'titulo'                => 'Associar Escolaridade ao Cargo: ' . esc($cargo->ds_nome_cargo),
+                                        'page'                  => 'formCargosCursos',
+                                        'titulo'                => 'Associar Curso ao Cargo: ' . esc($cargo->ds_nome_cargo),
                                         'cargo'                 => $cargo,
-                                        'escolaridades'         => $escolaridades,
-                                        'cargoEscolaridade'     => $cargoEscolaridade,
-                                        'escolaridadesDoCargo'  => $escolaridadesDoCargo,
+                                        'cursos'                => $cursos,
+                                        'cargoCurso'            => $cargoCurso,
+                                        'cursosDoCargo'         => $cursosDoCargo,
                                         'user'                  => session('nome'),
                                     ]);
     }
@@ -75,7 +73,7 @@ class CargosEscolaridades extends BaseController{
             
             'camada1'              => 'pages',
             'camada2'              => 'cadastros',
-            'page'                 => 'formCargosEscolaridade',
+            'page'                 => 'formCargos',
             
         ],$config);
 
@@ -99,7 +97,7 @@ class CargosEscolaridades extends BaseController{
             'user'				    =>	session('nome'),
         ];
 
-        // Repassa quaisquer dados extras (ex: cargo, escolaridades) para a view
+        // Repassa quaisquer dados extras (ex: cargo, cursos) para a view
         $padroes = ['id','acao','camada1','camada2','page','titulo'];
         foreach ($config as $chave => $valor) {
             if (!in_array($chave, $padroes, true)) {
@@ -111,21 +109,21 @@ class CargosEscolaridades extends BaseController{
     }
 
     /**
-     * Registra a associação de uma escolaridade ao cargo (create ou update).
+     * Registra a associação de um curso ao cargo (create ou update).
      */
-    public function registrarAssociacaoCargoEscolaridade(){
+    public function registrarAssociacaoCargoCursos(){
         try {
-            $form   = new CargosEscolaridadesFormService($this->request);
+            $form   = new CargosCursosFormService($this->request);
             $dados  = $form->handle();
 
-            $dto = $dados['cargosEscolaridades'];
+            $dto = $dados['cargosCursos'];
 
-            $service = new CargosEscolaridadesService();
+            $service = new CargosCursosService();
             $service->salvar($dto);
 
             return redirect()
-                ->route('CargosEscolaridades.formularioCargosEscolaridade', [$dto->fk_id_cargo])
-                ->with('mensagemSuccess', 'Escolaridade associada ao cargo com sucesso');
+                ->route('CargosCursos.formularioCargosCurso', [$dto->fk_id_cargo])
+                ->with('mensagemSuccess', 'Curso associado ao cargo com sucesso');
 
         } catch (\Exception $e) {
             return redirect()->back()
@@ -135,21 +133,21 @@ class CargosEscolaridades extends BaseController{
     }
 
     /**
-     * Remove a associação de uma escolaridade ao cargo.
+     * Remove a associação de uma experiência ao cargo.
      */
-    public function deletarAssociacaoCargoEscolaridade(){
+    public function deletarAssociacaoCargoCursos(){
         try {
-            $id = (int) $this->request->getPost('pk_id_cargos_escolaridade');
+            $id = (int) $this->request->getPost('pk_id_cargo_aperfeicoamento');
 
             if ($id <= 0) {
                 throw new \InvalidArgumentException('Associação inválida');
             }
 
-            (new CargosEscolaridadesService())->deletar($id);
+            (new CargosCursosService())->deletar($id);
 
             return redirect()
                 ->back()
-                ->with('mensagemSuccess', 'Escolaridade retirada do cargo com sucesso');
+                ->with('mensagemSuccess', 'Curso retirado do cargo com sucesso');
 
         } catch (\Throwable $e) {
             return redirect()

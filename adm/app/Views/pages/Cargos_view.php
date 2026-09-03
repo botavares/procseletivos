@@ -75,21 +75,27 @@
 							?>
 							
 							<td align="center">
-								<a class="editarCargos pointer btn btn-primary" data-id="<?php echo $valueCargos->pk_id_cargo?>" 
+								<a class="editarExperienciasCargos pointer btn btn-primary" data-id="<?php echo $valueCargos->pk_id_cargo?>" 
 								href="<?php echo base_url("/CargosExperiencias/formularioCargosExperiencia")."/".$valueCargos->pk_id_cargo?>">
 									Experiências do cargo
 								</a>
 							</td>
 							<td align="center">
-								<a class="editarCargos pointer btn btn-primary" data-id="<?php echo $valueCargos->pk_id_cargo?>" 
+								<a class="editarEscolaridadesCargos pointer btn btn-primary" data-id="<?php echo $valueCargos->pk_id_cargo?>" 
 								href="<?php echo base_url("/CargosEscolaridades/formularioCargosEscolaridade")."/".$valueCargos->pk_id_cargo?>">
 									Escolaridade do cargo
 								</a>
 							</td>
 							<td align="center">
-								<a class="editarCargos pointer btn btn-primary" data-id="<?php echo $valueCargos->pk_id_cargo?>" 
-								href="<?php echo base_url("/CargosCursos/formularioCargosCursos")."/".$valueCargos->pk_id_cargo?>">
+								<a class="editarCursosCargos pointer btn btn-primary" data-id="<?php echo $valueCargos->pk_id_cargo?>" 
+								href="<?php echo base_url("/CargosCursos/formularioCargosCurso")."/".$valueCargos->pk_id_cargo?>">
 									Cursos do cargo
+								</a>
+							</td>
+							<td align="center">
+								<a class="editarCriteriosCarto pointer btn btn-primary" data-id="<?php echo $valueCargos->pk_id_cargo?>" 
+								href="<?php echo base_url("/CargosCriterios/formularioCargosCriterio")."/".$valueCargos->pk_id_cargo?>">
+									Criterios do cargo
 								</a>
 							</td>
 

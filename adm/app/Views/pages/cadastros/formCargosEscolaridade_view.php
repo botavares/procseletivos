@@ -85,9 +85,40 @@
                                     </div>
                                 </div>
 
-                                 <!-- TIPO DE CAMPO -->
+                                 
+
+
+                                <!-- QUANTIDADE MÍNIMA / MÁXIMA -->
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Pontuação por cada escolaridade</label>
+                                        <input type="number"
+                                               class="form-control"
+                                               name="ds_pontuacao_minima"
+                                               id="pontuacao_minima"
+                                               value="<?= esc($val('ds_pontuacao_minima')) ?>"
+                                               min="0">
+                                        <small class="form-text text-muted">
+                                            Insira qual é a pontuação mínima que o candidato pode obter com essa escolaridade.
+                                        </small>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label>Pontuação máxima </label>
+                                        <input type="number"
+                                               class="form-control"
+                                               name="ds_pontuacao_maxima"
+                                               id="pontuacao_maxima"
+                                               value="<?= esc($val('ds_pontuacao_maxima')) ?>"
+                                               min="0">
+                                        <small class="form-text text-muted">
+                                            Insira qual é a pontuação máxima que o candidato pode obter com essa escolaridade.
+                                        </small>
+                                    </div>
+                                </div>
+                                <!-- TIPO DE CAMPO -->
                                 <div class="form-group">
-                                    <label>Como será informada a escolaridade?</label>
+                                    <label>Como o candidato irá preencher os dados dessa escolaridade?</label>
                                     <?php
                                         $tipoCampo = '';
                                         if ($cargoEscolaridade && property_exists($cargoEscolaridade, 'ds_tipo_campo') && $cargoEscolaridade->ds_tipo_campo !== null) {
@@ -106,48 +137,8 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_escolher" value="CHECK" <?= $tipoCampo === 'CHECK' ? 'checked' : '' ?>>
                                         <label class="form-check-label" for="tipo_campo_escolher">
-                                            O candidato vai apontar se possui o determinado curso. 
+                                            O candidato vai apontar se possui o determinado curso (ideal quando a pontuação por escolaridade e pontuação máxima for igual). 
                                         </label>
-                                    </div>
-                                </div>
-
-
-                                <!-- QUANTIDADE MÍNIMA / MÁXIMA -->
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label>Pontuação por curso</label>
-                                        <input type="number"
-                                               class="form-control"
-                                               name="ds_pontuacao_minima"
-                                               id="pontuacao_minima"
-                                               value="<?= esc($val('ds_pontuacao_minima')) ?>"
-                                               min="0">
-                                    </div>
-
-                                    <div class="form-group col-md-6">
-                                        <label>Pontuação máxima </label>
-                                        <input type="number"
-                                               class="form-control"
-                                               name="ds_pontuacao_maxima"
-                                               id="pontuacao_maxima"
-                                               value="<?= esc($val('ds_pontuacao_maxima')) ?>"
-                                               min="0">
-                                    </div>
-                                </div>
-
-                                <!-- MULTIPLICADOR -->
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label>Multiplicador</label>
-                                        <input type="number"
-                                               step="any"
-                                               class="form-control"
-                                               name="ds_multiplicador"
-                                               id="multiplicador"
-                                               value="<?= esc($val('ds_multiplicador')) ?>">
-                                        <small class="form-text text-muted">
-                                            O multiplicador será usado para indicar a pontuação de acordo com a quantidade de experiência do candidato.
-                                        </small>
                                     </div>
                                 </div>
 
@@ -225,7 +216,7 @@
         <div class="modal-content">
             <form method="POST" action="<?= site_url('CargosEscolaridades/deletarAssociacaoCargoEscolaridade') ?>">
                 <?= csrf_field() ?>
-                <input type="hidden" name="pk_id_cargos_escolaridades" id="retirar_pk_id" />
+                <input type="hidden" name="pk_id_cargos_escolaridade" id="retirar_pk_id" />
 
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalRetirarLabel">

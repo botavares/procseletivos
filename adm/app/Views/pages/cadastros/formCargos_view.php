@@ -14,7 +14,7 @@ use App\Enums\Escolaridades\EnumEscolaridades;
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h3 class="card-title m-0">
                                 <i class="fas fa-briefcase mr-2"></i>
-                                <?= esc($titulo) ?>
+                                Processos Seletivos - Cadastro de Cargos
                             </h3>
                         </div>
 
