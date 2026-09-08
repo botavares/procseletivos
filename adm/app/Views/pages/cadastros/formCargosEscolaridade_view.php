@@ -35,49 +35,23 @@
                         <!-- BODY -->
                         <div class="card-body">
 
-                            <?php
-                                // Normaliza $cargoEscolaridade para objeto, caso venha como array
-                                if ($cargoEscolaridade !== null && is_array($cargoEscolaridade)) {
-                                    $cargoEscolaridade = (object) $cargoEscolaridade;
-                                }
-
-                                // Helper para recuperar valor preenchido (banco > old > default)
-                                $val = function($campo, $default = '') use ($cargoEscolaridade) {
-                                    if ($cargoEscolaridade && property_exists($cargoEscolaridade, $campo) && $cargoEscolaridade->$campo !== null) {
-                                        return $cargoEscolaridade->$campo;
-                                    }
-                                    return old($campo) ?? $default;
-                                };
-                            ?>
-
                             <form id="formEscolaridadesCargo"
                                   method="POST"
                                   action="<?= site_url('CargosEscolaridades/registrarAssociacaoCargoEscolaridade') ?>">
 
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="fk_id_cargo" value="<?= esc($cargo->pk_id_cargo) ?>">
-                                <input type="hidden" name="acao" value="<?= esc($acao) ?>">
-
-
-
-                               
+                                <input type="hidden" name="pk_id_cargos_escolaridade" id="pk_id_cargos_escolaridade" value="">
+                                <input type="hidden" name="acao" id="acao" value="<?= esc($acao) ?>">
 
                                 <!-- ESCOLARIDADE -->
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label>Nome da escolaridade</label>
-                                        <select class="form-control" name="fk_id_escolaridade" required>
+                                        <select class="form-control" name="fk_id_escolaridade" id="fk_id_escolaridade" required>
                                             <option value="">Selecione</option>
                                             <?php foreach ($escolaridades as $esc): ?>
-                                                <?php
-                                                    $selected = '';
-                                                    if ($cargoEscolaridade && $cargoEscolaridade->fk_id_escolaridade == $esc->pk_id_escolaridade) {
-                                                        $selected = 'selected';
-                                                    } elseif (old('fk_id_escolaridade') == $esc->pk_id_escolaridade) {
-                                                        $selected = 'selected';
-                                                    }
-                                                ?>
-                                                <option value="<?= esc($esc->pk_id_escolaridade) ?>" <?= $selected ?>>
+                                                <option value="<?= esc($esc->pk_id_escolaridade) ?>">
                                                     <?= esc($esc->ds_nome_escolaridade) ?>
                                                 </option>
                                             <?php endforeach; ?>
@@ -85,59 +59,48 @@
                                     </div>
                                 </div>
 
-                                 
-
-
-                                <!-- QUANTIDADE MÍNIMA / MÁXIMA -->
+                                <!-- QUANTIDADE MINIMA / MAXIMA -->
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label>Pontuação por cada escolaridade</label>
+                                        <label>Pontuacao por cada escolaridade</label>
                                         <input type="number"
                                                class="form-control"
                                                name="ds_pontuacao_minima"
-                                               id="pontuacao_minima"
-                                               value="<?= esc($val('ds_pontuacao_minima')) ?>"
+                                               id="ds_pontuacao_minima"
+                                               value=""
                                                min="0">
                                         <small class="form-text text-muted">
-                                            Insira qual é a pontuação mínima que o candidato pode obter com essa escolaridade.
+                                            Insira qual e a pontuacao minima que o candidato pode obter com essa escolaridade.
                                         </small>
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label>Pontuação máxima </label>
+                                        <label>Pontuacao maxima </label>
                                         <input type="number"
                                                class="form-control"
                                                name="ds_pontuacao_maxima"
-                                               id="pontuacao_maxima"
-                                               value="<?= esc($val('ds_pontuacao_maxima')) ?>"
+                                               id="ds_pontuacao_maxima"
+                                               value=""
                                                min="0">
                                         <small class="form-text text-muted">
-                                            Insira qual é a pontuação máxima que o candidato pode obter com essa escolaridade.
+                                            Insira qual e a pontuacao maxima que o candidato pode obter com essa escolaridade.
                                         </small>
                                     </div>
                                 </div>
                                 <!-- TIPO DE CAMPO -->
                                 <div class="form-group">
-                                    <label>Como o candidato irá preencher os dados dessa escolaridade?</label>
-                                    <?php
-                                        $tipoCampo = '';
-                                        if ($cargoEscolaridade && property_exists($cargoEscolaridade, 'ds_tipo_campo') && $cargoEscolaridade->ds_tipo_campo !== null) {
-                                            $tipoCampo = $cargoEscolaridade->ds_tipo_campo;
-                                        } elseif (old('ds_tipo_campo') !== null) {
-                                            $tipoCampo = old('ds_tipo_campo');
-                                        }
-                                    ?>
+                                    <label>Como o candidato ira preencher os dados dessa escolaridade?</label>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_digitar" value="INPUT" <?= $tipoCampo === 'INPUT' ? 'checked' : '' ?>>
+                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_digitar" value="INPUT">
                                         <label class="form-check-label" for="tipo_campo_digitar">
-                                            O candidato vai digitar o total de cursos concluidos (ideal para mais de uma pós-graduação, mestrado ou doutorado).
+                                            O candidato vai digitar o total de cursos concluidos (ideal para mais de uma pos-graduacao, mestrado ou doutorado).
                                         </label>
                                     </div>
                                     
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_escolher" value="CHECK" <?= $tipoCampo === 'CHECK' ? 'checked' : '' ?>>
+                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_escolher" value="CHECK">
                                         <label class="form-check-label" for="tipo_campo_escolher">
-                                            O candidato vai apontar se possui o determinado curso (ideal quando a pontuação por escolaridade e pontuação máxima for igual). 
+                                            O candidato vai apontar se possui o determinado curso (ideal quando a pontuacao por escolaridade e pontuacao maxima for igual). 
                                         </label>
                                     </div>
                                 </div>
@@ -146,7 +109,7 @@
 
                                 <!-- FOOTER -->
                                 <div class="text-right mt-4">
-                                    <button type="reset" class="btn btn-secondary mr-2">
+                                    <button type="button" id="btnLimpar" class="btn btn-secondary mr-2">
                                         <i class="fas fa-eraser"></i> Limpar
                                     </button>
 
@@ -168,10 +131,11 @@
                             <table id="tabela-escolaridades-cargo" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Descrição da escolaridade</th>
-                                        <th>Pontuação mínima</th>
-                                        <th>Pontuação máxima</th>
+                                        <th>Descricao da escolaridade</th>
+                                        <th>Pontuacao minima</th>
+                                        <th>Pontuacao maxima</th>
                                         <th>Campo</th>
+                                        <th class="text-center">Alterar</th>
                                         <th class="text-center">Retirar</th>
                                     </tr>
                                 </thead>
@@ -184,6 +148,12 @@
                                                 <td><?= esc($item->ds_pontuacao_maxima) ?></td>
                                                 <td><?= esc($item->ds_tipo_campo) ?></td>
                                                 <td class="text-center">
+                                                    <button type="button" class="btn btn-info btn-sm btn-alterar-escolaridade"
+                                                            data-id="<?= esc($item->pk_id_cargos_escolaridade) ?>">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                </td>
+                                                <td class="text-center">
                                                     <button type="button" class="btn btn-danger btn-sm btn-retirar-escolaridade"
                                                             data-id="<?= esc($item->pk_id_cargos_escolaridade) ?>"
                                                             data-nome="<?= esc($item->ds_nome_escolaridade) ?>">
@@ -194,7 +164,7 @@
                                         <?php endforeach; ?>
                                     <?php else: ?>
                                         <tr>
-                                            <td colspan="5" class="text-center">Nenhuma escolaridade associada a este cargo.</td>
+                                            <td colspan="6" class="text-center">Nenhuma escolaridade associada a este cargo.</td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>
@@ -210,7 +180,7 @@
     </section>
 </div>
 
-<!-- Modal de Confirmação: Retirar Escolaridade do Cargo -->
+<!-- Modal de Confirmacao: Retirar Escolaridade do Cargo -->
 <div class="modal fade" id="modalRetirarEscolaridade" tabindex="-1" role="dialog" aria-labelledby="modalRetirarLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -234,7 +204,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                        <i class="fas fa-times mr-1"></i> Não, cancelar
+                        <i class="fas fa-times mr-1"></i> Nao, cancelar
                     </button>
                     <button type="submit" class="btn btn-danger">
                         <i class="fas fa-trash mr-1"></i> Sim, retirar
@@ -270,6 +240,51 @@
             $('#retirar_pk_id').val(id);
             $('#retirar_nome_escolaridade').text(nome);
             $('#modalRetirarEscolaridade').modal('show');
+        });
+
+        // Carregar dados no formulario ao clicar em alterar
+        $(document).on('click', '.btn-alterar-escolaridade', function() {
+            var id = $(this).data('id');
+
+            $.ajax({
+                url: '<?= site_url('CargosEscolaridades/buscarAssociacao') ?>/' + id,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    if (data && !data.erro) {
+                        $('#pk_id_cargos_escolaridade').val(data.pk_id_cargos_escolaridade);
+                        $('#acao').val('update');
+                        $('#fk_id_escolaridade').val(data.fk_id_escolaridade).trigger('change');
+                        $('#ds_pontuacao_minima').val(data.ds_pontuacao_minima);
+                        $('#ds_pontuacao_maxima').val(data.ds_pontuacao_maxima);
+
+                        if (data.ds_tipo_campo === 'INPUT') {
+                            $('#tipo_campo_digitar').prop('checked', true);
+                        } else if (data.ds_tipo_campo === 'CHECK') {
+                            $('#tipo_campo_escolher').prop('checked', true);
+                        } else {
+                            $('input[name="ds_tipo_campo"]').prop('checked', false);
+                        }
+
+                        // Rolar ate o formulario
+                        $('html, body').animate({
+                            scrollTop: $('#formEscolaridadesCargo').offset().top - 100
+                        }, 500);
+                    } else {
+                        alert('Erro ao buscar dados da escolaridade.');
+                    }
+                },
+                error: function() {
+                    alert('Erro ao buscar dados da escolaridade.');
+                }
+            });
+        });
+
+        // Botao Limpar: reseta o formulario para nova associacao
+        $('#btnLimpar').on('click', function() {
+            $('#formEscolaridadesCargo')[0].reset();
+            $('#pk_id_cargos_escolaridade').val('');
+            $('#acao').val('create');
         });
     });
 </script>

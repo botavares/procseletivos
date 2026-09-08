@@ -14,17 +14,17 @@ class CargosCriteriosService extends AbstractCrudService
     }
 
     /**
-     * Salva (insert ou update) a associação de experiência ao cargo.
-     * Se pk_id_cargos_experiencia estiver presente, faz update.
-     * Caso contrário, verifica se já existe associação para o mesmo cargo + experiência
+     * Salva (insert ou update) a associação de criterio ao cargo.
+     * Se acao == 'update' e pk_id_cargo_criterio estiver presente, faz update.
+     * Caso contrário, verifica se já existe associação para o mesmo cargo + criterio
      * e atualiza; se não existir, insere um novo registro.
      */
     public function salvar(CargosCriteriosDTO $dto): int{
         return $this->transactional(function () use ($dto) {
             $model = new CargosCriteriosAdicionaisModel();
 
-            // Se já temos o ID, é update direto
-            if ($dto->pk_id_cargo_criterio !== null) {
+            // Se ação é update e temos o ID, faz update direto
+            if ($dto->getAcao() === 'update' && $dto->pk_id_cargo_criterio !== null) {
                 if (! $model->update($dto->pk_id_cargo_criterio, $dto->toArray())) {
                     throw new \RuntimeException('Erro ao atualizar associação de critério ao cargo.');
                 }

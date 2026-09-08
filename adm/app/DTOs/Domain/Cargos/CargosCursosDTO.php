@@ -10,6 +10,7 @@ class CargosCursosDTO
     public ?int $ds_pontuacao_minima = null;
     public ?int $ds_pontuacao_maxima = null;
     public ?string $ds_tipo_campo = null;
+    public ?string $acao = null;
 
     public static function fromRequest(array $data): self{
         $dto = new self();
@@ -19,6 +20,7 @@ class CargosCursosDTO
         $dto->ds_pontuacao_minima      = isset($data['ds_pontuacao_minima']) && $data['ds_pontuacao_minima'] !== '' ? (int) $data['ds_pontuacao_minima'] : null;
         $dto->ds_pontuacao_maxima      = isset($data['ds_pontuacao_maxima']) && $data['ds_pontuacao_maxima'] !== '' ? (int) $data['ds_pontuacao_maxima'] : null;
         $dto->ds_tipo_campo             = $data['ds_tipo_campo'] ?? null;
+        $dto->acao                      = $data['acao'] ?? 'create';
         return $dto;
     }
 
@@ -36,5 +38,10 @@ class CargosCursosDTO
         }
 
         return $data;
+    }
+
+    public function getAcao(): string
+    {
+        return $this->acao ?? 'create';
     }
 }

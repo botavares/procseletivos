@@ -9,6 +9,7 @@ class CargosCriteriosFormService extends AbstractFormService
 {
     protected function normalize(): array
     {
+        $acao = $this->request->getPost('acao') ?? 'create';
         $data = [
             'pk_id_cargo_criterio' => $this->request->getPost('pk_id_cargo_criterio'),
             'fk_id_cargo'               => $this->request->getPost('fk_id_cargo'),
@@ -16,10 +17,11 @@ class CargosCriteriosFormService extends AbstractFormService
             'ds_pontuacao_minima'      => $this->request->getPost('ds_pontuacao_minima'),
             'ds_pontuacao_maxima'      => $this->request->getPost('ds_pontuacao_maxima'),
             'ds_tipo_campo'             => $this->request->getPost('ds_tipo_campo'),
+            'acao'                      => $acao,
         ];
 
         return [
-            'acao'                 => $this->request->getPost('acao') ?? 'create',
+            'acao'                 => $acao,
             'cargosCriterios'   => CargosCriteriosDTO::fromRequest($data),
         ];
     }

@@ -35,58 +35,29 @@
                         <!-- BODY -->
                         <div class="card-body">
 
-                            <?php
-                                // Normaliza $cargoCriterio para objeto, caso venha como array
-                                if ($cargoCriterio !== null && is_array($cargoCriterio)) {
-                                    $cargoCriterio = (object) $cargoCriterio;
-                                }
-
-                                // Helper para recuperar valor preenchido (banco > old > default)
-                                $val = function($campo, $default = '') use ($cargoCriterio) {
-                                    if ($cargoCriterio && property_exists($cargoCriterio, $campo) && $cargoCriterio->$campo !== null) {
-                                        return $cargoCriterio->$campo;
-                                    }
-                                    return old($campo) ?? $default;
-                                };
-                            ?>
-
                             <form id="formCriteriosCargo"
                                   method="POST"
                                   action="<?= site_url('CargosCriterios/registrarAssociacaoCargoCriterio') ?>">
 
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="fk_id_cargo" value="<?= esc($cargo->pk_id_cargo) ?>">
-                                <input type="hidden" name="acao" value="<?= esc($acao) ?>">
-
-
-
-                               
+                                <input type="hidden" name="pk_id_cargo_criterio" id="pk_id_cargo_criterio" value="">
+                                <input type="hidden" name="acao" id="acao" value="<?= esc($acao) ?>">
 
                                 <!-- Criterio -->
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label>Nome do critério</label>
-                                        <select class="form-control" name="fk_id_criterio" required>
+                                        <select class="form-control" name="fk_id_criterio" id="fk_id_criterio" required>
                                             <option value="">Selecione</option>
                                             <?php foreach ($Criterios as $esc): ?>
-                                                <?php
-                                                    $selected = '';
-                                                    if ($cargoCriterio && $cargoCriterio->fk_id_criterio == $esc->pk_id_criterio) {
-                                                        $selected = 'selected';
-                                                    } elseif (old('fk_id_criterio') == $esc->pk_id_criterio) {
-                                                        $selected = 'selected';
-                                                    }
-                                                ?>
-                                                <option value="<?= esc($esc->pk_id_criterio) ?>" <?= $selected ?>>
+                                                <option value="<?= esc($esc->pk_id_criterio) ?>">
                                                     <?= esc($esc->ds_nome_criterio) ?>
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
                                 </div>
-
-                                 
-
 
                                 <!-- QUANTIDADE MÍNIMA / MÁXIMA -->
                                 <div class="form-row">
@@ -95,8 +66,8 @@
                                         <input type="number"
                                                class="form-control"
                                                name="ds_pontuacao_minima"
-                                               id="pontuacao_minima"
-                                               value="<?= esc($val('ds_pontuacao_minima')) ?>"
+                                               id="ds_pontuacao_minima"
+                                               value=""
                                                min="0">
                                         <small class="form-text text-muted">
                                             Insira qual é a pontuação mínima que o candidato pode obter com esse critério.
@@ -108,8 +79,8 @@
                                         <input type="number"
                                                class="form-control"
                                                name="ds_pontuacao_maxima"
-                                               id="pontuacao_maxima"
-                                               value="<?= esc($val('ds_pontuacao_maxima')) ?>"
+                                               id="ds_pontuacao_maxima"
+                                               value=""
                                                min="0">
                                         <small class="form-text text-muted">
                                             Insira qual é a pontuação máxima que o candidato pode obter com esse critério.
@@ -119,23 +90,15 @@
                                 <!-- TIPO DE CAMPO -->
                                 <div class="form-group">
                                     <label>Como o candidato irá preencher os dados desse critério?</label>
-                                    <?php
-                                        $tipoCampo = '';
-                                        if ($cargoCriterio && property_exists($cargoCriterio, 'ds_tipo_campo') && $cargoCriterio->ds_tipo_campo !== null) {
-                                            $tipoCampo = $cargoCriterio->ds_tipo_campo;
-                                        } elseif (old('ds_tipo_campo') !== null) {
-                                            $tipoCampo = old('ds_tipo_campo');
-                                        }
-                                    ?>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_digitar" value="INPUT" <?= $tipoCampo === 'INPUT' ? 'checked' : '' ?>>
+                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_digitar" value="INPUT">
                                         <label class="form-check-label" for="tipo_campo_digitar">
                                             O candidato vai digitar o total de itens, 
                                         </label>
                                     </div>
                                     
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_escolher" value="CHECK" <?= $tipoCampo === 'CHECK' ? 'checked' : '' ?>>
+                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_escolher" value="CHECK">
                                         <label class="form-check-label" for="tipo_campo_escolher">
                                             O candidato vai apontar se possui o determinado curso (ideal quando a pontuação por Criterio e pontuação máxima for igual). 
                                         </label>
@@ -146,7 +109,7 @@
 
                                 <!-- FOOTER -->
                                 <div class="text-right mt-4">
-                                    <button type="reset" class="btn btn-secondary mr-2">
+                                    <button type="button" id="btnLimpar" class="btn btn-secondary mr-2">
                                         <i class="fas fa-eraser"></i> Limpar
                                     </button>
 
@@ -172,6 +135,7 @@
                                         <th>Pontuação mínima</th>
                                         <th>Pontuação máxima</th>
                                         <th>Campo</th>
+                                        <th class="text-center">Alterar</th>
                                         <th class="text-center">Retirar</th>
                                     </tr>
                                 </thead>
@@ -184,6 +148,12 @@
                                                 <td><?= esc($item->ds_pontuacao_maxima) ?></td>
                                                 <td><?= esc($item->ds_tipo_campo) ?></td>
                                                 <td class="text-center">
+                                                    <button type="button" class="btn btn-info btn-sm btn-alterar-Criterio"
+                                                            data-id="<?= esc($item->pk_id_cargo_criterio) ?>">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                </td>
+                                                <td class="text-center">
                                                     <button type="button" class="btn btn-danger btn-sm btn-retirar-Criterio"
                                                             data-id="<?= esc($item->pk_id_cargo_criterio) ?>"
                                                             data-nome="<?= esc($item->ds_nome_criterio) ?>">
@@ -194,7 +164,7 @@
                                         <?php endforeach; ?>
                                     <?php else: ?>
                                         <tr>
-                                            <td colspan="5" class="text-center">Nenhuma Criterio associada a este cargo.</td>
+                                            <td colspan="6" class="text-center">Nenhuma Criterio associada a este cargo.</td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>
@@ -270,6 +240,51 @@
             $('#retirar_pk_id').val(id);
             $('#retirar_nome_criterio').text(nome);
             $('#modalRetirarCriterio').modal('show');
+        });
+
+        // Carregar dados no formulário ao clicar em alterar
+        $(document).on('click', '.btn-alterar-Criterio', function() {
+            var id = $(this).data('id');
+
+            $.ajax({
+                url: '<?= site_url('CargosCriterios/buscarAssociacao') ?>/' + id,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    if (data && !data.erro) {
+                        $('#pk_id_cargo_criterio').val(data.pk_id_cargo_criterio);
+                        $('#acao').val('update');
+                        $('#fk_id_criterio').val(data.fk_id_criterio).trigger('change');
+                        $('#ds_pontuacao_minima').val(data.ds_pontuacao_minima);
+                        $('#ds_pontuacao_maxima').val(data.ds_pontuacao_maxima);
+
+                        if (data.ds_tipo_campo === 'INPUT') {
+                            $('#tipo_campo_digitar').prop('checked', true);
+                        } else if (data.ds_tipo_campo === 'CHECK') {
+                            $('#tipo_campo_escolher').prop('checked', true);
+                        } else {
+                            $('input[name="ds_tipo_campo"]').prop('checked', false);
+                        }
+
+                        // Rolar até o formulário
+                        $('html, body').animate({
+                            scrollTop: $('#formCriteriosCargo').offset().top - 100
+                        }, 500);
+                    } else {
+                        alert('Erro ao buscar dados da Criterio.');
+                    }
+                },
+                error: function() {
+                    alert('Erro ao buscar dados da Criterio.');
+                }
+            });
+        });
+
+        // Botão Limpar: reseta o formulário para nova associação
+        $('#btnLimpar').on('click', function() {
+            $('#formCriteriosCargo')[0].reset();
+            $('#pk_id_cargo_criterio').val('');
+            $('#acao').val('create');
         });
     });
 </script>

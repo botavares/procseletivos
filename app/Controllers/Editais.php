@@ -2,10 +2,7 @@
 
 namespace App\Controllers;
 use CodeIgniter\Exceptions\PageNotFoundException;
-use \App\Models\EditaisModel;
-use \App\Models\ArquivoModel;
-use \App\Models\CargosModel;
-use \App\Models\AutenticadorModel;
+use \App\Services\EditaisService;
 
 class Editais extends BaseController
 {
@@ -15,15 +12,14 @@ class Editais extends BaseController
             // Página não encontrada!
             throw new PageNotFoundException("página não econtrada: ".$page);
         }
-        //Destaques
-        $editais    =   new EditaisModel();
-        $editaisAtivos = $editais->where('ds_status','1')->orderBy('ds_data_inicial','DESC')->findAll();
-        $editaisEncerrados = $editais->where('ds_status','0')->orderBy('ds_data_inicial','DESC')->findAll();
+        $editaisService = new EditaisService();
+        $editaisAtivos = $editaisService->listarEditaisAtivos();
+        $editaisEncerrados = $editaisService->listarEditaisEncerrados();
+        $cargos = $editaisService->listarTodosCargos();
 
-        $modelCargos  =   new CargosModel();
-        $cargos = $modelCargos->orderBy('ds_nome_cargo', 'asc')->findAll();
+        $cargosPorEdital = $editaisService->listarCargosPorEditais($editaisAtivos);
+        $cargosPorEditalEncerrados = $editaisService->listarCargosPorEditais($editaisEncerrados);
 
-        
         if (checklogged()) {
             $layout = 'layoutLogado';
         }else{
@@ -36,7 +32,10 @@ class Editais extends BaseController
             'pagina'        =>  $page,
             'titulo'        =>  ucfirst('Editais Ativos'),
             'editais'       =>  $editaisAtivos,
+            'editaisEncerrados'       =>  $editaisEncerrados,
             'cargos'        =>  $cargos,
+            'cargosPorEdital'=>  $cargosPorEdital,
+            'cargosPorEditalEncerrados'=>  $cargosPorEditalEncerrados,
             'dataAtual'     =>  date('d/m/Y'),
         ];
         echo view($layout,$parametros);

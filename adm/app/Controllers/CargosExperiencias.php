@@ -37,15 +37,9 @@ class CargosExperiencias extends BaseController{
 
         $experiencias = (new ExperienciasModel())->listarExperienciasOrdenadas();
         
-        // Busca os dados da associação cargo + experiência (se existir)
-        $cargoExperiencia = (new CargosExperienciasModel())
-                                ->where('fk_id_cargo', $id)
-                                ->first();
-        if($cargoExperiencia){
-            $action = 'update';
-        }else{
-            $action = 'create';
-        }
+        // Form sempre inicia em branco para nova associação
+        $action = 'create';
+        $cargoExperiencia = null;
 
         // Busca TODAS as experiências já associadas a esse cargo
         $experienciasDoCargo = (new CargosExperienciasModel())->listarExperienciasDoCargo($id);
@@ -109,6 +103,21 @@ class CargosExperiencias extends BaseController{
     }
 
     /**
+     * Retorna os dados de uma associação específica para preenchimento do formulário (AJAX).
+     */
+    public function buscarAssociacao($idAssociacao){
+        $this->validarSessao();
+
+        $associacao = (new CargosExperienciasModel())->find($idAssociacao);
+
+        if (!$associacao) {
+            return $this->response->setStatusCode(404)->setJSON(['erro' => 'Associação não encontrada']);
+        }
+
+        return $this->response->setJSON($associacao);
+    }
+
+    /**
      * Registra a associação de uma experiência ao cargo (create ou update).
      */
     public function registrarAssociacaoCargoExperiencia(){
@@ -122,7 +131,7 @@ class CargosExperiencias extends BaseController{
             $service->salvar($dto);
 
             return redirect()
-                ->route('Cargos')
+                ->route('CargosExperiencias.formularioCargosExperiencia', [$dto->fk_id_cargo])
                 ->with('mensagemSuccess', 'Experiência associada ao cargo com sucesso');
 
         } catch (\Exception $e) {

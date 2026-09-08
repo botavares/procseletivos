@@ -780,3 +780,83 @@ Stack trace:
   thrown
 in SYSTEMPATH\CodeIgniter.php on line 993.
  1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 15:45:29 --> Uncaught CodeIgniter\Router\Exceptions\RouterException in C:\laragon\www\servicos\procseletivos\adm\system\Helpers\url_helper.php:566
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Helpers\url_helper.php(566): CodeIgniter\Router\Exceptions\RouterException::forInvalidRoute('login.esqueceuS...')
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Capa_view.php(120): url_to('login.esqueceuS...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Capa_vie...', Array, true)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutSimples.php(3): view('/pages/Capa_vie...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutSimples', Array, true)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Home.php(25): view('layoutSimples', Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Home->index()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in SYSTEMPATH\Helpers\url_helper.php on line 566.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 15:45:40 --> Uncaught CodeIgniter\Router\Exceptions\RouterException in C:\laragon\www\servicos\procseletivos\adm\system\Helpers\url_helper.php:566
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Helpers\url_helper.php(566): CodeIgniter\Router\Exceptions\RouterException::forInvalidRoute('login.esqueceuS...')
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Capa_view.php(120): url_to('login.esqueceuS...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Capa_vie...', Array, true)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutSimples.php(3): view('/pages/Capa_vie...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutSimples', Array, true)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Home.php(25): view('layoutSimples', Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Home->index()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in SYSTEMPATH\Helpers\url_helper.php on line 566.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 15:45:42 --> Uncaught CodeIgniter\Router\Exceptions\RouterException in C:\laragon\www\servicos\procseletivos\adm\system\Helpers\url_helper.php:566
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Helpers\url_helper.php(566): CodeIgniter\Router\Exceptions\RouterException::forInvalidRoute('login.esqueceuS...')
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Capa_view.php(120): url_to('login.esqueceuS...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Capa_vie...', Array, true)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutSimples.php(3): view('/pages/Capa_vie...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutSimples', Array, true)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Home.php(25): view('layoutSimples', Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Home->index()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in SYSTEMPATH\Helpers\url_helper.php on line 566.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-03 15:46:20 --> Uncaught CodeIgniter\Router\Exceptions\RouterException in C:\laragon\www\servicos\procseletivos\adm\system\Helpers\url_helper.php:566
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Helpers\url_helper.php(566): CodeIgniter\Router\Exceptions\RouterException::forInvalidRoute('login.esqueceuS...')
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Views\pages\Capa_view.php(120): url_to('login.esqueceuS...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#4 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('/pages/Capa_vie...', Array, true)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Views\layoutSimples.php(3): view('/pages/Capa_vie...')
+#6 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(213): include('C:\\laragon\\www\\...')
+#7 C:\laragon\www\servicos\procseletivos\adm\system\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#8 C:\laragon\www\servicos\procseletivos\adm\system\Common.php(1177): CodeIgniter\View\View->render('layoutSimples', Array, true)
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Home.php(25): view('layoutSimples', Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Home->index()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+  thrown
+in SYSTEMPATH\Helpers\url_helper.php on line 566.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()

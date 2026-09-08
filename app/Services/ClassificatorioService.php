@@ -105,7 +105,7 @@ class ClassificatorioService{
         $criteriosAdicionaisIndexados = [];
         if (!empty($criteriosAdicionais)) {
             foreach ($criteriosAdicionais as $ca) {
-                $criteriosAdicionaisIndexados[$ca->fk_id_criterio] = $ca->ds_quantidade ?? 1;
+                $criteriosAdicionaisIndexados[$ca->fk_id_criterio] = $ca->ds_quantidade ?? 0;
             }
         }
 

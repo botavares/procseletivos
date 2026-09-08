@@ -39,45 +39,23 @@
                         <!-- BODY -->
                         <div class="card-body">
 
-                            <?php
-                                // Normaliza $cargoCurso para objeto, caso venha como array
-                                if ($cargoCurso !== null && is_array($cargoCurso)) {
-                                    $cargoCurso = (object) $cargoCurso;
-                                }
-
-                                // Helper para recuperar valor preenchido (banco > old > default)
-                                $val = function($campo, $default = '') use ($cargoCurso) {
-                                    if ($cargoCurso && property_exists($cargoCurso, $campo) && $cargoCurso->$campo !== null) {
-                                        return $cargoCurso->$campo;
-                                    }
-                                    return old($campo) ?? $default;
-                                };
-                            ?>
-
                             <form id="formCursosCargo"
                                   method="POST"
                                   action="<?= site_url('CargosCursos/registrarAssociacaoCargoCursos') ?>">
 
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="fk_id_cargo" value="<?= esc($cargo->pk_id_cargo) ?>">
-                                <input type="hidden" name="acao" value="<?= esc($acao) ?>">
+                                <input type="hidden" name="pk_id_cargo_aperfeicoamento" id="pk_id_cargo_aperfeicoamento" value="">
+                                <input type="hidden" name="acao" id="acao" value="<?= esc($acao) ?>">
 
-                                <!-- Cursos de aperfeiçoamento -->
+                                <!-- Cursos de aperfeicoamento -->
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label>Cursos de aperfeiçoamento *</label>
-                                        <select class="form-control" name="fk_id_curso" required>
+                                        <label>Cursos de aperfeicoamento *</label>
+                                        <select class="form-control" name="fk_id_curso" id="fk_id_curso" required>
                                             <option value="">Selecione</option>
                                             <?php foreach ($cursos as $exp): ?>
-                                                <?php
-                                                    $selected = '';
-                                                    if ($cargoCurso && $cargoCurso->fk_id_curso == $exp->pk_id_curso) {
-                                                        $selected = 'selected';
-                                                    } elseif (old('fk_id_curso') == $exp->pk_id_curso) {
-                                                        $selected = 'selected';
-                                                    }
-                                                ?>
-                                                <option value="<?= esc($exp->pk_id_curso) ?>" <?= $selected ?>>
+                                                <option value="<?= esc($exp->pk_id_curso) ?>">
                                                     <?= esc($exp->ds_nome_curso) ?>
                                                 </option>
                                             <?php endforeach; ?>
@@ -85,52 +63,46 @@
                                     </div>
                                 </div>
 
-                                <!-- PONTUAÇÃO MÍNIMA / MÁXIMA -->
+                                <!-- PONTUACAO MINIMA / MAXIMA -->
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label>Pontuação por cada cursos de aperfeiçoamento </label>
+                                        <label>Pontuacao por cada cursos de aperfeicoamento </label>
                                         <input type="number"
                                                class="form-control"
                                                name="ds_pontuacao_minima"
-                                               value="<?= esc($val('ds_pontuacao_minima')) ?>"
+                                               id="ds_pontuacao_minima"
+                                               value=""
                                                min="0">
                                                <small class="form-text text-muted">
-                                                   Insira aqui quantos ponto cada cursos de aperfeiçoamento terá. 
+                                                   Insira aqui quantos ponto cada cursos de aperfeicoamento tera. 
                                                </small>
                                     </div>
                                    
 
                                     <div class="form-group col-md-6">
-                                        <label>Pontuação máxima do cursos de aperfeiçoamento</label>
+                                        <label>Pontuacao maxima do cursos de aperfeicoamento</label>
                                         <input type="number"
                                                class="form-control"
                                                name="ds_pontuacao_maxima"
-                                               value="<?= esc($val('ds_pontuacao_maxima')) ?>"
+                                               id="ds_pontuacao_maxima"
+                                               value=""
                                                min="0">
                                                <small class="form-text text-muted">
-                                                   Insira qual é a pontuação máxima que o candidato pode obter com esse cursos de aperfeiçoamento.
+                                                   Insira qual e a pontuacao maxima que o candidato pode obter com esse cursos de aperfeicoamento.
                                                </small>
                                     </div>
                                 </div>
                                 <!-- TIPO DE CAMPO -->
                                 <div class="form-group">
-                                    <label>Como o candidato irá preencher os dados desse curso de aperfeiçoamento?</label>
-                                    <?php
-                                        $tipoCampo = '';
-                                        if ($cargoCurso && property_exists($cargoCurso, 'ds_tipo_campo') && $cargoCurso->ds_tipo_campo !== null) {
-                                            $tipoCampo = $cargoCurso->ds_tipo_campo;
-                                        } elseif (old('ds_tipo_campo') !== null) {
-                                            $tipoCampo = old('ds_tipo_campo');
-                                        }
-                                    ?>
+                                    <label>Como o candidato ira preencher os dados desse curso de aperfeicoamento?</label>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_digitar" value="INPUT" <?= $tipoCampo === 'INPUT' ? 'checked' : '' ?>>
+                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_digitar" value="INPUT">
                                         <label class="form-check-label" for="tipo_campo_digitar">
-                                            O candidato vai digitar o total de cursos de aperfeiçoamento que ele possui. (Recomendado)
+                                            O candidato vai digitar o total de cursos de aperfeicoamento que ele possui. (Recomendado)
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_escolher" value="SELECT" <?= $tipoCampo === 'SELECT' ? 'checked' : '' ?>>
+                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_escolher" value="SELECT">
                                         <label class="form-check-label" for="tipo_campo_escolher">
                                             O candidato vai escolher o valor oferecido a ele.
                                         </label>
@@ -141,7 +113,7 @@
 
                                 <!-- FOOTER -->
                                 <div class="text-right mt-4">
-                                    <button type="reset" class="btn btn-secondary mr-2">
+                                    <button type="button" id="btnLimpar" class="btn btn-secondary mr-2">
                                         <i class="fas fa-eraser"></i> Limpar
                                     </button>
 
@@ -154,19 +126,20 @@
 
                             <hr class="mt-5 mb-4">
 
-                            <!-- DATATABLE: Cursos de aperfeiçoamentoS PARA ESSE CARGO -->
+                            <!-- DATATABLE: Cursos de aperfeicoamentoS PARA ESSE CARGO -->
                             <h5 class="mb-3 text-primary">
                                 <i class="fas fa-list mr-1"></i>
-                                Cursos de aperfeiçoamentos para esse cargo:
+                                Cursos de aperfeicoamentos para esse cargo:
                             </h5>
 
                             <table id="tabela-cursos-cargo" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Descrição do Curso de Aperfeiçoamento</th>
-                                        <th>Pontuação mínima</th>
-                                        <th>Pontuação máxima</th>
+                                        <th>Descricao do Curso de Aperfeicoamento</th>
+                                        <th>Pontuacao minima</th>
+                                        <th>Pontuacao maxima</th>
                                         <th>Campo</th>
+                                        <th class="text-center">Alterar</th>
                                         <th class="text-center">Retirar</th>
                                     </tr>
                                 </thead>
@@ -179,6 +152,12 @@
                                                 <td><?= esc($item->ds_pontuacao_maxima) ?></td>
                                                 <td><?= esc($item->ds_tipo_campo) ?></td>
                                                 <td class="text-center">
+                                                    <button type="button" class="btn btn-info btn-sm btn-alterar-curso"
+                                                            data-id="<?= esc($item->pk_id_cargo_aperfeicoamento) ?>">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                </td>
+                                                <td class="text-center">
                                                     <button type="button" class="btn btn-danger btn-sm btn-retirar-curso"
                                                             data-id="<?= esc($item->pk_id_cargo_aperfeicoamento) ?>"
                                                             data-nome="<?= esc($item->ds_nome_curso) ?>">
@@ -189,7 +168,7 @@
                                         <?php endforeach; ?>
                                     <?php else: ?>
                                         <tr>
-                                            <td colspan="5" class="text-center">Nenhuma Cursos de aperfeiçoamento associada a este cargo.</td>
+                                            <td colspan="6" class="text-center">Nenhuma Cursos de aperfeicoamento associada a este cargo.</td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>
@@ -205,7 +184,7 @@
     </section>
 </div>
 
-<!-- Modal de Confirmação: Retirar Cursos de aperfeiçoamento do Cargo -->
+<!-- Modal de Confirmacao: Retirar Cursos de aperfeicoamento do Cargo -->
 <div class="modal fade" id="modalRetirarCurso" tabindex="-1" role="dialog" aria-labelledby="modalRetirarLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -224,12 +203,12 @@
                 </div>
 
                 <div class="modal-body">
-                    <p>Deseja realmente retirar a Cursos de aperfeiçoamento <strong id="retirar_nome_curso"></strong> deste cargo?</p>
+                    <p>Deseja realmente retirar a Cursos de aperfeicoamento <strong id="retirar_nome_curso"></strong> deste cargo?</p>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                        <i class="fas fa-times mr-1"></i> Não, cancelar
+                        <i class="fas fa-times mr-1"></i> Nao, cancelar
                     </button>
                     <button type="submit" class="btn btn-danger">
                         <i class="fas fa-trash mr-1"></i> Sim, retirar
@@ -265,6 +244,51 @@
             $('#retirar_pk_id').val(id);
             $('#retirar_nome_curso').text(nome);
             $('#modalRetirarCurso').modal('show');
+        });
+
+        // Carregar dados no formulario ao clicar em alterar
+        $(document).on('click', '.btn-alterar-curso', function() {
+            var id = $(this).data('id');
+
+            $.ajax({
+                url: '<?= site_url('CargosCursos/buscarAssociacao') ?>/' + id,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    if (data && !data.erro) {
+                        $('#pk_id_cargo_aperfeicoamento').val(data.pk_id_cargo_aperfeicoamento);
+                        $('#acao').val('update');
+                        $('#fk_id_curso').val(data.fk_id_curso).trigger('change');
+                        $('#ds_pontuacao_minima').val(data.ds_pontuacao_minima);
+                        $('#ds_pontuacao_maxima').val(data.ds_pontuacao_maxima);
+
+                        if (data.ds_tipo_campo === 'INPUT') {
+                            $('#tipo_campo_digitar').prop('checked', true);
+                        } else if (data.ds_tipo_campo === 'SELECT') {
+                            $('#tipo_campo_escolher').prop('checked', true);
+                        } else {
+                            $('input[name="ds_tipo_campo"]').prop('checked', false);
+                        }
+
+                        // Rolar ate o formulario
+                        $('html, body').animate({
+                            scrollTop: $('#formCursosCargo').offset().top - 100
+                        }, 500);
+                    } else {
+                        alert('Erro ao buscar dados do curso.');
+                    }
+                },
+                error: function() {
+                    alert('Erro ao buscar dados do curso.');
+                }
+            });
+        });
+
+        // Botao Limpar: reseta o formulario para nova associacao
+        $('#btnLimpar').on('click', function() {
+            $('#formCursosCargo')[0].reset();
+            $('#pk_id_cargo_aperfeicoamento').val('');
+            $('#acao').val('create');
         });
     });
 </script>

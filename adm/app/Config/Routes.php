@@ -64,18 +64,22 @@ $routes->post('/Cargos/deletar', 'Cargos::deletar');
 $routes->get('/CargosExperiencias/formularioCargosExperiencia/(:num)', 'CargosExperiencias::formularioCargosExperiencia/$1', ['as'=>'CargosExperiencias.formularioCargosExperiencia']);
 $routes->post('/CargosExperiencias/registrarAssociacaoCargoExperiencia', 'CargosExperiencias::registrarAssociacaoCargoExperiencia');
 $routes->post('/CargosExperiencias/deletarAssociacaoCargoExperiencia', 'CargosExperiencias::deletarAssociacaoCargoExperiencia');
+$routes->get('/CargosExperiencias/buscarAssociacao/(:num)', 'CargosExperiencias::buscarAssociacao/$1');
 
 $routes->get('/CargosEscolaridades/formularioCargosEscolaridade/(:num)', 'CargosEscolaridades::formularioCargosEscolaridade/$1', ['as'=>'CargosEscolaridades.formularioCargosEscolaridade']);
 $routes->post('/CargosEscolaridades/registrarAssociacaoCargoEscolaridade', 'CargosEscolaridades::registrarAssociacaoCargoEscolaridade');
 $routes->post('/CargosEscolaridades/deletarAssociacaoCargoEscolaridade', 'CargosEscolaridades::deletarAssociacaoCargoEscolaridade');
+$routes->get('/CargosEscolaridades/buscarAssociacao/(:num)', 'CargosEscolaridades::buscarAssociacao/$1');
 
 $routes->get('/CargosCursos/formularioCargosCurso/(:num)', 'CargosCursos::formularioCargosCurso/$1', ['as'=>'CargosCursos.formularioCargosCurso']);
 $routes->post('/CargosCursos/registrarAssociacaoCargoCursos', 'CargosCursos::registrarAssociacaoCargoCursos');
 $routes->post('/CargosCursos/deletarAssociacaoCargoCursos', 'CargosCursos::deletarAssociacaoCargoCursos');
+$routes->get('/CargosCursos/buscarAssociacao/(:num)', 'CargosCursos::buscarAssociacao/$1');
 
 $routes->get('/CargosCriterios/formularioCargosCriterio/(:num)', 'CargosCriterios::formularioCargosCriterio/$1', ['as'=>'CargosCriterios.formularioCargosCriterio']);
 $routes->post('/CargosCriterios/registrarAssociacaoCargoCriterio', 'CargosCriterios::registrarAssociacaoCargoCriterio');
 $routes->post('/CargosCriterios/deletarAssociacaoCargoCriterio', 'CargosCriterios::deletarAssociacaoCargoCriterio');
+$routes->get('/CargosCriterios/buscarAssociacao/(:num)', 'CargosCriterios::buscarAssociacao/$1');
 
 $routes->get('/Instituicoes', 'Instituicoes::index');
 $routes->get('/Instituicoes/formularioCadastro', 'Instituicoes::formularioCadastro', ['as'=>'Instituicoes.formularioCadastro']);

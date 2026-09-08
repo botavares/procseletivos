@@ -37,15 +37,9 @@ class CargosCursos extends BaseController{
 
         $cursos = (new CursosModel())->listarCursosOrdenados();
         
-        // Busca os dados da associação cargo + curso (se existir)
-        $cargoCurso = (new CargosCursosModel())
-                            ->where('fk_id_cargo', $id)
-                            ->first();
-        if($cargoCurso){
-            $action = 'update';
-        }else{
-            $action = 'create';
-        }
+        // Form sempre inicia em branco para nova associação
+        $action = 'create';
+        $cargoCurso = null;
 
         // Busca TODAS os cursos já associados a esse cargo
         $cursosDoCargo = (new CargosCursosModel())->listarCursosDoCargo($id);
@@ -106,6 +100,21 @@ class CargosCursos extends BaseController{
         }
 
         return view('layoutDash', $viewData);
+    }
+
+    /**
+     * Retorna os dados de uma associação específica para preenchimento do formulário (AJAX).
+     */
+    public function buscarAssociacao($idAssociacao){
+        $this->validarSessao();
+
+        $associacao = (new CargosCursosModel())->find($idAssociacao);
+
+        if (!$associacao) {
+            return $this->response->setStatusCode(404)->setJSON(['erro' => 'Associação não encontrada']);
+        }
+
+        return $this->response->setJSON($associacao);
     }
 
     /**

@@ -39,45 +39,23 @@
                         <!-- BODY -->
                         <div class="card-body">
 
-                            <?php
-                                // Normaliza $cargoExperiencia para objeto, caso venha como array
-                                if ($cargoExperiencia !== null && is_array($cargoExperiencia)) {
-                                    $cargoExperiencia = (object) $cargoExperiencia;
-                                }
-
-                                // Helper para recuperar valor preenchido (banco > old > default)
-                                $val = function($campo, $default = '') use ($cargoExperiencia) {
-                                    if ($cargoExperiencia && property_exists($cargoExperiencia, $campo) && $cargoExperiencia->$campo !== null) {
-                                        return $cargoExperiencia->$campo;
-                                    }
-                                    return old($campo) ?? $default;
-                                };
-                            ?>
-
                             <form id="formExperienciasCargo"
                                   method="POST"
                                   action="<?= site_url('CargosExperiencias/registrarAssociacaoCargoExperiencia') ?>">
 
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="fk_id_cargo" value="<?= esc($cargo->pk_id_cargo) ?>">
-                                <input type="hidden" name="acao" value="<?= esc($acao) ?>">
+                                <input type="hidden" name="pk_id_cargos_experiencia" id="pk_id_cargos_experiencia" value="">
+                                <input type="hidden" name="acao" id="acao" value="<?= esc($acao) ?>">
 
                                 <!-- EXPERIÊNCIA -->
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label>Experiência *</label>
-                                        <select class="form-control" name="fk_id_experiencia" required>
+                                        <select class="form-control" name="fk_id_experiencia" id="fk_id_experiencia" required>
                                             <option value="">Selecione</option>
                                             <?php foreach ($experiencias as $exp): ?>
-                                                <?php
-                                                    $selected = '';
-                                                    if ($cargoExperiencia && $cargoExperiencia->fk_id_experiencia == $exp->pk_id_experiencia) {
-                                                        $selected = 'selected';
-                                                    } elseif (old('fk_id_experiencia') == $exp->pk_id_experiencia) {
-                                                        $selected = 'selected';
-                                                    }
-                                                ?>
-                                                <option value="<?= esc($exp->pk_id_experiencia) ?>" <?= $selected ?>>
+                                                <option value="<?= esc($exp->pk_id_experiencia) ?>">
                                                     <?= esc($exp->ds_nome_experiencia) ?>
                                                 </option>
                                             <?php endforeach; ?>
@@ -92,7 +70,8 @@
                                         <input type="number"
                                                class="form-control"
                                                name="ds_pontuacao_minima"
-                                               value="<?= esc($val('ds_pontuacao_minima')) ?>"
+                                               id="ds_pontuacao_minima"
+                                               value=""
                                                min="0">
                                                <small class="form-text text-muted">
                                                    Insira aqui quantos ponto cada experiência terá. 
@@ -105,7 +84,8 @@
                                         <input type="number"
                                                class="form-control"
                                                name="ds_pontuacao_maxima"
-                                               value="<?= esc($val('ds_pontuacao_maxima')) ?>"
+                                               id="ds_pontuacao_maxima"
+                                               value=""
                                                min="0">
                                                <small class="form-text text-muted">
                                                    Insira qual é a pontuação máxima que o candidato pode obter com essa experiência.
@@ -115,22 +95,14 @@
                                 <!-- TIPO DE CAMPO -->
                                 <div class="form-group">
                                     <label>Como o candidato irá preencher os dados dessa experiência?</label>
-                                    <?php
-                                        $tipoCampo = '';
-                                        if ($cargoExperiencia && property_exists($cargoExperiencia, 'ds_tipo_campo') && $cargoExperiencia->ds_tipo_campo !== null) {
-                                            $tipoCampo = $cargoExperiencia->ds_tipo_campo;
-                                        } elseif (old('ds_tipo_campo') !== null) {
-                                            $tipoCampo = old('ds_tipo_campo');
-                                        }
-                                    ?>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_digitar" value="INPUT" <?= $tipoCampo === 'INPUT' ? 'checked' : '' ?>>
+                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_digitar" value="INPUT">
                                         <label class="form-check-label" for="tipo_campo_digitar">
                                             O candidato vai digitar o total de experiência que ele possui
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_escolher" value="SELECT" <?= $tipoCampo === 'SELECT' ? 'checked' : '' ?>>
+                                        <input class="form-check-input" type="radio" name="ds_tipo_campo" id="tipo_campo_escolher" value="SELECT">
                                         <label class="form-check-label" for="tipo_campo_escolher">
                                             O candidato vai escolher o valor oferecido a ele (recomendado)
                                         </label>
@@ -141,7 +113,7 @@
 
                                 <!-- FOOTER -->
                                 <div class="text-right mt-4">
-                                    <button type="reset" class="btn btn-secondary mr-2">
+                                    <button type="button" id="btnLimpar" class="btn btn-secondary mr-2">
                                         <i class="fas fa-eraser"></i> Limpar
                                     </button>
 
@@ -167,6 +139,7 @@
                                         <th>Pontuação mínima</th>
                                         <th>Pontuação máxima</th>
                                         <th>Campo</th>
+                                        <th class="text-center">Alterar</th>
                                         <th class="text-center">Retirar</th>
                                     </tr>
                                 </thead>
@@ -179,6 +152,12 @@
                                                 <td><?= esc($item->ds_pontuacao_maxima) ?></td>
                                                 <td><?= esc($item->ds_tipo_campo) ?></td>
                                                 <td class="text-center">
+                                                    <button type="button" class="btn btn-info btn-sm btn-alterar-experiencia"
+                                                            data-id="<?= esc($item->pk_id_cargos_experiencia) ?>">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                </td>
+                                                <td class="text-center">
                                                     <button type="button" class="btn btn-danger btn-sm btn-retirar-experiencia"
                                                             data-id="<?= esc($item->pk_id_cargos_experiencia) ?>"
                                                             data-nome="<?= esc($item->ds_nome_experiencia) ?>">
@@ -189,7 +168,7 @@
                                         <?php endforeach; ?>
                                     <?php else: ?>
                                         <tr>
-                                            <td colspan="5" class="text-center">Nenhuma experiência associada a este cargo.</td>
+                                            <td colspan="6" class="text-center">Nenhuma experiência associada a este cargo.</td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>
@@ -265,6 +244,51 @@
             $('#retirar_pk_id').val(id);
             $('#retirar_nome_experiencia').text(nome);
             $('#modalRetirarExperiencia').modal('show');
+        });
+
+        // Carregar dados no formulário ao clicar em alterar
+        $(document).on('click', '.btn-alterar-experiencia', function() {
+            var id = $(this).data('id');
+
+            $.ajax({
+                url: '<?= site_url('CargosExperiencias/buscarAssociacao') ?>/' + id,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    if (data && !data.erro) {
+                        $('#pk_id_cargos_experiencia').val(data.pk_id_cargos_experiencia);
+                        $('#acao').val('update');
+                        $('#fk_id_experiencia').val(data.fk_id_experiencia).trigger('change');
+                        $('#ds_pontuacao_minima').val(data.ds_pontuacao_minima);
+                        $('#ds_pontuacao_maxima').val(data.ds_pontuacao_maxima);
+
+                        if (data.ds_tipo_campo === 'INPUT') {
+                            $('#tipo_campo_digitar').prop('checked', true);
+                        } else if (data.ds_tipo_campo === 'SELECT') {
+                            $('#tipo_campo_escolher').prop('checked', true);
+                        } else {
+                            $('input[name="ds_tipo_campo"]').prop('checked', false);
+                        }
+
+                        // Rolar até o formulário
+                        $('html, body').animate({
+                            scrollTop: $('#formExperienciasCargo').offset().top - 100
+                        }, 500);
+                    } else {
+                        alert('Erro ao buscar dados da experiência.');
+                    }
+                },
+                error: function() {
+                    alert('Erro ao buscar dados da experiência.');
+                }
+            });
+        });
+
+        // Botão Limpar: reseta o formulário para nova associação
+        $('#btnLimpar').on('click', function() {
+            $('#formExperienciasCargo')[0].reset();
+            $('#pk_id_cargos_experiencia').val('');
+            $('#acao').val('create');
         });
     });
 </script>

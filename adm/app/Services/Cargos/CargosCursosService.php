@@ -15,7 +15,7 @@ class CargosCursosService extends AbstractCrudService
 
     /**
      * Salva (insert ou update) a associação de curso ao cargo.
-     * Se pk_id_cargos_cursos estiver presente, faz update.
+     * Se acao == 'update' e pk_id_cargo_aperfeicoamento estiver presente, faz update.
      * Caso contrário, verifica se já existe associação para o mesmo cargo + curso
      * e atualiza; se não existir, insere um novo registro.
      */
@@ -23,10 +23,10 @@ class CargosCursosService extends AbstractCrudService
         return $this->transactional(function () use ($dto) {
             $model = new CargosCursosModel();
 
-            // Se já temos o ID, é update direto
-            if ($dto->pk_id_cargo_aperfeicoamento !== null) {
+            // Se ação é update e temos o ID, faz update direto
+            if ($dto->getAcao() === 'update' && $dto->pk_id_cargo_aperfeicoamento !== null) {
                 if (! $model->update($dto->pk_id_cargo_aperfeicoamento, $dto->toArray())) {
-                    throw new \RuntimeException('Erro ao atualizar associação de escolaridade ao cargo.');
+                    throw new \RuntimeException('Erro ao atualizar associação de curso ao cargo.');
                 }
                 return $dto->pk_id_cargo_aperfeicoamento;
             }

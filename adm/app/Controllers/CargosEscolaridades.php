@@ -39,15 +39,9 @@ class CargosEscolaridades extends BaseController{
 
         $escolaridades = (new EscolaridadesModel())->listarEscolaridadesOrdenadas();
         
-        // Busca os dados da associação cargo + escolaridade (se existir)
-        $cargoEscolaridade = (new CargosEscolaridadesModel())
-                                ->where('fk_id_cargo', $id)
-                                ->first();
-        if($cargoEscolaridade){
-            $action = 'update';
-        }else{
-            $action = 'create';
-        }
+        // Form sempre inicia em branco para nova associação
+        $action = 'create';
+        $cargoEscolaridade = null;
 
         // Busca TODAS as escolaridades já associadas a esse cargo
         $escolaridadesDoCargo = (new CargosEscolaridadesModel())->listarEscolaridadesDoCargo($id);
@@ -108,6 +102,21 @@ class CargosEscolaridades extends BaseController{
         }
 
         return view('layoutDash', $viewData);
+    }
+
+    /**
+     * Retorna os dados de uma associação específica para preenchimento do formulário (AJAX).
+     */
+    public function buscarAssociacao($idAssociacao){
+        $this->validarSessao();
+
+        $associacao = (new CargosEscolaridadesModel())->find($idAssociacao);
+
+        if (!$associacao) {
+            return $this->response->setStatusCode(404)->setJSON(['erro' => 'Associação não encontrada']);
+        }
+
+        return $this->response->setJSON($associacao);
     }
 
     /**

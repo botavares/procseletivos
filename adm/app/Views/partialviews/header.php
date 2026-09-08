@@ -31,7 +31,8 @@
 	<link type="text/css"  href="<?php echo base_url("external/css/padroes.css")?>" rel="stylesheet">
     <link type="text/css"  href="<?php echo base_url("external/css/login.css")?>" rel="stylesheet">
    	<link type="text/css"  href="<?php echo base_url("external/css/formularios.css")?>" rel="stylesheet">
-	<link type="text/css"  href="<?php echo base_url("external/css/capa.css")?>" rel="stylesheet">
+	<link type="text/css"  href="<?php echo base_url("external/css/modalmensagem.css")?>" rel="stylesheet">
+	<link type="text/css"  href="<?php echo base_url("external/css/dashboard.css")?>" rel="stylesheet">
    
     
 

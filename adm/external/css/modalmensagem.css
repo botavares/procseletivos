@@ -1,0 +1,99 @@
+.modal-container {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  .modal-box {
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    overflow: hidden;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .modal-header {
+    padding: 16px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #004795;
+    color: white;
+  }
+  
+  .modal-body {
+    display: flex;
+    padding: 20px;
+    gap: 15px;
+  }
+  
+  .modal-icone {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+  
+  .modal-icone::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  .modal-texto {
+    flex-grow: 1;
+    font-size: 16px;
+    color: #333;
+  }
+  .modal-formulario{
+    z-index: 1050;
+    flex-grow: 1;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .modal-footer {
+    padding: 12px 20px;
+    text-align: right;
+    background-color: #f1f1f1;
+  }
+  
+  .modal-btn {
+    padding: 8px 16px;
+    background-color: #004795;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .modal-btn:hover {
+    background-color: #00356b;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  
+  /* Ícones */
+  .modal-icone.erro::before {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23d20000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.371 0 0 5.371 0 12s5.371 12 12 12 12-5.371 12-12S18.629 0 12 0zm0 21.75c-5.385 0-9.75-4.365-9.75-9.75S6.615 2.25 12 2.25 21.75 6.615 21.75 12 17.385 21.75 12 21.75zm-1.125-6.75h2.25v2.25h-2.25V15zm0-9h2.25v6.75h-2.25V6z"/></svg>');
+  }
+  
+  .modal-icone.advertencia::before {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23f4a300" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1 21h22L12 2 1 21zm13-3h-4v-2h4v2zm0-4h-4v-4h4v4z"/></svg>');
+  }
+  
+  .modal-icone.informacao::before {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23004795" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.372 0 0 5.373 0 12c0 6.627 5.372 12 12 12s12-5.373 12-12C24 5.373 18.628 0 12 0zm1 17h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>');
+  }
+  

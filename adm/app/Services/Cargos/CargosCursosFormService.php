@@ -9,17 +9,19 @@ class CargosCursosFormService extends AbstractFormService
 {
     protected function normalize(): array
     {
+        $acao = $this->request->getPost('acao') ?? 'create';
         $data = [
-            'pk_id_cargo_aperfeicoamento' => $this->request->getPost('pk_id_cargos_aperfeicoamento'),
+            'pk_id_cargo_aperfeicoamento' => $this->request->getPost('pk_id_cargo_aperfeicoamento'),
             'fk_id_cargo'               => $this->request->getPost('fk_id_cargo'),
             'fk_id_curso'                => $this->request->getPost('fk_id_curso'),
             'ds_pontuacao_minima'      => $this->request->getPost('ds_pontuacao_minima'),
             'ds_pontuacao_maxima'      => $this->request->getPost('ds_pontuacao_maxima'),
             'ds_tipo_campo'             => $this->request->getPost('ds_tipo_campo'),
+            'acao'                      => $acao,
         ];
 
         return [
-            'acao'                 => $this->request->getPost('acao') ?? 'create',
+            'acao'                 => $acao,
             'cargosCursos'   => CargosCursosDTO::fromRequest($data),
         ];
     }

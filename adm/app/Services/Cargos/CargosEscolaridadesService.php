@@ -14,17 +14,17 @@ class CargosEscolaridadesService extends AbstractCrudService
     }
 
     /**
-     * Salva (insert ou update) a associação de experiência ao cargo.
-     * Se pk_id_cargos_experiencia estiver presente, faz update.
-     * Caso contrário, verifica se já existe associação para o mesmo cargo + experiência
+     * Salva (insert ou update) a associação de escolaridade ao cargo.
+     * Se acao == 'update' e pk_id_cargos_escolaridade estiver presente, faz update.
+     * Caso contrário, verifica se já existe associação para o mesmo cargo + escolaridade
      * e atualiza; se não existir, insere um novo registro.
      */
     public function salvar(CargosEscolaridadesDTO $dto): int{
         return $this->transactional(function () use ($dto) {
             $model = new CargosEscolaridadesModel();
 
-            // Se já temos o ID, é update direto
-            if ($dto->pk_id_cargos_escolaridade !== null) {
+            // Se ação é update e temos o ID, faz update direto
+            if ($dto->getAcao() === 'update' && $dto->pk_id_cargos_escolaridade !== null) {
                 if (! $model->update($dto->pk_id_cargos_escolaridade, $dto->toArray())) {
                     throw new \RuntimeException('Erro ao atualizar associação de escolaridade ao cargo.');
                 }

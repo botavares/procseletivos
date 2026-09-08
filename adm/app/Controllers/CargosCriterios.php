@@ -39,15 +39,9 @@ class CargosCriterios extends BaseController{
 
         $Criterios = (new CriteriosAdicionaisModel())->listarCriteriosOrdenados();
         
-        // Busca os dados da associação cargo + criterio (se existir)
-        $cargoCriterio = (new CargosCriteriosAdicionaisModel())
-                                ->where('fk_id_cargo', $id)
-                                ->first();
-        if($cargoCriterio){
-            $action = 'update';
-        }else{
-            $action = 'create';
-        }
+        // Form sempre inicia em branco para nova associação
+        $action = 'create';
+        $cargoCriterio = null;
 
         // Busca TODAS as Criterios já associadas a esse cargo
         $CriteriosDoCargo = (new CargosCriteriosAdicionaisModel())->listarCriteriosDoCargo($id);
@@ -108,6 +102,21 @@ class CargosCriterios extends BaseController{
         }
 
         return view('layoutDash', $viewData);
+    }
+
+    /**
+     * Retorna os dados de uma associação específica para preenchimento do formulário (AJAX).
+     */
+    public function buscarAssociacao($idAssociacao){
+        $this->validarSessao();
+
+        $associacao = (new CargosCriteriosAdicionaisModel())->find($idAssociacao);
+
+        if (!$associacao) {
+            return $this->response->setStatusCode(404)->setJSON(['erro' => 'Associação não encontrada']);
+        }
+
+        return $this->response->setJSON($associacao);
     }
 
     /**

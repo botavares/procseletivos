@@ -1,40 +1,27 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <?php $origem = current_url(); ?>
 
-    <!-- LOGO -->
-    <a href="<?= site_url('Dashboard') ?>" class="brand-link">
-        <img src="<?= base_url('external/img/logo/brasao.png') ?>"
-             alt="Logo do sistema"
-             class="brand-image img-circle elevation-3"
-             style="opacity: .9">
-        <span class="brand-text font-weight-light small">
-            Processos Seletivos
-        </span>
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand -->
+    <a href="<?php echo base_url('Dashboard') ?>" class="brand-link d-flex align-items-center">
+        <img src="<?php echo base_url('external/img/logo/brasao.png') ?>" alt="Brasão" class="brand-image img-circle elevation-3">
+        <span class="brand-text font-weight-light font14">Processos Seletivos</span>
     </a>
 
     <div class="sidebar">
-
-        <!-- USUÁRIO -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
+        <!-- User panel -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="<?= base_url('external/img/programmer.png') ?>"
-                     class="img-circle elevation-2"
-                     alt="Usuário">
+                <i class="fas fa-user-circle fa-2x text-white"></i>
             </div>
             <div class="info">
-                <span class="d-block text-white small">
-                    Olá, <?= esc(session('nome')) ?>
-                </span>
+                <a href="#" class="d-block"><?php echo esc(session('nome') ?? 'Usuário') ?></a>
+                <small class="text-muted"><?php echo esc(session('nick') ?? '') ?></small>
             </div>
         </div>
 
-        <!-- BUSCA -->
-        <div class="form-inline mb-3">
+        <!-- Sidebar Search -->
+        <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar"
-                       type="search"
-                       placeholder="Pesquisar"
-                       aria-label="Pesquisar">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Pesquisar" aria-label="Search">
                 <div class="input-group-append">
                     <button class="btn btn-sidebar">
                         <i class="fas fa-search fa-fw"></i>
@@ -43,56 +30,51 @@
             </div>
         </div>
 
-        <!-- MENU -->
+        <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column"
-                data-widget="treeview"
-                role="menu"
-                data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                
+                <li class="nav-item">
+                    <a href="<?php echo base_url('Dashboard') ?>" class="nav-link">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>Início</p>
+                    </a>
+                </li>
 
                 <?php if (session('administrador') == '1'): ?>
-
-                    <li class="nav-item">
-                        <a href="<?= site_url('Dashboard') ?>" class="nav-link">
-                            <i class="nav-icon fas fa-home"></i>
-                            <p>Início</p>
-                        </a>
-                    </li>
 
                     <li class="nav-header text-uppercase">Cadastros</li>
 
                     <li class="nav-item">
-                        <a href="<?= site_url('Cargos') ?>" class="nav-link">
+                        <a href="<?php echo base_url('Cargos') ?>" class="nav-link">
                             <i class="nav-icon fas fa-book"></i>
                             <p>Cargos</p>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="<?= site_url('Editais') ?>" class="nav-link">
+                        <a href="<?php echo base_url('Editais') ?>" class="nav-link">
                             <i class="nav-icon fas fa-bullhorn"></i>
                             <p>Editais</p>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link"
-                           data-toggle="modal"
-                           data-target="#escolhaEditais">
+                        <a href="#" class="nav-link" data-toggle="modal" data-target="#escolhaEditais">
                             <i class="nav-icon fas fa-users"></i>
                             <p>Candidatos</p>
                         </a>
                     </li>
                     
                     <li class="nav-item">
-                        <a href="<?= site_url('Secretarias') ?>" class="nav-link">
+                        <a href="<?php echo base_url('Secretarias') ?>" class="nav-link">
                             <i class="nav-icon fas fa-building"></i>
                             <p>Secretarias</p>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="<?= site_url('Login/formAlterarSenha') ?>" class="nav-link">
+                        <a href="<?php echo base_url('Login/formAlterarSenha') ?>" class="nav-link">
                             <i class="nav-icon fas fa-file-alt"></i>
                             <p>Altere sua senha</p>
                         </a>
@@ -101,20 +83,14 @@
                     <li class="nav-header text-uppercase">Relatórios</li>
 
                     <li class="nav-item">
-                        <a href="#"
-                           class="nav-link"
-                           data-toggle="modal"
-                           data-target="#relatorios">
+                        <a href="#" class="nav-link" data-toggle="modal" data-target="#relatorios">
                             <i class="nav-icon fas fa-file-alt"></i>
                             <p>Relatórios</p>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="#"
-                           class="nav-link"
-                           data-toggle="modal"
-                           data-target="#escolhaRelatorioClassificacao">
+                        <a href="#" class="nav-link" data-toggle="modal" data-target="#escolhaRelatorioClassificacao">
                             <i class="nav-icon fas fa-trophy"></i>
                             <p>Classificação por Cargo</p>
                         </a>

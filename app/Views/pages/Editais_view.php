@@ -82,6 +82,20 @@
                                     <div class="card-content text-center bold font-24 font-blue">
                                         <p class="card-text font-em-1"><?= "início: " . esc(date("d/m/Y",strtotime($edital->ds_data_inicial))) ?></p>
                                         <p class="card-text font-em-1"><?= "término: " . esc(date("d/m/Y",strtotime($edital->ds_data_termino)))?></p>
+
+                                        <?php $listaCargos = $cargosPorEdital[$edital->pk_id_edital] ?? []; ?>
+                                        <div class="mb-3" style="font-size: 0.85em; line-height: 1.2;">
+                                            <p class="mb-0 text-secondary small"><strong>Cargo(s) do edital:</strong></p>
+                                            <p class="mb-0 text-secondary small" style="word-break: break-word;">
+                                                <?php if (!empty($listaCargos)): ?>
+                                                    <?php $nomesCargos = array_map(fn($c) => esc($c->ds_nome_cargo), $listaCargos); ?>
+                                                    <?= implode(', ', $nomesCargos) ?>
+                                                <?php else: ?>
+                                                    Nenhum cargo vinculado
+                                                <?php endif; ?>
+                                            </p>
+                                        </div>
+
                                         <a href="<?= site_url('Editais/obterEdital/' . esc($edital->ds_arquivo_edital)) ?>" class="br-button primary" target="_self">Ver Edital</a>
                                     </div>                          
                                 </div>
@@ -91,6 +105,55 @@
                 <?php endforeach; ?>
             </div>
         </div>
+
+        <?php if (!empty($editaisEncerrados)): ?>
+        <div class="col-md-12 offset-md-3 pdd0 mt-5">
+            <div class="border-bottom mrg-bottom-10">
+                <span class="bold font-20 text-secondary">Editais encerrados</span>
+            </div>
+            <div class="row mt-4">
+                <?php foreach ($editaisEncerrados as $edital): ?>
+                    <div class="col-12 col-md-6 col-lg-6 mb-3">
+                        <div class="card" style="opacity: 0.9;">
+                            <div class="card-body">
+                                <div class="br-card hover h-100">
+                                    <div class="card-header">
+                                        <?php 
+                                            $ano = substr($edital->ds_numero_edital, -4);
+                                            $numero = substr($edital->ds_numero_edital, 0, -4);
+                                            $numero = ltrim($numero, "0");
+                                            $editalFormatado = "Edital " .$numero . '/' . $ano;
+                                        ?>
+                                        <h5 class="card-title bold font-em-1 text-secondary"><?= $editalFormatado; ?></h5>
+                                    </div>
+                                    <div class="card-content text-center bold font-24 text-secondary" style="font-size: 0.95em;">
+                                        <p class="card-text font-em-1"><?= "início: " . esc(date("d/m/Y",strtotime($edital->ds_data_inicial))) ?></p>
+                                        <p class="card-text font-em-1 text-danger"><?= "término: " . esc(date("d/m/Y",strtotime($edital->ds_data_termino)))?></p>
+
+                                        <?php $listaCargosEncerrados = $cargosPorEditalEncerrados[$edital->pk_id_edital] ?? []; ?>
+                                        <div class="mb-3" style="font-size: 0.85em; line-height: 1.2;">
+                                            <p class="mb-0 text-secondary small"><strong>Cargo(s) do edital:</strong></p>
+                                            <p class="mb-0 text-secondary small" style="word-break: break-word;">
+                                                <?php if (!empty($listaCargosEncerrados)): ?>
+                                                    <?php $nomesCargosEncerrados = array_map(fn($c) => esc($c->ds_nome_cargo), $listaCargosEncerrados); ?>
+                                                    <?= implode(', ', $nomesCargosEncerrados) ?>
+                                                <?php else: ?>
+                                                    Nenhum cargo vinculado
+                                                <?php endif; ?>
+                                            </p>
+                                        </div>
+
+                                        <a href="<?= site_url('Editais/obterEdital/' . esc($edital->ds_arquivo_edital)) ?>" class="br-button secondary" target="_self">Ver Edital</a>
+                                    </div>                          
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+
 </main>
                     
        

@@ -1,216 +1,167 @@
-<div class="login-body">
-	<div class="container-fluid bg-login">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-9 col-md-12 login-card">
-					<div class="row">
-						<div class="col-md-5 detail-part">
-							
-						</div>
-						<div class="col-md-7 logn-part">
-							<div class="row">
-								<div class="col-lg-10 col-md-12 mx-auto">
-									<div class="logo-cover">
-										<img src="<?php echo base_url("external/img/logo.jpg")?>" alt="">
-									</div>
-									<div class="form-cover">
-										<?php if(session()->has('error')):?>
-											
-										<div class="porta-mensagem alert alert-danger col-md-12">
-											<span class="text text-warning text-center bold"><?php echo session()->getFlashdata('error')?></span>
-										</div>
-										<?php endif ?>
-										<?php if(session()->has('success')):?>
-											
-											<div class="porta-mensagem alert alert-success col-md-12">
-												<span class="text text-warning text-center bold"><?php echo session()->getFlashdata('success')?></span>
-											</div>
-										<?php endif ?>
-										<?php if(session()->has('info')):?>
-											
-											<div class="porta-mensagem alert alert-warning col-md-12">
-												<span class="text text-success text-center bold"><?php echo session()->getFlashdata('info')?></span>
-											</div>
-										<?php endif ?>
-										<form method="POST" action="<?php echo url_to('login.acesso') ?>">
-											<?php echo csrf_field() ?>
-											<h6>Faça seu Login</h6>
-											<span class="text text-danger"><?php echo session()->getFlashdata('errors')['usuario'] ?? ''?></span>
-											<input name="user" placeholder="Entre com seu usuário" type="text" class="form-control" required/>
-									
-											<span class="text text-danger"><?php echo session()->getFlashdata('errors')['senha'] ?? ''?></span> 
-											<input name="senha" type="password" Placeholder="Entre sua senha"  class="form-control" required>
-											<div class="row form-footer">
-												<div class="col-md-6 forget-paswd">
-													
-												</div>
-												<div class="col-md-6 button-div">
-													<button class="btn btn-primary" type="submit">Acessar</button>
-												</div>
-											</div>
-											<h1 class="text-center font16">GERENCIAMENTO DE PROCESSOS SELETIVOS PARA ESTAGIÁRIOS</h1>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-    	</div>
-	</div>
+<div class="login-wrapper">
+    <div class="login-overlay">
+        <div class="login-container">
+            
+            <!-- Coluna esquerda: formulário de login -->
+            <div class="login-form-section">
+                <div class="login-brand">
+                    <img src="<?php echo base_url('external/img/logo/prefeitura.jpg') ?>" alt="Prefeitura Municipal de Divinópolis" class="login-secretaria">
+                    <h1 class="login-title">Processos Seletivos - SEPLAG</h1>
+                    <p class="login-subtitle">Acesso ao Painel Administrativo</p>
+                </div>
+
+                <!-- Alertas -->
+                <?php if(session()->has('error')): ?>
+                    <div class="login-alert login-alert--danger">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span><?php echo esc(session()->getFlashdata('error')) ?></span>
+                    </div>
+                <?php endif; ?>
+
+                <?php if(session()->has('success')): ?>
+                    <div class="login-alert login-alert--success">
+                        <i class="fas fa-check-circle"></i>
+                        <span><?php echo esc(session()->getFlashdata('success')) ?></span>
+                    </div>
+                <?php endif; ?>
+
+                <?php if(session()->has('info')): ?>
+                    <div class="login-alert login-alert--info">
+                        <i class="fas fa-info-circle"></i>
+                        <span><?php echo esc(session()->getFlashdata('info')) ?></span>
+                    </div>
+                <?php endif; ?>
+
+                <form method="POST" action="<?php echo url_to('login.acesso') ?>" class="login-form" autocomplete="off">
+                    <?php echo csrf_field() ?>
+
+                    <div class="form-group">
+                        <label for="login-user" class="login-label">Usuário</label>
+                        <div class="login-input-group">
+                            <i class="fas fa-user login-input-icon"></i>
+                            <input 
+                                type="text" 
+                                name="user" 
+                                id="login-user" 
+                                class="login-input" 
+                                placeholder="Digite seu usuário" 
+                                required 
+                                autocomplete="username"
+                                maxlength="50"
+                                autofocus
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login-senha" class="login-label">Senha</label>
+                        <div class="login-input-group">
+                            <i class="fas fa-lock login-input-icon"></i>
+                            <input 
+                                type="password" 
+                                name="senha" 
+                                id="login-senha" 
+                                class="login-input" 
+                                placeholder="Digite sua senha" 
+                                required 
+                                autocomplete="current-password"
+                                maxlength="100"
+                            >
+                            <button type="button" class="login-toggle-password" onclick="toggleSenha()" title="Mostrar/Ocultar senha">
+                                <i class="fas fa-eye" id="eye-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="login-options">
+                        <a href="#" data-toggle="modal" data-target="#modalEsqueciSenha" class="login-forgot">
+                            Esqueceu sua senha?
+                        </a>
+                    </div>
+
+                    <button type="submit" class="login-btn">
+                        <i class="fas fa-sign-in-alt"></i> Acessar
+                    </button>
+
+                </form>
+
+                <div class="login-footer">
+                    <p><i class="fas fa-shield-alt"></i> Ambiente seguro</p>
+                    <p>&copy; <?php echo date('Y') ?> Prefeitura Municipal de Divinópolis</p>
+                </div>
+            </div>
+
+            <!-- Coluna direita: imagem ilustrativa -->
+            <div class="login-image-section">
+                <div class="login-image-overlay">
+                    <div class="login-image-content">
+                        <i class="fas fa-briefcase login-image-icon"></i>
+                        <h2>Processos Seletivos - SEPLAG</h2>
+                        <p>Gerencie editais, candidatos, classificações e convocações de forma integrada e eficiente.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 
+<!-- Modal: Esqueci a Senha -->
+<div class="modal fade" id="modalEsqueciSenha" tabindex="-1" role="dialog" aria-labelledby="modalEsqueciSenhaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content login-modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEsqueciSenhaLabel"><i class="fas fa-key"></i> Recuperação de Senha</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                </button>
+            </div>
 
+            <form method="POST" action="#" onsubmit="return false;">
+                <div class="modal-body">
+                    <p class="login-modal-text">
+                        Informe seu <strong>nome de usuário</strong>. Uma nova senha será gerada e enviada ao e-mail cadastrado.
+                    </p>
+                    <div class="form-group">
+                        <label for="recupera-usuario" class="login-label">Usuário</label>
+                        <div class="login-input-group">
+                            <i class="fas fa-user login-input-icon"></i>
+                            <input
+                                type="text"
+                                name="usuario"
+                                id="recupera-usuario"
+                                class="login-input"
+                                placeholder="Digite seu nome de usuário"
+                                required
+                                maxlength="50"
+                            >
+                        </div>
+                    </div>
+                </div>
 
-<!--
-ALTERAR SENHA
--->
-<div class="modal fade" id="alterarSenha" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-  <div class="modal-dialog bg-modal" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-		  <h5 class="modal-title" id="eformComprovanteTitle">Alterar Senha</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-		<div class="modal-body">
-			<form method="POST" action="<?php echo base_url()."/Login/alterarSenha"?>">
-				<?php echo csrf_field() ?>						
-				<div class="form-group">
-					<label class="fnt14 col-md-12 col-sm-12 col-xs-12">Digite a senha atual:</label>
-					<div class="col-md-12 col-sm-12 col-xs-12">
-						<input type="password" name="senhaAtual" class="form-control" id="input-senhaatual" required>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="fnt14 col-md-12 col-sm-12 col-xs-12">Digite a nova senha:</label>
-					<div class="col-md-12 col-sm-12 col-xs-12">
-						<input type="password" name="senhaNova" class="form-control" id="input-senhanova" required>
-					</div>
-				</div>
-		
-				<div class="form-group">
-					<div class="col-md-12 col-sm-12 col-xs-12 mt10 mb10">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-						<button type="submit" class="btn btn-success botao-refresh">Enviar</button>
-					</div>
-				</div>
-			</form>
-		</div>
-		<div class="modal-footer">
-		</div>
-        
-      </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary" disabled title="Funcionalidade em desenvolvimento">
+                        <i class="fas fa-paper-plane"></i> Enviar
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
-
-<!--
-NÃO CADASTRADO
--->
-<div class="modal fade" id="primeiroacesso" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-  <div class="modal-dialog  bg-modal" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-		   <h5 class="modal-title" id="eformComprovanteTitle">Primerio Acesso</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-		<div class="modal-body">
-			<form method="POST" action="<?php echo base_url()."Acesso/primeiroAcesso"?>">
-          
-				<div class="form-group">
-					<div class="input-group">
-						<label class="fnt14 col-md-12 col-sm-12 col-xs-12">Digite seu CPF ou CNPJ:</label>
-						<div class="col-md-12 col-sm-12 col-xs-12">
-							<input type="text" name="documento" class="form-control documento" id="input-docs">
-							<p class="red"></p>
-							<p class="red"></p>
-						</div>
-					</div>
-				</div>
-		
-				<div class="form-group mt10 mb10">
-					<div class="input-group">
-						<div class="col-md-12 col-sm-12 col-xs-12">
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-							<button type="submit" class="btn btn-success botao-refresh">Enviar</button>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-		<div class="modal-footer">
-		</div>
-        
-      </div>
-    </div>
-  </div>
-
-<!--
-COMPROVANTE DE CADASTRO
--->
-<div class="modal fade " id="formComprovante" tabindex="-1" role="dialog" aria-labelledby="formComprovanteTitle" aria-hidden="true">
-  <div class="modal-dialog bg-modal" role="document">
-    <div class="modal-content ">
-      <div class="modal-header">
-        <h5 class="modal-title mx-auto" id="eformComprovanteTitle">Imprimir Segunda Via do Comprovante</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" action="<?php echo base_url()."Artistas/imprimirComprovante"?>">
-          
-				<div class="form-group">
-					<div class="input-group">
-						<label class="fnt14 col-md-12 col-sm-12 col-xs-12">Digite seu CPF ou CNPJ:</label>
-						<div class="col-md-12 col-sm-12 col-xs-12">
-							<input type="text" name="documento" class="form-control documento" id="input-documentos">
-						</div>
-					</div>
-				</div>
-		
-				<div class="form-group">
-					<div class="input-group">
-						<div class="col-md-12 col-sm-12 col-xs-12 mt10 mb10">
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-							<button type="submit" class="btn btn-success botao-refresh">Enviar</button>
-						</div>
-					</div>
-				</div>
-			</form>
-      </div>
-      <div class="modal-footer">
-       <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Imprimir</button>-->
-      </div>
-    </div>
-  </div>
 </div>
-<div class="modal fade" id="modalErros" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				
-				
-				<h5 id="nome-erro" class="modal-title font25 red bold ta-center"> </h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          			<span aria-hidden="true">&times;</span>
-        		</button>
-        		
-        		
-      		</div>
-      		<div class="modal-body">
-        		<p id="descricao-erro" class="font20 "></p>
-		  		
-			</div>
-			<div class="modal-footer">
-		        <button type="button" class="btn btn-primary" data-dismiss="modal"><strong>Retornar</strong></button>
-		
-			</div>	
-    	</div>
-  	</div>
-</div>
+
+<script>
+function toggleSenha() {
+    const input = document.getElementById('login-senha');
+    const icon  = document.getElementById('eye-icon');
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
+}
+</script>

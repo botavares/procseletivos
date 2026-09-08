@@ -6,10 +6,10 @@
 					<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
 				</li>
 				<li class="nav-item d-none d-sm-inline-block">
-					<a href="index3.html" class="nav-link">Sistema externo a escolher 1</a>
+					<a href="https://www.divinopolis.mg.gov.br/" class="nav-link" target="_blank">Portal Prefeitura Divinópolis</a>
 				</li>
 				<li class="nav-item d-none d-sm-inline-block">
-					<a href="#" class="nav-link">Sistema externo a escolher 2</a>
+					<a href="https://www.divinopolis.mg.gov.br/processos-seletivos" class="nav-link" target="_blank">Processos Seletivos</a>
 				</li>
 			</ul>
 

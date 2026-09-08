@@ -22,6 +22,6 @@ class Home extends BaseController
             'titulo'    =>  ucfirst('Serviços Divinópolis '.date('Y')),
             'dataAtual' =>  date('d/m/Y'),
         ];
-        echo view('layoutSimples',$parametros);
+        echo view('layoutLogin',$parametros);
     }
 }
