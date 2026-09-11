@@ -196,8 +196,18 @@ $routes->post('/Perguntas/deletar', 'Perguntas::deletar');
 $routes->get('/Migrador/migrar', 'Migrador::migrar');
 $routes->get('/Migrador/adequarContratos', 'Migrador::adequarContratos');
 
-
-
+/* ============================================================
+ * Rotas de Configuração de Critérios de Desempate por Cargo
+ * ============================================================ */
+$routes->get('/CargosDesempateConfig', 'CargosDesempateConfig::index', ['as' => 'CargosDesempateConfig']);
+$routes->get('/CargosDesempateConfig/(:num)', 'CargosDesempateConfig::index/$1', ['as' => 'CargosDesempateConfig.cargo']);
+$routes->get('/CargosDesempateConfig/listar/(:num)', 'CargosDesempateConfig::listar/$1', ['as' => 'CargosDesempateConfig.listar']);
+$routes->post('/CargosDesempateConfig/salvar', 'CargosDesempateConfig::salvar', ['as' => 'CargosDesempateConfig.salvar']);
+$routes->post('/CargosDesempateConfig/reordenar', 'CargosDesempateConfig::reordenar', ['as' => 'CargosDesempateConfig.reordenar']);
+$routes->post('/CargosDesempateConfig/excluir/(:num)', 'CargosDesempateConfig::excluir/$1', ['as' => 'CargosDesempateConfig.excluir']);
+$routes->get('/CargosDesempateConfig/excluir/(:num)', 'CargosDesempateConfig::excluir/$1', ['as' => 'CargosDesempateConfig.excluirGet']);
+$routes->get('/CargosDesempateConfig/mover/(:num)', 'CargosDesempateConfig::mover/$1', ['as' => 'CargosDesempateConfig.mover']);
+$routes->get('/CargosDesempateConfig/referencias/(:num)', 'CargosDesempateConfig::referencias/$1', ['as' => 'CargosDesempateConfig.referencias']);
 
 if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';

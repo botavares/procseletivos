@@ -49,7 +49,7 @@
 		                       			<th>Exibir Dados</th>
         		                	</tr>
                 		      	</thead>
-                      			<tbody>
+                       			<tbody>
 									<?php
 										foreach($classificacoes as $classificacao){
 									?>
@@ -60,14 +60,28 @@
 									?>
                                     <td align="center"><?= $classificacao["ds_posicao"]?></td>
 									<td width="300"align="left"><?= $classificacao["ds_nome_candidato"]?></td>
-                                    <td align="center"><?= $classificacao["nr_total_experiencias"]?></td>
-                                    <td align="center"><?= $classificacao["nr_total_graduacao"]?></td>
-                                    <td align="center"><?= $classificacao["nr_total_posgraduacao"]?></td>
-                                    <td align="center"><?= $classificacao["nr_total_mestrado"]?></td>
-                                    <td align="center"><?= $classificacao["nr_total_doutorado"]?></td>
-                                    <td align="center"><?= $classificacao["nr_total_aperfeicoamentos"]?></td>
-                                    <td align="center"><?= date('d/m/Y', strtotime($classificacao["dt_nascimento"])) ?></td>
-                                    <td align="center"><?= $classificacao["nr_total_pontos"]?></td>
+
+									<?php if (isset($usaDesempateDinamico) && $usaDesempateDinamico && !empty($configDesempate)): ?>
+										<?php foreach ($configDesempate as $config): ?>
+											<?php
+												$chave = $config->chaveScore();
+												$valor = $classificacao['_scores'][$chave] ?? 0;
+											?>
+											<td align="center"><?= is_numeric($valor) ? number_format((float)$valor, 2, ',', '.') : esc($valor) ?></td>
+										<?php endforeach; ?>
+										<td align="center"><?= date('d/m/Y', strtotime($classificacao["dt_nascimento"])) ?></td>
+										<td align="center"><?= $classificacao["nr_total_pontos"]?></td>
+									<?php else: ?>
+										<td align="center"><?= $classificacao["nr_total_experiencias"]?></td>
+										<td align="center"><?= $classificacao["nr_total_graduacao"]?></td>
+										<td align="center"><?= $classificacao["nr_total_posgraduacao"]?></td>
+										<td align="center"><?= $classificacao["nr_total_mestrado"]?></td>
+										<td align="center"><?= $classificacao["nr_total_doutorado"]?></td>
+										<td align="center"><?= $classificacao["nr_total_aperfeicoamentos"]?></td>
+										<td align="center"><?= date('d/m/Y', strtotime($classificacao["dt_nascimento"])) ?></td>
+										<td align="center"><?= $classificacao["nr_total_pontos"]?></td>
+									<?php endif; ?>
+
 									<?php
 										$tokenName = csrf_token();
 										$tokenHash = csrf_hash();

@@ -13,6 +13,7 @@ use App\Models\EditaisModel;
 
 use App\Services\Classificacao\ClassificacaoRankingService;
 use App\Services\Classificacao\ClassificacaoService;
+use App\Services\Classificacao\DesempateConfigService;
 use App\Services\Cargos\CargoService;
 use App\Services\Editais\EditalService;
 
@@ -50,7 +51,21 @@ class Classificacoes extends BaseController{
         $dadosCargo = $serviceCargo->listarCargosId($idCargo);
         $classificacoes = $service->listarClassificacao($idEdital, $idCargo);
 
-        $titulosTabela = ["Posição","Candidato","Pts. Experiência","Pts. Graduação","Pts. Pós-Graduação","Pts. Mestrado","Pts. Doutorado","Pts. Aperfeiçoamentos","Nascimento","Total de Pontos"];
+        // Verifica se há desempate dinâmico configurado
+        $desempateConfigService = new DesempateConfigService();
+        $configDesempate = $desempateConfigService->buscarConfiguracao((int)$idCargo);
+        $usaDesempateDinamico = !empty($configDesempate);
+
+        if ($usaDesempateDinamico) {
+            $titulosTabela = ["Posição", "Candidato"];
+            foreach ($configDesempate as $config) {
+                $titulosTabela[] = $config->descricao ?: $config->tipoCriterio;
+            }
+            $titulosTabela[] = "Nascimento";
+            $titulosTabela[] = "Total de Pontos";
+        } else {
+            $titulosTabela = ["Posição","Candidato","Pts. Experiência","Pts. Graduação","Pts. Pós-Graduação","Pts. Mestrado","Pts. Doutorado","Pts. Aperfeiçoamentos","Nascimento","Total de Pontos"];
+        }
         
         $parametros = [
             'camada1'       => $camada1,
@@ -64,6 +79,8 @@ class Classificacoes extends BaseController{
             'user'          => session('nome'),
             "titulosTabela" => $titulosTabela,
             'titulo'        => "Classificação ",
+            'usaDesempateDinamico' => $usaDesempateDinamico,
+            'configDesempate' => $configDesempate,
         ];
 
         echo view('layoutDash', $parametros);

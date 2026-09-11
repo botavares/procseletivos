@@ -1,0 +1,29 @@
+ERROR - 2026-09-09 10:39:34 --> mysqli_sql_exception: Unknown column 'ds_status' in 'where clause' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT COALESCE...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COALESCE...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COALESCE...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT COALESCE...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Classificacao\PontuacaoCalculatorService.php(44): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Services\Classificacao\PontuacaoCalculatorService.php(26): App\Services\Classificacao\PontuacaoCalculatorService->calcularExperiencias(2975, 26, 5)
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Classificacao\ClassificacaoProcessorService.php(101): App\Services\Classificacao\PontuacaoCalculatorService->calcular(2975, 26, 5)
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Commands\TesteClassificacaoDesempate.php(47): App\Services\Classificacao\ClassificacaoProcessorService->processar(26, 5)
+#8 C:\laragon\www\servicos\procseletivos\adm\system\CLI\Commands.php(65): App\Commands\TesteClassificacaoDesempate->run(Array)
+#9 C:\laragon\www\servicos\procseletivos\adm\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('teste:classific...', Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+CRITICAL - 2026-09-09 10:39:34 --> Unknown column 'ds_status' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT COALESCE(SUM(ds_quantidade * ds_multiplicador), 0) AS total
+FROM `tb_cadastrados_experiencias`
+WHERE `fk_id_cadastrado` = :fk_id_cadastrado:
+AND `fk_id_edital` = :fk_id_edital:
+AND `fk_id_cargo` = :fk_id_cargo:
+AND `ds_status` = :ds_status:', [...], false)
+ 2 APPPATH\Services\Classificacao\PontuacaoCalculatorService.php(44): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Services\Classificacao\PontuacaoCalculatorService.php(26): App\Services\Classificacao\PontuacaoCalculatorService->calcularExperiencias(2975, 26, 5)
+ 4 APPPATH\Services\Classificacao\ClassificacaoProcessorService.php(101): App\Services\Classificacao\PontuacaoCalculatorService->calcular(2975, 26, 5)
+ 5 APPPATH\Commands\TesteClassificacaoDesempate.php(47): App\Services\Classificacao\ClassificacaoProcessorService->processar(26, 5)
+ 6 SYSTEMPATH\CLI\Commands.php(65): App\Commands\TesteClassificacaoDesempate->run([])
+ 7 SYSTEMPATH\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('teste:classificacao', [])
+ 8 ROOTPATH\spark(97): CodeIgniter\CLI\Console->run()

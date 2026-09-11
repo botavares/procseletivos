@@ -1,0 +1,14 @@
+ERROR - 2026-09-09 10:12:33 --> mysqli_sql_exception: Can't create table `bd_processos_seletivos_administracao`.`tb_cargos_desempates_config` (errno: 150 "Foreign key constraint is incorrectly formed") in C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `t...', 0)
+#1 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `t...')
+#2 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `t...')
+#3 C:\laragon\www\servicos\procseletivos\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `t...')
+#4 C:\laragon\www\servicos\procseletivos\app\Database\Migrations\2026-09-09-130000_CreateTbCargosDesempatesConfig.php(75): CodeIgniter\Database\Forge->createTable('tb_cargos_desem...', true)
+#5 C:\laragon\www\servicos\procseletivos\system\Database\MigrationRunner.php(877): App\Database\Migrations\CreateTbCargosDesempatesConfig->up()
+#6 C:\laragon\www\servicos\procseletivos\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\laragon\www\servicos\procseletivos\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\laragon\www\servicos\procseletivos\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\laragon\www\servicos\procseletivos\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\laragon\www\servicos\procseletivos\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}

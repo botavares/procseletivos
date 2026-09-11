@@ -53,6 +53,13 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="<?php echo base_url('CargosDesempateConfig') ?>" class="nav-link">
+                            <i class="nav-icon fas fa-sliders-h"></i>
+                            <p>Critérios de Desempate</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="<?php echo base_url('Editais') ?>" class="nav-link">
                             <i class="nav-icon fas fa-bullhorn"></i>
                             <p>Editais</p>

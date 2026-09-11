@@ -29,13 +29,13 @@ class Filters extends BaseConfig
      */
     public array $globals = [
         'before' => [
-            'honeypot',
+            // 'honeypot',  // Desabilitado: util principalmente para formulários públicos
             'csrf',
             // 'invalidchars',
         ],
         'after' => [
             'toolbar',
-            'honeypot',
+            // 'honeypot',  // Desabilitado para evitar parâmetros na URL
             // 'secureheaders',
         ],
     ];

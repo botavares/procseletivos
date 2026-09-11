@@ -2,16 +2,13 @@
 $candidatos = $dados ?? [];
 $paginacao  = $paginacao ?? [];
 $filtros    = $filtros ?? [];
-$colunasOcultas = $colunas_ocultas ?? [];
+$usaDesempateDinamico = $usa_desempate_dinamico ?? false;
+$colunasDinamicas = $colunas_dinamicas ?? [];
 
 $paginaAtual = $paginacao['paginaAtual'] ?? 1;
 $totalPaginas = $paginacao['totalPaginas'] ?? 1;
 $inicio = $paginacao['inicio'] ?? 1;
 $fim = $paginacao['fim'] ?? 1;
-
-function colunaVisivel(string $nome, array $ocultas): bool {
-    return !in_array($nome, $ocultas, true);
-}
 ?>
 
 <div data-ajax-fragment>
@@ -28,12 +25,22 @@ function colunaVisivel(string $nome, array $ocultas): bool {
             <th width="30%">Nome</th>
             <th width="20%">Cargo</th>
             <th>Edital</th>
-            <?php if (colunaVisivel('experiencias', $colunasOcultas)): ?><th>Pts Experiência</th><?php endif; ?>
-            <?php if (colunaVisivel('doutorado', $colunasOcultas)): ?><th>Pts Doutorado</th><?php endif; ?>
-            <?php if (colunaVisivel('mestrado', $colunasOcultas)): ?><th>Pts Mestrado</th><?php endif; ?>
-            <?php if (colunaVisivel('posgraduacao', $colunasOcultas)): ?><th>Pts Pós Graduação</th><?php endif; ?>
-            <?php if (colunaVisivel('graduacao', $colunasOcultas)): ?><th>Pts Graduação</th><?php endif; ?>
-            <?php if (colunaVisivel('aperfeicoamentos', $colunasOcultas)): ?><th>Pts Cursos</th><?php endif; ?>
+
+            <!-- Critérios dinâmicos de desempate -->
+            <?php if ($usaDesempateDinamico && !empty($colunasDinamicas)): ?>
+                <?php foreach ($colunasDinamicas as $col): ?>
+                    <th><?= esc($col['label']) ?></th>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <!-- Regra fixa: mostra subtotais -->
+                <th>Pts Experiência</th>
+                <th>Pts Graduação</th>
+                <th>Pts Pós Graduação</th>
+                <th>Pts Mestrado</th>
+                <th>Pts Doutorado</th>
+                <th>Pts Cursos</th>
+            <?php endif; ?>
+
             <th>Nascimento</th>
             <th>Pontuação</th>
             <th>Situação</th>
@@ -43,7 +50,12 @@ function colunaVisivel(string $nome, array $ocultas): bool {
 
     <?php if (empty($candidatos)): ?>
         <?php
-            $colspan = 9 - count($colunasOcultas);
+            $colspan = 8;
+            if ($usaDesempateDinamico && !empty($colunasDinamicas)) {
+                $colspan += count($colunasDinamicas);
+            } else {
+                $colspan += 6; // subtotais fixos
+            }
         ?>
         <tr>
             <td colspan="<?= $colspan ?>">Nenhum registro encontrado</td>
@@ -56,12 +68,22 @@ function colunaVisivel(string $nome, array $ocultas): bool {
     <td><?= esc($c->ds_nome_candidato) ?></td>
     <td><?= esc($c->ds_nome_cargo) ?></td>
     <td><?= esc($c->ds_nome_edital) ?></td>
-    <?php if (colunaVisivel('experiencias', $colunasOcultas)): ?><td><?= esc($c->nr_total_experiencias) ?></td><?php endif; ?>
-    <?php if (colunaVisivel('doutorado', $colunasOcultas)): ?><td><?= esc($c->nr_total_doutorado) ?></td><?php endif; ?>
-    <?php if (colunaVisivel('mestrado', $colunasOcultas)): ?><td><?= esc($c->nr_total_mestrado) ?></td><?php endif; ?>
-    <?php if (colunaVisivel('posgraduacao', $colunasOcultas)): ?><td><?= esc($c->nr_total_posgraduacao) ?></td><?php endif; ?>
-    <?php if (colunaVisivel('graduacao', $colunasOcultas)): ?><td><?= esc($c->nr_total_graduacao) ?></td><?php endif; ?>
-    <?php if (colunaVisivel('aperfeicoamentos', $colunasOcultas)): ?><td><?= esc($c->nr_total_aperfeicoamentos) ?></td><?php endif; ?>
+
+    <!-- Critérios dinâmicos de desempate -->
+    <?php if ($usaDesempateDinamico && !empty($colunasDinamicas)): ?>
+        <?php foreach ($colunasDinamicas as $col): ?>
+            <td><?= esc($c->{$col['alias']} ?? 0) ?></td>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <!-- Regra fixa: mostra subtotais -->
+        <td><?= esc($c->nr_total_experiencias) ?></td>
+        <td><?= esc($c->nr_total_graduacao) ?></td>
+        <td><?= esc($c->nr_total_posgraduacao) ?></td>
+        <td><?= esc($c->nr_total_mestrado) ?></td>
+        <td><?= esc($c->nr_total_doutorado) ?></td>
+        <td><?= esc($c->nr_total_aperfeicoamentos) ?></td>
+    <?php endif; ?>
+
     <td><?= date('d/m/Y', strtotime($c->dt_nascimento)) ?></td>
     <td><?= esc($c->nr_total_pontos) ?></td>
     <td><?= esc($c->ds_situacao) ?></td>

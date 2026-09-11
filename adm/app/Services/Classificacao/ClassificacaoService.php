@@ -8,11 +8,17 @@ use App\Models\EditaisModel;
 use App\Models\CargosModel;
 
 /**
- * Serviço principal responsável por
+ * Servico principal responsavel por
  * coordenar todo o reprocessamento.
  */
-class ClassificacaoService{
-    public function reprocessar(int $edital, int $cargo): void{
+class ClassificacaoService
+{
+    /**
+     * Reprocessa a classificacao completa.
+     * Agora detecta automaticamente se o cargo possui desempate dinamico.
+     */
+    public function reprocessar(int $edital, int $cargo): void
+    {
         $db = Database::connect();
 
         $calculator = new PontuacaoCalculatorService($db);
@@ -24,13 +30,19 @@ class ClassificacaoService{
         $persist->salvar($edital, $cargo, $dados);
     }
 
-    public function listarClassificacao($idEdital, $idCargo){
+    /**
+     * Lista classificacao por edital e cargo.
+     * Retorna dados com scores dinamicos se existirem.
+     */
+    public function listarClassificacao($idEdital, $idCargo)
+    {
         $classificacaoModel = new ClassificacaoModel();
         return $classificacaoModel->listarClassificacao($idEdital, $idCargo);
     }
-    public function listarCargos(){
+
+    public function listarCargos()
+    {
         $cargosModel = new CargosModel();
         return $cargosModel->findAll();
     }
-
 }

@@ -1,0 +1,72 @@
+CRITICAL - 2026-09-10 14:38:57 --> syntax error, unexpected token "?"
+in APPPATH\Views\pages\Transparencia\partials\_tabela_candidatos_view.php on line 35.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('pages/Transparencia/partials/_tabela_candidatos_view', [], true)
+ 3 APPPATH\Controllers\Transparencia.php(71): view('pages/Transparencia/partials/_tabela_candidatos_view', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->carregarTabela()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-09-10 14:40:35 --> syntax error, unexpected token "?"
+in APPPATH\Views\pages\Transparencia\partials\_tabela_candidatos_view.php on line 35.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('pages/Transparencia/partials/_tabela_candidatos_view', [], true)
+ 3 APPPATH\Controllers\Transparencia.php(71): view('pages/Transparencia/partials/_tabela_candidatos_view', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->carregarTabela()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-09-10 14:40:43 --> syntax error, unexpected token "?"
+in APPPATH\Views\pages\Transparencia\partials\_tabela_candidatos_view.php on line 35.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('pages/Transparencia/partials/_tabela_candidatos_view', [], true)
+ 3 APPPATH\Controllers\Transparencia.php(71): view('pages/Transparencia/partials/_tabela_candidatos_view', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->carregarTabela()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-09-10 14:40:45 --> syntax error, unexpected token "?"
+in APPPATH\Views\pages\Transparencia\partials\_tabela_candidatos_view.php on line 35.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('pages/Transparencia/partials/_tabela_candidatos_view', [], true)
+ 3 APPPATH\Controllers\Transparencia.php(71): view('pages/Transparencia/partials/_tabela_candidatos_view', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->carregarTabela()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-09-10 14:43:12 --> syntax error, unexpected token "?"
+in APPPATH\Views\pages\Transparencia\partials\_tabela_candidatos_view.php on line 36.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('pages/Transparencia/partials/_tabela_candidatos_view', [], true)
+ 3 APPPATH\Controllers\Transparencia.php(71): view('pages/Transparencia/partials/_tabela_candidatos_view', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->carregarTabela()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-09-10 14:45:14 --> syntax error, unexpected token "{"
+in APPPATH\Views\pages\Transparencia\partials\_tabela_candidatos_view.php on line 79.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('pages/Transparencia/partials/_tabela_candidatos_view', [], true)
+ 3 APPPATH\Controllers\Transparencia.php(71): view('pages/Transparencia/partials/_tabela_candidatos_view', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->carregarTabela()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-09-10 14:46:19 --> syntax error, unexpected token "{"
+in APPPATH\Views\pages\Transparencia\partials\_tabela_candidatos_view.php on line 79.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('pages/Transparencia/partials/_tabela_candidatos_view', [], true)
+ 3 APPPATH\Controllers\Transparencia.php(71): view('pages/Transparencia/partials/_tabela_candidatos_view', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->carregarTabela()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2026-09-10 14:46:21 --> syntax error, unexpected token "{"
+in APPPATH\Views\pages\Transparencia\partials\_tabela_candidatos_view.php on line 79.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('pages/Transparencia/partials/_tabela_candidatos_view', [], true)
+ 3 APPPATH\Controllers\Transparencia.php(71): view('pages/Transparencia/partials/_tabela_candidatos_view', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Transparencia->carregarTabela()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Transparencia))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
