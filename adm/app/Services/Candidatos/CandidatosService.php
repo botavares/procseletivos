@@ -37,6 +37,7 @@ class CandidatosService{
         $experiencias = $this->candidatosModel->listarExperienciaCandidato($edital,$cargo,$id);
         $escolaridades = $this->candidatosModel->listarEscolaridadeCandidato($edital,$cargo,$id);
         $aperfeicoamentos = $this->candidatosModel->listarAperfeicoamentoCandidato($edital,$cargo,$id);
+        $criterios = $this->candidatosModel->listarCriteriosCandidato($edital,$cargo,$id);
 
         return [
                 'idEdital' => $edital,
@@ -45,7 +46,8 @@ class CandidatosService{
                 'candidato' => $candidato, 
                 'experiencias' => $experiencias, 
                 'escolaridades' => $escolaridades, 
-                'aperfeicoamentos' => $aperfeicoamentos
+                'aperfeicoamentos' => $aperfeicoamentos,
+                'criterios' => $criterios
             ];
         
     }

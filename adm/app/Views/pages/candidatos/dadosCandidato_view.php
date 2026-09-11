@@ -1,109 +1,181 @@
 <div class="content-wrapper">
-	<section class="content">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-12">
-					<div class="card">
-						<div class="card-header m5">
-							<h3 class="card-title">
-							    <h1><?php echo $titulo?></h1>
-								<?php if(session()->has('error')):?>
-									<div class="porta-mensagem-fixa alert alert-danger col-md-12">
-										<ul>
-											<?php foreach(session()->getFlashdata('error') as $valueError): ?>
-												<li class="text text-white text-center font22"><?php echo $valueError ?></li>
-											<?php endforeach ?>
-										</ul>
-									</div>
-								<?php endif;?>
+    <section class="content pt-3">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-md-12">
+                    <div class="card card-outline card-primary shadow-sm">
+                        <!-- HEADER -->
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h3 class="card-title m-0">
+                                <i class="fas fa-user mr-2"></i>
+                                <?php echo esc($titulo); ?>
                             </h3>
-							
-						</div>
-						<div class="card-body col-md-10 col-sm-12 centrado">
-                            <form method="POST" action="<?php echo base_url('registrar')?>" enctype="multipart/form-data">
-					            <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
-                                <input type="hidden" name="recurso-aberto" value="true">
-                                <input type="hidden" name="action" value="create">
+                        </div>
 
-                                <div class="identificacao mb-0">
-                                    <div class="form-group col-sm-12">
-                                        <label for="">Nome Completo</label></br>
-                                        <span class="text-clean "><?= $dadosCandidato['candidato']->ds_nome;?></span>
-                                        
-                                        <input type="hidden" id="input-nome" name="ds_nome" value="<?= $dadosCandidato['candidato']->ds_nome;?>" readonly>
+                        <!-- TOOLBOX -->
+                        <div class="card-toolbox mt-2 mb-2 d-flex flex-row">
+                            <div class="mb-2 ml-1 mr-2">
+                                <a href="<?php echo base_url('Candidatos/' . $dadosCandidato['idEdital'] . '/' . $dadosCandidato['idCargo']); ?>"
+                                   class="btn btn-warning btn-sm">
+                                    <i class="fas fa-arrow-left mr-1"></i> Voltar
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- MENSAGENS -->
+                        <?php if(session()->has('error')): ?>
+                            <div class="alert alert-danger m-3">
+                                <ul class="mb-0">
+                                    <?php foreach(session()->getFlashdata('error') as $valueError): ?>
+                                        <li><?php echo esc($valueError); ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        <?php endif; ?>
+
+                        <!-- BODY -->
+                        <div class="card-body">
+
+                            <!-- DADOS PESSOAIS -->
+                            <h5 class="mb-3 text-primary">
+                                <i class="fas fa-id-card mr-1"></i>
+                                Dados Pessoais
+                            </h5>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Nome Completo</label>
+                                    <div class="form-control-plaintext border rounded px-3 py-2 bg-light font-weight-bold">
+                                        <?php echo strtoupper(esc($dadosCandidato['candidato']->ds_nome)); ?>
                                     </div>
-                                    <div class="form-group col-sm-12">
-                                        <label for="">Data de Nascimento</label></br>
-                                        <span class="text-clean "><?= date('d/m/Y', strtotime($dadosCandidato['candidato']->ds_nascimento));?></span>
-                                        <input type="hidden" id="input-data-nascimento" name="ds_data_nascimento"  value="<?= date('d/m/Y', strtotime($dadosCandidato['candidato']->ds_nascimento));?>" readonly>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label>Data de Nascimento</label>
+                                    <div class="form-control-plaintext border rounded px-3 py-2 bg-light font-weight-bold">
+                                        <?php echo date('d/m/Y', strtotime($dadosCandidato['candidato']->ds_nascimento)); ?>
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group col-lg-6 col-sm-12">
-                                            <label for="">Endereço</label></br>
-                                            <span class="text-clean "><?= strtoupper($dadosCandidato['candidato']->ds_rua.', '.
-                                                                                    $dadosCandidato['candidato']->ds_numero.' - '.
-                                                                                    $dadosCandidato['candidato']->ds_nome_bairro).' - '.
-                                                                                    $dadosCandidato['candidato']->ds_cidade.' - '.
-                                                                                    $dadosCandidato['candidato']->ds_uf?></span>
-                                            <input type="hidden" id="input-endereco" name="ds_rua"  value="<?= $dadosCandidato['candidato']->ds_rua;?>" readonly>
-                                            <input type="hidden" id="input-endereco" name="ds_numero"  value="<?= $dadosCandidato['candidato']->ds_numero;?>" readonly>
-                                            <input type="hidden" id="input-endereco" name="ds_nome_bairro"  value="<?= $dadosCandidato['candidato']->ds_nome_bairro;?>" readonly>
-                                            <input type="hidden" id="input-endereco" name="ds_cep"  value="<?= $dadosCandidato['candidato']->ds_cep;?>" readonly>
-                                            <input type="hidden" id="input-endereco" name="ds_cidade"  value="<?= $dadosCandidato['candidato']->ds_cidade;?>" readonly>
-                                        </div>
-                                        <div class="form-group col-lg-6 col-sm-12">
-                                            <label for="">Telefone</label></br>
-                                            <span class="text-clean "><?= mask($dadosCandidato['candidato']->ds_celular, '(##) # ####-####'); ?></span>
-                                            <input type="hidden" id="input-telefone" name="ds_celular"  value="<?= $dadosCandidato['candidato']->ds_celular;?>" readonly>
-                                        </div>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label>Telefone</label>
+                                    <div class="form-control-plaintext border rounded px-3 py-2 bg-light font-weight-bold">
+                                        <?php echo mask($dadosCandidato['candidato']->ds_celular, '(##) # ####-####'); ?>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Endereço</label>
+                                    <div class="form-control-plaintext border rounded px-3 py-2 bg-light font-weight-bold">
+                                        <?php
+                                            echo strtoupper(
+                                                esc($dadosCandidato['candidato']->ds_rua . ', ' .
+                                                $dadosCandidato['candidato']->ds_numero . ' - ' .
+                                                $dadosCandidato['candidato']->ds_nome_bairro . ' - ' .
+                                                $dadosCandidato['candidato']->ds_cidade . ' - ' .
+                                                $dadosCandidato['candidato']->ds_uf)
+                                            );
+                                        ?>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>E-mail</label>
+                                    <div class="form-control-plaintext border rounded px-3 py-2 bg-light font-weight-bold">
+                                        <?php echo esc($dadosCandidato['candidato']->ds_email); ?>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <!-- PONTUAÇÕES CLASSIFICATÓRIAS -->
+                            <h5 class="mb-3 text-primary">
+                                <i class="fas fa-star mr-1"></i>
+                                Pontuações Classificatórias
+                            </h5>
+
+                            <div class="form-row">
+                                <!-- Experiências -->
+                                <div class="form-group col-md-6">
+                                    <label>Experiências</label>
+                                    <?php if (!empty($dadosCandidato['experiencias'])): ?>
+                                        <?php foreach($dadosCandidato['experiencias'] as $experiencia): ?>
+                                            <div class="d-flex justify-content-between align-items-center border rounded px-3 py-2 mb-2 bg-light">
+                                                <span class="small"><?php echo esc($experiencia->ds_nome_experiencia); ?></span>
+                                                <span class="badge badge-primary"><?php echo (int)$experiencia->ds_quantidade; ?></span>
                                             </div>
-                                    <div class="form-group col-sm-12">
-                                        <label for="">E-mail</label></br>
-                                        <span class="text-clean "><?= $dadosCandidato['candidato']->ds_email;?></span>
-                                        <input type="hidden" id="input-email" name="ds_email" value="<?= $dadosCandidato['candidato']->ds_email;?>" readonly>
-                                    </div>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <div class="text-muted small px-3 py-2">Nenhuma experiência cadastrada.</div>
+                                    <?php endif; ?>
                                 </div>
-                                <hr>
-                                <div class="col-md-12 row">
-                                    <div class="classificatorios col-md-6 pdd0">
-                                        <legend class="mb-0" for="">Experiências</legend>
-                                        <div class="form-group col-md-12">
-                                            <?php foreach($dadosCandidato['experiencias'] as $experiencia):?>
-                                                <label><?= $experiencia->ds_nome_experiencia?> ( <?= $experiencia->ds_tipo_experiencia?>)</label></br>
-                                                <input type="text" class="form-control" id="input-experiencia-<?= $experiencia->fk_id_experiencia ?>" name="ds_experiencias[<?= $experiencia->fk_id_experiencia ?>]" placeholder="E-mail" value="<?= $experiencia->ds_quantidade?>" readonly>
-                                            <?php endforeach; ?>
-                                        </div>
-                                        <legend class="mb-0" for="">Escolaridade</legend>
-                                        <div class="form-group col-md-12">
-                                            <?php foreach($dadosCandidato['escolaridades'] as $escolaridade):?>
-                                                <label><?= $escolaridade->ds_nome_escolaridade?></label>
-                                                <input type="text" class="form-control" id="input-escolaridade-<?= $escolaridade->fk_id_escolaridade ?>" name="ds_escolaridades[<?= $escolaridade->fk_id_escolaridade ?>]" placeholder="E-mail" value="<?= $escolaridade->ds_quantidade?>" readonly>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    </div>
-                                    <div class="classificatorios col-md-6 pdd0 ">
-                                        <legend class="mb-0" for="">Cursos de Aperfeiçoamento</legend>
-                                        <div class="form-group  col-md-12">
-                                            <?php foreach($dadosCandidato['aperfeicoamentos'] as $aperfeicoamento):?>
-                                                <label><?= $aperfeicoamento->ds_nome_curso?></label>
-                                                <input type="text" class="form-control" id="input-aperfeicoamento-<?= $aperfeicoamento->fk_id_curso ?>" name="ds_aperfeicoamentos[<?= $aperfeicoamento->fk_id_curso ?>]" placeholder="E-mail" value="<?= $aperfeicoamento->ds_quantidade?>" readonly>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    </div>
+
+                                <!-- Escolaridades -->
+                                <div class="form-group col-md-6">
+                                    <label>Escolaridade</label>
+                                    <?php if (!empty($dadosCandidato['escolaridades'])): ?>
+                                        <?php foreach($dadosCandidato['escolaridades'] as $escolaridade): ?>
+                                            <div class="d-flex justify-content-between align-items-center border rounded px-3 py-2 mb-2 bg-light">
+                                                <span class="small"><?php echo esc($escolaridade->ds_nome_escolaridade); ?></span>
+                                                <span class="badge badge-info"><?php echo (int)$escolaridade->ds_quantidade; ?></span>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <div class="text-muted small px-3 py-2">Nenhuma escolaridade cadastrada.</div>
+                                    <?php endif; ?>
                                 </div>
-                            <div class="card-footer">
-									<div class="form-group">
-										<div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-1">
-                                            <a class="btn btn-warning col-md-2" href="<?php echo base_url("Candidatos")."/". $dadosCandidato['idEdital']."/".$dadosCandidato['idCargo']?>">Voltar</a>   
-											<a class="btn btn-primary col-md-2" href="<?php echo base_url("Recursos")."/". $dadosCandidato['idEdital']."/".$dadosCandidato['idCargo']."/".$dadosCandidato['idCandidato']?>">Aplicar Recurso</a>
-										</div>
-									</div>
-								</div>
-				        </form>
+                            </div>
+
+                            <div class="form-row">
+                                <!-- Aperfeiçoamentos -->
+                                <div class="form-group col-md-6">
+                                    <label>Aperfeiçoamentos</label>
+                                    <?php if (!empty($dadosCandidato['aperfeicoamentos'])): ?>
+                                        <?php foreach($dadosCandidato['aperfeicoamentos'] as $aperfeicoamento): ?>
+                                            <div class="d-flex justify-content-between align-items-center border rounded px-3 py-2 mb-2 bg-light">
+                                                <span class="small"><?php echo esc($aperfeicoamento->ds_nome_curso); ?></span>
+                                                <span class="badge badge-success"><?php echo (int)$aperfeicoamento->ds_quantidade; ?></span>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <div class="text-muted small px-3 py-2">Nenhum aperfeiçoamento cadastrado.</div>
+                                    <?php endif; ?>
+                                </div>
+
+                                <!-- Critérios Adicionais (NOVO) -->
+                                <div class="form-group col-md-6">
+                                    <label>Critérios Adicionais</label>
+                                    <?php if (!empty($dadosCandidato['criterios'])): ?>
+                                        <?php foreach($dadosCandidato['criterios'] as $criterio): ?>
+                                            <div class="d-flex justify-content-between align-items-center border rounded px-3 py-2 mb-2 bg-light">
+                                                <span class="small"><?php echo esc($criterio->ds_nome_criterio); ?></span>
+                                                <span class="badge badge-warning"><?php echo (int)$criterio->ds_quantidade; ?></span>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <div class="text-muted small px-3 py-2">Nenhum critério adicional cadastrado.</div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <!-- BOTÕES -->
+                            <div class="text-right mt-4">
+                                <a href="<?php echo base_url('Recursos/' . $dadosCandidato['idEdital'] . '/' . $dadosCandidato['idCargo'] . '/' . $dadosCandidato['idCandidato']); ?>"
+                                   class="btn btn-primary">
+                                    <i class="fas fa-edit mr-1"></i> Aplicar Recurso
+                                </a>
+                            </div>
+
+                        </div>
+                        <!-- /card-body -->
                     </div>
-    			</div>
-			</div>
-		</div>		
-	</section>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
-                                

@@ -63,11 +63,12 @@
 
 									<?php if (isset($usaDesempateDinamico) && $usaDesempateDinamico && !empty($configDesempate)): ?>
 										<?php foreach ($configDesempate as $config): ?>
-											<?php
-												$chave = $config->chaveScore();
-												$valor = $classificacao['_scores'][$chave] ?? 0;
-											?>
-											<td align="center"><?= is_numeric($valor) ? number_format((float)$valor, 2, ',', '.') : esc($valor) ?></td>
+									<?php
+										$chave = $config->chaveScore();
+										$scoreData = $classificacao['_scores'][$chave] ?? null;
+										$valor = is_array($scoreData) ? ($scoreData['nr_valor'] ?? 0) : ($scoreData ?? 0);
+									?>
+									<td align="center"><?= is_numeric($valor) ? number_format((float)$valor, 2, ',', '.') : esc($valor) ?></td>
 										<?php endforeach; ?>
 										<td align="center"><?= date('d/m/Y', strtotime($classificacao["dt_nascimento"])) ?></td>
 										<td align="center"><?= $classificacao["nr_total_pontos"]?></td>

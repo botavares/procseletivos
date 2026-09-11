@@ -29,13 +29,13 @@ class CadastrosExperienciasModel extends Model{
         'tb_cadastrados_experiencias.ds_quantidade',
         'tb_cadastrados_experiencias.ds_multiplicador',
         'tb_experiencias.ds_nome_experiencia',
-        'tb_cargos_experiencias_editais.ds_desempate',
-        'tb_cargos_experiencias_editais.ds_quantidade_maxima'
+        'tb_cargos_experiencias.ds_desempate',
+        'tb_cargos_experiencias.ds_quantidade_maxima'
     ])
     ->join(
-        'tb_cargos_experiencias_editais',
-        'tb_cadastrados_experiencias.fk_id_cargo = tb_cargos_experiencias_editais.fk_id_cargo
-         AND tb_cadastrados_experiencias.fk_id_experiencia = tb_cargos_experiencias_editais.fk_id_experiencia'
+        'tb_cargos_experiencias',
+        'tb_cadastrados_experiencias.fk_id_cargo = tb_cargos_experiencias.fk_id_cargo
+         AND tb_cadastrados_experiencias.fk_id_experiencia = tb_cargos_experiencias.fk_id_experiencia'
     )
     ->join(
         'tb_experiencias',
@@ -48,14 +48,14 @@ class CadastrosExperienciasModel extends Model{
     ])
     ->findAll();
 }
-public function listarExperiencias($idCargo){
-    return $this->db->table('tb_cargos_experiencias_editais exp')
+    public function listarExperiencias($idCargo){
+    return $this->db->table('tb_cargos_experiencias exp')
     ->select("
         exp.fk_id_experiencia,
         e.ds_nome_experiencia,
-        exp.ds_multiplicador,
-        exp.ds_quantidade_minima,
-        exp.ds_quantidade_maxima,
+        e.ds_tipo_experiencia,
+        exp.ds_pontuacao_minima,
+        exp.ds_pontuacao_maxima,
         exp.ds_tipo_campo,
     ")
     ->join(

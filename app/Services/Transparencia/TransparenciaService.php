@@ -143,8 +143,10 @@ class TransparenciaService
         // Carrega configuração de desempate para resolução de labels
         $configDesempate = $this->desempateConfigService->buscarConfiguracao($cargo);
         $labelsConfig = [];
+        $tiposCriterio = []; // para filtrar IDADE/PNE
         foreach ($configDesempate as $cfg) {
             $labelsConfig[$cfg->chaveScore()] = $cfg->descricao;
+            $tiposCriterio[$cfg->chaveScore()] = $cfg->tipoCriterio;
         }
 
         // Carrega nomes das referências do banco
@@ -153,6 +155,13 @@ class TransparenciaService
         $colunas = [];
         foreach ($rows as $row) {
             $chave = $row->ds_chave_score;
+            
+            // IGNORA IDADE e PNE — usam colunas fixas (Nascimento / Situação)
+            $tipo = $tiposCriterio[$chave] ?? null;
+            if ($tipo === 'IDADE' || $tipo === 'PNE') {
+                continue;
+            }
+
             $label = $row->ds_label ?? null;
 
             // Se o label salvo é a própria chave técnica, tenta resolver

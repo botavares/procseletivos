@@ -11,7 +11,6 @@ use App\Models\ClassificacaoModel;
 use App\Models\CargosModel;
 use App\Models\EditaisModel;
 
-use App\Services\Classificacao\ClassificacaoRankingService;
 use App\Services\Classificacao\ClassificacaoService;
 use App\Services\Classificacao\DesempateConfigService;
 use App\Services\Cargos\CargoService;
@@ -195,12 +194,11 @@ class Classificacoes extends BaseController{
         }
     }
     public function gerarRanking($edital, $cargo){
-    $service = new ClassificacaoRankingService(db_connect());
+        $service = new \App\Services\Classificacao\ClassificacaoService();
+        $service->reprocessar((int)$edital, (int)$cargo);
 
-    $service->reprocessar((int)$edital, (int)$cargo);
-
-    return redirect()->back()->with('success', 'Ranking reprocessado com sucesso.');
-}
+        return redirect()->back()->with('success', 'Ranking reprocessado com sucesso.');
+    }
 
     public function exportarXlsx($edital, $cargo)
     {

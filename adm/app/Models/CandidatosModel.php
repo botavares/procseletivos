@@ -182,6 +182,25 @@ class CandidatosModel extends Model{
         ->get()
         ->getResult();
     }
+
+    public function listarCriteriosCandidato($edital,$cargo,$id){
+        return $this->db->table('tb_cadastrados_criterios cc')
+        ->select("
+            cc.fk_id_criterio,
+            cc.ds_quantidade,
+            cc.ds_multiplicador,
+            c.ds_nome_criterio
+        ")
+        ->join(
+            'tb_criterios_adicionais c',
+            'c.pk_id_criterio = cc.fk_id_criterio'
+        )
+        ->where('cc.fk_id_cadastrado', $id)
+        ->where('cc.fk_id_edital', $edital)
+        ->where('cc.fk_id_cargo', $cargo)
+        ->get()
+        ->getResult();
+    }
     public function contarCandidatos($ano){
         $sql = "SELECT COUNT(*) AS total FROM tb_cadastrados WHERE YEAR(ds_datacadastro) = $ano";
         $query = $this->db->query($sql);

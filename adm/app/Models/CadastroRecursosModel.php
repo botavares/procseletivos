@@ -3,7 +3,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class RecursosModel extends Model{
+class CadastroRecursosModel extends Model{
     protected $table = 'tb_historico_candidatos';
     protected $primaryKey = 'pk_id_historico';
     protected $returnType = 'object';

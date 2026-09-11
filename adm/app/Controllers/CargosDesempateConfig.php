@@ -88,17 +88,64 @@ class CargosDesempateConfig extends Controller
 
     /**
      * Salva um criterio de desempate (novo ou atualizacao).
+     * Valida que PONTUACAO_TOTAL deve ser sempre o primeiro critério.
      */
     public function salvar()
     {
         $model = new CargosDesempateConfigModel();
 
         $idDesempate = $this->request->getPost('pk_id_desempate');
+        $cargoId = $this->request->getPost('fk_id_cargo');
+        $tipoCriterio = $this->request->getPost('ds_tipo_criterio');
+        $ordem = (int) $this->request->getPost('ds_ordem');
+
+        // VALIDACAO: PONTUACAO_TOTAL deve ser sempre o primeiro critério (ordem 1)
+        if ($ordem === 1 && $tipoCriterio !== 'PONTUACAO_TOTAL') {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'O primeiro critério (ordem 1) deve ser obrigatoriamente "Pontuacao Total" (PONTUACAO_TOTAL).',
+            ]);
+        }
+
+        // Se já existe config para este cargo, verificar se ordem 1 é PONTUACAO_TOTAL
+        $configsExistentes = $model->where('fk_id_cargo', $cargoId)
+                              ->orderBy('ds_ordem', 'ASC')
+                              ->findAll();
+
+        if (!empty($configsExistentes)) {
+            $primeiro = $configsExistentes[0];
+            if ((int) $primeiro->ds_ordem === 1 && $primeiro->ds_tipo_criterio !== 'PONTUACAO_TOTAL') {
+                // Isso não deveria acontecer, mas se acontecer, alertamos
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'Configuração inválida detectada: o primeiro critério existente não é Pontuação Total. Por favor, exclua todos os critérios e recomece com PONTUACAO_TOTAL na ordem 1.',
+                ]);
+            }
+        }
+
+        // Se for novo critério na ordem 1, garantir que é PONTUACAO_TOTAL
+        if (!$idDesempate && $ordem === 1 && $tipoCriterio !== 'PONTUACAO_TOTAL') {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'O primeiro critério deve ser obrigatoriamente "Pontuacao Total" (PONTUACAO_TOTAL).',
+            ]);
+        }
+
+        // Se for novo critério e já existe ordem 1, verificar se é PONTUACAO_TOTAL
+        if (!$idDesempate && !empty($configsExistentes)) {
+            $primeiroTipo = $configsExistentes[0]->ds_tipo_criterio;
+            if ($primeiroTipo !== 'PONTUACAO_TOTAL') {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'O primeiro critério existente não é "Pontuacao Total". Por favor, configure PONTUACAO_TOTAL na ordem 1 primeiro.',
+                ]);
+            }
+        }
 
         $data = [
-            'fk_id_cargo'        => $this->request->getPost('fk_id_cargo'),
-            'ds_ordem'           => $this->request->getPost('ds_ordem'),
-            'ds_tipo_criterio'   => $this->request->getPost('ds_tipo_criterio'),
+            'fk_id_cargo'        => $cargoId,
+            'ds_ordem'           => $ordem,
+            'ds_tipo_criterio'   => $tipoCriterio,
             'fk_id_referencia'   => $this->request->getPost('fk_id_referencia') ?: null,
             'ds_direcao'         => $this->request->getPost('ds_direcao') ?: 'DESC',
             'ds_descricao'       => $this->request->getPost('ds_descricao'),
@@ -198,6 +245,7 @@ class CargosDesempateConfig extends Controller
 
     /**
      * Move um criterio para cima ou para baixo na ordem.
+     * Valida que PONTUACAO_TOTAL deve permanecer sempre na ordem 1.
      */
     public function mover($idDesempate)
     {
@@ -215,17 +263,34 @@ class CargosDesempateConfig extends Controller
         $cargoId = $item->fk_id_cargo;
         $ordemAtual = (int) $item->ds_ordem;
 
+        // VALIDACAO: Nao permite mover critério que está na ordem 1 para baixo
+        // (PONTUACAO_TOTAL deve ficar sempre em primeiro)
+        if ($ordemAtual === 1 && $direcao === 'descer') {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'O critério "Pontuação Total" deve permanecer sempre em primeiro lugar.',
+            ]);
+        }
+
+        // Nao permite mover outro critério para cima além do segundo lugar
+        // (ou seja, ninguém pode passar a ficar na frente do primeiro critério)
+        $configs = $model->where('fk_id_cargo', $cargoId)
+                        ->orderBy('ds_ordem', 'ASC')
+                        ->findAll();
+
+        $primeiro = $configs[0] ?? null;
+        if ($primeiro && $primeiro->pk_id_desempate == $idDesempate && $direcao === 'subir') {
+            // Já está no topo, não pode subir mais
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Ja esta no topo.',
+            ]);
+        }
+
         $db = \Config\Database::connect();
         $db->transStart();
 
         if ($direcao === 'subir') {
-            if ($ordemAtual <= 1) {
-                $db->transComplete();
-                return $this->response->setJSON([
-                    'success' => false,
-                    'message' => 'Ja esta no topo.',
-                ]);
-            }
             $novaOrdem = $ordemAtual - 1;
             // Encontra o item acima e troca com ele
             $model->where('fk_id_cargo', $cargoId)

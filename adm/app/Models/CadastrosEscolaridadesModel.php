@@ -30,18 +30,18 @@ class CadastrosEscolaridadesModel extends Model{
         'tb_cadastrados_escolaridades.ds_quantidade',
         'tb_cadastrados_escolaridades.ds_multiplicador',
         'tb_escolaridades.ds_nome_escolaridade',
-        'tb_cargos_escolaridades_editais.ds_desempate',
-        'tb_cargos_escolaridades_editais.ds_pontuacao_maxima'
+        'tb_cargos_escolaridades.ds_desempate',
+        'tb_cargos_escolaridades.ds_pontuacao_maxima'
     ])
     ->join(
-        'tb_cargos_escolaridades_editais',
-        'tb_cadastrados_escolaridades.fk_id_cargo = tb_cargos_escolaridades_editais.fk_id_cargo
-         AND tb_cadastrados_escolaridades.fk_id_escolaridade = tb_cargos_escolaridades_editais.fk_id_escolaridade
+        'tb_cargos_escolaridades',
+        'tb_cadastrados_escolaridades.fk_id_cargo = tb_cargos_escolaridades.fk_id_cargo
+         AND tb_cadastrados_escolaridades.fk_id_escolaridade = tb_cargos_escolaridades.fk_id_escolaridade
          '
     )
     ->join(
         'tb_escolaridades',
-        'tb_cargos_escolaridades_editais.fk_id_escolaridade = tb_escolaridades.pk_id_escolaridade'
+        'tb_cargos_escolaridades.fk_id_escolaridade = tb_escolaridades.pk_id_escolaridade'
     )
     ->where([
         'tb_cadastrados_escolaridades.fk_id_edital'     => $edital,
@@ -51,15 +51,13 @@ class CadastrosEscolaridadesModel extends Model{
     ->findAll();
     }
     public function listarEscolaridades($idCargo){
-        return $this->db->table('tb_cargos_escolaridades_editais esc')
+        return $this->db->table('tb_cargos_escolaridades esc')
         ->select("
             esc.fk_id_escolaridade,
             e.ds_nome_escolaridade,
             esc.ds_pontuacao_minima,
             esc.ds_pontuacao_maxima,
-            esc.ds_multiplicador,
             esc.ds_tipo_campo,
-            
         ")
         ->join(
             'tb_escolaridades e',

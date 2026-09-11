@@ -120,6 +120,12 @@ class ClassificacaoProcessorService
                         case 'PONTUACAO_DOUTORADO':
                             $dto->scores[$chave] = $dto->nr_total_doutorado;
                             break;
+                        case 'IDADE':
+                            $dto->scores[$chave] = $dto->ds_nascimento;
+                            break;
+                        case 'PNE':
+                            $dto->scores[$chave] = $dto->ds_possui_pne;
+                            break;
                     }
                 }
 

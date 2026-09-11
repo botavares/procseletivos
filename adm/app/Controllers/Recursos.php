@@ -103,7 +103,7 @@ class Recursos extends BaseController{
         
         $servicesLogs = new LogsService();
         
-        $servicesLogs->inserirLog('Registrou Recurso', 'Recurso registrado do candidato '.$dados['ds_nome'],'tb_cadastrados_experiencia, tb_cadastrados_escolaridades e tb_cadastrados_aperfeicoamentos');
+        $servicesLogs->inserirLog('Registrou Recurso', 'Recurso registrado do candidato '.$dados['ds_nome'],'tb_cadastrados_experiencias, tb_cadastrados_escolaridades, tb_cadastrados_aperfeicoamentos, tb_cadastrados_criterios');
 
         return redirect()->route('Candidatos',[$edital,$cargo])->with('success', 'Recurso registrado com sucesso!');
     }

@@ -6,13 +6,13 @@ use CodeIgniter\Model;
 class CadastrosAperfeicoamentosModel extends Model{
     //Atributos
     protected $table = 'tb_cadastrados_aperfeicoamentos';
-    protected $primaryKey = 'fk_id_cadastrado';
+    protected $primaryKey = 'pk_id_aperfeicoamento';
     protected $useAutoIncrement = false;
     protected $allowedFields = [
-        'fk_id_edital', 
-        'fk_id_cargo', 
+        'fk_id_cadastrado', 
+        'fk_id_edital',
+        'fk_id_cargo',
         'fk_id_curso',
-        'ds_status',
         'ds_quantidade',
         'ds_multiplicador',
     ];
@@ -29,16 +29,16 @@ class CadastrosAperfeicoamentosModel extends Model{
                 'tb_cadastrados_aperfeicoamentos.ds_quantidade',
                 'tb_cadastrados_aperfeicoamentos.ds_multiplicador',
                 'tb_cursos_aperfeicoamentos.ds_nome_curso',
-                'tb_cargos_aperfeicoamentos_editais.ds_pontuacao_maxima'
+                'tb_cargos_aperfeicoamentos.ds_pontuacao_maxima'
             ])
             ->join(
-                'tb_cargos_aperfeicoamentos_editais',
-                'tb_cadastrados_aperfeicoamentos.fk_id_cargo = tb_cargos_aperfeicoamentos_editais.fk_id_cargo
-                 AND tb_cadastrados_aperfeicoamentos.fk_id_curso = tb_cargos_aperfeicoamentos_editais.fk_id_curso'
+                'tb_cargos_aperfeicoamentos',
+                'tb_cadastrados_aperfeicoamentos.fk_id_cargo = tb_cargos_aperfeicoamentos.fk_id_cargo
+                 AND tb_cadastrados_aperfeicoamentos.fk_id_curso = tb_cargos_aperfeicoamentos.fk_id_curso'
             )
             ->join(
                 'tb_cursos_aperfeicoamentos',
-                'tb_cargos_aperfeicoamentos_editais.fk_id_curso = tb_cursos_aperfeicoamentos.pk_id_curso'
+                'tb_cargos_aperfeicoamentos.fk_id_curso = tb_cursos_aperfeicoamentos.pk_id_curso'
             )
             ->where([
                 'tb_cadastrados_aperfeicoamentos.fk_id_edital'     => $edital,
@@ -48,15 +48,13 @@ class CadastrosAperfeicoamentosModel extends Model{
             ->findAll();
     }
     public function listarAperfeicoamentos($idCargo){
-        return $this->db->table('tb_cargos_aperfeicoamentos_editais aper')
+        return $this->db->table('tb_cargos_aperfeicoamentos aper')
         ->select("
             aper.fk_id_curso,
             c.ds_nome_curso,
-            aper.ds_multiplicador,
             aper.ds_pontuacao_minima,
             aper.ds_pontuacao_maxima,
             aper.ds_tipo_campo,
-            
         ")
         ->join(
             'tb_cursos_aperfeicoamentos c',
