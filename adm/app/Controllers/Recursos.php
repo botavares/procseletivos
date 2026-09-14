@@ -4,6 +4,9 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 use App\Services\LogsService;
 use App\Services\Candidatos\RecursosService;
 use App\Services\Candidatos\CandidatosService;
+use App\Models\RecursosHistoricoModel;
+use App\Models\EditaisModel;
+use App\Models\CargosModel;
 
 use DateTime;
 
@@ -108,7 +111,95 @@ class Recursos extends BaseController{
         return redirect()->route('Candidatos',[$edital,$cargo])->with('success', 'Recurso registrado com sucesso!');
     }
 
-    
+    /**
+     * Exibe o histórico de recursos com filtros
+     */
+    public function historico($camada1 = 'pages', $camada2 = 'candidatos', $page = 'RecursosHistorico'){
+        if (!is_file(APPPATH . 'Views/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
+            throw new PageNotFoundException("Página não encontrada: " . $page);
+        }
 
+        if (!checklogged()) {
+            return redirect()->route('home')->with('error', 'Sua sessão expirou');
+        }
 
+        $historicoModel = new RecursosHistoricoModel();
+        $editaisModel = new EditaisModel();
+        $cargosModel = new CargosModel();
+
+        $filtros = [];
+
+        // Se for POST, aplicar filtros
+        if ($this->request->getMethod() === 'post') {
+            $filtros = [
+                'protocolo'   => $this->request->getPost('protocolo'),
+                'candidato'   => $this->request->getPost('candidato'),
+                'data_inicio' => $this->request->getPost('data_inicio'),
+                'data_fim'    => $this->request->getPost('data_fim'),
+                'edital'      => $this->request->getPost('edital'),
+                'cargo'       => $this->request->getPost('cargo'),
+            ];
+
+            // Limpar filtros vazios
+            $filtros = array_filter($filtros, function($v) {
+                return $v !== null && $v !== '';
+            });
+        }
+
+        $historico = $historicoModel->listarHistorico($filtros);
+
+        $parametros = [
+            'camada1'    => $camada1,
+            'camada2'    => $camada2,
+            'pagina'     => $page,
+            'titulo'     => 'Histórico de Recursos',
+            'historico'  => $historico,
+            'filtros'    => $filtros,
+            'editais'    => $editaisModel->findAll(),
+            'cargos'     => $cargosModel->findAll(),
+        ];
+
+        echo view('layoutDash', $parametros);
+    }
+
+    /**
+     * Exibe detalhes de um recurso específico
+     */
+    public function detalhes($id = null, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'RecursosDetalhes'){
+        if (!is_file(APPPATH . 'Views/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
+            throw new PageNotFoundException("Página não encontrada: " . $page);
+        }
+
+        if (!checklogged()) {
+            return redirect()->route('home')->with('error', 'Sua sessão expirou');
+        }
+
+        if (!$id) {
+            return redirect()->route('Recursos.historico')->with('error', 'ID do recurso não informado');
+        }
+
+        $historicoModel = new RecursosHistoricoModel();
+        $recurso = $historicoModel->obterRecurso((int)$id);
+
+        if (!$recurso) {
+            return redirect()->route('Recursos.historico')->with('error', 'Recurso não encontrado');
+        }
+
+        // Buscar todos os registros do mesmo protocolo
+        $registrosProtocolo = [];
+        if (!empty($recurso->ds_numero_protocolo)) {
+            $registrosProtocolo = $historicoModel->listarPorProtocolo($recurso->ds_numero_protocolo);
+        }
+
+        $parametros = [
+            'camada1'           => $camada1,
+            'camada2'           => $camada2,
+            'pagina'            => $page,
+            'titulo'            => 'Detalhes do Recurso',
+            'recurso'           => $recurso,
+            'registrosProtocolo'=> $registrosProtocolo,
+        ];
+
+        echo view('layoutDash', $parametros);
+    }
 }

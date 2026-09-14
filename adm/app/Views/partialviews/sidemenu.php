@@ -74,6 +74,13 @@
                     </li>
                     
                     <li class="nav-item">
+                        <a href="<?php echo base_url('Recursos/historico') ?>" class="nav-link">
+                            <i class="nav-icon fas fa-gavel"></i>
+                            <p>Histórico de Recursos</p>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
                         <a href="<?php echo base_url('Secretarias') ?>" class="nav-link">
                             <i class="nav-icon fas fa-building"></i>
                             <p>Secretarias</p>
