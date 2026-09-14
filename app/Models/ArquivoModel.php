@@ -3,10 +3,6 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-namespace App\Models;
-
-use CodeIgniter\Model;
-
 class ArquivoModel extends Model
 {
     protected $table = 'tb_arquivos_manifestos';

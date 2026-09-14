@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use FileSystemIterator;
+use FilesystemIterator;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use chillerlan\QRCode\{QRCode, QROptions};
@@ -15,8 +15,6 @@ use App\Services\Classificacao\ClassificacaoService;
 use App\Services\Classificacao\DesempateConfigService;
 use App\Services\Cargos\CargoService;
 use App\Services\Editais\EditalService;
-
-use App\Traits\FormataNumeroEditalTrait;
 
 
 use App\Models\CadastrosExperienciasModel;
@@ -202,96 +200,160 @@ class Classificacoes extends BaseController{
 
     public function exportarXlsx($edital, $cargo)
     {
-        $db = db_connect();
-
-        $classificacoes = $db->table('tb_classificacao')
-            ->where([
-                'fk_id_edital' => (int) $edital,
-                'fk_id_cargo'  => (int) $cargo,
-            ])
-            ->orderBy('ds_posicao', 'ASC')
-            ->get()
-            ->getResultArray();
+        $service = new ClassificacaoService();
+        $classificacoes = $service->listarClassificacao((int)$edital, (int)$cargo);
 
         if (empty($classificacoes)) {
             return redirect()->back()
                 ->with('error', 'A classificação está vazia. Execute o reprocessamento antes de exportar.');
         }
 
+        // Detecta desempate dinâmico (mesma lógica do index)
+        $desempateConfigService = new DesempateConfigService();
+        $configDesempate = $desempateConfigService->buscarConfiguracao((int)$cargo);
+        $usaDesempateDinamico = !empty($configDesempate);
+
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->setTitle('Classificação');
 
-        $headers = [
-            'Posição',
-            'Nome do Candidato',
-            'Cargo',
-            'Experiências',
-            'Graduação',
-            'Pós-Graduação',
-            'Mestrado',
-            'Doutorado',
-            'Aperfeiçoamentos',
-            'Total de Pontos',
-            'Possui PNE',
-            'Data de Processamento',
-        ];
-
-        $col = 1;
-        foreach ($headers as $header) {
-            $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col) . '1';
-            $cell = $sheet->getCell($cellCoord);
-            $cell->setValue($header);
-            $cell->getStyle()->getFont()->setBold(true);
-            $cell->getStyle()->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('B4C7E7');
-            $cell->getStyle()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
-            $cell->getStyle()->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
-            $col++;
-        }
-
-        $row = 2;
-        foreach ($classificacoes as $classificacao) {
-            $dadosLinha = [
-                $classificacao['ds_posicao'],
-                $classificacao['ds_nome_candidato'],
-                $classificacao['ds_nome_cargo'],
-                $classificacao['nr_total_experiencias'],
-                $classificacao['nr_total_graduacao'],
-                $classificacao['nr_total_posgraduacao'],
-                $classificacao['nr_total_mestrado'],
-                $classificacao['nr_total_doutorado'],
-                $classificacao['nr_total_aperfeicoamentos'],
-                $classificacao['nr_total_pontos'],
-                $classificacao['ds_possui_pne'] ? 'Sim' : 'Não',
-                $classificacao['dt_processamento'],
-            ];
-
-            for ($c = 0; $c < count($dadosLinha); $c++) {
-                $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($c + 1) . $row;
-                $sheet->setCellValue($cellCoord, $dadosLinha[$c]);
-                $sheet->getCell($cellCoord)->getStyle()->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
-                $sheet->getCell($cellCoord)->getStyle()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
-            }
-
-            $row++;
-        }
-
-        foreach (range(1, 12) as $colIndex) {
-            $sheet->getColumnDimensionByColumn($colIndex)->setAutoSize(true);
-        }
-
         $editaisModel = new EditaisModel();
         $cargosModel  = new CargosModel();
-
         $editalInfo = $editaisModel->find($edital);
         $cargoInfo  = $cargosModel->find($cargo);
-
         $nomeEdital = $editalInfo->ds_numero_edital ?? 'edital';
         $nomeCargo  = $cargoInfo->ds_nome_cargo   ?? 'cargo';
 
+        // ====== CABEÇALHO INSTITUCIONAL ======
+        $totalCols = $usaDesempateDinamico ? (2 + count($configDesempate) + 2 + 1) : 11; // posicao + nome + critérios + nascimento + pontos + ação
+        $ultimaColuna = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($totalCols);
+
+        // Linha 1: Título
+        $sheet->mergeCells("A1:{$ultimaColuna}1");
+        $sheet->setCellValue('A1', 'PREFEITURA MUNICIPAL DE DIVINÓPOLIS');
+        $sheet->getStyle('A1')->getFont()->setBold(true)->setSize(14)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('FFFFFF'));
+        $sheet->getStyle('A1')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('1F4E78');
+        $sheet->getStyle('A1')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
+        $sheet->getRowDimension(1)->setRowHeight(28);
+
+        // Linha 2: Edital e Cargo
+        $sheet->mergeCells("A2:{$ultimaColuna}2");
+        $sheet->setCellValue('A2', "Edital: {$nomeEdital}  |  Cargo: {$nomeCargo}");
+        $sheet->getStyle('A2')->getFont()->setBold(true)->setSize(11)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('FFFFFF'));
+        $sheet->getStyle('A2')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('305496');
+        $sheet->getStyle('A2')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
+        $sheet->getRowDimension(2)->setRowHeight(22);
+
+        // Linha 3: Data
+        $sheet->mergeCells("A3:{$ultimaColuna}3");
+        $sheet->setCellValue('A3', 'Classificação gerada em ' . date('d/m/Y H:i:s'));
+        $sheet->getStyle('A3')->getFont()->setItalic(true)->setSize(10)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('444444'));
+        $sheet->getStyle('A3')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('F2F2F2');
+        $sheet->getStyle('A3')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
+        $sheet->getRowDimension(3)->setRowHeight(20);
+
+        // ====== CABEÇALHO DA TABELA (linha 5) ======
+        $linhaCabecalho = 5;
+        $headers = ['Posição', 'Candidato'];
+
+        if ($usaDesempateDinamico) {
+            foreach ($configDesempate as $config) {
+                $headers[] = $config->descricao ?: $config->tipoCriterio;
+            }
+            $headers[] = 'Nascimento';
+            $headers[] = 'Total de Pontos';
+        } else {
+            $headers = array_merge($headers, [
+                'Pts. Experiência',
+                'Pts. Graduação',
+                'Pts. Pós-Graduação',
+                'Pts. Mestrado',
+                'Pts. Doutorado',
+                'Pts. Aperfeiçoamentos',
+                'Nascimento',
+                'Total de Pontos',
+            ]);
+        }
+
+        $col = 1;
+        foreach ($headers as $header) {
+            $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col) . $linhaCabecalho;
+            $sheet->setCellValue($cellCoord, $header);
+            $sheet->getStyle($cellCoord)->getFont()->setBold(true)->setSize(11)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('FFFFFF'));
+            $sheet->getStyle($cellCoord)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('305496');
+            $sheet->getStyle($cellCoord)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
+            $sheet->getStyle($cellCoord)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN)->getColor()->setRGB('D9D9D9');
+            $col++;
+        }
+        $sheet->getRowDimension($linhaCabecalho)->setRowHeight(22);
+
+        // ====== DADOS ======
+        $row = $linhaCabecalho + 1;
+        foreach ($classificacoes as $classificacao) {
+            $col = 1;
+
+            // Posição
+            $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col++) . $row;
+            $sheet->setCellValue($cellCoord, $classificacao['ds_posicao']);
+            $this->aplicarEstiloCelula($sheet, $cellCoord, $row);
+
+            // Nome do candidato
+            $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col++) . $row;
+            $sheet->setCellValue($cellCoord, $classificacao['ds_nome_candidato']);
+            $this->aplicarEstiloCelula($sheet, $cellCoord, $row, Alignment::HORIZONTAL_LEFT);
+
+            if ($usaDesempateDinamico) {
+                foreach ($configDesempate as $config) {
+                    $chave = $config->chaveScore();
+                    $scoreData = $classificacao['_scores'][$chave] ?? null;
+                    $valor = is_array($scoreData) ? ($scoreData['nr_valor'] ?? 0) : ($scoreData ?? 0);
+
+                    $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col++) . $row;
+                    $sheet->setCellValue($cellCoord, is_numeric($valor) ? number_format((float)$valor, 2, ',', '.') : esc($valor));
+                    $this->aplicarEstiloCelula($sheet, $cellCoord, $row);
+                }
+
+                // Nascimento
+                $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col++) . $row;
+                $sheet->setCellValue($cellCoord, date('d/m/Y', strtotime($classificacao['dt_nascimento'])));
+                $this->aplicarEstiloCelula($sheet, $cellCoord, $row);
+
+                // Total de Pontos
+                $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col++) . $row;
+                $sheet->setCellValue($cellCoord, $classificacao['nr_total_pontos']);
+                $this->aplicarEstiloCelula($sheet, $cellCoord, $row);
+            } else {
+                // Colunas fixas
+                $valoresFixos = [
+                    $classificacao['nr_total_experiencias'],
+                    $classificacao['nr_total_graduacao'],
+                    $classificacao['nr_total_pos_graduacao'],
+                    $classificacao['nr_total_mestrado'],
+                    $classificacao['nr_total_doutorado'],
+                    $classificacao['nr_total_aperfeicoamentos'],
+                    date('d/m/Y', strtotime($classificacao['dt_nascimento'])),
+                    $classificacao['nr_total_pontos'],
+                ];
+                foreach ($valoresFixos as $valor) {
+                    $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col++) . $row;
+                    $sheet->setCellValue($cellCoord, $valor);
+                    $this->aplicarEstiloCelula($sheet, $cellCoord, $row);
+                }
+            }
+
+            $sheet->getRowDimension($row)->setRowHeight(20);
+            $row++;
+        }
+
+        // Auto-size
+        foreach (range(1, count($headers)) as $colIndex) {
+            $sheet->getColumnDimensionByColumn($colIndex)->setAutoSize(true);
+        }
+
+        // Nome do arquivo
         $safeEdital = preg_replace('/[^A-Za-z0-9_-]/', '_', $nomeEdital);
         $safeCargo  = preg_replace('/[^A-Za-z0-9_-]/', '_', $nomeCargo);
-        $fileName   = "Classificacao_{$safeEdital}_{$safeCargo}.xlsx";
+        $fileName   = "Classificacao_{$safeEdital}_{$safeCargo}_" . date('Ymd_His') . ".xlsx";
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header("Content-Disposition: attachment; filename=\"{$fileName}\"");
@@ -300,6 +362,20 @@ class Classificacoes extends BaseController{
         $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
         exit;
+    }
+
+    private function aplicarEstiloCelula($sheet, string $cellCoord, int $row, string $horizontalAlign = Alignment::HORIZONTAL_CENTER): void
+    {
+        $sheet->getStyle($cellCoord)->getFont()->setSize(11);
+        $sheet->getStyle($cellCoord)->getAlignment()->setHorizontal($horizontalAlign)->setVertical(Alignment::VERTICAL_CENTER);
+        $sheet->getStyle($cellCoord)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN)->getColor()->setRGB('D9D9D9');
+
+        // Zebra striping
+        if ($row % 2 == 0) {
+            $sheet->getStyle($cellCoord)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('F8F9FA');
+        } else {
+            $sheet->getStyle($cellCoord)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('FFFFFF');
+        }
     }
     public function gerarPdf($edital, $cargo){
         $service = new ClassificacaoService();

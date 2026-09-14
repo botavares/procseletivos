@@ -8,3 +8,6 @@ adm/writable/debugbar/*
 
 # Arquivo temporário de verificação
 temp_check_fields.php
+
+# Arquivo de variáveis de ambiente (contém credenciais)
+.env

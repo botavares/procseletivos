@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-12">
-                    <div class="card card-outline card-danger shadow-sm">
+                    <div class="card card-outline card-primary shadow-sm">
                         <!-- HEADER -->
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h3 class="card-title m-0">
@@ -45,7 +45,7 @@
                             <div class="card-body">
 
                                 <!-- DADOS DO RECURSO -->
-                                <h5 class="mb-3 text-danger">
+                                <h5 class="mb-3 text-primary">
                                     <i class="fas fa-file-alt mr-1"></i>
                                     Dados do Recurso
                                 </h5>
@@ -81,7 +81,7 @@
                                 <hr>
 
                                 <!-- PONTUAÇÕES CLASSIFICATÓRIAS -->
-                                <h5 class="mb-3 text-danger">
+                                <h5 class="mb-3 text-primary">
                                     <i class="fas fa-star mr-1"></i>
                                     Pontuações Classificatórias (Alterar via Recurso)
                                 </h5>
@@ -100,36 +100,32 @@
                                     $escolaridadesSalvas = $indexar($dadosRecursos['escolaridades'] ?? [], 'fk_id_escolaridade');
                                     $aperfeicoamentosSalvos = $indexar($dadosRecursos['aperfeicoamentos'] ?? [], 'fk_id_curso');
                                     $criteriosSalvos = $indexar($dadosRecursos['criterios'] ?? [], 'fk_id_criterio');
+
+                                    // Macro para renderizar um campo com checkbox de indeferimento
+                                    $renderCampo = function($campo, $valorAtual, $nomeCategoria, $id, $nomeId) use ($dadosRecursos, $indeferimentosMap) {
+                                        $prefix = $nomeCategoria;
+                                        $checkId = "check-indef-{$prefix}-{$id}";
+                                        $obsId = "obs-{$prefix}-{$id}";
+
+                                        $jaIndeferido = isset($indeferimentosMap[$nomeCategoria][$id]);
+                                        $obsTexto = $jaIndeferido ? ($indeferimentosMap[$nomeCategoria][$id]['observacao'] ?? '') : '';
                                 ?>
+                                        <div class="border rounded px-3 py-2 mb-2 bg-light">
+                                            <div class="small font-weight-bold mb-1"><?php echo esc($campo->{"ds_nome_{$nomeId}"}); ?></div>
 
-                                <div class="form-row">
-
-                                    <!-- EXPERIÊNCIAS -->
-                                    <div class="form-group col-md-6">
-                                        <label class="text-danger font-weight-bold">Experiências</label>
-                                        <?php if (!empty($camposFormularios['experiencias'])): ?>
-                                            <?php foreach($camposFormularios['experiencias'] as $campo): ?>
-                                                <?php
-                                                    $id = (int)$campo->fk_id_experiencia;
-                                                    $valorAtual = $experienciasSalvas[$id] ?? 0;
-                                                ?>
-                                                <div class="border rounded px-3 py-2 mb-2 bg-light">
-                                                    <div class="small font-weight-bold mb-1"><?php echo esc($campo->ds_nome_experiencia); ?></div>
-
+                                            <div class="row">
+                                                <div class="col-md-8">
                                                     <!-- SELECT -->
                                                     <?php if ($campo->ds_tipo_campo === 'SELECT'): ?>
                                                         <?php
                                                             $totalDeAnos = ($campo->ds_pontuacao_maxima / $campo->ds_pontuacao_minima);
+                                                            $tipoExp = $campo->ds_tipo_experiencia ?? '';
                                                         ?>
-                                                        <select class="form-control form-control-sm" name="ds_experiencias[<?= $id ?>]">
-                                                            <option value="0" <?php echo ($valorAtual == 0) ? 'selected' : ''; ?>>Não possui <?php echo esc($campo->ds_tipo_experiencia); ?></option>
+                                                        <select class="form-control form-control-sm" name="ds_<?= $prefix ?>[<?= $id ?>]">
+                                                            <option value="0" <?php echo ($valorAtual == 0) ? 'selected' : ''; ?>>Não possui<?php echo $tipoExp ? ' ' . esc($tipoExp) : ''; ?></option>
                                                             <?php for($i = 1; $i <= $totalDeAnos; $i++): ?>
                                                                 <?php
-                                                                    if ($i == $totalDeAnos) {
-                                                                        $textoOption = $i . " ou mais " . $campo->ds_tipo_experiencia;
-                                                                    } else {
-                                                                        $textoOption = $i . " " . $campo->ds_tipo_experiencia;
-                                                                    }
+                                                                    $textoOption = ($i == $totalDeAnos) ? $i . " ou mais" . ($tipoExp ? ' ' . $tipoExp : '') : $i . ($tipoExp ? ' ' . $tipoExp : '');
                                                                 ?>
                                                                 <option value="<?= $i ?>" <?php echo ($valorAtual == $i) ? 'selected' : ''; ?>><?php echo esc($textoOption); ?></option>
                                                             <?php endfor; ?>
@@ -138,19 +134,49 @@
 
                                                     <!-- CHECK -->
                                                     <?php if ($campo->ds_tipo_campo === 'CHECK'): ?>
-                                                        <input type="hidden" name="ds_experiencias[<?= $id ?>]" value="0">
+                                                        <input type="hidden" name="ds_<?= $prefix ?>[<?= $id ?>]" value="0">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="check-exp-<?= $id ?>" name="ds_experiencias[<?= $id ?>]" value="1" <?php echo ($valorAtual > 0) ? 'checked' : ''; ?>>
-                                                            <label class="custom-control-label" for="check-exp-<?= $id ?>">Possui</label>
+                                                            <input type="checkbox" class="custom-control-input" id="check-<?= $prefix ?>-<?= $id ?>" name="ds_<?= $prefix ?>[<?= $id ?>]" value="1" <?php echo ($valorAtual > 0) ? 'checked' : ''; ?>>
+                                                            <label class="custom-control-label" for="check-<?= $prefix ?>-<?= $id ?>">Possui</label>
                                                         </div>
                                                     <?php endif; ?>
 
                                                     <!-- INPUT -->
                                                     <?php if ($campo->ds_tipo_campo === 'INPUT'): ?>
-                                                        <input type="number" min="0" class="form-control form-control-sm" name="ds_experiencias[<?= $id ?>]" value="<?= $valorAtual ?>" placeholder="Quantidade">
+                                                        <input type="number" min="0" class="form-control form-control-sm" name="ds_<?= $prefix ?>[<?= $id ?>]" value="<?= $valorAtual ?>" placeholder="Quantidade">
                                                     <?php endif; ?>
-
                                                 </div>
+                                                <div class="col-md-4 d-flex align-items-center">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input toggle-observacao" id="<?= $checkId ?>" name="indef_<?= $prefix ?>[<?= $id ?>]" value="1" data-target="<?= $obsId ?>" <?= $jaIndeferido ? 'checked' : '' ?>>
+                                                        <label class="custom-control-label text-danger small" for="<?= $checkId ?>">
+                                                            <i class="fas fa-ban mr-1"></i>Indeferir
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- OBSERVAÇÃO (hidden por padrão, visível se já indeferido) -->
+                                            <div id="<?= $obsId ?>" class="mt-2 <?= $jaIndeferido ? '' : 'd-none' ?>">
+                                                <label class="small text-danger font-weight-bold mb-1"><i class="fas fa-ban mr-1"></i>Motivo do Indeferimento:</label>
+                                                <textarea class="form-control form-control-sm border-danger" name="obs_<?= $prefix ?>[<?= $id ?>]" rows="2" placeholder="Descreva o motivo do indeferimento..."><?= esc($obsTexto) ?></textarea>
+                                            </div>
+                                        </div>
+                                <?php
+                                    };
+                                ?>
+
+                                <div class="form-row">
+                                    <!-- EXPERIÊNCIAS -->
+                                    <div class="form-group col-md-6">
+                                        <label class="text-primary font-weight-bold">Experiências</label>
+                                        <?php if (!empty($camposFormularios['experiencias'])): ?>
+                                            <?php foreach($camposFormularios['experiencias'] as $campo): ?>
+                                                <?php
+                                                    $id = (int)$campo->fk_id_experiencia;
+                                                    $valorAtual = $experienciasSalvas[$id] ?? 0;
+                                                    $renderCampo($campo, $valorAtual, 'experiencias', $id, 'experiencia');
+                                                ?>
                                             <?php endforeach; ?>
                                         <?php else: ?>
                                             <div class="text-muted small px-3 py-2">Nenhuma experiência configurada para este cargo.</div>
@@ -159,108 +185,32 @@
 
                                     <!-- ESCOLARIDADES -->
                                     <div class="form-group col-md-6">
-                                        <label class="text-danger font-weight-bold">Escolaridade</label>
+                                        <label class="text-primary font-weight-bold">Escolaridade</label>
                                         <?php if (!empty($camposFormularios['escolaridades'])): ?>
                                             <?php foreach($camposFormularios['escolaridades'] as $campo): ?>
                                                 <?php
                                                     $id = (int)$campo->fk_id_escolaridade;
                                                     $valorAtual = $escolaridadesSalvas[$id] ?? 0;
+                                                    $renderCampo($campo, $valorAtual, 'escolaridades', $id, 'escolaridade');
                                                 ?>
-                                                <div class="border rounded px-3 py-2 mb-2 bg-light">
-                                                    <div class="small font-weight-bold mb-1"><?php echo esc($campo->ds_nome_escolaridade); ?></div>
-
-                                                    <!-- CHECK -->
-                                                    <?php if ($campo->ds_tipo_campo === 'CHECK'): ?>
-                                                        <input type="hidden" name="ds_escolaridades[<?= $id ?>]" value="0">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="check-esc-<?= $id ?>" name="ds_escolaridades[<?= $id ?>]" value="1" <?php echo ($valorAtual > 0) ? 'checked' : ''; ?>>
-                                                            <label class="custom-control-label" for="check-esc-<?= $id ?>">Possui</label>
-                                                        </div>
-                                                    <?php endif; ?>
-
-                                                    <!-- INPUT -->
-                                                    <?php if ($campo->ds_tipo_campo === 'INPUT'): ?>
-                                                        <input type="number" min="0" class="form-control form-control-sm" name="ds_escolaridades[<?= $id ?>]" value="<?= $valorAtual ?>" placeholder="Quantidade">
-                                                    <?php endif; ?>
-
-                                                    <!-- SELECT -->
-                                                    <?php if ($campo->ds_tipo_campo === 'SELECT'): ?>
-                                                        <?php
-                                                            $totalDeAnos = ($campo->ds_pontuacao_maxima / $campo->ds_pontuacao_minima);
-                                                        ?>
-                                                        <select class="form-control form-control-sm" name="ds_escolaridades[<?= $id ?>]">
-                                                            <option value="0" <?php echo ($valorAtual == 0) ? 'selected' : ''; ?>>Não possui</option>
-                                                            <?php for($i = 1; $i <= $totalDeAnos; $i++): ?>
-                                                                <?php
-                                                                    if ($i == $totalDeAnos) {
-                                                                        $textoOption = $i . " ou mais";
-                                                                    } else {
-                                                                        $textoOption = $i;
-                                                                    }
-                                                                ?>
-                                                                <option value="<?= $i ?>" <?php echo ($valorAtual == $i) ? 'selected' : ''; ?>><?php echo esc($textoOption); ?></option>
-                                                            <?php endfor; ?>
-                                                        </select>
-                                                    <?php endif; ?>
-
-                                                </div>
                                             <?php endforeach; ?>
                                         <?php else: ?>
                                             <div class="text-muted small px-3 py-2">Nenhuma escolaridade configurada para este cargo.</div>
                                         <?php endif; ?>
                                     </div>
-
                                 </div>
 
                                 <div class="form-row">
-
                                     <!-- APERFEIÇOAMENTOS -->
                                     <div class="form-group col-md-6">
-                                        <label class="text-danger font-weight-bold">Cursos de Aperfeiçoamento</label>
+                                        <label class="text-primary font-weight-bold">Cursos de Aperfeiçoamento</label>
                                         <?php if (!empty($camposFormularios['aperfeicoamentos'])): ?>
                                             <?php foreach($camposFormularios['aperfeicoamentos'] as $campo): ?>
                                                 <?php
                                                     $id = (int)$campo->fk_id_curso;
                                                     $valorAtual = $aperfeicoamentosSalvos[$id] ?? 0;
+                                                    $renderCampo($campo, $valorAtual, 'aperfeicoamentos', $id, 'curso');
                                                 ?>
-                                                <div class="border rounded px-3 py-2 mb-2 bg-light">
-                                                    <div class="small font-weight-bold mb-1"><?php echo esc($campo->ds_nome_curso); ?></div>
-
-                                                    <!-- CHECK -->
-                                                    <?php if ($campo->ds_tipo_campo === 'CHECK'): ?>
-                                                        <input type="hidden" name="ds_aperfeicoamentos[<?= $id ?>]" value="0">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="check-aper-<?= $id ?>" name="ds_aperfeicoamentos[<?= $id ?>]" value="1" <?php echo ($valorAtual > 0) ? 'checked' : ''; ?>>
-                                                            <label class="custom-control-label" for="check-aper-<?= $id ?>">Possui</label>
-                                                        </div>
-                                                    <?php endif; ?>
-
-                                                    <!-- INPUT -->
-                                                    <?php if ($campo->ds_tipo_campo === 'INPUT'): ?>
-                                                        <input type="number" min="0" class="form-control form-control-sm" name="ds_aperfeicoamentos[<?= $id ?>]" value="<?= $valorAtual ?>" placeholder="Quantidade">
-                                                    <?php endif; ?>
-
-                                                    <!-- SELECT -->
-                                                    <?php if ($campo->ds_tipo_campo === 'SELECT'): ?>
-                                                        <?php
-                                                            $totalDeAnos = ($campo->ds_pontuacao_maxima / $campo->ds_pontuacao_minima);
-                                                        ?>
-                                                        <select class="form-control form-control-sm" name="ds_aperfeicoamentos[<?= $id ?>]">
-                                                            <option value="0" <?php echo ($valorAtual == 0) ? 'selected' : ''; ?>>Não possui</option>
-                                                            <?php for($i = 1; $i <= $totalDeAnos; $i++): ?>
-                                                                <?php
-                                                                    if ($i == $totalDeAnos) {
-                                                                        $textoOption = $i . " ou mais";
-                                                                    } else {
-                                                                        $textoOption = $i;
-                                                                    }
-                                                                ?>
-                                                                <option value="<?= $i ?>" <?php echo ($valorAtual == $i) ? 'selected' : ''; ?>><?php echo esc($textoOption); ?></option>
-                                                            <?php endfor; ?>
-                                                        </select>
-                                                    <?php endif; ?>
-
-                                                </div>
                                             <?php endforeach; ?>
                                         <?php else: ?>
                                             <div class="text-muted small px-3 py-2">Nenhum aperfeiçoamento configurado para este cargo.</div>
@@ -269,57 +219,19 @@
 
                                     <!-- CRITÉRIOS ADICIONAIS -->
                                     <div class="form-group col-md-6">
-                                        <label class="text-danger font-weight-bold">Critérios Adicionais</label>
+                                        <label class="text-primary font-weight-bold">Critérios Adicionais</label>
                                         <?php if (!empty($camposFormularios['criterios'])): ?>
                                             <?php foreach($camposFormularios['criterios'] as $campo): ?>
                                                 <?php
                                                     $id = (int)$campo->fk_id_criterio;
                                                     $valorAtual = $criteriosSalvos[$id] ?? 0;
+                                                    $renderCampo($campo, $valorAtual, 'criterios', $id, 'criterio');
                                                 ?>
-                                                <div class="border rounded px-3 py-2 mb-2 bg-light">
-                                                    <div class="small font-weight-bold mb-1"><?php echo esc($campo->ds_nome_criterio); ?></div>
-
-                                                    <!-- CHECK -->
-                                                    <?php if ($campo->ds_tipo_campo === 'CHECK'): ?>
-                                                        <input type="hidden" name="ds_criterios[<?= $id ?>]" value="0">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="check-crit-<?= $id ?>" name="ds_criterios[<?= $id ?>]" value="1" <?php echo ($valorAtual > 0) ? 'checked' : ''; ?>>
-                                                            <label class="custom-control-label" for="check-crit-<?= $id ?>">Possui</label>
-                                                        </div>
-                                                    <?php endif; ?>
-
-                                                    <!-- INPUT -->
-                                                    <?php if ($campo->ds_tipo_campo === 'INPUT'): ?>
-                                                        <input type="number" min="0" class="form-control form-control-sm" name="ds_criterios[<?= $id ?>]" value="<?= $valorAtual ?>" placeholder="Quantidade">
-                                                    <?php endif; ?>
-
-                                                    <!-- SELECT -->
-                                                    <?php if ($campo->ds_tipo_campo === 'SELECT'): ?>
-                                                        <?php
-                                                            $totalDeAnos = ($campo->ds_pontuacao_maxima / $campo->ds_pontuacao_minima);
-                                                        ?>
-                                                        <select class="form-control form-control-sm" name="ds_criterios[<?= $id ?>]">
-                                                            <option value="0" <?php echo ($valorAtual == 0) ? 'selected' : ''; ?>>Não possui</option>
-                                                            <?php for($i = 1; $i <= $totalDeAnos; $i++): ?>
-                                                                <?php
-                                                                    if ($i == $totalDeAnos) {
-                                                                        $textoOption = $i . " ou mais";
-                                                                    } else {
-                                                                        $textoOption = $i;
-                                                                    }
-                                                                ?>
-                                                                <option value="<?= $i ?>" <?php echo ($valorAtual == $i) ? 'selected' : ''; ?>><?php echo esc($textoOption); ?></option>
-                                                            <?php endfor; ?>
-                                                        </select>
-                                                    <?php endif; ?>
-
-                                                </div>
                                             <?php endforeach; ?>
                                         <?php else: ?>
                                             <div class="text-muted small px-3 py-2">Nenhum critério adicional configurado para este cargo.</div>
                                         <?php endif; ?>
                                     </div>
-
                                 </div>
 
                             </div>
@@ -341,3 +253,17 @@
         </div>
     </section>
 </div>
+
+<script>
+    document.querySelectorAll('.toggle-observacao').forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            var targetId = this.getAttribute('data-target');
+            var targetDiv = document.getElementById(targetId);
+            if (this.checked) {
+                targetDiv.classList.remove('d-none');
+            } else {
+                targetDiv.classList.add('d-none');
+            }
+        });
+    });
+</script>

@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 class CargosCriteriosAdicionaisModel extends Model{
     //Atributos
     protected $table = 'tb_cargos_criterios_adicionais';
-    protected $primaryKey = ['pk_id_cargo_criterio'];
+    protected $primaryKey = 'pk_id_cargo_criterio';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
         'fk_id_cargo',

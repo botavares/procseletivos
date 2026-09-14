@@ -33,8 +33,8 @@ class EditaisAbrangenciasModel extends Model{
     {
         return $this->db->table($this->table)  // Usa a tabela definida na propriedade
             ->set($data)  // Define os dados a serem atualizados
-            ->where('fk_id_edtial', $idSetor)  // Condição 1: primeiro campo
-            ->where('fk_id_abrangencia', $idCurso)  // Condição 2: segundo campo
+            ->where('fk_id_edital', $idEdital)  // Condição 1: edital
+            ->where('fk_id_abrangencia', $idCurso)  // Condição 2: abrangencia
             ->update();  // Realiza o update
     }
     

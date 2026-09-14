@@ -1,0 +1,269 @@
+CRITICAL - 2026-09-14 07:56:26 --> syntax error, unexpected token "?", expecting "elseif" or "else" or "endif"
+in APPPATH\Views\pages\candidatos\Classificacoes_view.php on line 66.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-14 07:56:31 --> syntax error, unexpected token "?", expecting "elseif" or "else" or "endif"
+in APPPATH\Views\pages\candidatos\Classificacoes_view.php on line 66.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-14 11:20:33 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: Recursos'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-14 11:22:42 --> Uncaught CodeIgniter\Exceptions\PageNotFoundException: Can't find a route for 'get: Recursos'. in C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php:993
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(993): CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Can't find a ro...')
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(387): CodeIgniter\CodeIgniter->display404errors(Object(CodeIgniter\Exceptions\PageNotFoundException))
+#2 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#3 {main}
+  thrown
+in SYSTEMPATH\CodeIgniter.php on line 993.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-14 15:02:36 --> syntax error, unexpected token "?"
+in APPPATH\Views\pages\candidatos\FormRecursos_view.php on line 144.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-14 15:13:40 --> syntax error, unexpected token "?"
+in APPPATH\Views\pages\candidatos\FormRecursos_view.php on line 144.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-14 15:19:39 --> syntax error, unexpected token "?"
+in APPPATH\Views\pages\candidatos\FormRecursos_view.php on line 144.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-14 15:45:02 --> mysqli_sql_exception: Unknown column 'ds_observacao' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tb...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(271): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(110): App\Services\Candidatos\RecursosService->processarIndeferimentos(28, 12, 3246, 'experiencias', '321654', Array, Array, Array, 'fk_id_experienc...')
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(20): App\Services\Candidatos\RecursosService->salvarCategoria('experiencias', 28, 12, 3246, '321654', Array, Array, Array, 'tb_cadastrados_...', 'fk_id_experienc...', Object(App\Models\CargosExperienciasModel))
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Base\AbstractCrudService.php(24): App\Services\Candidatos\RecursosService->App\Services\Candidatos\{closure}()
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(19): App\Services\Base\AbstractCrudService->transactional(Object(Closure))
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Recursos.php(173): App\Services\Candidatos\RecursosService->aplicarRecursos(28, 12, 3246, Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Recursos->registrar()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Recursos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+ERROR - 2026-09-14 15:45:02 --> mysqli_sql_exception: Column 'ds_valor_novo' cannot be null in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tb...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(383): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(135): App\Services\Candidatos\RecursosService->registrarRecursos(28, 12, 3246, 'experiencias', Array, '321654')
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(20): App\Services\Candidatos\RecursosService->salvarCategoria('experiencias', 28, 12, 3246, '321654', Array, Array, Array, 'tb_cadastrados_...', 'fk_id_experienc...', Object(App\Models\CargosExperienciasModel))
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Base\AbstractCrudService.php(24): App\Services\Candidatos\RecursosService->App\Services\Candidatos\{closure}()
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(19): App\Services\Base\AbstractCrudService->transactional(Object(Closure))
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Recursos.php(173): App\Services\Candidatos\RecursosService->aplicarRecursos(28, 12, 3246, Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Recursos->registrar()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Recursos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+CRITICAL - 2026-09-14 15:45:02 --> Uncaught RuntimeException: Erro SQL [0] - Transação marcada como falha sem erro SQL explícito. in C:\laragon\www\servicos\procseletivos\adm\app\Services\Base\AbstractCrudService.php:34
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(19): App\Services\Base\AbstractCrudService->transactional(Object(Closure))
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Recursos.php(173): App\Services\Candidatos\RecursosService->aplicarRecursos(28, 12, 3246, Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Recursos->registrar()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Recursos))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+
+Next RuntimeException: Falha na transação: Erro SQL [0] - Transação marcada como falha sem erro SQL explícito. in C:\laragon\www\servicos\procseletivos\adm\app\Services\Base\AbstractCrudService.php:46
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(19): App\Services\Base\AbstractCrudService->transactional(Object(Closure))
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Recursos.php(173): App\Services\Candidatos\RecursosService->aplicarRecursos(28, 12, 3246, Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Recursos->registrar()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Recursos))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Services\Base\AbstractCrudService.php on line 46.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-14 15:50:32 --> mysqli_sql_exception: Unknown column 'ds_observacao' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tb...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(284): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(110): App\Services\Candidatos\RecursosService->processarIndeferimentos(28, 12, 3246, 'experiencias', '654321', Array, Array, Array, 'fk_id_experienc...')
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(20): App\Services\Candidatos\RecursosService->salvarCategoria('experiencias', 28, 12, 3246, '654321', Array, Array, Array, 'tb_cadastrados_...', 'fk_id_experienc...', Object(App\Models\CargosExperienciasModel))
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Base\AbstractCrudService.php(24): App\Services\Candidatos\RecursosService->App\Services\Candidatos\{closure}()
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(19): App\Services\Base\AbstractCrudService->transactional(Object(Closure))
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Recursos.php(173): App\Services\Candidatos\RecursosService->aplicarRecursos(28, 12, 3246, Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Recursos->registrar()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Recursos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+ERROR - 2026-09-14 15:50:32 --> mysqli_sql_exception: Column 'ds_valor_novo' cannot be null in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tb...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(396): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(135): App\Services\Candidatos\RecursosService->registrarRecursos(28, 12, 3246, 'experiencias', Array, '654321')
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(20): App\Services\Candidatos\RecursosService->salvarCategoria('experiencias', 28, 12, 3246, '654321', Array, Array, Array, 'tb_cadastrados_...', 'fk_id_experienc...', Object(App\Models\CargosExperienciasModel))
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Base\AbstractCrudService.php(24): App\Services\Candidatos\RecursosService->App\Services\Candidatos\{closure}()
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(19): App\Services\Base\AbstractCrudService->transactional(Object(Closure))
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Recursos.php(173): App\Services\Candidatos\RecursosService->aplicarRecursos(28, 12, 3246, Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Recursos->registrar()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Recursos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+CRITICAL - 2026-09-14 15:50:33 --> Uncaught RuntimeException: Erro SQL [0] - Transação marcada como falha sem erro SQL explícito. in C:\laragon\www\servicos\procseletivos\adm\app\Services\Base\AbstractCrudService.php:34
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(19): App\Services\Base\AbstractCrudService->transactional(Object(Closure))
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Recursos.php(173): App\Services\Candidatos\RecursosService->aplicarRecursos(28, 12, 3246, Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Recursos->registrar()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Recursos))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+
+Next RuntimeException: Falha na transação: Erro SQL [0] - Transação marcada como falha sem erro SQL explícito. in C:\laragon\www\servicos\procseletivos\adm\app\Services\Base\AbstractCrudService.php:46
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(19): App\Services\Base\AbstractCrudService->transactional(Object(Closure))
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Recursos.php(173): App\Services\Candidatos\RecursosService->aplicarRecursos(28, 12, 3246, Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Recursos->registrar()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Recursos))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Services\Base\AbstractCrudService.php on line 46.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-14 15:52:25 --> mysqli_sql_exception: Unknown column 'ds_observacao' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tb...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(284): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(110): App\Services\Candidatos\RecursosService->processarIndeferimentos(28, 12, 3246, 'experiencias', '654321', Array, Array, Array, 'fk_id_experienc...')
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(20): App\Services\Candidatos\RecursosService->salvarCategoria('experiencias', 28, 12, 3246, '654321', Array, Array, Array, 'tb_cadastrados_...', 'fk_id_experienc...', Object(App\Models\CargosExperienciasModel))
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Base\AbstractCrudService.php(24): App\Services\Candidatos\RecursosService->App\Services\Candidatos\{closure}()
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(19): App\Services\Base\AbstractCrudService->transactional(Object(Closure))
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Recursos.php(173): App\Services\Candidatos\RecursosService->aplicarRecursos(28, 12, 3246, Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Recursos->registrar()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Recursos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+ERROR - 2026-09-14 15:52:25 --> mysqli_sql_exception: Column 'ds_valor_novo' cannot be null in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tb...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(396): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(135): App\Services\Candidatos\RecursosService->registrarRecursos(28, 12, 3246, 'experiencias', Array, '654321')
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(20): App\Services\Candidatos\RecursosService->salvarCategoria('experiencias', 28, 12, 3246, '654321', Array, Array, Array, 'tb_cadastrados_...', 'fk_id_experienc...', Object(App\Models\CargosExperienciasModel))
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Base\AbstractCrudService.php(24): App\Services\Candidatos\RecursosService->App\Services\Candidatos\{closure}()
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(19): App\Services\Base\AbstractCrudService->transactional(Object(Closure))
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Recursos.php(173): App\Services\Candidatos\RecursosService->aplicarRecursos(28, 12, 3246, Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Recursos->registrar()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Recursos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+CRITICAL - 2026-09-14 15:52:25 --> Uncaught RuntimeException: Erro SQL [0] - Transação marcada como falha sem erro SQL explícito. in C:\laragon\www\servicos\procseletivos\adm\app\Services\Base\AbstractCrudService.php:34
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(19): App\Services\Base\AbstractCrudService->transactional(Object(Closure))
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Recursos.php(173): App\Services\Candidatos\RecursosService->aplicarRecursos(28, 12, 3246, Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Recursos->registrar()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Recursos))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+
+Next RuntimeException: Falha na transação: Erro SQL [0] - Transação marcada como falha sem erro SQL explícito. in C:\laragon\www\servicos\procseletivos\adm\app\Services\Base\AbstractCrudService.php:46
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(19): App\Services\Base\AbstractCrudService->transactional(Object(Closure))
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Recursos.php(173): App\Services\Candidatos\RecursosService->aplicarRecursos(28, 12, 3246, Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Recursos->registrar()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Recursos))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Services\Base\AbstractCrudService.php on line 46.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-09-14 15:55:17 --> mysqli_sql_exception: Unknown column 'ds_observacao' in 'field list' in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tb...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(284): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(110): App\Services\Candidatos\RecursosService->processarIndeferimentos(28, 12, 3246, 'experiencias', '654321', Array, Array, Array, 'fk_id_experienc...')
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(20): App\Services\Candidatos\RecursosService->salvarCategoria('experiencias', 28, 12, 3246, '654321', Array, Array, Array, 'tb_cadastrados_...', 'fk_id_experienc...', Object(App\Models\CargosExperienciasModel))
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Base\AbstractCrudService.php(24): App\Services\Candidatos\RecursosService->App\Services\Candidatos\{closure}()
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(19): App\Services\Base\AbstractCrudService->transactional(Object(Closure))
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Recursos.php(173): App\Services\Candidatos\RecursosService->aplicarRecursos(28, 12, 3246, Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Recursos->registrar()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Recursos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+ERROR - 2026-09-14 15:55:17 --> mysqli_sql_exception: Column 'ds_valor_novo' cannot be null in C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO `tb...', 0)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\laragon\www\servicos\procseletivos\adm\system\Database\BaseBuilder.php(2295): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(396): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(135): App\Services\Candidatos\RecursosService->registrarRecursos(28, 12, 3246, 'experiencias', Array, '654321')
+#6 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(20): App\Services\Candidatos\RecursosService->salvarCategoria('experiencias', 28, 12, 3246, '654321', Array, Array, Array, 'tb_cadastrados_...', 'fk_id_experienc...', Object(App\Models\CargosExperienciasModel))
+#7 C:\laragon\www\servicos\procseletivos\adm\app\Services\Base\AbstractCrudService.php(24): App\Services\Candidatos\RecursosService->App\Services\Candidatos\{closure}()
+#8 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(19): App\Services\Base\AbstractCrudService->transactional(Object(Closure))
+#9 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Recursos.php(173): App\Services\Candidatos\RecursosService->aplicarRecursos(28, 12, 3246, Array)
+#10 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Recursos->registrar()
+#11 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Recursos))
+#12 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#14 {main}
+CRITICAL - 2026-09-14 15:55:17 --> Uncaught RuntimeException: Erro SQL [0] - Transação marcada como falha sem erro SQL explícito. in C:\laragon\www\servicos\procseletivos\adm\app\Services\Base\AbstractCrudService.php:34
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(19): App\Services\Base\AbstractCrudService->transactional(Object(Closure))
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Recursos.php(173): App\Services\Candidatos\RecursosService->aplicarRecursos(28, 12, 3246, Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Recursos->registrar()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Recursos))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+
+Next RuntimeException: Falha na transação: Erro SQL [0] - Transação marcada como falha sem erro SQL explícito. in C:\laragon\www\servicos\procseletivos\adm\app\Services\Base\AbstractCrudService.php:46
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Services\Candidatos\RecursosService.php(19): App\Services\Base\AbstractCrudService->transactional(Object(Closure))
+#1 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Recursos.php(173): App\Services\Candidatos\RecursosService->aplicarRecursos(28, 12, 3246, Array)
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Recursos->registrar()
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Recursos))
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in APPPATH\Services\Base\AbstractCrudService.php on line 46.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-14 16:16:48 --> Uncaught CodeIgniter\Security\Exceptions\SecurityException: The action you requested is not allowed. in C:\laragon\www\servicos\procseletivos\adm\system\Security\Security.php:306
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\system\Security\Security.php(306): CodeIgniter\Security\Exceptions\SecurityException::forDisallowedAction()
+#1 C:\laragon\www\servicos\procseletivos\adm\system\Filters\CSRF.php(55): CodeIgniter\Security\Security->verify(Object(CodeIgniter\HTTP\IncomingRequest))
+#2 C:\laragon\www\servicos\procseletivos\adm\system\Filters\Filters.php(173): CodeIgniter\Filters\CSRF->before(Object(CodeIgniter\HTTP\IncomingRequest), NULL)
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('Recursos/regist...', 'before')
+#4 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#6 {main}
+  thrown
+in SYSTEMPATH\Security\Security.php on line 306.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()

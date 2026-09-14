@@ -8,7 +8,7 @@ class ExperienciasModel extends Model{
     protected $table = 'tb_experiencias';
     //colocar chave compost primary key:
     
-    protected $primaryKey = ['pk_id_experiencia'];
+    protected $primaryKey = 'pk_id_experiencia';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
         'ds_nome_experiencia','ds_tipo_experiencia'

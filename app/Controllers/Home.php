@@ -87,13 +87,13 @@ class Home extends BaseController
     
     
     public function loginGovBr(){
+        $credentials = config('Credentials');
+
         //CRIANDO A ARRAY COM OS DADOS DO LOGIN
         $data = array(
             'su' => $this->request->getVar('user'), // USER
-            //'ak' => "4536f180bdc0de3b1cf67f3f9a60ea86", // CHAVE DO APP teste
-            //'as' => "7762d57af7e926a4909827b337b05d5b", //secret teste
-            'ak' => "0b7f390e92176b48bdd12a6488dcd547", // CHAVE DO APP gov
-            'as' => "04a3ae30dba5b02989d10cb58cd2a9e9", // SECRET DO APP
+            'ak' => $credentials->govbrAppKey, // CHAVE DO APP gov
+            'as' => $credentials->govbrAppSecret, // SECRET DO APP
         );
       
         //CRIANDO A URL COM OS DADOS DO LOGIN
@@ -138,13 +138,4 @@ class Home extends BaseController
         $this->session->set($dataSession);
         return redirect()->to($this->request->getVar('destino'));
     }
-	public function buscarServicos(){
-        if(isset($_GET['q'])){
-            $busca = $_GET['q'];
-            $servicosModel = new \App\Models\ServicosModel();
-            $dataBusca = $servicosModel->listarServicos($busca);
-            echo json_encode($dataBusca);
-        }
-    }
-	
 }

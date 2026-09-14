@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use \App\Services\EditaisService;
+use \App\Models\EditaisModel;
 
 class Editais extends BaseController
 {

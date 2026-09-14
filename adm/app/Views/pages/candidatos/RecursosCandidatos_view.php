@@ -11,7 +11,7 @@
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="<?php echo base_url('Dashboard') ?>">Home</a></li>
-						<li class="breadcrumb-item active">Candidatos</li>
+						<li class="breadcrumb-item active">Recursos</li>
 					</ol>
 				</div>
 			</div>
@@ -22,19 +22,6 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
-					<?php if (session()->has('mensagemError')): ?>
-						<div class="alert alert-danger alert-dismissible fade show mb-3 py-2">
-							<button type="button" class="close" data-dismiss="alert">×</button>
-							<?= esc(session('mensagemError')) ?>
-						</div>
-					<?php endif; ?>
-					<?php if (session()->has('mensagemSuccess')): ?>
-						<div class="alert alert-success alert-dismissible fade show mb-3 py-2">
-							<button type="button" class="close" data-dismiss="alert">×</button>
-							<?= esc(session('mensagemSuccess')) ?>
-						</div>
-					<?php endif; ?>
-
 					<div class="card card-outline card-primary">
 						<div class="card-header d-flex justify-content-start align-items-center py-2">
 							<div class="d-flex">
@@ -51,8 +38,7 @@
 										<?php foreach ($titulosTabela as $tituloColuna): ?>
 											<th class="text-center"><?php echo esc($tituloColuna) ?></th>
 										<?php endforeach; ?>
-										<th class="text-center" style="width: 100px;">Exibir Dados</th>
-										<th class="text-center" style="width: 100px;">Situação</th>
+										<th class="text-center" style="width: 120px;">Aplicar Recurso</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -64,18 +50,12 @@
 											<td align="center"><?php echo date('d/m/Y', strtotime($valueCandidato['ds_nascimento'])) ?></td>
 											<td align="left"><?php echo mask($valueCandidato['ds_celular'], '(##) #####-####') ?></td>
 											<td align="left"><?php echo esc($valueCandidato['ds_email']) ?></td>
+											<td align="center"><?php echo esc($valueCandidato['ds_protocolo']) ?></td>
 											<td class="text-center">
-												<a class="btn btn-info btn-sm" 
-												   href="<?php echo base_url('Candidatos/exibirDados/' . $valueCandidato['fk_id_edital'] . '/' . $valueCandidato['fk_id_cargo'] . '/' . $valueCandidato['pk_id_cadastrado']) ?>"
-												   title="Exibir Dados">
-													<i class="fas fa-user"></i>
-												</a>
-											</td>
-											<td class="text-center">
-												<a class="btn btn-primary btn-sm" 
-												   href="<?php echo base_url('Candidatos/formSituacaoCandidato/' . $valueCandidato['fk_id_edital'] . '/' . $valueCandidato['fk_id_cargo'] . '/' . $valueCandidato['pk_id_cadastrado']) ?>"
-												   title="Situação do Candidato">
-													<i class="fas fa-clipboard-check"></i>
+												<a class="btn btn-success btn-sm" 
+												   href="<?php echo base_url('Recursos/' . $valueCandidato['fk_id_edital'] . '/' . $valueCandidato['fk_id_cargo'] . '/' . $valueCandidato['pk_id_cadastrado']) ?>"
+												   title="Aplicar Recurso">
+													<i class="fas fa-gavel"></i>
 												</a>
 											</td>
 										</tr>

@@ -5,22 +5,7 @@ Control: Contratos.php
 
 namespace App\Controllers;
 
-use App\Models\DashModel;
-use App\Models\AbrangenciasModel;
-use App\Models\CursosModel;
-use App\Models\EstagiariosModel;
 use App\Models\EditaisModel;
-use App\Models\DadosContratosModel;
-use App\Models\VagasModel;
-use App\Models\LogsModel;
-use App\Models\DadosRescisaoModel;
-use App\Models\DadosAditivosModel;
-use App\Models\ConvocadosModel;
-use App\Models\VerificadorModel;
-use App\Models\EditaisCandidatosModel;
-
-use App\Services\LogsService;
-use App\Services\Contratos\ContratoService;
 
 use CodeIgniter\Controller;
 

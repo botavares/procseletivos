@@ -1,12 +1,8 @@
 <?php
 
 namespace App\Controllers;
-use App\Helpers\EmailHelper;
-use CodeIgniter\Controller;
+
 use App\Models\UsuarioModel;
-use CodeIgniter\HTTP\RequestInterface;
-use CodeIgniter\HTTP\ResponseInterface;
-use Psr\Log\LoggerInterface;
 
 class Login extends BaseController{
     
@@ -113,9 +109,5 @@ class Login extends BaseController{
         $this->session->remove('logged_in');
         session()->destroy();
         return redirect()->route('home');
-    }
-    private function enviaemail($dados){
-		$enviaEmail = EmailHelper::sendEmail($dados);
-        return $enviaEmail;
     }
 }

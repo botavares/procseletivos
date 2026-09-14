@@ -3,29 +3,13 @@ namespace App\Controllers;
 
 use DateTime;
 use CodeIgniter\Exceptions\PageNotFoundException;
-use App\Models\DadosContratosModel;
 use App\Models\CandidatosModel;
 use App\Models\AcademicosModel;
 use App\Models\CursosModel;
 use App\Models\AbrangenciasModel;
-use App\Models\SetoresModel;
-use App\Models\VagasModel;
-use App\Models\DadosRescisaoModel;
-use App\Models\DadosAditivosModel;
-use App\Models\ConvocadosModel;
-use App\Models\AuxiliosModel;
-use App\Models\InstituicoesModel;
-use App\Models\SegurosModel;
-use App\Models\DadosPrefeituraModel;
-use App\Models\VerificadorModel;
-use App\Models\MotivosRescisaoModel;
 
 use App\Services\Relatorios\RelatoriosService;
 use App\Services\Relatorios\RelatoriosFormService;
-
-use App\Services\EmailService;
-use App\Services\LogsService;
-use App\Services\ContagemDeTempoService;
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -39,20 +23,11 @@ class Relatorios extends BaseController{
         $this->validarSessao();
         $this->validarView($params['camada1'],$params['camada2'],$params['pagina']);
         
-        /*Aqui eu estou isolando a ação de imprimir porque ela é a única que vem de um formService Diferente que nao seja o
-        RelatoriosFormService. Se a ação não for imprimir eu uso o RelatoriosFormService como default.
-        */
-        $formService = match ($params['acao']){
-            'planilha' => new PlanilhaFormService($this->request),
-            default => new RelatoriosFormService($this->request), 
-        };
+        $formService = new RelatoriosFormService($this->request);
 
-        //Daqui pra baixo o $formService assume o RelatoriosFormService ou o PlanilhaFormService dependendo da ação
         $dadosFormulario = match ($params['acao']){
             'candidatosPorCurso' =>$formService->candidatosPorCurso(),
             'candidatosPorAbrangencia' =>$formService->candidatosPorAbrangencia(),
-            'contratosPorSetor' =>$formService->contratosPorSetor(),
-            
             default => throw new \InvalidArgumentException('Ação inválida'),
         };
 

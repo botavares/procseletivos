@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 class CargosEscolaridadesModel extends Model{
     //Atributos
     protected $table = 'tb_cargos_escolaridades';
-    protected $primaryKey = ['pk_id_cargo_escolaridade'];
+    protected $primaryKey = 'pk_id_cargo_escolaridade';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
         'fk_id_cargo',

@@ -7,7 +7,7 @@ class CargosExperienciasModel extends Model{
     //Atributos
     protected $table = 'tb_cargos_experiencias';
     protected $primaryKey = 'pk_id_cargos_experiencia';
-    protected $useAutoIncrement = false;
+    protected $useAutoIncrement = true;
     protected $allowedFields = [
         'fk_id_cargo',
         'fk_id_experiencia',

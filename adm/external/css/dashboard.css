@@ -169,15 +169,15 @@
     box-shadow: 0 6px 16px rgba(31,95,120,0.25);
 }
 
-.dash-quick-icon--infantil     { background: linear-gradient(135deg, #e83e8c, #fd7e14); }
-.dash-quick-icon--escolas      { background: linear-gradient(135deg, #1a5f7a, #57c5b6); }
-.dash-quick-icon--vagas        { background: linear-gradient(135deg, #28a745, #20c997); }
-.dash-quick-icon--remaneja     { background: linear-gradient(135deg, #6f42c1, #6610f2); }
-.dash-quick-icon--naoenc       { background: linear-gradient(135deg, #dc3545, #ff5252); }
-.dash-quick-icon--vincular     { background: linear-gradient(135deg, #17a2b8, #0dcaf0); }
-.dash-quick-icon--vincular-log { background: linear-gradient(135deg, #fd7e14, #ffc107); }
-.dash-quick-icon--usuarios     { background: linear-gradient(135deg, #343a40, #495057); }
-.dash-quick-icon--relatorios   { background: linear-gradient(135deg, #1f5f78, #159895); }
+.dash-quick-icon--cadastros1  { background: linear-gradient(135deg, #e83e8c, #fd7e14); }
+.dash-quick-icon--cadastros2  { background: linear-gradient(135deg, #1a5f7a, #57c5b6); }
+.dash-quick-icon--cadastros3  { background: linear-gradient(135deg, #28a745, #20c997); }
+.dash-quick-icon--consultas1  { background: linear-gradient(135deg, #6f42c1, #6610f2); }
+.dash-quick-icon--consultas2  { background: linear-gradient(135deg, #dc3545, #ff5252); }
+.dash-quick-icon--consultas3  { background: linear-gradient(135deg, #17a2b8, #0dcaf0); }
+.dash-quick-icon--relatorios1 { background: linear-gradient(135deg, #fd7e14, #ffc107); }
+.dash-quick-icon--relatorios2 { background: linear-gradient(135deg, #343a40, #495057); }
+.dash-quick-icon--relatorios3 { background: linear-gradient(135deg, #1f5f78, #159895); }
 
 .dash-quick-card h5 {
     font-size: 15px;

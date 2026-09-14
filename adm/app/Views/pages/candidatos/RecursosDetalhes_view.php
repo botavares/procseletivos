@@ -94,15 +94,17 @@
                                     <div class="form-control-plaintext border rounded px-3 py-2 bg-light font-weight-bold">
                                         <?php
                                             $tipoClass = [
-                                                'alterado' => 'text-warning',
-                                                'inserido' => 'text-success',
-                                                'removido' => 'text-danger'
+                                                'alterado'   => 'text-warning',
+                                                'inserido'   => 'text-success',
+                                                'removido'   => 'text-danger',
+                                                'indeferido' => 'text-dark'
                                             ][$recurso->ds_tipo] ?? 'text-secondary';
 
                                             $tipoLabel = [
-                                                'alterado' => 'Alterado',
-                                                'inserido' => 'Inserido',
-                                                'removido' => 'Removido'
+                                                'alterado'   => 'Alterado',
+                                                'inserido'   => 'Inserido',
+                                                'removido'   => 'Removido',
+                                                'indeferido' => 'Indeferido'
                                             ][$recurso->ds_tipo] ?? $recurso->ds_tipo;
                                         ?>
                                         <span class="<?= $tipoClass ?> font-weight-bold"><?= $tipoLabel ?></span>
@@ -122,6 +124,17 @@
                                 </div>
                             </div>
 
+                            <?php if ($recurso->ds_tipo === 'indeferido' && !empty($recurso->ds_observacao)): ?>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label class="text-danger"><i class="fas fa-ban mr-1"></i>Motivo do Indeferimento</label>
+                                        <div class="form-control-plaintext border rounded px-3 py-2 bg-light text-danger font-weight-bold">
+                                            <?php echo esc($recurso->ds_observacao); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+
                             <?php if (!empty($registrosProtocolo) && count($registrosProtocolo) > 1): ?>
                                 <hr>
 
@@ -138,6 +151,7 @@
                                                 <th>Tipo</th>
                                                 <th>Valor Antigo</th>
                                                 <th>Valor Novo</th>
+                                                <th>Observação</th>
                                                 <th>Data/Hora</th>
                                             </tr>
                                         </thead>
@@ -146,15 +160,17 @@
                                                 <?php if ($item->pk_id_historico == $recurso->pk_id_historico) continue; ?>
                                                 <?php
                                                     $tipoClassItem = [
-                                                        'alterado' => 'badge-warning',
-                                                        'inserido' => 'badge-success',
-                                                        'removido' => 'badge-danger'
+                                                        'alterado'   => 'badge-warning',
+                                                        'inserido'   => 'badge-success',
+                                                        'removido'   => 'badge-danger',
+                                                        'indeferido' => 'badge-dark'
                                                     ][$item->ds_tipo] ?? 'badge-secondary';
 
                                                     $tipoLabelItem = [
-                                                        'alterado' => 'Alterado',
-                                                        'inserido' => 'Inserido',
-                                                        'removido' => 'Removido'
+                                                        'alterado'   => 'Alterado',
+                                                        'inserido'   => 'Inserido',
+                                                        'removido'   => 'Removido',
+                                                        'indeferido' => 'Indeferido'
                                                     ][$item->ds_tipo] ?? $item->ds_tipo;
                                                 ?>
                                                 <tr>
@@ -162,6 +178,13 @@
                                                     <td><span class="badge <?= $tipoClassItem ?>"><?= $tipoLabelItem ?></span></td>
                                                     <td class="text-center"><?= $item->ds_valor_antigo ?? '-' ?></td>
                                                     <td class="text-center"><?= $item->ds_valor_novo ?? '-' ?></td>
+                                                    <td>
+                                                        <?php if ($item->ds_tipo === 'indeferido' && !empty($item->ds_observacao)): ?>
+                                                            <span class="text-danger small"><i class="fas fa-ban mr-1"></i><?= esc($item->ds_observacao) ?></span>
+                                                        <?php else: ?>
+                                                            -
+                                                        <?php endif; ?>
+                                                    </td>
                                                     <td><?= date('d/m/Y', strtotime($item->ds_data_alteracao)) ?> <?= $item->ds_hora_alteracao ?></td>
                                                 </tr>
                                             <?php endforeach; ?>

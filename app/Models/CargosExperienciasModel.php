@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 class CargosExperienciasModel extends Model{
     //Atributos
     protected $table = 'tb_cargos_experiencias';
-    protected $primaryKey = ['pk_id_cargo_experiencia'];
+    protected $primaryKey = 'pk_id_cargo_experiencia';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
         'fk_id_cargo',

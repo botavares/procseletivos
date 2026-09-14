@@ -7,7 +7,7 @@ class CargosEscolaridadesModel extends Model{
     //Atributos
     protected $table = 'tb_cargos_escolaridades';
     protected $primaryKey = 'pk_id_cargos_escolaridade';
-    protected $useAutoIncrement = false;
+    protected $useAutoIncrement = true;
     protected $allowedFields = [
         'fk_id_cargo',
         'fk_id_escolaridade',

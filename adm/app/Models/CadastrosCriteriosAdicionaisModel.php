@@ -3,7 +3,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class CadastrosCriteriosAdicionais extends Model{
+class CadastrosCriteriosAdicionaisModel extends Model{
     //Atributos
     protected $table = 'tb_cadastrados_criterios';
     protected $primaryKey = 'pk_id_criterios';

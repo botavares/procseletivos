@@ -103,6 +103,7 @@
                                                 <th>Tipo</th>
                                                 <th>Valor Antigo</th>
                                                 <th>Valor Novo</th>
+                                                <th>Observação</th>
                                                 <th>Responsável</th>
                                                 <th class="text-center">Ações</th>
                                             </tr>
@@ -111,15 +112,17 @@
                                             <?php foreach($historico as $item): ?>
                                                 <?php
                                                     $tipoClass = [
-                                                        'alterado' => 'badge-warning',
-                                                        'inserido' => 'badge-success',
-                                                        'removido' => 'badge-danger'
+                                                        'alterado'   => 'badge-warning',
+                                                        'inserido'   => 'badge-success',
+                                                        'removido'   => 'badge-danger',
+                                                        'indeferido' => 'badge-dark'
                                                     ][$item->ds_tipo] ?? 'badge-secondary';
 
                                                     $tipoLabel = [
-                                                        'alterado' => 'Alterado',
-                                                        'inserido' => 'Inserido',
-                                                        'removido' => 'Removido'
+                                                        'alterado'   => 'Alterado',
+                                                        'inserido'   => 'Inserido',
+                                                        'removido'   => 'Removido',
+                                                        'indeferido' => 'Indeferido'
                                                     ][$item->ds_tipo] ?? $item->ds_tipo;
                                                 ?>
                                                 <tr>
@@ -132,6 +135,13 @@
                                                     <td><span class="badge <?= $tipoClass ?>"><?= $tipoLabel ?></span></td>
                                                     <td class="text-center"><?= $item->ds_valor_antigo ?? '-' ?></td>
                                                     <td class="text-center"><?= $item->ds_valor_novo ?? '-' ?></td>
+                                                    <td>
+                                                        <?php if ($item->ds_tipo === 'indeferido' && !empty($item->ds_observacao)): ?>
+                                                            <span class="text-danger small"><i class="fas fa-ban mr-1"></i><?= esc($item->ds_observacao) ?></span>
+                                                        <?php else: ?>
+                                                            -
+                                                        <?php endif; ?>
+                                                    </td>
                                                     <td><?= esc($item->ds_usuario_responsavel) ?></td>
                                                     <td class="text-center">
                                                         <a href="<?php echo base_url('Recursos/detalhes/' . $item->pk_id_historico); ?>" class="btn btn-info btn-sm" title="Ver Detalhes">

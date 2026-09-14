@@ -67,7 +67,7 @@ class UsuarioModel extends Model{
     public function atualizarSenha($id, $senhaNova){
         $this->skipValidation(true);
         return $this->update($id, [
-            'ds_senha_user' => $senhaNova
+            'ds_senha_user' => password_hash($senhaNova, PASSWORD_DEFAULT)
         ]);
     }
 

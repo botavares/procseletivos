@@ -13,7 +13,6 @@ class CadastradosCriteriosAdicionaisModel extends Model{
         'fk_id_edital',
         'fk_id_cargo',
         'fk_id_criterio',
-        'ds_status',
         'ds_quantidade',
         'ds_multiplicador',
     ];

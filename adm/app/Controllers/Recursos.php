@@ -8,6 +8,10 @@ use App\Models\RecursosHistoricoModel;
 use App\Models\EditaisModel;
 use App\Models\CargosModel;
 
+use App\Models\ProtocolosModel;
+use App\Models\CandidatosModel;
+use App\Models\EditaisCandidatosModel;
+
 use DateTime;
 
 class Recursos extends BaseController{
@@ -23,21 +27,39 @@ class Recursos extends BaseController{
 
         $candidatosService = new CandidatosService();
         $recursosService = new RecursosService();
+        $historicoModel = new RecursosHistoricoModel();
 
         $recurso = $candidatosService->listarCandidatoId($edital, $cargo, $candidato);
         $camposFormularios = $recursosService->tiposCamposFormulario($cargo);
+
+        // Buscar indeferimentos já existentes para este candidato/cargo/edital
+        $indeferimentosExistentes = $historicoModel
+            ->where('fk_id_edital', $edital)
+            ->where('fk_id_cargo', $cargo)
+            ->where('fk_id_candidato', $candidato)
+            ->where('ds_tipo', 'indeferido')
+            ->findAll();
+
+        $indeferimentosMap = [];
+        foreach ($indeferimentosExistentes as $item) {
+            $indeferimentosMap[$item->ds_campo_alterado][$item->fk_id_campo_alterado] = [
+                'marcado'    => true,
+                'observacao' => $item->ds_observacao ?? '',
+            ];
+        }
         
         $parametros = [
-            'camada1'       =>  $camada1,
-            'camada2'       =>  $camada2,
-            'pagina'        =>  $page,
-            'edital'        =>  $edital,
-            'cargo'         =>  $cargo,
-            'candidato'     =>  $candidato,
-            'acao'          =>  'update',
-            "dadosRecursos" =>  $recurso,
-            "camposFormularios" => $camposFormularios,
-            'titulo'        =>  'Aplicação de Recurso',
+            'camada1'               =>  $camada1,
+            'camada2'               =>  $camada2,
+            'pagina'                =>  $page,
+            'edital'                =>  $edital,
+            'cargo'                 =>  $cargo,
+            'candidato'             =>  $candidato,
+            'acao'                  =>  'update',
+            "dadosRecursos"         =>  $recurso,
+            "camposFormularios"     =>  $camposFormularios,
+            'indeferimentosMap'     =>  $indeferimentosMap,
+            'titulo'                =>  'Aplicação de Recurso',
         ];
         echo view('layoutDash', $parametros);
     }
@@ -95,6 +117,70 @@ class Recursos extends BaseController{
         echo view('layoutDash', $parametros);
     }
 
+    /**
+     * Lista candidatos por edital e cargo para aplicar recursos
+     */
+    public function listar($idEdital = null, $idCargo = null, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'RecursosCandidatos'){
+        if (!is_file(APPPATH . 'Views/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
+            throw new PageNotFoundException("Página não encontrada: " . $page);
+        }
+
+        if (!checklogged()) {
+            return redirect()->route('home')->with('error','Sua sessão expirou');
+        }
+
+        if (!$idEdital || !$idCargo) {
+            return redirect()->to(base_url('home'));
+        }
+
+        $modelEditais = new EditaisModel();
+        $modelCargos  = new CargosModel();
+        $modelCandidato = new CandidatosModel();
+
+        $dadosEdital = $modelEditais->getEdital($idEdital);
+        $dadosCargo  = $modelCargos->getCargo($idCargo);
+
+        if (!$dadosEdital || !$dadosCargo) {
+            return redirect()->to(base_url('home'))->with('error', 'Edital ou Cargo não encontrado.');
+        }
+
+        $candidatos = $modelCandidato->getCandidatosPorEditalCargo($idEdital, $idCargo);
+
+        $arrayCandidatos = [];
+        foreach ($candidatos as $candidato) {
+            $arrayCandidatos[$candidato->pk_id_cadastrado] = [
+                'pk_id_cadastrado' => $candidato->pk_id_cadastrado,
+                'ds_nome'          => $candidato->ds_nome,
+                'ds_cpf'           => $candidato->ds_cpf,
+                'ds_data_cadastro' => $candidato->ds_data_cadastro,
+                'ds_nascimento'    => $candidato->ds_nascimento,
+                'ds_email'         => $candidato->ds_email,
+                'ds_celular'       => $candidato->ds_celular,
+                'ds_numero_edital' => $candidato->ds_numero_edital,
+                'ds_protocolo'     => $candidato->ds_protocolo,
+                'fk_id_edital'     => $idEdital,
+                'fk_id_cargo'      => $idCargo,
+                'ds_nome_cargo'    => $dadosCargo->ds_nome_cargo,
+            ];
+        }
+
+        $titulosTabela = ["Edital Ref.","Data de Insc.","Nome do Candidato","Nascimento","Telefone","Email","Protocolo"];
+
+        $parametros = [
+            'camada1'       => $camada1,
+            'camada2'       => $camada2,
+            'pagina'        => $page,
+            'candidatos'    => $arrayCandidatos,
+            'idEdital'      => $idEdital,
+            'idCargo'       => $idCargo,
+            'nomeCargo'     => $dadosCargo->ds_nome_cargo,
+            'titulosTabela' => $titulosTabela,
+            'titulo'        => 'Candidatos - Aplicação de Recurso',
+        ];
+
+        echo view('layoutDash', $parametros);
+    }
+
     public function registrar(){
         $recursosService = new RecursosService();
         $dados = $this->request->getPost();
@@ -108,7 +194,17 @@ class Recursos extends BaseController{
         
         $servicesLogs->inserirLog('Registrou Recurso', 'Recurso registrado do candidato '.$dados['ds_nome'],'tb_cadastrados_experiencias, tb_cadastrados_escolaridades, tb_cadastrados_aperfeicoamentos, tb_cadastrados_criterios');
 
-        return redirect()->route('Candidatos',[$edital,$cargo])->with('success', 'Recurso registrado com sucesso!');
+        return redirect()->to(base_url("Recursos/listar/{$edital}/{$cargo}"))->with('success', 'Recurso registrado com sucesso!');
+    }
+
+    /**
+     * Salva escolha de edital e cargo e redireciona para listagem de candidatos para recursos
+     */
+    public function salvarEscolha(){
+        $idEdital = $this->request->getPost('edital');
+        $idCargo  = $this->request->getPost('cargo');
+
+        return redirect()->to(base_url("Recursos/listar/{$idEdital}/{$idCargo}"));
     }
 
     /**

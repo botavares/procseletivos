@@ -11,7 +11,7 @@ use App\Models\CargosCriteriosAdicionaisModel;
 use App\Models\CargosCursosModel;
 use App\Services\Classificacao\DesempateConfigService;
 
-class CargosDesempateConfig extends Controller
+class CargosDesempateConfig extends BaseController
 {
     protected $helpers = ['url', 'form'];
 

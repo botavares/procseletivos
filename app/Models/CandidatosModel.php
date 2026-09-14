@@ -92,8 +92,8 @@ class CandidatosModel extends Model{
         return $this->first();
     }
     public function contarCadastrados($periodo){
-        $sql = "SELECT COUNT(*) AS total FROM tb_cadastrados WHERE YEAR(ds_data_cadastro) = $periodo";
-        $query = $this->db->query($sql);
+        $sql = "SELECT COUNT(*) AS total FROM tb_cadastrados WHERE YEAR(ds_data_cadastro) = ?";
+        $query = $this->db->query($sql, [$periodo]);
         $resultado = $query->getRow();
         return $resultado->total;
     }

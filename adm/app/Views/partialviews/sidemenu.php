@@ -26,9 +26,9 @@
                     <button class="btn btn-sidebar">
                         <i class="fas fa-search fa-fw"></i>
                     </button>
-                </div>
             </div>
         </div>
+    </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -73,6 +73,13 @@
                         </a>
                     </li>
                     
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-toggle="modal" data-target="#escolhaRecursos">
+                            <i class="nav-icon fas fa-gavel"></i>
+                            <p>Recursos</p>
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a href="<?php echo base_url('Recursos/historico') ?>" class="nav-link">
                             <i class="nav-icon fas fa-gavel"></i>
@@ -126,7 +133,7 @@
                     <i class="fas fa-file-text-o mr-2"></i> Relatórios
                 </h5>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
@@ -167,7 +174,7 @@
                     <i class="fas fa-trophy mr-2"></i> Classificação por Cargo
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">

@@ -5,7 +5,7 @@ use App\Services\Base\AbstractCrudService;
 use App\Models\CadastrosExperienciasModel;
 use App\Models\CadastrosEscolaridadesModel;
 use App\Models\CadastrosAperfeicoamentosModel;
-use App\Models\CadastrosCriteriosAdicionais;
+use App\Models\CadastrosCriteriosAdicionaisModel;
 use App\Models\CargosExperienciasModel;
 use App\Models\CargosEscolaridadesModel;
 use App\Models\CargosAperfeicoamentosModel;
@@ -24,6 +24,8 @@ class RecursosService extends AbstractCrudService{
                 $idCandidato,
                 $protocolo,
                 $recursos['ds_experiencias'] ?? [],
+                $recursos['indef_experiencias'] ?? [],
+                $recursos['obs_experiencias'] ?? [],
                 'tb_cadastrados_experiencias',
                 'fk_id_experiencia',
                 new CargosExperienciasModel()
@@ -36,6 +38,8 @@ class RecursosService extends AbstractCrudService{
                 $idCandidato,
                 $protocolo,
                 $recursos['ds_escolaridades'] ?? [],
+                $recursos['indef_escolaridades'] ?? [],
+                $recursos['obs_escolaridades'] ?? [],
                 'tb_cadastrados_escolaridades',
                 'fk_id_escolaridade',
                 new CargosEscolaridadesModel()
@@ -48,6 +52,8 @@ class RecursosService extends AbstractCrudService{
                 $idCandidato,
                 $protocolo,
                 $recursos['ds_aperfeicoamentos'] ?? [],
+                $recursos['indef_aperfeicoamentos'] ?? [],
+                $recursos['obs_aperfeicoamentos'] ?? [],
                 'tb_cadastrados_aperfeicoamentos',
                 'fk_id_curso',
                 new CargosAperfeicoamentosModel()
@@ -60,6 +66,8 @@ class RecursosService extends AbstractCrudService{
                 $idCandidato,
                 $protocolo,
                 $recursos['ds_criterios'] ?? [],
+                $recursos['indef_criterios'] ?? [],
+                $recursos['obs_criterios'] ?? [],
                 'tb_cadastrados_criterios',
                 'fk_id_criterio',
                 new CargosCriteriosAdicionaisModel()
@@ -76,6 +84,8 @@ class RecursosService extends AbstractCrudService{
         int $idCandidato,
         string $protocolo,
         array $dadosPost,
+        array $indeferidosPost,
+        array $observacoesPost,
         string $tabelaCadastro,
         string $fkCampo,
         $modelConfig
@@ -88,14 +98,42 @@ class RecursosService extends AbstractCrudService{
             ->get()
             ->getResult();
 
-        $alteracoes = $this->verificaAlteracoes($dadosBanco, $dadosPost, $fkCampo);
-
-        if (empty($alteracoes)) {
-            return;
+        // Separa campos indeferidos dos normais
+        $idsIndeferidos = [];
+        foreach ($indeferidosPost as $idCampo => $marcado) {
+            if ((int)$marcado === 1) {
+                $idsIndeferidos[(int)$idCampo] = true;
+            }
         }
 
-        // Registrar histórico usando query builder direto
-        $this->registrarRecursos($idEdital, $idCargo, $idCandidato, $nomeCategoria, $alteracoes, $protocolo);
+        // Processa indeferimentos primeiro (registra no histórico, não altera cadastro)
+        $this->processarIndeferimentos(
+            $idEdital,
+            $idCargo,
+            $idCandidato,
+            $nomeCategoria,
+            $protocolo,
+            $dadosBanco,
+            $idsIndeferidos,
+            $observacoesPost,
+            $fkCampo
+        );
+
+        // Filtra os dadosPost removendo os indeferidos
+        $dadosPostFiltrado = [];
+        foreach ($dadosPost as $idCampo => $quantidade) {
+            if (!isset($idsIndeferidos[(int)$idCampo])) {
+                $dadosPostFiltrado[$idCampo] = $quantidade;
+            }
+        }
+
+        // Verifica alterações apenas nos campos não indeferidos
+        $alteracoes = $this->verificaAlteracoes($dadosBanco, $dadosPostFiltrado, $fkCampo);
+
+        // Registrar histórico de alterações normais
+        if (!empty($alteracoes)) {
+            $this->registrarRecursos($idEdital, $idCargo, $idCandidato, $nomeCategoria, $alteracoes, $protocolo);
+        }
 
         // Remover registros anteriores
         $this->db->table($tabelaCadastro)
@@ -104,32 +142,45 @@ class RecursosService extends AbstractCrudService{
             ->where('fk_id_cargo', $idCargo)
             ->delete();
 
-        // Buscar configurações do cargo para obter multiplicadores
+        // Buscar configurações do cargo para obter multiplicadores (query builder direto, mesma conexão da transação)
         $configMap = [];
+        $configs = [];
         if ($nomeCategoria === 'experiencias') {
-            $configs = $modelConfig->listarExperienciasDoCargo($idCargo);
+            $configs = $this->db->table('tb_cargos_experiencias')
+                ->select('fk_id_experiencia, ds_pontuacao_minima')
+                ->where('fk_id_cargo', $idCargo)
+                ->get()->getResult();
             foreach ($configs as $c) {
                 $configMap[(int)$c->fk_id_experiencia] = $c;
             }
         } elseif ($nomeCategoria === 'escolaridades') {
-            $configs = $modelConfig->listarEscolaridadesDoCargo($idCargo);
+            $configs = $this->db->table('tb_cargos_escolaridades')
+                ->select('fk_id_escolaridade, ds_pontuacao_minima')
+                ->where('fk_id_cargo', $idCargo)
+                ->get()->getResult();
             foreach ($configs as $c) {
                 $configMap[(int)$c->fk_id_escolaridade] = $c;
             }
         } elseif ($nomeCategoria === 'aperfeicoamentos') {
-            $configs = $modelConfig->listarAperfeicoamentosDoCargo($idCargo);
+            $configs = $this->db->table('tb_cargos_aperfeicoamentos')
+                ->select('fk_id_curso, ds_pontuacao_minima')
+                ->where('fk_id_cargo', $idCargo)
+                ->get()->getResult();
             foreach ($configs as $c) {
                 $configMap[(int)$c->fk_id_curso] = $c;
             }
         } elseif ($nomeCategoria === 'criterios') {
-            $configs = $modelConfig->listarCriteriosDoCargo($idCargo);
+            $configs = $this->db->table('tb_cargos_criterios_adicionais')
+                ->select('fk_id_criterio, ds_pontuacao_minima')
+                ->where('fk_id_cargo', $idCargo)
+                ->get()->getResult();
             foreach ($configs as $c) {
                 $configMap[(int)$c->fk_id_criterio] = $c;
             }
         }
 
-        // Inserir novos registros
-        foreach ($dadosPost as $idCampo => $quantidade) {
+        // Inserir novos registros (apenas campos não indeferidos)
+        foreach ($dadosPostFiltrado as $idCampo => $quantidade) {
             $quantidade = (int) $quantidade;
             if ($quantidade < 0) {
                 continue;
@@ -153,6 +204,86 @@ class RecursosService extends AbstractCrudService{
 
             $this->db->table($tabelaCadastro)->insert($insertData);
         }
+
+        // Re-insere os campos indeferidos com os valores originais
+        foreach ($dadosBanco as $registroBanco) {
+            $idCampoBanco = (int) $registroBanco->{$fkCampo};
+            if (isset($idsIndeferidos[$idCampoBanco])) {
+                $ds_multiplicador = (float) ($registroBanco->ds_multiplicador ?? 0);
+                $insertData = [
+                    'fk_id_cadastrado' => $idCandidato,
+                    'fk_id_edital'     => $idEdital,
+                    'fk_id_cargo'      => $idCargo,
+                    $fkCampo           => $idCampoBanco,
+                    'ds_quantidade'    => (int) $registroBanco->ds_quantidade,
+                    'ds_multiplicador' => $ds_multiplicador,
+                ];
+                $this->db->table($tabelaCadastro)->insert($insertData);
+            }
+        }
+    }
+
+    private function processarIndeferimentos(
+        int $idEdital,
+        int $idCargo,
+        int $idCandidato,
+        string $nomeCategoria,
+        string $protocolo,
+        array $dadosBanco,
+        array $idsIndeferidos,
+        array $observacoesPost,
+        string $fkCampo
+    ): void {
+        if (empty($idsIndeferidos)) {
+            return;
+        }
+
+        $banco = [];
+        foreach ($dadosBanco as $exp) {
+            $banco[(int)$exp->{$fkCampo}] = (int) $exp->ds_quantidade;
+        }
+
+        foreach ($idsIndeferidos as $idCampo => $marcado) {
+            $idCampoInt = (int) $idCampo;
+            $valorAtual = $banco[$idCampoInt] ?? 0;
+            $observacao = $observacoesPost[$idCampo] ?? '';
+
+            $registro = [
+                'fk_id_edital'           => $idEdital,
+                'fk_id_cargo'            => $idCargo,
+                'fk_id_candidato'        => $idCandidato,
+                'ds_campo_alterado'      => $nomeCategoria,
+                'fk_id_campo_alterado'   => $idCampoInt,
+                'ds_tipo'                => 'indeferido',
+                'ds_valor_antigo'        => $valorAtual,
+                'ds_valor_novo'          => $valorAtual,
+                'ds_observacao'          => $observacao,
+                'ds_numero_protocolo'    => $protocolo,
+                'ds_usuario_responsavel' => session('nome'),
+                'ds_data_alteracao'      => date('Y-m-d'),
+                'ds_hora_alteracao'      => date('H:i:s')
+            ];
+
+            // Verifica se já existe registro indeferido com mesmo protocolo + campo
+            $existente = $this->db->table('tb_cadastrados_recursos')
+                ->where('fk_id_edital', $idEdital)
+                ->where('fk_id_cargo', $idCargo)
+                ->where('fk_id_candidato', $idCandidato)
+                ->where('ds_numero_protocolo', $protocolo)
+                ->where('ds_campo_alterado', $nomeCategoria)
+                ->where('fk_id_campo_alterado', $idCampoInt)
+                ->where('ds_tipo', 'indeferido')
+                ->get()
+                ->getRow();
+
+            if ($existente) {
+                $this->db->table('tb_cadastrados_recursos')
+                    ->where('pk_id_historico', $existente->pk_id_historico)
+                    ->update($registro);
+            } else {
+                $this->db->table('tb_cadastrados_recursos')->insert($registro);
+            }
+        }
     }
 
     public function tiposCamposFormulario($idCargo){
@@ -165,7 +296,7 @@ class RecursosService extends AbstractCrudService{
         $cadastroAperfeicoamentosModel = new CadastrosAperfeicoamentosModel();
         $aperfeicoamentos = $cadastroAperfeicoamentosModel->listarAperfeicoamentos($idCargo);
 
-        $cadastroCriteriosModel = new CadastrosCriteriosAdicionais();
+        $cadastroCriteriosModel = new CadastrosCriteriosAdicionaisModel();
         $criterios = $cadastroCriteriosModel->listarCriterios($idCargo);
 
         return [
@@ -237,15 +368,15 @@ class RecursosService extends AbstractCrudService{
                 'ds_campo_alterado'      => $nomeCategoria,
                 'fk_id_campo_alterado'   => $idCampo,
                 'ds_tipo'                => $alteracao['tipo'],
-                'ds_valor_antigo'        => $alteracao['valor_antigo'],
-                'ds_valor_novo'          => $alteracao['valor_novo'],
+                'ds_valor_antigo'        => $alteracao['valor_antigo'] ?? '',
+                'ds_valor_novo'          => $alteracao['valor_novo'] ?? '',
                 'ds_numero_protocolo'    => $protocolo,
                 'ds_usuario_responsavel' => session('nome'),
                 'ds_data_alteracao'      => date('Y-m-d'),
                 'ds_hora_alteracao'      => date('H:i:s')
             ];
 
-            // Verifica se já existe registro com mesmo protocolo + campo
+            // Verifica se já existe registro com mesmo protocolo + campo (exceto indeferido)
             $existente = $this->db->table('tb_cadastrados_recursos')
                 ->where('fk_id_edital', $edital)
                 ->where('fk_id_cargo', $cargo)
@@ -253,6 +384,7 @@ class RecursosService extends AbstractCrudService{
                 ->where('ds_numero_protocolo', $protocolo)
                 ->where('ds_campo_alterado', $nomeCategoria)
                 ->where('fk_id_campo_alterado', $idCampo)
+                ->where('ds_tipo !=', 'indeferido')
                 ->get()
                 ->getRow();
 

@@ -19,6 +19,7 @@ class RecursosHistoricoModel extends Model
         'ds_tipo',
         'ds_valor_antigo',
         'ds_valor_novo',
+        'ds_observacao',
         'ds_numero_protocolo',
         'ds_usuario_responsavel',
         'ds_data_alteracao',

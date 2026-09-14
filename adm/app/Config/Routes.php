@@ -57,6 +57,8 @@ $routes->post('/Recursos/registrar', 'Recursos::registrar', ['as'=>'Recursos.reg
 $routes->get('/Recursos/historico', 'Recursos::historico', ['as'=>'Recursos.historico']);
 $routes->post('/Recursos/historico', 'Recursos::historico', ['as'=>'Recursos.historico.post']);
 $routes->get('/Recursos/detalhes/(:num)', 'Recursos::detalhes/$1', ['as'=>'Recursos.detalhes']);
+$routes->get('/Recursos/listar/(:num)/(:num)', 'Recursos::listar/$1/$2', ['as'=>'Recursos.listar']);
+$routes->post('/Recursos/salvarEscolha', 'Recursos::salvarEscolha');
 
 $routes->get('/Cargos', 'Cargos::index');
 $routes->get('/Cargos/formularioCadastro', 'Cargos::formularioCadastro', ['as'=>'Cargos.formularioCadastro']);
