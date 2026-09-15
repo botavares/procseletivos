@@ -71,6 +71,7 @@ $routes->get('/Cadastros/vincularCandidatoEdital/(:num)/(:num)', 'Cadastros::vin
 
 
 $routes->get('/Cadastros/gerarComprovante/(:num)/(:num)/(:num)', 'Cadastros::gerarComprovante/$1/$2/$3', ['as'=>'gerarComprovante']);
+$routes->get('/Cadastros/detalhesRecurso/(:any)', 'Cadastros::detalhesRecurso/$1', ['as'=>'detalhesRecurso']);
 
 $routes->get('/PerguntasFrequentes', 'PerguntasFrequentes::index');
 $routes->get('/PerguntasFrequentes/buscarRespostas', 'PerguntasFrequentes::buscarRespostas');

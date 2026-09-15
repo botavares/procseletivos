@@ -11,6 +11,7 @@ use App\Services\EditaisService;
 use App\Services\ComprovanteService;
 use App\Services\ProtocoloService;
 use App\Services\GovBrService;
+use App\Services\CandidatoRecursoService;
 
 
 class Cadastros extends BaseController{
@@ -21,6 +22,7 @@ class Cadastros extends BaseController{
     protected ProtocoloService $protocoloService;
     protected GovBrService $govBrService;
     protected SessaoService $sessaoService;
+    protected CandidatoRecursoService $candidatoRecursoService;
     
     public function __construct(){
         $this->candidatoService = service('candidatoService');
@@ -30,6 +32,7 @@ class Cadastros extends BaseController{
         $this->protocoloService = service('protocoloService');
         $this->govBrService = service('govBrService');
         $this->sessaoService = service('sessao');
+        $this->candidatoRecursoService = service('candidatoRecursoService');
     }
 
     /**
@@ -62,8 +65,10 @@ class Cadastros extends BaseController{
         
         if($idCandidato != null){
             $protocolos = $this->protocoloService->buscarPorCandidato($idCandidato);    
+            $recursos = $this->candidatoRecursoService->buscarResumoRecursosPorCandidato($idCandidato);
         }else{
             $protocolos = [];
+            $recursos = [];
         }
         //Buscando todos cargos com editais Ativos
         $cargosAtivos = $this->editaisService->buscarEditaisAtivosCargos();
@@ -78,6 +83,7 @@ class Cadastros extends BaseController{
             'candidato'     => $idCandidato ?? null,
             'params'        => $dataSession,
             'protocolos'    => $protocolos,
+            'recursos'      => $recursos,
             'titulo'        => ucfirst('Dados Pessoais e Acadêmicos'),
             'dataAtual'     => date('d/m/Y'),
         ];
@@ -347,5 +353,41 @@ class Cadastros extends BaseController{
             'ds_cidade' => $candidato->ds_cidade ?? '',
         ];
     }
-    
+
+    /**
+     * Tela de detalhes do recurso do candidato
+     */
+    public function detalhesRecurso($protocolo, $camada1 = '', $camada2 = 'pages', $page = 'DetalhesRecurso')
+    {
+        if (!is_file(APPPATH . "Views/{$camada1}/{$camada2}/{$page}_view.php")) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
+        if (!checklogged()) {
+            return redirect()->to('Home');
+        }
+
+        $dataSession = $this->sessaoService->obterUsuario();
+        $candidato = $this->candidatoService->buscarPorCpf($dataSession['cpf']);
+        $idCandidato = $candidato->pk_id_cadastrado ?? null;
+
+        $detalhes = $this->candidatoRecursoService->buscarDetalhesRecurso($protocolo);
+
+        if (empty($detalhes)) {
+            return redirect()->route('Cadastros')->with('mensagemError', 'Recurso não encontrado.');
+        }
+
+        $parametros = [
+            'camada1'       => $camada1,
+            'camada2'       => $camada2,
+            'pagina'        => $page,
+            'protocolo'     => $protocolo,
+            'detalhes'      => $detalhes,
+            'params'        => $dataSession,
+            'titulo'        => 'Detalhes do Recurso',
+            'dataAtual'     => date('d/m/Y'),
+        ];
+
+        return view('layoutLogado', $parametros);
+    }
 }

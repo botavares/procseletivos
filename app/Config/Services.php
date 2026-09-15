@@ -133,4 +133,17 @@ class Services extends BaseService
         }
         return new \App\Services\ComprovanteService();
     }
+
+    /**
+     * Serviço de Recursos do Candidato
+     *
+     * @param bool $getShared
+     * @return \App\Services\CandidatoRecursoService
+     */
+    public static function candidatoRecursoService(bool $getShared = true): \App\Services\CandidatoRecursoService{
+        if ($getShared) {
+            return static::getSharedInstance('candidatoRecursoService');
+        }
+        return new \App\Services\CandidatoRecursoService();
+    }
 }

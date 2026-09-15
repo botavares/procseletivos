@@ -159,6 +159,40 @@
   <?php } ?>
   <hr>
   <legend>Meus Cadastros</legend>
+
+  <?php foreach($recursos as $recurso): 
+      $anoRec = substr($recurso->ds_numero_edital, -4);
+      $numeroRec = ltrim(substr($recurso->ds_numero_edital, 0, -4), "0");
+      $numeroEditalRec = $numeroRec . '/' . $anoRec;
+  ?>
+    <div class="col-12 col-md-6 col-lg-4 mb-3">
+      <a href="<?= base_url("Cadastros/detalhesRecurso/" . $recurso->ds_numero_protocolo) ?>" class="text-decoration-none">
+        <div class="br-card hover h-100">
+          <div class="card-content">
+            <div class="d-flex align-items-center">
+              <div class="mr-3">
+                <img src="<?= base_url("external/img/icones/sugestao.png") ?>" 
+                     class="br-avatar" 
+                     style="width: 56px; height: 56px;">
+              </div>
+              <div>
+                <h4 class="mb-1 text-weight-semi-bold text-gray-80">
+                  RECURSO: <?= esc($recurso->ds_numero_protocolo) ?>
+                </h4>
+                <p class="mb-0 text-gray-60">
+                  Edital: <?= esc($numeroEditalRec) ?>
+                </p>
+                <p class="mb-0 text-gray-60">
+                  Cargo: <?= esc($recurso->ds_nome_cargo) ?>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  <?php endforeach; ?>
+
   <?php
     foreach($protocolos as $protocolo){
         
