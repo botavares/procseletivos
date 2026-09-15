@@ -106,7 +106,7 @@ class RecursosService extends AbstractCrudService{
             }
         }
 
-        // Processa indeferimentos primeiro (registra no histórico, não altera cadastro)
+        // Processa indeferimentos (registra no histórico, não altera cadastro)
         $this->processarIndeferimentos(
             $idEdital,
             $idCargo,
@@ -127,22 +127,24 @@ class RecursosService extends AbstractCrudService{
             }
         }
 
+        // Filtra o banco removendo os indeferidos para não gerar status "removido"
+        $dadosBancoFiltrado = [];
+        foreach ($dadosBanco as $registro) {
+            $idCampoBanco = (int) $registro->{$fkCampo};
+            if (!isset($idsIndeferidos[$idCampoBanco])) {
+                $dadosBancoFiltrado[] = $registro;
+            }
+        }
+
         // Verifica alterações apenas nos campos não indeferidos
-        $alteracoes = $this->verificaAlteracoes($dadosBanco, $dadosPostFiltrado, $fkCampo);
+        $alteracoes = $this->verificaAlteracoes($dadosBancoFiltrado, $dadosPostFiltrado, $fkCampo);
 
         // Registrar histórico de alterações normais
         if (!empty($alteracoes)) {
             $this->registrarRecursos($idEdital, $idCargo, $idCandidato, $nomeCategoria, $alteracoes, $protocolo);
         }
 
-        // Remover registros anteriores
-        $this->db->table($tabelaCadastro)
-            ->where('fk_id_cadastrado', $idCandidato)
-            ->where('fk_id_edital', $idEdital)
-            ->where('fk_id_cargo', $idCargo)
-            ->delete();
-
-        // Buscar configurações do cargo para obter multiplicadores (query builder direto, mesma conexão da transação)
+        // Buscar configurações do cargo para obter multiplicadores
         $configMap = [];
         $configs = [];
         if ($nomeCategoria === 'experiencias') {
@@ -179,6 +181,18 @@ class RecursosService extends AbstractCrudService{
             }
         }
 
+        // Remove registros anteriores APENAS dos campos não indeferidos
+        $idsPreservar = array_keys($idsIndeferidos);
+        $builder = $this->db->table($tabelaCadastro)
+            ->where('fk_id_cadastrado', $idCandidato)
+            ->where('fk_id_edital', $idEdital)
+            ->where('fk_id_cargo', $idCargo);
+
+        if (!empty($idsPreservar)) {
+            $builder->whereNotIn($fkCampo, $idsPreservar);
+        }
+        $builder->delete();
+
         // Inserir novos registros (apenas campos não indeferidos)
         foreach ($dadosPostFiltrado as $idCampo => $quantidade) {
             $quantidade = (int) $quantidade;
@@ -203,23 +217,6 @@ class RecursosService extends AbstractCrudService{
             ];
 
             $this->db->table($tabelaCadastro)->insert($insertData);
-        }
-
-        // Re-insere os campos indeferidos com os valores originais
-        foreach ($dadosBanco as $registroBanco) {
-            $idCampoBanco = (int) $registroBanco->{$fkCampo};
-            if (isset($idsIndeferidos[$idCampoBanco])) {
-                $ds_multiplicador = (float) ($registroBanco->ds_multiplicador ?? 0);
-                $insertData = [
-                    'fk_id_cadastrado' => $idCandidato,
-                    'fk_id_edital'     => $idEdital,
-                    'fk_id_cargo'      => $idCargo,
-                    $fkCampo           => $idCampoBanco,
-                    'ds_quantidade'    => (int) $registroBanco->ds_quantidade,
-                    'ds_multiplicador' => $ds_multiplicador,
-                ];
-                $this->db->table($tabelaCadastro)->insert($insertData);
-            }
         }
     }
 
