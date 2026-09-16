@@ -3,21 +3,18 @@ namespace App\Controllers;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use App\Services\LogsService;
 use App\Services\Candidatos\RecursosService;
+use App\Services\Candidatos\RecursosConsultaService;
 use App\Services\Candidatos\CandidatosService;
-use App\Models\RecursosHistoricoModel;
-use App\Models\EditaisModel;
-use App\Models\CargosModel;
-
-use App\Models\ProtocolosModel;
-use App\Models\CandidatosModel;
-use App\Models\EditaisCandidatosModel;
 
 use DateTime;
 
 class Recursos extends BaseController{
+
+    /**
+     * Exibe formulário de aplicação de recurso
+     */
     public function index($edital = null, $cargo = null, $candidato = null, $camada1 = 'pages',$camada2 = 'candidatos', $page = 'FormRecursos'){
         if (! is_file(APPPATH . 'Views/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
-            // Página não encontrada!
             throw new PageNotFoundException("página não econtrada: ".$page);
         }
 
@@ -25,29 +22,14 @@ class Recursos extends BaseController{
             return redirect()->route('home')->with('error','Sua sessão expirou');
         }
 
-        $candidatosService = new CandidatosService();
-        $recursosService = new RecursosService();
-        $historicoModel = new RecursosHistoricoModel();
+        $candidatosService   = new CandidatosService();
+        $recursosService     = new RecursosService();
+        $consultaService     = new RecursosConsultaService();
 
         $recurso = $candidatosService->listarCandidatoId($edital, $cargo, $candidato);
         $camposFormularios = $recursosService->tiposCamposFormulario($cargo);
+        $indeferimentosMap = $consultaService->buscarIndeferimentos((int)$edital, (int)$cargo, (int)$candidato);
 
-        // Buscar indeferimentos já existentes para este candidato/cargo/edital
-        $indeferimentosExistentes = $historicoModel
-            ->where('fk_id_edital', $edital)
-            ->where('fk_id_cargo', $cargo)
-            ->where('fk_id_candidato', $candidato)
-            ->where('ds_tipo', 'indeferido')
-            ->findAll();
-
-        $indeferimentosMap = [];
-        foreach ($indeferimentosExistentes as $item) {
-            $indeferimentosMap[$item->ds_campo_alterado][$item->fk_id_campo_alterado] = [
-                'marcado'    => true,
-                'observacao' => $item->ds_observacao ?? '',
-            ];
-        }
-        
         $parametros = [
             'camada1'               =>  $camada1,
             'camada2'               =>  $camada2,
@@ -64,54 +46,43 @@ class Recursos extends BaseController{
         echo view('layoutDash', $parametros);
     }
 
+    /**
+     * Lista protocolos de um candidato pelo CPF
+     */
     public function cargosCandidato($cpfCandidato = null, $camada1 = 'pages',$camada2 = 'candidatos', $page = 'Recursos'){
         if (! is_file(APPPATH . 'Views/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
-            // Página não encontrada!
             throw new PageNotFoundException("página não econtrada: ".$page);
         }
 
-     // POST: pesquisa inicial
-    if ($this->request->getMethod() === 'post') {
-
-        $cpf = preg_replace('/\D/', '', $this->request->getPost('ds_cpf'));
-        
-        // após processar, REDIRECIONA para GET com CPF
-        return redirect()->to(
-            route_to('recursos.cargosCandidato', $cpf)
-        );
-    }
-
-    // GET: exibição do grid
-    if (! $cpfCandidato) {
-        throw new \InvalidArgumentException('CPF não informado');
-    }
-
-    $cpf = $cpfCandidato;
-        
-
-        $protocolosModel = new ProtocolosModel();
-        $protocolos = $protocolosModel->getProtocoloByCpf($cpf);
-        
-        $dadosCandidato = new CandidatosModel();
-        $candidato = $dadosCandidato->where('ds_cpf', $cpf)->first();
-        if($candidato){
-            $nomeCandidato = $candidato->ds_nome;
-        }else{
-            $nomeCandidato = '';
+        // POST: pesquisa inicial
+        if ($this->request->getMethod() === 'post') {
+            $cpf = preg_replace('/\D/', '', $this->request->getPost('ds_cpf'));
+            return redirect()->to(
+                route_to('recursos.cargosCandidato', $cpf)
+            );
         }
-         $titulosTabela = array(
-            "Cargo","Protocolo"
-        );
 
-        
+        // GET: exibição do grid
+        if (! $cpfCandidato) {
+            throw new \InvalidArgumentException('CPF não informado');
+        }
+
+        $cpf = $cpfCandidato;
+
+        $consultaService = new RecursosConsultaService();
+        $protocolos = $consultaService->buscarProtocolosPorCpf($cpf);
+
+        $candidato = $consultaService->buscarCandidatoPorCpf($cpf);
+        $nomeCandidato = $candidato ? $candidato->ds_nome : '';
+
         $parametros = [
             'camada1'       =>  $camada1,
             'camada2'       =>  $camada2,
             'pagina'        =>  $page,
             'acao'          =>  'create',
             'titulo'        =>  'Recursos',
-            'nomeCandidato'=>  $nomeCandidato,
-            'titulosTabela' =>  $titulosTabela,
+            'nomeCandidato' =>  $nomeCandidato,
+            'titulosTabela' =>  ["Cargo","Protocolo"],
             'protocolos'    =>  $protocolos,
         ];
         echo view('layoutDash', $parametros);
@@ -133,18 +104,16 @@ class Recursos extends BaseController{
             return redirect()->to(base_url('home'));
         }
 
-        $modelEditais = new EditaisModel();
-        $modelCargos  = new CargosModel();
-        $modelCandidato = new CandidatosModel();
+        $consultaService = new RecursosConsultaService();
 
-        $dadosEdital = $modelEditais->getEdital($idEdital);
-        $dadosCargo  = $modelCargos->getCargo($idCargo);
+        $dadosEdital = $consultaService->buscarDadosEdital((int)$idEdital);
+        $dadosCargo  = $consultaService->buscarDadosCargo((int)$idCargo);
 
         if (!$dadosEdital || !$dadosCargo) {
             return redirect()->to(base_url('home'))->with('error', 'Edital ou Cargo não encontrado.');
         }
 
-        $candidatos = $modelCandidato->getCandidatosPorEditalCargo($idEdital, $idCargo);
+        $candidatos = $consultaService->buscarCandidatosPorEditalCargo((int)$idEdital, (int)$idCargo);
 
         $arrayCandidatos = [];
         foreach ($candidatos as $candidato) {
@@ -164,8 +133,6 @@ class Recursos extends BaseController{
             ];
         }
 
-        $titulosTabela = ["Edital Ref.","Data de Insc.","Nome do Candidato","Nascimento","Telefone","Email","Protocolo"];
-
         $parametros = [
             'camada1'       => $camada1,
             'camada2'       => $camada2,
@@ -174,31 +141,33 @@ class Recursos extends BaseController{
             'idEdital'      => $idEdital,
             'idCargo'       => $idCargo,
             'nomeCargo'     => $dadosCargo->ds_nome_cargo,
-            'titulosTabela' => $titulosTabela,
+            'titulosTabela' => ["Edital Ref.","Data de Insc.","Nome do Candidato","Nascimento","Telefone","Email","Protocolo"],
             'titulo'        => 'Candidatos - Aplicação de Recurso',
         ];
 
         echo view('layoutDash', $parametros);
     }
 
+    /**
+     * Registra recurso do candidato
+     */
     public function registrar(){
         $recursosService = new RecursosService();
         $dados = $this->request->getPost();
-        
+
         $edital = $dados['pk_id_edital'];
         $cargo = $dados['pk_id_cargo'];
         $candidato = $dados['pk_id_candidato'];
         $recursosService->aplicarRecursos($edital,$cargo,$candidato,$dados);
-        
+
         $servicesLogs = new LogsService();
-        
         $servicesLogs->inserirLog('Registrou Recurso', 'Recurso registrado do candidato '.$dados['ds_nome'],'tb_cadastrados_experiencias, tb_cadastrados_escolaridades, tb_cadastrados_aperfeicoamentos, tb_cadastrados_criterios');
 
         return redirect()->to(base_url("Recursos/listar/{$edital}/{$cargo}"))->with('success', 'Recurso registrado com sucesso!');
     }
 
     /**
-     * Salva escolha de edital e cargo e redireciona para listagem de candidatos para recursos
+     * Salva escolha de edital e cargo e redireciona para listagem
      */
     public function salvarEscolha(){
         $idEdital = $this->request->getPost('edital');
@@ -219,9 +188,7 @@ class Recursos extends BaseController{
             return redirect()->route('home')->with('error', 'Sua sessão expirou');
         }
 
-        $historicoModel = new RecursosHistoricoModel();
-        $editaisModel = new EditaisModel();
-        $cargosModel = new CargosModel();
+        $consultaService = new RecursosConsultaService();
 
         $filtros = [];
 
@@ -242,7 +209,7 @@ class Recursos extends BaseController{
             });
         }
 
-        $historico = $historicoModel->listarHistorico($filtros);
+        $historico = $consultaService->buscarHistorico($filtros);
 
         $parametros = [
             'camada1'    => $camada1,
@@ -251,8 +218,8 @@ class Recursos extends BaseController{
             'titulo'     => 'Histórico de Recursos',
             'historico'  => $historico,
             'filtros'    => $filtros,
-            'editais'    => $editaisModel->findAll(),
-            'cargos'     => $cargosModel->findAll(),
+            'editais'    => $consultaService->listarEditais(),
+            'cargos'     => $consultaService->listarCargos(),
         ];
 
         echo view('layoutDash', $parametros);
@@ -274,8 +241,8 @@ class Recursos extends BaseController{
             return redirect()->route('Recursos.historico')->with('error', 'ID do recurso não informado');
         }
 
-        $historicoModel = new RecursosHistoricoModel();
-        $recurso = $historicoModel->obterRecurso((int)$id);
+        $consultaService = new RecursosConsultaService();
+        $recurso = $consultaService->buscarRecursoPorId((int)$id);
 
         if (!$recurso) {
             return redirect()->route('Recursos.historico')->with('error', 'Recurso não encontrado');
@@ -284,7 +251,7 @@ class Recursos extends BaseController{
         // Buscar todos os registros do mesmo protocolo
         $registrosProtocolo = [];
         if (!empty($recurso->ds_numero_protocolo)) {
-            $registrosProtocolo = $historicoModel->listarPorProtocolo($recurso->ds_numero_protocolo);
+            $registrosProtocolo = $consultaService->buscarRegistrosPorProtocolo($recurso->ds_numero_protocolo);
         }
 
         $parametros = [

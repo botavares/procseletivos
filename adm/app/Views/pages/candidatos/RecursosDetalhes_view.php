@@ -57,7 +57,7 @@
                                 <div class="form-group col-md-3">
                                     <label>Edital</label>
                                     <div class="form-control-plaintext border rounded px-3 py-2 bg-light font-weight-bold">
-                                        <?php echo esc($recurso->ds_numero_edital ?? 'N/A'); ?>
+                                        <?= esc(formatarNumeroEdital($recurso->ds_numero_edital ?? '')) ?>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-3">
@@ -84,9 +84,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <label>ID do Campo</label>
+                                    <label>Nome do Campo</label>
                                     <div class="form-control-plaintext border rounded px-3 py-2 bg-light font-weight-bold">
-                                        <?php echo $recurso->fk_id_campo_alterado; ?>
+                                        <?= esc($recurso->ds_nome_campo ?? 'Campo não encontrado') ?>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-2">
@@ -174,7 +174,7 @@
                                                     ][$item->ds_tipo] ?? $item->ds_tipo;
                                                 ?>
                                                 <tr>
-                                                    <td><?= esc(ucfirst($item->ds_campo_alterado)) ?> (ID: <?= $item->fk_id_campo_alterado ?>)</td>
+                                                    <td><?= esc($item->ds_nome_campo ?? 'Campo não encontrado') ?></td>
                                                     <td><span class="badge <?= $tipoClassItem ?>"><?= $tipoLabelItem ?></span></td>
                                                     <td class="text-center"><?= $item->ds_valor_antigo ?? '-' ?></td>
                                                     <td class="text-center"><?= $item->ds_valor_novo ?? '-' ?></td>

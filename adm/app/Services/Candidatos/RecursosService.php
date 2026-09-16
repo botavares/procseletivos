@@ -181,19 +181,16 @@ class RecursosService extends AbstractCrudService{
             }
         }
 
-        // Remove registros anteriores APENAS dos campos não indeferidos
-        $idsPreservar = array_keys($idsIndeferidos);
-        $builder = $this->db->table($tabelaCadastro)
-            ->where('fk_id_cadastrado', $idCandidato)
-            ->where('fk_id_edital', $idEdital)
-            ->where('fk_id_cargo', $idCargo);
-
-        if (!empty($idsPreservar)) {
-            $builder->whereNotIn($fkCampo, $idsPreservar);
+        // Atualiza registros existentes e insere novos (apenas campos não indeferidos)
+        // Busca multiplicadores do banco original para preservar valores existentes
+        $multiplicadoresBanco = [];
+        foreach ($dadosBanco as $registro) {
+            $idCampoBanco = (int) $registro->{$fkCampo};
+            if (!isset($idsIndeferidos[$idCampoBanco])) {
+                $multiplicadoresBanco[$idCampoBanco] = (float) ($registro->ds_multiplicador ?? 0);
+            }
         }
-        $builder->delete();
 
-        // Inserir novos registros (apenas campos não indeferidos)
         foreach ($dadosPostFiltrado as $idCampo => $quantidade) {
             $quantidade = (int) $quantidade;
             if ($quantidade < 0) {
@@ -201,22 +198,39 @@ class RecursosService extends AbstractCrudService{
             }
 
             $idCampoInt = (int) $idCampo;
-            $ds_multiplicador = 0;
-            if (isset($configMap[$idCampoInt])) {
-                $config = $configMap[$idCampoInt];
-                $ds_multiplicador = (float) ($config->ds_pontuacao_minima ?? 0);
+
+            // Preserva o multiplicador original se existir, senão busca da config
+            if (array_key_exists($idCampoInt, $multiplicadoresBanco)) {
+                $ds_multiplicador = $multiplicadoresBanco[$idCampoInt];
+            } else {
+                $ds_multiplicador = 0;
+                if (isset($configMap[$idCampoInt])) {
+                    $config = $configMap[$idCampoInt];
+                    $ds_multiplicador = (float) ($config->ds_pontuacao_minima ?? 0);
+                }
             }
 
-            $insertData = [
-                'fk_id_cadastrado' => $idCandidato,
-                'fk_id_edital'     => $idEdital,
-                'fk_id_cargo'      => $idCargo,
-                $fkCampo           => $idCampoInt,
-                'ds_quantidade'    => $quantidade,
-                'ds_multiplicador' => $ds_multiplicador,
-            ];
-
-            $this->db->table($tabelaCadastro)->insert($insertData);
+            // Se já existe no banco: faz UPDATE apenas da quantidade
+            if (array_key_exists($idCampoInt, $multiplicadoresBanco)) {
+                $this->db->table($tabelaCadastro)
+                    ->where('fk_id_cadastrado', $idCandidato)
+                    ->where('fk_id_edital', $idEdital)
+                    ->where('fk_id_cargo', $idCargo)
+                    ->where($fkCampo, $idCampoInt)
+                    ->update([
+                        'ds_quantidade' => $quantidade,
+                    ]);
+            } else {
+                // Novo registro: INSERT
+                $this->db->table($tabelaCadastro)->insert([
+                    'fk_id_cadastrado' => $idCandidato,
+                    'fk_id_edital'     => $idEdital,
+                    'fk_id_cargo'      => $idCargo,
+                    $fkCampo           => $idCampoInt,
+                    'ds_quantidade'    => $quantidade,
+                    'ds_multiplicador' => $ds_multiplicador,
+                ]);
+            }
         }
     }
 

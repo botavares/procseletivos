@@ -39,10 +39,15 @@ class RecursosHistoricoModel extends Model
                 'c.ds_nome as ds_nome_candidato',
                 'e.ds_numero_edital',
                 'cg.ds_nome_cargo',
+                'COALESCE(ex.ds_nome_experiencia, esc.ds_nome_escolaridade, ap.ds_nome_curso, cr.ds_nome_criterio) as ds_nome_campo',
             ])
             ->join('tb_cadastrados c', 'c.pk_id_cadastrado = hr.fk_id_candidato', 'left')
             ->join('tb_editais e', 'e.pk_id_edital = hr.fk_id_edital', 'left')
-            ->join('tb_cargos cg', 'cg.pk_id_cargo = hr.fk_id_cargo', 'left');
+            ->join('tb_cargos cg', 'cg.pk_id_cargo = hr.fk_id_cargo', 'left')
+            ->join('tb_experiencias ex', 'ex.pk_id_experiencia = hr.fk_id_campo_alterado AND hr.ds_campo_alterado = \'experiencias\'', 'left')
+            ->join('tb_escolaridades esc', 'esc.pk_id_escolaridade = hr.fk_id_campo_alterado AND hr.ds_campo_alterado = \'escolaridades\'', 'left')
+            ->join('tb_cursos_aperfeicoamentos ap', 'ap.pk_id_curso = hr.fk_id_campo_alterado AND hr.ds_campo_alterado = \'aperfeicoamentos\'', 'left')
+            ->join('tb_criterios_adicionais cr', 'cr.pk_id_criterio = hr.fk_id_campo_alterado AND hr.ds_campo_alterado = \'criterios\'', 'left');
 
         if (!empty($filtros['protocolo'])) {
             $builder->where('hr.ds_numero_protocolo', $filtros['protocolo']);
@@ -89,10 +94,15 @@ class RecursosHistoricoModel extends Model
                 'c.ds_cpf',
                 'e.ds_numero_edital',
                 'cg.ds_nome_cargo',
+                'COALESCE(ex.ds_nome_experiencia, esc.ds_nome_escolaridade, ap.ds_nome_curso, cr.ds_nome_criterio) as ds_nome_campo',
             ])
             ->join('tb_cadastrados c', 'c.pk_id_cadastrado = hr.fk_id_candidato', 'left')
             ->join('tb_editais e', 'e.pk_id_edital = hr.fk_id_edital', 'left')
             ->join('tb_cargos cg', 'cg.pk_id_cargo = hr.fk_id_cargo', 'left')
+            ->join('tb_experiencias ex', 'ex.pk_id_experiencia = hr.fk_id_campo_alterado AND hr.ds_campo_alterado = \'experiencias\'', 'left')
+            ->join('tb_escolaridades esc', 'esc.pk_id_escolaridade = hr.fk_id_campo_alterado AND hr.ds_campo_alterado = \'escolaridades\'', 'left')
+            ->join('tb_cursos_aperfeicoamentos ap', 'ap.pk_id_curso = hr.fk_id_campo_alterado AND hr.ds_campo_alterado = \'aperfeicoamentos\'', 'left')
+            ->join('tb_criterios_adicionais cr', 'cr.pk_id_criterio = hr.fk_id_campo_alterado AND hr.ds_campo_alterado = \'criterios\'', 'left')
             ->where('hr.pk_id_historico', $id)
             ->get()
             ->getRow();

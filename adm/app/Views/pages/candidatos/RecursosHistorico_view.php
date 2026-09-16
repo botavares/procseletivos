@@ -56,9 +56,9 @@
                                             <select name="edital" class="form-control">
                                                 <option value="">Todos</option>
                                                 <?php foreach($editais as $edital): ?>
-                                                    <option value="<?= $edital->pk_id_edital ?>" <?php echo (isset($filtros['edital']) && $filtros['edital'] == $edital->pk_id_edital) ? 'selected' : ''; ?>>
-                                                        <?= esc($edital->ds_numero_edital) ?>
-                                                    </option>
+                                                <option value="<?= $edital->pk_id_edital ?>" <?php echo (isset($filtros['edital']) && $filtros['edital'] == $edital->pk_id_edital) ? 'selected' : ''; ?>>
+                                                    <?= esc(formatarNumeroEdital($edital->ds_numero_edital)) ?>
+                                                </option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -95,8 +95,7 @@
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>Protocolo</th>
-                                                <th>Data/Hora</th>
-                                                <th>Candidato</th>
+                                                <th class="text-nowrap">Candidato</th>
                                                 <th>Edital</th>
                                                 <th>Cargo</th>
                                                 <th>Campo Alterado</th>
@@ -127,17 +126,16 @@
                                                 ?>
                                                 <tr>
                                                     <td><?= esc($item->ds_numero_protocolo) ?></td>
-                                                    <td><?= date('d/m/Y', strtotime($item->ds_data_alteracao)) ?> <?= $item->ds_hora_alteracao ?></td>
-                                                    <td><?= esc($item->ds_nome_candidato ?? 'N/A') ?></td>
-                                                    <td><?= esc($item->ds_numero_edital ?? 'N/A') ?></td>
+                                                    <td class="text-nowrap"><?= esc($item->ds_nome_candidato ?? 'N/A') ?></td>
+                                                    <td><?= esc(formatarNumeroEdital($item->ds_numero_edital ?? '')) ?></td>
                                                     <td><?= esc($item->ds_nome_cargo ?? 'N/A') ?></td>
-                                                    <td><?= esc(ucfirst($item->ds_campo_alterado)) ?> (ID: <?= $item->fk_id_campo_alterado ?>)</td>
+                                                    <td><?= esc($item->ds_nome_campo ?? 'Campo não encontrado') ?></td>
                                                     <td><span class="badge <?= $tipoClass ?>"><?= $tipoLabel ?></span></td>
                                                     <td class="text-center"><?= $item->ds_valor_antigo ?? '-' ?></td>
                                                     <td class="text-center"><?= $item->ds_valor_novo ?? '-' ?></td>
                                                     <td>
                                                         <?php if ($item->ds_tipo === 'indeferido' && !empty($item->ds_observacao)): ?>
-                                                            <span class="text-danger small"><i class="fas fa-ban mr-1"></i><?= esc($item->ds_observacao) ?></span>
+                                                            <span class="text-danger small"><i class="fas fa-ban mr-1"></i><?= esc(substr($item->ds_observacao, 0, 100) . (strlen($item->ds_observacao) > 100 ? '...' : '')) ?></span>
                                                         <?php else: ?>
                                                             -
                                                         <?php endif; ?>
