@@ -40,7 +40,8 @@ class Dashboard extends BaseController{
         }*/
     
         $modelEditais = new EditaisModel();
-        $editaisAtivos = $modelEditais->findAll();
+        $editaisAtivos = $modelEditais->getEditaisAtivos();
+        $cargosComContagem = $modelEditais->getCargosComContagemCandidatosPorEditalAtivo();
         
 
         $parametros = [
@@ -48,12 +49,11 @@ class Dashboard extends BaseController{
             'camada2'           =>  $camada2,
             'pagina'            =>  $page,
             'editais'           =>  $editaisAtivos,
+            'cargosContagem'    =>  $cargosComContagem,
             'perfil'            =>  session('perfil'),
             'administrador'     =>  session('administrador'),
 			'user'		        =>	session('nome'),
-            //'contratosExpirando'=>  $contratosExpirando,
             'titulo'            =>  "Serviços Prefeitura Municipal de Divinópolis",
-        
         ];
 
         echo view('layoutDash', $parametros);

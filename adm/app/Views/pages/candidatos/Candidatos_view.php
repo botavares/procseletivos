@@ -63,21 +63,28 @@
 											<td align="left" style="min-width: 280px; white-space: nowrap;"><?php echo esc($valueCandidato['ds_nome']) ?></td>
 											<td align="center"><?php echo date('d/m/Y', strtotime($valueCandidato['ds_nascimento'])) ?></td>
 											<td align="left"><?php echo mask($valueCandidato['ds_celular'], '(##) #####-####') ?></td>
-											<td align="left"><?php echo esc($valueCandidato['ds_email']) ?></td>
-											<td class="text-center">
-												<a class="btn btn-info btn-sm" 
-												   href="<?php echo base_url('Candidatos/exibirDados/' . $valueCandidato['fk_id_edital'] . '/' . $valueCandidato['fk_id_cargo'] . '/' . $valueCandidato['pk_id_cadastrado']) ?>"
-												   title="Exibir Dados">
-													<i class="fas fa-user"></i>
-												</a>
-											</td>
-											<td class="text-center">
-												<a class="btn btn-primary btn-sm" 
-												   href="<?php echo base_url('Candidatos/formSituacaoCandidato/' . $valueCandidato['fk_id_edital'] . '/' . $valueCandidato['fk_id_cargo'] . '/' . $valueCandidato['pk_id_cadastrado']) ?>"
-												   title="Situação do Candidato">
-													<i class="fas fa-clipboard-check"></i>
-												</a>
-											</td>
+										<td align="left"><?php echo esc($valueCandidato['ds_email']) ?></td>
+										<td class="text-center">
+											<a class="btn btn-secondary btn-sm" 
+											   href="<?php echo base_url('Recursos/' . $valueCandidato['fk_id_edital'] . '/' . $valueCandidato['fk_id_cargo'] . '/' . $valueCandidato['pk_id_cadastrado']) ?>"
+											   title="Recursos">
+												<i class="fas fa-gavel"></i>
+											</a>
+										</td>
+										<td class="text-center">
+											<a class="btn btn-info btn-sm" 
+											   href="<?php echo base_url('Candidatos/exibirDados/' . $valueCandidato['fk_id_edital'] . '/' . $valueCandidato['fk_id_cargo'] . '/' . $valueCandidato['pk_id_cadastrado']) ?>"
+											   title="Exibir Dados">
+												<i class="fas fa-user"></i>
+											</a>
+										</td>
+										<td class="text-center">
+											<a class="btn btn-primary btn-sm" 
+											   href="<?php echo base_url('Candidatos/formSituacaoCandidato/' . $valueCandidato['fk_id_edital'] . '/' . $valueCandidato['fk_id_cargo'] . '/' . $valueCandidato['pk_id_cadastrado']) ?>"
+											   title="Situação do Candidato">
+												<i class="fas fa-clipboard-check"></i>
+											</a>
+										</td>
 										</tr>
 									<?php endforeach; ?>
 								</tbody>

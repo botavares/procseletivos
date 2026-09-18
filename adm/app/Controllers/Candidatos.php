@@ -100,7 +100,7 @@ class Candidatos extends BaseController{
 
         }
 
-        $titulosTabela = ["Edital Ref.","Data de Insc.","Nome do Candidato","Nascimento","Telefone","Email"];
+        $titulosTabela = ["Edital Ref.","Data de Insc.","Nome do Candidato","Nascimento","Telefone","Email","Recursos"];
         
         $parametros = [
             'camada1'       => $camada1,

@@ -98,6 +98,7 @@
                 <i class="fas fa-chart-pie"></i> Indicadores e Estatísticas
             </div>
             <div class="row mb-3">
+                <!-- Card 1: Total de Editais Ativos -->
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-2">
                     <div class="card dash-stat-card">
                         <div class="card-body p-3">
@@ -107,36 +108,49 @@
                                 </div>
                                 <div>
                                     <div id="dash-stat-totalEditais" class="dash-stat-value"><?php echo number_format(count($editais ?? []), 0, ',', '.') ?></div>
-                                    <div class="dash-stat-label">Total Editais</div>
+                                    <div class="dash-stat-label">Editais Ativos</div>
                                 </div>
                             </div>
                             <div class="dash-stat-trend text-success mt-1">
-                                <i class="fas fa-check-circle"></i> Cadastrados
+                                <i class="fas fa-check-circle"></i> Em andamento
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-2">
-                    <div class="card dash-stat-card">
+                <!-- Card 2: Cargos com total de candidatos -->
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
+                    <div class="card dash-stat-card h-100">
                         <div class="card-body p-3">
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center mb-2">
                                 <div class="dash-stat-icon dash-stat-icon--info mr-3">
-                                    <i class="fas fa-book"></i>
+                                    <i class="fas fa-users"></i>
                                 </div>
                                 <div>
-                                    <div id="dash-stat-totalCargos" class="dash-stat-value">-</div>
-                                    <div class="dash-stat-label">Cargos</div>
+                                    <div class="dash-stat-value">Inscrições por Cargo</div>
+                                    <div class="dash-stat-label">Editais Ativos</div>
                                 </div>
                             </div>
-                            <div class="dash-stat-trend text-info mt-1">
-                                <i class="fas fa-list"></i> Ativos
+                            <div class="dash-stat-trend text-info mt-1" style="max-height: 140px; overflow-y: auto;">
+                                <?php if (!empty($cargosContagem)): ?>
+                                    <ul class="list-unstyled mb-0 small">
+                                        <?php foreach ($cargosContagem as $item): ?>
+                                            <li class="py-1 border-bottom">
+                                                <strong>Edital <?php echo formatarNumeroEdital($item->ds_numero_edital) ?></strong> - <?php echo esc($item->ds_nome_cargo) ?>: 
+                                                <span class="badge badge-info"><?php echo number_format($item->total_candidatos, 0, ',', '.') ?> candidatos</span>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php else: ?>
+                                    <div class="text-muted small">Nenhum edital ativo com inscrições.</div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-2">
+                <!-- Card 3: Invisível -->
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-2" style="display: none;">
                     <div class="card dash-stat-card">
                         <div class="card-body p-3">
                             <div class="d-flex align-items-center">
@@ -155,7 +169,8 @@
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-2">
+                <!-- Card 4: Invisível -->
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-2" style="display: none;">
                     <div class="card dash-stat-card">
                         <div class="card-body p-3">
                             <div class="d-flex align-items-center">

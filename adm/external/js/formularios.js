@@ -276,9 +276,9 @@ $(document).ready(function($){
 	$('.select-edital').on('change', function () {
 		var numeroEdital = $(this).val();
 		var targetSelect = $(this).data('target');
-		var csrfElement = $('#csrf');
+		var csrfElement = $(this).closest('form').find('input[type="hidden"]');
 		var csrfName = csrfElement.attr('name');
-		var csrfHash = csrfElement.val(); // use .val()
+		var csrfHash = csrfElement.val();
 		
 		if (numeroEdital === '') {
 			$(targetSelect).html('<option value="">Selecione um cargo</option>');
@@ -400,12 +400,13 @@ $(document).ready(function($){
 	}
 
 	function updateCSRF(response) {
-		var csrfElement = $('#csrf');
 		var csrfKey = Object.keys(response).find(k => k.startsWith('csrf_'));
 		if (csrfKey) {
-			//console.log("Atualizando CSRF:", csrfKey, response[csrfKey]); // DEBUG
-			csrfElement.attr('name', csrfKey);
-			csrfElement.val(response[csrfKey]);
+			$('input[type="hidden"]').each(function() {
+				if ($(this).attr('name') === csrfKey) {
+					$(this).val(response[csrfKey]);
+				}
+			});
 		}
 	}
 

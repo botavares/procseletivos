@@ -114,8 +114,44 @@ class CandidatosModel extends Model{
 
 
 
-      public function listarCandidatoCpf($cpf){
-        $this->select('tb_cadastrados.*, tb_dados_academicos.*');
+    public function getCandidatosComRecursosPorEditalCargo($idEdital, $idCargo){
+        return $this->db->table('tb_cadastrados AS c')
+        ->select([
+            'c.pk_id_cadastrado',
+            'c.ds_nome',
+            'c.ds_cpf',
+            'c.ds_data_cadastro',
+            'c.ds_hora_cadastro',
+            'c.ds_nascimento',
+            'c.ds_email',
+            'c.ds_celular',
+            'p.fk_id_edital',
+            'p.fk_id_cargo',
+            'p.ds_protocolo',
+            'e.ds_numero_edital',
+            'cg.pk_id_cargo',
+            'cg.ds_nome_cargo'
+        ])
+        ->join(
+            'tb_cadastrados_protocolo AS p',
+            'c.pk_id_cadastrado = p.fk_id_cadastrado',
+            'inner'
+        )
+        ->join(
+            'tb_cargos AS cg',
+            'cg.pk_id_cargo = p.fk_id_cargo',
+            'inner'
+        )
+        ->join('tb_editais as e', 'e.pk_id_edital = p.fk_id_edital')
+        ->join('tb_cadastrados_recursos AS r', 'r.fk_id_candidato = c.pk_id_cadastrado AND r.fk_id_edital = p.fk_id_edital AND r.fk_id_cargo = p.fk_id_cargo', 'inner')
+        ->where('p.fk_id_edital', $idEdital)
+        ->where('p.fk_id_cargo', $idCargo)
+        ->groupBy('c.pk_id_cadastrado')
+        ->orderBy('c.ds_nome', 'ASC')
+        ->get()
+        ->getResult();
+    }
+    public function listarCandidatoCpf($cpf){
         $this->join('tb_dados_academicos', 'tb_cadastrados.pk_id_cadastrado = tb_dados_academicos.pk_id_cadastrado');
         $this->where('tb_cadastrados.ds_cpf', $cpf);
         $this->orderBy('tb_cadastrados.ds_cpf', 'asc');

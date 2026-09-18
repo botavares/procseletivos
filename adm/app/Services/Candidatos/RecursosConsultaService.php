@@ -93,8 +93,12 @@ class RecursosConsultaService
     }
 
     /**
-     * Lista todos os editais
+     * Busca candidatos com recursos por edital e cargo
      */
+    public function buscarCandidatosComRecursosPorEditalCargo(int $edital, int $cargo): array
+    {
+        return $this->candidatosModel->getCandidatosComRecursosPorEditalCargo($edital, $cargo);
+    }
     public function listarEditais(): array
     {
         return $this->editaisModel->findAll();

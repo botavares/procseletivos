@@ -38,7 +38,7 @@
 										<?php foreach ($titulosTabela as $tituloColuna): ?>
 											<th class="text-center"><?php echo esc($tituloColuna) ?></th>
 										<?php endforeach; ?>
-										<th class="text-center" style="width: 120px;">Aplicar Recurso</th>
+										<th class="text-center" style="width: 120px;">Histórico do Recurso</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -51,13 +51,13 @@
 											<td align="left"><?php echo mask($valueCandidato['ds_celular'], '(##) #####-####') ?></td>
 											<td align="left"><?php echo esc($valueCandidato['ds_email']) ?></td>
 											<td align="center"><?php echo esc($valueCandidato['ds_protocolo']) ?></td>
-											<td class="text-center">
-												<a class="btn btn-success btn-sm" 
-												   href="<?php echo base_url('Recursos/' . $valueCandidato['fk_id_edital'] . '/' . $valueCandidato['fk_id_cargo'] . '/' . $valueCandidato['pk_id_cadastrado']) ?>"
-												   title="Aplicar Recurso">
-													<i class="fas fa-gavel"></i>
-												</a>
-											</td>
+										<td class="text-center">
+											<a class="btn btn-secondary btn-sm" 
+											   href="<?php echo base_url('Recursos/historico?edital=' . $valueCandidato['fk_id_edital'] . '&cargo=' . $valueCandidato['fk_id_cargo'] . '&candidato=' . $valueCandidato['ds_cpf']) ?>"
+											   title="Histórico do Recurso">
+												<i class="fas fa-history"></i>
+											</a>
+										</td>
 										</tr>
 									<?php endforeach; ?>
 								</tbody>

@@ -113,7 +113,7 @@ class Recursos extends BaseController{
             return redirect()->to(base_url('home'))->with('error', 'Edital ou Cargo não encontrado.');
         }
 
-        $candidatos = $consultaService->buscarCandidatosPorEditalCargo((int)$idEdital, (int)$idCargo);
+        $candidatos = $consultaService->buscarCandidatosComRecursosPorEditalCargo((int)$idEdital, (int)$idCargo);
 
         $arrayCandidatos = [];
         foreach ($candidatos as $candidato) {
@@ -142,7 +142,7 @@ class Recursos extends BaseController{
             'idCargo'       => $idCargo,
             'nomeCargo'     => $dadosCargo->ds_nome_cargo,
             'titulosTabela' => ["Edital Ref.","Data de Insc.","Nome do Candidato","Nascimento","Telefone","Email","Protocolo"],
-            'titulo'        => 'Candidatos - Aplicação de Recurso',
+            'titulo'        => 'Candidatos com Recurso',
         ];
 
         echo view('layoutDash', $parametros);
@@ -208,6 +208,21 @@ class Recursos extends BaseController{
                 return $v !== null && $v !== '';
             });
         }
+
+        // Se vier via GET (parâmetros na URL), também aplicar
+        $getFiltros = [
+            'protocolo'   => $this->request->getGet('protocolo'),
+            'candidato'   => $this->request->getGet('candidato'),
+            'data_inicio' => $this->request->getGet('data_inicio'),
+            'data_fim'    => $this->request->getGet('data_fim'),
+            'edital'      => $this->request->getGet('edital'),
+            'cargo'       => $this->request->getGet('cargo'),
+        ];
+        $getFiltros = array_filter($getFiltros, function($v) {
+            return $v !== null && $v !== '';
+        });
+
+        $filtros = array_merge($filtros, $getFiltros);
 
         $historico = $consultaService->buscarHistorico($filtros);
 

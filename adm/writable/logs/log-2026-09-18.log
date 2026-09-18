@@ -1,0 +1,33 @@
+CRITICAL - 2026-09-18 13:50:37 --> Uncaught BadMethodCallException: Call to undefined method App\Models\EditaisModel::getCargosByEdital in C:\laragon\www\servicos\procseletivos\adm\system\Model.php:841
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(208): CodeIgniter\Model->__call('getCargosByEdit...', Array)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->getCargosByEdital()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#5 {main}
+  thrown
+in SYSTEMPATH\Model.php on line 841.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-18 13:50:54 --> Uncaught BadMethodCallException: Call to undefined method App\Models\EditaisModel::getCargosByEdital in C:\laragon\www\servicos\procseletivos\adm\system\Model.php:841
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(208): CodeIgniter\Model->__call('getCargosByEdit...', Array)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->getCargosByEdital()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#5 {main}
+  thrown
+in SYSTEMPATH\Model.php on line 841.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-09-18 13:51:58 --> Uncaught BadMethodCallException: Call to undefined method App\Models\EditaisModel::getCargosByEdital in C:\laragon\www\servicos\procseletivos\adm\system\Model.php:841
+Stack trace:
+#0 C:\laragon\www\servicos\procseletivos\adm\app\Controllers\Editais.php(208): CodeIgniter\Model->__call('getCargosByEdit...', Array)
+#1 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(934): App\Controllers\Editais->getCargosByEdital()
+#2 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Editais))
+#3 C:\laragon\www\servicos\procseletivos\adm\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\laragon\www\servicos\procseletivos\adm\index.php(67): CodeIgniter\CodeIgniter->run()
+#5 {main}
+  thrown
+in SYSTEMPATH\Model.php on line 841.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
