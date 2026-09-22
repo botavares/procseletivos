@@ -4,11 +4,37 @@ $paginacao  = $paginacao ?? [];
 $filtros    = $filtros ?? [];
 $usaDesempateDinamico = $usa_desempate_dinamico ?? false;
 $colunasDinamicas = $colunas_dinamicas ?? [];
+$colunasOcultas = $colunas_ocultas ?? [];
+$criteriosAdicionais = $criterios_adicionais ?? [];
 
 $paginaAtual = $paginacao['paginaAtual'] ?? 1;
 $totalPaginas = $paginacao['totalPaginas'] ?? 1;
 $inicio = $paginacao['inicio'] ?? 1;
 $fim = $paginacao['fim'] ?? 1;
+
+// Mapeamento das colunas fixas que podem ser ocultas
+$mapaColunasFixas = [
+    'experiencias'    => ['label' => 'Pts Experiência',  'campo' => 'nr_total_experiencias'],
+    'graduacao'       => ['label' => 'Pts Graduação',    'campo' => 'nr_total_graduacao'],
+    'posgraduacao'    => ['label' => 'Pts Pós Graduação','campo' => 'nr_total_posgraduacao'],
+    'mestrado'        => ['label' => 'Pts Mestrado',     'campo' => 'nr_total_mestrado'],
+    'doutorado'       => ['label' => 'Pts Doutorado',    'campo' => 'nr_total_doutorado'],
+    'aperfeicoamentos'=> ['label' => 'Pts Cursos',       'campo' => 'nr_total_aperfeicoamentos'],
+];
+
+// Calcula colspan dinamicamente
+$colspan = 4; // Class + Nome + Cargo + Edital
+if ($usaDesempateDinamico && !empty($colunasDinamicas)) {
+    $colspan += count($colunasDinamicas);
+} else {
+    foreach ($mapaColunasFixas as $chave => $cfg) {
+        if (!in_array($chave, $colunasOcultas, true)) {
+            $colspan++;
+        }
+    }
+    $colspan += count($criteriosAdicionais);
+}
+$colspan += 3; // Nascimento + Pontuação + Situação
 ?>
 
 <div data-ajax-fragment>
@@ -22,7 +48,7 @@ $fim = $paginacao['fim'] ?? 1;
         <thead>
         <tr>
             <th>Class</th>
-            <th width="30%">Nome</th>
+            <th width="40%">Nome</th>
             <th width="20%">Cargo</th>
             <th>Edital</th>
 
@@ -33,12 +59,15 @@ $fim = $paginacao['fim'] ?? 1;
                 <?php endforeach; ?>
             <?php else: ?>
                 <!-- Regra fixa: mostra subtotais -->
-                <th>Pts Experiência</th>
-                <th>Pts Graduação</th>
-                <th>Pts Pós Graduação</th>
-                <th>Pts Mestrado</th>
-                <th>Pts Doutorado</th>
-                <th>Pts Cursos</th>
+                <?php foreach ($mapaColunasFixas as $chave => $cfg): ?>
+                    <?php if (!in_array($chave, $colunasOcultas, true)): ?>
+                        <th><?= esc($cfg['label']) ?></th>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                <!-- Critérios adicionais -->
+                <?php foreach ($criteriosAdicionais as $crit): ?>
+                    <th><?= esc($crit['nome']) ?></th>
+                <?php endforeach; ?>
             <?php endif; ?>
 
             <th>Nascimento</th>
@@ -49,14 +78,6 @@ $fim = $paginacao['fim'] ?? 1;
     <tbody>
 
     <?php if (empty($candidatos)): ?>
-        <?php
-            $colspan = 8;
-            if ($usaDesempateDinamico && !empty($colunasDinamicas)) {
-                $colspan += count($colunasDinamicas);
-            } else {
-                $colspan += 6; // subtotais fixos
-            }
-        ?>
         <tr>
             <td colspan="<?= $colspan ?>">Nenhum registro encontrado</td>
         </tr>
@@ -76,12 +97,15 @@ $fim = $paginacao['fim'] ?? 1;
         <?php endforeach; ?>
     <?php else: ?>
         <!-- Regra fixa: mostra subtotais -->
-        <td><?= esc($c->nr_total_experiencias) ?></td>
-        <td><?= esc($c->nr_total_graduacao) ?></td>
-        <td><?= esc($c->nr_total_posgraduacao) ?></td>
-        <td><?= esc($c->nr_total_mestrado) ?></td>
-        <td><?= esc($c->nr_total_doutorado) ?></td>
-        <td><?= esc($c->nr_total_aperfeicoamentos) ?></td>
+        <?php foreach ($mapaColunasFixas as $chave => $cfg): ?>
+            <?php if (!in_array($chave, $colunasOcultas, true)): ?>
+                <td><?= esc($c->{$cfg['campo']}) ?></td>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        <!-- Critérios adicionais -->
+        <?php foreach ($criteriosAdicionais as $crit): ?>
+            <td><?= esc($c->{$crit['alias']} ?? 0) ?></td>
+        <?php endforeach; ?>
     <?php endif; ?>
 
     <td><?= date('d/m/Y', strtotime($c->dt_nascimento)) ?></td>

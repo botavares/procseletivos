@@ -48,15 +48,17 @@ class TransparenciaService
 
         // Verifica quais colunas de pontuacao estao vazias para o filtro atual (regra fixa)
         $colunasOcultas = [];
+        $criteriosAdicionais = [];
         if (!$usaDesempateDinamico) {
             $colunasOcultas = $this->obterColunasOcultas($cargo, $edital, $busca, $editaisAtivos);
+            $criteriosAdicionais = $this->obterCriteriosAdicionaisAtivos($cargo, $edital, $busca, $editaisAtivos);
         }
 
         $builder = $this->db->table('tb_classificacao c');
         $builder->select('c.ds_posicao, c.ds_nome_candidato, c.ds_nome_cargo, c.fk_id_edital, c.ds_nome_edital, c.dt_nascimento, c.nr_total_pontos, c.nr_total_experiencias, c.nr_total_graduacao, c.nr_total_posgraduacao, c.nr_total_mestrado, c.nr_total_doutorado, c.nr_total_aperfeicoamentos, c.fk_id_candidato, c.ds_possui_pne, sc.situacao');
         $builder->join('tb_situacao_candidato sc', 'sc.fk_id_candidato = c.fk_id_candidato AND sc.fk_id_cargo = c.fk_id_cargo AND sc.fk_id_edital = c.fk_id_edital', 'left');
 
-        // Adiciona LEFT JOINs para scores dinamicos
+        // Adiciona LEFT JOINs para scores dinamicos (desempate)
         if ($usaDesempateDinamico && !empty($colunasDinamicas)) {
             foreach ($colunasDinamicas as $index => $coluna) {
                 $alias = 's_' . $index;
@@ -64,6 +66,19 @@ class TransparenciaService
                 $builder->join(
                     "tb_classificacao_scores {$alias}",
                     "{$alias}.fk_id_classificacao = c.pk_id_classificacao AND {$alias}.ds_chave_score = '{$coluna['chave']}'",
+                    'left'
+                );
+            }
+        }
+
+        // Adiciona LEFT JOINs para critérios adicionais (modo fixo)
+        if (!$usaDesempateDinamico && !empty($criteriosAdicionais)) {
+            foreach ($criteriosAdicionais as $index => $crit) {
+                $alias = 'crit_' . $index;
+                $builder->select("COALESCE({$alias}.ds_quantidade, 0) * COALESCE({$alias}.ds_multiplicador, 0) as crit_{$crit['id']}");
+                $builder->join(
+                    "tb_cadastrados_criterios {$alias}",
+                    "{$alias}.fk_id_cadastrado = c.fk_id_candidato AND {$alias}.fk_id_edital = c.fk_id_edital AND {$alias}.fk_id_cargo = c.fk_id_cargo AND {$alias}.fk_id_criterio = {$crit['id']}",
                     'left'
                 );
             }
@@ -108,6 +123,7 @@ class TransparenciaService
             'filtros' => $params,
             'total' => $total,
             'colunas_ocultas' => $colunasOcultas,
+            'criterios_adicionais' => $criteriosAdicionais,
             'usa_desempate_dinamico' => $usaDesempateDinamico,
             'colunas_dinamicas' => $colunasDinamicas,
         ];
@@ -343,6 +359,45 @@ class TransparenciaService
         }
 
         return $ocultas;
+    }
+
+    /**
+     * Busca os critérios adicionais (por cargo/edital) que possuem pelo menos
+     * um candidato pontuado. Retorna array com id e nome do critério.
+     */
+    private function obterCriteriosAdicionaisAtivos(int $cargo, int $edital, string $busca, array $editaisAtivos = []): array
+    {
+        $builder = $this->db->table('tb_cadastrados_criterios cc')
+            ->select('cc.fk_id_criterio, MAX(tca.ds_nome_criterio) as ds_nome_criterio')
+            ->join('tb_classificacao c', 'c.fk_id_candidato = cc.fk_id_cadastrado AND c.fk_id_edital = cc.fk_id_edital AND c.fk_id_cargo = cc.fk_id_cargo')
+            ->join('tb_criterios_adicionais tca', 'tca.pk_id_criterio = cc.fk_id_criterio')
+            ->where('c.fk_id_cargo', $cargo);
+
+        if ($edital > 0) {
+            $builder->where('c.fk_id_edital', $edital);
+        } elseif (!empty($editaisAtivos)) {
+            $builder->whereIn('c.fk_id_edital', $editaisAtivos);
+        }
+
+        if ($busca !== '') {
+            $builder->like('c.ds_nome_candidato', $busca);
+        }
+
+        $rows = $builder
+            ->groupBy('cc.fk_id_criterio')
+            ->get()
+            ->getResult();
+
+        $criterios = [];
+        foreach ($rows as $row) {
+            $criterios[] = [
+                'id'    => (int) $row->fk_id_criterio,
+                'nome'  => $row->ds_nome_criterio,
+                'alias' => 'crit_' . (int) $row->fk_id_criterio,
+            ];
+        }
+
+        return $criterios;
     }
 
     /**

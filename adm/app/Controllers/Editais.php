@@ -204,11 +204,11 @@ class Editais extends BaseController{
         $idEdital = $this->request->getPost('idEdital');
 
         if ($idEdital) {
-            $modelEditais = new EditaisModel();
-            $editais = $modelEditais->getCargosByEdital($idEdital);
+            $modelCargos = new CargosModel();
+            $cargos = $modelCargos->getCargosByEdital($idEdital);
 
             return $this->response->setJSON([
-                'cargos' => $editais,
+                'cargos' => $cargos,
                 csrf_token() => csrf_hash() // novo token
             ]);
         }

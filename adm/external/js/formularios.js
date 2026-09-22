@@ -76,31 +76,26 @@ $(document).ready(function($){
 	UTILITÁRIOS - LIMPAR DADOS DE MODAL ASSIM QUE FECHÁ-LOS
 	=======================================================================================*/
 	$('.modal').on('hidden.bs.modal', function () {
-		$(this).find("input,textarea,select").val('').end();
-	   $(this).find(".labelData").html('').end();
-   });
-
-   /*===============================================================
-		//LIMPAR DADOS DE MODAL ASSIM QUE FECHÁ-LOS
-		===============================================================*/
-		$('.modal').on('hidden.bs.modal', function () {
-			$(this).find("input,textarea,select").val('').end();
-			$(this).find(".labelData").html('').end();
-			$(this).find(".horarios").html('').end();
-			$(this).find("#modalAgendarConsulta").html('').end();
-			$(this).find(".diaConsultas").html('').end();
-			$(this).find(".tbody-desvincular").html('').end();
-		});
-		$('.modal').on('shown.bs.modal', function () {
-   			 $.getJSON(path + '/seguranca/csrf', function (response) {
-        		var csrfElement = $('#csrf');
-        		var csrfKey = Object.keys(response).find(k => k.startsWith('csrf_'));
-        		if (csrfKey) {
-            		csrfElement.attr('name', csrfKey);
-            		csrfElement.val(response[csrfKey]);
-        		}
-    		});
-		});
+		$(this).find("input:not([type=hidden]),textarea,select").val('').end();
+		$(this).find(".labelData").html('').end();
+		$(this).find(".horarios").html('').end();
+		$(this).find("#modalAgendarConsulta").html('').end();
+		$(this).find(".diaConsultas").html('').end();
+		$(this).find(".tbody-desvincular").html('').end();
+	});
+	$('.modal').on('shown.bs.modal', function () {
+   			$.getJSON(path + 'seguranca/csrf', function (response) {
+       		var csrfKey = Object.keys(response).find(k => k.startsWith('csrf_'));
+       		if (csrfKey) {
+					$('input[type="hidden"]').each(function() {
+						if ($(this).attr('name') && $(this).attr('name').startsWith('csrf_')) {
+							$(this).attr('name', csrfKey);
+							$(this).val(response[csrfKey]);
+						}
+					});
+       		}
+   		});
+	});
 
    /*=====================================================================================
 	MODAL QUE DISPARA A DELEÇÃO DE REGISTROS
@@ -208,7 +203,7 @@ $(document).ready(function($){
 		}
 
 		$.ajax({
-			url: path + '/Candidatos/getCandidatosByCargoAndEdital',
+			url: path + 'Candidatos/getCandidatosByCargoAndEdital',
 			dataType: 'json',
 			type: 'POST',
 			data: {
@@ -254,7 +249,7 @@ $(document).ready(function($){
 		var csrfName = $('#csrf').attr('name');
 		var csrfHash = $('#csrf').val();
 		$.ajax({
-			url: path + '/Convocados/atualizarComparecimento',
+			url: path + 'Convocados/atualizarComparecimento',
 			type: 'POST',
 			dataType: 'json',
 			data:{idCandidato:idCandidato,comparecimento:comparecimento,[csrfName]:csrfHash},
@@ -276,7 +271,7 @@ $(document).ready(function($){
 	$('.select-edital').on('change', function () {
 		var numeroEdital = $(this).val();
 		var targetSelect = $(this).data('target');
-		var csrfElement = $(this).closest('form').find('input[type="hidden"]');
+		var csrfElement = $(this).closest('form').find('input[type="hidden"][name^="csrf_"]');
 		var csrfName = csrfElement.attr('name');
 		var csrfHash = csrfElement.val();
 		
@@ -286,7 +281,7 @@ $(document).ready(function($){
 		}
 
 		$.ajax({
-			url: path + '/Editais/getCargosByEdital',
+			url: path + 'Editais/getCargosByEdital',
 			dataType: 'json',
 			type: 'POST',
 			data: {

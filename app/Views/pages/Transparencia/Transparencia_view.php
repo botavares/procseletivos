@@ -39,25 +39,24 @@
          placeholder="Digite o nome do candidato">
 </div>
 <div id="tabela-container">
-  
+  <div class="text-center mt-3"><p>Selecione o edital e o cargo</p></div>
 </div>
     
 
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    // Carrega a tabela inicial (sem edital e sem cargo)
-    carregarTabela(1);
-});
-</script>
-
-<script>
 function carregarTabela(page = 1) {
-
     const edital = document.getElementById('filtro-edital').value;
     const cargo = document.getElementById('filtro-cargo').value;
     const busca = document.getElementById('busca-transparencia')?.value || '';
     const perPage = 10;
+    const container = document.getElementById('tabela-container');
+
+    // So carrega dados se edital e cargo estiverem selecionados
+    if (!edital || !cargo) {
+        container.innerHTML = '<div class="text-center mt-3"><p>Selecione o edital e o cargo</p></div>';
+        return;
+    }
 
     const url = new URL('<?= site_url("transparencia/carregarTabela") ?>');
 
@@ -70,7 +69,7 @@ function carregarTabela(page = 1) {
     fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
         .then(r => r.text())
         .then(html => {
-            document.getElementById('tabela-container').innerHTML = html;
+            container.innerHTML = html;
             bindPaginacaoAjax();
         });
 }

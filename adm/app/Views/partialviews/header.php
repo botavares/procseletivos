@@ -38,6 +38,7 @@
 
 	<script type="text/javascript">
    		var path = '<?php echo base_url(); ?>'
+		if (!path.endsWith('/')) { path += '/'; }
 	</script>
 
 	<!-- jQuery e Bootstrap carregados no header para permitir scripts inline nas views -->

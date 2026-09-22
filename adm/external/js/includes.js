@@ -11,7 +11,7 @@ $(window).on('load',(function(){
 
 $("#boxanoencaminhado").hide();
 	$('.modal').on('hidden.bs.modal', function () {
-	$(this).find("input,textarea,select").val('').end();
+	$(this).find("input:not([type=hidden]),textarea,select").val('').end();
 	$(this).find(".labelData").html('').end();
 	$(this).find(".horarios").html('').end();
 	$(this).find("#modalAgendarConsulta").html('').end();
