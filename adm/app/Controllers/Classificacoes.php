@@ -13,6 +13,7 @@ use App\Models\EditaisModel;
 
 use App\Services\Classificacao\ClassificacaoService;
 use App\Services\Classificacao\DesempateConfigService;
+use App\Services\Classificacao\ClassificacaoColunasService;
 use App\Services\Cargos\CargoService;
 use App\Services\Editais\EditalService;
 
@@ -53,18 +54,17 @@ class Classificacoes extends BaseController{
         $configDesempate = $desempateConfigService->buscarConfiguracao((int)$idCargo);
         $usaDesempateDinamico = !empty($configDesempate);
 
-        if ($usaDesempateDinamico) {
-            $titulosTabela = ["Posição", "Candidato"];
-            foreach ($configDesempate as $config) {
-                $titulosTabela[] = $config->descricao ?: $config->tipoCriterio;
-            }
-            $titulosTabela[] = "Nascimento";
-            $titulosTabela[] = "Total de Pontos";
-            $titulosTabela[] = "PCD";
-        } else {
-            $titulosTabela = ["Posição","Candidato","Pt. Experiência","Pt. Graduação","Pt. Pós-Graduação","Pt. Mestrado","Pt. Doutorado","Pt. Aperfeiçoamentos","Nascimento","Total de Pontos","PCD"];
+        // Colunas dinâmicas baseadas nas configurações do cargo
+        $colunasService = new ClassificacaoColunasService();
+        $colunasDinamicas = $colunasService->obterColunas((int)$idCargo);
+
+        // Busca dados dinâmicos dos candidatos
+        $dadosDinamicos = [];
+        if (!empty($classificacoes)) {
+            $idsCandidatos = array_column($classificacoes, 'fk_id_candidato');
+            $dadosDinamicos = $colunasService->obterDadosDinamicos((int)$idEdital, (int)$idCargo, $idsCandidatos);
         }
-        
+
         $parametros = [
             'camada1'       => $camada1,
             'camada2'       => $camada2,
@@ -75,10 +75,11 @@ class Classificacoes extends BaseController{
             'nomeCargo'     => $dadosCargo->ds_nome_cargo,
             'perfil'        => session('perfil'),
             'user'          => session('nome'),
-            "titulosTabela" => $titulosTabela,
             'titulo'        => "Classificação ",
             'usaDesempateDinamico' => $usaDesempateDinamico,
             'configDesempate' => $configDesempate,
+            'colunasDinamicas' => $colunasDinamicas,
+            'dadosDinamicos' => $dadosDinamicos,
         ];
 
         echo view('layoutDash', $parametros);
@@ -238,36 +239,7 @@ class Classificacoes extends BaseController{
         $nomeEdital = $editalInfo->ds_numero_edital ?? 'edital';
         $nomeCargo  = $cargoInfo->ds_nome_cargo   ?? 'cargo';
 
-        // ====== CABEÇALHO INSTITUCIONAL ======
-        $totalCols = $usaDesempateDinamico ? (2 + count($configDesempate) + 2 + 1) : 11; // posicao + nome + critérios + nascimento + pontos + ação
-        $ultimaColuna = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($totalCols);
-
-        // Linha 1: Título
-        $sheet->mergeCells("A1:{$ultimaColuna}1");
-        $sheet->setCellValue('A1', 'PREFEITURA MUNICIPAL DE DIVINÓPOLIS');
-        $sheet->getStyle('A1')->getFont()->setBold(true)->setSize(14)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('FFFFFF'));
-        $sheet->getStyle('A1')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('1F4E78');
-        $sheet->getStyle('A1')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
-        $sheet->getRowDimension(1)->setRowHeight(28);
-
-        // Linha 2: Edital e Cargo
-        $sheet->mergeCells("A2:{$ultimaColuna}2");
-        $sheet->setCellValue('A2', "Edital: {$nomeEdital}  |  Cargo: {$nomeCargo}");
-        $sheet->getStyle('A2')->getFont()->setBold(true)->setSize(11)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('FFFFFF'));
-        $sheet->getStyle('A2')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('305496');
-        $sheet->getStyle('A2')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
-        $sheet->getRowDimension(2)->setRowHeight(22);
-
-        // Linha 3: Data
-        $sheet->mergeCells("A3:{$ultimaColuna}3");
-        $sheet->setCellValue('A3', 'Classificação gerada em ' . date('d/m/Y H:i:s'));
-        $sheet->getStyle('A3')->getFont()->setItalic(true)->setSize(10)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('444444'));
-        $sheet->getStyle('A3')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('F2F2F2');
-        $sheet->getStyle('A3')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
-        $sheet->getRowDimension(3)->setRowHeight(20);
-
-        // ====== CABEÇALHO DA TABELA (linha 5) ======
-        $linhaCabecalho = 5;
+        // ====== MONTA HEADERS DINÂMICOS ======
         $headers = ['Posição', 'Candidato'];
 
         if ($usaDesempateDinamico) {
@@ -277,19 +249,48 @@ class Classificacoes extends BaseController{
             $headers[] = 'Nascimento';
             $headers[] = 'Total de Pontos';
         } else {
-            $headers = array_merge($headers, [
-                'Pts. Experiência',
-                'Pts. Graduação',
-                'Pts. Pós-Graduação',
-                'Pts. Mestrado',
-                'Pts. Doutorado',
-                'Pts. Aperfeiçoamentos',
-                'Nascimento',
-                'Total de Pontos',
-                'PCD',
-            ]);
+            $colunasService = new ClassificacaoColunasService();
+            $colunasDinamicas = $colunasService->obterColunas((int)$cargo);
+            $idsCandidatos = array_column($classificacoes, 'fk_id_candidato');
+            $dadosDinamicos = $colunasService->obterDadosDinamicos((int)$edital, (int)$cargo, $idsCandidatos);
+
+            foreach ($colunasDinamicas as $col) {
+                if ($col['tipo'] !== 'fixo') {
+                    $headers[] = $col['label'];
+                }
+            }
+            $headers[] = 'Nascimento';
+            $headers[] = 'Total de Pontos';
         }
 
+        $headers[] = 'PCD';
+        $totalCols = count($headers);
+        $ultimaColuna = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($totalCols);
+
+        // ====== CABEÇALHO INSTITUCIONAL ======
+        $sheet->mergeCells("A1:{$ultimaColuna}1");
+        $sheet->setCellValue('A1', 'PREFEITURA MUNICIPAL DE DIVINÓPOLIS');
+        $sheet->getStyle('A1')->getFont()->setBold(true)->setSize(14)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('FFFFFF'));
+        $sheet->getStyle('A1')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('1F4E78');
+        $sheet->getStyle('A1')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
+        $sheet->getRowDimension(1)->setRowHeight(28);
+
+        $sheet->mergeCells("A2:{$ultimaColuna}2");
+        $sheet->setCellValue('A2', "Edital: {$nomeEdital}  |  Cargo: {$nomeCargo}");
+        $sheet->getStyle('A2')->getFont()->setBold(true)->setSize(11)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('FFFFFF'));
+        $sheet->getStyle('A2')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('305496');
+        $sheet->getStyle('A2')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
+        $sheet->getRowDimension(2)->setRowHeight(22);
+
+        $sheet->mergeCells("A3:{$ultimaColuna}3");
+        $sheet->setCellValue('A3', 'Classificação gerada em ' . date('d/m/Y H:i:s'));
+        $sheet->getStyle('A3')->getFont()->setItalic(true)->setSize(10)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('444444'));
+        $sheet->getStyle('A3')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('F2F2F2');
+        $sheet->getStyle('A3')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
+        $sheet->getRowDimension(3)->setRowHeight(20);
+
+        // ====== CABEÇALHO DA TABELA (linha 5) ======
+        $linhaCabecalho = 5;
         $col = 1;
         foreach ($headers as $header) {
             $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col) . $linhaCabecalho;
@@ -338,24 +339,33 @@ class Classificacoes extends BaseController{
                 $sheet->setCellValue($cellCoord, $classificacao['nr_total_pontos']);
                 $this->aplicarEstiloCelula($sheet, $cellCoord, $row);
             } else {
-                // Colunas fixas
-                $valoresFixos = [
-                    $classificacao['nr_total_experiencias'] ?? 0,
-                    $classificacao['nr_total_graduacao'] ?? 0,
-                    $classificacao['nr_total_posgraduacao'] ?? 0,
-                    $classificacao['nr_total_mestrado'] ?? 0,
-                    $classificacao['nr_total_doutorado'] ?? 0,
-                    $classificacao['nr_total_aperfeicoamentos'] ?? 0,
-                    date('d/m/Y', strtotime($classificacao['dt_nascimento'] ?? '')),
-                    $classificacao['nr_total_pontos'] ?? 0,
-                    (($classificacao['ds_possui_pne'] ?? 0) == 1) ? 'SIM' : 'NÃO',
-                ];
-                foreach ($valoresFixos as $valor) {
-                    $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col++) . $row;
-                    $sheet->setCellValue($cellCoord, $valor);
-                    $this->aplicarEstiloCelula($sheet, $cellCoord, $row);
+                $candDados = $dadosDinamicos[$classificacao['fk_id_candidato']] ?? [];
+
+                // Colunas dinâmicas
+                foreach ($colunasDinamicas as $coluna) {
+                    if ($coluna['tipo'] !== 'fixo') {
+                        $valor = $candDados[$coluna['chave']] ?? 0;
+                        $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col++) . $row;
+                        $sheet->setCellValue($cellCoord, is_numeric($valor) ? number_format((float)$valor, 2, ',', '.') : esc($valor));
+                        $this->aplicarEstiloCelula($sheet, $cellCoord, $row);
+                    }
                 }
+
+                // Nascimento
+                $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col++) . $row;
+                $sheet->setCellValue($cellCoord, date('d/m/Y', strtotime($classificacao['dt_nascimento'] ?? '')));
+                $this->aplicarEstiloCelula($sheet, $cellCoord, $row);
+
+                // Total de Pontos
+                $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col++) . $row;
+                $sheet->setCellValue($cellCoord, $classificacao['nr_total_pontos'] ?? 0);
+                $this->aplicarEstiloCelula($sheet, $cellCoord, $row);
             }
+
+            // PCD
+            $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col++) . $row;
+            $sheet->setCellValue($cellCoord, (($classificacao['ds_possui_pne'] ?? 0) == 1) ? 'SIM' : 'NÃO');
+            $this->aplicarEstiloCelula($sheet, $cellCoord, $row);
 
             $sheet->getRowDimension($row)->setRowHeight(20);
             $row++;
@@ -412,11 +422,29 @@ class Classificacoes extends BaseController{
         $nomeEdital = $editalInfo->ds_numero_edital ?? 'edital';
         $nomeCargo  = $cargoInfo->ds_nome_cargo   ?? 'cargo';
 
+        // Detecta desempate dinâmico
+        $desempateConfigService = new DesempateConfigService();
+        $configDesempate = $desempateConfigService->buscarConfiguracao((int)$cargo);
+        $usaDesempateDinamico = !empty($configDesempate);
+
+        $colunasDinamicas = [];
+        $dadosDinamicos = [];
+        if (!$usaDesempateDinamico) {
+            $colunasService = new ClassificacaoColunasService();
+            $colunasDinamicas = $colunasService->obterColunas((int)$cargo);
+            $idsCandidatos = array_column($classificacoes, 'fk_id_candidato');
+            $dadosDinamicos = $colunasService->obterDadosDinamicos((int)$edital, (int)$cargo, $idsCandidatos);
+        }
+
         $dados = [
             'classificacoes' => $classificacoes,
             'nomeEdital'     => $nomeEdital,
             'nomeCargo'      => $nomeCargo,
             'dataGeracao'    => date('d/m/Y H:i:s'),
+            'usaDesempateDinamico' => $usaDesempateDinamico,
+            'configDesempate' => $configDesempate,
+            'colunasDinamicas' => $colunasDinamicas,
+            'dadosDinamicos' => $dadosDinamicos,
         ];
 
         $dompdf = new Dompdf();

@@ -119,6 +119,11 @@
         font-weight: bold;
         color: #c0392b;
     }
+
+    .pcd-sim {
+        font-weight: bold;
+        color: #27ae60;
+    }
 </style>
 </head>
 
@@ -154,14 +159,22 @@
         <tr>
             <th width="6%">Pos.</th>
             <th width="26%">Candidato</th>
-            <th width="9%">Exper.</th>
-            <th width="9%">Grad.</th>
-            <th width="9%">Pós</th>
-            <th width="9%">Mest.</th>
-            <th width="9%">Dout.</th>
-            <th width="9%">Aperf.</th>
+
+            <?php if (isset($usaDesempateDinamico) && $usaDesempateDinamico && !empty($configDesempate)): ?>
+                <?php foreach ($configDesempate as $config): ?>
+                    <th><?= esc($config->descricao ?: $config->tipoCriterio) ?></th>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <?php foreach ($colunasDinamicas as $col): ?>
+                    <?php if ($col['tipo'] !== 'fixo'): ?>
+                        <th><?= esc($col['label']) ?></th>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
+
             <th width="10%">Nascimento</th>
             <th width="8%">Total</th>
+            <th width="6%">PCD</th>
         </tr>
     </thead>
     <tbody>
@@ -170,19 +183,53 @@
                 <tr>
                     <td class="posicao"><?= esc($c['ds_posicao']) ?></td>
                     <td align="left"><?= esc(nome_formatado($c['ds_nome_candidato'])) ?></td>
-                    <td><?= esc($c['nr_total_experiencias']) ?></td>
-                    <td><?= esc($c['nr_total_graduacao']) ?></td>
-                    <td><?= esc($c['nr_total_posgraduacao']) ?></td>
-                    <td><?= esc($c['nr_total_mestrado']) ?></td>
-                    <td><?= esc($c['nr_total_doutorado']) ?></td>
-                    <td><?= esc($c['nr_total_aperfeicoamentos']) ?></td>
+
+                    <?php if (isset($usaDesempateDinamico) && $usaDesempateDinamico && !empty($configDesempate)): ?>
+                        <?php foreach ($configDesempate as $config): ?>
+                            <?php
+                                $chave = $config->chaveScore();
+                                $scoreData = $c['_scores'][$chave] ?? null;
+                                $valor = is_array($scoreData) ? ($scoreData['nr_valor'] ?? 0) : ($scoreData ?? 0);
+                            ?>
+                            <td><?= is_numeric($valor) ? number_format((float)$valor, 2, ',', '.') : esc($valor) ?></td>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <?php $candDados = $dadosDinamicos[$c['fk_id_candidato']] ?? []; ?>
+                        <?php foreach ($colunasDinamicas as $col): ?>
+                            <?php if ($col['tipo'] !== 'fixo'): ?>
+                                <td>
+                                    <?php
+                                        $valor = $candDados[$col['chave']] ?? 0;
+                                        echo is_numeric($valor) ? number_format((float)$valor, 2, ',', '.') : esc($valor);
+                                    ?>
+                                </td>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+
                     <td><?= date('d/m/Y', strtotime($c['dt_nascimento'])) ?></td>
                     <td class="total"><?= esc($c['nr_total_pontos']) ?></td>
+                    <td>
+                        <?php if (($c['ds_possui_pne'] ?? 0) == 1): ?>
+                            <span class="pcd-sim">SIM</span>
+                        <?php else: ?> NÃO
+                        <?php endif; ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         <?php else: ?>
+            <?php
+                $colCount = 4;
+                if (isset($usaDesempateDinamico) && $usaDesempateDinamico && !empty($configDesempate)) {
+                    $colCount += count($configDesempate);
+                } elseif (!empty($colunasDinamicas)) {
+                    foreach ($colunasDinamicas as $col) {
+                        if ($col['tipo'] !== 'fixo') $colCount++;
+                    }
+                }
+            ?>
             <tr>
-                <td colspan="10">Nenhuma classificação encontrada.</td>
+                <td colspan="<?= $colCount ?>">Nenhuma classificação encontrada.</td>
             </tr>
         <?php endif; ?>
     </tbody>

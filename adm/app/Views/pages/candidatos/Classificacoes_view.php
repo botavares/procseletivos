@@ -58,9 +58,26 @@
 							<table id="tabela-paginada" class="table table-sm table-bordered table-striped table-hover minhaDataTable mb-0">
 								<thead class="thead-light">
 									<tr>
-										<?php foreach ($titulosTabela as $tituloColuna): ?>
-											<th class="text-center"><?php echo esc($tituloColuna) ?></th>
-										<?php endforeach; ?>
+										<th class="text-center">Posição</th>
+										<th class="text-center">Candidato</th>
+
+										<?php if (isset($usaDesempateDinamico) && $usaDesempateDinamico && !empty($configDesempate)): ?>
+											<?php foreach ($configDesempate as $config): ?>
+												<th class="text-center"><?= esc($config->descricao ?: $config->tipoCriterio) ?></th>
+											<?php endforeach; ?>
+											<th class="text-center">Nascimento</th>
+											<th class="text-center">Total de Pontos</th>
+										<?php else: ?>
+											<?php foreach ($colunasDinamicas as $col): ?>
+												<?php if ($col['tipo'] !== 'fixo'): ?>
+													<th class="text-center"><?= esc($col['label']) ?></th>
+												<?php endif; ?>
+											<?php endforeach; ?>
+											<th class="text-center">Nascimento</th>
+											<th class="text-center">Total de Pontos</th>
+										<?php endif; ?>
+
+										<th class="text-center">PCD</th>
 										<th class="text-center" style="width: 100px;">Exibir Dados</th>
 									</tr>
 								</thead>
@@ -78,20 +95,26 @@
 														$valor = is_array($scoreData) ? ($scoreData['nr_valor'] ?? 0) : ($scoreData ?? 0);
 													?>
 														<td class="text-center"><?= is_numeric($valor) ? number_format((float)$valor, 2, ',', '.') : esc($valor) ?></td>
-													<?php endforeach; ?>
-													<td class="text-center"><?= date('d/m/Y', strtotime($classificacao['dt_nascimento'])) ?></td>
-													<td class="text-center"><?= esc($classificacao['nr_total_pontos']) ?></td>
-												<?php else: ?>
-													<td class="text-center"><?= esc($classificacao['nr_total_experiencias'] ?? 0) ?></td>
-													<td class="text-center"><?= esc($classificacao['nr_total_graduacao'] ?? 0) ?></td>
-													<td class="text-center"><?= esc($classificacao['nr_total_posgraduacao'] ?? 0) ?></td>
-													<td class="text-center"><?= esc($classificacao['nr_total_mestrado'] ?? 0) ?></td>
-													<td class="text-center"><?= esc($classificacao['nr_total_doutorado'] ?? 0) ?></td>
-													<td class="text-center"><?= esc($classificacao['nr_total_aperfeicoamentos'] ?? 0) ?></td>
-													<td class="text-center"><?= date('d/m/Y', strtotime($classificacao['dt_nascimento'] ?? '')) ?></td>
-													<td class="text-center"><?= esc($classificacao['nr_total_pontos'] ?? 0) ?></td>
-													<td class="text-center"><?= (($classificacao['ds_possui_pne'] ?? 0) == 1) ? 'SIM' : 'NÃO' ?></td>
-												<?php endif; ?>
+												<?php endforeach; ?>
+												<td class="text-center"><?= date('d/m/Y', strtotime($classificacao['dt_nascimento'])) ?></td>
+												<td class="text-center"><?= esc($classificacao['nr_total_pontos']) ?></td>
+											<?php else: ?>
+												<?php $candDados = $dadosDinamicos[$classificacao['fk_id_candidato']] ?? []; ?>
+												<?php foreach ($colunasDinamicas as $col): ?>
+													<?php if ($col['tipo'] !== 'fixo'): ?>
+														<td class="text-center">
+															<?php
+																$valor = $candDados[$col['chave']] ?? 0;
+																echo is_numeric($valor) ? number_format((float)$valor, 2, ',', '.') : esc($valor);
+															?>
+														</td>
+													<?php endif; ?>
+												<?php endforeach; ?>
+												<td class="text-center"><?= date('d/m/Y', strtotime($classificacao['dt_nascimento'])) ?></td>
+												<td class="text-center"><?= esc($classificacao['nr_total_pontos']) ?></td>
+											<?php endif; ?>
+
+											<td class="text-center"><?= (($classificacao['ds_possui_pne'] ?? 0) == 1) ? 'SIM' : 'NÃO' ?></td>
 
 											<td class="text-center">
 												<a class="btn btn-info btn-sm" 
@@ -122,8 +145,8 @@ document.getElementById('btnExportarPlanilhaPcd').addEventListener('click', func
 });
 
 $(document).ready(function () {
-	// Aguarda o footer inicializar o DataTable, depois configura o filtro PCD
-	const pcdColIndex = document.getElementById('tabela-paginada').rows[0].cells.length - 2;
+	const tabela = document.getElementById('tabela-paginada');
+	const pcdColIndex = tabela.rows[0].cells.length - 2;
 
 	$.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
 		if (!$('#togglePcd').is(':checked')) return true;
@@ -133,7 +156,6 @@ $(document).ready(function () {
 
 	document.getElementById('togglePcd').addEventListener('change', function () {
 		const mostrarApenasPcd = this.checked;
-		// Busca a instância já inicializada pelo footer
 		$('#tabela-paginada').DataTable().draw();
 
 		// Alterna visibilidade dos botões
