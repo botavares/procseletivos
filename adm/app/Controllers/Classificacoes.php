@@ -60,8 +60,9 @@ class Classificacoes extends BaseController{
             }
             $titulosTabela[] = "Nascimento";
             $titulosTabela[] = "Total de Pontos";
+            $titulosTabela[] = "PCD";
         } else {
-            $titulosTabela = ["Posição","Candidato","Pts. Experiência","Pts. Graduação","Pts. Pós-Graduação","Pts. Mestrado","Pts. Doutorado","Pts. Aperfeiçoamentos","Nascimento","Total de Pontos"];
+            $titulosTabela = ["Posição","Candidato","Pt. Experiência","Pt. Graduação","Pt. Pós-Graduação","Pt. Mestrado","Pt. Doutorado","Pt. Aperfeiçoamentos","Nascimento","Total de Pontos","PCD"];
         }
         
         $parametros = [
@@ -208,6 +209,19 @@ class Classificacoes extends BaseController{
                 ->with('error', 'A classificação está vazia. Execute o reprocessamento antes de exportar.');
         }
 
+        // Filtra apenas PCD se solicitado
+        $apenasPcd = $this->request->getGet('pcd');
+        $somentePcd = ($apenasPcd !== null && $apenasPcd == '1');
+        if ($somentePcd) {
+            $classificacoes = array_filter($classificacoes, function ($c) {
+                return ($c['ds_possui_pne'] ?? 0) == 1;
+            });
+            if (empty($classificacoes)) {
+                return redirect()->back()
+                    ->with('error', 'Não há candidatos PCD nesta classificação.');
+            }
+        }
+
         // Detecta desempate dinâmico (mesma lógica do index)
         $desempateConfigService = new DesempateConfigService();
         $configDesempate = $desempateConfigService->buscarConfiguracao((int)$cargo);
@@ -272,6 +286,7 @@ class Classificacoes extends BaseController{
                 'Pts. Aperfeiçoamentos',
                 'Nascimento',
                 'Total de Pontos',
+                'PCD',
             ]);
         }
 
@@ -325,14 +340,15 @@ class Classificacoes extends BaseController{
             } else {
                 // Colunas fixas
                 $valoresFixos = [
-                    $classificacao['nr_total_experiencias'],
-                    $classificacao['nr_total_graduacao'],
-                    $classificacao['nr_total_pos_graduacao'],
-                    $classificacao['nr_total_mestrado'],
-                    $classificacao['nr_total_doutorado'],
-                    $classificacao['nr_total_aperfeicoamentos'],
-                    date('d/m/Y', strtotime($classificacao['dt_nascimento'])),
-                    $classificacao['nr_total_pontos'],
+                    $classificacao['nr_total_experiencias'] ?? 0,
+                    $classificacao['nr_total_graduacao'] ?? 0,
+                    $classificacao['nr_total_posgraduacao'] ?? 0,
+                    $classificacao['nr_total_mestrado'] ?? 0,
+                    $classificacao['nr_total_doutorado'] ?? 0,
+                    $classificacao['nr_total_aperfeicoamentos'] ?? 0,
+                    date('d/m/Y', strtotime($classificacao['dt_nascimento'] ?? '')),
+                    $classificacao['nr_total_pontos'] ?? 0,
+                    (($classificacao['ds_possui_pne'] ?? 0) == 1) ? 'SIM' : 'NÃO',
                 ];
                 foreach ($valoresFixos as $valor) {
                     $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col++) . $row;
@@ -353,7 +369,8 @@ class Classificacoes extends BaseController{
         // Nome do arquivo
         $safeEdital = preg_replace('/[^A-Za-z0-9_-]/', '_', $nomeEdital);
         $safeCargo  = preg_replace('/[^A-Za-z0-9_-]/', '_', $nomeCargo);
-        $fileName   = "Classificacao_{$safeEdital}_{$safeCargo}_" . date('Ymd_His') . ".xlsx";
+        $sufixoPcd  = $somentePcd ? '_PCD' : '';
+        $fileName   = "Classificacao{$sufixoPcd}_{$safeEdital}_{$safeCargo}_" . date('Ymd_His') . ".xlsx";
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header("Content-Disposition: attachment; filename=\"{$fileName}\"");

@@ -41,9 +41,16 @@
 								<a href="<?php echo base_url('Dashboard') ?>" class="btn btn-warning btn-sm mr-2">
 									<i class="fas fa-arrow-left"></i> Voltar
 								</a>
-								<button type="button" id="btnExportarPlanilha" class="btn btn-success btn-sm">
+								<button type="button" id="btnExportarPlanilha" class="btn btn-success btn-sm mr-2">
 									<i class="fas fa-file-excel"></i> Exportar Planilha
 								</button>
+								<button type="button" id="btnExportarPlanilhaPcd" class="btn btn-success btn-sm mr-2" style="display:none;">
+									<i class="fas fa-file-excel"></i> Exportar Planilha PCD
+								</button>
+								<div class="custom-control custom-switch ml-2" style="padding-top: 5px;">
+									<input type="checkbox" class="custom-control-input" id="togglePcd">
+									<label class="custom-control-label" for="togglePcd">Apenas PCD</label>
+								</div>
 							</div>
 						</div>
 
@@ -65,25 +72,26 @@
 
 											<?php if (isset($usaDesempateDinamico) && $usaDesempateDinamico && !empty($configDesempate)): ?>
 												<?php foreach ($configDesempate as $config): ?>
-												<?php
-													$chave = $config->chaveScore();
-													$scoreData = $classificacao['_scores'][$chave] ?? null;
-													$valor = is_array($scoreData) ? ($scoreData['nr_valor'] ?? 0) : ($scoreData ?? 0);
-												?>
-													<td class="text-center"><?= is_numeric($valor) ? number_format((float)$valor, 2, ',', '.') : esc($valor) ?></td>
-												<?php endforeach; ?>
-												<td class="text-center"><?= date('d/m/Y', strtotime($classificacao['dt_nascimento'])) ?></td>
-												<td class="text-center"><?= esc($classificacao['nr_total_pontos']) ?></td>
-											<?php else: ?>
-												<td class="text-center"><?= esc($classificacao['nr_total_experiencias']) ?></td>
-												<td class="text-center"><?= esc($classificacao['nr_total_graduacao']) ?></td>
-												<td class="text-center"><?= esc($classificacao['nr_total_posgraduacao']) ?></td>
-												<td class="text-center"><?= esc($classificacao['nr_total_mestrado']) ?></td>
-												<td class="text-center"><?= esc($classificacao['nr_total_doutorado']) ?></td>
-												<td class="text-center"><?= esc($classificacao['nr_total_aperfeicoamentos']) ?></td>
-												<td class="text-center"><?= date('d/m/Y', strtotime($classificacao['dt_nascimento'])) ?></td>
-												<td class="text-center"><?= esc($classificacao['nr_total_pontos']) ?></td>
-											<?php endif; ?>
+													<?php
+														$chave = $config->chaveScore();
+														$scoreData = $classificacao['_scores'][$chave] ?? null;
+														$valor = is_array($scoreData) ? ($scoreData['nr_valor'] ?? 0) : ($scoreData ?? 0);
+													?>
+														<td class="text-center"><?= is_numeric($valor) ? number_format((float)$valor, 2, ',', '.') : esc($valor) ?></td>
+													<?php endforeach; ?>
+													<td class="text-center"><?= date('d/m/Y', strtotime($classificacao['dt_nascimento'])) ?></td>
+													<td class="text-center"><?= esc($classificacao['nr_total_pontos']) ?></td>
+												<?php else: ?>
+													<td class="text-center"><?= esc($classificacao['nr_total_experiencias'] ?? 0) ?></td>
+													<td class="text-center"><?= esc($classificacao['nr_total_graduacao'] ?? 0) ?></td>
+													<td class="text-center"><?= esc($classificacao['nr_total_posgraduacao'] ?? 0) ?></td>
+													<td class="text-center"><?= esc($classificacao['nr_total_mestrado'] ?? 0) ?></td>
+													<td class="text-center"><?= esc($classificacao['nr_total_doutorado'] ?? 0) ?></td>
+													<td class="text-center"><?= esc($classificacao['nr_total_aperfeicoamentos'] ?? 0) ?></td>
+													<td class="text-center"><?= date('d/m/Y', strtotime($classificacao['dt_nascimento'] ?? '')) ?></td>
+													<td class="text-center"><?= esc($classificacao['nr_total_pontos'] ?? 0) ?></td>
+													<td class="text-center"><?= (($classificacao['ds_possui_pne'] ?? 0) == 1) ? 'SIM' : 'NÃO' ?></td>
+												<?php endif; ?>
 
 											<td class="text-center">
 												<a class="btn btn-info btn-sm" 
@@ -107,5 +115,30 @@
 <script>
 document.getElementById('btnExportarPlanilha').addEventListener('click', function () {
 	window.location.href = '<?php echo base_url("Classificacoes/exportarXlsx/" . $idEdital . "/" . $idCargo) ?>';
+});
+
+document.getElementById('btnExportarPlanilhaPcd').addEventListener('click', function () {
+	window.location.href = '<?php echo base_url("Classificacoes/exportarXlsx/" . $idEdital . "/" . $idCargo . "?pcd=1") ?>';
+});
+
+$(document).ready(function () {
+	// Aguarda o footer inicializar o DataTable, depois configura o filtro PCD
+	const pcdColIndex = document.getElementById('tabela-paginada').rows[0].cells.length - 2;
+
+	$.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+		if (!$('#togglePcd').is(':checked')) return true;
+		const valor = (data[pcdColIndex] || '').trim();
+		return valor === 'SIM';
+	});
+
+	document.getElementById('togglePcd').addEventListener('change', function () {
+		const mostrarApenasPcd = this.checked;
+		// Busca a instância já inicializada pelo footer
+		$('#tabela-paginada').DataTable().draw();
+
+		// Alterna visibilidade dos botões
+		document.getElementById('btnExportarPlanilha').style.display = mostrarApenasPcd ? 'none' : '';
+		document.getElementById('btnExportarPlanilhaPcd').style.display = mostrarApenasPcd ? '' : 'none';
+	});
 });
 </script>
