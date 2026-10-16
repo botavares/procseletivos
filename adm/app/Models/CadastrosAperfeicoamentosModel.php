@@ -7,7 +7,7 @@ class CadastrosAperfeicoamentosModel extends Model{
     //Atributos
     protected $table = 'tb_cadastrados_aperfeicoamentos';
     protected $primaryKey = 'pk_id_aperfeicoamento';
-    protected $useAutoIncrement = false;
+    protected $useAutoIncrement = true;
     protected $allowedFields = [
         'fk_id_cadastrado', 
         'fk_id_edital',

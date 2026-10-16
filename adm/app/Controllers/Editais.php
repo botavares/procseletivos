@@ -227,6 +227,15 @@ class Editais extends BaseController{
         ]);
     }
 
+    public function editaisTodos(){
+        $modelEditais = new EditaisModel();
+        $todosEditais = $modelEditais->orderBy('ds_numero_edital','ASC')->findAll();
+        return $this->response->setJSON([
+            'editais' => $todosEditais,
+            csrf_token() => csrf_hash()
+        ]);
+    }
+
 
     public function deletar(){
         try {

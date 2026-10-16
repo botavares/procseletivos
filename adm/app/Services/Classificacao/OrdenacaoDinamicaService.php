@@ -58,15 +58,15 @@ class OrdenacaoDinamicaService
 
     /**
      * Compara datas de nascimento.
-     * DESC = mais velho primeiro (data menor vem primeiro)
-     * ASC  = mais novo primeiro (data maior vem primeiro)
+     * ASC  = mais velho primeiro (data menor vem primeiro)
+     * DESC = mais novo primeiro (data maior vem primeiro)
      */
     private function compararIdade(DesempateConfigDTO $criterio, ResultadoClassificacaoDTO $a, ResultadoClassificacaoDTO $b, string $chaveScore): int
     {
         $dtA = $this->parseData($a->scores[$chaveScore] ?? $a->ds_nascimento);
         $dtB = $this->parseData($b->scores[$chaveScore] ?? $b->ds_nascimento);
 
-        if ($criterio->direcao === 'DESC') {
+        if ($criterio->direcao === 'ASC') {
             // Mais velho primeiro: data MENOR (nascido antes) vem primeiro
             return $dtA <=> $dtB;
         }

@@ -7,7 +7,7 @@ class CadastradosEscolaridadesModel extends Model{
     //Atributos
     protected $table = 'tb_cadastrados_escolaridades';
     protected $primaryKey = 'pk_id_escolaridade';
-    protected $useAutoIncrement = false;
+    protected $useAutoIncrement = true;
     protected $allowedFields = [
         'fk_id_cadastrado',
         'fk_id_edital',

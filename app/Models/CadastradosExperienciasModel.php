@@ -7,7 +7,7 @@ class CadastradosExperienciasModel extends Model{
     //Atributos
     protected $table = 'tb_cadastrados_experiencias';
     protected $primaryKey = 'pk_id_experiencias';
-    protected $useAutoIncrement = false;
+    protected $useAutoIncrement = true;
     protected $allowedFields = [
         'fk_id_cadastrado',
         'fk_id_edital',

@@ -49,6 +49,7 @@ $routes->get('/Classificacoes/gerarPdf/(:num)/(:num)', 'Classificacoes::gerarPdf
 $routes->get('/Classificacoes/exportarXlsx/(:num)/(:num)', 'Classificacoes::exportarXlsx/$1/$2', ['as'=>'Classificacoes.exportarXlsx']);
 $routes->post('/Classificacoes/exportarTabela/(:num)/(:num)', 'Classificacoes::exportarTabela/$1/$2', ['as'=>'Classificacoes.exportarTabela']);
 $routes->get('/Editais/editaisAtivos', 'Editais::editaisAtivos');
+$routes->get('/Editais/editaisTodos', 'Editais::editaisTodos');
 $routes->post('/Classificacoes/salvarEscolha', 'Classificacoes::salvarEscolha');
 
 $routes->get('/Recursos/(:num)/(:num)/(:num)', 'Recursos::index/$1/$2/$3', ['as'=>'Recursos']);
@@ -65,6 +66,31 @@ $routes->get('/Cargos/formularioCadastro', 'Cargos::formularioCadastro', ['as'=>
 $routes->post('/Cargos/registrar', 'Cargos::registrar');
 $routes->get('/Cargos/formularioAlteracao/(:num)', 'Cargos::formularioAlteracao/$1', ['as'=>'Cargos.formularioAlteracao']);
 $routes->post('/Cargos/deletar', 'Cargos::deletar');
+
+$routes->get('/Experiencias', 'Experiencias::index');
+$routes->get('/Experiencias/formularioCadastro', 'Experiencias::formularioCadastro', ['as'=>'Experiencias.formularioCadastro']);
+$routes->post('/Experiencias/registrar', 'Experiencias::registrar');
+$routes->get('/Experiencias/formularioAlteracao/(:num)', 'Experiencias::formularioAlteracao/$1', ['as'=>'Experiencias.formularioAlteracao']);
+$routes->post('/Experiencias/deletar', 'Experiencias::deletar');
+
+$routes->get('/Escolaridades', 'Escolaridades::index');
+$routes->get('/Escolaridades/formularioCadastro', 'Escolaridades::formularioCadastro', ['as'=>'Escolaridades.formularioCadastro']);
+$routes->post('/Escolaridades/registrar', 'Escolaridades::registrar');
+$routes->get('/Escolaridades/formularioAlteracao/(:num)', 'Escolaridades::formularioAlteracao/$1', ['as'=>'Escolaridades.formularioAlteracao']);
+$routes->post('/Escolaridades/deletar', 'Escolaridades::deletar');
+
+$routes->get('/Aperfeicoamentos', 'Aperfeicoamentos::index');
+$routes->get('/Aperfeicoamentos/formularioCadastro', 'Aperfeicoamentos::formularioCadastro', ['as'=>'Aperfeicoamentos.formularioCadastro']);
+$routes->post('/Aperfeicoamentos/registrar', 'Aperfeicoamentos::registrar');
+$routes->get('/Aperfeicoamentos/formularioAlteracao/(:num)', 'Aperfeicoamentos::formularioAlteracao/$1', ['as'=>'Aperfeicoamentos.formularioAlteracao']);
+$routes->post('/Aperfeicoamentos/deletar', 'Aperfeicoamentos::deletar');
+
+$routes->get('/CriteriosAdicionais', 'CriteriosAdicionais::index');
+$routes->get('/CriteriosAdicionais/formularioCadastro', 'CriteriosAdicionais::formularioCadastro', ['as'=>'CriteriosAdicionais.formularioCadastro']);
+$routes->post('/CriteriosAdicionais/registrar', 'CriteriosAdicionais::registrar');
+$routes->get('/CriteriosAdicionais/formularioAlteracao/(:num)', 'CriteriosAdicionais::formularioAlteracao/$1', ['as'=>'CriteriosAdicionais.formularioAlteracao']);
+$routes->post('/CriteriosAdicionais/deletar', 'CriteriosAdicionais::deletar');
+
 
 $routes->get('/CargosExperiencias/formularioCargosExperiencia/(:num)', 'CargosExperiencias::formularioCargosExperiencia/$1', ['as'=>'CargosExperiencias.formularioCargosExperiencia']);
 $routes->post('/CargosExperiencias/registrarAssociacaoCargoExperiencia', 'CargosExperiencias::registrarAssociacaoCargoExperiencia');
@@ -104,6 +130,7 @@ $routes->post('/Candidatos/salvarEscolha', 'Candidatos::salvarEscolha');
 //$routes->get('/Candidatos/formularioConvocar/(:num)', 'Candidatos::formularioConvocar/$1', ['as'=>'Candidatos.formularioConvocar']);
 
 $routes->get('/Candidatos/(:num)/(:num)', 'Candidatos::index/$1/$2', ['as'=>'Candidatos']);
+$routes->get('/Candidatos/exportarXlsx/(:num)/(:num)', 'Candidatos::exportarXlsx/$1/$2', ['as'=>'Candidatos.exportarXlsx']);
 $routes->get('/Candidatos/formularioCadastro', 'Candidatos::formularioCadastro', ['as'=>'Candidatos.formularioCadastro']);
 $routes->post('/Candidatos/registrar', 'Candidatos::registrar');
 $routes->get('/Candidatos/exibirDados/(:num)/(:num)/(:num)', 'Candidatos::exibirDados/$1/$2/$3', ['as'=>'Candidatos.exibirDados']);

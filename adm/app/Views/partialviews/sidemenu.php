@@ -53,13 +53,6 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="<?php echo base_url('CargosDesempateConfig') ?>" class="nav-link">
-                            <i class="nav-icon fas fa-sliders-h"></i>
-                            <p>Critérios de Desempate</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
                         <a href="<?php echo base_url('Editais') ?>" class="nav-link">
                             <i class="nav-icon fas fa-bullhorn"></i>
                             <p>Editais</p>
@@ -92,6 +85,48 @@
                             <i class="nav-icon fas fa-building"></i>
                             <p>Secretarias</p>
                         </a>
+                    </li>
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-cogs"></i>
+                            <p>
+                                Painel de Controle
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('Experiencias') ?>" class="nav-link">
+                                    <i class="nav-icon fas fa-briefcase"></i>
+                                    <p>Experiências</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('Escolaridades') ?>" class="nav-link">
+                                    <i class="nav-icon fas fa-graduation-cap"></i>
+                                    <p>Escolaridades</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('Aperfeicoamentos') ?>" class="nav-link">
+                                    <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                                    <p>Cursos de Aperfeiçoamento</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('CriteriosAdicionais') ?>" class="nav-link">
+                                    <i class="nav-icon fas fa-clipboard-check"></i>
+                                    <p>Critérios Adicionais</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url('CargosDesempateConfig') ?>" class="nav-link">
+                                    <i class="nav-icon fas fa-sliders-h"></i>
+                                    <p>Critérios de Desempate</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
                     <li class="nav-item">

@@ -41,6 +41,7 @@ class Dashboard extends BaseController{
     
         $modelEditais = new EditaisModel();
         $editaisAtivos = $modelEditais->getEditaisAtivos();
+        $todosEditais = $modelEditais->getTodosEditais();
         $cargosComContagem = $modelEditais->getCargosComContagemCandidatosPorEditalAtivo();
         
 
@@ -49,6 +50,7 @@ class Dashboard extends BaseController{
             'camada2'           =>  $camada2,
             'pagina'            =>  $page,
             'editais'           =>  $editaisAtivos,
+            'todosEditais'      =>  $todosEditais,
             'cargosContagem'    =>  $cargosComContagem,
             'perfil'            =>  session('perfil'),
             'administrador'     =>  session('administrador'),

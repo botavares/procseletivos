@@ -47,12 +47,12 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Criterios de Desempate - <?= esc($cargoSelecionado->ds_nome_cargo) ?></h3>
+								<h3 class="card-title">Critérios de Desempate - <?= esc($cargoSelecionado->ds_nome_cargo) ?></h3>
 							</div>
 							<div class="card-body">
 								<?php if (empty($configuracoes)): ?>
 									<div class="alert alert-info">
-										<i class="fas fa-info-circle"></i> Nenhum criterio configurado. Use o formulario abaixo para adicionar.
+										<i class="fas fa-info-circle"></i> Nenhum critério configurado. Use o formulario abaixo para adicionar.
 									</div>
 								<?php else: ?>
 									<div class="table-responsive">
@@ -60,11 +60,11 @@
 											<thead>
 												<tr>
 													<th style="width: 60px;">Ordem</th>
-													<th>Tipo</th>
-													<th>Descricao</th>
-													<th>Referencia</th>
-													<th style="width: 120px;">Direcao</th>
-													<th style="width: 160px;">Acoes</th>
+															<th>Tipo</th>
+															<th>Descrição</th>
+													<th>Referência</th>
+														<th style="width: 120px;">Direção</th>
+													<th style="width: 160px;">Ações</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -75,7 +75,7 @@
 														<td><?= esc($config->descricao) ?></td>
 														<td><?= $config->idReferencia ? 'ID: ' . $config->idReferencia : '<em class="text-muted">Nao aplicavel</em>' ?></td>
 														<td><span class="badge badge-<?= $config->direcao === 'DESC' ? 'success' : 'warning' ?>">
-															<?= $config->direcao === 'DESC' ? 'Maior primeiro' : 'Menor primeiro' ?>
+															<?= $config->direcao === 'DESC' ? 'Maior primeiro (ou mais novo primeiro)' : 'Menor primeiro (ou mais velho primeiro)' ?>
 														</span></td>
 														<td>
 															<?php if ($i > 0): ?>
@@ -135,7 +135,7 @@
 
 										<div class="col-md-3">
 											<div class="form-group">
-												<label>Tipo de Criterio <span class="text-danger">*</span></label>
+												<label>Tipo de Critério <span class="text-danger">*</span></label>
 												<select class="form-control" name="ds_tipo_criterio" id="tipo-criterio" required onchange="atualizarReferencia()">
 													<option value="">-- Selecione --</option>
 													<option value="PONTUACAO_TOTAL">Pontuacao Total</option>
@@ -159,18 +159,18 @@
 
 										<div class="col-md-2">
 											<div class="form-group">
-												<label>Direcao <span class="text-danger">*</span></label>
-												<select class="form-control" name="ds_direcao" id="ds_direcao" required>
-													<option value="DESC">Maior primeiro</option>
-													<option value="ASC">Menor primeiro</option>
-												</select>
+											<label>Direção <span class="text-danger">*</span></label>
+											<select class="form-control" name="ds_direcao" id="ds_direcao" required>
+												<option value="DESC">Maior primeiro (ou mais novo primeiro)</option>
+												<option value="ASC">Menor primeiro (ou mais velho primeiro)</option>
+											</select>
 											</div>
 										</div>
 
 										<div class="col-md-3">
 											<div class="form-group">
-												<label>Descricao <span class="text-danger">*</span></label>
-												<input type="text" class="form-control" name="ds_descricao" id="ds_descricao" placeholder="Ex: Total de Pontos" required>
+											<label>Descrição <span class="text-danger">*</span></label>
+											<input type="text" class="form-control" name="ds_descricao" id="ds_descricao" placeholder="Ex: Total de Pontos" required>
 											</div>
 										</div>
 
@@ -226,7 +226,7 @@
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label>Tipo de Criterio <span class="text-danger">*</span></label>
+								<label>Tipo de Critério <span class="text-danger">*</span></label>
 								<select class="form-control" name="ds_tipo_criterio" id="edit_tipo_criterio" required onchange="atualizarReferenciaEdicao()">
 									<option value="">-- Selecione --</option>
 									<option value="PONTUACAO_TOTAL">Pontuacao Total</option>
@@ -249,16 +249,16 @@
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">
-								<label>Direcao <span class="text-danger">*</span></label>
+								<label>Direção <span class="text-danger">*</span></label>
 								<select class="form-control" name="ds_direcao" id="edit_direcao" required>
-									<option value="DESC">Maior primeiro</option>
-									<option value="ASC">Menor primeiro</option>
+									<option value="DESC">Maior primeiro (ou mais novo primeiro)</option>
+									<option value="ASC">Menor primeiro (ou mais velho primeiro)</option>
 								</select>
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">
-								<label>Descricao <span class="text-danger">*</span></label>
+								<label>Descrição <span class="text-danger">*</span></label>
 								<input type="text" class="form-control" name="ds_descricao" id="edit_descricao" required>
 							</div>
 						</div>
@@ -276,7 +276,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-					<button type="submit" class="btn btn-primary">Salvar Alteracoes</button>
+					<button type="submit" class="btn btn-primary">Salvar Alterações</button>
 				</div>
 			</form>
 		</div>

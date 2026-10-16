@@ -101,7 +101,7 @@ class ClassificacaoPersistService
                         'ds_valor_texto'      => $score['ds_valor_texto'] ?? null,
                     ];
                 }
-                $scoreModel->inserirBatch($batchScores);
+                $this->db->table('tb_classificacao_scores')->insertBatch($batchScores);
             }
         }
     }

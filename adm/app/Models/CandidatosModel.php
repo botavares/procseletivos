@@ -85,6 +85,7 @@ class CandidatosModel extends Model{
             'c.ds_nascimento',
             'c.ds_email',
             'c.ds_celular',
+            'c.fk_id_pne',
             'p.fk_id_edital',
             'p.fk_id_cargo',
             'p.ds_protocolo',

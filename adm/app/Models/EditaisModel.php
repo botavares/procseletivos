@@ -51,6 +51,12 @@ class EditaisModel extends Model{
             ->findAll();
     }
 
+    public function getTodosEditais()
+    {
+        return $this->orderBy('ds_numero_edital', 'ASC')
+            ->findAll();
+    }
+
     /**
      * Retorna cargos dos editais ativos com a contagem de candidatos inscritos
      */

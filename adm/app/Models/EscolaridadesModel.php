@@ -9,7 +9,7 @@ class EscolaridadesModel extends Model{
     protected $primaryKey = 'pk_id_escolaridade';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
-        'ds_nome_escolaridade','fk_id_nivel'
+        'ds_nome_escolaridade','ds_instrucao','fk_id_nivel'
     ];
 
     protected $returnType = 'object';

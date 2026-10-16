@@ -41,6 +41,16 @@
 								<a href="<?php echo base_url('Dashboard') ?>" class="btn btn-warning btn-sm mr-2">
 									<i class="fas fa-arrow-left"></i> Voltar
 								</a>
+								<button type="button" id="btnExportarPlanilha" class="btn btn-success btn-sm mr-2">
+									<i class="fas fa-file-excel"></i> Exportar Planilha
+								</button>
+								<button type="button" id="btnExportarPlanilhaPcd" class="btn btn-success btn-sm mr-2" style="display:none;">
+									<i class="fas fa-file-excel"></i> Exportar Planilha PCD
+								</button>
+								<div class="custom-control custom-switch ml-2" style="padding-top: 5px;">
+									<input type="checkbox" class="custom-control-input" id="togglePcd">
+									<label class="custom-control-label" for="togglePcd">Apenas PCD</label>
+								</div>
 							</div>
 						</div>
 
@@ -48,29 +58,31 @@
 							<table id="tabela-paginada" class="table table-sm table-bordered table-striped table-hover minhaDataTable mb-0">
 								<thead class="thead-light">
 									<tr>
-										<?php foreach ($titulosTabela as $tituloColuna): ?>
-											<th class="text-center"><?php echo esc($tituloColuna) ?></th>
-										<?php endforeach; ?>
+									<?php foreach ($titulosTabela as $tituloColuna): ?>
+										<th class="text-center"><?php echo esc($tituloColuna) ?></th>
+									<?php endforeach; ?>
+										<th class="text-center">PCD</th>
 										<th class="text-center" style="width: 100px;">Exibir Dados</th>
 										<th class="text-center" style="width: 100px;">Situação</th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php foreach ($candidatos as $valueCandidato): ?>
-										<tr>
-											<td align="center"><?php echo formatarNumeroEdital($valueCandidato['ds_numero_edital']) ?></td>
-											<td align="center"><?php echo date('d/m/Y', strtotime($valueCandidato['ds_data_cadastro'])) ?></td>
-											<td align="left" style="min-width: 280px; white-space: nowrap;"><?php echo esc($valueCandidato['ds_nome']) ?></td>
-											<td align="center"><?php echo date('d/m/Y', strtotime($valueCandidato['ds_nascimento'])) ?></td>
-											<td align="left"><?php echo mask($valueCandidato['ds_celular'], '(##) #####-####') ?></td>
-										<td align="left"><?php echo esc($valueCandidato['ds_email']) ?></td>
-										<td class="text-center">
-											<a class="btn btn-secondary btn-sm" 
-											   href="<?php echo base_url('Recursos/' . $valueCandidato['fk_id_edital'] . '/' . $valueCandidato['fk_id_cargo'] . '/' . $valueCandidato['pk_id_cadastrado']) ?>"
-											   title="Recursos">
-												<i class="fas fa-gavel"></i>
-											</a>
-										</td>
+										<tr data-pcd="<?= (($valueCandidato['ds_possui_pne'] ?? 0) == 1) ? '1' : '0' ?>">
+                                        <td align="center"><?php echo formatarNumeroEdital($valueCandidato['ds_numero_edital']) ?></td>
+                                        <td align="center"><?php echo date('d/m/Y', strtotime($valueCandidato['ds_data_cadastro'])) ?></td>
+                                        <td align="left" style="min-width: 280px; white-space: nowrap;"><?php echo esc($valueCandidato['ds_nome']) ?></td>
+                                        <td align="center"><?php echo date('d/m/Y', strtotime($valueCandidato['ds_nascimento'])) ?></td>
+                                        <td align="left"><?php echo mask($valueCandidato['ds_celular'], '(##) #####-####') ?></td>
+                                        <td align="left"><?php echo esc($valueCandidato['ds_email']) ?></td>
+                                        <td class="text-center">
+                                            <a class="btn btn-secondary btn-sm" 
+                                               href="<?php echo base_url('Recursos/' . $valueCandidato['fk_id_edital'] . '/' . $valueCandidato['fk_id_cargo'] . '/' . $valueCandidato['pk_id_cadastrado']) ?>"
+                                               title="Recursos">
+                                                <i class="fas fa-gavel"></i>
+                                            </a>
+                                        </td>
+                                        <td class="text-center"><?= (($valueCandidato['ds_possui_pne'] ?? 0) == 1) ? 'SIM' : 'NÃO' ?></td>
 										<td class="text-center">
 											<a class="btn btn-info btn-sm" 
 											   href="<?php echo base_url('Candidatos/exibirDados/' . $valueCandidato['fk_id_edital'] . '/' . $valueCandidato['fk_id_cargo'] . '/' . $valueCandidato['pk_id_cadastrado']) ?>"
@@ -96,3 +108,45 @@
 		</div>
 	</section>
 </div>
+
+<script>
+document.getElementById('btnExportarPlanilha').addEventListener('click', function () {
+	window.location.href = '<?php echo base_url("Candidatos/exportarXlsx/" . $idEdital . "/" . $idCargo) ?>';
+});
+
+document.getElementById('btnExportarPlanilhaPcd').addEventListener('click', function () {
+	window.location.href = '<?php echo base_url("Candidatos/exportarXlsx/" . $idEdital . "/" . $idCargo . "?pcd=1") ?>';
+});
+
+$(document).ready(function () {
+	// Captura o índice da coluna PCD
+	const tabela = document.getElementById('tabela-paginada');
+	let pcdColIndex = -1;
+	if (tabela.rows.length > 0) {
+		const headerCells = tabela.rows[0].cells;
+		for (let i = 0; i < headerCells.length; i++) {
+			if ((headerCells[i].textContent || '').trim() === 'PCD') {
+				pcdColIndex = i;
+				break;
+			}
+		}
+	}
+
+	if (pcdColIndex >= 0) {
+		$.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+			if (!$('#togglePcd').is(':checked')) return true;
+			const valor = (data[pcdColIndex] || '').trim();
+			return valor === 'SIM';
+		});
+	}
+
+	document.getElementById('togglePcd').addEventListener('change', function () {
+		const mostrarApenasPcd = this.checked;
+		$('#tabela-paginada').DataTable().draw();
+
+		// Alterna visibilidade dos botões
+		document.getElementById('btnExportarPlanilha').style.display = mostrarApenasPcd ? 'none' : '';
+		document.getElementById('btnExportarPlanilhaPcd').style.display = mostrarApenasPcd ? '' : 'none';
+	});
+});
+</script>

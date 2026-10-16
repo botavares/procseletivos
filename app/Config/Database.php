@@ -48,7 +48,7 @@ class Database extends Config
      * This database connection is used when
      * running PHPUnit database tests.
      */
-    public array $tests = [
+    /*public array $tests = [
         'DSN'         => '',
         'hostname'    => '127.0.0.1',
         'username'    => '',
@@ -68,7 +68,7 @@ class Database extends Config
         'port'        => 3306,
         'foreignKeys' => true,
         'busyTimeout' => 1000,
-    ];
+    ];*/
 
     public function __construct()
     {

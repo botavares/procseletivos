@@ -47,3 +47,31 @@ Options All -Indexes
 # Disable server signature start
 	ServerSignature Off
 # Disable server signature end
+
+# ----------------------------------------------------------------------
+# Bloqueia acesso a arquivos sensíveis (.env, logs, configs, etc.)
+# ----------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	
+	# Bloqueia acesso ao .env e variações (.env.local, .env.production, etc.)
+	RewriteCond %{REQUEST_FILENAME} -f
+	RewriteCond %{REQUEST_URI} \.env [NC]
+	RewriteRule ^ - [F,L]
+	
+	# Bloqueia acesso a outros arquivos sensíveis
+	RewriteCond %{REQUEST_FILENAME} -f
+	RewriteCond %{REQUEST_URI} (\.gitignore|\.gitattributes|composer\.(json|lock)|package(-lock)?\.json|README\.md|CHANGELOG\.md|LICENSE|phpunit\.xml|spark|\.editorconfig|\.htaccess) [NC]
+	RewriteRule ^ - [F,L]
+</IfModule>
+
+# Bloqueio adicional via mod_access (se disponível)
+<FilesMatch "^\.env">
+	Order allow,deny
+	Deny from all
+</FilesMatch>
+
+<FilesMatch "^\.(env|gitignore|gitattributes)$">
+	Order allow,deny
+	Deny from all
+</FilesMatch>

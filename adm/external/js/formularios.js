@@ -539,7 +539,7 @@ $(document).ready(function() {
         $('#btn-gerar-pdf, #btn-gerar-csv').addClass('disabled').attr('href', '#');
         
         $.ajax({
-            url: path + 'Editais/editaisAtivos',
+            url: path + 'Editais/editaisTodos',
             dataType: 'json',
             type: 'GET',
             success: function(response) {
@@ -549,7 +549,8 @@ $(document).ready(function() {
                     for (var i = 0; i < response.editais.length; i++) {
                         var num = response.editais[i].ds_numero_edital;
                         var fmt = num.substring(0, num.length - 4) + '/' + num.substring(num.length - 4);
-                        options += '<option value="' + response.editais[i].pk_id_edital + '">' + fmt + '</option>';
+                        var status = (response.editais[i].ds_status == 1) ? ' (Ativo)' : ' (Inativo)';
+                        options += '<option value="' + response.editais[i].pk_id_edital + '">' + fmt + status + '</option>';
                     }
                 }
                 $('#edital-classificacao').html(options);

@@ -52,6 +52,8 @@ class Classificacoes extends BaseController{
         // Verifica se há desempate dinâmico configurado
         $desempateConfigService = new DesempateConfigService();
         $configDesempate = $desempateConfigService->buscarConfiguracao((int)$idCargo);
+        // Remove PONTUACAO_TOTAL da exibição (já existe coluna fixa "Total de Pontos")
+        $configDesempate = array_values(array_filter($configDesempate, fn($c) => $c->tipoCriterio !== 'PONTUACAO_TOTAL'));
         $usaDesempateDinamico = !empty($configDesempate);
 
         // Colunas dinâmicas baseadas nas configurações do cargo
@@ -226,6 +228,8 @@ class Classificacoes extends BaseController{
         // Detecta desempate dinâmico (mesma lógica do index)
         $desempateConfigService = new DesempateConfigService();
         $configDesempate = $desempateConfigService->buscarConfiguracao((int)$cargo);
+        // Remove PONTUACAO_TOTAL da exibição (já existe coluna fixa "Total de Pontos")
+        $configDesempate = array_values(array_filter($configDesempate, fn($c) => $c->tipoCriterio !== 'PONTUACAO_TOTAL'));
         $usaDesempateDinamico = !empty($configDesempate);
 
         $spreadsheet = new Spreadsheet();
@@ -425,6 +429,8 @@ class Classificacoes extends BaseController{
         // Detecta desempate dinâmico
         $desempateConfigService = new DesempateConfigService();
         $configDesempate = $desempateConfigService->buscarConfiguracao((int)$cargo);
+        // Remove PONTUACAO_TOTAL da exibição (já existe coluna fixa "Total de Pontos")
+        $configDesempate = array_values(array_filter($configDesempate, fn($c) => $c->tipoCriterio !== 'PONTUACAO_TOTAL'));
         $usaDesempateDinamico = !empty($configDesempate);
 
         $colunasDinamicas = [];

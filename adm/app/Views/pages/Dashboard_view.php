@@ -213,7 +213,7 @@
                 <label for="edital">Edital</label>
                 <select class="form-control select-edital" data-target="#select-cargo" name="edital" required>
                     <option value="">Selecione um Edital</option>
-                    <?php foreach ($editais as $edital): ?>
+                    <?php foreach ($todosEditais as $edital): ?>
                         <option value="<?= $edital->pk_id_edital; ?>">
                             <?= substr_replace($edital->ds_numero_edital, '/', -4, 0) ?>
                         </option>
@@ -253,9 +253,10 @@
                 <label for="edital">Edital</label>
                 <select class="form-control select-edital" data-target="#select-cargo-classificacoes" name="edital" required>
                     <option value="">Selecione um Edital</option>
-                    <?php foreach ($editais as $edital): ?>
+                    <?php foreach ($todosEditais as $edital): ?>
                         <option value="<?= $edital->pk_id_edital; ?>">
                             <?= substr_replace($edital->ds_numero_edital, '/', -4, 0) ?>
+                            <?= ($edital->ds_status == 1) ? ' (Ativo)' : ' (Inativo)' ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
