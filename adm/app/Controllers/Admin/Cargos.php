@@ -17,13 +17,21 @@ use App\Services\Cargos\CargoGridService;
 class Cargos extends BaseController{
 
     protected $cargosData;
-    
+    protected $cargosModel;
+    protected $escolaridadesModel;
+    protected $cargosEscolaridadesModel;
+    protected $cargoGridService;
 
     public function __construct(){
-        $modelCargos = new CargosModel();
+        parent::__construct();
+        
+        $this->cargosModel             = new \App\Models\CargosModel();
+        $this->escolaridadesModel        = new \App\Models\EscolaridadesModel();
+        $this->cargosEscolaridadesModel = new \App\Models\CargosEscolaridadesModel();
+        $this->cargoGridService         = service('cargoGridService');
         
         $this->cargosData = [
-           'cargos' => $modelCargos->orderBy('ds_nome_cargo', 'asc')->findAll(),
+           'cargos' => $this->cargosModel->orderBy('ds_nome_cargo', 'asc')->findAll(),
         ];
       
     }
@@ -39,8 +47,7 @@ class Cargos extends BaseController{
         $this->validarSessao();
         $this->validarView($camada1, $camada2, $page);
 
-        $gridService = new CargoGridService();
-        $grid = $gridService->cargos();
+        $grid = $this->cargoGridService->cargos();
 
         if (!is_array($grid) || !isset($grid['data'], $grid['columns'])) {
             throw new \RuntimeException('Grid retornado em formato inválido');
@@ -85,7 +92,7 @@ class Cargos extends BaseController{
     public function formularioCargosEscolaridade($id, $camada1 = 'pages', $camada2 = 'cadastros', $page = 'formCargosEscolaridade'){
         $this->validarSessao();
 
-        $cargo = (new CargosModel())->find($id);
+        $cargo = $this->cargosModel->find($id);
         
         if (!$cargo) {
             return redirect()
@@ -93,10 +100,10 @@ class Cargos extends BaseController{
                 ->with('mensagemError', 'Cargo não encontrado');
         }
 
-        $escolaridades = (new EscolaridadesModel())->listarEscolaridadesOrdenadas();
+        $escolaridades = $this->escolaridadesModel->listarEscolaridadesOrdenadas();
         
         // Busca os dados da associação cargo + escolaridade (se existir)
-        $cargoEscolaridade = (new CargosEscolaridadesModel())
+        $cargoEscolaridade = $this->cargosEscolaridadesModel
                                 ->where('fk_id_cargo', $id)
                                 ->first();
         if($cargoEscolaridade){
@@ -106,7 +113,7 @@ class Cargos extends BaseController{
         }
 
         // Busca TODAS as escolaridades já associadas a esse cargo
-        $escolaridadesDoCargo = (new CargosEscolaridadesModel())->listarEscolaridadesDoCargo($id);
+        $escolaridadesDoCargo = $this->cargosEscolaridadesModel->listarEscolaridadesDoCargo($id);
 
         return $this->renderFormulario([
                                         'id'                    => $id,
@@ -141,7 +148,7 @@ class Cargos extends BaseController{
         $dados = null;
 
         if ($config['acao'] === 'update' && $config['id']) {
-            $dados = (new CargosModel())->find($config['id']);
+            $dados = $this->cargosModel->find($config['id']);
         }
 
         // Dados padrão da view
@@ -193,7 +200,7 @@ class Cargos extends BaseController{
             $acao = $dados['acao'];
             $cargoDto = $dados['cargo'];
 
-            $service = new CargoService();
+            $service = service('cargoService');
 
             if ($acao === 'update') {
                 $service->atualizar($cargoDto);
@@ -220,7 +227,7 @@ class Cargos extends BaseController{
                 throw new \InvalidArgumentException('Cargo inválido');
             }
 
-            (new CargoService())->deletar($id);
+            service('cargoService')->deletar($id);
 
             return redirect()
                 ->route('Cargos')

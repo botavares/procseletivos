@@ -30,6 +30,34 @@ class EditaisModel extends Model
         'ds_data_termino' => 'required|string',
         'ds_status' => 'required|integer',
     ];
+    public function getEditaisAtivos()
+    {
+        $this->select('*');
+        $this->join('tb_editais_cargos', 'tb_editais.pk_id_edital = tb_editais_cargos.fk_id_edital');
+        $this->join('tb_cargos', 'tb_cargos.pk_id_cargo = tb_editais_cargos.fk_id_cargo');
+        $this->join('tb_secretarias', 'tb_secretarias.pk_id_secretaria = tb_editais.fk_id_secretaria');
+        $this->where('ds_status', EditalStatusEnum::ATIVO->value);
+        $this->orderBy('ds_data_inicial', 'DESC');
+        return $this->findAll();
+        
+    }
+    public function getEditaisVigentes()
+    {
+        $this->select('*');
+        $this->join('tb_editais_cargos', 'tb_editais.pk_id_edital = tb_editais_cargos.fk_id_edital');
+        $this->join('tb_cargos', 'tb_cargos.pk_id_cargo = tb_editais_cargos.fk_id_cargo');
+        $this->join('tb_secretarias', 'tb_secretarias.pk_id_secretaria = tb_editais.fk_id_secretaria');
+        $this->where('ds_status', EditalStatusEnum::VIGENTE->value);
+        $this->orderBy('ds_data_inicial', 'DESC');
+        return $this->findAll();
+    }
+
+
+
+
+
+
+
 
     public function candidatosPorEdital($id)
     {

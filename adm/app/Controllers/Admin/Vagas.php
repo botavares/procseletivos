@@ -11,25 +11,30 @@ use App\Models\CursosModel;
 class Vagas extends BaseController{
 
     protected $setoresData;
-    
+    protected $setoresModel;
+    protected $secretariasModel;
+    protected $vagasModel;
+    protected $cursosModel;
 
     public function __construct(){
-        $modelSetores = new SetoresModel();
-        $modelSecretarias = new SecretariasModel();
-        $modelVagas = new VagasModel();
-        $modelCursos = new CursosModel();
+        parent::__construct();
+        
+        $this->setoresModel     = new \App\Models\SetoresModel();
+        $this->secretariasModel = new \App\Models\SecretariasModel();
+        $this->vagasModel       = new \App\Models\VagasModel();
+        $this->cursosModel      = new \App\Models\CursosModel();
         
         $this->vagasData = [
-           'setores'   => $modelSetores->setoresSecretarias(),
-           'secretarias' => $modelSecretarias->orderBy('ds_nome_secretaria', 'asc')->findAll(),
-           'vagas'      => $modelVagas->vagas(),
-           'cursos'     => $modelCursos->orderBy('ds_nome_curso', 'asc')->findAll(),
+           'setores'     => $this->setoresModel->setoresSecretarias(),
+           'secretarias' => $this->secretariasModel->orderBy('ds_nome_secretaria', 'asc')->findAll(),
+           'vagas'       => $this->vagasModel->vagas(),
+           'cursos'      => $this->cursosModel->orderBy('ds_nome_curso', 'asc')->findAll(),
         ];
       
     }
 
     public function index($camada1 = '',$camada2 = 'pages', $page = 'Vagas') {
-        if (! is_file(APPPATH . 'Views/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
+        if (! is_file(APPPATH . 'Views/Admin/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
             // Página não encontrada!
             throw new PageNotFoundException("página não econtrada: ".$page);
         }
@@ -56,7 +61,7 @@ class Vagas extends BaseController{
 
     public function formularioCadastro($camada1 = 'pages',$camada2 = 'cadastros', $page = 'formVagas'){
         
-        if (! is_file(APPPATH . 'Views/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
+        if (! is_file(APPPATH . 'Views/Admin/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
             // Página não encontrada!
             throw new PageNotFoundException("página não econtrada: ".$page);
         }
@@ -82,7 +87,7 @@ class Vagas extends BaseController{
     }
 
     public function formularioAlteracao($id,$camada1 = 'pages',$camada2 = 'alteracoes', $page = 'formVagas'){
-        if (! is_file(APPPATH . 'Views/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
+        if (! is_file(APPPATH . 'Views/Admin/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
             // Página não encontrada!
             throw new PageNotFoundException("página não econtrada: ".$page);
         }
@@ -90,9 +95,7 @@ class Vagas extends BaseController{
         if(!checklogged()){
             return redirect()->route('home')->with('error','Sua sessão expirou');
         }
-        $modelVagas = new VagasModel();
-        
-        $dados = $modelVagas->vagasSetorCurso($id);
+        $dados = $this->vagasModel->vagasSetorCurso($id);
         
       
         $parametros = [
@@ -112,8 +115,6 @@ class Vagas extends BaseController{
     public function registrar(){
 
         if($this->request->getMethod() === 'post'){
-            //Instanciar Model
-            $model = new \App\Models\VagasModel();
             $acao = $this->request->getPost('action');
 
             $arrayRegistro = array(
@@ -126,20 +127,20 @@ class Vagas extends BaseController{
             );
 
             if($acao ==="create"){
-                $duplicidade = $model
+                $duplicidade = $this->vagasModel
                             ->where('fk_id_setor', $this->request->getPost('pk_id_setor'))
                             ->where('fk_id_curso', $this->request->getPost('pk_id_curso'))
                             ->first();
                 
                 if(empty($duplicidade)){
-                    if($model->insert($arrayRegistro)){
+                    if($this->vagasModel->insert($arrayRegistro)){
                         return redirect()->route('Vagas')->with('mensagemSuccess','Registro gravado com sucesso');
                     }else{
 
-                        foreach ($model->errors() as $campo => $erro) {
+                        foreach ($this->vagasModel->errors() as $campo => $erro) {
                             $this->session->setFlashData($campo, $erro);
                         }
-                        return redirect()->route('Vagas.formularioCadastro')->back()->withInput()->with('error',$model->errors());
+                        return redirect()->route('Vagas.formularioCadastro')->back()->withInput()->with('error',$this->vagasModel->errors());
                     }
                 }else{
                     return redirect()->route('Vagas.formularioCadastro')->with('mensagemError','Vagas para esse setor e curso já cadastradas');
@@ -147,10 +148,10 @@ class Vagas extends BaseController{
             }
             if($acao ==="update"){
                 $id = $this->request->getPost('pk_id_vaga');
-                if($model->update($id,$arrayRegistro)){
+                if($this->vagasModel->update($id,$arrayRegistro)){
                     return redirect()->route('Vagas')->with('mensagemSuccess','Registro alterado com sucesso');
                 }else{
-                    return redirect()->route('Vagas')->with('error',$model->errors());
+                    return redirect()->route('Vagas')->with('error',$this->vagasModel->errors());
                 };
             }
         }
@@ -165,8 +166,7 @@ class Vagas extends BaseController{
             ->setJSON(['erro' => 'curso não informado']);
     }
 
-    $modelVagas = new VagasModel();
-    $setores = $modelVagas->setoresComVagas($idCurso);
+    $setores = $this->vagasModel->setoresComVagas($idCurso);
 
     return $this->response->setJSON([
         'setores' => $setores,
@@ -181,8 +181,7 @@ class Vagas extends BaseController{
         $id = $this->request->getPost('chavePrimaria');
         //verificar se existe manifestos com esse setor
         
-        $model = new VagasModel();
-        if($model->delete($id)){
+        if($this->vagasModel->delete($id)){
             return redirect()->route('Vagas')->with('mensagemSuccess','Registro excluído com sucesso');
         }else{
             return redirect()->route('Vagas')->with('mensagemError','Erro ao excluir registro');

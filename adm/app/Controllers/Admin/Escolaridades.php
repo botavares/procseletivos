@@ -13,6 +13,15 @@ use App\Services\Escolaridades\EscolaridadeGridService;
 
 class Escolaridades extends BaseController
 {
+    protected $escolaridadesModel;
+    protected $niveisEscolaridadeModel;
+
+    public function __construct() {
+        parent::__construct();
+        $this->escolaridadesModel       = new \App\Models\EscolaridadesModel();
+        $this->niveisEscolaridadeModel = new \App\Models\NiveisEscolaridadeModel();
+    }
+
     public function index($camada1 = '', $camada2 = 'pages', $page = 'Escolaridades')
     {
         return $this->listarParaGrid($camada1, $camada2, $page);
@@ -23,8 +32,7 @@ class Escolaridades extends BaseController
         $this->validarSessao();
         $this->validarView($camada1, $camada2, $page);
 
-        $gridService = new EscolaridadeGridService();
-        $grid = $gridService->escolaridades();
+        $grid = service('escolaridadeGridService')->escolaridades();
 
         if (!is_array($grid) || !isset($grid['data'], $grid['columns'])) {
             throw new \RuntimeException('Grid retornado em formato inválido');
@@ -77,10 +85,10 @@ class Escolaridades extends BaseController
 
         $dados = null;
         if ($config['acao'] === 'update' && $config['id']) {
-            $dados = (new EscolaridadesModel())->find($config['id']);
+            $dados = $this->escolaridadesModel->find($config['id']);
         }
 
-        $niveis = (new NiveisEscolaridadeModel())->findAll();
+        $niveis = $this->niveisEscolaridadeModel->findAll();
 
         $viewData = [
             'camada1' => $config['camada1'],
@@ -111,7 +119,7 @@ class Escolaridades extends BaseController
             $acao = $dados['acao'];
             $dto = $dados['escolaridade'];
 
-            $service = new EscolaridadeService();
+            $service = service('escolaridadeService');
 
             if ($acao === 'update') {
                 $service->atualizar($dto);
@@ -138,7 +146,7 @@ class Escolaridades extends BaseController
                 throw new \InvalidArgumentException('Escolaridade inválida');
             }
 
-            (new EscolaridadeService())->deletar($id);
+            service('escolaridadeService')->deletar($id);
 
             return redirect()
                 ->route('Escolaridades')

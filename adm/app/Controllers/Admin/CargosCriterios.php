@@ -15,15 +15,20 @@ use App\Services\Cargos\CargosCriteriosService;
 class CargosCriterios extends BaseController{
 
     protected $CriteriosData;
-    
+    protected $cargosModel;
+    protected $criteriosAdicionaisModel;
+    protected $cargosCriteriosAdicionaisModel;
 
     public function __construct(){
-        $modelCargos = new CargosModel();
-        $modelCriterios = new CriteriosAdicionaisModel();
+        parent::__construct();
+
+        $this->cargosModel                  = new \App\Models\CargosModel();
+        $this->criteriosAdicionaisModel     = new \App\Models\CriteriosAdicionaisModel();
+        $this->cargosCriteriosAdicionaisModel = new \App\Models\CargosCriteriosAdicionaisModel();
 
         $this->cargosData = [
-           'cargos' => $modelCargos->orderBy('ds_nome_cargo', 'asc')->findAll(),
-           'Criterios' => $modelCriterios->orderBy('ds_nome_criterio', 'asc')->findAll(),
+           'cargos' => $this->cargosModel->orderBy('ds_nome_cargo', 'asc')->findAll(),
+           'Criterios' => $this->criteriosAdicionaisModel->orderBy('ds_nome_criterio', 'asc')->findAll(),
         ];
       
     }
@@ -31,7 +36,7 @@ class CargosCriterios extends BaseController{
     public function formularioCargosCriterio($id, $camada1 = 'pages', $camada2 = 'cadastros', $page = 'formCargosCriterios'){
         $this->validarSessao();
 
-        $cargo = (new CargosModel())->find($id);
+        $cargo = $this->cargosModel->find($id);
         
         if (!$cargo) {
             return redirect()
@@ -39,14 +44,14 @@ class CargosCriterios extends BaseController{
                 ->with('mensagemError', 'Cargo não encontrado');
         }
 
-        $Criterios = (new CriteriosAdicionaisModel())->listarCriteriosOrdenados();
+        $Criterios = $this->criteriosAdicionaisModel->listarCriteriosOrdenados();
         
         // Form sempre inicia em branco para nova associação
         $action = 'create';
         $cargoCriterio = null;
 
         // Busca TODAS as Criterios já associadas a esse cargo
-        $CriteriosDoCargo = (new CargosCriteriosAdicionaisModel())->listarCriteriosDoCargo($id);
+        $CriteriosDoCargo = $this->cargosCriteriosAdicionaisModel->listarCriteriosDoCargo($id);
 
         return $this->renderFormulario([
                                         'id'                    => $id,
@@ -81,7 +86,7 @@ class CargosCriterios extends BaseController{
         $dados = null;
 
         if ($config['acao'] === 'update' && $config['id']) {
-            $dados = (new CargosModel())->find($config['id']);
+            $dados = $this->cargosModel->find($config['id']);
         }
 
         // Dados padrão da view
@@ -112,7 +117,7 @@ class CargosCriterios extends BaseController{
     public function buscarAssociacao($idAssociacao){
         $this->validarSessao();
 
-        $associacao = (new CargosCriteriosAdicionaisModel())->find($idAssociacao);
+        $associacao = $this->cargosCriteriosAdicionaisModel->find($idAssociacao);
 
         if (!$associacao) {
             return $this->response->setStatusCode(404)->setJSON(['erro' => 'Associação não encontrada']);
@@ -131,8 +136,7 @@ class CargosCriterios extends BaseController{
 
             $dto = $dados['cargosCriterios'];
 
-            $service = new CargosCriteriosService();
-            $service->salvar($dto);
+            service('cargosCriteriosService')->salvar($dto);
 
             return redirect()
                 ->route('CargosCriterios.formularioCargosCriterio', [$dto->fk_id_cargo])
@@ -156,7 +160,7 @@ class CargosCriterios extends BaseController{
                 throw new \InvalidArgumentException('Associação inválida');
             }
 
-            (new CargosCriteriosService())->deletar($id);
+            service('cargosCriteriosService')->deletar($id);
 
             return redirect()
                 ->back()

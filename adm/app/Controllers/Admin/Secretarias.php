@@ -9,22 +9,25 @@ use App\Models\SetoresModel;
 
 class Secretarias extends BaseController{
 
-    protected $secretariaDatas;
-    
+    protected $secretariasData;
+    protected $secretariasModel;
+    protected $setoresModel;
 
     public function __construct(){
-        $model = new SecretariasModel();
-
+        parent::__construct();
+        
+        $this->secretariasModel = new \App\Models\SecretariasModel();
+        $this->setoresModel     = new \App\Models\SetoresModel();
         
         $this->secretariasData = [
-           'secretarias'=> $model->select()->orderBy('ds_nome_secretaria', 'asc')->findAll(),
+           'secretarias'=> $this->secretariasModel->select()->orderBy('ds_nome_secretaria', 'asc')->findAll(),
            
         ];
       
     }
 
     public function index($camada1 = '',$camada2 = 'pages', $page = 'Secretarias') {
-        if (! is_file(APPPATH . 'Views/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
+        if (! is_file(APPPATH . 'Views/Admin/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
             // Página não encontrada!
             throw new PageNotFoundException("página não econtrada: ".$page);
         }
@@ -51,7 +54,7 @@ class Secretarias extends BaseController{
     }
 
     public function formularioCadastro($camada1 = 'pages',$camada2 = 'cadastros', $page = 'formSecretarias'){
-        if (! is_file(APPPATH . 'Views/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
+        if (! is_file(APPPATH . 'Views/Admin/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
             // Página não encontrada!
             throw new PageNotFoundException("página não econtrada: ".$page);
         }
@@ -73,7 +76,7 @@ class Secretarias extends BaseController{
     }
 
     public function formularioAlteracao($id,$camada1 = 'pages',$camada2 = 'alteracoes', $page = 'formSecretarias'){
-        if (! is_file(APPPATH . 'Views/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
+        if (! is_file(APPPATH . 'Views/Admin/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
             // Página não encontrada!
             throw new PageNotFoundException("página não econtrada: ".$page);
         }
@@ -81,8 +84,7 @@ class Secretarias extends BaseController{
         if(!checklogged()){
             return redirect()->route('home')->with('error','Sua sessão expirou');
         }
-        $modelSecretarias = new SecretariasModel();
-        $dados = $modelSecretarias->where('pk_id_secretaria', $id)->first();
+        $dados = $this->secretariasModel->where('pk_id_secretaria', $id)->first();
       
         $parametros = [
             'camada1'       =>  $camada1,
@@ -99,8 +101,6 @@ class Secretarias extends BaseController{
     public function registrar(){
 
         if($this->request->getMethod() === 'post'){
-            //Instanciar Model
-            $model = new \App\Models\SecretariasModel();
             $acao = $this->request->getPost('action');
 
             $telefone =  preg_replace('/\D/', '', $this->request->getPost('ds_telefone_secretaria'));
@@ -115,19 +115,19 @@ class Secretarias extends BaseController{
             );
 
             if($acao ==="create"){
-                if($model->insert($arrayRegistro)){
+                if($this->secretariasModel->insert($arrayRegistro)){
                     return redirect()->route('Secretarias')->with('mensagemSuccess','Registro gravado com sucesso');
                 }else{
-                    foreach ($model->errors() as $campo => $erro) {
+                    foreach ($this->secretariasModel->errors() as $campo => $erro) {
                         $this->session->setFlashData($campo, $erro);
                     }
-                    return redirect()->route('Secretarias.formularioCadastro')->back()->withInput()->with('error',$model->errors());
+                    return redirect()->route('Secretarias.formularioCadastro')->back()->withInput()->with('error',$this->secretariasModel->errors());
                 }
             }
             if($acao ==="update"){
                 
                 $id = $this->request->getPost('pk_id_secretaria');
-                if($model->update($id,$arrayRegistro)){
+                if($this->secretariasModel->update($id,$arrayRegistro)){
                     return redirect()->route('Secretarias')->with('mensagemSuccess','Registro alterado com sucesso.');
                 }else{
                     return redirect()->route('Secretarias')->with('mensagemError','O registro não pode ser alterado.');
@@ -144,16 +144,14 @@ class Secretarias extends BaseController{
     
     public function deletar(){
         //Verificar se existe setores denpendentes dessa secretaria
-        $modelSetores = new SetoresModel();
         $id = $this->request->getPost('chavePrimaria');
-        $setores = $modelSetores->where('fk_id_secretaria', $this->request->getPost('chavePrimaria'))->first();
+        $setores = $this->setoresModel->where('fk_id_secretaria', $this->request->getPost('chavePrimaria'))->first();
         
         if($setores){
             return redirect()->route('Secretarias')->with('mensagemError','Secretaria possui setores cadastrados, impossível excluir');
             
         }else{}
-        $modelSecretarias = new SecretariasModel();
-        if($modelSecretarias->delete($id)){
+        if($this->secretariasModel->delete($id)){
             return redirect()->route('Secretarias')->with('mensagemSuccess','Registro excluído com sucesso');
         }else{
             return redirect()->route('Secretarias')->with('mensagemError','Erro ao excluir registro');

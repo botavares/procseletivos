@@ -15,15 +15,20 @@ use App\Services\Cargos\CargosEscolaridadesService;
 class CargosEscolaridades extends BaseController{
 
     protected $escolaridadesData;
-    
+    protected $cargosModel;
+    protected $escolaridadesModel;
+    protected $cargosEscolaridadesModel;
 
     public function __construct(){
-        $modelCargos = new CargosModel();
-        $modelEscolaridades = new EscolaridadesModel();
+        parent::__construct();
+
+        $this->cargosModel              = new \App\Models\CargosModel();
+        $this->escolaridadesModel       = new \App\Models\EscolaridadesModel();
+        $this->cargosEscolaridadesModel = new \App\Models\CargosEscolaridadesModel();
 
         $this->cargosData = [
-           'cargos' => $modelCargos->orderBy('ds_nome_cargo', 'asc')->findAll(),
-           'escolaridades' => $modelEscolaridades->orderBy('ds_nome_escolaridade', 'asc')->findAll(),
+           'cargos' => $this->cargosModel->orderBy('ds_nome_cargo', 'asc')->findAll(),
+           'escolaridades' => $this->escolaridadesModel->orderBy('ds_nome_escolaridade', 'asc')->findAll(),
         ];
       
     }
@@ -31,7 +36,7 @@ class CargosEscolaridades extends BaseController{
     public function formularioCargosEscolaridade($id, $camada1 = 'pages', $camada2 = 'cadastros', $page = 'formCargosEscolaridade'){
         $this->validarSessao();
 
-        $cargo = (new CargosModel())->find($id);
+        $cargo = $this->cargosModel->find($id);
         
         if (!$cargo) {
             return redirect()
@@ -39,14 +44,14 @@ class CargosEscolaridades extends BaseController{
                 ->with('mensagemError', 'Cargo não encontrado');
         }
 
-        $escolaridades = (new EscolaridadesModel())->listarEscolaridadesOrdenadas();
+        $escolaridades = $this->escolaridadesModel->listarEscolaridadesOrdenadas();
         
         // Form sempre inicia em branco para nova associação
         $action = 'create';
         $cargoEscolaridade = null;
 
         // Busca TODAS as escolaridades já associadas a esse cargo
-        $escolaridadesDoCargo = (new CargosEscolaridadesModel())->listarEscolaridadesDoCargo($id);
+        $escolaridadesDoCargo = $this->cargosEscolaridadesModel->listarEscolaridadesDoCargo($id);
 
         return $this->renderFormulario([
                                         'id'                    => $id,
@@ -81,7 +86,7 @@ class CargosEscolaridades extends BaseController{
         $dados = null;
 
         if ($config['acao'] === 'update' && $config['id']) {
-            $dados = (new CargosModel())->find($config['id']);
+            $dados = $this->cargosModel->find($config['id']);
         }
 
         // Dados padrão da view
@@ -112,7 +117,7 @@ class CargosEscolaridades extends BaseController{
     public function buscarAssociacao($idAssociacao){
         $this->validarSessao();
 
-        $associacao = (new CargosEscolaridadesModel())->find($idAssociacao);
+        $associacao = $this->cargosEscolaridadesModel->find($idAssociacao);
 
         if (!$associacao) {
             return $this->response->setStatusCode(404)->setJSON(['erro' => 'Associação não encontrada']);
@@ -131,8 +136,7 @@ class CargosEscolaridades extends BaseController{
 
             $dto = $dados['cargosEscolaridades'];
 
-            $service = new CargosEscolaridadesService();
-            $service->salvar($dto);
+            service('cargosEscolaridadesService')->salvar($dto);
 
             return redirect()
                 ->route('CargosEscolaridades.formularioCargosEscolaridade', [$dto->fk_id_cargo])
@@ -156,7 +160,7 @@ class CargosEscolaridades extends BaseController{
                 throw new \InvalidArgumentException('Associação inválida');
             }
 
-            (new CargosEscolaridadesService())->deletar($id);
+            service('cargosEscolaridadesService')->deletar($id);
 
             return redirect()
                 ->back()

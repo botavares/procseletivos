@@ -1,133 +1,74 @@
 
-        <div class="preloader">
-            <div class="loader">
-                <div class="ytp-spinner">
-                    <div class="ytp-spinner-container">
-                        <div class="ytp-spinner-rotator">
-                            <div class="ytp-spinner-left">
-                                <div class="ytp-spinner-circle"></div>
-                            </div>
-                            <div class="ytp-spinner-right">
-                                <div class="ytp-spinner-circle"></div>
-                            </div>
+<div class="home-novo">
+
+    <!-- ACONTECENDO AGORA -->
+    <div class="home-secao-titulo" style="margin-top:6px">
+        <h3>Acontecendo agora</h3>
+        <span class="linha"></span>
+    </div>
+
+    <?php if (!empty($editaisAbertos)) : ?>
+        <?php foreach ($editaisAbertos as $edital) : ?>
+            <div class="home-hero">
+                <div class="home-hero__top">
+                    <div>
+                        <h4><?= esc($edital->ds_nome_secretaria ?? 'SEPLAG') ?> · Processo Seletivo Simplificado nº <?= esc($edital->ds_numero_edital) ?></h4>
+                        <div class="home-hero__meta">
+                            Cargo: <b><?= esc($edital->ds_nome_cargo ?? 'Cargo não informado') ?></b><br>
+                            <b>Inscrições de <?= esc(date('d/m/Y', strtotime($edital->ds_data_inicial))) ?> a <?= esc(date('d/m/Y', strtotime($edital->ds_data_termino))) ?></b>
                         </div>
                     </div>
+                    <span class="home-tag home-tag--aberto">Inscrições abertas</span>
+                </div>
+                <div class="home-hero__acoes">
+                    <a href="<?= base_url("Cadastros") ?>" class="home-btn">Inscrever-se</a>
+                    <a href="<?= base_url("Editais/detalhes/{$edital->pk_id_edital}") ?>" class="home-btn home-btn--outline">Ver edital →</a>
                 </div>
             </div>
+        <?php endforeach; ?>
+    <?php else : ?>
+        <div class="home-vazio">
+            No momento não há processo seletivo com inscrições abertas.<br>
+            Consulte em Editais os processos vigentes e os encerrados.
         </div>
-        <!-- FIM PRELOADER -->
+    <?php endif; ?>
 
-        
-             <?php
-                if($edital != null && $status == "naovinculado"){
-            ?>
-            <div class="content" aria-label="" role="alert">
-                <div class="br-message success mrg-top-10 pdd-5">
-                    <div class="icon"><i class="fas fa-check-circle fa-lg" aria-hidden="true"></i></div>
-                    <span class="message-title">BOAS NOTÍCIAS!</span>
-                    <span class="message-body"> Existe um edital direcionado ao seu curso!. Clique no botão abaixo para vincular seu cadastro ao edital!.</span>
-                 <div>
-                <a  class="br-button success voltar mrg-top-10 text-center" href="<?php echo base_url("Cadastros/vincularCandidatoEdital/".$params['id']."/".$edital)?>"><i class="fas fa-link"></i> Vincular ao Edital</a>
-            </div>
-            <?php
-            }else{?>
-            <div class="content" aria-label="" role="alert">
-                <div class="br-message info mrg-top-10 pdd-5">
-                    <div class="icon"><i class="fas fa-info-circle fa-lg" aria-hidden="true"></i></div>
-                    <div class="content" aria-label="" role="alert">
-                        <span class="message-title">Olá!</span>
-                        <span class="message-body"> Seus dados pessoais estarão protegidos nos termos da Lei nº <a style="color:blue" href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13460.htm">13.460/2017</a>.</span>
-                    </div>
-                </div>
-            <?php
-            }
-            ?>
-        </div> 
-        
-        <div class="row mrg-top-15">
-            <div class="col-md-6 offset-md-3 pdd0">
-                <div class="border-bottom mrg-bottom-10">
-                    <span class="bold font-24">Cadastros </span>
-                </div>
+    <div class="home-hero__aviso">
+        Seus dados pessoais estarão protegidos nos termos da
+        <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13460.htm" target="_blank">Lei nº 13.460/2017</a>.
+    </div>
 
-                <div class="row">
-                    
-                        <div class="col-sm-12 d-flex">
-                            <div class="br-card col-sm-12">
-                                <div class="card-header">
-                                    <img src="<?php echo base_url("public/publica/external/img/cracha.png")?>" alt="Cadastros" class="icones" />
-                                </div>
-                                <div class="card-content text-center bold font-24 font-blue">
-                                    <a href="<?php echo base_url("Cadastros")?>" class="col-md-12">
-                                        <?php echo $labelCaption?>
-                                    </a>
-                                </div>
-                                <div class="card-footer text-center border-top pdd-top-12">
-                                    Aqui você irá cadastrar seus dados pessoais e classificatórios para participar dos processos seletivos.
-                                </div>
-                            </div>
-                        </div>
-                    
+    <!-- POR ONDE COMEÇAR -->
+    <div class="home-secao-titulo">
+        <h3>Por onde começar</h3>
+        <span class="linha"></span>
+    </div>
 
-                        <div class="col-sm-12 d-flex">
-                            <div class="br-card col-sm-12">
-                                <div class="card-header">
-                                    <img src="<?php echo base_url("public/publica/external/img/editais.png")?>" alt="Editais disponíveis" class="icones" />
-                                </div>
-                                <div class="card-content text-center bold font-24 font-blue">
-                                    <a href="<?php echo base_url("Editais")?>" class="col-md-12">
-                                      Editais
-                                    </a>
-                                </div>
-                                <div class="card-footer text-center border-top pdd-top-20">
-                                    Aqui você tem acesso aos editais vigentes e os encerrados.
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        
-            <div class="col-md-6 offset-md-3">
-                <div class="border-bottom mrg-bottom-10">
-                    <span class="bold font-24">Serviços</span>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 d-flex">
-                        <div class="br-card col-sm-12">
-                            <div class="card-header">
-                                <img src="<?php echo base_url("public/publica/external/img/lista-publica.png")?>" alt="Lista-Publica" class="icones" />
-                            </div>
-                            <div class="card-content text-center bold font-24 font-blue">
-                                <a href="<?php echo site_url("transparencia")?>" class="col-md-12">
-                                    Lista Pública de Cadastrados
-                                </a>
-                            </div>
-                            <div class="card-footer text-center border-top pdd-top-20">
-                                Acesse a lista dos cadastrados e sua situação cadastral.
-                            </div>
-                        </div>
-                    </div>
+    <div class="home-portais">
 
 
-                    <div class="col-sm-12 d-flex">
-                            <div class="br-card col-sm-12">
-                                <div class="card-header">
-                                    <img src="<?php echo base_url("public/publica/external/img/ouvidoria.png")?>" alt="Ouvidoria" class="icones" />
-                                </div>
-                                <div class="card-content text-center bold font-24 font-blue">
-                                    <a href="<?php echo base_url('PerguntasFrequentes')?>" class="col-md-12">
-                                        Perguntas Frequentes
-                                    </a>
-                                </div>
-                                <div class="card-footer text-center border-top pdd-top-20">
-                                    Encontre aqui respostas para as perguntas mais frequentes .
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
+        <!-- Card 1: Editais -->
+        <div class="home-portal">
+            <h5>Editais<br>(Processos Seletivos)</h5>
+            <p>Todos os processos seletivos, vigentes e encerrados. Cada edital reúne suas retificações, resultados, convocações e contratos.</p>
+            <a href="<?= base_url("Editais") ?>" class="home-btn home-btn--outline">Acessar</a>
+        </div>
+
+        <!-- Card 2: Lista Pública -->
+        <div class="home-portal">
+            <h5>Lista Pública<br>de Cadastrados</h5>
+            <p>Consulte a classificação e a situação de cada candidato, atualizada pela Gerência de Recursos Humanos.</p>
+            <a href="<?= site_url("transparencia") ?>" class="home-btn home-btn--outline">Acessar</a>
+        </div>
+
+        <!-- Card 3: Perguntas Frequentes -->
+        <div class="home-portal">
+            <h5>Perguntas<br>Frequentes</h5>
+            <p>Respostas às dúvidas mais comuns sobre inscrição, classificação, convocação e contratação.</p>
+            <a href="<?= base_url("PerguntasFrequentes") ?>" class="home-btn home-btn--outline">Acessar</a>
         </div>
     </div>
+
     
-</main>
-             
+
+</div>

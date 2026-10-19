@@ -15,13 +15,19 @@ use App\Services\Cargos\CargosCursosService;
 class CargosCursos extends BaseController{
 
     protected $cargosData;
-    
+    protected $cargosModel;
+    protected $cursosModel;
+    protected $cargosCursosModel;
 
     public function __construct(){
-        $modelCargos = new CargosModel();
+        parent::__construct();
+        
+        $this->cargosModel      = new \App\Models\CargosModel();
+        $this->cursosModel       = new \App\Models\CursosModel();
+        $this->cargosCursosModel = new \App\Models\CargosCursosModel();
         
         $this->cargosData = [
-           'cargos' => $modelCargos->orderBy('ds_nome_cargo', 'asc')->findAll(),
+           'cargos' => $this->cargosModel->orderBy('ds_nome_cargo', 'asc')->findAll(),
         ];
       
     }
@@ -29,7 +35,7 @@ class CargosCursos extends BaseController{
     public function formularioCargosCurso($id, $camada1 = 'pages', $camada2 = 'cadastros', $page = 'formCargosCursos'){
         $this->validarSessao();
 
-        $cargo = (new CargosModel())->find($id);
+        $cargo = $this->cargosModel->find($id);
         
         if (!$cargo) {
             return redirect()
@@ -37,14 +43,14 @@ class CargosCursos extends BaseController{
                 ->with('mensagemError', 'Cargo não encontrado');
         }
 
-        $cursos = (new CursosModel())->listarCursosOrdenados();
+        $cursos = $this->cursosModel->listarCursosOrdenados();
         
         // Form sempre inicia em branco para nova associação
         $action = 'create';
         $cargoCurso = null;
 
         // Busca TODAS os cursos já associados a esse cargo
-        $cursosDoCargo = (new CargosCursosModel())->listarCursosDoCargo($id);
+        $cursosDoCargo = $this->cargosCursosModel->listarCursosDoCargo($id);
 
         return $this->renderFormulario([
                                         'id'                    => $id,
@@ -79,7 +85,7 @@ class CargosCursos extends BaseController{
         $dados = null;
 
         if ($config['acao'] === 'update' && $config['id']) {
-            $dados = (new CargosModel())->find($config['id']);
+            $dados = $this->cargosModel->find($config['id']);
         }
 
         // Dados padrão da view
@@ -110,7 +116,7 @@ class CargosCursos extends BaseController{
     public function buscarAssociacao($idAssociacao){
         $this->validarSessao();
 
-        $associacao = (new CargosCursosModel())->find($idAssociacao);
+        $associacao = $this->cargosCursosModel->find($idAssociacao);
 
         if (!$associacao) {
             return $this->response->setStatusCode(404)->setJSON(['erro' => 'Associação não encontrada']);
@@ -129,8 +135,7 @@ class CargosCursos extends BaseController{
 
             $dto = $dados['cargosCursos'];
 
-            $service = new CargosCursosService();
-            $service->salvar($dto);
+            service('cargosCursosService')->salvar($dto);
 
             return redirect()
                 ->route('CargosCursos.formularioCargosCurso', [$dto->fk_id_cargo])
@@ -154,7 +159,7 @@ class CargosCursos extends BaseController{
                 throw new \InvalidArgumentException('Associação inválida');
             }
 
-            (new CargosCursosService())->deletar($id);
+            service('cargosCursosService')->deletar($id);
 
             return redirect()
                 ->back()

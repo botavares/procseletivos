@@ -34,7 +34,11 @@ class EditaisService implements IEditaisService
 
     public function listarEditaisAtivos(): array
     {
-        return $this->modelEditais->where('ds_status', '1')->orderBy('ds_data_inicial', 'DESC')->findAll();
+        return $this->editalRepository->listarEditaisAtivos();
+    }
+    public function listarEditaisVigentes(): array
+    {
+        return $this->editalRepository->listarEditaisVigentes();
     }
 
     public function listarEditaisEncerrados(): array
@@ -74,6 +78,11 @@ class EditaisService implements IEditaisService
     public function autenticarEditalPorToken(string $token): ?object
     {
         return $this->modelEditais->where('ds_token_autenticacao', $token)->first();
+    }
+
+    public function buscarPorId(int $idEdital): ?object
+    {
+        return $this->modelEditais->where('pk_id_edital', $idEdital)->first();
     }
 
     public function estaAtivo($idEdital)

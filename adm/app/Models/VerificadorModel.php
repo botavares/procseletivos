@@ -1,24 +1,18 @@
 <?php
+
 namespace App\Models;
 
-use CodeIgniter\Model;
+use App\Common\Models\VerificadorModel as BaseVerificadorModel;
 
-class VerificadorModel extends Model{
-    //Atributos
-    protected $table = 'tb_verificador_contratos';
-    protected $primaryKey = 'pk_id_contrato';
+class VerificadorModel extends BaseVerificadorModel
+{
     protected $useAutoIncrement = false;
     protected $allowedFields = [
-      'pk_id_contrato', 
-      'ds_verificador',
-       
+        'pk_id_contrato',
+        'ds_verificador',
     ];
 
     protected $validationRules = [
-      'ds_verificador'=> 'required',
-        
+        'ds_verificador' => 'required',
     ];
-
-    protected $returnType = 'object';
-
 }

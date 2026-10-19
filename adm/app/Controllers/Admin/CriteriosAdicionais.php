@@ -12,6 +12,13 @@ use App\Services\CriteriosAdicionais\CriterioAdicionalGridService;
 
 class CriteriosAdicionais extends BaseController
 {
+    protected $criteriosAdicionaisModel;
+
+    public function __construct() {
+        parent::__construct();
+        $this->criteriosAdicionaisModel = new \App\Models\CriteriosAdicionaisModel();
+    }
+
     public function index($camada1 = '', $camada2 = 'pages', $page = 'CriteriosAdicionais')
     {
         return $this->listarParaGrid($camada1, $camada2, $page);
@@ -22,8 +29,7 @@ class CriteriosAdicionais extends BaseController
         $this->validarSessao();
         $this->validarView($camada1, $camada2, $page);
 
-        $gridService = new CriterioAdicionalGridService();
-        $grid = $gridService->criterios();
+        $grid = service('criterioAdicionalGridService')->criterios();
 
         if (!is_array($grid) || !isset($grid['data'], $grid['columns'])) {
             throw new \RuntimeException('Grid retornado em formato inválido');
@@ -76,7 +82,7 @@ class CriteriosAdicionais extends BaseController
 
         $dados = null;
         if ($config['acao'] === 'update' && $config['id']) {
-            $dados = (new CriteriosAdicionaisModel())->find($config['id']);
+            $dados = $this->criteriosAdicionaisModel->find($config['id']);
         }
 
         $viewData = [
@@ -107,7 +113,7 @@ class CriteriosAdicionais extends BaseController
             $acao = $dados['acao'];
             $dto = $dados['criterio'];
 
-            $service = new CriterioAdicionalService();
+            $service = service('criterioAdicionalService');
 
             if ($acao === 'update') {
                 $service->atualizar($dto);
@@ -134,7 +140,7 @@ class CriteriosAdicionais extends BaseController
                 throw new \InvalidArgumentException('Critério adicional inválido');
             }
 
-            (new CriterioAdicionalService())->deletar($id);
+            service('criterioAdicionalService')->deletar($id);
 
             return redirect()
                 ->route('CriteriosAdicionais')

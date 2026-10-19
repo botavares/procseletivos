@@ -144,7 +144,7 @@ class App extends BaseConfig
     {
         parent::__construct();
         $this->forceGlobalSecureRequests = filter_var(
-            env('app.forceGlobalSecureRequests', true),
+            env('app.forceGlobalSecureRequests', false),
             FILTER_VALIDATE_BOOLEAN
         );
         // Desabilita CSP em dev para evitar bloqueio de recursos externos e inline

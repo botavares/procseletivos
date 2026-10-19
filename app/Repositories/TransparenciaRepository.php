@@ -37,10 +37,11 @@ class TransparenciaRepository implements ITransparenciaRepository
         if ($usaDesempateDinamico && !empty($colunasDinamicas)) {
             foreach ($colunasDinamicas as $index => $coluna) {
                 $alias = 's_' . $index;
+                $chaveEscapada = $this->db->escapeString($coluna['chave']);
                 $builder->select("{$alias}.nr_valor as {$coluna['alias']}");
                 $builder->join(
                     "tb_classificacao_scores {$alias}",
-                    "{$alias}.fk_id_classificacao = c.pk_id_classificacao AND {$alias}.ds_chave_score = '{$coluna['chave']}'",
+                    "{$alias}.fk_id_classificacao = c.pk_id_classificacao AND {$alias}.ds_chave_score = '{$chaveEscapada}'",
                     'left'
                 );
             }
@@ -49,10 +50,11 @@ class TransparenciaRepository implements ITransparenciaRepository
         if (!$usaDesempateDinamico && !empty($criteriosAdicionais)) {
             foreach ($criteriosAdicionais as $index => $crit) {
                 $alias = 'crit_' . $index;
-                $builder->select("COALESCE({$alias}.ds_quantidade, 0) * COALESCE({$alias}.ds_multiplicador, 0) as crit_{$crit['id']}");
+                $idCriterio = (int) $crit['id'];
+                $builder->select("COALESCE({$alias}.ds_quantidade, 0) * COALESCE({$alias}.ds_multiplicador, 0) as crit_{$idCriterio}");
                 $builder->join(
                     "tb_cadastrados_criterios {$alias}",
-                    "{$alias}.fk_id_cadastrado = c.fk_id_candidato AND {$alias}.fk_id_edital = c.fk_id_edital AND {$alias}.fk_id_cargo = c.fk_id_cargo AND {$alias}.fk_id_criterio = {$crit['id']}",
+                    "{$alias}.fk_id_cadastrado = c.fk_id_candidato AND {$alias}.fk_id_edital = c.fk_id_edital AND {$alias}.fk_id_cargo = c.fk_id_cargo AND {$alias}.fk_id_criterio = {$idCriterio}",
                     'left'
                 );
             }

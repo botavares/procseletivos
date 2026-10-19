@@ -1,0 +1,102 @@
+#banner-principal{
+	min-height:450px; 
+	margin-top:85px;
+	margin-bottom:10px;
+	background-color:#FFF; 
+	
+}
+
+#banner-principal h1{
+	margin-bottom:25px;
+}
+
+#info{
+	height:100%; 
+	background-color:#CCC; 
+	margin-top:10px;
+}
+
+#banner-principal .bloco-servico{
+	
+	margin-bottom:5px;
+}
+
+#banner-principal .bloco-servico:nth-child(3){
+	padding:15px;
+	
+	border-left:thin solid #F0E3DC;
+	border-right:thin solid #F0E3DC;
+	/*background-color:rgba(220,223,252,1.00);
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;*/
+}
+
+
+.bloco-servico i {color:#FFF; font-size:4em; margin-top:15%; margin-left:25%;}
+.bloco-servico a{
+	display:block;
+	width:100%;
+	margin-top:5px;
+	word-break: break-word;
+	
+}
+
+.bloco-servico p{word-break: break-word;text-align:center;}
+.bloco-servico h2{font-size:25px;color:#000; font-weight:bold;margin-top:5px;}
+.bloco-servico .texto-servico{color:#FFF;  font-size:2em;padding-top:20px;}
+.bloco-servico .titulo-texto-servico{text-align:center; font-size:0.8em;margin:0;}
+.bloco-servico .desc-texto-servico{font-size:14px;margin:0; width:100%; text-align:center;}
+.link-botoes{width:100%; height:100%;display:block;}
+
+ul.lista-editais, ul.lista-classificacoes{
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+ul.lista-editais li,ul.lista-classificacoes li {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border:thin solid #000;
+	margin:10px;
+	padding:5px;
+	text-align:center;
+}
+
+/*=============================================================
+	Sugestão de @media retirado do site:
+	https://www.w3schools.com/css/css_rwd_mediaqueries.asp
+==============================================================*/
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+	#banner-principal{height:550px; 
+	}
+	#texto-apresentacao{height:450px;
+	overflow-y: none;
+	margin:15% auto;
+	}
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	#sistema{font-size:2.1em;}
+	#subtitulo{font-size:1.0em}
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+	#sistema{font-size:2.5em;}
+	#subtitulo{font-size:1.3em}
+} 
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	#sistema{font-size:3.0em;}
+	#subtitulo{font-size:1.5em}
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+	#banner-principal .bloco-servico{min-height: 450px; height:inherit;}
+	.bloco-servico a{font-size:18px;}
+	#sistema{font-size:4.0em;}
+	#subtitulo{font-size:2.0em}
+	
+}

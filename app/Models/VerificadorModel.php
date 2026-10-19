@@ -1,18 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Models;
 
-use CodeIgniter\Model;
+use App\Common\Models\VerificadorModel as BaseVerificadorModel;
 
-class VerificadorModel extends Model
+class VerificadorModel extends BaseVerificadorModel
 {
-    protected $table = 'tb_verificador_contratos';
-    protected $primaryKey = 'pk_id_contrato';
-    protected $useAutoIncrement = true;
-    protected $allowedFields = ['ds_verificador'];
-    protected $useTimestamps = false;
-    protected $useSoftDeletes = false;
-    protected $validationRules = [];
-    protected $returnType = 'object';
+    // Especializações específicas da aplicação pública
 }

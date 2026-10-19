@@ -5,7 +5,7 @@ Control: Dashboard.php
 */
 namespace App\Services\Contratos;
 use App\Services\Base\AbstractCrudService;
-use App\Models\DadosContratosModel;
+use App\Repositories\Interfaces\IContratoRepository;
 use App\Models\ConvocadosModel;
 use App\Models\VagasModel;
 use App\Models\VerificadorModel;
@@ -16,7 +16,7 @@ use App\Services\LogsService;
 class ContratoService extends AbstractCrudService
 {
     public function __construct(
-        protected DadosContratosModel $contratosModel,
+        protected IContratoRepository $contratoRepository,
         protected VagasModel $vagasModel,
         protected LogsService $logsService,
         protected DadosRescisaoModel $rescisaoModel,
@@ -32,21 +32,19 @@ class ContratoService extends AbstractCrudService
         return $this->transactional(function () use ($dados) {
 
             //verificar se o candidato possui contrato ativo
-            $contratoAtivo = $this->contratosModel
-                ->where('fk_id_candidato', $dados['fk_id_candidato'])
-                ->where('ds_status', '1')
-                ->first();
+            $contratoAtivo = $this->contratoRepository->buscarPorCandidato($dados['fk_id_candidato']);
+            $contratoAtivo = array_filter($contratoAtivo, fn($c) => $c->ds_status == '1');
 
-            if ($contratoAtivo) {
+            if (!empty($contratoAtivo)) {
                 throw new \RuntimeException('O candidato possui contrato ativo');
             }
-            $this->contratosModel->insert($dados);
+            $this->contratoRepository->inserir($dados);
 
-            if (!$this->contratosModel->affectedRows()) {
+            if (!$this->contratoRepository->linhasAfetadas()) {
                 throw new \RuntimeException('Falha ao criar contrato');
             }
 
-            $idContrato = $this->contratosModel->getInsertID();
+            $idContrato = $this->contratoRepository->obterUltimoId();
 
             $this->vagasModel->debitarVaga(
                 $dados['fk_id_setor'],
@@ -91,7 +89,7 @@ class ContratoService extends AbstractCrudService
 
             
             unset($dados['pk_id_contrato']);
-            $this->contratosModel->where('pk_id_contrato', $idContrato)->update(null,$dados);
+            $this->contratoRepository->atualizar($idContrato, $dados);
 
             if($idCursoAntigo === $idCursoAtual && $idSetorAntigo === $idSetorAtual){
                 return;
@@ -100,7 +98,7 @@ class ContratoService extends AbstractCrudService
                 $this->vagasModel->debitarVaga($idSetorAtual, $idCursoAtual);
             }
 
-            if(!$this->contratosModel->affectedRows()){
+            if(!$this->contratoRepository->linhasAfetadas()){
                 throw new \RuntimeException('Nenhuma alteração foi realizada no contrato');
             }
 
@@ -137,7 +135,7 @@ class ContratoService extends AbstractCrudService
                     'ds_status' => '2',
                     'ds_data_baixa'=>$dados['dataBaixa'],
                 ];
-                $this->contratosModel->update($idContrato, $arrayContrato);
+                $this->contratoRepository->atualizar($idContrato, $arrayContrato);
             
                 //preparar array para atualizar o status do convocado (caso esteja 1)
                 $arrayConvocacao = [
@@ -212,7 +210,7 @@ class ContratoService extends AbstractCrudService
             }
 
             // Atualiza contrato
-            $this->contratosModel->update($idContrato, [
+            $this->contratoRepository->atualizar($idContrato, [
                 'ds_prorrogado' => 1,
             ]);
 
@@ -231,19 +229,16 @@ class ContratoService extends AbstractCrudService
         $hoje = date('Y-m-d');
 
         // CASO 1 — Contratos NÃO prorrogados vencidos
-        $naoProrrogados = $this->contratosModel
-            ->where('ds_prorrogado', 0)
-            ->where('ds_status !=', 2)
-            ->where('ds_data_encerramento <', $hoje)
-            ->findAll();
+        $naoProrrogados = $this->contratoRepository
+            ->buscarAtivos();
+        $naoProrrogados = array_filter($naoProrrogados, fn($c) => $c->ds_prorrogado == 0 && $c->ds_status != 2 && $c->ds_data_encerramento < $hoje);
 
         if (!empty($naoProrrogados)) {
             $ids = array_column($naoProrrogados, 'pk_id_contrato');
 
-            $this->contratosModel
-                ->whereIn('pk_id_contrato', $ids)
-                ->set(['ds_status' => 2])
-                ->update();
+            foreach ($ids as $id) {
+                $this->contratoRepository->atualizar($id, ['ds_status' => 2]);
+            }
 
             $this->logsService->inserirLog(
                 'Atualização automática',
@@ -252,11 +247,9 @@ class ContratoService extends AbstractCrudService
         }
 
         // CASO 2 — Contratos PRORROGADOS sem aditivo válido
-        $contratosProrrogados = $this->contratosModel
-            ->select('pk_id_contrato')
-            ->where('ds_prorrogado', 1)
-            ->where('ds_status !=', 2)
-            ->findAll();
+        $contratosProrrogados = $this->contratoRepository
+            ->buscarAtivos();
+        $contratosProrrogados = array_filter($contratosProrrogados, fn($c) => $c->ds_prorrogado == 1 && $c->ds_status != 2);
 
         foreach ($contratosProrrogados as $contrato) {
 
@@ -267,10 +260,9 @@ class ContratoService extends AbstractCrudService
 
             if (!$existeAditivoValido) {
 
-                $this->contratosModel
-                    ->update($contrato->pk_id_contrato, [
-                        'ds_status' => 2
-                    ]);
+                $this->contratoRepository->atualizar($contrato->pk_id_contrato, [
+                    'ds_status' => 2
+                ]);
 
                 $this->logsService->inserirLog(
                     'Atualização automática',

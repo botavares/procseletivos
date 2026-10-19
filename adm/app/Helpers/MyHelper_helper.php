@@ -40,7 +40,7 @@ if(! function_exists('sendMeAuth')){
 		function imprimirMPDF($instancia,$nomeDocumento,$dados){
 			require_once FCPATH . 'vendor/autoload.php';
 			
-			$html = view('Admin/impressos/'.$nomeDocumento,$dados);
+			$html = view('impressos/'.$nomeDocumento,$dados);
 			$instancia->WriteHTML($html);
 			$this->response->setHeader('Content-Type', 'application/pdf');
 			$instancia->Output($nomeDocumento.'.pdf','I');
@@ -50,7 +50,7 @@ if(! function_exists('sendMeAuth')){
 	if(!function_exists ('imprimir')){
 		function imprimir($instancia, $nomeDocumento,$dados){
 			require_once FCPATH . 'vendor/autoload.php';
-        	$html = view('Admin/impressos/'.$nomeDocumento, $dados);
+        	$html = view('impressos/'.$nomeDocumento, $dados);
         	$instancia->loadHtml($html);
         	$instancia->render();
         	$instancia->stream($nomeDocumento.'.pdf', [ 'Attachment' => false ]);

@@ -16,7 +16,7 @@ class Recursos extends BaseController{
      * Exibe formulário de aplicação de recurso
      */
     public function index($edital = null, $cargo = null, $candidato = null, $camada1 = 'pages',$camada2 = 'candidatos', $page = 'FormRecursos'){
-        if (! is_file(APPPATH . 'Views/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
+        if (! is_file(APPPATH . 'Views/Admin/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
             throw new PageNotFoundException("página não econtrada: ".$page);
         }
 
@@ -24,9 +24,9 @@ class Recursos extends BaseController{
             return redirect()->route('home')->with('error','Sua sessão expirou');
         }
 
-        $candidatosService   = new CandidatosService();
-        $recursosService     = new RecursosService();
-        $consultaService     = new RecursosConsultaService();
+        $candidatosService   = service('candidatosService');
+        $recursosService     = service('recursosService');
+        $consultaService     = service('recursosConsultaService');
 
         $recurso = $candidatosService->listarCandidatoId($edital, $cargo, $candidato);
         $camposFormularios = $recursosService->tiposCamposFormulario($cargo);
@@ -52,7 +52,7 @@ class Recursos extends BaseController{
      * Lista protocolos de um candidato pelo CPF
      */
     public function cargosCandidato($cpfCandidato = null, $camada1 = 'pages',$camada2 = 'candidatos', $page = 'Recursos'){
-        if (! is_file(APPPATH . 'Views/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
+        if (! is_file(APPPATH . 'Views/Admin/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
             throw new PageNotFoundException("página não econtrada: ".$page);
         }
 
@@ -71,7 +71,7 @@ class Recursos extends BaseController{
 
         $cpf = $cpfCandidato;
 
-        $consultaService = new RecursosConsultaService();
+        $consultaService = service('recursosConsultaService');
         $protocolos = $consultaService->buscarProtocolosPorCpf($cpf);
 
         $candidato = $consultaService->buscarCandidatoPorCpf($cpf);
@@ -94,7 +94,7 @@ class Recursos extends BaseController{
      * Lista candidatos por edital e cargo para aplicar recursos
      */
     public function listar($idEdital = null, $idCargo = null, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'RecursosCandidatos'){
-        if (!is_file(APPPATH . 'Views/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
+        if (!is_file(APPPATH . 'Views/Admin/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
             throw new PageNotFoundException("Página não encontrada: " . $page);
         }
 
@@ -106,7 +106,7 @@ class Recursos extends BaseController{
             return redirect()->to(base_url('home'));
         }
 
-        $consultaService = new RecursosConsultaService();
+        $consultaService = service('recursosConsultaService');
 
         $dadosEdital = $consultaService->buscarDadosEdital((int)$idEdital);
         $dadosCargo  = $consultaService->buscarDadosCargo((int)$idCargo);
@@ -154,7 +154,7 @@ class Recursos extends BaseController{
      * Registra recurso do candidato
      */
     public function registrar(){
-        $recursosService = new RecursosService();
+        $recursosService = service('recursosService');
         $dados = $this->request->getPost();
 
         $edital = $dados['pk_id_edital'];
@@ -162,7 +162,7 @@ class Recursos extends BaseController{
         $candidato = $dados['pk_id_candidato'];
         $recursosService->aplicarRecursos($edital,$cargo,$candidato,$dados);
 
-        $servicesLogs = new LogsService();
+        $servicesLogs = service('logsService');
         $servicesLogs->inserirLog('Registrou Recurso', 'Recurso registrado do candidato '.$dados['ds_nome'],'tb_cadastrados_experiencias, tb_cadastrados_escolaridades, tb_cadastrados_aperfeicoamentos, tb_cadastrados_criterios');
 
         return redirect()->to(base_url("Recursos/listar/{$edital}/{$cargo}"))->with('success', 'Recurso registrado com sucesso!');
@@ -182,7 +182,7 @@ class Recursos extends BaseController{
      * Exibe o histórico de recursos com filtros
      */
     public function historico($camada1 = 'pages', $camada2 = 'candidatos', $page = 'RecursosHistorico'){
-        if (!is_file(APPPATH . 'Views/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
+        if (!is_file(APPPATH . 'Views/Admin/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
             throw new PageNotFoundException("Página não encontrada: " . $page);
         }
 
@@ -190,7 +190,7 @@ class Recursos extends BaseController{
             return redirect()->route('home')->with('error', 'Sua sessão expirou');
         }
 
-        $consultaService = new RecursosConsultaService();
+        $consultaService = service('recursosConsultaService');
 
         $filtros = [];
 
@@ -246,7 +246,7 @@ class Recursos extends BaseController{
      * Exibe detalhes de um recurso específico
      */
     public function detalhes($id = null, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'RecursosDetalhes'){
-        if (!is_file(APPPATH . 'Views/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
+        if (!is_file(APPPATH . 'Views/Admin/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
             throw new PageNotFoundException("Página não encontrada: " . $page);
         }
 
@@ -258,7 +258,7 @@ class Recursos extends BaseController{
             return redirect()->route('Recursos.historico')->with('error', 'ID do recurso não informado');
         }
 
-        $consultaService = new RecursosConsultaService();
+        $consultaService = service('recursosConsultaService');
         $recurso = $consultaService->buscarRecursoPorId((int)$id);
 
         if (!$recurso) {

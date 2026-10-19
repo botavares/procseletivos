@@ -10,9 +10,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chorme=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="author" content="Breno Oliveira Tavares">
+    <meta name="author" content="Prefeitura Municipal">
     <title>Processos Seletivos </title>
-    <link rel="icon" href="<?php echo base_url()."external/img/favicon.ico"; ?>" />
+    <link rel="icon" href="<?php echo base_url("admin/external/img/favicon.ico"); ?>" />
 	
 		
 		

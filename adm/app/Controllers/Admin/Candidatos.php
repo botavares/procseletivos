@@ -4,9 +4,6 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use FilesystemIterator;
-use Dompdf\Dompdf;
-use Dompdf\Options;
-use chillerlan\QRCode\{QRCode, QROptions};
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 use App\DTOs\Domain\Candidatos\SituacaoDTO;
@@ -36,12 +33,6 @@ use App\Traits\RegistrarEventoTrait;
 // services
 use App\Services\ContagemDeTempoService;
 
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use PhpOffice\PhpSpreadsheet\Style\Alignment;
-use PhpOffice\PhpSpreadsheet\Style\Fill;
-use PhpOffice\PhpSpreadsheet\Style\Border;
-
 use CodeIgniter\Controller;
 
 class Candidatos extends BaseController{
@@ -49,11 +40,18 @@ class Candidatos extends BaseController{
     use AtualizarAndamentoTrait;
     use RegistrarEventoTrait;
     protected $manifestosData;
-    
+
+    protected $editaisModel;
+    protected $cargosModel;
+    protected $candidatosModel;
+    protected $dadosContratosModel;
 
     public function __construct(){
-      
-      
+        parent::__construct();
+        $this->editaisModel       = new \App\Models\EditaisModel();
+        $this->cargosModel        = new \App\Models\CargosModel();
+        $this->candidatosModel    = new \App\Models\CandidatosModel();
+        $this->dadosContratosModel = new \App\Models\DadosContratosModel();
     }
 
     /*==============================================================================
@@ -65,7 +63,7 @@ class Candidatos extends BaseController{
         RESUMO: Função abre o tela inicial de cadidatos. 
         ==============================================================================*/
     public function index($idEdital = null, $idCargo = null, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'Candidatos'){
-        if (!is_file(APPPATH . 'Views/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
+        if (!is_file(APPPATH . 'Views/Admin/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
             throw new PageNotFoundException("Página não encontrada: " . $page);
         }
 
@@ -73,10 +71,10 @@ class Candidatos extends BaseController{
             return redirect()->route('home')->with('error','Sua sessão expirou');
         }
 
-        $modelEditais   = new EditaisModel();
-        $modelCargos    = new CargosModel();
-        $modelCandidato = new CandidatosModel();
-        $contratosModel  = new DadosContratosModel();
+        $modelEditais   = $this->editaisModel;
+        $modelCargos    = $this->cargosModel;
+        $modelCandidato = $this->candidatosModel;
+        $contratosModel  = $this->dadosContratosModel;
 
         if (!$idEdital || !$idCargo) {
             // Se não vier na URL, poderia redirecionar de volta
@@ -147,14 +145,14 @@ class Candidatos extends BaseController{
 
     
     public function exibirDados($edital,$cargo,$id, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'dadosCandidato'){
-        if (!is_file(APPPATH . 'Views/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
+        if (!is_file(APPPATH . 'Views/Admin/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
             throw new PageNotFoundException("Página não encontrada: " . $page);
         }
         if (!checklogged()) {
             return redirect()->route('home')->with('error','Sua sessão expirou');
         }
 
-        $candidatosService = new CandidatosService();
+        $candidatosService = service('candidatosService');
         $dadosCandidato = $candidatosService->listarCandidatoId($edital,$cargo,$id);
         if(!$dadosCandidato){
             return redirect()->back()->with('error', 'Candidato não encontrado.');
@@ -175,20 +173,19 @@ class Candidatos extends BaseController{
     public function getCandidatosByCargoAndEdital(){
         $idCargo = $this->request->getPost('idCargo');
         $idEdital = $this->request->getPost('idEdital');
-        $candidatosModel = new CandidatosModel();
-        $candidatos = $candidatosModel->getCandidatosPorEditalCargo($idEdital, $idCargo);
+        $candidatos = $this->candidatosModel->getCandidatosPorEditalCargo($idEdital, $idCargo);
         return $this->response->setJSON($candidatos);
     }
 
     public function formSituacaoCandidato($edital,$cargo,$id, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'FormSituacaoCandidato'){
-        if (!is_file(APPPATH . 'Views/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
+        if (!is_file(APPPATH . 'Views/Admin/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
             throw new PageNotFoundException("Página não encontrada: " . $page);
         }
         if (!checklogged()) {
             return redirect()->route('home')->with('error','Sua sessão expirou');
         }
 
-        $candidatosService = new CandidatosService();
+        $candidatosService = service('candidatosService');
         $dadosCandidato = $candidatosService->listarCandidatoId($edital,$cargo,$id);
         if(!$dadosCandidato){
             return redirect()->back()->with('error', 'Candidato não encontrado.');
@@ -198,8 +195,7 @@ class Candidatos extends BaseController{
         $idCandidato = $dadosCandidato["idCandidato"];
         $idEdital = $dadosCandidato["idEdital"];
         $idCargo = $dadosCandidato["idCargo"];
-        $cargosModel = new CargosModel();
-        $nomeCargo = $cargosModel->where('pk_id_cargo', $idCargo)->first()->ds_nome_cargo;
+        $nomeCargo = $this->cargosModel->where('pk_id_cargo', $idCargo)->first()->ds_nome_cargo;
         
         $situacaoService = service('situacaoService');
         $dadosSituacao = $situacaoService->getCandidatoCargoEdital($idEdital,$idCargo,$idCandidato);
@@ -263,13 +259,9 @@ class Candidatos extends BaseController{
      */
     public function exportarXlsx($edital, $cargo)
     {
-        $modelEditais   = new EditaisModel();
-        $modelCargos    = new CargosModel();
-        $modelCandidato = new CandidatosModel();
-
-        $dadosEdital = $modelEditais->getEdital($edital);
-        $dadosCargo  = $modelCargos->getCargo($cargo);
-        $candidatos  = $modelCandidato->getCandidatosPorEditalCargo($edital, $cargo);
+        $dadosEdital = $this->editaisModel->getEdital($edital);
+        $dadosCargo  = $this->cargosModel->getCargo($cargo);
+        $candidatos  = $this->candidatosModel->getCandidatosPorEditalCargo($edital, $cargo);
 
         if (empty($candidatos)) {
             return redirect()->back()
@@ -289,121 +281,19 @@ class Candidatos extends BaseController{
             }
         }
 
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setTitle('Candidatos');
-
         $nomeEdital = $dadosEdital->ds_numero_edital ?? 'edital';
         $nomeCargo  = $dadosCargo->ds_nome_cargo   ?? 'cargo';
 
-        // ====== HEADERS ======
-        $headers = ['Data de Insc.', 'Nome do Candidato', 'Nascimento', 'Telefone', 'Email'];
-        $totalCols = count($headers);
-        $ultimaColuna = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($totalCols);
-
-        // ====== CABEÇALHO INSTITUCIONAL ======
-        $sheet->mergeCells("A1:{$ultimaColuna}1");
-        $sheet->setCellValue('A1', 'PREFEITURA MUNICIPAL DE DIVINÓPOLIS');
-        $sheet->getStyle('A1')->getFont()->setBold(true)->setSize(14)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('FFFFFF'));
-        $sheet->getStyle('A1')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('1F4E78');
-        $sheet->getStyle('A1')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
-        $sheet->getRowDimension(1)->setRowHeight(28);
-
-        $sheet->mergeCells("A2:{$ultimaColuna}2");
-        $sheet->setCellValue('A2', "Edital: {$nomeEdital}  |  Cargo: {$nomeCargo}");
-        $sheet->getStyle('A2')->getFont()->setBold(true)->setSize(11)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('FFFFFF'));
-        $sheet->getStyle('A2')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('305496');
-        $sheet->getStyle('A2')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
-        $sheet->getRowDimension(2)->setRowHeight(22);
-
-        $sheet->mergeCells("A3:{$ultimaColuna}3");
-        $sheet->setCellValue('A3', 'Listagem gerada em ' . date('d/m/Y H:i:s'));
-        $sheet->getStyle('A3')->getFont()->setItalic(true)->setSize(10)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('444444'));
-        $sheet->getStyle('A3')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('F2F2F2');
-        $sheet->getStyle('A3')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
-        $sheet->getRowDimension(3)->setRowHeight(20);
-
-        // ====== CABEÇALHO DA TABELA (linha 5) ======
-        $linhaCabecalho = 5;
-        $col = 1;
-        foreach ($headers as $header) {
-            $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col) . $linhaCabecalho;
-            $sheet->setCellValue($cellCoord, $header);
-            $sheet->getStyle($cellCoord)->getFont()->setBold(true)->setSize(11)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('FFFFFF'));
-            $sheet->getStyle($cellCoord)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('305496');
-            $sheet->getStyle($cellCoord)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
-            $sheet->getStyle($cellCoord)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN)->getColor()->setRGB('D9D9D9');
-            $col++;
-        }
-        $sheet->getRowDimension($linhaCabecalho)->setRowHeight(22);
-
-        // ====== DADOS ======
-        $row = $linhaCabecalho + 1;
-        foreach ($candidatos as $candidato) {
-            $col = 1;
-
-            // Data de Insc.
-            $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col++) . $row;
-            $sheet->setCellValue($cellCoord, date('d/m/Y', strtotime($candidato->ds_data_cadastro)));
-            $this->aplicarEstiloCelulaCandidatos($sheet, $cellCoord, $row);
-
-            // Nome do Candidato
-            $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col++) . $row;
-            $sheet->setCellValue($cellCoord, $candidato->ds_nome);
-            $this->aplicarEstiloCelulaCandidatos($sheet, $cellCoord, $row, Alignment::HORIZONTAL_LEFT);
-
-            // Nascimento
-            $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col++) . $row;
-            $sheet->setCellValue($cellCoord, date('d/m/Y', strtotime($candidato->ds_nascimento)));
-            $this->aplicarEstiloCelulaCandidatos($sheet, $cellCoord, $row);
-
-            // Telefone
-            $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col++) . $row;
-            $sheet->setCellValue($cellCoord, mask($candidato->ds_celular, '(##) #####-####'));
-            $this->aplicarEstiloCelulaCandidatos($sheet, $cellCoord, $row);
-
-            // Email
-            $cellCoord = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col++) . $row;
-            $sheet->setCellValue($cellCoord, $candidato->ds_email);
-            $this->aplicarEstiloCelulaCandidatos($sheet, $cellCoord, $row, Alignment::HORIZONTAL_LEFT);
-
-            $sheet->getRowDimension($row)->setRowHeight(20);
-            $row++;
-        }
-
-        // Auto-size
-        foreach (range(1, count($headers)) as $colIndex) {
-            $sheet->getColumnDimensionByColumn($colIndex)->setAutoSize(true);
-        }
-
-        // Nome do arquivo
-        $safeEdital = preg_replace('/[^A-Za-z0-9_-]/', '_', $nomeEdital);
-        $safeCargo  = preg_replace('/[^A-Za-z0-9_-]/', '_', $nomeCargo);
-        $sufixoPcd  = $somentePcd ? '_PCD' : '';
-        $fileName   = "Candidatos{$sufixoPcd}_{$safeEdital}_{$safeCargo}_" . date('Ymd_His') . ".xlsx";
-
-        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header("Content-Disposition: attachment; filename=\"{$fileName}\"");
-        header('Cache-Control: max-age=0');
-
-        $writer = new Xlsx($spreadsheet);
-        $writer->save('php://output');
-        exit;
+        service('excelExportService')->exportarCandidatos(
+            $candidatos,
+            [
+                'edital'     => $nomeEdital,
+                'cargo'      => $nomeCargo,
+                'somentePcd' => $somentePcd,
+            ]
+        );
     }
 
-    private function aplicarEstiloCelulaCandidatos($sheet, string $cellCoord, int $row, string $horizontalAlign = Alignment::HORIZONTAL_CENTER): void
-    {
-        $sheet->getStyle($cellCoord)->getFont()->setSize(11);
-        $sheet->getStyle($cellCoord)->getAlignment()->setHorizontal($horizontalAlign)->setVertical(Alignment::VERTICAL_CENTER);
-        $sheet->getStyle($cellCoord)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN)->getColor()->setRGB('D9D9D9');
-
-        // Zebra striping
-        if ($row % 2 == 0) {
-            $sheet->getStyle($cellCoord)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('F8F9FA');
-        } else {
-            $sheet->getStyle($cellCoord)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('FFFFFF');
-        }
-    }
 
     
 }

@@ -54,6 +54,34 @@ class Editais extends BaseController
         return view($layout, $parametros);
     }
 
+    public function detalhes(int $idEdital)
+    {
+        // Busca o edital pelo ID
+        $edital = $this->editaisService->buscarPorId($idEdital);
+
+        if (!$edital) {
+            throw new PageNotFoundException('Edital não encontrado.');
+        }
+
+        $layout = $this->sessaoService->estaLogado() ? 'Publica/layoutLogado' : 'Publica/layoutSimples';
+
+        $parametros = [
+            'camada1'       => 'pages',
+            'camada2'       => 'editais',
+            'pagina'        => 'DadosEdital',
+            'titulo'        => 'Detalhes do Edital',
+            'idEdital'      => $idEdital,
+            'edital'        => $edital,
+            'cargos'        => $this->editaisService->listarCargosPorEdital($idEdital),
+            'resultados'    => [],      // TODO: implementar quando houver service
+            'convocacoes'   => [],      // TODO: implementar quando houver service
+            'contratos'     => [],      // TODO: implementar quando houver service
+            'dataAtual'     => date('d/m/Y'),
+        ];
+
+        return view($layout, $parametros);
+    }
+
     public function obterEdital($arquivo)
     {
         $path = ROOTPATH . 'writable/uploads/Editais/' . $arquivo;

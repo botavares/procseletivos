@@ -7,6 +7,18 @@ namespace App\Repositories\Interfaces;
 interface IEditalRepository
 {
     /**
+     * Busca todos editais ativos
+     * @return array
+     */
+    public function listarEditaisAtivos(): array;
+
+    /**
+     * Busca todos editais vigentes.
+     * @return array
+     */
+    public function listarEditaisVigentes(): array;
+
+    /**
      * Busca editais ativos vinculados a um cargo.
      * @return object|null
      */

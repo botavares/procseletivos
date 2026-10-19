@@ -239,8 +239,7 @@ class CandidatosModel extends Model{
         ->getResult();
     }
     public function contarCandidatos($ano){
-        $sql = "SELECT COUNT(*) AS total FROM tb_cadastrados WHERE YEAR(ds_datacadastro) = $ano";
-        $query = $this->db->query($sql);
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM tb_cadastrados WHERE YEAR(ds_datacadastro) = ?", [$ano]);
         $resultado = $query->getRow();
         return $resultado->total;
     }

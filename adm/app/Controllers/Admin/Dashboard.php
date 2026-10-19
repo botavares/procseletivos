@@ -14,8 +14,14 @@ use CodeIgniter\Controller;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Dashboard extends BaseController{
+    protected $editaisModel;
+
+    public function __construct(){
+        parent::__construct();
+        $this->editaisModel = new \App\Models\EditaisModel();
+    }
     public function index($camada1 = '', $camada2 = 'pages', $page = 'Dashboard'){
-        if (! is_file(APPPATH . 'Views/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
+        if (! is_file(APPPATH . 'Views/Admin/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
             // Página não encontrada!
             throw new PageNotFoundException("página não econtrada: ".$page);
         }
@@ -23,28 +29,9 @@ class Dashboard extends BaseController{
             return redirect()->route('home')->with('error','Sua sessão expirou');
         }
         
-          /*  $contratoService = new ContratoService(
-                new DadosContratosModel(),
-                new VagasModel(),
-                new LogsService(),
-                new DadosRescisaoModel(),
-                new DadosAditivosModel(),
-                new ConvocadosModel(),
-                new VerificadorModel()
-            );
-            // Dispara a verificação automática
-            //////$contratoService->verificarContratosVencidos();
-
-        ////$dadosContratos = new DadosContratosModel();
-        ////$contratosExpirando = $dadosContratos->getContratosExpirando(30);
-        /*if(!$contratosExpirando){
-            $contratosExpirando = [];
-        }*/
-    
-        $modelEditais = new EditaisModel();
-        $editaisAtivos = $modelEditais->getEditaisAtivos();
-        $todosEditais = $modelEditais->getTodosEditais();
-        $cargosComContagem = $modelEditais->getCargosComContagemCandidatosPorEditalAtivo();
+        $editaisAtivos = $this->editaisModel->getEditaisAtivos();
+        $todosEditais = $this->editaisModel->getTodosEditais();
+        $cargosComContagem = $this->editaisModel->getCargosComContagemCandidatosPorEditalAtivo();
         
 
         $parametros = [

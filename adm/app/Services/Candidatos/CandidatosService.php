@@ -1,22 +1,24 @@
 <?php
 namespace App\Services\Candidatos;
 
-use App\Models\CandidatosModel;
+use App\Repositories\Interfaces\ICandidatoRepository;
 use App\Models\EditaisCandidatosModel;
 use App\Models\EditaisModel;
 use App\Models\EditaisCargosModel;
 use App\Models\CargosModel;
 
 class CandidatosService{
-    protected $candidatosModel;
+    protected $candidatosRepository;
     protected $editaisCandidatosModel;
     protected $editaisModel;
     protected $editaisCargosModel;
     protected $cargosModel;
 
-    public function __construct()
+    public function __construct(
+        ?ICandidatoRepository $candidatosRepository = null
+    )
     {
-        $this->candidatosModel = new CandidatosModel();
+        $this->candidatosRepository = $candidatosRepository ?? service('candidatoRepository');
         $this->editaisCandidatosModel = new EditaisCandidatosModel();
         $this->editaisModel = new EditaisModel();
         $this->editaisCargosModel = new EditaisCargosModel();
@@ -25,19 +27,15 @@ class CandidatosService{
 
 
     public function listarCandidatos($idEdital, $idCargo){
-        $this->editaisCandidatosModel->select('tb_cadastrados.*, tb_editais_candidatos.fk_id_edital, tb_editais_candidatos.fk_id_cargo');
-        $this->editaisCandidatosModel->join('tb_cadastrados', 'tb_cadastrados.pk_id_cadastrado = tb_editais_candidatos.fk_id_candidato');
-        $this->editaisCandidatosModel->where('tb_editais_candidatos.fk_id_edital', $idEdital);
-        $this->editaisCandidatosModel->where('tb_editais_candidatos.fk_id_cargo', $idCargo);
-        return $this->editaisCandidatosModel->findAll();
+        return $this->candidatosRepository->buscarPorEditalCargo($idEdital, $idCargo);
     }
 
     public function listarCandidatoId($edital,$cargo,$id){
-        $candidato = $this->candidatosModel->listarCandidatoId($edital,$cargo,$id);
-        $experiencias = $this->candidatosModel->listarExperienciaCandidato($edital,$cargo,$id);
-        $escolaridades = $this->candidatosModel->listarEscolaridadeCandidato($edital,$cargo,$id);
-        $aperfeicoamentos = $this->candidatosModel->listarAperfeicoamentoCandidato($edital,$cargo,$id);
-        $criterios = $this->candidatosModel->listarCriteriosCandidato($edital,$cargo,$id);
+        $candidato = $this->candidatosRepository->buscarPorId($edital,$cargo,$id);
+        $experiencias = $this->candidatosRepository->buscarExperiencias($edital,$cargo,$id);
+        $escolaridades = $this->candidatosRepository->buscarEscolaridades($edital,$cargo,$id);
+        $aperfeicoamentos = $this->candidatosRepository->buscarAperfeicoamentos($edital,$cargo,$id);
+        $criterios = $this->candidatosRepository->buscarCriterios($edital,$cargo,$id);
 
         return [
                 'idEdital' => $edital,

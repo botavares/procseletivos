@@ -5,16 +5,9 @@ use App\Controllers\BaseController;
 
 use DateTime;
 use CodeIgniter\Exceptions\PageNotFoundException;
-use App\Models\CandidatosModel;
-use App\Models\AcademicosModel;
-use App\Models\CursosModel;
-use App\Models\AbrangenciasModel;
 
 use App\Services\Relatorios\RelatoriosService;
 use App\Services\Relatorios\RelatoriosFormService;
-
-use Dompdf\Dompdf;
-use Dompdf\Options;
 
 class Relatorios extends BaseController{
 
@@ -63,29 +56,15 @@ class Relatorios extends BaseController{
     * RELATORIOS DE CANDIDATOS POR CURSO
     *==================================================================================*/
     public function relatorioCandidatosPorCurso(int $idCurso = null){
-        $service = new RelatoriosService(
-            new CandidatosModel(),
-            new AcademicosModel(),
-            new CursosModel(),
-            new AbrangenciasModel()
-        );
-        $dados =  $service->relatorioCandidatosPorCurso($idCurso ?? $this->request->getPost('pk_id_curso'));
-        $dompdf = new Dompdf();
-        imprimir($dompdf, 'CandidatosPorCurso', $dados);
+        $dados = service('relatoriosService')->relatorioCandidatosPorCurso($idCurso ?? $this->request->getPost('pk_id_curso'));
+        service('pdfExportService')->gerarPdf('CandidatosPorCurso', $dados, 'CandidatosPorCurso');
     }
     /*==================================================================================
     * RELATORIOS DE CANDIDATOS POR ABRANGENCIA
     *==================================================================================*/
     public function relatorioCandidatosPorAbrangencia(int $idAbrangencia = null){
-        $service = new RelatoriosService(
-            new CandidatosModel(),
-            new AcademicosModel(),
-            new CursosModel(),
-            new AbrangenciasModel()
-        );
-        $dados =  $service->relatorioCandidatosPorAbrangencia($idAbrangencia ?? $this->request->getPost('pk_id_abrangencia'));
-        $dompdf = new Dompdf();
-        imprimir($dompdf, 'CandidatosPorAbrangencia', $dados);
+        $dados = service('relatoriosService')->relatorioCandidatosPorAbrangencia($idAbrangencia ?? $this->request->getPost('pk_id_abrangencia'));
+        service('pdfExportService')->gerarPdf('CandidatosPorAbrangencia', $dados, 'CandidatosPorAbrangencia');
     }
 
     

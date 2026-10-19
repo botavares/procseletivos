@@ -3,8 +3,7 @@
 namespace App\Services\Classificacao;
 
 use Config\Database;
-use App\Models\ClassificacaoModel;
-use App\Models\EditaisModel;
+use App\Repositories\Interfaces\IClassificacaoRepository;
 use App\Models\CargosModel;
 
 /**
@@ -13,6 +12,14 @@ use App\Models\CargosModel;
  */
 class ClassificacaoService
 {
+    public function __construct(
+        ?IClassificacaoRepository $classificacaoRepository = null
+    ) {
+        $this->classificacaoRepository = $classificacaoRepository ?? service('classificacaoRepository');
+    }
+
+    protected IClassificacaoRepository $classificacaoRepository;
+
     /**
      * Reprocessa a classificacao completa.
      * Agora detecta automaticamente se o cargo possui desempate dinamico.
@@ -36,8 +43,7 @@ class ClassificacaoService
      */
     public function listarClassificacao($idEdital, $idCargo)
     {
-        $classificacaoModel = new ClassificacaoModel();
-        return $classificacaoModel->listarClassificacao($idEdital, $idCargo);
+        return $this->classificacaoRepository->listarPorEditalCargo($idEdital, $idCargo);
     }
 
     public function listarCargos()

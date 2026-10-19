@@ -7,4 +7,5 @@ enum EditalStatusDescricaoEnum: string
     case INATIVO    = 'Inativo';
     case ATIVO      = 'Ativo';
     case AGUARDANDO = 'Aguardando';
+    case VIGENTE    = 'Vigente';
 }

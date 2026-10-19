@@ -24,6 +24,15 @@ class EditalRepository implements IEditalRepository
         $this->editaisCandidatos = $editaisCandidatos;
         $this->editais = $editais;
     }
+    public function listarEditaisAtivos(): array
+    {
+        return $this->editais->getEditaisAtivos();
+    }
+
+    public function listarEditaisVigentes(): array
+    {
+        return $this->editais->getEditaisVigentes();
+    }
 
     public function buscarEditaisAtivosPorCargo(int $idCargo): ?object
     {

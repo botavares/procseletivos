@@ -44,6 +44,7 @@ $routes->post('/Cadastros/registrarDadosClassificatorios', 'Cadastros::registrar
 
 // Editais
 $routes->get('/Editais', 'Editais::index');
+$routes->get('/Editais/detalhes/(:num)', 'Editais::detalhes/$1', ['as' => 'detalhesEdital']);
 $routes->get('/Editais/obterEdital/(:any)', 'Editais::obterEdital/$1');
 $routes->get('/Editais/autenticarEdital/(:any)', 'Editais::autenticarEdital/$1');
 

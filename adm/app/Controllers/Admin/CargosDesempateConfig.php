@@ -17,6 +17,23 @@ class CargosDesempateConfig extends BaseController
 {
     protected $helpers = ['url', 'form'];
 
+    protected $cargosModel;
+    protected $cargosDesempateConfigModel;
+    protected $cargosExperienciasModel;
+    protected $cargosEscolaridadesModel;
+    protected $cargosCriteriosAdicionaisModel;
+    protected $cargosCursosModel;
+
+    public function __construct() {
+        parent::__construct();
+        $this->cargosModel                   = new \App\Models\CargosModel();
+        $this->cargosDesempateConfigModel      = new \App\Models\CargosDesempateConfigModel();
+        $this->cargosExperienciasModel        = new \App\Models\CargosExperienciasModel();
+        $this->cargosEscolaridadesModel       = new \App\Models\CargosEscolaridadesModel();
+        $this->cargosCriteriosAdicionaisModel = new \App\Models\CargosCriteriosAdicionaisModel();
+        $this->cargosCursosModel             = new \App\Models\CargosCursosModel();
+    }
+
     /**
      * Tela principal de configuracao de desempate.
      */
@@ -31,9 +48,6 @@ class CargosDesempateConfig extends BaseController
             $idCargo = $this->request->getGet('cargo');
         }
 
-        $cargosModel = new CargosModel();
-        $desempateService = new DesempateConfigService();
-
         $cargoSelecionado = null;
         $configuracoes = [];
         $referencias = [
@@ -44,21 +58,14 @@ class CargosDesempateConfig extends BaseController
         ];
 
         if ($idCargo) {
-            $cargoSelecionado = $cargosModel->find($idCargo);
-            $configuracoes = $desempateService->buscarConfiguracao((int)$idCargo);
+            $cargoSelecionado = $this->cargosModel->find($idCargo);
+            $configuracoes = service('desempateConfigService')->buscarConfiguracao((int)$idCargo);
 
             // Carrega referencias do cargo para os dropdowns
-            $experienciasModel = new CargosExperienciasModel();
-            $referencias['experiencias'] = $experienciasModel->listarExperienciasDoCargo((int)$idCargo);
-
-            $escolaridadesModel = new CargosEscolaridadesModel();
-            $referencias['escolaridades'] = $escolaridadesModel->listarEscolaridadesDoCargo((int)$idCargo);
-
-            $criteriosModel = new CargosCriteriosAdicionaisModel();
-            $referencias['criterios'] = $criteriosModel->listarCriteriosDoCargo((int)$idCargo);
-
-            $cursosModel = new CargosCursosModel();
-            $referencias['aperfeicoamentos'] = $cursosModel->listarCursosDoCargo((int)$idCargo);
+            $referencias['experiencias'] = $this->cargosExperienciasModel->listarExperienciasDoCargo((int)$idCargo);
+            $referencias['escolaridades'] = $this->cargosEscolaridadesModel->listarEscolaridadesDoCargo((int)$idCargo);
+            $referencias['criterios'] = $this->cargosCriteriosAdicionaisModel->listarCriteriosDoCargo((int)$idCargo);
+            $referencias['aperfeicoamentos'] = $this->cargosCursosModel->listarCursosDoCargo((int)$idCargo);
         }
 
         return view('layoutDash', [
@@ -66,7 +73,7 @@ class CargosDesempateConfig extends BaseController
             'camada2'          => 'cargos',
             'pagina'           => 'DesempateConfig',
             'titulo'           => 'Configuração de Critérios de Desempate',
-            'cargos'           => $cargosModel->findAll(),
+            'cargos'           => $this->cargosModel->findAll(),
             'cargoSelecionado' => $cargoSelecionado,
             'configuracoes'    => $configuracoes,
             'referencias'      => $referencias,
@@ -79,8 +86,7 @@ class CargosDesempateConfig extends BaseController
      */
     public function listar($idCargo)
     {
-        $desempateService = new DesempateConfigService();
-        $config = $desempateService->buscarConfiguracao((int)$idCargo);
+        $config = service('desempateConfigService')->buscarConfiguracao((int)$idCargo);
 
         return $this->response->setJSON([
             'success' => true,
@@ -94,7 +100,7 @@ class CargosDesempateConfig extends BaseController
      */
     public function salvar()
     {
-        $model = new CargosDesempateConfigModel();
+        $model = $this->cargosDesempateConfigModel;
 
         $idDesempate = $this->request->getPost('pk_id_desempate');
         $cargoId = $this->request->getPost('fk_id_cargo');
@@ -183,7 +189,7 @@ class CargosDesempateConfig extends BaseController
      */
     public function reordenar()
     {
-        $model = new CargosDesempateConfigModel();
+        $model = $this->cargosDesempateConfigModel;
         $ordens = $this->request->getPost('ordens');
 
         if (empty($ordens) || !is_array($ordens)) {
@@ -213,7 +219,7 @@ class CargosDesempateConfig extends BaseController
      */
     public function excluir($idDesempate)
     {
-        $model = new CargosDesempateConfigModel();
+        $model = $this->cargosDesempateConfigModel;
 
         $item = $model->find($idDesempate);
         if (!$item) {
@@ -251,7 +257,7 @@ class CargosDesempateConfig extends BaseController
      */
     public function mover($idDesempate)
     {
-        $model = new CargosDesempateConfigModel();
+        $model = $this->cargosDesempateConfigModel;
         $direcao = $this->request->getGet('direcao');
 
         $item = $model->find($idDesempate);
@@ -327,20 +333,16 @@ class CargosDesempateConfig extends BaseController
 
         switch ($tipo) {
             case 'experiencia':
-                $model = new CargosExperienciasModel();
-                $resultado = $model->listarExperienciasDoCargo((int)$idCargo);
+                $resultado = $this->cargosExperienciasModel->listarExperienciasDoCargo((int)$idCargo);
                 break;
             case 'escolaridade':
-                $model = new CargosEscolaridadesModel();
-                $resultado = $model->listarEscolaridadesDoCargo((int)$idCargo);
+                $resultado = $this->cargosEscolaridadesModel->listarEscolaridadesDoCargo((int)$idCargo);
                 break;
             case 'criterio_adicional':
-                $model = new CargosCriteriosAdicionaisModel();
-                $resultado = $model->listarCriteriosDoCargo((int)$idCargo);
+                $resultado = $this->cargosCriteriosAdicionaisModel->listarCriteriosDoCargo((int)$idCargo);
                 break;
             case 'aperfeicoamento':
-                $model = new CargosCursosModel();
-                $resultado = $model->listarCursosDoCargo((int)$idCargo);
+                $resultado = $this->cargosCursosModel->listarCursosDoCargo((int)$idCargo);
                 break;
         }
 

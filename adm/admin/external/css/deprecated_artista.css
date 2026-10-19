@@ -1,0 +1,246 @@
+@import url('http://fonts.cdnfonts.com/css/billabong');
+.body-artista{
+    /*background-image: radial-gradient(circle at 74.18% -16.45%, #ffffb4 0, #ffff93 12.5%, #ffff71 25%, #ffea4a 37.5%, #f8d110 50%, #f0b800 62.5%, #e99f00 75%, #e48600 87.5%, #e06d00 100%);
+    background-image: radial-gradient(circle at 14.64% -11.24%, #ffffff 0, #ffffff 10%, #ffffff 20%, #ffffff 30%, #fffff4 40%, #fdf0d8 50%, #f5debd 60%, #eecca6 70%, #e9bc92 80%, #e6ac82 90%, #e39d76 100%);*/
+    /*background-image: radial-gradient(circle at 12% -18.3%, #ffffff 0, #ffffff 8.33%, #ffffff 16.67%, #fffffb 25%, #fffffb 33.33%, #ffffbc 41.67%, #ffd17e 50%, #febf6b 58.33%, #fead5d 66.67%, #fe9b54 75%, #ff8a50 83.33%, #ff7a51 91.67%, #ff6a55 100%);*/
+	
+	
+	/*background-image: radial-gradient(circle at -16.45% 25.82%, #ffffff 0, #fffffe 25%, #fcebca 50%, #ddc398 75%, #c6a373 100%);*/
+	background: #f6f5f4; color: #3E4156;
+	padding:1%;
+}
+
+#nav_prefeitura{
+    background-image: url("../img/bg-topo.jpg");
+}
+#nav_prefeitura h1{color: #9c3334;}
+
+#nav_prefeitura div{
+    margin-left: 1%;
+	
+}
+#nav_prefeitura h1{
+   text-align: center;
+}
+
+#apresentacao_artista{
+    margin-top: 1%;
+    margin-left: 10%;
+    margin-right: 10%;
+	height: 38%;
+	max-height:40%;
+	overflow-x: hidden;
+  	overflow-y: auto;
+}
+#historico-artista{margin-top:3%; font-size:20px!important;}
+
+#galeria_artista, #redesocial_artista{
+    margin: auto;
+}
+
+/*=====================================================
+MODAL DA AGENDA DO ARTISA
+=====================================================*/
+#eventos, #videos{}
+#area-eventos, #area-videos{
+	/*min-height:95px;*/
+	padding:1%;
+	margin: 0 auto;
+	margin-bottom:15px;
+	position:relative;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	min-height: 180px;
+	
+}
+#dia-evento,#thumb-video{
+	min-height:100%;
+	background-color:#9c3334;
+	
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	
+}
+#desc-evento,#desc-video{
+	height:100%;
+	
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	
+}
+#dia-numero{
+	width:100%;
+	height:50%;
+	/*background-color:rgb(255,255,240);*/
+	position: relative;
+}
+#dia-semana,#nome-mes{
+	width:100%;
+	height:25%;
+	background-color:#9c3334;
+	position: relative;
+}
+#dia-numero p,#dia-semana p, #nome-mes p{
+	margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+#dia-numero p{
+	font-size:58px;
+}
+
+
+
+.img-galeria{
+	padding: 1%;
+}
+.img-galeria img, .servicos img{
+	/*transform-origin: 0 0;*/
+	transition: transform .5s, filter 1.0s ease-in-out;
+	filter: grayscale(100%);
+	
+	
+}
+.img-galeria:hover img, .servicos:hover img{
+	transform: scale(1.5);
+	filter: grayscale(0);
+	
+}
+.instagram-font{font-family:  'Billabong', sans-serif;}
+
+.img-redesocial{
+	padding:3%;
+}
+.img-redesocial img{
+	width:25%;
+	margin: 0 auto;
+	-webkit-border-radius: 25px;
+	-moz-border-radius: 25px;
+	border-radius: 25px;
+}
+
+.img-redesocial img:hover{
+	-webkit-box-shadow: 0px 0px 0px -0px #000000; 
+	box-shadow: 0px 0px 0px -0px #000000;
+}
+.card-img-top{
+    border: 0;
+    padding: 0;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    justify-content: center;
+}
+#faixa_evento{
+    background-color: #9c3334;
+    width: 100%;
+    height: 40px;
+    text-align: center; 
+    border-radius: 8px;
+	
+}
+
+#faixa_evento a{
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 23px;
+
+}
+#faixa_contatos{
+    background-color: #9c3334;
+    width: 100%;
+    height: 40px;
+    text-align: center; 
+}
+#faixa_contatos a{
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 23px;
+}
+
+#faixa_contatos{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+footer{
+    background-color: #2e2623;
+    color: white;
+    font-size: 23px;
+    height: 200px;
+    margin-top: 3%;
+    text-align: center;
+    text-decoration: none;
+}
+
+footer a{
+    border: 0;
+    margin: 0;
+    text-decoration: none;
+    color: white;
+    font-size: 23px;
+    margin-top: 3%;
+}
+
+a:hover {
+    color: white;
+}
+#btn_eventos{
+    justify-content: center;
+    text-align: center;
+    margin-top: 1%;
+	margin-bottom: 1%;
+}
+.modal-header{
+    background-color: #fe9b54;
+}
+#cards_modal{
+    margin-bottom: 2%;
+}
+
+@media only screen and (max-width: 600px) {
+    #nav_prefeitura div{
+        margin: auto;
+        justify-content: center;
+    }
+	#logo_prefeitura{
+		width:180px;
+		height:60px;
+		margin: 0 auto;
+	}
+	.img-galeria img, .servicos img{
+	/*transform-origin: 0 0;*/
+	transition: transform .5s, filter 1.0s ease-in-out;
+	filter: grayscale(0%);
+	
+	
+}
+    #apresentacao_artista{
+        margin-top: 2%;
+        margin-left: 0;
+        margin-right: 0;
+		height: 100%;
+		max-height:100%;
+		
+    }
+    #faixa_evento{
+        margin-top: 1%;
+        margin-bottom: 1%;
+		
+    }
+    #faixa_cotatos{
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
+    #btn_eventos{
+        margin-top: 1%;
+    }
+  }

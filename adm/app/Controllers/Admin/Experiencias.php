@@ -12,6 +12,13 @@ use App\Services\Experiencias\ExperienciaGridService;
 
 class Experiencias extends BaseController
 {
+    protected $experienciasModel;
+
+    public function __construct() {
+        parent::__construct();
+        $this->experienciasModel = new \App\Models\ExperienciasModel();
+    }
+
     public function index($camada1 = '', $camada2 = 'pages', $page = 'Experiencias')
     {
         return $this->listarParaGrid($camada1, $camada2, $page);
@@ -22,8 +29,7 @@ class Experiencias extends BaseController
         $this->validarSessao();
         $this->validarView($camada1, $camada2, $page);
 
-        $gridService = new ExperienciaGridService();
-        $grid = $gridService->experiencias();
+        $grid = service('experienciaGridService')->experiencias();
 
         if (!is_array($grid) || !isset($grid['data'], $grid['columns'])) {
             throw new \RuntimeException('Grid retornado em formato inválido');
@@ -76,7 +82,7 @@ class Experiencias extends BaseController
 
         $dados = null;
         if ($config['acao'] === 'update' && $config['id']) {
-            $dados = (new ExperienciasModel())->find($config['id']);
+            $dados = $this->experienciasModel->find($config['id']);
         }
 
         $viewData = [
@@ -107,7 +113,7 @@ class Experiencias extends BaseController
             $acao = $dados['acao'];
             $dto = $dados['experiencia'];
 
-            $service = new ExperienciaService();
+            $service = service('experienciaService');
 
             if ($acao === 'update') {
                 $service->atualizar($dto);
@@ -134,7 +140,7 @@ class Experiencias extends BaseController
                 throw new \InvalidArgumentException('Experiência inválida');
             }
 
-            (new ExperienciaService())->deletar($id);
+            service('experienciaService')->deletar($id);
 
             return redirect()
                 ->route('Experiencias')

@@ -8,8 +8,11 @@ use App\Models\UsuarioModel;
 
 class Login extends BaseController{
     
+    protected $usuarioModel;
+
     public function __construct(){
-        
+        parent::__construct();
+        $this->usuarioModel = new \App\Models\UsuarioModel();
     }
     public function index(){
 
@@ -18,8 +21,7 @@ class Login extends BaseController{
     public function acesso(){
 
         if($this->request->getMethod() === 'post'){
-           $usuarioModel = new UsuarioModel();
-           $check = $usuarioModel->checkPassword(
+           $check = $this->usuarioModel->checkPassword(
                 $this->request->getPost('user'),
                 $this->request->getPost('senha')
             );
@@ -51,7 +53,6 @@ class Login extends BaseController{
     }
     public function alterarSenha(){
         $session = session();
-        $usuarioModel = new UsuarioModel();
 
         // Proteção: exige login ativo
         if (!$session->has('logged_in')) {
@@ -75,7 +76,7 @@ class Login extends BaseController{
         $usuarioLogado = $session->get('id');
         
         // Busca usuário no banco
-        $usuario = $usuarioModel->find($usuarioLogado);
+        $usuario = $this->usuarioModel->find($usuarioLogado);
         
         if (!$usuario) {
             return redirect('Login.formAlterarSenha')->with('mensagemError', 'Usuário não encontrado.');
@@ -91,7 +92,7 @@ class Login extends BaseController{
             return redirect('Login.formAlterarSenha')->with('mensagemError', 'A nova senha não pode ser igual à anterior.');
         }
 
-       $usuarioModel->atualizarSenha($usuarioLogado, $senhaNova);
+       $this->usuarioModel->atualizarSenha($usuarioLogado, $senhaNova);
 
         return redirect('Login.formAlterarSenha')->with('mensagemSuccess', 'Senha alterada com sucesso.');
     }

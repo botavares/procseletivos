@@ -43,12 +43,6 @@ class Cadastros extends BaseController{
             throw PageNotFoundException::forPageNotFound();
         }
 
-        $loginMode = env('LOGIN_MODE', 'govbr');
-        if ($loginMode === 'local') {
-            if (!checklogged()) {
-                return $this->loginLocal();
-            }
-        }
         if (!checklogged()) {
             $urlToGov = "https://app.prefeituradivinopolis.com.br/app/7ddde5c6897f39b7b139238d0dd94d7f?destino=Cadastros";
             return redirect()->to($urlToGov);
@@ -305,29 +299,6 @@ class Cadastros extends BaseController{
         $this->sessaoService->definirUsuario($dataSession);
         log_message('info', "Usuário {$dataSession['nome']} ({$dataSession['cpf']}) autenticado via Gov.BR");
         return redirect()->to($destino);
-    }
-    public function loginLocal(){
-        if (ENVIRONMENT !== 'development' || env('LOGIN_MODE') !== 'local') {
-            return redirect()->to('Home')->with('mensagemError', 'Acesso não autorizado.');
-        }
-
-        $dataSession = [
-            'su'        => '1234567',
-            'id'        => '69',
-            'email'     => 'breno.o.tavares@gmail.com',
-            'nome'      => 'Breno Oliveira Tavares',
-            'cpf'       => '03455783686',
-            'logged_in' => true
-        ];
-
-        $this->sessaoService->definirUsuario($dataSession);
-
-        $destino = "Cadastros";//$this->request->getVar('destino');
-        if ($destino) {
-            return redirect()->to(base_url($destino));
-        }
-
-        return redirect()->to(base_url());
     }
     /**
      * Logout

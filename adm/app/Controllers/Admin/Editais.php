@@ -11,10 +11,6 @@ use App\Models\EditaisCargosModel;
 use App\Models\EditaisAbrangenciasModel;
 use App\Models\EditaisModel;
 use App\Services\LogsService;
-use App\Services\Editais\EditalFormService;
-use App\Services\Editais\EditalUploadService;
-use App\Services\Editais\EditalService;
-use App\Services\Editais\EditalGridService;
 
 
 
@@ -22,17 +18,20 @@ use App\Services\Editais\EditalGridService;
 class Editais extends BaseController{
 
     protected $editaisData;
-    
+    protected $cargosModel;
+    protected $editaisModel;
+    protected $editaisCargosModel;
 
     public function __construct(){
-        $modelCargos = new CargosModel();
-        
-        $modelEditais = new EditaisModel();
-        
+        parent::__construct();
+
+        $this->cargosModel       = new \App\Models\CargosModel();
+        $this->editaisModel       = new \App\Models\EditaisModel();
+        $this->editaisCargosModel = new \App\Models\EditaisCargosModel();
+
         $this->editaisData = [
-           'cargos'         => $modelCargos->orderBy('ds_nome_cargo', 'asc')->findAll(),
+           'cargos'         => $this->cargosModel->orderBy('ds_nome_cargo', 'asc')->findAll(),
         ];
-      
     }
 
     /*============================================================
@@ -59,11 +58,9 @@ class Editais extends BaseController{
         $this->validarSessao();
         $this->validarView($camada1, $camada2, $page);
 
-        $gridService = new EditalGridService();
-
         $grid = match ($tipo) {
-            'ativos'     => $gridService->ativos(),
-            'encerrados' => $gridService->encerrados(),
+            'ativos'     => service('editalGridService')->ativos(),
+            'encerrados' => service('editalGridService')->encerrados(),
             default      => throw new \InvalidArgumentException('Tipo de grid inválido'),
         };
 
@@ -120,8 +117,8 @@ class Editais extends BaseController{
         
 
         if($config['acao'] === 'update' && $config['id']){ // Aqui eu consigo pegar os dados do edital se for atualização
-            $dados = (new EditaisModel())->getEdital($config['id']);
-            $cargosEditais = (new EditaisCargosModel())
+            $dados = $this->editaisModel->getEdital($config['id']);
+            $cargosEditais = $this->editaisCargosModel
                             ->where('fk_id_edital', $config['id'])
                             ->findColumn('fk_id_cargo');
            
@@ -170,12 +167,12 @@ class Editais extends BaseController{
            
             if($acao === 'update'){
                  
-                (new EditalService())->atualizar(
+                service('editalService')->atualizar(
                     $dados['edital'],
                     $dados['relacoes']
                 );
             }else{
-                $id = (new EditalService())->salvar(
+                $id = service('editalService')->salvar(
                 $dados['edital'],
                 $dados['relacoes']
             );
@@ -183,7 +180,7 @@ class Editais extends BaseController{
             }
 
             
-            (new EditalUploadService())->upload(
+            service('editalUploadService')->upload(
                 $this->request->getFile('ds_arquivos'),
                 $dados['edital']['ds_numero_edital']
             );
@@ -206,8 +203,7 @@ class Editais extends BaseController{
         $idEdital = $this->request->getPost('idEdital');
 
         if ($idEdital) {
-            $modelCargos = new CargosModel();
-            $cargos = $modelCargos->getCargosByEdital($idEdital);
+            $cargos = $this->cargosModel->getCargosByEdital($idEdital);
 
             return $this->response->setJSON([
                 'cargos' => $cargos,
@@ -221,8 +217,7 @@ class Editais extends BaseController{
     }
 
     public function editaisAtivos(){
-        $modelEditais = new EditaisModel();
-        $editaisAtivos = $modelEditais->where('ds_status','1')->findAll();
+        $editaisAtivos = $this->editaisModel->where('ds_status','1')->findAll();
         return $this->response->setJSON([
             'editais' => $editaisAtivos,
             csrf_token() => csrf_hash()
@@ -230,8 +225,7 @@ class Editais extends BaseController{
     }
 
     public function editaisTodos(){
-        $modelEditais = new EditaisModel();
-        $todosEditais = $modelEditais->orderBy('ds_numero_edital','ASC')->findAll();
+        $todosEditais = $this->editaisModel->orderBy('ds_numero_edital','ASC')->findAll();
         return $this->response->setJSON([
             'editais' => $todosEditais,
             csrf_token() => csrf_hash()
@@ -247,7 +241,7 @@ class Editais extends BaseController{
                 throw new \InvalidArgumentException('Edital inválido');
             }
 
-            (new EditalService())->deletar($id);
+            service('editalService')->deletar($id);
 
             return redirect()
                 ->route('Editais')

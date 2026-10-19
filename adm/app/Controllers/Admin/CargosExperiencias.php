@@ -15,13 +15,19 @@ use App\Services\Cargos\CargosExperienciasService;
 class CargosExperiencias extends BaseController{
 
     protected $cargosData;
-    
+    protected $cargosModel;
+    protected $experienciasModel;
+    protected $cargosExperienciasModel;
 
     public function __construct(){
-        $modelCargos = new CargosModel();
+        parent::__construct();
+        
+        $this->cargosModel             = new \App\Models\CargosModel();
+        $this->experienciasModel       = new \App\Models\ExperienciasModel();
+        $this->cargosExperienciasModel = new \App\Models\CargosExperienciasModel();
         
         $this->cargosData = [
-           'cargos' => $modelCargos->orderBy('ds_nome_cargo', 'asc')->findAll(),
+           'cargos' => $this->cargosModel->orderBy('ds_nome_cargo', 'asc')->findAll(),
         ];
       
     }
@@ -29,7 +35,7 @@ class CargosExperiencias extends BaseController{
     public function formularioCargosExperiencia($id, $camada1 = 'pages', $camada2 = 'cadastros', $page = 'formCargosExperiencia'){
         $this->validarSessao();
 
-        $cargo = (new CargosModel())->find($id);
+        $cargo = $this->cargosModel->find($id);
         
         if (!$cargo) {
             return redirect()
@@ -37,14 +43,14 @@ class CargosExperiencias extends BaseController{
                 ->with('mensagemError', 'Cargo não encontrado');
         }
 
-        $experiencias = (new ExperienciasModel())->listarExperienciasOrdenadas();
+        $experiencias = $this->experienciasModel->listarExperienciasOrdenadas();
         
         // Form sempre inicia em branco para nova associação
         $action = 'create';
         $cargoExperiencia = null;
 
         // Busca TODAS as experiências já associadas a esse cargo
-        $experienciasDoCargo = (new CargosExperienciasModel())->listarExperienciasDoCargo($id);
+        $experienciasDoCargo = $this->cargosExperienciasModel->listarExperienciasDoCargo($id);
 
         return $this->renderFormulario([
                                         'id'                    => $id,
@@ -79,7 +85,7 @@ class CargosExperiencias extends BaseController{
         $dados = null;
 
         if ($config['acao'] === 'update' && $config['id']) {
-            $dados = (new CargosModel())->find($config['id']);
+            $dados = $this->cargosModel->find($config['id']);
         }
 
         // Dados padrão da view
@@ -110,7 +116,7 @@ class CargosExperiencias extends BaseController{
     public function buscarAssociacao($idAssociacao){
         $this->validarSessao();
 
-        $associacao = (new CargosExperienciasModel())->find($idAssociacao);
+        $associacao = $this->cargosExperienciasModel->find($idAssociacao);
 
         if (!$associacao) {
             return $this->response->setStatusCode(404)->setJSON(['erro' => 'Associação não encontrada']);
@@ -129,8 +135,7 @@ class CargosExperiencias extends BaseController{
 
             $dto = $dados['cargosExperiencias'];
 
-            $service = new CargosExperienciasService();
-            $service->salvar($dto);
+            service('cargosExperienciasService')->salvar($dto);
 
             return redirect()
                 ->route('CargosExperiencias.formularioCargosExperiencia', [$dto->fk_id_cargo])
@@ -154,7 +159,7 @@ class CargosExperiencias extends BaseController{
                 throw new \InvalidArgumentException('Associação inválida');
             }
 
-            (new CargosExperienciasService())->deletar($id);
+            service('cargosExperienciasService')->deletar($id);
 
             return redirect()
                 ->back()

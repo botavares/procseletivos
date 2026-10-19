@@ -12,6 +12,13 @@ use App\Services\Aperfeicoamentos\AperfeicoamentoGridService;
 
 class Aperfeicoamentos extends BaseController
 {
+    protected $aperfeicoamentosModel;
+
+    public function __construct() {
+        parent::__construct();
+        $this->aperfeicoamentosModel = new \App\Models\AperfeicoamentosModel();
+    }
+
     public function index($camada1 = '', $camada2 = 'pages', $page = 'Aperfeicoamentos')
     {
         return $this->listarParaGrid($camada1, $camada2, $page);
@@ -22,8 +29,7 @@ class Aperfeicoamentos extends BaseController
         $this->validarSessao();
         $this->validarView($camada1, $camada2, $page);
 
-        $gridService = new AperfeicoamentoGridService();
-        $grid = $gridService->aperfeicoamentos();
+        $grid = service('aperfeicoamentoGridService')->aperfeicoamentos();
 
         if (!is_array($grid) || !isset($grid['data'], $grid['columns'])) {
             throw new \RuntimeException('Grid retornado em formato inválido');
@@ -76,7 +82,7 @@ class Aperfeicoamentos extends BaseController
 
         $dados = null;
         if ($config['acao'] === 'update' && $config['id']) {
-            $dados = (new AperfeicoamentosModel())->find($config['id']);
+            $dados = $this->aperfeicoamentosModel->find($config['id']);
         }
 
         $viewData = [
@@ -107,7 +113,7 @@ class Aperfeicoamentos extends BaseController
             $acao = $dados['acao'];
             $dto = $dados['aperfeicoamento'];
 
-            $service = new AperfeicoamentoService();
+            $service = service('aperfeicoamentoService');
 
             if ($acao === 'update') {
                 $service->atualizar($dto);
@@ -134,7 +140,7 @@ class Aperfeicoamentos extends BaseController
                 throw new \InvalidArgumentException('Curso de aperfeiçoamento inválido');
             }
 
-            (new AperfeicoamentoService())->deletar($id);
+            service('aperfeicoamentoService')->deletar($id);
 
             return redirect()
                 ->route('Aperfeicoamentos')
