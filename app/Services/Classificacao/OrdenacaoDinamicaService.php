@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\Classificacao;
 
 use App\Services\Classificacao\DTO\DesempateConfigDTO;
 use App\Services\Classificacao\DTO\ResultadoClassificacaoDTO;
+use App\Services\Interfaces\IOrdenacaoDinamicaService;
 
-class OrdenacaoDinamicaService
+class OrdenacaoDinamicaService implements IOrdenacaoDinamicaService
 {
     /**
      * Ordena os resultados conforme configuracao de desempate.
@@ -50,9 +53,11 @@ class OrdenacaoDinamicaService
     private function atribuirPosicoes(array $resultados): array
     {
         $posicao = 1;
+
         foreach ($resultados as $index => $dto) {
             $resultados[$index]->ds_posicao = $posicao++;
         }
+
         return $resultados;
     }
 }

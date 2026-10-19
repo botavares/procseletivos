@@ -5,11 +5,11 @@
     "homepage": "https://codeigniter.com",
     "license": "MIT",
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^8.3",
         "ext-intl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "laminas/laminas-escaper": "^2.9",
+        "laminas/laminas-escaper": "^2.13",
         "psr/log": "^1.1",
         "mikehaertl/phpwkhtmltopdf": "^2.5",
         "dompdf/dompdf": "^2.0",

@@ -41,7 +41,7 @@ if(! function_exists('sendMeAuth')){
 	if(!function_exists ('imprimir')){
 		function imprimir($instancia, $nomeDocumento,$dados){
 			require_once FCPATH . 'vendor/autoload.php';
-        	$html = view('impressos/'.$nomeDocumento, $dados);
+        	$html = view('Publica/impressos/'.$nomeDocumento, $dados);
         	$instancia->loadHtml($html);
         	$instancia->render();
         	$instancia->stream($nomeDocumento.'.pdf', [ 'Attachment' => false ]);

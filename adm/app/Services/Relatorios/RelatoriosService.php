@@ -32,8 +32,8 @@ class RelatoriosService{
             ->findAll();
 
         return [
-            'brasao'            => imageToBase64(ROOTPATH . '/external/img/brasao.png'),
-            'fundo'             => imageToBase64(ROOTPATH . '/external/img/fundo.jpg'),
+            'brasao'            => imageToBase64(ROOTPATH . '/public/admin/external/img/brasao.png'),
+            'fundo'             => imageToBase64(ROOTPATH . '/public/admin/external/img/fundo.jpg'),
             'curso'             => $dadosCurso->ds_nome_curso,
             'candidatos'        => $candidatos,
             'cursoSelecionado'  => $idCurso,
@@ -60,8 +60,8 @@ class RelatoriosService{
             ->findAll();
 
         return [
-            'brasao'                    => imageToBase64(ROOTPATH . '/external/img/brasao.png'),
-            'fundo'                     => imageToBase64(ROOTPATH . '/external/img/fundo.jpg'),
+            'brasao'                    => imageToBase64(ROOTPATH . '/public/admin/external/img/brasao.png'),
+            'fundo'                     => imageToBase64(ROOTPATH . '/public/admin/external/img/fundo.jpg'),
             'abrangencia'               => $dadosAbrangencia->ds_nome_abrangencia,           
             'candidatos'                => $candidatos,
             'abrangenciaSelecionada'    => $idAbrangencia,

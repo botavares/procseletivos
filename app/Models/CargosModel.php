@@ -1,21 +1,32 @@
 <?php
+
+declare(strict_types=1);
+
 namespace App\Models;
 
 use CodeIgniter\Model;
 
-class CargosModel extends Model{
-    //Atributos
+class CargosModel extends Model
+{
     protected $table = 'tb_cargos';
     protected $primaryKey = 'pk_id_cargo';
     protected $useAutoIncrement = true;
+    protected $returnType = 'object';
+    protected $useTimestamps = false;
+    protected $useSoftDeletes = false;
     protected $allowedFields = [
         'fk_id_secretaria',
         'ds_nome_cargo',
         'ds_carga_horaria',
-        'ds_nivel'
+        'ds_nivel',
     ];
 
-    protected $returnType = 'object';
+    protected $validationRules = [
+        'fk_id_secretaria' => 'required|integer',
+        'ds_nome_cargo' => 'required|string',
+        'ds_carga_horaria' => 'permit_empty|string',
+        'ds_nivel' => 'permit_empty|string',
+    ];
 
     public function cargosEditaisAtivos()
     {
@@ -40,5 +51,4 @@ class CargosModel extends Model{
             ->orderBy('tb_cargos.ds_nome_cargo', 'ASC')
             ->findAll();
     }
-
 }

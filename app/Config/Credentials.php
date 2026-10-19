@@ -14,7 +14,15 @@ class Credentials extends BaseConfig
 {
     /**
      * Credenciais Gov.BR (App Prefeitura Divinópolis)
+     * ATENÇÃO: Nunca versione valores reais. Use .env
      */
-    public string $govbrAppKey    = '0b7f390e92176b48bdd12a6488dcd547';
-    public string $govbrAppSecret = '04a3ae30dba5b02989d10cb58cd2a9e9';
+    public string $govbrAppKey    = '';
+    public string $govbrAppSecret = '';
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->govbrAppKey    = env('GOVBR_APP_KEY', '');
+        $this->govbrAppSecret = env('GOVBR_APP_SECRET', '');
+    }
 }

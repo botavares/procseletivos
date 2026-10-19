@@ -72,7 +72,7 @@ if(!function_exists ('imprimirMPDF')){
 	function imprimirMPDF($instancia,$nomeDocumento,$dados){
 		require_once FCPATH . 'vendor/autoload.php';
 		
-		$html = view('impressos/'.$nomeDocumento,$dados);
+		$html = view('Admin/impressos/'.$nomeDocumento,$dados);
 		$instancia->WriteHTML($html);
 		$this->response->setHeader('Content-Type', 'application/pdf');
 		$instancia->Output($nomeDocumento.'.pdf','I');
@@ -81,7 +81,7 @@ if(!function_exists ('imprimirMPDF')){
 if(!function_exists ('imprimir')){
 	function imprimir($instancia, $nomeDocumento,$dados){
 		require_once FCPATH . 'vendor/autoload.php';
-		$html = view('impressos/'.$nomeDocumento, $dados);
+		$html = view('Admin/impressos/'.$nomeDocumento, $dados);
 		$instancia->loadHtml($html);
 		$instancia->loadHtml($html);
 		$instancia->render();

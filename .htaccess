@@ -2,6 +2,21 @@
 Options All -Indexes
 
 # ----------------------------------------------------------------------
+# Bloqueio de acesso direto a diretórios sensíveis
+# ----------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+	# Bloqueia acesso direto a vendor/, writable/, system/, app/, adm/, node_modules/
+	RewriteCond %{REQUEST_URI} ^/(vendor|writable|system|app|adm|node_modules)/ [NC]
+	RewriteRule ^ - [F,L]
+
+	# Forca redirecionamento HTTP para HTTPS (301) — DESCOMENTE EM PRODUCAO
+	# RewriteCond %{HTTPS} off
+	# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+# ----------------------------------------------------------------------
 # Rewrite engine
 # ----------------------------------------------------------------------
 

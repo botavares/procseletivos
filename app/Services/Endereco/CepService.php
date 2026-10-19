@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\Endereco;
 
-class CepService
+use App\Services\Interfaces\ICepService;
+
+class CepService implements ICepService
 {
     private string $url = 'https://viacep.com.br/ws/';
 
@@ -13,7 +17,7 @@ class CepService
         if (strlen($cep) !== 8) {
             return [
                 'success' => false,
-                'message' => 'CEP inválido'
+                'message' => 'CEP inválido',
             ];
         }
 
@@ -22,7 +26,7 @@ class CepService
         if ($response === false) {
             return [
                 'success' => false,
-                'message' => 'Erro ao consultar o serviço de CEP'
+                'message' => 'Erro ao consultar o serviço de CEP',
             ];
         }
 
@@ -31,7 +35,7 @@ class CepService
         if (isset($dados['erro'])) {
             return [
                 'success' => false,
-                'message' => 'CEP não encontrado'
+                'message' => 'CEP não encontrado',
             ];
         }
 
@@ -41,8 +45,8 @@ class CepService
                 'logradouro' => $dados['logradouro'] ?? '',
                 'bairro'     => $dados['bairro'] ?? '',
                 'cidade'     => $dados['localidade'] ?? '',
-                'uf'         => $dados['uf'] ?? ''
-            ]
+                'uf'         => $dados['uf'] ?? '',
+            ],
         ];
     }
 }

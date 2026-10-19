@@ -1,13 +1,44 @@
-# Ignorar sessões e debugbars do CodeIgniter
-writable/session/*
-writable/debugbar/*
-
-# Ignorar sessões e debugbars da aplicação admin
-adm/writable/session/*
-adm/writable/debugbar/*
-
-# Arquivo temporário de verificação
-temp_check_fields.php
-
-# Arquivo de variáveis de ambiente (contém credenciais)
+# Arquivos de ambiente (credenciais)
 .env
+.env.*
+!.env.example
+
+# Dependências
+vendor/
+node_modules/
+
+# Diretórios do CodeIgniter writable
+writable/cache/*
+writable/debugbar/*
+writable/logs/*
+writable/session/*
+writable/uploads/*
+!writable/**/.gitkeep
+
+# Diretórios do CodeIgniter writable (adm)
+adm/writable/cache/*
+adm/writable/debugbar/*
+adm/writable/logs/*
+adm/writable/session/*
+adm/writable/uploads/*
+!adm/writable/**/.gitkeep
+
+# Arquivos temporários e de verificação
+temp_check_fields.php
+*.log
+
+# IDE / Editor
+.idea/
+.vscode/
+_notes/
+
+# Lock files (opcional – manter se desejar versionamento determinístico)
+# composer.lock
+# package-lock.json
+
+# Testes locais
+phpunit.xml.dist
+phpunit.xml
+
+# Preload (se contiver paths locais)
+preload.php

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use CodeIgniter\Model;
@@ -8,6 +10,10 @@ class CargosDesempateConfigModel extends Model
 {
     protected $table = 'tb_cargos_desempates_config';
     protected $primaryKey = 'pk_id_desempate';
+    protected $useAutoIncrement = true;
+    protected $returnType = 'object';
+    protected $useTimestamps = false;
+    protected $useSoftDeletes = false;
     protected $allowedFields = [
         'fk_id_cargo',
         'ds_ordem',
@@ -17,7 +23,16 @@ class CargosDesempateConfigModel extends Model
         'ds_descricao',
         'ds_parametro_extra',
     ];
-    protected $returnType = 'object';
+
+    protected $validationRules = [
+        'fk_id_cargo' => 'required|integer',
+        'ds_ordem' => 'required|string',
+        'ds_tipo_criterio' => 'required|string',
+        'fk_id_referencia' => 'permit_empty|integer',
+        'ds_direcao' => 'permit_empty|string',
+        'ds_descricao' => 'permit_empty|string',
+        'ds_parametro_extra' => 'permit_empty|string',
+    ];
 
     /**
      * Lista a configuracao de desempate ordenada por ds_ordem.

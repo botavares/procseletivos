@@ -1,6 +1,6 @@
 <?php
 function gerarLog($dadosLog){
-    $diretorio = FCPATH . '/external/logs';
+    $diretorio = FCPATH . 'publica/external/logs';
     if (!file_exists($diretorio)){
         // create directory/folder uploads.
         mkdir($diretorio, 0777, true);
@@ -71,7 +71,7 @@ if(!function_exists ('imprimirMPDF')){
 	function imprimirMPDF($instancia,$nomeDocumento,$dados){
 		require_once FCPATH . 'vendor/autoload.php';
 		
-		$html = view('impressos/'.$nomeDocumento,$dados);
+		$html = view('Publica/impressos/'.$nomeDocumento,$dados);
 		$instancia->WriteHTML($html);
 		$this->response->setHeader('Content-Type', 'application/pdf');
 		$instancia->Output($nomeDocumento.'.pdf','I');
@@ -87,7 +87,7 @@ if(!function_exists ('imprimir')){
 			ob_end_clean();
 		}
 
-		$html = view('impressos/'.$nomeDocumento, $dados);
+		$html = view('Publica/impressos/'.$nomeDocumento, $dados);
 		$instancia->loadHtml($html);
 		$instancia->render();
         // Adiciona a numeração de página no rodapé

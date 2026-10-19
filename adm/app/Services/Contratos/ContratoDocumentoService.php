@@ -71,8 +71,8 @@ class ContratoDocumentoService
         };
 
         return [
-            'brasao'        => imageToBase64(ROOTPATH . '/external/img/logo.png'),
-            'fundo'         => imageToBase64(ROOTPATH . '/external/img/fundo.jpg'),
+            'brasao'        => imageToBase64(ROOTPATH . '/public/admin/external/img/logo.png'),
+            'fundo'         => imageToBase64(ROOTPATH . '/public/admin/external/img/fundo.jpg'),
 
             'estagiario'            => $dadosContrato->ds_nome,
             'cpf'                   => mask($dadosContrato->ds_cpf, '###.###.###-##'),
@@ -230,8 +230,8 @@ class ContratoDocumentoService
 
         return  [
             // === Identificação visual ===
-            'brasao'                    => imageToBase64(ROOTPATH . '/external/img/logo.png'),
-            'fundo'                     => imageToBase64(ROOTPATH . '/external/img/fundo.jpg'),
+            'brasao'                    => imageToBase64(ROOTPATH . '/public/admin/external/img/logo.png'),
+            'fundo'                     => imageToBase64(ROOTPATH . '/public/admin/external/img/fundo.jpg'),
             'titulo_documento'          => 'Termo Aditivo nº '.$dadosAditivo->ds_numero_aditivo."/".$dadosAditivo->ds_ano_aditivo,
             'nome_estagiario'           => $dadosCandidato->ds_nome,
             'cpf_estagiario'            => $dadosCandidato->ds_cpf,
@@ -281,8 +281,8 @@ class ContratoDocumentoService
 
         return [
             // === Identificação visual ===
-            'brasao'                    => imageToBase64(ROOTPATH . '/external/img/logo.png'),
-            'fundo'                     => imageToBase64(ROOTPATH . '/external/img/fundo.jpg'),
+            'brasao'                    => imageToBase64(ROOTPATH . '/public/admin/external/img/logo.png'),
+            'fundo'                     => imageToBase64(ROOTPATH . '/public/admin/external/img/fundo.jpg'),
             'titulo_documento'          => 'TERMO DE RESCISÃO DE ESTÁGIO',
             'nome_estagiario'           => $dadosCandidato->ds_nome,
             'cpf_estagiario'            => $dadosCandidato->ds_cpf,

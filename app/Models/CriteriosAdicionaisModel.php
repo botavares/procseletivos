@@ -1,24 +1,32 @@
 <?php
+
+declare(strict_types=1);
+
 namespace App\Models;
 
 use CodeIgniter\Model;
 
-class CriteriosAdicionaisModel extends Model{
-    //Atributos
+class CriteriosAdicionaisModel extends Model
+{
     protected $table = 'tb_criterios_adicionais';
     protected $primaryKey = 'pk_id_criterio';
     protected $useAutoIncrement = true;
+    protected $returnType = 'object';
+    protected $useTimestamps = false;
+    protected $useSoftDeletes = false;
     protected $allowedFields = [
         'ds_nome_criterio',
     ];
 
-    protected $returnType = 'object';
+    protected $validationRules = [
+        'ds_nome_criterio' => 'required|string',
+    ];
 
-    
     /**
      * Retorna os critérios adicionais vinculados a um edital específico.
      */
-    public function listarRequisitosCriteriosAdicionais($cargo = null){
+    public function listarRequisitosCriteriosAdicionais($cargo = null)
+    {
         return $this->db->table('tb_cargos_criterios_adicionais')
             ->select([
                 'tb_cargos.pk_id_cargo',
@@ -41,5 +49,4 @@ class CriteriosAdicionaisModel extends Model{
             ->get()
             ->getResult();
     }
-
 }

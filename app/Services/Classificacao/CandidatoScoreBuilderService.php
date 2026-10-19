@@ -1,35 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\Classificacao;
 
 use App\Services\Classificacao\DTO\DesempateConfigDTO;
+use App\Services\Interfaces\ICandidatoScoreBuilderService;
 use CodeIgniter\Database\BaseConnection;
 
-class CandidatoScoreBuilderService
+class CandidatoScoreBuilderService implements ICandidatoScoreBuilderService
 {
-    private BaseConnection $db;
-
-    // Dados carregados em batch
     private array $experiencias = [];
     private array $escolaridades = [];
     private array $criteriosAdicionais = [];
     private array $aperfeicoamentos = [];
     private array $dadosCandidatos = [];
 
-    public function __construct(BaseConnection $db)
-    {
-        $this->db = $db;
-    }
+    public function __construct(
+        private BaseConnection $db,
+    ) {}
 
-    /**
-     * Carrega em memoria todos os dados necessarios dos candidatos de um edital/cargo.
-     * Deve ser chamado uma unica vez antes de construir os scores.
-     *
-     * @param array $idsCandidatos
-     * @param int $edital
-     * @param int $cargo
-     * @param array $configDesempate
-     */
     public function carregarDadosBatch(array $idsCandidatos, int $edital, int $cargo, array $configDesempate): void
     {
         if (empty($idsCandidatos)) {
@@ -42,45 +32,32 @@ class CandidatoScoreBuilderService
         $refsCriterios = $this->extrairIdsReferencia($configDesempate, 'CRITERIO_ADICIONAL');
         $refsAperfeicoamentos = $this->extrairIdsReferencia($configDesempate, 'APERFEICOAMENTO_ESPECIFICO');
 
-        // Carrega experiencias
         if (!empty($refsExperiencias) || in_array('PONTUACAO_EXPERIENCIAS', $tiposNecessarios)) {
             $this->experiencias = $this->carregarExperiencias($idsCandidatos, $edital, $cargo, $refsExperiencias);
         }
 
-        // Carrega escolaridades
         if (!empty($refsEscolaridades) || in_array('PONTUACAO_ESCOLARIDADES', $tiposNecessarios) || in_array('PONTUACAO_GRADUACAO', $tiposNecessarios) || in_array('PONTUACAO_POS_GRADUACAO', $tiposNecessarios) || in_array('PONTUACAO_MESTRADO', $tiposNecessarios) || in_array('PONTUACAO_DOUTORADO', $tiposNecessarios)) {
             $this->escolaridades = $this->carregarEscolaridades($idsCandidatos, $edital, $cargo, $refsEscolaridades);
         }
 
-        // Carrega criterios adicionais
         if (!empty($refsCriterios) || in_array('PONTUACAO_CRITERIOS_ADICIONAIS', $tiposNecessarios)) {
             $this->criteriosAdicionais = $this->carregarCriteriosAdicionais($idsCandidatos, $edital, $cargo, $refsCriterios);
         }
 
-        // Carrega aperfeicoamentos
         if (!empty($refsAperfeicoamentos) || in_array('PONTUACAO_CURSOS_APERFEICOAMENTOS', $tiposNecessarios) || in_array('PONTUACAO_APERFEICOAMENTOS', $tiposNecessarios)) {
             $this->aperfeicoamentos = $this->carregarAperfeicoamentos($idsCandidatos, $edital, $cargo, $refsAperfeicoamentos);
         }
 
-        // Carrega dados basicos dos candidatos (nascimento, PNE)
         if (in_array('IDADE', $tiposNecessarios) || in_array('PNE', $tiposNecessarios)) {
             $this->dadosCandidatos = $this->carregarDadosCandidatos($idsCandidatos);
         }
     }
 
-    /**
-     * Constroi o array de scores para um candidato especifico.
-     *
-     * @param int $candidato
-     * @param array $configDesempate
-     * @return array
-     */
     public function construirScores(int $candidato, array $configDesempate): array
     {
         $scores = [];
         $tiposNecessarios = array_column($configDesempate, 'tipoCriterio');
 
-        // Totais agregados
         if (in_array('PONTUACAO_TOTAL', $tiposNecessarios)) {
             $scores['PONTUACAO_TOTAL'] = $this->calcularTotalGeral($candidato);
         }
@@ -97,7 +74,6 @@ class CandidatoScoreBuilderService
             $scores['PONTUACAO_CURSOS_APERFEICOAMENTOS'] = $this->calcularTotalAperfeicoamentos($candidato);
         }
 
-        // Especificos
         $idsExperiencias = $this->extrairIdsReferencia($configDesempate, 'EXPERIENCIA_ESPECIFICA');
         foreach ($idsExperiencias as $id) {
             $scores["EXPERIENCIA_ESPECIFICA_{$id}"] = $this->getScoreExperienciaEspecifica($candidato, $id);
@@ -118,7 +94,6 @@ class CandidatoScoreBuilderService
             $scores["APERFEICOAMENTO_ESPECIFICO_{$id}"] = $this->getScoreAperfeicoamentoEspecifico($candidato, $id);
         }
 
-        // IDADE e PNE
         if (in_array('IDADE', $tiposNecessarios)) {
             $scores['IDADE'] = $this->dadosCandidatos[$candidato]['data_nascimento'] ?? null;
         }
@@ -129,10 +104,7 @@ class CandidatoScoreBuilderService
         return $scores;
     }
 
-    // -----------------------------------------------------------------------
-    // Metodos de carregamento em batch
-    // -----------------------------------------------------------------------
-
+    // ... (resto dos métodos privados permanece igual)
     private function carregarExperiencias(array $idsCandidatos, int $edital, int $cargo, array $idsExperiencias): array
     {
         $builder = $this->db->table('tb_cadastrados_experiencias')
@@ -146,8 +118,8 @@ class CandidatoScoreBuilderService
         }
 
         $rows = $builder->get()->getResultArray();
-
         $dados = [];
+
         foreach ($rows as $row) {
             $idCandidato = (int) $row['fk_id_cadastrado'];
             $idExperiencia = (int) $row['fk_id_experiencia'];
@@ -176,8 +148,8 @@ class CandidatoScoreBuilderService
         }
 
         $rows = $builder->get()->getResultArray();
-
         $dados = [];
+
         foreach ($rows as $row) {
             $idCandidato = (int) $row['fk_id_cadastrado'];
             $idEscolaridade = (int) $row['fk_id_escolaridade'];
@@ -206,8 +178,8 @@ class CandidatoScoreBuilderService
         }
 
         $rows = $builder->get()->getResultArray();
-
         $dados = [];
+
         foreach ($rows as $row) {
             $idCandidato = (int) $row['fk_id_cadastrado'];
             $idCriterio = (int) $row['fk_id_criterio'];
@@ -236,8 +208,8 @@ class CandidatoScoreBuilderService
         }
 
         $rows = $builder->get()->getResultArray();
-
         $dados = [];
+
         foreach ($rows as $row) {
             $idCandidato = (int) $row['fk_id_cadastrado'];
             $idCurso = (int) $row['fk_id_curso'];
@@ -271,10 +243,6 @@ class CandidatoScoreBuilderService
 
         return $dados;
     }
-
-    // -----------------------------------------------------------------------
-    // Metodos de calculo de scores
-    // -----------------------------------------------------------------------
 
     private function calcularTotalGeral(int $candidato): float
     {
@@ -341,17 +309,6 @@ class CandidatoScoreBuilderService
         return $this->aperfeicoamentos[$candidato][$idCurso] ?? 0;
     }
 
-    // -----------------------------------------------------------------------
-    // Helpers
-    // -----------------------------------------------------------------------
-
-    /**
-     * Extrai os IDs de referencia de um tipo especifico da configuracao.
-     *
-     * @param array $configDesempate
-     * @param string $tipoCriterio
-     * @return array
-     */
     private function extrairIdsReferencia(array $configDesempate, string $tipoCriterio): array
     {
         $ids = [];

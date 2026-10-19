@@ -1,29 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\Classificacao;
 
 use App\Models\CargosDesempateConfigModel;
 use App\Services\Classificacao\DTO\DesempateConfigDTO;
+use App\Services\Interfaces\IDesempateConfigService;
 
-class DesempateConfigService
+class DesempateConfigService implements IDesempateConfigService
 {
-    private CargosDesempateConfigModel $model;
-
-    public function __construct()
-    {
-        $this->model = new CargosDesempateConfigModel();
-    }
+    public function __construct(
+        private CargosDesempateConfigModel $model,
+    ) {}
 
     /**
      * Busca a configuracao de desempate ordenada para um cargo.
      *
-     * @param int $cargo
      * @return DesempateConfigDTO[]
      */
     public function buscarConfiguracao(int $cargo): array
     {
         $rows = $this->model->listarPorCargo($cargo);
         $config = [];
+
         foreach ($rows as $row) {
             $config[] = new DesempateConfigDTO(
                 (int) $row->ds_ordem,
@@ -34,14 +34,12 @@ class DesempateConfigService
                 $row->ds_descricao ?? ''
             );
         }
+
         return $config;
     }
 
     /**
      * Verifica se um cargo possui configuracao de desempate customizada.
-     *
-     * @param int $cargo
-     * @return bool
      */
     public function cargoPossuiConfiguracao(int $cargo): bool
     {

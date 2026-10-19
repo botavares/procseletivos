@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title><?php echo esc($titulo ?? 'Login') ?></title>
-    <link rel="icon" href="<?php echo base_url('external/img/favicon.ico') ?>" />
+    <link rel="icon" href="<?php echo base_url('admin/external/img/favicon.ico') ?>" />
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
     <!-- Login CSS (isolated) -->
-    <link rel="stylesheet" href="<?php echo base_url('external/css/login.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('admin/external/css/login.css') ?>">
 </head>
 <body>
 

@@ -138,7 +138,20 @@ class App extends BaseConfig
      * secure, the user will be redirected to a secure version of the page
      * and the HTTP Strict Transport Security header will be set.
      */
-    public bool $forceGlobalSecureRequests = false;
+    public bool $forceGlobalSecureRequests = true;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->forceGlobalSecureRequests = filter_var(
+            env('app.forceGlobalSecureRequests', true),
+            FILTER_VALIDATE_BOOLEAN
+        );
+        // Desabilita CSP em dev para evitar bloqueio de recursos externos e inline
+        if (env('CI_ENVIRONMENT') === 'development') {
+            $this->CSPEnabled = false;
+        }
+    }
 
     /**
      * --------------------------------------------------------------------------
@@ -288,7 +301,9 @@ class App extends BaseConfig
      *
      * @deprecated use Config\Cookie::$secure property instead.
      */
-    public bool $cookieSecure = false;
+    public bool $cookieSecure = true;
+
+    // Seguranca: cookie so transmitido via HTTPS
 
     /**
      * --------------------------------------------------------------------------
@@ -323,7 +338,9 @@ class App extends BaseConfig
      *
      * @deprecated use Config\Cookie::$samesite property instead.
      */
-    public ?string $cookieSameSite = 'Lax';
+    public ?string $cookieSameSite = 'Strict';
+
+    // Seguranca: SameSite Strict previne envio de cookies em navegacao cruzada
 
     /**
      * --------------------------------------------------------------------------
@@ -449,5 +466,7 @@ class App extends BaseConfig
      * @see http://www.html5rocks.com/en/tutorials/security/content-security-policy/
      * @see http://www.w3.org/TR/CSP/
      */
-    public bool $CSPEnabled = false;
+    public bool $CSPEnabled = true;
+
+    // Seguranca: Content Security Policy ativada — restricoes definidas em ContentSecurityPolicy.php
 }

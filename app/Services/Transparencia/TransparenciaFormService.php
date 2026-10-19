@@ -1,18 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\Transparencia;
 
-use CodeIgniter\HTTP\IncomingRequest;
 use App\Models\CargosModel;
 use App\Models\EditaisModel;
-use Config\Database;
+use App\Services\Interfaces\ITransparenciaFormService;
 
-class TransparenciaFormService
+class TransparenciaFormService implements ITransparenciaFormService
 {
     public function __construct(
-        private IncomingRequest $request,
+        private \CodeIgniter\HTTP\IncomingRequest $request,
         private CargosModel $cargosModel,
-        private EditaisModel $editaisModel
+        private EditaisModel $editaisModel,
     ) {}
 
     public function listarClassificacao(): array
@@ -25,11 +26,7 @@ class TransparenciaFormService
             'edital'   => (int) $this->request->getGet('edital'),
         ];
 
-        $service = new TransparenciaService(
-            Database::connect(),
-            $this->cargosModel,
-            $this->editaisModel
-        );
+        $service = service('transparenciaService');
 
         $cargos = $this->cargosModel->cargosEditaisAtivos();
 
@@ -40,7 +37,7 @@ class TransparenciaFormService
             [
                 'cargos'  => $cargos,
                 'editais' => $editais,
-                'filtros' => $params
+                'filtros' => $params,
             ]
         );
     }

@@ -24,31 +24,13 @@ class Database extends Config
     /**
      * The default database connection.
      */
-    public array $default = [
-        'DSN'      => '',
-        'hostname' => '10.1.1.22',
-        'username' => 'breno',
-        'password' => 'br2013',
-        'database' => 'bd_processos_seletivos_administracao',
-        'DBDriver' => 'MySQLi',
-        'DBPrefix' => '',
-        'pConnect' => false,
-        'DBDebug'  => true,
-        'charset'  => 'utf8',
-        'DBCollat' => 'utf8_general_ci',
-        'swapPre'  => '',
-        'encrypt'  => false,
-        'compress' => false,
-        'strictOn' => false,
-        'failover' => [],
-        'port'     => 3306,
-    ];
+    public array $default = [];
 
     /**
      * This database connection is used when
      * running PHPUnit database tests.
      */
-    /*public array $tests = [
+    public array $tests = [
         'DSN'         => '',
         'hostname'    => '127.0.0.1',
         'username'    => '',
@@ -68,11 +50,32 @@ class Database extends Config
         'port'        => 3306,
         'foreignKeys' => true,
         'busyTimeout' => 1000,
-    ];*/
+    ];
 
     public function __construct()
     {
         parent::__construct();
+
+        // Seguranca: credenciais via .env para evitar hardcoded
+        $this->default = [
+            'DSN'      => '',
+            'hostname' => env('database.default.hostname', 'localhost'),
+            'username' => env('database.default.username', ''),
+            'password' => env('database.default.password', ''),
+            'database' => env('database.default.database', ''),
+            'DBDriver' => env('database.default.DBDriver', 'MySQLi'),
+            'DBPrefix' => env('database.default.DBPrefix', ''),
+            'pConnect' => false,
+            'DBDebug'  => env('CI_DB_DEBUG', false),
+            'charset'  => 'utf8',
+            'DBCollat' => 'utf8_general_ci',
+            'swapPre'  => '',
+            'encrypt'  => env('database.default.encrypt', false),
+            'compress' => false,
+            'strictOn' => env('database.default.strictOn', true),
+            'failover' => [],
+            'port'     => env('database.default.port', 3306),
+        ];
 
         // Ensure that we always set the database group to 'tests' if
         // we are currently running an automated test suite, so that

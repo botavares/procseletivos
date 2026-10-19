@@ -24,7 +24,9 @@ class Security extends BaseConfig
      *
      * Randomize the CSRF Token for added security.
      */
-    public bool $tokenRandomize = false;
+    public bool $tokenRandomize = true;
+
+    // Seguranca: token CSRF randomizado para dificitar previsao
 
     /**
      * --------------------------------------------------------------------------
@@ -33,7 +35,9 @@ class Security extends BaseConfig
      *
      * Token name for Cross Site Request Forgery protection.
      */
-    public string $tokenName = 'csrf_test_name';
+    public string $tokenName = 'csrf_procsel_token';
+
+    // Seguranca: nome customizado do token CSRF (evita nomes default obvios)
 
     /**
      * --------------------------------------------------------------------------
@@ -71,7 +75,9 @@ class Security extends BaseConfig
      *
      * Regenerate CSRF Token on every submission.
      */
-    public bool $regenerate = false;
+    public bool $regenerate = true;
+
+    // Seguranca: regenera token CSRF a cada submissao
 
     /**
      * --------------------------------------------------------------------------
@@ -97,5 +103,7 @@ class Security extends BaseConfig
      *
      * @deprecated `Config\Cookie` $samesite property is used.
      */
-    public string $samesite = 'Lax';
+    public string $samesite = 'Strict';
+
+    // Seguranca: SameSite Strict para token CSRF
 }

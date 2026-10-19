@@ -1,23 +1,32 @@
 <?php
+
+declare(strict_types=1);
+
 namespace App\Models;
 
 use CodeIgniter\Model;
 
-class AperfeicoamentosModel extends Model{
-    //Atributos
+class AperfeicoamentosModel extends Model
+{
     protected $table = 'tb_cursos_aperfeicoamentos';
     protected $primaryKey = 'pk_id_curso';
     protected $useAutoIncrement = true;
+    protected $returnType = 'object';
+    protected $useTimestamps = false;
+    protected $useSoftDeletes = false;
     protected $allowedFields = [
         'ds_nome_curso',
     ];
 
-    protected $returnType = 'object';
+    protected $validationRules = [
+        'ds_nome_curso' => 'required|string',
+    ];
 
     /**
      * Retorna os cursos de aperfeiçoamentos vinculados a um edital específico.
      */
-    public function listarRequisitosAperfeicoamentos($cargo = null){
+    public function listarRequisitosAperfeicoamentos($cargo = null)
+    {
         return $this->db->table('tb_cargos_aperfeicoamentos')
             ->select([
                 'tb_cargos.pk_id_cargo',
@@ -25,7 +34,7 @@ class AperfeicoamentosModel extends Model{
                 'tb_cursos_aperfeicoamentos.ds_nome_curso',
                 'tb_cargos_aperfeicoamentos.ds_tipo_campo',
                 'tb_cargos_aperfeicoamentos.ds_pontuacao_minima',
-                'tb_cargos_aperfeicoamentos.ds_pontuacao_maxima'
+                'tb_cargos_aperfeicoamentos.ds_pontuacao_maxima',
             ])
             ->join(
                 'tb_cursos_aperfeicoamentos',

@@ -1,32 +1,27 @@
 <?php
+
+declare(strict_types=1);
+
 namespace App\Services;
 
-use App\Services\Base\AbstractCrudService;
-use App\Services\PdfService;
-use \App\Models\CargosModel;
-use \App\Models\CandidatosModel;
-use \App\Models\ProtocolosModel;
-use \App\Models\EditaisModel;
+use App\Formatters\DeficienciaFormatter;
+use App\Models\CargosModel;
+use App\Models\CandidatosModel;
+use App\Models\ProtocolosModel;
+use App\Models\EditaisModel;
+use App\Services\Interfaces\IComprovanteService;
+use App\Services\Interfaces\IPdfService;
 
-class ComprovanteService extends AbstractCrudService{
-    protected CandidatosModel $modelCandidatos;
-    protected CargosModel $modelCargos;
-    protected ProtocolosModel $modelProtocolos;
-    protected EditaisModel $modelEditais;
-    protected PdfService $pdfService;
+class ComprovanteService implements IComprovanteService
+{
+    public function __construct(
+        private CandidatosModel $modelCandidatos,
+        private CargosModel $modelCargos,
+        private ProtocolosModel $modelProtocolos,
+        private EditaisModel $modelEditais,
+        private IPdfService $pdfService,
+    ) {}
 
-    public function __construct(){
-        $this->modelCandidatos = new CandidatosModel();
-        $this->modelCargos = new CargosModel();
-        $this->modelProtocolos = new ProtocolosModel();
-        $this->modelEditais = new EditaisModel();
-        $this->pdfService = new PdfService();
-    }
-
-    /**
-     * Gera o comprovante completo com conteúdo PDF, nome do arquivo e tipo MIME.
-     * Retorna um objeto padronizado para o controller apenas entregar a resposta.
-     */
     public function gerarComprovanteCompleto(int $idEdital, int $idCargo, int $idCandidato): object
     {
         $dadosComprovante = $this->obterDadosComprovante($idEdital, $idCargo, $idCandidato);
@@ -50,10 +45,6 @@ class ComprovanteService extends AbstractCrudService{
         ];
     }
 
-    /**
-     * Busca e formata os dados necessários para o comprovante.
-     * Retorna null se o protocolo não for encontrado.
-     */
     private function obterDadosComprovante(int $idEdital, int $idCargo, int $idCandidato): ?array
     {
         $dadosCandidatos = $this->modelCandidatos->where('pk_id_cadastrado', $idCandidato)->first();
@@ -69,22 +60,22 @@ class ComprovanteService extends AbstractCrudService{
             return null;
         }
 
-        $def = $this->pdfService->formatarDeficiencia(
+        $def = DeficienciaFormatter::formatar(
             $dadosCandidatos->fk_id_pne ?? null,
             $dadosCandidatos->ds_outra_pne ?? null
         );
 
         return [
-            'brasao'       => imageToBase64(ROOTPATH . '/external/img/brasao.png'),
-            'fundo'        => imageToBase64(ROOTPATH . '/external/img/fundo.jpg'),
-            'nomeCargo'    => $nomeCargo->ds_nome_cargo ?? null,
-            'edital'       => $this->formatarNumeroEdital($dadosEdital->ds_numero_edital ?? ''),
-            'protocolo'    => $dadosProtocolos->ds_protocolo,
-            'dadosPessoais'=> $dadosCandidatos,
-            'nascimento'   => date('d/m/Y', strtotime($dadosCandidatos->ds_nascimento)),
-            'deficiencia'  => $def,
-            'dataCadastro' => date('d/m/Y', strtotime($dadosProtocolos->ds_data_protocolo)),
-            'horaCadastro' => date('H:i:s', strtotime($dadosProtocolos->ds_hora_protocolo)),
+            'brasao'        => imageToBase64(ROOTPATH . '/public/publica/external/img/brasao.png'),
+            'fundo'         => imageToBase64(ROOTPATH . '/public/publica/external/img/fundo.jpg'),
+            'nomeCargo'     => $nomeCargo->ds_nome_cargo ?? null,
+            'edital'        => $this->formatarNumeroEdital($dadosEdital->ds_numero_edital ?? ''),
+            'protocolo'     => $dadosProtocolos->ds_protocolo,
+            'dadosPessoais' => $dadosCandidatos,
+            'nascimento'    => date('d/m/Y', strtotime($dadosCandidatos->ds_nascimento)),
+            'deficiencia'   => $def,
+            'dataCadastro'  => date('d/m/Y', strtotime($dadosProtocolos->ds_data_protocolo)),
+            'horaCadastro'  => date('H:i:s', strtotime($dadosProtocolos->ds_hora_protocolo)),
         ];
     }
 

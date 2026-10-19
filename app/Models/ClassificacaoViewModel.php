@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -8,7 +9,10 @@ class ClassificacaoViewModel extends Model
 {
     protected $table = 'vw_classificacao_candidatos';
     protected $primaryKey = 'fk_id_candidato';
-    protected $returnType = 'object';
-    protected $allowedFields = [];
     protected $useAutoIncrement = false;
+    protected $useTimestamps = false;
+    protected $useSoftDeletes = false;
+    protected $allowedFields = [];
+    protected $validationRules = [];
+    protected $returnType = 'object';
 }

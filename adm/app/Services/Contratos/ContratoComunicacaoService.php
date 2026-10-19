@@ -46,7 +46,7 @@ class ContratoComunicacaoService extends AbstractCrudService{
             $contagem = $contagemService->contagemDeTempoContrato($contrato->fk_id_candidato, $contrato->fk_id_setor, $contrato->pk_id_contrato);
 
             //montar a mensagem e mandar pra /views/emails/contrato_expirando
-            $mensagem = view('emails/contrato_expirando', [
+            $mensagem = view('Admin/emails/contrato_expirando', [
                 'nome' => $candidato->ds_nome,
                 'setor' => $setor->ds_nome_setor,
                 'dataFim' => $contrato->ds_data_encerramento,

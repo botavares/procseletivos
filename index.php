@@ -1,7 +1,13 @@
 <?php
 
+// Proteção contra acesso direto se o VirtualHost estiver mal configurado
+if (isset($_SERVER['DOCUMENT_ROOT']) && realpath(__FILE__) === realpath($_SERVER['DOCUMENT_ROOT'] . '/index.php')) {
+    header('HTTP/1.1 403 Forbidden');
+    exit('Acesso negado.');
+}
+
 // Check PHP version.
-$minPhpVersion = '7.4'; // If you update this, don't forget to update `spark`.
+$minPhpVersion = '8.3'; // If you update this, don't forget to update `spark`.
 if (version_compare(PHP_VERSION, $minPhpVersion, '<')) {
     $message = sprintf(
         'Your PHP version must be %s or higher to run CodeIgniter. Current version: %s',
