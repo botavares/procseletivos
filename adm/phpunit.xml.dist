@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		bootstrap="system/Test/bootstrap.php"
+		bootstrap="../system/Test/bootstrap.php"
 		backupGlobals="false"
 		colors="true"
 		convertErrorsToExceptions="true"
@@ -17,6 +17,8 @@
 		</include>
 		<exclude>
 			<directory suffix=".php">./app/Views</directory>
+			<directory suffix=".php">./app/Helpers</directory>
+			<directory suffix=".php">./app/Language</directory>
 			<file>./app/Config/Routes.php</file>
 		</exclude>
 		<report>

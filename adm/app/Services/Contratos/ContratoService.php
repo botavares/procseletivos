@@ -4,7 +4,11 @@ Control: Contratos.php
 Control: Dashboard.php
 */
 namespace App\Services\Contratos;
-use App\Services\Base\AbstractCrudService;
+
+use App\Services\Base\TransactionalTrait;
+use CodeIgniter\Database\BaseConnection;
+
+use App\Enums\ContratoStatusEnum;
 use App\Repositories\Interfaces\IContratoRepository;
 use App\Models\ConvocadosModel;
 use App\Models\VagasModel;
@@ -13,7 +17,7 @@ use App\Models\DadosRescisaoModel;
 use App\Models\DadosAditivosModel;
 use App\Services\LogsService;
 
-class ContratoService extends AbstractCrudService
+class ContratoService 
 {
     public function __construct(
         protected IContratoRepository $contratoRepository,
@@ -23,8 +27,9 @@ class ContratoService extends AbstractCrudService
         protected DadosAditivosModel $aditivosModel,
         protected ConvocadosModel $convocadosModel,
         protected VerificadorModel $verificadorModel,
+        ?BaseConnection $db = null,
     ) {
-        parent::__construct();
+        $this->db = $db ?? \Config\Database::connect();
     }
 
     public function contratar(array $dados,): int
@@ -33,7 +38,7 @@ class ContratoService extends AbstractCrudService
 
             //verificar se o candidato possui contrato ativo
             $contratoAtivo = $this->contratoRepository->buscarPorCandidato($dados['fk_id_candidato']);
-            $contratoAtivo = array_filter($contratoAtivo, fn($c) => $c->ds_status == '1');
+            $contratoAtivo = array_filter($contratoAtivo, fn($c) => (int) $c->ds_status === ContratoStatusEnum::ATIVO->value);
 
             if (!empty($contratoAtivo)) {
                 throw new \RuntimeException('O candidato possui contrato ativo');
@@ -63,7 +68,7 @@ class ContratoService extends AbstractCrudService
             $dadosAtualizar = [
                 'ds_comparecimento' => '1',
                 'ds_interesse' => '1',
-                'ds_status' => '2'
+                'ds_status' => ContratoStatusEnum::RESCINDIDO->value
             ];
             //atualizar o status de comparecimento para 1 (caso esteja 0)
             $this->convocadosModel->where('fk_id_candidato', $dados['fk_id_candidato'])->set($dadosAtualizar)->update();
@@ -132,14 +137,14 @@ class ContratoService extends AbstractCrudService
                 }
             //preparar array para atualizar o status do contrato
                 $arrayContrato = [
-                    'ds_status' => '2',
+                    'ds_status' => ContratoStatusEnum::RESCINDIDO->value,
                     'ds_data_baixa'=>$dados['dataBaixa'],
                 ];
                 $this->contratoRepository->atualizar($idContrato, $arrayContrato);
             
                 //preparar array para atualizar o status do convocado (caso esteja 1)
                 $arrayConvocacao = [
-                    'ds_status' => '3',
+                    'ds_status' => ContratoStatusEnum::ADITIVADO->value,
                 ];
                 $this->convocadosModel
                     ->where('fk_id_candidato', $dados['idCandidato'])
@@ -147,7 +152,7 @@ class ContratoService extends AbstractCrudService
                     ->set($arrayConvocacao)->update();
                 //preparar array para atualizar o status de aditivos
                 $arrayAditivo = [
-                    'ds_status' => '2',
+                    'ds_status' => ContratoStatusEnum::RESCINDIDO->value,
                 ]
                 ;
                 $this->aditivosModel->where('fk_id_contrato', $idContrato)->set($arrayAditivo)->update();
@@ -173,7 +178,7 @@ class ContratoService extends AbstractCrudService
             if ($jaPossuiAditivo) {
                 //se possui aditivo, encerrar qualquer aditivo que estiver em aberto
                 $arrayAditivo = [
-                    'ds_status' => '2',
+                    'ds_status' => ContratoStatusEnum::RESCINDIDO->value,
                 ]
                 ;
                 $this->aditivosModel
@@ -200,7 +205,7 @@ class ContratoService extends AbstractCrudService
                 'ds_carga_horaria'     => $dados['ds_carga_horaria'],
                 'ds_data_aditivo'      => date('Y-m-d'),
                 'ds_data_prorrogacao'  => $dados['ds_data_prorrogacao'],
-                'ds_status'            => 1,
+                'ds_status'            => ContratoStatusEnum::ATIVO->value,
             ];
 
             $this->aditivosModel->insert($arrayAditivo);
@@ -231,13 +236,13 @@ class ContratoService extends AbstractCrudService
         // CASO 1 — Contratos NÃO prorrogados vencidos
         $naoProrrogados = $this->contratoRepository
             ->buscarAtivos();
-        $naoProrrogados = array_filter($naoProrrogados, fn($c) => $c->ds_prorrogado == 0 && $c->ds_status != 2 && $c->ds_data_encerramento < $hoje);
+        $naoProrrogados = array_filter($naoProrrogados, fn($c) => (int) $c->ds_prorrogado === 0 && (int) $c->ds_status !== ContratoStatusEnum::RESCINDIDO->value && $c->ds_data_encerramento < $hoje);
 
         if (!empty($naoProrrogados)) {
             $ids = array_column($naoProrrogados, 'pk_id_contrato');
 
             foreach ($ids as $id) {
-                $this->contratoRepository->atualizar($id, ['ds_status' => 2]);
+                $this->contratoRepository->atualizar($id, ['ds_status' => ContratoStatusEnum::RESCINDIDO->value]);
             }
 
             $this->logsService->inserirLog(
@@ -249,7 +254,7 @@ class ContratoService extends AbstractCrudService
         // CASO 2 — Contratos PRORROGADOS sem aditivo válido
         $contratosProrrogados = $this->contratoRepository
             ->buscarAtivos();
-        $contratosProrrogados = array_filter($contratosProrrogados, fn($c) => $c->ds_prorrogado == 1 && $c->ds_status != 2);
+        $contratosProrrogados = array_filter($contratosProrrogados, fn($c) => (int) $c->ds_prorrogado === 1 && (int) $c->ds_status !== ContratoStatusEnum::RESCINDIDO->value);
 
         foreach ($contratosProrrogados as $contrato) {
 
@@ -261,7 +266,7 @@ class ContratoService extends AbstractCrudService
             if (!$existeAditivoValido) {
 
                 $this->contratoRepository->atualizar($contrato->pk_id_contrato, [
-                    'ds_status' => 2
+                    'ds_status' => ContratoStatusEnum::RESCINDIDO->value
                 ]);
 
                 $this->logsService->inserirLog(

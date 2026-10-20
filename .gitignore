@@ -1,44 +1,46 @@
-# Arquivos de ambiente (credenciais)
+# Composer
+/vendor/
+composer.lock
+
+# Node (se houver)
+/node_modules/
+
+# IDEs
+/.idea/
+/.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs e cache
+/writable/cache/
+/writable/logs/
+/writable/session/
+/writable/uploads/
+/adm/writable/cache/
+/adm/writable/logs/
+/adm/writable/session/
+/adm/writable/uploads/
+
+# Build
+/build/
+/adm/build/
+
+# Test coverage
+*.serialized
+
+# Environment
 .env
-.env.*
 !.env.example
 
-# Dependências
-vendor/
-node_modules/
+# Backups
+*.bak
+*.old
 
-# Diretórios do CodeIgniter writable
-writable/cache/*
-writable/debugbar/*
-writable/logs/*
-writable/session/*
-writable/uploads/*
-!writable/**/.gitkeep
-
-# Diretórios do CodeIgniter writable (adm)
-adm/writable/cache/*
-adm/writable/debugbar/*
-adm/writable/logs/*
-adm/writable/session/*
-adm/writable/uploads/*
-!adm/writable/**/.gitkeep
-
-# Arquivos temporários e de verificação
-temp_check_fields.php
-*.log
-
-# IDE / Editor
-.idea/
-.vscode/
-_notes/
-
-# Lock files (opcional – manter se desejar versionamento determinístico)
-# composer.lock
-# package-lock.json
-
-# Testes locais
-phpunit.xml.dist
-phpunit.xml
-
-# Preload (se contiver paths locais)
-preload.php
+# Admin não possui mais vendor/system próprios
+# (mantidos apenas por precaução)
+/adm/vendor/
+/adm/system/

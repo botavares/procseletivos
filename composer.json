@@ -15,7 +15,9 @@
         "dompdf/dompdf": "^2.0",
         "picqer/php-barcode-generator": "^2.4",
         "chillerlan/php-qrcode": "^4.3",
-        "geeklabs/ci4-breadcrumbs": "^2.0"
+        "geeklabs/ci4-breadcrumbs": "^2.0",
+        "phpmailer/phpmailer": "^6.9",
+        "phpoffice/phpspreadsheet": "^5.7"
     },
     "require-dev": {
         "kint-php/kint": "^5.0.1",

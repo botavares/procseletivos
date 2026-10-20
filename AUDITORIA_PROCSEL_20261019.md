@@ -407,7 +407,7 @@ Refatorar controllers gordos, eliminar magic numbers/strings, corrigir retornos 
 **Severidade:** ALTA  
 **Descricao:** Controllers acumulam validacao, orquestracao de multiplos services, formatacao de dados, logica de saudacao, montagem de view, exportacao e ate insercao em banco.
 
-### Prompt 3.1 - Refatorar Controllers para Slim Controllers
+### Prompt 3.1 - Refatorar Controllers para Slim Controllers ✅ (Entregue na Sprint 4)
 ```
 CONTEXTO:
 Os controllers `adm/app/Controllers/Admin/Classificacoes.php`, 
@@ -464,7 +464,7 @@ COMO VERIFICAR:
 **Severidade:** MEDIA  
 **Descricao:** Status numericos (`1`, `2`, `3`, `0`) sao usados sem contexto. Ex: `'ds_status' => '2'`, `if($experiencia->ds_status == 0)`. Isso torna o codigo ilegivel e fragil.
 
-### Prompt 3.2 - Substituir Magic Numbers por Enums ou Constantes Semanticas
+### Prompt 3.2 - Substituir Magic Numbers por Enums ou Constantes Semanticas ✅ (Entregue na Sprint 5)
 ```
 CONTEXTO:
 O projeto utiliza valores numericos e strings literais para representar 
@@ -484,6 +484,7 @@ ACAO REQUERIDA:
        case ATIVO = 1;
        case INATIVO = 0;
        case ENCERRADO = 2;
+       case VIGENTE   = 3;
    }
    
    enum ContratoStatusEnum: string {
@@ -524,7 +525,7 @@ COMO VERIFICAR:
 **Severidade:** MEDIA  
 **Descricao:** O metodo retorna `true` em caso de sucesso ou um `array` com mensagem de erro. Isso viola o principio de retorno consistente e dificulta tratamento por chamadores.
 
-### Prompt 3.3 - Eliminar Retornos Mistos usando Excecoes de Dominio
+### Prompt 3.3 - Eliminar Retornos Mistos usando Excecoes de Dominio ✅ (Entregue na Sprint 5)
 ```
 CONTEXTO:
 O metodo `estaAtivo()` em `app/Services/EditaisService.php` retorna 
@@ -582,7 +583,7 @@ COMO VERIFICAR:
 **Severidade:** MEDIA  
 **Descricao:** O arquivo esta em `app/Domain/ClassificacaoCalculator.php`, mas seu namespace e `App\Domain\Classificacao`. Isso viola PSR-4 e pode causar falha de autoload.
 
-### Prompt 3.4 - Corrigir Namespaces para Conformidade PSR-4
+### Prompt 3.4 - Corrigir Namespaces para Conformidade PSR-4 ✅ (Entregue na Sprint 5)
 ```
 CONTEXTO:
 O arquivo `app/Domain/ClassificacaoCalculator.php` declara 
@@ -624,7 +625,7 @@ Unificar as duas aplicacoes em uma unica base CI4 (se viavel), ou ao menos compa
 **Severidade:** ALTA (dificuldade de manutencao)  
 **Descricao:** Ha dois diretorios `system/`, dois `vendor/`, dois `writable/` e suites de testes separadas. Isso aumenta o tamanho do repositorio, dificulta atualizacoes de seguranca do framework e propaga divergencia.
 
-### Prompt 4.1 - Consolidar Aplicacoes em uma Unica Base CI4 com Modulos
+### Prompt 4.1 - Consolidar Aplicacoes em uma Unica Base CI4 com Modulos ✅ (Entregue na Sprint 6 - Estrategia B)
 ```
 CONTEXTO:
 O repositorio contem duas instalacoes completas do CodeIgniter 4: a raiz 
@@ -664,7 +665,7 @@ CRITERIOS DE ACEITACAO:
   cobrindo ambas as camadas.
 
 COMO VERIFICAR:
-- Verifique que `adm/system/` e `adm/vendor/` nao existem mais (ou sao symlinks).
+- Verifique que `adm/system/` e `adm/vendor/` nao existem mais.
 - Acesse o site publico e o painel admin simultaneamente.
 - Rode `phpunit` na raiz e confirme que testes de ambas as camadas sao executados.
 - Verifique que `composer update` na raiz atualiza dependencias compartilhadas.
@@ -675,7 +676,7 @@ COMO VERIFICAR:
 **Severidade:** MEDIA  
 **Descricao:** A suite de testes do admin nao cobre os Services e Repositories (que nem existiam). Com a introducao de DI e interfaces na Etapa 2, torna-se trivial testar em isolamento.
 
-### Prompt 4.2 - Criar Suite de Testes Unitarios para Services e Repositories
+### Prompt 4.2 - Criar Suite de Testes Unitarios para Services e Repositories ✅ (Entregue na Sprint 7)
 ```
 CONTEXTO:
 Apos as etapas anteriores, o painel admin possui Services injetaveis e 

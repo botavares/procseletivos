@@ -1,0 +1,46 @@
+name: CI - Testes PHPUnit
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: intl, mbstring, zip, json, curl
+          coverage: none
+
+      - name: Validar composer.json
+        run: composer validate --strict
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.composer/cache/files
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Instalar dependências
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Rodar testes - Site Público
+        run: vendor/bin/phpunit --testsuite App --no-coverage
+
+      - name: Rodar testes - Painel Admin
+        run: cd adm && ../vendor/bin/phpunit --testsuite App --no-coverage
+
+      - name: Verificar sintaxe PHP
+        run: |
+          find app -name "*.php" -exec php -l {} \;
+          find adm/app -name "*.php" -exec php -l {} \;

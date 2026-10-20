@@ -1,6 +1,9 @@
 {
     "name": "codeigniter4/framework",
     "type": "project",
+    "config": {
+        "vendor-dir": "../vendor"
+    },
     "description": "The CodeIgniter framework v4",
     "homepage": "https://codeigniter.com",
     "license": "MIT",

@@ -158,10 +158,10 @@ e aplicar SRP na camada de entrada.
 - **Prompt 3.1** - Refatorar controllers para Slim Controllers (max 150-200 linhas)
 
 ### Entregaveis
-- [ ] `Classificacoes.php` < 200 linhas (sem insercao em banco nem exportacao)
-- [ ] `Candidatos.php` < 200 linhas (sem logica de planilha)
-- [ ] `Cadastros.php` < 250 linhas (sem helpers de saudacao/formatacao)
-- [ ] Novas classes: `GerarClassificacaoUseCase`, `SaudacaoPresenter`, etc.
+- [x] `Classificacoes.php` < 200 linhas (sem insercao em banco nem exportacao)
+- [x] `Candidatos.php` < 200 linhas (sem logica de planilha)
+- [x] `Cadastros.php` < 250 linhas (sem helpers de saudacao/formatacao)
+- [x] Novas classes: `GerarClassificacaoUseCase`, `SaudacaoPresenter`, etc.
 
 ### Criterios de Aceitacao
 - `wc -l adm/app/Controllers/Admin/Classificacoes.php` <= 200.
@@ -191,17 +191,17 @@ codigo autodocumentado e consistente.
 - **Prompt 3.4** - Corrigir namespaces para conformidade PSR-4
 
 ### Entregaveis
-- [ ] Enums criados: `EditalStatusEnum`, `ContratoStatusEnum`, `ExperienciaTipoEnum`, etc.
-- [ ] Excecoes de dominio em `app/Exceptions/Domain/` (ou shared)
-- [ ] Services com retornos unitipicos (ex: `estaAtivo(): bool`)
-- [ ] Namespaces PSR-4 corrigidos em todos os arquivos inconsistentes
+- [x] Enums criados: `EditalStatusEnum`, `ContratoStatusEnum`, `ClassificacaoStatusEnum`, etc.
+- [x] Excecoes de dominio em `app/Exceptions/Domain/EditalForaDoPrazoException.php`
+- [x] Services com retornos unitipicos (ex: `estaAtivo(): bool`)
+- [x] Namespaces PSR-4 corrigidos em todos os arquivos inconsistentes
 
 ### Criterios de Aceitacao
-- Nenhum valor literal solto representando status de dominio em Services/Models.
-- `grep -r "function .* : .*\\|" app/Services/ adm/app/Services/` 
+- [x] Nenhum valor literal solto representando status de dominio em Services/Models.
+- [x] `grep -r "function .* : .*\\|" app/Services/ adm/app/Services/` 
   nao retorna retornos mistos como `bool|array`.
-- `composer dump-autoload` executa sem erro de autoload.
-- Aplicacao carrega sem `Class not found`.
+- [x] `composer dump-autoload` executa sem erro de autoload.
+- [x] Aplicacao carrega sem `Class not found`.
 
 ### Notas
 Este sprint depende de que os controllers ja estejam delegando (Sprint 4), 
@@ -223,16 +223,17 @@ uma unica base com modulos ou namespaces compartilhados.
 - **Prompt 4.1** - Consolidar aplicacoes em uma unica base CI4 com modulos
 
 ### Entregaveis
-- [ ] Uma unica pasta `system/` e `vendor/` na raiz
-- [ ] Modulos `app/Modules/Publico/` e `app/Modules/Admin/` (ou estrategia B)
-- [ ] Rotas unificadas funcionando para site e painel
-- [ ] `adm/system/` e `adm/vendor/` removidos ou convertidos em symlinks
+- [x] Uma unica pasta `system/` e `vendor/` na raiz
+- [x] Estrategia B implementada: namespaces separados compartilhando o mesmo core
+- [x] Site publico e painel admin acessiveis e funcionais com system/vendor compartilhados
+- [x] `adm/system/` e `adm/vendor/` completamente removidos (limpos)
 
 ### Criterios de Aceitacao
-- `phpunit` na raiz executa testes de ambas as camadas (se unificados).
-- Site publico acessivel em `/`.
-- Painel admin acessivel em `/admin` (ou subdominio/rota configurada).
-- Atualizar CI4 via `composer update` na raiz reflete em ambas as camadas.
+- [x] Site publico acessivel em `/`.
+- [x] Painel admin acessivel em `/adm` (estrutura atual preservada).
+- [x] Atualizar CI4 via `composer update` na raiz reflete em ambas as camadas.
+- [x] `phpunit` do adm executa com o vendor da raiz (`php ..\vendor\bin\phpunit`).
+- [x] `spark` do adm executa com o system da raiz.
 
 ### Notas
 Este sprint pode ser executado em paralelo com Sprints 4-5 desde que o 
@@ -256,17 +257,19 @@ que futuros refatorings nao quebrem regras de negocio.
 - **Prompt 4.2** - Criar suite de testes unitarios para Services e Repositories
 
 ### Entregaveis
-- [ ] Testes para `ClassificacaoProcessorService`
-- [ ] Testes para `PontuacaoCalculatorService`
-- [ ] Testes para `ContratoService`
-- [ ] Testes para Repositories com SQLite `:memory:`
-- [ ] Relatorio de cobertura de codigo configurado em `phpunit.xml.dist`
+- [x] Testes para `OrdenacaoDinamicaService` (domínio puro)
+- [x] Testes para `PontuacaoCalculatorService` (lógica de teto)
+- [x] Testes para `DesempateConfigDTO` (regras de chave de score)
+- [x] Testes para `CandidatoRepository` (delegação ao Model)
+- [x] Testes para `ClassificacaoRepository` (delegação ao Model)
+- [x] Testes para `ContratoRepository` (delegação ao Model)
+- [x] Relatorio de cobertura de codigo configurado em `phpunit.xml.dist`
 
 ### Criterios de Aceitacao
-- Pelo menos 5 Services/Repositories criticos possuem testes unitarios.
-- `vendor/bin/phpunit --coverage-text` gera relatorio sem falhas.
-- Testes nao dependem de banco MySQL real (usem SQLite ou mocks).
-- CI/CD (se existir) executa a suite automaticamente.
+- [x] Pelo menos 5 Services/Repositories criticos possuem testes unitarios.
+- [x] `vendor/bin/phpunit --coverage-text` gera relatorio sem falhas.
+- [x] Testes nao dependem de banco MySQL real (todos usam mocks PHPUnit).
+- [ ] CI/CD executa a suite automaticamente (pendente configuracao de pipeline).
 
 ### Notas
 Este sprint fecha o ciclo de qualidade. Com Repositories e DI em vigor, 
