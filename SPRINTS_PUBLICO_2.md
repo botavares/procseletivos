@@ -269,7 +269,7 @@ que futuros refatorings nao quebrem regras de negocio.
 - [x] Pelo menos 5 Services/Repositories criticos possuem testes unitarios.
 - [x] `vendor/bin/phpunit --coverage-text` gera relatorio sem falhas.
 - [x] Testes nao dependem de banco MySQL real (todos usam mocks PHPUnit).
-- [ ] CI/CD executa a suite automaticamente (pendente configuracao de pipeline).
+- [x] CI/CD configurado com GitHub Actions (`.github/workflows/ci.yml`).
 
 ### Notas
 Este sprint fecha o ciclo de qualidade. Com Repositories e DI em vigor, 
