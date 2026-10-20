@@ -8,13 +8,25 @@
     </div>
 
     <?php if (!empty($editaisAbertos)) : ?>
-        <?php foreach ($editaisAbertos as $edital) : ?>
+        <?php
+        $editaisAgrupados = [];
+        $cargosPorEdital = [];
+        foreach ($editaisAbertos as $edital) {
+            $id = $edital->pk_id_edital;
+            if (!isset($editaisAgrupados[$id])) {
+                $editaisAgrupados[$id] = $edital;
+                $cargosPorEdital[$id] = [];
+            }
+            $cargosPorEdital[$id][] = $edital->ds_nome_cargo ?? 'Cargo não informado';
+        }
+        ?>
+        <?php foreach ($editaisAgrupados as $id => $edital) : ?>
             <div class="home-hero">
                 <div class="home-hero__top">
                     <div>
                         <h4><?= esc($edital->ds_nome_secretaria ?? 'SEPLAG') ?> · Processo Seletivo Simplificado nº <?= esc($edital->ds_numero_edital) ?></h4>
                         <div class="home-hero__meta">
-                            Cargo: <b><?= esc($edital->ds_nome_cargo ?? 'Cargo não informado') ?></b><br>
+                            Cargos: <b><?= esc(implode(', ', $cargosPorEdital[$id])) ?></b><br>
                             <b>Inscrições de <?= esc(date('d/m/Y', strtotime($edital->ds_data_inicial))) ?> a <?= esc(date('d/m/Y', strtotime($edital->ds_data_termino))) ?></b>
                         </div>
                     </div>

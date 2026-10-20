@@ -11,7 +11,6 @@ class Login extends BaseController{
     protected $usuarioModel;
 
     public function __construct(){
-        parent::__construct();
         $this->usuarioModel = new \App\Models\UsuarioModel();
     }
     public function index(){

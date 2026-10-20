@@ -17,7 +17,6 @@ class Dashboard extends BaseController{
     protected $editaisModel;
 
     public function __construct(){
-        parent::__construct();
         $this->editaisModel = new \App\Models\EditaisModel();
     }
     public function index($camada1 = '', $camada2 = 'pages', $page = 'Dashboard'){

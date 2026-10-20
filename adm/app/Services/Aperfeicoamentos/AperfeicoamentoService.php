@@ -2,22 +2,21 @@
 
 namespace App\Services\Aperfeicoamentos;
 
-use App\Services\Base\AbstractCrudService;
-use App\Models\AperfeicoamentosModel;
-use App\DTOs\Domain\Aperfeicoamentos\AperfeicoamentoDTO;
+use App\Services\Base\TransactionalTrait;
 
-class AperfeicoamentoService extends AbstractCrudService
+use App\Models\AperfeicoamentosModel;
+
+class AperfeicoamentoService 
 {
     public function __construct()
     {
-        parent::__construct();
+        $this->db = $db ?? \Config\Database::connect();
     }
 
-    public function salvar(AperfeicoamentoDTO $dto): int
+    public function salvar(array $data): int
     {
-        return $this->transactional(function () use ($dto) {
+        return $this->transactional(function () use ($data) {
             $model = new AperfeicoamentosModel();
-            $data = $dto->toArray();
 
             if (! $model->save($data)) {
                 throw new \RuntimeException(
@@ -25,7 +24,7 @@ class AperfeicoamentoService extends AbstractCrudService
                 );
             }
 
-            $id = $dto->pk_id_curso ?? $model->getInsertID();
+            $id = $data['pk_id_curso'] ?? $model->getInsertID();
 
             if (empty($id)) {
                 throw new \RuntimeException('ID do Curso não foi gerado');
@@ -35,18 +34,12 @@ class AperfeicoamentoService extends AbstractCrudService
         });
     }
 
-    public function atualizar(AperfeicoamentoDTO $dto): void
+    public function atualizar(int $id, array $data): void
     {
-        $this->transactional(function () use ($dto) {
-            $id = $dto->pk_id_curso;
-
-            if (!$id) {
-                throw new \RuntimeException('ID do curso não informado');
-            }
-
+        $this->transactional(function () use ($id, $data) {
             $model = new AperfeicoamentosModel();
 
-            if (! $model->update($id, $dto->toArray())) {
+            if (! $model->update($id, $data)) {
                 throw new \RuntimeException('Erro ao atualizar curso de aperfeiçoamento');
             }
 

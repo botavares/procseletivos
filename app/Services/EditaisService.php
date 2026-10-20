@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Enums\EditalStatusEnum;
+use App\Exceptions\Domain\EditalForaDoPrazoException;
 use App\Models\EditaisModel;
 use App\Models\CargosModel;
 use App\Repositories\Interfaces\IEditalRepository;
@@ -43,7 +45,7 @@ class EditaisService implements IEditaisService
 
     public function listarEditaisEncerrados(): array
     {
-        return $this->modelEditais->where('ds_status', '0')->orderBy('ds_data_inicial', 'DESC')->findAll();
+        return $this->modelEditais->where('ds_status', EditalStatusEnum::INATIVO->value)->orderBy('ds_data_inicial', 'DESC')->findAll();
     }
 
     public function listarTodosCargos(): array
@@ -85,19 +87,22 @@ class EditaisService implements IEditaisService
         return $this->modelEditais->where('pk_id_edital', $idEdital)->first();
     }
 
-    public function estaAtivo($idEdital)
+    public function estaAtivo(int $idEdital): bool
     {
         $dadosEdital = $this->modelEditais->where('pk_id_edital', $idEdital)->first();
+
+        if (!$dadosEdital) {
+            throw new EditalForaDoPrazoException('Edital não encontrado.');
+        }
 
         $dataInicialEdital = date('d/m/Y', strtotime($dadosEdital->ds_data_inicial));
         $dataFinalEdital = date('d/m/Y', strtotime($dadosEdital->ds_data_termino));
 
         $hoje = date('Y-m-d');
         if ($hoje < $dadosEdital->ds_data_inicial || $hoje > $dadosEdital->ds_data_termino) {
-            return [
-                'response' => false,
-                'mensagemError' => "O período de cadastro para este edital é de {$dataInicialEdital} a {$dataFinalEdital}."
-            ];
+            throw new EditalForaDoPrazoException(
+                "O período de cadastro para este edital é de {$dataInicialEdital} a {$dataFinalEdital}."
+            );
         }
 
         return true;

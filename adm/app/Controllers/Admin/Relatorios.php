@@ -7,7 +7,6 @@ use DateTime;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 use App\Services\Relatorios\RelatoriosService;
-use App\Services\Relatorios\RelatoriosFormService;
 
 class Relatorios extends BaseController{
 

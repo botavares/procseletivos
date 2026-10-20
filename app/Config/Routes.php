@@ -25,10 +25,14 @@ $routes->set404Override();
 // Home
 $routes->get('/', 'Home::index');
 $routes->get('/home', 'Home::index');
+$routes->get('/Home', 'Home::index');
 
 // Gov.BR
 $routes->get('/loginGovBr', 'Cadastros::loginGovBr');
 $routes->get('/Home/acessarGovBr', 'Home::acessarGovBr');
+
+// Mock Login (desenvolvimento)
+$routes->get('mock_login', 'MockLogin::index');
 
 // Cadastros
 $routes->get('/Cadastros', 'Cadastros::index');

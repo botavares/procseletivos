@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 
+use App\Enums\EditalStatusEnum;
 use CodeIgniter\Model;
 
 class EditaisModel extends Model{
@@ -46,7 +47,7 @@ class EditaisModel extends Model{
 
     public function getEditaisAtivos()
     {
-        return $this->where('ds_status', 1)
+        return $this->where('ds_status', EditalStatusEnum::ATIVO->value)
             ->orderBy('ds_numero_edital', 'ASC')
             ->findAll();
     }
@@ -73,7 +74,7 @@ class EditaisModel extends Model{
             ->join('tb_editais_cargos ec', 'ec.fk_id_edital = e.pk_id_edital', 'inner')
             ->join('tb_cargos c', 'c.pk_id_cargo = ec.fk_id_cargo', 'inner')
             ->join('tb_cadastrados_protocolo cp', 'cp.fk_id_edital = e.pk_id_edital AND cp.fk_id_cargo = c.pk_id_cargo', 'left')
-            ->where('e.ds_status', 1)
+            ->where('e.ds_status', EditalStatusEnum::ATIVO->value)
             ->groupBy('e.pk_id_edital, c.pk_id_cargo')
             ->orderBy('e.ds_numero_edital', 'ASC')
             ->orderBy('c.ds_nome_cargo', 'ASC')

@@ -57,7 +57,7 @@ class SplFileInfoRepresentation extends Representation
         $this->path = $fileInfo->getPathname();
 
         try {
-            if ($fileInfo->getRealPath()) {
+            if (\strlen($this->path) && $fileInfo->getRealPath()) {
                 $this->perms = $fileInfo->getPerms();
                 $this->size = $fileInfo->getSize();
                 $this->owner = $fileInfo->getOwner();
@@ -76,7 +76,7 @@ class SplFileInfoRepresentation extends Representation
             }
         } catch (RuntimeException $e) {
             if (false === \strpos($e->getMessage(), ' open_basedir ')) {
-                throw $e;
+                throw $e; // @codeCoverageIgnore
             }
         }
 

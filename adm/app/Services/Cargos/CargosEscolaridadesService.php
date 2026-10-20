@@ -2,60 +2,50 @@
 
 namespace App\Services\Cargos;
 
-use App\Services\Base\AbstractCrudService;
-use App\Models\CargosEscolaridadesModel;
-use App\DTOs\Domain\Cargos\CargosEscolaridadesDTO;
+use App\Services\Base\TransactionalTrait;
 
-class CargosEscolaridadesService extends AbstractCrudService
+use App\Models\CargosEscolaridadesModel;
+
+class CargosEscolaridadesService 
 {
     public function __construct()
     {
-        parent::__construct();
+        $this->db = $db ?? \Config\Database::connect();
     }
 
-    /**
-     * Salva (insert ou update) a associação de escolaridade ao cargo.
-     * Se acao == 'update' e pk_id_cargos_escolaridade estiver presente, faz update.
-     * Caso contrário, verifica se já existe associação para o mesmo cargo + escolaridade
-     * e atualiza; se não existir, insere um novo registro.
-     */
-    public function salvar(CargosEscolaridadesDTO $dto): int{
-        return $this->transactional(function () use ($dto) {
+    public function salvar(array $data, string $acao = 'create'): int
+    {
+        return $this->transactional(function () use ($data, $acao) {
             $model = new CargosEscolaridadesModel();
+            $pk = $data['pk_id_cargos_escolaridade'] ?? null;
 
-            // Se ação é update e temos o ID, faz update direto
-            if ($dto->getAcao() === 'update' && $dto->pk_id_cargos_escolaridade !== null) {
-                if (! $model->update($dto->pk_id_cargos_escolaridade, $dto->toArray())) {
+            if ($acao === 'update' && $pk !== null) {
+                if (! $model->update($pk, $data)) {
                     throw new \RuntimeException('Erro ao atualizar associação de escolaridade ao cargo.');
                 }
-                return $dto->pk_id_cargos_escolaridade;
+                return (int) $pk;
             }
 
-            // Verifica se já existe associação para o mesmo cargo + escolaridade
             $existente = $model
-                ->where('fk_id_cargo', $dto->fk_id_cargo)
-                ->where('fk_id_escolaridade', $dto->fk_id_escolaridade)
+                ->where('fk_id_cargo', $data['fk_id_cargo'])
+                ->where('fk_id_escolaridade', $data['fk_id_escolaridade'])
                 ->first();
 
             if ($existente) {
                 $id = is_array($existente) ? $existente['pk_id_cargos_escolaridade'] : $existente->pk_id_cargos_escolaridade;
-                if (! $model->update($id, $dto->toArray())) {
+                if (! $model->update($id, $data)) {
                     throw new \RuntimeException('Já existe uma associação para cargo e escolaridade.');
                 }
                 return (int) $id;
             }
 
-            // Insere novo registro (tabela sem auto-increment)
-            $insertData = $dto->toArray();
-            // garante que a chave primária será incluída no insert
-            if (!isset($insertData['pk_id_cargos_escolaridade']) || $insertData['pk_id_cargos_escolaridade'] === null) {
-                // Busca o maior pk_id_cargos_escolaridade existente e incrementa
+            if (empty($data['pk_id_cargos_escolaridade'])) {
                 $max = $model->selectMax('pk_id_cargos_escolaridade')->first();
                 $nextId = is_array($max) ? ($max['pk_id_cargos_escolaridade'] ?? 0) + 1 : ($max->pk_id_cargos_escolaridade ?? 0) + 1;
-                $insertData['pk_id_cargos_escolaridade'] = $nextId;
+                $data['pk_id_cargos_escolaridade'] = $nextId;
             }
-            $model->insert($insertData);
-            $insertId = $insertData['pk_id_cargos_escolaridade'];
+            $model->insert($data);
+            $insertId = $data['pk_id_cargos_escolaridade'];
 
             if (empty($insertId)) {
                 throw new \RuntimeException('Erro ao salvar associação de escolaridade ao cargo.');
@@ -65,9 +55,6 @@ class CargosEscolaridadesService extends AbstractCrudService
         });
     }
 
-    /**
-     * Exclui uma associação de escolaridade ao cargo pelo ID.
-     */
     public function deletar(int $id): void
     {
         $this->transactional(function () use ($id) {

@@ -17,7 +17,6 @@ class Vagas extends BaseController{
     protected $cursosModel;
 
     public function __construct(){
-        parent::__construct();
         
         $this->setoresModel     = new \App\Models\SetoresModel();
         $this->secretariasModel = new \App\Models\SecretariasModel();

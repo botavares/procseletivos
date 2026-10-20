@@ -2,20 +2,21 @@
 
 namespace App\Services\Candidatos;
 
+use App\Services\Base\TransactionalTrait;
+
 use App\Models\SituacaoModel;
+use CodeIgniter\Database\BaseConnection;
 
-use App\DTOs\Domain\Candidatos\SituacaoDTO;
-
-use App\Services\Base\AbstractCrudService;
-
-class SituacaoService extends AbstractCrudService
+class SituacaoService 
 {
-    protected $dto = SituacaoDTO::class;
+    use TransactionalTrait;
 
     public function __construct(
         private readonly SituacaoModel $situacaoModel,
         ?BaseConnection $db = null
-    ){parent::__construct($db);}
+    ){
+        $this->db = $db ?? \Config\Database::connect();
+    }
 
     public function getCandidatoCargoEdital(
         int $edital,
@@ -30,24 +31,24 @@ class SituacaoService extends AbstractCrudService
             );
     }
 
-    public function salvar(SituacaoDTO $dto): int
+    public function salvar(array $data): int
     {
-        return $this->transactional(function () use ($dto) {
+        return $this->transactional(function () use ($data) {
 
             return $this->situacaoModel
-                ->salvar($dto);
+                ->salvar($data);
         });
     }
 
     public function atualizar(
         int $id,
-        SituacaoDTO $dto
+        array $data
     ): bool {
 
-        return $this->transactional(function () use ($id, $dto) {
+        return $this->transactional(function () use ($id, $data) {
 
             return $this->situacaoModel
-                ->atualizar($id, $dto);
+                ->atualizar($id, $data);
         });
     }
 

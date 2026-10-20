@@ -6,7 +6,6 @@ use App\Controllers\BaseController;
 
 use CodeIgniter\Exceptions\PageNotFoundException;
 use App\Models\CriteriosAdicionaisModel;
-use App\Services\CriteriosAdicionais\CriterioAdicionalFormService;
 use App\Services\CriteriosAdicionais\CriterioAdicionalService;
 use App\Services\CriteriosAdicionais\CriterioAdicionalGridService;
 
@@ -15,7 +14,6 @@ class CriteriosAdicionais extends BaseController
     protected $criteriosAdicionaisModel;
 
     public function __construct() {
-        parent::__construct();
         $this->criteriosAdicionaisModel = new \App\Models\CriteriosAdicionaisModel();
     }
 
@@ -107,18 +105,22 @@ class CriteriosAdicionais extends BaseController
     public function registrar()
     {
         try {
-            $form   = new CriterioAdicionalFormService($this->request);
-            $dados  = $form->handle();
+            $data = [
+                'pk_id_criterio'  => $this->request->getPost('pk_id_criterio'),
+                'ds_nome_criterio' => $this->request->getPost('ds_nome_criterio'),
+            ];
+            $acao = $this->request->getPost('action') ?? 'create';
 
-            $acao = $dados['acao'];
-            $dto = $dados['criterio'];
+            if (empty($data['ds_nome_criterio'])) {
+                throw new \Exception('O nome do critério deve ser informado.');
+            }
 
             $service = service('criterioAdicionalService');
 
             if ($acao === 'update') {
-                $service->atualizar($dto);
+                $service->atualizar((int)$data['pk_id_criterio'], $data);
             } else {
-                $id = $service->salvar($dto);
+                $id = $service->salvar($data);
             }
 
             return redirect()->route('CriteriosAdicionais')

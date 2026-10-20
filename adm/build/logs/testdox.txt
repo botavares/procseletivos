@@ -1,3 +1,43 @@
+Candidato Repository (Tests\Repositories\CandidatoRepository)
+ [x] Buscar por edital cargo delega para model
+ [x] Buscar por cpf delega para model
+ [x] Buscar por id delega para model
+ [x] Contar por ano delega para model
+ [x] Buscar experiencias delega para model
+
+Classificacao Repository (Tests\Repositories\ClassificacaoRepository)
+ [x] Listar por edital cargo delega para model
+
+Contrato Repository (Tests\Repositories\ContratoRepository)
+ [x] Listar todos delega para model
+ [x] Buscar por id delega para model
+ [x] Buscar por candidato delega para model
+ [x] Inserir delega para model
+ [x] Atualizar delega para model
+ [x] Buscar ativos delega para model
+ [x] Obter ultimo id delega para model
+
+Desempate Config DTO (Tests\Services\Classificacao\DesempateConfigDTO)
+ [x] Chave score pontuacao total
+ [x] Chave score experiencia especifica
+ [x] Chave score escolaridade especifica
+ [x] Chave score idade
+ [x] Chave score pne
+ [x] Chave score tipo desconhecido lanca excecao
+
+Ordenacao Dinamica Service (Tests\Services\Classificacao\OrdenacaoDinamicaService)
+ [x] Ordenacao por pontuacao total desc
+ [x] Desempate por experiencias
+ [x] Desempate por idade asc mais velho primeiro
+ [x] Desempate por pne desc
+ [x] Atribuicao de posicoes
+
+Pontuacao Calculator Service (Tests\Services\Classificacao\PontuacaoCalculatorService)
+ [x] Aplicar teto preserva pontuacao abaixo do limite
+ [x] Aplicar teto limita pontuacao acima do limite
+ [x] Aplicar teto sem limite preserva pontuacao
+ [x] Aplicar teto zero nao limita
+
 Example Database
  [x] Model find all
  [x] Soft delete leaves row

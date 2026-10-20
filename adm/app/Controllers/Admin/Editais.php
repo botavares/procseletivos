@@ -23,7 +23,6 @@ class Editais extends BaseController{
     protected $editaisCargosModel;
 
     public function __construct(){
-        parent::__construct();
 
         $this->cargosModel       = new \App\Models\CargosModel();
         $this->editaisModel       = new \App\Models\EditaisModel();

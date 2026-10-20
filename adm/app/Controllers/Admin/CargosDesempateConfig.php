@@ -25,7 +25,6 @@ class CargosDesempateConfig extends BaseController
     protected $cargosCursosModel;
 
     public function __construct() {
-        parent::__construct();
         $this->cargosModel                   = new \App\Models\CargosModel();
         $this->cargosDesempateConfigModel      = new \App\Models\CargosDesempateConfigModel();
         $this->cargosExperienciasModel        = new \App\Models\CargosExperienciasModel();

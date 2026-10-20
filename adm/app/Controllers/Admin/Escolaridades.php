@@ -7,7 +7,6 @@ use App\Controllers\BaseController;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use App\Models\EscolaridadesModel;
 use App\Models\NiveisEscolaridadeModel;
-use App\Services\Escolaridades\EscolaridadeFormService;
 use App\Services\Escolaridades\EscolaridadeService;
 use App\Services\Escolaridades\EscolaridadeGridService;
 
@@ -17,7 +16,6 @@ class Escolaridades extends BaseController
     protected $niveisEscolaridadeModel;
 
     public function __construct() {
-        parent::__construct();
         $this->escolaridadesModel       = new \App\Models\EscolaridadesModel();
         $this->niveisEscolaridadeModel = new \App\Models\NiveisEscolaridadeModel();
     }
@@ -113,18 +111,27 @@ class Escolaridades extends BaseController
     public function registrar()
     {
         try {
-            $form   = new EscolaridadeFormService($this->request);
-            $dados  = $form->handle();
+            $data = [
+                'pk_id_escolaridade'  => $this->request->getPost('pk_id_escolaridade'),
+                'ds_nome_escolaridade' => $this->request->getPost('ds_nome_escolaridade'),
+                'ds_instrucao'        => $this->request->getPost('ds_instrucao'),
+                'fk_id_nivel'         => $this->request->getPost('fk_id_nivel'),
+            ];
+            $acao = $this->request->getPost('action') ?? 'create';
 
-            $acao = $dados['acao'];
-            $dto = $dados['escolaridade'];
+            if (empty($data['ds_nome_escolaridade'])) {
+                throw new \Exception('O nome da escolaridade deve ser informado.');
+            }
+            if (empty($data['fk_id_nivel'])) {
+                throw new \Exception('O nível deve ser selecionado.');
+            }
 
             $service = service('escolaridadeService');
 
             if ($acao === 'update') {
-                $service->atualizar($dto);
+                $service->atualizar((int)$data['pk_id_escolaridade'], $data);
             } else {
-                $id = $service->salvar($dto);
+                $id = $service->salvar($data);
             }
 
             return redirect()->route('Escolaridades')

@@ -6,7 +6,6 @@ use App\Controllers\BaseController;
 
 use CodeIgniter\Exceptions\PageNotFoundException;
 use App\Models\AperfeicoamentosModel;
-use App\Services\Aperfeicoamentos\AperfeicoamentoFormService;
 use App\Services\Aperfeicoamentos\AperfeicoamentoService;
 use App\Services\Aperfeicoamentos\AperfeicoamentoGridService;
 
@@ -15,7 +14,6 @@ class Aperfeicoamentos extends BaseController
     protected $aperfeicoamentosModel;
 
     public function __construct() {
-        parent::__construct();
         $this->aperfeicoamentosModel = new \App\Models\AperfeicoamentosModel();
     }
 
@@ -107,18 +105,22 @@ class Aperfeicoamentos extends BaseController
     public function registrar()
     {
         try {
-            $form   = new AperfeicoamentoFormService($this->request);
-            $dados  = $form->handle();
+            $data = [
+                'pk_id_curso'   => $this->request->getPost('pk_id_curso'),
+                'ds_nome_curso' => $this->request->getPost('ds_nome_curso'),
+            ];
+            $acao = $this->request->getPost('action') ?? 'create';
 
-            $acao = $dados['acao'];
-            $dto = $dados['aperfeicoamento'];
+            if (empty($data['ds_nome_curso'])) {
+                throw new \Exception('O nome do curso deve ser informado.');
+            }
 
             $service = service('aperfeicoamentoService');
 
             if ($acao === 'update') {
-                $service->atualizar($dto);
+                $service->atualizar((int)$data['pk_id_curso'], $data);
             } else {
-                $id = $service->salvar($dto);
+                $id = $service->salvar($data);
             }
 
             return redirect()->route('Aperfeicoamentos')

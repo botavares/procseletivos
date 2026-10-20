@@ -2,8 +2,8 @@
 
 namespace App\Services\Relatorios;
 
+use App\Enums\ContratoStatusEnum;
 use CodeIgniter\HTTP\IncomingRequest;
-
 use App\Models\AcademicosModel;
 use App\Models\CandidatosModel;
 use App\Models\CursosModel;
@@ -62,7 +62,7 @@ class RelatoriosFormService{
             'fk_id_setor'                   => $this->request->getPost('fk_id_setor'),
             'ds_data_ingresso'              => $this->dataBanco('ds_data_ingresso'),
             'ds_data_encerramento'          => $this->dataBanco('ds_data_encerramento'),
-            'ds_status'                     => 1,
+            'ds_status'                     => ContratoStatusEnum::ATIVO->value,
             'ds_data_baixa'                 => null,
             'fk_id_edital'                  => $this->request->getPost('fk_id_edital'),
             'fk_id_curso'                   => $this->request->getPost('fk_id_curso'),

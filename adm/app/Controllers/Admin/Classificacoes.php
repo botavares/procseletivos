@@ -3,45 +3,28 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use FilesystemIterator;
 use CodeIgniter\Exceptions\PageNotFoundException;
-use CodeIgniter\Controller;
+use App\Enums\ClassificacaoStatusEnum;
 use App\Models\ClassificacaoModel;
 use App\Models\CargosModel;
 use App\Models\EditaisModel;
-
-use App\Services\Classificacao\ClassificacaoService;
-use App\Services\Classificacao\DesempateConfigService;
-use App\Services\Classificacao\ClassificacaoColunasService;
-use App\Services\Cargos\CargoService;
-use App\Services\Editais\EditalService;
-
-
+use App\Models\ProtocolosModel;
 use App\Models\CadastrosExperienciasModel;
 use App\Models\CadastrosEscolaridadesModel;
 use App\Models\CadastrosAperfeicoamentosModel;
-
-use App\Models\ProtocolosModel;
 
 class Classificacoes extends BaseController{
 
     protected $classificacaoModel;
     protected $cargosModel;
     protected $editaisModel;
-    protected $cadastrosExperienciasModel;
-    protected $cadastrosEscolaridadesModel;
-    protected $cadastrosAperfeicoamentosModel;
     protected $protocolosModel;
 
     public function __construct(){
-        parent::__construct();
-        $this->classificacaoModel            = new \App\Models\ClassificacaoModel();
-        $this->cargosModel                     = new \App\Models\CargosModel();
-        $this->editaisModel                    = new \App\Models\EditaisModel();
-        $this->cadastrosExperienciasModel      = new \App\Models\CadastrosExperienciasModel();
-        $this->cadastrosEscolaridadesModel     = new \App\Models\CadastrosEscolaridadesModel();
-        $this->cadastrosAperfeicoamentosModel = new \App\Models\CadastrosAperfeicoamentosModel();
-        $this->protocolosModel                = new \App\Models\ProtocolosModel();
+        $this->classificacaoModel = new \App\Models\ClassificacaoModel();
+        $this->cargosModel        = new \App\Models\CargosModel();
+        $this->editaisModel       = new \App\Models\EditaisModel();
+        $this->protocolosModel    = new \App\Models\ProtocolosModel();
     }
     public function index($idEdital = null, $idCargo = null, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'Classificacoes'){
         if (!is_file(APPPATH . 'Views/Admin/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
@@ -95,99 +78,80 @@ class Classificacoes extends BaseController{
 
     public function reprocessar($edital, $cargo){
         service('classificacaoService')->reprocessar((int)$edital, (int)$cargo);
-        return redirect()->back()
-        ->with('success', 'Classificação reprocessada com sucesso.');
+        return redirect()->back()->with('success', 'Classificação reprocessada com sucesso.');
     }
 
     public function gerarClassificacao($secretaria, $edital, $cargo){
-        $dadosProtocolo = $this->protocolosModel->protocolosCadastradosEdital($secretaria, $edital, $cargo);
-        
+        $protocolos = $this->protocolosModel->protocolosCadastradosEdital($secretaria, $edital, $cargo);
 
-
-        //PEGAR TODOS PROTOCOLOS DO EDITAL
-        foreach($dadosProtocolo as $protocolo){
-            
+        foreach ($protocolos as $protocolo) {
             $idCandidato = $protocolo->fk_id_cadastrado;
 
-            //LIMPA A CLASSIFICAÇÃO ANTERIOR DO CANDIDATO PARA O EDITAL E CARGO
+            // Limpa classificação anterior
             $this->classificacaoModel->where([
                 'fk_id_candidato' => $idCandidato,
-                'fk_id_edital' => $edital,
-                'fk_id_cargo' => $cargo
+                'fk_id_edital'    => $edital,
+                'fk_id_cargo'     => $cargo,
             ])->delete();
 
-            
-
-            //IDENTIFICA AS EXPERIÊNCIAS DO CANDIDATO
-            $experienciaCandidato = $this->cadastrosExperienciasModel->buscarExperienciasParaClassificacao($idCandidato, $edital, $cargo);
-            
-            
-            foreach($experienciaCandidato as $experiencia){
-                
-                if($experiencia->ds_status == 0){ //status = 0 significa que a experiência é classificatória, ou seja, tem pontuação definida no edital
-                    $totalPontos = $experiencia->ds_quantidade * $experiencia->ds_multiplicador;
-                    if($totalPontos > $experiencia->ds_quantidade_maxima){
-                        $totalPontos = $experiencia->ds_quantidade_maxima;
-                    }
-                    $this->classificacaoModel->insert([
-                        'fk_id_candidato' => $idCandidato,
-                        'fk_id_edital' => $edital,
-                        'fk_id_cargo' => $cargo,
-                        'ds_tipo_classificacao' => 'EXP',
-                        'fk_id_tipo_classificacao' => $experiencia->fk_id_experiencia,
-                        'ds_nome_tipo' => $experiencia->ds_nome_experiencia,
-                        'ds_quantidade' => $experiencia->ds_quantidade,
-                        'ds_total_tipo' => $totalPontos
-                    ]);
-
-                }
+            // Experiências
+            $experiencias = (new CadastrosExperienciasModel())
+                ->buscarExperienciasParaClassificacao($idCandidato, $edital, $cargo);
+            foreach ($experiencias as $exp) {
+                if ((int) $exp->ds_status !== ClassificacaoStatusEnum::CLASSIFICATORIA->value) continue;
+                $total = (float) $exp->ds_quantidade * (float) $exp->ds_multiplicador;
+                $max   = (float) ($exp->ds_quantidade_maxima ?? 0);
+                if ($max > 0 && $total > $max) $total = $max;
+                $this->classificacaoModel->insert([
+                    'fk_id_candidato'          => $idCandidato,
+                    'fk_id_edital'             => $edital,
+                    'fk_id_cargo'              => $cargo,
+                    'ds_tipo_classificacao'    => 'EXP',
+                    'fk_id_tipo_classificacao' => $exp->fk_id_experiencia,
+                    'ds_nome_tipo'             => $exp->ds_nome_experiencia,
+                    'ds_quantidade'            => $exp->ds_quantidade,
+                    'ds_total_tipo'            => $total,
+                ]);
             }
 
-            //IDENTIFICA AS ESCOLARIDADES DO CANDIDATO
-            $escolaridadeCandidato = $this->cadastrosEscolaridadesModel->buscarEscolaridadesParaClassificacao($idCandidato, $edital, $cargo);
-            
-            foreach($escolaridadeCandidato as $escolaridade){
-
-                if($escolaridade->ds_status == 0){ //status = 0 significa que a escolaridade é classificatória, ou seja, tem pontuação definida no edital
-                    $totalPontos = $escolaridade->ds_quantidade * $escolaridade->ds_multiplicador;
-                    if($totalPontos > $escolaridade->ds_pontuacao_maxima){
-                        $totalPontos = $escolaridade->ds_pontuacao_maxima;
-                    }
-                    $this->classificacaoModel->insert([
-                        'fk_id_candidato' => $idCandidato,
-                        'fk_id_edital' => $edital,
-                        'fk_id_cargo' => $cargo,
-                        'ds_tipo_classificacao' => 'ESC',
-                        'fk_id_tipo_classificacao' => $escolaridade->fk_id_escolaridade,
-                        'ds_nome_tipo' => $escolaridade->ds_nome_escolaridade,
-                        'ds_quantidade' => $escolaridade->ds_quantidade,
-                        'ds_total_tipo' => $totalPontos
-                    ]);
-
-                }
+            // Escolaridades
+            $escolaridades = (new CadastrosEscolaridadesModel())
+                ->buscarEscolaridadesParaClassificacao($idCandidato, $edital, $cargo);
+            foreach ($escolaridades as $esc) {
+                if ((int) $esc->ds_status !== ClassificacaoStatusEnum::CLASSIFICATORIA->value) continue;
+                $total = (float) $esc->ds_quantidade * (float) $esc->ds_multiplicador;
+                $max   = (float) ($esc->ds_pontuacao_maxima ?? 0);
+                if ($max > 0 && $total > $max) $total = $max;
+                $this->classificacaoModel->insert([
+                    'fk_id_candidato'          => $idCandidato,
+                    'fk_id_edital'             => $edital,
+                    'fk_id_cargo'              => $cargo,
+                    'ds_tipo_classificacao'    => 'ESC',
+                    'fk_id_tipo_classificacao' => $esc->fk_id_escolaridade,
+                    'ds_nome_tipo'             => $esc->ds_nome_escolaridade,
+                    'ds_quantidade'            => $esc->ds_quantidade,
+                    'ds_total_tipo'            => $total,
+                ]);
             }
 
-            //IDENTIFICA OS APERFEIÇOAMENTOS DO CANDIDATO
-            $aperfeicoamentoCandidato = $this->cadastrosAperfeicoamentosModel->buscarAperfeicoamentosParaClassificacao($idCandidato, $edital, $cargo);
-            foreach($aperfeicoamentoCandidato as $aperfeicoamento){
-                
-                if($aperfeicoamento->ds_status == 0){ //status = 0 significa que a escolaridade é classificatória, ou seja, tem pontuação definida no edital
-                    $totalPontos = $aperfeicoamento->ds_quantidade * $aperfeicoamento->ds_multiplicador;
-                    if($totalPontos > $aperfeicoamento->ds_pontuacao_maxima){
-                        $totalPontos = $aperfeicoamento->ds_pontuacao_maxima;
-                    }
-                    $this->classificacaoModel->insert([
-                        'fk_id_candidato' => $idCandidato,
-                        'fk_id_edital' => $edital,
-                        'fk_id_cargo' => $cargo,
-                        'ds_tipo_classificacao' => 'APE',
-                        'fk_id_tipo_classificacao' => $aperfeicoamento->fk_id_curso,
-                        'ds_nome_tipo' => $aperfeicoamento->ds_nome_curso,
-                        'ds_quantidade' => $aperfeicoamento->ds_quantidade,
-                        'ds_total_tipo' => $totalPontos
-                    ]);
-
-                }
+            // Aperfeiçoamentos
+            $aperfeicoamentos = (new CadastrosAperfeicoamentosModel())
+                ->buscarAperfeicoamentosParaClassificacao($idCandidato, $edital, $cargo);
+            foreach ($aperfeicoamentos as $ape) {
+                if ((int) $ape->ds_status !== ClassificacaoStatusEnum::CLASSIFICATORIA->value) continue;
+                $total = (float) $ape->ds_quantidade * (float) $ape->ds_multiplicador;
+                $max   = (float) ($ape->ds_pontuacao_maxima ?? 0);
+                if ($max > 0 && $total > $max) $total = $max;
+                $this->classificacaoModel->insert([
+                    'fk_id_candidato'          => $idCandidato,
+                    'fk_id_edital'             => $edital,
+                    'fk_id_cargo'              => $cargo,
+                    'ds_tipo_classificacao'    => 'APE',
+                    'fk_id_tipo_classificacao' => $ape->fk_id_curso,
+                    'ds_nome_tipo'             => $ape->ds_nome_curso,
+                    'ds_quantidade'            => $ape->ds_quantidade,
+                    'ds_total_tipo'            => $total,
+                ]);
             }
         }
     }
@@ -198,145 +162,96 @@ class Classificacoes extends BaseController{
         return redirect()->back()->with('success', 'Ranking reprocessado com sucesso.');
     }
 
-    public function exportarXlsx($edital, $cargo)
+    private function obterDadosExportacao(int $edital, int $cargo, array $classificacoes): array
     {
-        $service = service('classificacaoService');
-        $classificacoes = $service->listarClassificacao((int)$edital, (int)$cargo);
-
-        if (empty($classificacoes)) {
-            return redirect()->back()
-                ->with('error', 'A classificação está vazia. Execute o reprocessamento antes de exportar.');
-        }
-
-        // Filtra apenas PCD se solicitado
-        $apenasPcd = $this->request->getGet('pcd');
-        $somentePcd = ($apenasPcd !== null && $apenasPcd == '1');
-        if ($somentePcd) {
-            $classificacoes = array_filter($classificacoes, function ($c) {
-                return ($c['ds_possui_pne'] ?? 0) == 1;
-            });
-            if (empty($classificacoes)) {
-                return redirect()->back()
-                    ->with('error', 'Não há candidatos PCD nesta classificação.');
-            }
-        }
-
-        // Detecta desempate dinâmico (mesma lógica do index)
-        $desempateConfigService = service('desempateConfigService');
-        $configDesempate = $desempateConfigService->buscarConfiguracao((int)$cargo);
-        // Remove PONTUACAO_TOTAL da exibição (já existe coluna fixa "Total de Pontos")
+        $configDesempate = service('desempateConfigService')->buscarConfiguracao($cargo);
         $configDesempate = array_values(array_filter($configDesempate, fn($c) => $c->tipoCriterio !== 'PONTUACAO_TOTAL'));
         $usaDesempateDinamico = !empty($configDesempate);
-
-        $editalInfo = $this->editaisModel->find($edital);
-        $cargoInfo  = $this->cargosModel->find($cargo);
-        $nomeEdital = $editalInfo->ds_numero_edital ?? 'edital';
-        $nomeCargo  = $cargoInfo->ds_nome_cargo   ?? 'cargo';
 
         $colunasDinamicas = [];
         $dadosDinamicos   = [];
         if (!$usaDesempateDinamico) {
-            $colunasService = service('classificacaoColunasService');
-            $colunasDinamicas = $colunasService->obterColunas((int)$cargo);
-            $idsCandidatos = array_column($classificacoes, 'fk_id_candidato');
-            $dadosDinamicos = $colunasService->obterDadosDinamicos((int)$edital, (int)$cargo, $idsCandidatos);
+            $colunasService   = service('classificacaoColunasService');
+            $colunasDinamicas = $colunasService->obterColunas($cargo);
+            $dadosDinamicos   = $colunasService->obterDadosDinamicos($edital, $cargo, array_column($classificacoes, 'fk_id_candidato'));
         }
+
+        return [
+            'nomeEdital'     => $this->editaisModel->find($edital)->ds_numero_edital ?? 'edital',
+            'nomeCargo'      => $this->cargosModel->find($cargo)->ds_nome_cargo   ?? 'cargo',
+            'configDesempate' => $configDesempate,
+            'usaDesempateDinamico' => $usaDesempateDinamico,
+            'colunasDinamicas' => $colunasDinamicas,
+            'dadosDinamicos' => $dadosDinamicos,
+        ];
+    }
+
+    public function exportarXlsx($edital, $cargo)
+    {
+        $classificacoes = service('classificacaoService')->listarClassificacao((int)$edital, (int)$cargo);
+
+        if (empty($classificacoes)) {
+            return redirect()->back()->with('error', 'A classificação está vazia. Execute o reprocessamento antes de exportar.');
+        }
+
+        $somentePcd = $this->request->getGet('pcd') == '1';
+        if ($somentePcd) {
+            $classificacoes = array_filter($classificacoes, fn($c) => ($c['ds_possui_pne'] ?? 0) == 1);
+            if (empty($classificacoes)) {
+                return redirect()->back()->with('error', 'Não há candidatos PCD nesta classificação.');
+            }
+        }
+
+        $dados = $this->obterDadosExportacao((int)$edital, (int)$cargo, $classificacoes);
 
         service('excelExportService')->exportarClassificacao(
             $classificacoes,
-            ['edital' => $nomeEdital, 'cargo' => $nomeCargo],
-            $configDesempate,
-            $colunasDinamicas,
-            $dadosDinamicos,
-            $usaDesempateDinamico,
+            ['edital' => $dados['nomeEdital'], 'cargo' => $dados['nomeCargo']],
+            $dados['configDesempate'],
+            $dados['colunasDinamicas'],
+            $dados['dadosDinamicos'],
+            $dados['usaDesempateDinamico'],
             $somentePcd
         );
     }
 
     public function gerarPdf($edital, $cargo){
-        $service = service('classificacaoService');
-        $classificacoes = $service->listarClassificacao((int)$edital, (int)$cargo);
+        $classificacoes = service('classificacaoService')->listarClassificacao((int)$edital, (int)$cargo);
 
         if (empty($classificacoes)) {
-            return redirect()->back()
-                ->with('error', 'A classificação está vazia. Execute o reprocessamento antes de gerar o PDF.');
+            return redirect()->back()->with('error', 'A classificação está vazia. Execute o reprocessamento antes de gerar o PDF.');
         }
 
-        $editalInfo = $this->editaisModel->find($edital);
-        $cargoInfo  = $this->cargosModel->find($cargo);
+        $dados = $this->obterDadosExportacao((int)$edital, (int)$cargo, $classificacoes);
 
-        $nomeEdital = $editalInfo->ds_numero_edital ?? 'edital';
-        $nomeCargo  = $cargoInfo->ds_nome_cargo   ?? 'cargo';
-
-        // Detecta desempate dinâmico
-        $desempateConfigService = service('desempateConfigService');
-        $configDesempate = $desempateConfigService->buscarConfiguracao((int)$cargo);
-        // Remove PONTUACAO_TOTAL da exibição (já existe coluna fixa "Total de Pontos")
-        $configDesempate = array_values(array_filter($configDesempate, fn($c) => $c->tipoCriterio !== 'PONTUACAO_TOTAL'));
-        $usaDesempateDinamico = !empty($configDesempate);
-
-        $colunasDinamicas = [];
-        $dadosDinamicos = [];
-        if (!$usaDesempateDinamico) {
-            $colunasService = service('classificacaoColunasService');
-            $colunasDinamicas = $colunasService->obterColunas((int)$cargo);
-            $idsCandidatos = array_column($classificacoes, 'fk_id_candidato');
-            $dadosDinamicos = $colunasService->obterDadosDinamicos((int)$edital, (int)$cargo, $idsCandidatos);
-        }
-
-        $dados = [
-            'classificacoes' => $classificacoes,
-            'nomeEdital'     => $nomeEdital,
-            'nomeCargo'      => $nomeCargo,
-            'dataGeracao'    => date('d/m/Y H:i:s'),
-            'usaDesempateDinamico' => $usaDesempateDinamico,
-            'configDesempate' => $configDesempate,
-            'colunasDinamicas' => $colunasDinamicas,
-            'dadosDinamicos' => $dadosDinamicos,
-        ];
-
-        service('pdfExportService')->gerarPdf('ClassificacaoPorCargo', $dados, 'ClassificacaoPorCargo');
+        service('pdfExportService')->gerarPdf('ClassificacaoPorCargo', [
+            'classificacoes'       => $classificacoes,
+            'nomeEdital'           => $dados['nomeEdital'],
+            'nomeCargo'            => $dados['nomeCargo'],
+            'dataGeracao'          => date('d/m/Y H:i:s'),
+            'usaDesempateDinamico' => $dados['usaDesempateDinamico'],
+            'configDesempate'      => $dados['configDesempate'],
+            'colunasDinamicas'     => $dados['colunasDinamicas'],
+            'dadosDinamicos'       => $dados['dadosDinamicos'],
+        ], 'ClassificacaoPorCargo');
     }
 
     public function exportarTabela($edital, $cargo){
-        $dadosJson  = $this->request->getPost('dados');
-        $titulosJson = $this->request->getPost('titulos');
-
-        $dados = json_decode($dadosJson, true);
-        $titulos = json_decode($titulosJson, true);
+        $dados   = json_decode($this->request->getPost('dados'), true);
+        $titulos = json_decode($this->request->getPost('titulos'), true);
 
         if (empty($dados) || empty($titulos)) {
-            return redirect()->back()
-                ->with('error', 'Nenhum dado foi recebido para exportação. Verifique se a tabela possui registros.');
+            return redirect()->back()->with('error', 'Nenhum dado foi recebido para exportação. Verifique se a tabela possui registros.');
         }
 
-        $editalInfo = $this->editaisModel->find($edital);
-        $cargoInfo  = $this->cargosModel->find($cargo);
-
-        $nomeEdital = $editalInfo->ds_numero_edital ?? 'edital';
-        $nomeCargo  = $cargoInfo->ds_nome_cargo   ?? 'cargo';
-
-        service('excelExportService')->exportarTabela(
-            $dados,
-            $titulos,
-            ['edital' => $nomeEdital, 'cargo' => $nomeCargo]
-        );
+        service('excelExportService')->exportarTabela($dados, $titulos, [
+            'edital' => $this->editaisModel->find($edital)->ds_numero_edital ?? 'edital',
+            'cargo'  => $this->cargosModel->find($cargo)->ds_nome_cargo   ?? 'cargo',
+        ]);
     }
 
-     /*===============================================================================
-            FUNÇÃO: salvarEscolha;
-            OBJETIVO: Salvar a escolha do edital e curso e redirecionar para a listagem de candidatos;
-            PARAMETROS: nenhum
-            CRIAÇÃO:25/09/2025
-            MODIFICADO:
-            RESUMO: Função salva a escolha do edital e curso e redireciona para a listagem de candidatos.
-    ==============================================================================*/
     public function salvarEscolha(){
-        $idEdital = $this->request->getPost('edital');
-        $idCargo  = $this->request->getPost('cargo');
-
-        // redireciona para GET
-        return redirect()->to(base_url("Classificacoes/{$idEdital}/{$idCargo}"));
+        return redirect()->to(base_url("Classificacoes/{$this->request->getPost('edital')}/{$this->request->getPost('cargo')}"));
     }
     
 }

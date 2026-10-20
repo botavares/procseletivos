@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\ContratoStatusEnum;
 use CodeIgniter\Model;
 
 class DadosContratosModel extends Model
@@ -109,7 +110,7 @@ class DadosContratosModel extends Model
         ->select(['a.*','p.*','e.*'])
         ->join('tb_dados_pessoais p', 'p.pk_id_candidato = a.pk_id_candidato')
         ->join('tb_editais_candidatos e', 'e.fk_id_candidato = a.pk_id_candidato')
-        ->join('tb_dados_contratos c','c.fk_id_candidato = a.pk_id_candidato AND c.ds_status = 1', 'left')
+        ->join('tb_dados_contratos c','c.fk_id_candidato = a.pk_id_candidato AND c.ds_status = ' . ContratoStatusEnum::ATIVO->value, 'left')
         ->where('a.fk_id_curso', $idCurso)
         ->where('e.fk_id_edital', $idEdital)
         ->where('c.fk_id_candidato IS NULL')

@@ -4,9 +4,6 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-use App\DTOs\Domain\Candidatos\SituacaoDTO;
-use App\DTOs\Domain\Candidatos\SituacaoDetalhadaDTO;
-
 class SituacaoModel extends Model
 {
     protected $table = 'tb_situacao_candidato';
@@ -28,7 +25,7 @@ class SituacaoModel extends Model
         int $edital,
         int $cargo,
         int $candidato
-    ): ?SituacaoDTO {
+    ): ?array {
 
         $result = $this
             ->where('fk_id_candidato', $candidato)
@@ -40,24 +37,24 @@ class SituacaoModel extends Model
             return null;
         }
 
-        return SituacaoDTO::fromArray($result);
+        return $result;
     }
 
-    public function salvar(SituacaoDTO $dto): int
+    public function salvar(array $data): int
     {
-        $this->insert($dto->toDatabaseArray());
+        $this->insert($data);
 
         return (int) $this->getInsertID();
     }
 
     public function atualizar(
         int $id,
-        SituacaoDTO $dto
+        array $data
     ): bool {
 
         return $this->update(
             $id,
-            $dto->toDatabaseArray()
+            $data
         );
     }
 

@@ -50,6 +50,7 @@ class EditaisCargosModel
                 )", null, false)
             ->groupEnd()
             ->orderBy('tb_editais.ds_data_inicial', 'DESC')
-            ->findAll();
+            ->get()
+            ->getResult();
     }
 }

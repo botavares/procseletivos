@@ -24,6 +24,8 @@ class CandidatoDTO
     public ?string $celular = null;
     public ?string $telefoneFixo = null;
 
+    public ?string $emissorRg = null;
+
     /**
      * Cria DTO a partir de array (formulário).
      * Responsabilidade: transportar e formatar dados do formulário.
@@ -51,6 +53,7 @@ class CandidatoDTO
         $dto->celular     = Formatador::limparTelefone($data['ds_celular'] ?? null);
         $dto->telefoneFixo= Formatador::limparTelefone($data['ds_fixo'] ?? null);
         $dto->email       = $data['ds_email'] ?? null;
+        $dto->emissorRg   = $data['ds_emissorrg'] ?? '';
 
         return $dto;
     }
@@ -80,6 +83,7 @@ class CandidatoDTO
             'ds_celular'        => $this->celular,
             'ds_fixo'           => $this->telefoneFixo,
             'ds_email'          => $this->email,
+            'ds_emissorrg'      => $this->emissorRg,
         ];
     }
 }

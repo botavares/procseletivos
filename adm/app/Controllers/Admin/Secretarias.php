@@ -14,7 +14,6 @@ class Secretarias extends BaseController{
     protected $setoresModel;
 
     public function __construct(){
-        parent::__construct();
         
         $this->secretariasModel = new \App\Models\SecretariasModel();
         $this->setoresModel     = new \App\Models\SetoresModel();

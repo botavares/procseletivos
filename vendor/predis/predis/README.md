@@ -1,19 +1,20 @@
 # Predis #
 
 [![Software license][ico-license]](LICENSE)
-[![Latest stable][ico-version-stable]][link-packagist]
-[![Latest development][ico-version-dev]][link-packagist]
+[![Latest stable][ico-version-stable]][link-releases]
+[![Latest development][ico-version-dev]][link-releases]
 [![Monthly installs][ico-downloads-monthly]][link-downloads]
 [![Build status][ico-build]][link-actions]
+[![Coverage Status][ico-coverage]][link-coverage]
 
-A flexible and feature-complete [Redis](http://redis.io) client for PHP 7.2 and newer.
+A flexible and feature-complete [Redis](http://redis.io) / [Valkey](https://github.com/valkey-io/valkey) client for PHP 7.2 and newer.
 
 More details about this project can be found on the [frequently asked questions](FAQ.md).
 
 
 ## Main features ##
 
-- Support for Redis from __3.0__ to __7.0__.
+- Support for Redis from __3.0__ to __8.0__.
 - Support for clustering using client-side sharding and pluggable keyspace distributors.
 - Support for [redis-cluster](http://redis.io/topics/cluster-tutorial) (Redis >= 3.0).
 - Support for master-slave replication setups and [redis-sentinel](http://redis.io/topics/sentinel).
@@ -24,7 +25,6 @@ More details about this project can be found on the [frequently asked questions]
 - Abstraction for `SCAN`, `SSCAN`, `ZSCAN` and `HSCAN` (Redis >= 2.8) based on PHP iterators.
 - Connections are established lazily by the client upon the first command and can be persisted.
 - Connections can be established via TCP/IP (also TLS/SSL-encrypted) or UNIX domain sockets.
-- Support for [Webdis](http://webd.is) (requires both `ext-curl` and `ext-phpiredis`).
 - Support for custom connection classes for providing different network or protocol backends.
 - Flexible system for defining custom commands and override the default ones.
 
@@ -138,6 +138,50 @@ it is still desired to have control of when the connection is opened or closed: 
 achieved by invoking `$client->connect()` and `$client->disconnect()`. Please note that the effect
 of these methods on aggregate connections may differ depending on each specific implementation.
 
+#### Persistent connections ####
+
+To increase a performance of your application you may set up a client to use persistent TCP connection, this way
+client saves a time on socket creation and connection handshake. By default, connection is created on first-command
+execution and will be automatically closed by GC before the process is being killed.
+However, if your application is backed by PHP-FPM the processes are idle, and you may set up it to be persistent and
+reusable across multiple script execution within the same process.
+
+To enable the persistent connection mode you should provide following configuration:
+
+```php
+// Standalone
+$client = new Predis\Client(['persistent' => true]);
+
+// Cluster
+$client = new Predis\Client(
+    ['tcp://host:port', 'tcp://host:port', 'tcp://host:port'],
+    ['cluster' => 'redis', 'parameters' => ['persistent' => true]]
+);
+```
+
+**Important**
+
+If you operate on multiple clients within the same application, and they communicate with the same resource, by default
+they will share the same socket (that's the default behaviour of persistent sockets). So in this case you would need
+to additionally provide a `conn_uid` identifier for each client, this way each client will create its own socket so
+the connection context won't be shared across clients. This socket behaviour explained
+[here](https://www.php.net/manual/en/function.stream-socket-client.php#105393)
+
+```php
+// Standalone
+$client1 = new Predis\Client(['persistent' => true, 'conn_uid' => 'id_1']);
+$client2 = new Predis\Client(['persistent' => true, 'conn_uid' => 'id_2']);
+
+// Cluster
+$client1 = new Predis\Client(
+    ['tcp://host:port', 'tcp://host:port', 'tcp://host:port'],
+    ['cluster' => 'redis', 'parameters' => ['persistent' => true, 'conn_uid' => 'id_1']]
+);
+$client2 = new Predis\Client(
+    ['tcp://host:port', 'tcp://host:port', 'tcp://host:port'],
+    ['cluster' => 'redis', 'parameters' => ['persistent' => true, 'conn_uid' => 'id_2']]
+);
+```
 
 ### Client configuration ###
 
@@ -396,29 +440,14 @@ $response = $client->lpushrand('random_values', $seed = mt_rand());
 
 ### Customizable connection backends ###
 
-Predis can use different connection backends to connect to Redis. Two of them leverage a third party
-extension such as [phpiredis](https://github.com/nrk/phpiredis) resulting in major performance gains
-especially when dealing with big multibulk responses. While one is based on PHP streams, the other
-is based on socket resources provided by `ext-socket`. Both support TCP/IP and UNIX domain sockets:
+Predis can use different connection backends to connect to Redis. The builtin Relay integration
+leverages the [Relay](https://github.com/cachewerk/relay) extension for PHP for major performance
+gains, by caching a partial replica of the Redis dataset in PHP shared runtime memory.
 
 ```php
 $client = new Predis\Client('tcp://127.0.0.1', [
-    'connections' => [
-        'tcp'  => 'Predis\Connection\PhpiredisStreamConnection',  // PHP stream resources
-        'unix' => 'Predis\Connection\PhpiredisSocketConnection',  // ext-socket resources
-    ],
+    'connections' => 'relay',
 ]);
-```
-
-The client can also be configured to rely on a [phpiredis](https://github.com/nrk/phpiredis)-backend
-by specifying a descriptive string for the `connections` client option. Supported string values are:
-
-- `phpiredis-stream` maps `tcp`, `redis` and `unix` to `Predis\Connection\PhpiredisStreamConnection`
-- `phpiredis-socket` maps `tcp`, `redis` and `unix` to `Predis\Connection\PhpiredisSocketConnection`
-- `phpiredis` is simply an alias of `phpiredis-stream`
-
-```php
-$client = new Predis\Client('tcp://127.0.0.1', ['connections' => 'phpiredis']);
 ```
 
 Developers can create their own connection classes to support whole new network backends, extend
@@ -447,9 +476,7 @@ implementation of the standard connection classes available in the `Predis\Conne
 ### Reporting bugs and contributing code ###
 
 Contributions to Predis are highly appreciated either in the form of pull requests for new features,
-bug fixes, or just bug reports. We only ask you to adhere to a [basic set of rules](CONTRIBUTING.md)
-before submitting your changes or filing bugs on the issue tracker to make it easier for everyone to
-stay consistent while working on the project.
+bug fixes, or just bug reports. We only ask you to adhere to issue and pull request templates.
 
 
 ### Test suite ###
@@ -466,33 +493,18 @@ be disabled. See [the tests README](tests/README.md) for more details about test
 Predis uses GitHub Actions for continuous integration and the history for past and current builds can be
 found [on its actions page](https://github.com/predis/predis/actions).
 
-
-## Other ##
-
-
-### Project related links ###
-
-- [Source code](https://github.com/predis/predis)
-- [Wiki](https://github.com/predis/predis/wiki)
-- [Issue tracker](https://github.com/predis/predis/issues)
-
-
-### Author ###
-
-- [Daniele Alessandri](mailto:suppakilla@gmail.com) ([twitter](http://twitter.com/JoL1hAHN))
-- [Till Krüss](https://till.im) ([Twitter](http://twitter.com/tillkruss))
-
-
 ### License ###
 
 The code for Predis is distributed under the terms of the MIT license (see [LICENSE](LICENSE)).
 
 [ico-license]: https://img.shields.io/github/license/predis/predis.svg?style=flat-square
-[ico-version-stable]: https://img.shields.io/packagist/v/predis/predis.svg?style=flat-square
-[ico-version-dev]: https://img.shields.io/packagist/vpre/predis/predis.svg?style=flat-square
+[ico-version-stable]: https://img.shields.io/github/v/tag/predis/predis?label=stable&style=flat-square
+[ico-version-dev]: https://img.shields.io/github/v/tag/predis/predis?include_prereleases&label=pre-release&style=flat-square
 [ico-downloads-monthly]: https://img.shields.io/packagist/dm/predis/predis.svg?style=flat-square
 [ico-build]: https://img.shields.io/github/actions/workflow/status/predis/predis/tests.yml?branch=main&style=flat-square
+[ico-coverage]: https://img.shields.io/coverallsCoverage/github/predis/predis?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/predis/predis
+[link-releases]: https://github.com/predis/predis/releases
 [link-actions]: https://github.com/predis/predis/actions
 [link-downloads]: https://packagist.org/packages/predis/predis/stats
+[link-coverage]: https://coveralls.io/github/predis/predis

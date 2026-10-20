@@ -2,22 +2,21 @@
 
 namespace App\Services\Experiencias;
 
-use App\Services\Base\AbstractCrudService;
-use App\Models\ExperienciasModel;
-use App\DTOs\Domain\Experiencias\ExperienciaDTO;
+use App\Services\Base\TransactionalTrait;
 
-class ExperienciaService extends AbstractCrudService
+use App\Models\ExperienciasModel;
+
+class ExperienciaService 
 {
     public function __construct()
     {
-        parent::__construct();
+        $this->db = $db ?? \Config\Database::connect();
     }
 
-    public function salvar(ExperienciaDTO $dto): int
+    public function salvar(array $data): int
     {
-        return $this->transactional(function () use ($dto) {
+        return $this->transactional(function () use ($data) {
             $model = new ExperienciasModel();
-            $data = $dto->toArray();
 
             if (! $model->save($data)) {
                 throw new \RuntimeException(
@@ -25,7 +24,7 @@ class ExperienciaService extends AbstractCrudService
                 );
             }
 
-            $id = $dto->pk_id_experiencia ?? $model->getInsertID();
+            $id = $data['pk_id_experiencia'] ?? $model->getInsertID();
 
             if (empty($id)) {
                 throw new \RuntimeException('ID da Experiência não foi gerado');
@@ -35,18 +34,12 @@ class ExperienciaService extends AbstractCrudService
         });
     }
 
-    public function atualizar(ExperienciaDTO $dto): void
+    public function atualizar(int $id, array $data): void
     {
-        $this->transactional(function () use ($dto) {
-            $id = $dto->pk_id_experiencia;
-
-            if (!$id) {
-                throw new \RuntimeException('ID da experiência não informado');
-            }
-
+        $this->transactional(function () use ($id, $data) {
             $model = new ExperienciasModel();
 
-            if (! $model->update($id, $dto->toArray())) {
+            if (! $model->update($id, $data)) {
                 throw new \RuntimeException('Erro ao atualizar experiência');
             }
 

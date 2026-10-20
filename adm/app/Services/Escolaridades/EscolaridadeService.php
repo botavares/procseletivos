@@ -2,22 +2,21 @@
 
 namespace App\Services\Escolaridades;
 
-use App\Services\Base\AbstractCrudService;
-use App\Models\EscolaridadesModel;
-use App\DTOs\Domain\Escolaridades\EscolaridadeDTO;
+use App\Services\Base\TransactionalTrait;
 
-class EscolaridadeService extends AbstractCrudService
+use App\Models\EscolaridadesModel;
+
+class EscolaridadeService 
 {
     public function __construct()
     {
-        parent::__construct();
+        $this->db = $db ?? \Config\Database::connect();
     }
 
-    public function salvar(EscolaridadeDTO $dto): int
+    public function salvar(array $data): int
     {
-        return $this->transactional(function () use ($dto) {
+        return $this->transactional(function () use ($data) {
             $model = new EscolaridadesModel();
-            $data = $dto->toArray();
 
             if (! $model->save($data)) {
                 throw new \RuntimeException(
@@ -25,7 +24,7 @@ class EscolaridadeService extends AbstractCrudService
                 );
             }
 
-            $id = $dto->pk_id_escolaridade ?? $model->getInsertID();
+            $id = $data['pk_id_escolaridade'] ?? $model->getInsertID();
 
             if (empty($id)) {
                 throw new \RuntimeException('ID da Escolaridade não foi gerado');
@@ -35,18 +34,12 @@ class EscolaridadeService extends AbstractCrudService
         });
     }
 
-    public function atualizar(EscolaridadeDTO $dto): void
+    public function atualizar(int $id, array $data): void
     {
-        $this->transactional(function () use ($dto) {
-            $id = $dto->pk_id_escolaridade;
-
-            if (!$id) {
-                throw new \RuntimeException('ID da escolaridade não informado');
-            }
-
+        $this->transactional(function () use ($id, $data) {
             $model = new EscolaridadesModel();
 
-            if (! $model->update($id, $dto->toArray())) {
+            if (! $model->update($id, $data)) {
                 throw new \RuntimeException('Erro ao atualizar escolaridade');
             }
 

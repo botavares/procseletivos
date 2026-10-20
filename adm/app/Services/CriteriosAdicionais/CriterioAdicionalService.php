@@ -2,22 +2,21 @@
 
 namespace App\Services\CriteriosAdicionais;
 
-use App\Services\Base\AbstractCrudService;
-use App\Models\CriteriosAdicionaisModel;
-use App\DTOs\Domain\CriteriosAdicionais\CriterioAdicionalDTO;
+use App\Services\Base\TransactionalTrait;
 
-class CriterioAdicionalService extends AbstractCrudService
+use App\Models\CriteriosAdicionaisModel;
+
+class CriterioAdicionalService 
 {
     public function __construct()
     {
-        parent::__construct();
+        $this->db = $db ?? \Config\Database::connect();
     }
 
-    public function salvar(CriterioAdicionalDTO $dto): int
+    public function salvar(array $data): int
     {
-        return $this->transactional(function () use ($dto) {
+        return $this->transactional(function () use ($data) {
             $model = new CriteriosAdicionaisModel();
-            $data = $dto->toArray();
 
             if (! $model->save($data)) {
                 throw new \RuntimeException(
@@ -25,7 +24,7 @@ class CriterioAdicionalService extends AbstractCrudService
                 );
             }
 
-            $id = $dto->pk_id_criterio ?? $model->getInsertID();
+            $id = $data['pk_id_criterio'] ?? $model->getInsertID();
 
             if (empty($id)) {
                 throw new \RuntimeException('ID do Critério não foi gerado');
@@ -35,18 +34,12 @@ class CriterioAdicionalService extends AbstractCrudService
         });
     }
 
-    public function atualizar(CriterioAdicionalDTO $dto): void
+    public function atualizar(int $id, array $data): void
     {
-        $this->transactional(function () use ($dto) {
-            $id = $dto->pk_id_criterio;
-
-            if (!$id) {
-                throw new \RuntimeException('ID do critério não informado');
-            }
-
+        $this->transactional(function () use ($id, $data) {
             $model = new CriteriosAdicionaisModel();
 
-            if (! $model->update($id, $dto->toArray())) {
+            if (! $model->update($id, $data)) {
                 throw new \RuntimeException('Erro ao atualizar critério adicional');
             }
 

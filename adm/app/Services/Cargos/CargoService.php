@@ -2,22 +2,21 @@
 
 namespace App\Services\Cargos;
 
-use App\Services\Base\AbstractCrudService;
-use App\Models\CargosModel;
-use App\DTOs\Domain\Cargos\CargoDTO;
+use App\Services\Base\TransactionalTrait;
 
-class CargoService extends AbstractCrudService
+use App\Models\CargosModel;
+
+class CargoService 
 {
     public function __construct()
     {
-        parent::__construct();
+        $this->db = $db ?? \Config\Database::connect();
     }
 
-    public function salvar(CargoDTO $dto): int
+    public function salvar(array $data): int
     {
-        return $this->transactional(function () use ($dto) {
+        return $this->transactional(function () use ($data) {
             $model = new CargosModel();
-            $data = $dto->toArray();
 
             if (! $model->save($data)) {
                 throw new \RuntimeException(
@@ -25,7 +24,7 @@ class CargoService extends AbstractCrudService
                 );
             }
 
-            $id = $dto->pk_id_cargo ?? $model->getInsertID();
+            $id = $data['pk_id_cargo'] ?? $model->getInsertID();
 
             if (empty($id)) {
                 throw new \RuntimeException('ID do Cargo não foi gerado');
@@ -35,18 +34,12 @@ class CargoService extends AbstractCrudService
         });
     }
 
-    public function atualizar(CargoDTO $dto): void
+    public function atualizar(int $id, array $data): void
     {
-        $this->transactional(function () use ($dto) {
-            $id = $dto->pk_id_cargo;
-
-            if (!$id) {
-                throw new \RuntimeException('ID do cargo não informado');
-            }
-
+        $this->transactional(function () use ($id, $data) {
             $model = new CargosModel();
 
-            if (! $model->update($id, $dto->toArray())) {
+            if (! $model->update($id, $data)) {
                 throw new \RuntimeException('Erro ao atualizar cargo');
             }
 

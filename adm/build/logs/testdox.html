@@ -6,43 +6,110 @@
         <style>
             body {
                 text-rendering: optimizeLegibility;
+                font-family: Source SansSerif Pro, Arial, sans-serif;
                 font-variant-ligatures: common-ligatures;
                 font-kerning: normal;
-                margin-left: 2em;
-                background-color: #ffffff;
-                color: #000000;
+                margin-left: 2rem;
+                background-color: #fff;
+                color: #000;
             }
 
             body > ul > li {
-                font-family: Source Serif Pro, PT Sans, Trebuchet MS, Helvetica, Arial;
-                font-size: 2em;
+                font-size: larger;
             }
 
             h2 {
-                font-family: Tahoma, Helvetica, Arial;
-                font-size: 3em;
+                font-size: larger;
+                text-decoration-line: underline;
+                text-decoration-thickness: 2px;
+                margin: 0;
+                padding: 0.5rem 0;
             }
 
             ul {
                 list-style: none;
-                margin-bottom: 1em;
+                margin: 0 0 2rem;
+                padding: 0 0 0 1rem;
+                text-indent: -1rem;
+            }
+
+            .success:before {
+                color: #4e9a06;
+                content: '✓';
+                padding-right: 0.5rem;
+            }
+
+            .defect {
+                color: #a40000;
+            }
+
+            .defect:before {
+                color: #a40000;
+                content: '✗';
+                padding-right: 0.5rem;
             }
         </style>
     </head>
     <body>
-        <h2 id="ExampleDatabaseTest">Example Database</h2>
+        <h2>Candidato Repository (Tests\Repositories\CandidatoRepository)</h2>
         <ul>
-            <li style="color: #555753;">✓ Model find all</li>
-            <li style="color: #555753;">✓ Soft delete leaves row</li>
+            <li class="success">Buscar por edital cargo delega para model</li>
+            <li class="success">Buscar por cpf delega para model</li>
+            <li class="success">Buscar por id delega para model</li>
+            <li class="success">Contar por ano delega para model</li>
+            <li class="success">Buscar experiencias delega para model</li>
         </ul>
-        <h2 id="ExampleSessionTest">Example Session</h2>
+        <h2>Classificacao Repository (Tests\Repositories\ClassificacaoRepository)</h2>
         <ul>
-            <li style="color: #555753;">✓ Session simple</li>
+            <li class="success">Listar por edital cargo delega para model</li>
         </ul>
-        <h2 id="HealthTest">Health</h2>
+        <h2>Contrato Repository (Tests\Repositories\ContratoRepository)</h2>
         <ul>
-            <li style="color: #555753;">✓ Is defined app path</li>
-            <li style="color: #555753;">✓ Base url has been set</li>
+            <li class="success">Listar todos delega para model</li>
+            <li class="success">Buscar por id delega para model</li>
+            <li class="success">Buscar por candidato delega para model</li>
+            <li class="success">Inserir delega para model</li>
+            <li class="success">Atualizar delega para model</li>
+            <li class="success">Buscar ativos delega para model</li>
+            <li class="success">Obter ultimo id delega para model</li>
+        </ul>
+        <h2>Desempate Config DTO (Tests\Services\Classificacao\DesempateConfigDTO)</h2>
+        <ul>
+            <li class="success">Chave score pontuacao total</li>
+            <li class="success">Chave score experiencia especifica</li>
+            <li class="success">Chave score escolaridade especifica</li>
+            <li class="success">Chave score idade</li>
+            <li class="success">Chave score pne</li>
+            <li class="success">Chave score tipo desconhecido lanca excecao</li>
+        </ul>
+        <h2>Ordenacao Dinamica Service (Tests\Services\Classificacao\OrdenacaoDinamicaService)</h2>
+        <ul>
+            <li class="success">Ordenacao por pontuacao total desc</li>
+            <li class="success">Desempate por experiencias</li>
+            <li class="success">Desempate por idade asc mais velho primeiro</li>
+            <li class="success">Desempate por pne desc</li>
+            <li class="success">Atribuicao de posicoes</li>
+        </ul>
+        <h2>Pontuacao Calculator Service (Tests\Services\Classificacao\PontuacaoCalculatorService)</h2>
+        <ul>
+            <li class="success">Aplicar teto preserva pontuacao abaixo do limite</li>
+            <li class="success">Aplicar teto limita pontuacao acima do limite</li>
+            <li class="success">Aplicar teto sem limite preserva pontuacao</li>
+            <li class="success">Aplicar teto zero nao limita</li>
+        </ul>
+        <h2>Example Database</h2>
+        <ul>
+            <li class="success">Model find all</li>
+            <li class="success">Soft delete leaves row</li>
+        </ul>
+        <h2>Example Session</h2>
+        <ul>
+            <li class="success">Session simple</li>
+        </ul>
+        <h2>Health</h2>
+        <ul>
+            <li class="success">Is defined app path</li>
+            <li class="success">Base url has been set</li>
         </ul>
     </body>
 </html>

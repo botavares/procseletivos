@@ -8,7 +8,6 @@ use DateTime;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use App\Models\CargosModel;
 use App\Services\LogsService;
-use App\Services\Cargos\CargoFormService;
 use App\Services\Cargos\CargoService;
 use App\Services\Cargos\CargoGridService;
 
@@ -23,7 +22,6 @@ class Cargos extends BaseController{
     protected $cargoGridService;
 
     public function __construct(){
-        parent::__construct();
         
         $this->cargosModel             = new \App\Models\CargosModel();
         $this->escolaridadesModel        = new \App\Models\EscolaridadesModel();
@@ -194,18 +192,31 @@ class Cargos extends BaseController{
 
     public function registrar(){
         try {
-            $form   = new CargoFormService($this->request);
-            $dados  = $form->handle();
+            $cargoData = [
+                'pk_id_cargo'      => $this->request->getPost('pk_id_cargo'),
+                'fk_id_secretaria' => $this->request->getPost('fk_id_secretaria'),
+                'ds_nome_cargo'    => $this->request->getPost('ds_nome_cargo'),
+                'ds_carga_horaria' => $this->request->getPost('ds_carga_horaria'),
+                'ds_nivel'         => $this->request->getPost('ds_nivel'),
+            ];
+            $acao = $this->request->getPost('action') ?? 'create';
 
-            $acao = $dados['acao'];
-            $cargoDto = $dados['cargo'];
+            if (empty($cargoData['ds_nome_cargo'])) {
+                throw new \Exception('O nome do cargo deve ser informado.');
+            }
+            if (empty($cargoData['ds_carga_horaria'])) {
+                throw new \Exception('A carga horária deve ser informada.');
+            }
+            if (empty($cargoData['ds_nivel'])) {
+                throw new \Exception('O nível de escolaridade deve ser informado.');
+            }
 
             $service = service('cargoService');
 
             if ($acao === 'update') {
-                $service->atualizar($cargoDto);
+                $service->atualizar((int)$cargoData['pk_id_cargo'], $cargoData);
             } else {
-                $id = $service->salvar($cargoDto);
+                $id = $service->salvar($cargoData);
             }
 
             return redirect()->route('Cargos')

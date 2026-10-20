@@ -308,7 +308,7 @@
 											];
 
 											// Obtendo o valor do campo (se já enviado no formulário)
-											$ufSelecionado = set_value('uf', isset($dados->uf) ? $dados->uf : '');
+											$ufSelecionado = old('uf', isset($dados->uf) ? $dados->uf : '');
 
 											foreach ($ufs as $sigla => $nome) {
 												$selected = ($sigla === $ufSelecionado) ? 'selected' : '';

@@ -5,6 +5,8 @@ Control: Contratos.php
 */
 namespace App\Services\Contratos;
 
+use App\Services\Base\TransactionalTrait;
+
 use App\Models\DadosContratosModel;
 use App\Models\CandidatosModel;
 use App\Models\SetoresModel;
@@ -12,17 +14,16 @@ use App\Models\ComunicacoesModel;
 
 use App\Services\ContagemDeTempoService;
 use App\Services\LogsService;
-use App\Services\Base\AbstractCrudService;
 use App\Services\Base\AbstractEmailService;
 
 
-class ContratoComunicacaoService extends AbstractCrudService{
+class ContratoComunicacaoService {
     public function __construct(
         protected AbstractEmailService $emailService,
         protected LogsService $logsService, 
         protected ContagemdeTempoService $contagemdeTempoService
     ){
-        parent::__construct();
+        $this->db = $db ?? \Config\Database::connect();
         $this->emailService = $emailService;
         $this->logsService  = $logsService;
     }

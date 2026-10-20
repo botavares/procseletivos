@@ -1,7 +1,8 @@
 <?php
 namespace App\Services\Candidatos;
+
+use App\Services\Base\TransactionalTrait;
 use RuntimeException;
-use App\Services\Base\AbstractCrudService;
 use App\Models\CadastrosExperienciasModel;
 use App\Models\CadastrosEscolaridadesModel;
 use App\Models\CadastrosAperfeicoamentosModel;
@@ -11,7 +12,7 @@ use App\Models\CargosEscolaridadesModel;
 use App\Models\CargosAperfeicoamentosModel;
 use App\Models\CargosCriteriosAdicionaisModel;
 
-class RecursosService extends AbstractCrudService{
+class RecursosService {
 
     public function aplicarRecursos(int $idEdital, int $idCargo, int $idCandidato, array $recursos){
         $protocolo = $recursos['ds_protocolo'] ?? '';

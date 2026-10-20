@@ -20,6 +20,7 @@
 <!-- Project CSS -->
 <link rel="stylesheet" href="<?= base_url("public/publica/external/css/capa.css") ?>">
 <link rel="stylesheet" href="<?= base_url("public/publica/external/css/custom-capa.css") ?>">
+<link rel="stylesheet" href="<?= base_url("public/publica/external/css/home-novo.css") ?>">
 <link rel="stylesheet" href="<?= base_url("public/publica/external/css/contrast.css") ?>">
 <link rel="stylesheet" href="<?= base_url("public/publica/external/css/padroes.css") ?>">
 <link rel="stylesheet" href="<?= base_url("public/publica/external/css/brTables.css") ?>">

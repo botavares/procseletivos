@@ -8,7 +8,6 @@ use App\Models\CargosModel;
 use App\Models\EscolaridadesModel;
 use App\Models\CargosEscolaridadesModel;
 use App\Services\LogsService;
-use App\Services\Cargos\CargosEscolaridadesFormService;
 use App\Services\Cargos\CargosEscolaridadesService;
 
 
@@ -20,7 +19,6 @@ class CargosEscolaridades extends BaseController{
     protected $cargosEscolaridadesModel;
 
     public function __construct(){
-        parent::__construct();
 
         $this->cargosModel              = new \App\Models\CargosModel();
         $this->escolaridadesModel       = new \App\Models\EscolaridadesModel();
@@ -131,15 +129,39 @@ class CargosEscolaridades extends BaseController{
      */
     public function registrarAssociacaoCargoEscolaridade(){
         try {
-            $form   = new CargosEscolaridadesFormService($this->request);
-            $dados  = $form->handle();
+            $acao = $this->request->getPost('acao') ?? 'create';
+            $data = [
+                'pk_id_cargos_escolaridade' => $this->request->getPost('pk_id_cargos_escolaridade'),
+                'fk_id_cargo'               => $this->request->getPost('fk_id_cargo'),
+                'fk_id_escolaridade'         => $this->request->getPost('fk_id_escolaridade'),
+                'ds_pontuacao_minima'      => $this->request->getPost('ds_pontuacao_minima'),
+                'ds_pontuacao_maxima'      => $this->request->getPost('ds_pontuacao_maxima'),
+                'ds_tipo_campo'             => $this->request->getPost('ds_tipo_campo'),
+            ];
 
-            $dto = $dados['cargosEscolaridades'];
+            if (empty($data['fk_id_cargo'])) {
+                throw new \Exception('O cargo deve ser informado.');
+            }
+            if (empty($data['fk_id_escolaridade'])) {
+                throw new \Exception('A escolaridade deve ser selecionada.');
+            }
+            if (empty($data['ds_pontuacao_minima'])) {
+                throw new \Exception('A pontuação mínima deve ser informada.');
+            }
+            if (empty($data['ds_pontuacao_maxima'])) {
+                throw new \Exception('A pontuação máxima deve ser informada.');
+            }
+            if (empty($data['ds_tipo_campo'])) {
+                throw new \Exception('O tipo de campo deve ser informado.');
+            }
+            if ($data['ds_pontuacao_maxima'] < $data['ds_pontuacao_minima']) {
+                throw new \Exception('A pontuação máxima deve ser maior ou igual à mínima.');
+            }
 
-            service('cargosEscolaridadesService')->salvar($dto);
+            service('cargosEscolaridadesService')->salvar($data, $acao);
 
             return redirect()
-                ->route('CargosEscolaridades.formularioCargosEscolaridade', [$dto->fk_id_cargo])
+                ->route('CargosEscolaridades.formularioCargosEscolaridade', [$data['fk_id_cargo']])
                 ->with('mensagemSuccess', 'Escolaridade associada ao cargo com sucesso');
 
         } catch (\Exception $e) {

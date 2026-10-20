@@ -28,5 +28,5 @@ interface IEditaisService
 
     public function autenticarEditalPorToken(string $token): ?object;
 
-    public function estaAtivo($idEdital);
+    public function estaAtivo(int $idEdital): bool;
 }

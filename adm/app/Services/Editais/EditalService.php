@@ -1,15 +1,16 @@
 <?php
 namespace App\Services\Editais;
 
-use App\Services\Base\AbstractCrudService;
+use App\Services\Base\TransactionalTrait;
+
 use App\Repositories\Interfaces\IEditalRepository;
 use Exception;
 
-class EditalService extends AbstractCrudService{
+class EditalService {
      public function __construct(
         ?IEditalRepository $editalRepository = null
      ){
-        parent::__construct();
+        $this->db = $db ?? \Config\Database::connect();
         $this->editalRepository = $editalRepository ?? service('editalRepository');
     }
 

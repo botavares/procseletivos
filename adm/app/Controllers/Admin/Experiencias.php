@@ -6,7 +6,6 @@ use App\Controllers\BaseController;
 
 use CodeIgniter\Exceptions\PageNotFoundException;
 use App\Models\ExperienciasModel;
-use App\Services\Experiencias\ExperienciaFormService;
 use App\Services\Experiencias\ExperienciaService;
 use App\Services\Experiencias\ExperienciaGridService;
 
@@ -15,7 +14,6 @@ class Experiencias extends BaseController
     protected $experienciasModel;
 
     public function __construct() {
-        parent::__construct();
         $this->experienciasModel = new \App\Models\ExperienciasModel();
     }
 
@@ -107,18 +105,26 @@ class Experiencias extends BaseController
     public function registrar()
     {
         try {
-            $form   = new ExperienciaFormService($this->request);
-            $dados  = $form->handle();
+            $data = [
+                'pk_id_experiencia'  => $this->request->getPost('pk_id_experiencia'),
+                'ds_nome_experiencia' => $this->request->getPost('ds_nome_experiencia'),
+                'ds_tipo_experiencia' => $this->request->getPost('ds_tipo_experiencia'),
+            ];
+            $acao = $this->request->getPost('action') ?? 'create';
 
-            $acao = $dados['acao'];
-            $dto = $dados['experiencia'];
+            if (empty($data['ds_nome_experiencia'])) {
+                throw new \Exception('O nome da experiência deve ser informado.');
+            }
+            if (empty($data['ds_tipo_experiencia'])) {
+                throw new \Exception('O tipo de experiência deve ser informado.');
+            }
 
             $service = service('experienciaService');
 
             if ($acao === 'update') {
-                $service->atualizar($dto);
+                $service->atualizar((int)$data['pk_id_experiencia'], $data);
             } else {
-                $id = $service->salvar($dto);
+                $id = $service->salvar($data);
             }
 
             return redirect()->route('Experiencias')

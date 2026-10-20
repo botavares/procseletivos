@@ -4,7 +4,6 @@ namespace App\Services\Classificacao;
 
 use Config\Database;
 use App\Repositories\Interfaces\IClassificacaoRepository;
-use App\Models\CargosModel;
 
 /**
  * Servico principal responsavel por
@@ -44,11 +43,5 @@ class ClassificacaoService
     public function listarClassificacao($idEdital, $idCargo)
     {
         return $this->classificacaoRepository->listarPorEditalCargo($idEdital, $idCargo);
-    }
-
-    public function listarCargos()
-    {
-        $cargosModel = new CargosModel();
-        return $cargosModel->findAll();
     }
 }
