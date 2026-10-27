@@ -1,92 +1,21 @@
-# Disable directory browsing
-Options All -Indexes
-
-# ----------------------------------------------------------------------
-# Bloqueio de acesso direto a diretórios sensíveis
-# ----------------------------------------------------------------------
 <IfModule mod_rewrite.c>
-	RewriteEngine On
-
-	# Bloqueia acesso direto a vendor/, writable/, system/, app/, adm/, node_modules/
-	RewriteCond %{REQUEST_URI} ^/(vendor|writable|system|app|adm|node_modules)/ [NC]
-	RewriteRule ^ - [F,L]
-
-	# Forca redirecionamento HTTP para HTTPS (301) — DESCOMENTE EM PRODUCAO
-	# RewriteCond %{HTTPS} off
-	# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+    RewriteEngine On
+    RewriteBase /servicos/procseletivos/
+    
+    # Regra explicita para /adm/ - redirecionar para public/index.php
+    RewriteRule ^adm/?$ public/index.php?/adm/ [L,QSA]
+    RewriteRule ^adm/(.*)$ public/index.php?/adm/$1 [L,QSA]
+    
+    # Redirecionar tudo para public/ (exceto se ja estiver em public/)
+    RewriteCond %{REQUEST_URI} !^/servicos/procseletivos/public/
+    RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
 
-# ----------------------------------------------------------------------
-# Rewrite engine
-# ----------------------------------------------------------------------
+# Desabilitar listagem de diretórios
+Options -Indexes
 
-# Turning on the rewrite engine is necessary for the following rules and features.
-# FollowSymLinks must be enabled for this to work.
-<IfModule mod_rewrite.c>
-	Options +FollowSymlinks
-	RewriteEngine On
-
-	# If you installed CodeIgniter in a subfolder, you will need to
-	# change the following line to match the subfolder you need.
-	# http://httpd.apache.org/docs/current/mod/mod_rewrite.html#rewritebase
-	# RewriteBase /
-
-	# Redirect Trailing Slashes...
-	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteCond %{REQUEST_URI} (.+)/$
-	RewriteRule ^ %1 [L,R=301]
-
-	# Rewrite "www.example.com -> example.com"
-	RewriteCond %{HTTPS} !=on
-	RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-	RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
-
-	# Checks to see if the user is attempting to access a valid file,
-	# such as an image or css document, if this isn't true it sends the
-	# request to the front controller, index.php
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteRule ^([\s\S]*)$ index.php/$1 [L,NC,QSA]
-
-	# Ensure Authorization header is passed along
-	RewriteCond %{HTTP:Authorization} .
-	RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-</IfModule>
-
-<IfModule !mod_rewrite.c>
-	# If we don't have mod_rewrite installed, all 404's
-	# can be sent to index.php, and everything works as normal.
-	ErrorDocument 404 index.php
-</IfModule>
-
-# Disable server signature start
-	ServerSignature Off
-# Disable server signature end
-
-# ----------------------------------------------------------------------
-# Bloqueia acesso a arquivos sensíveis (.env, logs, configs, etc.)
-# ----------------------------------------------------------------------
-<IfModule mod_rewrite.c>
-	RewriteEngine On
-	
-	# Bloqueia acesso ao .env e variações (.env.local, .env.production, etc.)
-	RewriteCond %{REQUEST_FILENAME} -f
-	RewriteCond %{REQUEST_URI} \.env [NC]
-	RewriteRule ^ - [F,L]
-	
-	# Bloqueia acesso a outros arquivos sensíveis
-	RewriteCond %{REQUEST_FILENAME} -f
-	RewriteCond %{REQUEST_URI} (\.gitignore|\.gitattributes|composer\.(json|lock)|package(-lock)?\.json|README\.md|CHANGELOG\.md|LICENSE|phpunit\.xml|spark|\.editorconfig|\.htaccess) [NC]
-	RewriteRule ^ - [F,L]
-</IfModule>
-
-# Bloqueio adicional via mod_access (se disponível)
-<FilesMatch "^\.env">
-	Order allow,deny
-	Deny from all
-</FilesMatch>
-
-<FilesMatch "^\.(env|gitignore|gitattributes)$">
-	Order allow,deny
-	Deny from all
+# Proteger arquivos sensíveis
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
 </FilesMatch>

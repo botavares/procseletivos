@@ -28,6 +28,23 @@ class CargosModel extends Model
         'ds_nivel' => 'permit_empty|string',
     ];
 
+    protected $validationMessages = [
+        'fk_id_secretaria' => [
+            'required' => 'A secretaria deve ser informada.',
+            'integer' => 'A secretaria deve ser informada.',
+        ],
+        'ds_nome_cargo' => [
+            'required' => 'O nome do cargo deve ser informado.',
+            'string' => 'O nome do cargo deve ser informado.',
+        ],
+        'ds_carga_horaria' => [
+            'string' => 'A carga horária deve ser informada.',
+        ],
+        'ds_nivel' => [
+            'string' => 'O nível de escolaridade deve ser informado.',
+        ],
+    ];
+
     public function cargosEditaisAtivos()
     {
         return $this->select('tb_cargos.*')

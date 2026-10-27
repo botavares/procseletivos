@@ -42,6 +42,7 @@ class Autoload extends AutoloadConfig
     public $psr4 = [
         APP_NAMESPACE => APPPATH, // For custom app namespace
         'Config'      => APPPATH . 'Config',
+        'App\\Common' => APPPATH . 'Common',
     ];
 
     /**
@@ -94,6 +95,7 @@ class Autoload extends AutoloadConfig
      * @phpstan-var list<string>
      */
     public $helpers = [
-        'form','WKPDF','Principal','classificatorios'
+        'form','WKPDF','Principal','classificatorios','url','EmailHelper','MyHelper','ordinal',
+        'Admin/admin_url',
     ];
 }

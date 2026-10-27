@@ -421,4 +421,412 @@ class Services extends BaseService
             \Config\Database::connect()
         );
     }
+
+
+    /* ================================================================
+     * SERVICES DO ADMIN (migrados de adm/app/Config/Services.php)
+     * ================================================================ */
+
+/* ================================================================
+     * FACTORIES DE MODELS (Injeção de Dependência)
+     * ================================================================ */
+
+    public static function cargosModel(bool $getShared = true): \App\Models\Admin\CargosModel
+    {
+        return $getShared ? static::getSharedInstance('cargosModel') : new \App\Models\Admin\CargosModel();
+    }
+
+    public static function editaisModel(bool $getShared = true): \App\Models\Admin\EditaisModel
+    {
+        return $getShared ? static::getSharedInstance('editaisModel') : new \App\Models\Admin\EditaisModel();
+    }
+
+    public static function editaisCargosModel(bool $getShared = true): \App\Models\Admin\EditaisCargosModel
+    {
+        return $getShared ? static::getSharedInstance('editaisCargosModel') : new \App\Models\Admin\EditaisCargosModel();
+    }
+
+    public static function editaisAbrangenciasModel(bool $getShared = true): \App\Models\Admin\EditaisAbrangenciasModel
+    {
+        return $getShared ? static::getSharedInstance('editaisAbrangenciasModel') : new \App\Models\Admin\EditaisAbrangenciasModel();
+    }
+
+    /* ================================================================
+     * FACTORIES DE SERVICES (Injeção de Dependência)
+     * ================================================================ */
+
+    public static function editalGridService(bool $getShared = true): \App\Services\Admin\Editais\EditalGridService
+    {
+        return $getShared ? static::getSharedInstance('editalGridService') : new \App\Services\Admin\Editais\EditalGridService();
+    }
+
+    public static function editalFormService(bool $getShared = true): \App\Services\Admin\Editais\EditalFormService
+    {
+        return $getShared ? static::getSharedInstance('editalFormService') : new \App\Services\Admin\Editais\EditalFormService();
+    }
+
+    public static function editalService(bool $getShared = true): \App\Services\Admin\Editais\EditalService
+    {
+        return $getShared
+            ? static::getSharedInstance('editalService')
+            : new \App\Services\Admin\Editais\EditalService(service('editalRepository'));
+    }
+
+    public static function editalUploadService(bool $getShared = true): \App\Services\Admin\Editais\EditalUploadService
+    {
+        return $getShared ? static::getSharedInstance('editalUploadService') : new \App\Services\Admin\Editais\EditalUploadService();
+    }
+
+    public static function MyHelper_helper($getShared = true){
+        if($getShared){
+            return static::getSharedInstance('MyHelper_helper');
+        }
+        return new MyHelper_helper();
+    }
+    
+    public static function situacaoService($getShared = true){
+        if ($getShared) {
+            return static::getSharedInstance('situacaoService');
+        }
+
+        return new \App\Services\Admin\Candidatos\SituacaoService(
+                new \App\Models\Admin\SituacaoModel()
+        );
+    }
+
+    public static function escolaridadeGridService(bool $getShared = true)
+    {
+        return $getShared ? static::getSharedInstance('escolaridadeGridService') : new \App\Services\Admin\Escolaridades\EscolaridadeGridService();
+    }
+
+    public static function adminEscolaridadeService(bool $getShared = true)
+    {
+        return $getShared ? static::getSharedInstance('adminEscolaridadeService') : new \App\Services\Admin\Escolaridades\EscolaridadeService();
+    }
+
+    public static function experienciaGridService(bool $getShared = true)
+    {
+        return $getShared ? static::getSharedInstance('experienciaGridService') : new \App\Services\Admin\Experiencias\ExperienciaGridService();
+    }
+
+    public static function adminExperienciaService(bool $getShared = true)
+    {
+        return $getShared ? static::getSharedInstance('adminExperienciaService') : new \App\Services\Admin\Experiencias\ExperienciaService();
+    }
+
+    public static function aperfeicoamentoGridService(bool $getShared = true)
+    {
+        return $getShared ? static::getSharedInstance('aperfeicoamentoGridService') : new \App\Services\Admin\Aperfeicoamentos\AperfeicoamentoGridService();
+    }
+
+    public static function adminAperfeicoamentoService(bool $getShared = true)
+    {
+        return $getShared ? static::getSharedInstance('adminAperfeicoamentoService') : new \App\Services\Admin\Aperfeicoamentos\AperfeicoamentoService();
+    }
+
+    /* ================================================================
+     * FACTORIES DE EXPORTAÇÃO
+     * ================================================================ */
+
+    public static function excelExportService(bool $getShared = true): \App\Services\Admin\Export\ExcelExportService
+    {
+        return $getShared ? static::getSharedInstance('excelExportService') : new \App\Services\Admin\Export\ExcelExportService();
+    }
+
+    public static function pdfExportService(bool $getShared = true): \App\Services\Admin\Export\PdfExportService
+    {
+        return $getShared ? static::getSharedInstance('pdfExportService') : new \App\Services\Admin\Export\PdfExportService();
+    }
+
+    public static function qrCodeService(bool $getShared = true): \App\Services\Admin\Export\QrCodeService
+    {
+        return $getShared ? static::getSharedInstance('qrCodeService') : new \App\Services\Admin\Export\QrCodeService();
+    }
+
+    /* ================================================================
+     * FACTORIES DE REPOSITORIES (Injeção de Dependência)
+     * ================================================================ */
+
+    public static function adminCandidatoRepository(bool $getShared = true): \App\Repositories\Admin\Interfaces\ICandidatoRepository
+    {
+        return $getShared
+            ? static::getSharedInstance('adminCandidatoRepository')
+            : new \App\Repositories\Admin\CandidatoRepository(service('candidatosModel'));
+    }
+
+    public static function adminEditalRepository(bool $getShared = true): \App\Repositories\Admin\Interfaces\IEditalRepository
+    {
+        return $getShared
+            ? static::getSharedInstance('adminEditalRepository')
+            : new \App\Repositories\Admin\EditalRepository(service('editaisModel'));
+    }
+
+    public static function classificacaoRepository(bool $getShared = true): \App\Repositories\Admin\Interfaces\IClassificacaoRepository
+    {
+        return $getShared
+            ? static::getSharedInstance('classificacaoRepository')
+            : new \App\Repositories\Admin\ClassificacaoRepository(service('classificacaoModel'));
+    }
+
+    public static function adminContratoRepository(bool $getShared = true): \App\Repositories\Admin\Interfaces\IContratoRepository
+    {
+        return $getShared
+            ? static::getSharedInstance('adminContratoRepository')
+            : new \App\Repositories\Admin\ContratoRepository(service('dadosContratosModel'));
+    }
+
+    public static function criterioAdicionalGridService(bool $getShared = true)
+    {
+        return $getShared ? static::getSharedInstance('criterioAdicionalGridService') : new \App\Services\Admin\CriteriosAdicionais\CriterioAdicionalGridService();
+    }
+
+    public static function adminCriterioAdicionalService(bool $getShared = true)
+    {
+        return $getShared ? static::getSharedInstance('adminCriterioAdicionalService') : new \App\Services\Admin\CriteriosAdicionais\CriterioAdicionalService();
+    }
+
+    public static function secretariasModel(bool $getShared = true): \App\Models\Admin\SecretariasModel
+    {
+        return $getShared ? static::getSharedInstance('secretariasModel') : new \App\Models\Admin\SecretariasModel();
+    }
+
+    public static function setoresModel(bool $getShared = true): \App\Models\Admin\SetoresModel
+    {
+        return $getShared ? static::getSharedInstance('setoresModel') : new \App\Models\Admin\SetoresModel();
+    }
+
+    public static function vagasModel(bool $getShared = true): \App\Models\Admin\VagasModel
+    {
+        return $getShared ? static::getSharedInstance('vagasModel') : new \App\Models\Admin\VagasModel();
+    }
+
+    public static function cursosModel(bool $getShared = true): \App\Models\Admin\CursosModel
+    {
+        return $getShared ? static::getSharedInstance('cursosModel') : new \App\Models\Admin\CursosModel();
+    }
+
+    public static function cargoService(bool $getShared = true)
+    {
+        return $getShared ? static::getSharedInstance('cargoService') : new \App\Services\Admin\Cargos\CargoService();
+    }
+
+    public static function cargoGridService(bool $getShared = true)
+    {
+        return $getShared ? static::getSharedInstance('cargoGridService') : new \App\Services\Admin\Cargos\CargoGridService();
+    }
+
+    public static function candidatosService(bool $getShared = true)
+    {
+        return $getShared
+            ? static::getSharedInstance('candidatosService')
+            : new \App\Services\Admin\Candidatos\CandidatosService(service('candidatoRepository'));
+    }
+    public static function cargoFormService($getShared = true)
+    {
+        if ($getShared) {
+            return static::getSharedInstance('cargoFormService');
+        }
+
+        return new \App\Services\Admin\Cargos\CargoFormService();
+    }
+    public static function cargosCursosFormService($getShared = true)
+    {
+        if ($getShared) {
+            return static::getSharedInstance('cargosCursosFormService');
+        }
+
+        return new \App\Services\Admin\Cargos\CargosCursosFormService();
+    }
+    public static function cargosCriteriosFormService($getShared = true)
+    {
+        if ($getShared) {
+            return static::getSharedInstance('cargosCriteriosFormService');
+        }
+
+        return new \App\Services\Admin\Cargos\CargosCriteriosFormService();
+    }
+    public static function cargosCriteriosService(bool $getShared = true){
+        return $getShared ? static::getSharedInstance('cargosCriteriosService') : new \App\Services\Admin\Cargos\CargosCriteriosService();
+    }
+
+    /* ================================================================
+     * FACTORIES DE MODELS RESTANTES
+     * ================================================================ */
+
+    public static function criteriosAdicionaisModel(bool $getShared = true): \App\Models\Admin\CriteriosAdicionaisModel
+    {
+        return $getShared ? static::getSharedInstance('criteriosAdicionaisModel') : new \App\Models\Admin\CriteriosAdicionaisModel();
+    }
+
+    public static function cargosCriteriosAdicionaisModel(bool $getShared = true): \App\Models\Admin\CargosCriteriosAdicionaisModel
+    {
+        return $getShared ? static::getSharedInstance('cargosCriteriosAdicionaisModel') : new \App\Models\Admin\CargosCriteriosAdicionaisModel();
+    }
+
+    public static function cargosCursosModel(bool $getShared = true): \App\Models\Admin\CargosCursosModel
+    {
+        return $getShared ? static::getSharedInstance('cargosCursosModel') : new \App\Models\Admin\CargosCursosModel();
+    }
+
+    public static function escolaridadesModel(bool $getShared = true): \App\Models\Admin\EscolaridadesModel
+    {
+        return $getShared ? static::getSharedInstance('escolaridadesModel') : new \App\Models\Admin\EscolaridadesModel();
+    }
+
+    public static function cargosEscolaridadesModel(bool $getShared = true): \App\Models\Admin\CargosEscolaridadesModel
+    {
+        return $getShared ? static::getSharedInstance('cargosEscolaridadesModel') : new \App\Models\Admin\CargosEscolaridadesModel();
+    }
+
+    public static function experienciasModel(bool $getShared = true): \App\Models\Admin\ExperienciasModel
+    {
+        return $getShared ? static::getSharedInstance('experienciasModel') : new \App\Models\Admin\ExperienciasModel();
+    }
+
+    public static function cargosExperienciasModel(bool $getShared = true): \App\Models\Admin\CargosExperienciasModel
+    {
+        return $getShared ? static::getSharedInstance('cargosExperienciasModel') : new \App\Models\Admin\CargosExperienciasModel();
+    }
+
+    public static function classificacaoModel(bool $getShared = true): \App\Models\Admin\ClassificacaoModel
+    {
+        return $getShared ? static::getSharedInstance('classificacaoModel') : new \App\Models\Admin\ClassificacaoModel();
+    }
+
+    public static function dadosContratosModel(bool $getShared = true): \App\Models\Admin\DadosContratosModel
+    {
+        return $getShared ? static::getSharedInstance('dadosContratosModel') : new \App\Models\Admin\DadosContratosModel();
+    }
+
+    public static function dadosRescisaoModel(bool $getShared = true): \App\Models\Admin\DadosRescisaoModel
+    {
+        return $getShared ? static::getSharedInstance('dadosRescisaoModel') : new \App\Models\Admin\DadosRescisaoModel();
+    }
+
+    public static function dadosAditivosModel(bool $getShared = true): \App\Models\Admin\DadosAditivosModel
+    {
+        return $getShared ? static::getSharedInstance('dadosAditivosModel') : new \App\Models\Admin\DadosAditivosModel();
+    }
+
+    public static function convocadosModel(bool $getShared = true): \App\Models\Admin\ConvocadosModel
+    {
+        return $getShared ? static::getSharedInstance('convocadosModel') : new \App\Models\Admin\ConvocadosModel();
+    }
+
+    public static function verificadorModel(bool $getShared = true): \App\Models\Admin\VerificadorModel
+    {
+        return $getShared ? static::getSharedInstance('verificadorModel') : new \App\Models\Admin\VerificadorModel();
+    }
+
+    public static function contratoService(bool $getShared = true): \App\Services\Admin\Contratos\ContratoService
+    {
+        return $getShared
+            ? static::getSharedInstance('contratoService')
+            : new \App\Services\Admin\Contratos\ContratoService(
+                service('contratoRepository'),
+                service('vagasModel'),
+                service('logsService'),
+                service('dadosRescisaoModel'),
+                service('dadosAditivosModel'),
+                service('convocadosModel'),
+                service('verificadorModel')
+            );
+    }
+
+    public static function cadastrosExperienciasModel(bool $getShared = true): \App\Models\Admin\CadastrosExperienciasModel
+    {
+        return $getShared ? static::getSharedInstance('cadastrosExperienciasModel') : new \App\Models\Admin\CadastrosExperienciasModel();
+    }
+
+    public static function cadastrosEscolaridadesModel(bool $getShared = true): \App\Models\Admin\CadastrosEscolaridadesModel
+    {
+        return $getShared ? static::getSharedInstance('cadastrosEscolaridadesModel') : new \App\Models\Admin\CadastrosEscolaridadesModel();
+    }
+
+    public static function cadastrosAperfeicoamentosModel(bool $getShared = true): \App\Models\Admin\CadastrosAperfeicoamentosModel
+    {
+        return $getShared ? static::getSharedInstance('cadastrosAperfeicoamentosModel') : new \App\Models\Admin\CadastrosAperfeicoamentosModel();
+    }
+
+    public static function protocolosModel(bool $getShared = true): \App\Models\Admin\ProtocolosModel
+    {
+        return $getShared ? static::getSharedInstance('protocolosModel') : new \App\Models\Admin\ProtocolosModel();
+    }
+
+    public static function academicosModel(bool $getShared = true): \App\Models\Admin\AcademicosModel
+    {
+        return $getShared ? static::getSharedInstance('academicosModel') : new \App\Models\Admin\AcademicosModel();
+    }
+
+    public static function abrangenciasModel(bool $getShared = true): \App\Models\Admin\EditaisAbrangenciasModel
+    {
+        return $getShared ? static::getSharedInstance('abrangenciasModel') : new \App\Models\Admin\EditaisAbrangenciasModel();
+    }
+
+    public static function cargosCursosService(bool $getShared = true){
+        return $getShared ? static::getSharedInstance('cargosCursosService') : new \App\Services\Admin\Cargos\CargosCursosService();
+    }
+
+    public static function cargosEscolaridadesService(bool $getShared = true){
+        return $getShared ? static::getSharedInstance('cargosEscolaridadesService') : new \App\Services\Admin\Cargos\CargosEscolaridadesService();
+    }
+
+    public static function cargosExperienciasService(bool $getShared = true){
+        return $getShared ? static::getSharedInstance('cargosExperienciasService') : new \App\Services\Admin\Cargos\CargosExperienciasService();
+    }
+
+    public static function recursosService(bool $getShared = true){
+        return $getShared ? static::getSharedInstance('recursosService') : new \App\Services\Admin\Candidatos\RecursosService();
+    }
+
+    public static function recursosConsultaService(bool $getShared = true){
+        return $getShared ? static::getSharedInstance('recursosConsultaService') : new \App\Services\Admin\Candidatos\RecursosConsultaService();
+    }
+
+    public static function logsService(bool $getShared = true){
+        return $getShared ? static::getSharedInstance('logsService') : new \App\Services\Admin\LogsService();
+    }
+
+    public static function relatoriosService(bool $getShared = true){
+        return $getShared ? static::getSharedInstance('relatoriosService') : new \App\Services\Admin\Relatorios\RelatoriosService(
+            service('candidatosModel'),
+            service('academicosModel'),
+            service('cursosModel'),
+            service('editaisAbrangenciasModel')
+        );
+    }
+
+    public static function classificacaoService(bool $getShared = true){
+        return $getShared
+            ? static::getSharedInstance('classificacaoService')
+            : new \App\Services\Admin\Classificacao\ClassificacaoService(service('classificacaoRepository'));
+    }
+
+    public static function adminDesempateConfigService(bool $getShared = true){
+        return $getShared ? static::getSharedInstance('adminDesempateConfigService') : new \App\Services\Admin\Classificacao\DesempateConfigService();
+    }
+
+    public static function classificacaoColunasService(bool $getShared = true){
+        return $getShared ? static::getSharedInstance('classificacaoColunasService') : new \App\Services\Admin\Classificacao\ClassificacaoColunasService();
+    }
+
+    public static function processosSeletivosService(bool $getShared = true): \App\Services\ProcessosSeletivos\ProcessosSeletivosService
+    {
+        return $getShared
+            ? static::getSharedInstance('processosSeletivosService')
+            : new \App\Services\ProcessosSeletivos\ProcessosSeletivosService(
+                new \App\Models\ProcessosSeletivosModel(),
+                service('logsService', false)
+            );
+    }
+
+    public static function processosDocumentosService(bool $getShared = true): \App\Services\ProcessosDocumentos\ProcessosDocumentosService
+    {
+        return $getShared
+            ? static::getSharedInstance('processosDocumentosService')
+            : new \App\Services\ProcessosDocumentos\ProcessosDocumentosService(
+                new \App\Models\Admin\ProcessosDocumentosModel(),
+                service('logsService', false)
+            );
+    }
 }

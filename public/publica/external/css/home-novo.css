@@ -296,8 +296,8 @@
   background: var(--home-info); border-left: 4px solid var(--home-azul);
   border-radius: 3px; padding: 14px 18px; margin-top: 16px; flex-wrap: wrap;
 }
-.home-faixa__tx { font-size: 13.5px; color: #12306e; line-height: 1.45; }
-.home-faixa__tx b { color: var(--home-navy); font-size: 14.5px; display: block; margin-bottom: 2px; }
+.home-faixa-destaque { font-size: 13.5px; color: #12306e; line-height: 1.45; }
+.home-faixa-destaque b { color: var(--home-navy); font-size: 14.5px; display: block; margin-bottom: 2px; }
 
 /* Abas (tabs) */
 .home-abas {
@@ -318,8 +318,8 @@
 .home-aba[disabled] .home-aba__st { color: #B5B9C1; }
 
 /* Painéis */
-.home-painel { display: none; padding-top: 22px; }
-.home-painel--on { display: block; }
+.datas-processos { display: none; padding-top: 22px; }
+.datas-processos--on { display: block; }
 
 /* Subtítulos */
 .home-sub { font-size: 14px; color: var(--home-navy); font-weight: 600; margin: 0 0 11px; }

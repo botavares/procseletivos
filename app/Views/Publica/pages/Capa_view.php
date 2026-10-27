@@ -1,4 +1,4 @@
-
+<?php use App\Enums\Admin\SituacaoProcessosEnum; ?>
 <div class="home-novo">
 
     <!-- ACONTECENDO AGORA -->
@@ -7,34 +7,34 @@
         <span class="linha"></span>
     </div>
 
-    <?php if (!empty($editaisAbertos)) : ?>
-        <?php
-        $editaisAgrupados = [];
-        $cargosPorEdital = [];
-        foreach ($editaisAbertos as $edital) {
-            $id = $edital->pk_id_edital;
-            if (!isset($editaisAgrupados[$id])) {
-                $editaisAgrupados[$id] = $edital;
-                $cargosPorEdital[$id] = [];
-            }
-            $cargosPorEdital[$id][] = $edital->ds_nome_cargo ?? 'Cargo não informado';
-        }
-        ?>
-        <?php foreach ($editaisAgrupados as $id => $edital) : ?>
+    <?php if (!empty($processosSeletivos)) : ?>
+        <?php foreach ($processosSeletivos as $processo) : ?>
+            <?php
+            $situacaoId = (int) ($processo->nm_id_situacao ?? 0);
+            $enum = SituacaoProcessosEnum::tryFrom($situacaoId);
+            $tagClass = match ($situacaoId) {
+                1 => 'home-tag--aberto',
+                2 => 'home-tag--encerrado',
+                3 => 'home-tag--vigente',
+                6 => 'home-tag--aberto',
+                default => 'home-tag--encerrado',
+            };
+            $tagLabel = $enum?->label() ?? 'Status não encontrado';
+            ?>
             <div class="home-hero">
                 <div class="home-hero__top">
                     <div>
-                        <h4><?= esc($edital->ds_nome_secretaria ?? 'SEPLAG') ?> · Processo Seletivo Simplificado nº <?= esc($edital->ds_numero_edital) ?></h4>
+                        <h4><?= esc($processo->ds_nome_secretaria ?? 'SEPLAG') ?> · Processo Seletivo Simplificado nº <?= esc($processo->nm_numero_processo) ?>/<?= esc($processo->nm_ano_processo) ?></h4>
                         <div class="home-hero__meta">
-                            Cargos: <b><?= esc(implode(', ', $cargosPorEdital[$id])) ?></b><br>
-                            <b>Inscrições de <?= esc(date('d/m/Y', strtotime($edital->ds_data_inicial))) ?> a <?= esc(date('d/m/Y', strtotime($edital->ds_data_termino))) ?></b>
+                            <p style="margin:0 0 6px 0;font-size:13px;color:var(--home-texto2);line-height:1.6"><?= esc($processo->ds_cargos ?? 'Não informado') ?></p>
+                            <b>Inscrições de <?= esc(date('d/m/Y', strtotime($processo->dt_inicio_inscricao))) ?> a <?= esc(date('d/m/Y', strtotime($processo->dt_fim_inscricao))) ?></b>
                         </div>
                     </div>
-                    <span class="home-tag home-tag--aberto">Inscrições abertas</span>
+                    <span class="home-tag <?= $tagClass ?>"><?= esc($tagLabel) ?></span>
                 </div>
                 <div class="home-hero__acoes">
                     <a href="<?= base_url("Cadastros") ?>" class="home-btn">Inscrever-se</a>
-                    <a href="<?= base_url("Editais/detalhes/{$edital->pk_id_edital}") ?>" class="home-btn home-btn--outline">Ver edital →</a>
+                    <a href="<?= base_url("ProcessosSeletivos/detalhes/{$processo->pk_id_processo}") ?>" class="home-btn home-btn--outline">Ver processo completo →</a>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -58,7 +58,6 @@
 
     <div class="home-portais">
 
-
         <!-- Card 1: Editais -->
         <div class="home-portal">
             <h5>Editais<br>(Processos Seletivos)</h5>
@@ -80,7 +79,5 @@
             <a href="<?= base_url("PerguntasFrequentes") ?>" class="home-btn home-btn--outline">Acessar</a>
         </div>
     </div>
-
-    
 
 </div>

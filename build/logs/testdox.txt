@@ -1,11 +1,41 @@
-Example Database
- [x] Model find all
- [x] Soft delete leaves row
+Processos Seletivos Controller (Tests\Admin\Controllers\ProcessosSeletivosController)
+ [x] Controller instancia com service
+ [x] Controller instancia sem service usa service padrao
 
-Example Session
- [x] Session simple
+Processos Seletivos Model (Tests\Admin\Models\ProcessosSeletivosModel)
+ [ ] Crud completo
+ [ ] Por ano
+ [ ] Por secretaria
+ [ ] Por numero e ano
+ [ ] Por situacao
+ [ ] Por faixa de tempo
 
-Health
- [x] Is defined app path
- [x] Base url has been set
+Processos Seletivos Service (Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosService)
+ [x] Criar processo
+ [x] Atualizar processo
+ [x] Deletar processo
+ [x] Listar por secretaria
+ [x] Listar por ano
+ [x] Buscar por numero e ano
+ [x] Listar por situacao
+ [x] Listar por faixa de tempo
+
+Processos Seletivos DTO (Tests\Unit\DTOs\Admin\ProcessosSeletivosDTO)
+ [x] Construtor
+ [x] From array
+ [x] To array sem id
+ [x] To array com id
+
+Processos Seletivos Rules (Tests\Unit\Validation\ProcessosSeletivosRules)
+ [x] Apenas numeros com valor valido
+ [x] Apenas numeros com valor invalido
+ [x] Ano atual ou futuro com ano atual
+ [x] Ano atual ou futuro com ano futuro
+ [x] Ano atual ou futuro com ano passado
+ [x] Ano atual ou futuro com valor invalido
+ [x] Data fim maior igual inicio com data fim igual
+ [x] Data fim maior igual inicio com data fim maior
+ [x] Data fim maior igual inicio com data fim menor
+ [x] Data fim maior igual inicio com parametro ausente
+ [x] Data fim maior igual inicio com valor vazio
 

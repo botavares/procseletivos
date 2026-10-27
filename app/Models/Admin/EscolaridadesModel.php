@@ -1,0 +1,20 @@
+<?php
+namespace App\Models\Admin;
+
+use CodeIgniter\Model;
+
+class EscolaridadesModel extends Model{
+    //Atributos
+    protected $table = 'tb_escolaridades';
+    protected $primaryKey = 'pk_id_escolaridade';
+    protected $useAutoIncrement = true;
+    protected $allowedFields = [
+        'ds_nome_escolaridade','ds_instrucao','fk_id_nivel'
+    ];
+
+    protected $returnType = 'object';
+
+     public function listarEscolaridadesOrdenadas(){
+        return $this->orderBy('ds_nome_escolaridade', 'ASC')->findAll();
+    }
+}

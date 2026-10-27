@@ -6,43 +6,96 @@
         <style>
             body {
                 text-rendering: optimizeLegibility;
+                font-family: Source SansSerif Pro, Arial, sans-serif;
                 font-variant-ligatures: common-ligatures;
                 font-kerning: normal;
-                margin-left: 2em;
-                background-color: #ffffff;
-                color: #000000;
+                margin-left: 2rem;
+                background-color: #fff;
+                color: #000;
             }
 
             body > ul > li {
-                font-family: Source Serif Pro, PT Sans, Trebuchet MS, Helvetica, Arial;
-                font-size: 2em;
+                font-size: larger;
             }
 
             h2 {
-                font-family: Tahoma, Helvetica, Arial;
-                font-size: 3em;
+                font-size: larger;
+                text-decoration-line: underline;
+                text-decoration-thickness: 2px;
+                margin: 0;
+                padding: 0.5rem 0;
             }
 
             ul {
                 list-style: none;
-                margin-bottom: 1em;
+                margin: 0 0 2rem;
+                padding: 0 0 0 1rem;
+                text-indent: -1rem;
+            }
+
+            .success:before {
+                color: #4e9a06;
+                content: '✓';
+                padding-right: 0.5rem;
+            }
+
+            .defect {
+                color: #a40000;
+            }
+
+            .defect:before {
+                color: #a40000;
+                content: '✗';
+                padding-right: 0.5rem;
             }
         </style>
     </head>
     <body>
-        <h2 id="ExampleDatabaseTest">Example Database</h2>
+        <h2>Processos Seletivos Controller (Tests\Admin\Controllers\ProcessosSeletivosController)</h2>
         <ul>
-            <li style="color: #555753;">✓ Model find all</li>
-            <li style="color: #555753;">✓ Soft delete leaves row</li>
+            <li class="success">Controller instancia com service</li>
+            <li class="success">Controller instancia sem service usa service padrao</li>
         </ul>
-        <h2 id="ExampleSessionTest">Example Session</h2>
+        <h2>Processos Seletivos Model (Tests\Admin\Models\ProcessosSeletivosModel)</h2>
         <ul>
-            <li style="color: #555753;">✓ Session simple</li>
+            <li class="defect">Crud completo</li>
+            <li class="defect">Por ano</li>
+            <li class="defect">Por secretaria</li>
+            <li class="defect">Por numero e ano</li>
+            <li class="defect">Por situacao</li>
+            <li class="defect">Por faixa de tempo</li>
         </ul>
-        <h2 id="HealthTest">Health</h2>
+        <h2>Processos Seletivos Service (Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosService)</h2>
         <ul>
-            <li style="color: #555753;">✓ Is defined app path</li>
-            <li style="color: #555753;">✓ Base url has been set</li>
+            <li class="success">Criar processo</li>
+            <li class="success">Atualizar processo</li>
+            <li class="success">Deletar processo</li>
+            <li class="success">Listar por secretaria</li>
+            <li class="success">Listar por ano</li>
+            <li class="success">Buscar por numero e ano</li>
+            <li class="success">Listar por situacao</li>
+            <li class="success">Listar por faixa de tempo</li>
+        </ul>
+        <h2>Processos Seletivos DTO (Tests\Unit\DTOs\Admin\ProcessosSeletivosDTO)</h2>
+        <ul>
+            <li class="success">Construtor</li>
+            <li class="success">From array</li>
+            <li class="success">To array sem id</li>
+            <li class="success">To array com id</li>
+        </ul>
+        <h2>Processos Seletivos Rules (Tests\Unit\Validation\ProcessosSeletivosRules)</h2>
+        <ul>
+            <li class="success">Apenas numeros com valor valido</li>
+            <li class="success">Apenas numeros com valor invalido</li>
+            <li class="success">Ano atual ou futuro com ano atual</li>
+            <li class="success">Ano atual ou futuro com ano futuro</li>
+            <li class="success">Ano atual ou futuro com ano passado</li>
+            <li class="success">Ano atual ou futuro com valor invalido</li>
+            <li class="success">Data fim maior igual inicio com data fim igual</li>
+            <li class="success">Data fim maior igual inicio com data fim maior</li>
+            <li class="success">Data fim maior igual inicio com data fim menor</li>
+            <li class="success">Data fim maior igual inicio com parametro ausente</li>
+            <li class="success">Data fim maior igual inicio com valor vazio</li>
         </ul>
     </body>
 </html>

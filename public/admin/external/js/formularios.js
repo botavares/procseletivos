@@ -231,13 +231,35 @@ $(document).ready(function($){
 
 
 	$('.input-data').on('blur', function() {
-		var isData = validarData($(this).val());
-		if(isData == false){
-			exibirModalErro("Data errada","advert","Data inválida.",this);
+		var $campo = $(this);
+		var valor = $campo.val().trim();
+		var $msg = $campo.siblings('.msg-data-invalida');
+
+		if(valor === '') {
+			$msg.remove();
+			return;
 		}
 
-		
-	})
+		var isData = validarData(valor);
+		if(isData == false){
+			if($msg.length === 0){
+				$campo.after('<div class="msg-data-invalida text-danger" style="font-size:0.85em;margin-top:2px;">verifique a data</div>');
+			}
+			$campo.focus();
+		} else {
+			$msg.remove();
+		}
+	});
+
+	$('.input-data').on('input', function() {
+		var $campo = $(this);
+		var valor = $campo.val().trim();
+		var $msg = $campo.siblings('.msg-data-invalida');
+
+		if(valor === '' || validarData(valor)) {
+			$msg.remove();
+		}
+	});
 	/*==============================================================================
 	MARCAR QUE O CANDIDATO COMPARECEU
 	===============================================================================*/
