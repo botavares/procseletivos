@@ -11,8 +11,7 @@ use App\Models\CargosModel;
 use App\Repositories\Interfaces\IProtocoloRepository;
 use App\Services\Interfaces\IProtocoloService;
 
-class ProtocoloService implements IProtocoloService
-{
+class ProtocoloService implements IProtocoloService{
     public function __construct(
         private ProtocolosModel $protocoloModel,
         private CandidatosModel $candidatoModel,

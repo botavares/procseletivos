@@ -1,6 +1,26 @@
-Processos Seletivos Controller (Tests\Admin\Controllers\ProcessosSeletivosController)
- [x] Controller instancia com service
+Processos Documentos Controller (Tests\Admin\Controllers\ProcessosDocumentosController)
+ [ ] Controller instancia com service
  [x] Controller instancia sem service usa service padrao
+
+Processos Seletivos Controller (Tests\Admin\Controllers\ProcessosSeletivosController)
+ [ ] Controller instancia com service
+ [x] Controller instancia sem service usa service padrao
+
+Processos Documentos DTO (Tests\Admin\DTOs\ProcessosDocumentosDTO)
+ [x] From array mapeia campos corretamente
+ [x] To array retorna estrutura correta
+ [x] From array sem id documento
+
+Tipos Documentos Enum (Tests\Admin\Enums\TiposDocumentosEnum)
+ [x] Valores enum
+ [x] Labels
+ [x] Try from valido
+ [x] Try from invalido
+
+Processos Documentos Integration (Tests\Admin\Integration\ProcessosDocumentosIntegration)
+ [ ] Cadastro documento
+ [ ] Alteracao documento
+ [ ] Soft delete documento
 
 Processos Seletivos Model (Tests\Admin\Models\ProcessosSeletivosModel)
  [ ] Crud completo
@@ -10,21 +30,100 @@ Processos Seletivos Model (Tests\Admin\Models\ProcessosSeletivosModel)
  [ ] Por situacao
  [ ] Por faixa de tempo
 
+Candidato Repository (Tests\Admin\Repositories\CandidatoRepository)
+ [x] Buscar por edital cargo delega para model
+ [x] Buscar por cpf delega para model
+ [x] Buscar por id delega para model
+ [x] Contar por ano delega para model
+ [x] Buscar experiencias delega para model
+
+Classificacao Repository (Tests\Admin\Repositories\ClassificacaoRepository)
+ [x] Listar por edital cargo delega para model
+
+Contrato Repository (Tests\Admin\Repositories\ContratoRepository)
+ [x] Listar todos delega para model
+ [x] Buscar por id delega para model
+ [x] Buscar por candidato delega para model
+ [x] Inserir delega para model
+ [x] Atualizar delega para model
+ [x] Buscar ativos delega para model
+ [x] Obter ultimo id delega para model
+
+Desempate Config DTO (Tests\Admin\Services\Classificacao\DesempateConfigDTO)
+ [x] Chave score pontuacao total
+ [x] Chave score experiencia especifica
+ [x] Chave score escolaridade especifica
+ [x] Chave score idade
+ [x] Chave score pne
+ [x] Chave score tipo desconhecido lanca excecao
+
+Ordenacao Dinamica Service (Tests\Admin\Services\Classificacao\OrdenacaoDinamicaService)
+ [x] Ordenacao por pontuacao total desc
+ [x] Desempate por experiencias
+ [x] Desempate por idade asc mais velho primeiro
+ [x] Desempate por pne desc
+ [x] Atribuicao de posicoes
+
+Pontuacao Calculator Service (Tests\Admin\Services\Classificacao\PontuacaoCalculatorService)
+ [x] Aplicar teto preserva pontuacao abaixo do limite
+ [x] Aplicar teto limita pontuacao acima do limite
+ [x] Aplicar teto sem limite preserva pontuacao
+ [x] Aplicar teto zero nao limita
+
+Processos Documentos Service (Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosService)
+ [ ] Criar documento
+ [ ] Atualizar documento
+ [ ] Deletar documento
+ [ ] Buscar por id
+ [ ] Listar por secretaria
+ [ ] Listar por tipo
+ [ ] Listar por numero processo
+ [ ] Listar por numero documento e ano
+ [ ] Listar por faixa de tempo
+
 Processos Seletivos Service (Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosService)
- [x] Criar processo
- [x] Atualizar processo
- [x] Deletar processo
- [x] Listar por secretaria
- [x] Listar por ano
- [x] Buscar por numero e ano
- [x] Listar por situacao
- [x] Listar por faixa de tempo
+ [ ] Criar processo
+ [ ] Atualizar processo
+ [ ] Deletar processo
+ [ ] Listar por secretaria
+ [ ] Listar por ano
+ [ ] Buscar por numero e ano
+ [ ] Listar por situacao
+ [ ] Listar por faixa de tempo
+
+Processos Documentos Rules (Tests\Admin\Validation\ProcessosDocumentosRules)
+ [x] Apenas numeros aceita digitos
+ [x] Apenas numeros rejeita letras
+ [x] Apenas numeros rejeita vazio
+ [x] Ano atual ou futuro aceita ano atual
+ [x] Ano atual ou futuro aceita ano futuro
+ [x] Ano atual ou futuro rejeita ano passado
+ [x] Arquivo pdf condicional aceita pdf para edital abertura
+ [x] Arquivo pdf condicional rejeita doc para edital abertura
+ [x] Arquivo pdf condicional rejeita arquivo para resultado parcial
+ [x] Arquivo pdf condicional aceita vazio para resultado parcial
+ [x] Versao vigente regra rejeita valor para retificacao
+ [x] Versao vigente regra aceita zero para retificacao
+ [x] Versao vigente regra aceita valor para outro tipo
+ [x] Documento retificado regra rejeita valor para nao retificacao
+ [x] Documento retificado regra aceita zero para nao retificacao
+ [x] Documento retificado regra aceita valor para retificacao
 
 Processos Seletivos DTO (Tests\Unit\DTOs\Admin\ProcessosSeletivosDTO)
  [x] Construtor
  [x] From array
  [x] To array sem id
  [x] To array com id
+
+Prorrogacao Processo Enum (Tests\Unit\Enums\Admin\ProrrogacaoProcessoEnum)
+ [x] Valores enum
+ [x] Labels
+
+Situacao Processos Enum (Tests\Unit\Enums\Admin\SituacaoProcessosEnum)
+ [x] Valores enum
+ [x] Labels
+ [x] Try from valor valido
+ [x] Try from valor invalido
 
 Processos Seletivos Rules (Tests\Unit\Validation\ProcessosSeletivosRules)
  [x] Apenas numeros com valor valido

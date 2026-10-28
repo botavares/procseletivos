@@ -6,14 +6,15 @@ Breadcrumb
 <nav aria-label="Breadcrumb" class="home-crumb">
     <a href="<?= base_url('/') ?>">Início</a> <span>›</span>
     <a href="<?= base_url('Editais') ?>">Editais (Processos Seletivos)</a> <span>›</span>
-    <span aria-current="page">PSS <?= esc($secretaria) ?> nº <?= esc($processoNum) ?></span>
+    <span aria-current="page">PSS <?= esc($secretaria->sigla ?? '') ?> nº <?= esc($processoNum) ?></span>
+    
 </nav>
 
 <!------------------------
 Header do processo 
 -------------------------->
 <div class="home-phead">
-    <div class="home-phead__secr"><?= esc($secretaria) ?> — SECRETARIA MUNICIPAL DE PLANEJAMENTO, GESTÃO, CIÊNCIA E TECNOLOGIA</div>
+    <div class="home-phead__secr"><?= esc($secretaria->nome ?? ($secretaria->sigla ?? 'Secretaria não informada')) ?></div>
     <div class="home-phead__lin">
         <h1>Processo Seletivo Simplificado nº <?= esc($processoNum) ?></h1>
         <span class="home-tag <?= $tagClass ?>"><?= esc($tagLabel) ?></span>
@@ -55,24 +56,28 @@ Faixa de destaque
         <span class="home-aba__nm">Processo e cargos</span>
         <span class="home-aba__st"><?= count($cargos ?? []) ?> cargo(s) · <?= array_sum(array_column($cargos ?? [], 'nm_vagas')) ?> vaga(s)</span>
     </button>
+
     <button class="home-aba" data-tab="resultados" role="tab" aria-selected="false">
         <span class="home-aba__nm">Resultados</span>
         <span class="home-aba__st"><?= !empty($resultados ?? []) ? 'Publicado' : 'Ainda não publicado' ?></span>
     </button>
+
     <button class="home-aba" data-tab="conv" role="tab" aria-selected="false">
         <span class="home-aba__nm">Convocações</span>
         <span class="home-aba__st"><?= !empty($convocacoes ?? []) ? count($convocacoes) . ' chamamento(s)' : 'Ainda não publicado' ?></span>
     </button>
+
     <button class="home-aba" data-tab="contratos" role="tab" aria-selected="false">
         <span class="home-aba__nm">Contratos</span>
         <span class="home-aba__st"><?= !empty($contratos ?? []) ? count($contratos) . ' contratado(s)' : 'Ainda não publicado' ?></span>
     </button>
+
 </div>
 
 <!-------------------
 Painéis 
 ---------------------->
-<div class="datas-processos datas-processos--on" data-panel="processo">
+<div class="datas-processos datas-processos--on" data-panel="processo" style="margin-top:24px">
     <!-- Prazos -->
     <div class="home-prazos">
         <div class="home-prazo-c">
@@ -82,12 +87,12 @@ Painéis
         </div>
         <div class="home-prazo-c">
             <div class="home-prazo-c__r">Resultado final (homologação)</div>
-            <div class="home-prazo-c__v">—</div>
-            <div class="home-prazo-c__x">A definir</div>
+            <div class="home-prazo-c__v"><?= esc($dataHomologacao ?? '') ?></div>
+            <div class="home-prazo-c__x"><?= esc($dataHomologacao ?? '') ? 'Publicado' : 'Aguardando publicação' ?></div>
         </div>
         <div class="home-prazo-c">
             <div class="home-prazo-c__r">Validade do processo</div>
-            <div class="home-prazo-c__v">12 meses</div>
+            <div class="home-prazo-c__v"><?= esc($validade) ?></div>
             <div class="home-prazo-c__x">A contar da homologação</div>
         </div>
     </div>
@@ -274,8 +279,9 @@ Painéis
 
 <!-- Contato -->
 <div class="home-contato">
-    <b>Gerência de Recursos Humanos — SEPLAG</b>
-    Avenida Paraná, 2.601, sala 307 — São José · (37) 3229-6528 (WhatsApp) · grh.semad@divinopolis.mg.gov.br · Atendimento de segunda a sexta, das 8h às 18h
+    <b><?= esc($secretaria->responsavel_processo) ?></b>
+    <?= '·'.esc($secretaria->rua).', '.esc($secretaria->numero).', '.esc($secretaria->complemento). ' — '.esc($secretaria->bairro).' · '.esc($secretaria->telefone).' · '.esc($secretaria->email).' · '.esc($secretaria->atendimento) ?> 
+    
 </div>
 
 <script>

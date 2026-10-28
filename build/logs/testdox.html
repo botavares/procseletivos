@@ -51,10 +51,34 @@
         </style>
     </head>
     <body>
+        <h2>Processos Documentos Controller (Tests\Admin\Controllers\ProcessosDocumentosController)</h2>
+        <ul>
+            <li class="defect">Controller instancia com service</li>
+            <li class="success">Controller instancia sem service usa service padrao</li>
+        </ul>
         <h2>Processos Seletivos Controller (Tests\Admin\Controllers\ProcessosSeletivosController)</h2>
         <ul>
-            <li class="success">Controller instancia com service</li>
+            <li class="defect">Controller instancia com service</li>
             <li class="success">Controller instancia sem service usa service padrao</li>
+        </ul>
+        <h2>Processos Documentos DTO (Tests\Admin\DTOs\ProcessosDocumentosDTO)</h2>
+        <ul>
+            <li class="success">From array mapeia campos corretamente</li>
+            <li class="success">To array retorna estrutura correta</li>
+            <li class="success">From array sem id documento</li>
+        </ul>
+        <h2>Tipos Documentos Enum (Tests\Admin\Enums\TiposDocumentosEnum)</h2>
+        <ul>
+            <li class="success">Valores enum</li>
+            <li class="success">Labels</li>
+            <li class="success">Try from valido</li>
+            <li class="success">Try from invalido</li>
+        </ul>
+        <h2>Processos Documentos Integration (Tests\Admin\Integration\ProcessosDocumentosIntegration)</h2>
+        <ul>
+            <li class="defect">Cadastro documento</li>
+            <li class="defect">Alteracao documento</li>
+            <li class="defect">Soft delete documento</li>
         </ul>
         <h2>Processos Seletivos Model (Tests\Admin\Models\ProcessosSeletivosModel)</h2>
         <ul>
@@ -65,16 +89,93 @@
             <li class="defect">Por situacao</li>
             <li class="defect">Por faixa de tempo</li>
         </ul>
+        <h2>Candidato Repository (Tests\Admin\Repositories\CandidatoRepository)</h2>
+        <ul>
+            <li class="success">Buscar por edital cargo delega para model</li>
+            <li class="success">Buscar por cpf delega para model</li>
+            <li class="success">Buscar por id delega para model</li>
+            <li class="success">Contar por ano delega para model</li>
+            <li class="success">Buscar experiencias delega para model</li>
+        </ul>
+        <h2>Classificacao Repository (Tests\Admin\Repositories\ClassificacaoRepository)</h2>
+        <ul>
+            <li class="success">Listar por edital cargo delega para model</li>
+        </ul>
+        <h2>Contrato Repository (Tests\Admin\Repositories\ContratoRepository)</h2>
+        <ul>
+            <li class="success">Listar todos delega para model</li>
+            <li class="success">Buscar por id delega para model</li>
+            <li class="success">Buscar por candidato delega para model</li>
+            <li class="success">Inserir delega para model</li>
+            <li class="success">Atualizar delega para model</li>
+            <li class="success">Buscar ativos delega para model</li>
+            <li class="success">Obter ultimo id delega para model</li>
+        </ul>
+        <h2>Desempate Config DTO (Tests\Admin\Services\Classificacao\DesempateConfigDTO)</h2>
+        <ul>
+            <li class="success">Chave score pontuacao total</li>
+            <li class="success">Chave score experiencia especifica</li>
+            <li class="success">Chave score escolaridade especifica</li>
+            <li class="success">Chave score idade</li>
+            <li class="success">Chave score pne</li>
+            <li class="success">Chave score tipo desconhecido lanca excecao</li>
+        </ul>
+        <h2>Ordenacao Dinamica Service (Tests\Admin\Services\Classificacao\OrdenacaoDinamicaService)</h2>
+        <ul>
+            <li class="success">Ordenacao por pontuacao total desc</li>
+            <li class="success">Desempate por experiencias</li>
+            <li class="success">Desempate por idade asc mais velho primeiro</li>
+            <li class="success">Desempate por pne desc</li>
+            <li class="success">Atribuicao de posicoes</li>
+        </ul>
+        <h2>Pontuacao Calculator Service (Tests\Admin\Services\Classificacao\PontuacaoCalculatorService)</h2>
+        <ul>
+            <li class="success">Aplicar teto preserva pontuacao abaixo do limite</li>
+            <li class="success">Aplicar teto limita pontuacao acima do limite</li>
+            <li class="success">Aplicar teto sem limite preserva pontuacao</li>
+            <li class="success">Aplicar teto zero nao limita</li>
+        </ul>
+        <h2>Processos Documentos Service (Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosService)</h2>
+        <ul>
+            <li class="defect">Criar documento</li>
+            <li class="defect">Atualizar documento</li>
+            <li class="defect">Deletar documento</li>
+            <li class="defect">Buscar por id</li>
+            <li class="defect">Listar por secretaria</li>
+            <li class="defect">Listar por tipo</li>
+            <li class="defect">Listar por numero processo</li>
+            <li class="defect">Listar por numero documento e ano</li>
+            <li class="defect">Listar por faixa de tempo</li>
+        </ul>
         <h2>Processos Seletivos Service (Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosService)</h2>
         <ul>
-            <li class="success">Criar processo</li>
-            <li class="success">Atualizar processo</li>
-            <li class="success">Deletar processo</li>
-            <li class="success">Listar por secretaria</li>
-            <li class="success">Listar por ano</li>
-            <li class="success">Buscar por numero e ano</li>
-            <li class="success">Listar por situacao</li>
-            <li class="success">Listar por faixa de tempo</li>
+            <li class="defect">Criar processo</li>
+            <li class="defect">Atualizar processo</li>
+            <li class="defect">Deletar processo</li>
+            <li class="defect">Listar por secretaria</li>
+            <li class="defect">Listar por ano</li>
+            <li class="defect">Buscar por numero e ano</li>
+            <li class="defect">Listar por situacao</li>
+            <li class="defect">Listar por faixa de tempo</li>
+        </ul>
+        <h2>Processos Documentos Rules (Tests\Admin\Validation\ProcessosDocumentosRules)</h2>
+        <ul>
+            <li class="success">Apenas numeros aceita digitos</li>
+            <li class="success">Apenas numeros rejeita letras</li>
+            <li class="success">Apenas numeros rejeita vazio</li>
+            <li class="success">Ano atual ou futuro aceita ano atual</li>
+            <li class="success">Ano atual ou futuro aceita ano futuro</li>
+            <li class="success">Ano atual ou futuro rejeita ano passado</li>
+            <li class="success">Arquivo pdf condicional aceita pdf para edital abertura</li>
+            <li class="success">Arquivo pdf condicional rejeita doc para edital abertura</li>
+            <li class="success">Arquivo pdf condicional rejeita arquivo para resultado parcial</li>
+            <li class="success">Arquivo pdf condicional aceita vazio para resultado parcial</li>
+            <li class="success">Versao vigente regra rejeita valor para retificacao</li>
+            <li class="success">Versao vigente regra aceita zero para retificacao</li>
+            <li class="success">Versao vigente regra aceita valor para outro tipo</li>
+            <li class="success">Documento retificado regra rejeita valor para nao retificacao</li>
+            <li class="success">Documento retificado regra aceita zero para nao retificacao</li>
+            <li class="success">Documento retificado regra aceita valor para retificacao</li>
         </ul>
         <h2>Processos Seletivos DTO (Tests\Unit\DTOs\Admin\ProcessosSeletivosDTO)</h2>
         <ul>
@@ -82,6 +183,18 @@
             <li class="success">From array</li>
             <li class="success">To array sem id</li>
             <li class="success">To array com id</li>
+        </ul>
+        <h2>Prorrogacao Processo Enum (Tests\Unit\Enums\Admin\ProrrogacaoProcessoEnum)</h2>
+        <ul>
+            <li class="success">Valores enum</li>
+            <li class="success">Labels</li>
+        </ul>
+        <h2>Situacao Processos Enum (Tests\Unit\Enums\Admin\SituacaoProcessosEnum)</h2>
+        <ul>
+            <li class="success">Valores enum</li>
+            <li class="success">Labels</li>
+            <li class="success">Try from valor valido</li>
+            <li class="success">Try from valor invalido</li>
         </ul>
         <h2>Processos Seletivos Rules (Tests\Unit\Validation\ProcessosSeletivosRules)</h2>
         <ul>

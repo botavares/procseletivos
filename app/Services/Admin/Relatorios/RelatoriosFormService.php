@@ -7,7 +7,7 @@ use CodeIgniter\HTTP\IncomingRequest;
 use App\Models\Admin\AcademicosModel;
 use App\Models\Admin\CandidatosModel;
 use App\Models\Admin\CursosModel;
-use App\Models\Admin\AbrangenciasModel;
+use App\Models\Admin\EditaisAbrangenciasModel;
 use App\Models\Admin\DadosContratosModel;
 use App\Models\Admin\SegurosModel;
 use App\Models\Admin\EditaisCandidatosModel;
@@ -36,7 +36,7 @@ class RelatoriosFormService{
     }
 
     public function candidatosPorAbrangencia(): array{
-        $abrangenciasModel            = new AbrangenciasModel();
+        $abrangenciasModel            = new EditaisAbrangenciasModel();
         $dadosAbrangencias = $abrangenciasModel->orderBy('ds_nome_abrangencia', 'ASC')->findAll();
         if (!$dadosAbrangencias) {
             throw new \RuntimeException('Abrangências não encontradas');

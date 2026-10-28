@@ -338,6 +338,14 @@ class Services extends BaseService
             service('contratoRepository', false),
         );
     }
+    public static function secretariasService(bool $getShared = true): \App\Services\SecretariasService
+    {
+        if ($getShared) {
+            return static::getSharedInstance('secretariasService');
+        }
+
+        return new \App\Services\SecretariasService();
+    }
 
     // -------------------------------------------------------------------------
     // Repositories
@@ -477,13 +485,6 @@ class Services extends BaseService
         return $getShared ? static::getSharedInstance('editalUploadService') : new \App\Services\Admin\Editais\EditalUploadService();
     }
 
-    public static function MyHelper_helper($getShared = true){
-        if($getShared){
-            return static::getSharedInstance('MyHelper_helper');
-        }
-        return new MyHelper_helper();
-    }
-    
     public static function situacaoService($getShared = true){
         if ($getShared) {
             return static::getSharedInstance('situacaoService');
@@ -804,10 +805,6 @@ class Services extends BaseService
 
     public static function adminDesempateConfigService(bool $getShared = true){
         return $getShared ? static::getSharedInstance('adminDesempateConfigService') : new \App\Services\Admin\Classificacao\DesempateConfigService();
-    }
-
-    public static function classificacaoColunasService(bool $getShared = true){
-        return $getShared ? static::getSharedInstance('classificacaoColunasService') : new \App\Services\Admin\Classificacao\ClassificacaoColunasService();
     }
 
     public static function processosSeletivosService(bool $getShared = true): \App\Services\ProcessosSeletivos\ProcessosSeletivosService

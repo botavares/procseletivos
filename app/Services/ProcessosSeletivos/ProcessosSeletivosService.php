@@ -7,6 +7,7 @@ namespace App\Services\ProcessosSeletivos;
 use App\DTOs\Admin\ProcessosSeletivosDTO;
 use App\Models\ProcessosSeletivosModel;
 use App\Services\Admin\LogsService;
+use DateTime;
 
 class ProcessosSeletivosService implements IProcessosSeletivos
 {
@@ -150,8 +151,29 @@ class ProcessosSeletivosService implements IProcessosSeletivos
     /**
      * Busca cargos vinculados a um processo seletivo.
      */
-    public function buscarCargosPorProcesso(int $processoId): array
-    {
+    public function buscarCargosPorProcesso(int $processoId): array{
         return $this->model->cargosPorProcesso($processoId);
+    }
+
+    public function calcularValidade(int $idProcesso): ?string
+    {
+        $processo = $this->model->find($idProcesso);
+        if (!$processo) {
+            return null;
+        }
+        
+        // Se não houver data de homologação, não é possível calcular a validade
+        if (empty($processo->dt_data_homologacao)) {
+            return '—';
+        }
+        
+        $multiplicador = 1;
+        // nm_prorrogado = 1 com prorrogacao e nm_prorrogado = 0 sem prorrogacao
+        ($processo->nm_prorrogado == 1) ? $multiplicador = 2 : $multiplicador = 1;
+        $mesesValidade = $processo->nm_meses_validade * $multiplicador;
+        $dataHomologacao = new DateTime($processo->dt_data_homologacao);
+        $dataValidade = $dataHomologacao->modify("+$mesesValidade months");
+        return $dataValidade->format('d/m/Y');
+
     }
 }

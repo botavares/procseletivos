@@ -4,14 +4,14 @@ namespace App\Services\Admin\Relatorios;
 use App\Models\Admin\CandidatosModel;
 use App\Models\Admin\AcademicosModel;
 use App\Models\Admin\CursosModel;
-use App\Models\Admin\AbrangenciasModel;
+use App\Models\Admin\EditaisAbrangenciasModel;
 
 class RelatoriosService{
     public function __construct(
         private CandidatosModel $candidatosModel,
         private AcademicosModel $academicosModel,
         private CursosModel $cursosModel,
-        private AbrangenciasModel $abrangenciasModel
+        private EditaisAbrangenciasModel $abrangenciasModel
     ){}
 
     public function relatorioCandidatosPorCurso(int $idCurso): array{
@@ -42,7 +42,7 @@ class RelatoriosService{
     }
 
     public function relatorioCandidatosPorAbrangencia(int $idAbrangencia): array{
-        $abrangenciasModel            = new AbrangenciasModel();
+        $abrangenciasModel            = new EditaisAbrangenciasModel();
         $dadosAbrangencia = $abrangenciasModel->where('pk_id_abrangencia', $idAbrangencia)->first();
 
         if (!$dadosAbrangencia) {

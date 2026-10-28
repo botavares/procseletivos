@@ -95,7 +95,6 @@ class Autoload extends AutoloadConfig
      * @phpstan-var list<string>
      */
     public $helpers = [
-        'form','WKPDF','Principal','classificatorios','url','EmailHelper','MyHelper','ordinal',
-        'Admin/admin_url',
+        'form','classificatorios','url','MyHelper',
     ];
 }

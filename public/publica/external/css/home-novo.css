@@ -380,19 +380,229 @@
 .home-contato { border-top: 1px solid var(--home-borda); margin-top: 28px; padding-top: 16px; font-size: 11.5px; color: var(--home-texto2); line-height: 1.7; }
 .home-contato b { color: var(--home-navy); display: block; font-size: 12.5px; margin-bottom: 3px; }
 
-/* ---- responsivo: GE-15 e GE-18 ---- */
+/* ---- responsivo: smartphones e tablets ---- */
 @media (max-width: 767px) {
-  .home-phead__lin h1 { font-size: 21px; }
-  .home-faixa { padding: 12px 14px; }
-  .home-abas { display: flex; overflow-x: auto; }
-  .home-aba { min-width: 120px; padding: 10px 14px; }
-  .home-prazos { grid-template-columns: 1fr; }
+  html, body { 
+    overflow-x: hidden; 
+    max-width: 100vw;
+    width: 100vw;
+  }
+  
+  /* Forçar todos os elementos a respeitarem a viewport */
+  * {
+    max-width: 100vw !important;
+  }
+  
+  /* Garantir que o container gov.br não extrapole */
+  .template-base {
+    max-width: 100vw;
+    overflow-x: hidden;
+    width: 100vw;
+  }
+  
+  .container-lg {
+    max-width: 100vw;
+    padding-left: 8px;
+    padding-right: 8px;
+    width: 100%;
+  }
+  
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+  
+  .col, .col-auto, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, 
+  .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+    padding-left: 8px;
+    padding-right: 8px;
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .home-novo {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+  
+  .home-novo * {
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    box-sizing: border-box;
+  }
+  
+  /* Garantir que elementos flex não extrapolem */
+  .home-novo .home-phead,
+  .home-novo .home-faixa,
+  .home-novo .home-abas,
+  .home-novo .datas-processos,
+  .home-novo .home-prazos,
+  .home-novo .home-box,
+  .home-novo .home-doc,
+  .home-novo .home-conv__top,
+  .home-novo .home-tbl-sc {
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+  
+  /* Forçar quebra em textos longos */
+  .home-novo a,
+  .home-novo span,
+  .home-novo b,
+  .home-novo strong,
+  .home-novo td,
+  .home-novo th,
+  .home-novo div {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+  
+  /* Permitir que elementos flex encolham */
+  .home-novo .home-phead__lin,
+  .home-novo .home-doc,
+  .home-novo .home-conv__top,
+  .home-novo .home-faixa {
+    min-width: 0;
+  }
+  
+  .home-crumb {
+    font-size: 10.5px;
+    line-height: 1.5;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+  
+  .home-phead__lin { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .home-phead__lin h1 { 
+    font-size: 18px; 
+    line-height: 1.3; 
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+  }
+  .home-phead__obj { font-size: 12px; }
+  
+  .home-faixa { 
+    padding: 12px 14px; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 12px;
+    max-width: 100%;
+  }
+  .home-faixa-destaque { font-size: 12.5px; max-width: 100%; }
+  .home-faixa-destaque b { font-size: 13.5px; }
+  
+  .home-abas { 
+    display: flex; 
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    margin-top: 16px;
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+    gap: 4px;
+  }
+  .home-abas::-webkit-scrollbar { display: none; }
+  
+  .home-aba { 
+    min-width: auto; 
+    flex: 1 1 auto;
+    padding: 10px 14px; 
+    white-space: nowrap;
+    max-width: 100%;
+    font-size: 12px;
+  }
+  
+  .home-aba__nm { font-size: 12.5px; }
+  .home-aba__st { font-size: 9.5px; }
+  
+  .datas-processos { padding-top: 16px; max-width: 100%; }
+  
+  .home-prazos { grid-template-columns: 1fr; max-width: 100%; }
+  .home-prazo-c__v { font-size: 12.5px; }
+  
+  /* Tabelas com scroll horizontal */
+  .home-tbl-sc { 
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .home-tbl { min-width: auto; width: 100%; }
+  
   .home-tbl thead { display: none; }
-  .home-tbl tbody tr { display: block; border: 1px solid var(--home-borda); border-radius: 8px; margin-bottom: 10px; padding: 6px 13px; }
-  .home-tbl tbody td { display: flex; justify-content: space-between; gap: 14px; border: 0; padding: 6px 0; text-align: right; }
-  .home-tbl tbody td::before { content: attr(data-r); font-size: 10.5px; color: var(--home-sec); text-transform: uppercase; letter-spacing: .3px; text-align: left; flex: none; padding-top: 2px; }
+  .home-tbl tbody tr { 
+    display: block; 
+    border: 1px solid var(--home-borda); 
+    border-radius: 8px; 
+    margin-bottom: 10px; 
+    padding: 6px 13px; 
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .home-tbl tbody td { 
+    display: flex; 
+    justify-content: space-between; 
+    gap: 14px; 
+    border: 0; 
+    padding: 6px 0; 
+    text-align: right; 
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .home-tbl tbody td > * {
+    max-width: 100%;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+  .home-tbl tbody td::before { 
+    content: attr(data-r); 
+    font-size: 10.5px; 
+    color: var(--home-sec); 
+    text-transform: uppercase; 
+    letter-spacing: .3px; 
+    text-align: left; 
+    flex: none; 
+    padding-top: 2px; 
+    min-width: 80px;
+  }
   .home-tbl tbody td[colspan] { display: block; text-align: left; }
   .home-tbl tbody td[colspan]::before { content: none; }
+  
   .home-doc { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .home-doc__d { font-size: 12px; word-break: break-word; overflow-wrap: anywhere; }
+  
+  .home-conv__top { flex-direction: column; gap: 10px; }
+  .home-conv h4 { font-size: 13.5px; }
+  
+  .home-box { padding: 12px 14px; max-width: 100%; }
+  .home-sub { font-size: 13px; }
+  
+  .home-contato { 
+    font-size: 11px; 
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    margin-top: 20px;
+    padding-top: 12px;
+  }
+  .home-contato b { font-size: 11.5px; }
+  
+  .home-btn { padding: 8px 18px; font-size: 12px; }
+  .home-btn--outline { font-size: 12px; }
 }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }

@@ -10,6 +10,7 @@ use App\Enums\TipoCargaHorariaEnum;
 use App\Services\Base\SessaoService;
 use App\Services\ProcessosSeletivos\ProcessosSeletivosService;
 use App\Services\ServicoService;
+use App\Services\SecretariasService;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 class ProcessosSeletivos extends BaseController
@@ -17,20 +18,20 @@ class ProcessosSeletivos extends BaseController
     protected ProcessosSeletivosService $processosSeletivosService;
     protected ServicoService $servicoService;
     protected SessaoService $sessaoService;
+    protected SecretariasService $secretariasService;
 
     public function __construct()
     {
         $this->processosSeletivosService = service('processosSeletivosService');
         $this->servicoService = service('servicoService');
         $this->sessaoService = service('sessao');
+        $this->secretariasService = service('secretariasService');
     }
 
-    public function index($camada1 = '', $camada2 = 'pages', $page = 'ProcessosSeletivos')
-    {
+    public function index($camada1 = '', $camada2 = 'pages', $page = 'ProcessosSeletivos'){
         if (!is_file(APPPATH . 'Views/Publica/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
             throw new PageNotFoundException("página não encontrada: " . $page);
         }
-        
 
         $layout = $this->sessaoService->estaLogado() ? 'Publica/layoutLogado' : 'Publica/layoutSimples';
 
@@ -47,6 +48,9 @@ class ProcessosSeletivos extends BaseController
 
     public function detalhes(int $idProcesso){
         $processo = $this->processosSeletivosService->buscarPorId($idProcesso);
+        
+        $secretaria = $this->secretariasService->getSecretariaById((int) ($processo->fk_id_secretaria ?? 0));
+        
         if (!$processo) {
             throw new PageNotFoundException('Processo seletivo não encontrado.');
         }
@@ -81,6 +85,10 @@ class ProcessosSeletivos extends BaseController
         // Configura o layout e os parâmetros para a view (logado no govbr ou não)
         $layout = $this->sessaoService->estaLogado() ? 'Publica/layoutLogado' : 'Publica/layoutSimples';
 
+        //Calcular validade em data do processo
+        $validade = $this->processosSeletivosService->calcularValidade($idProcesso);
+        
+
         
         $parametros = [
             'camada1'       => 'pages',
@@ -90,10 +98,12 @@ class ProcessosSeletivos extends BaseController
             'idProcesso'    => $idProcesso,
             'processo'      => $processo,
             'processoNum'   => ($processo->nm_numero_processo ?? '?') . '/' . ($processo->nm_ano_processo ?? '?'),
-            'secretaria'    => $processo->ds_nome_secretaria ?? 'SEPLAG',
+            'validade'      => $validade,
+            'secretaria'    => $secretaria,
             'objetivo'      => $processo->ds_objeto ?? 'Objetivo não informado.',
             'dataInicial'   => isset($processo->dt_inicio_inscricao) ? date('d/m/Y', strtotime($processo->dt_inicio_inscricao)) : '—',
             'dataTermino'   => isset($processo->dt_fim_inscricao) ? date('d/m/Y', strtotime($processo->dt_fim_inscricao)) : '—',
+            'dataHomologacao' => isset($processo->dt_data_homologacao) ? date('d/m/Y', strtotime($processo->dt_data_homologacao)) : '—',
             'situacaoId'    => $situacaoId,
             'tagClass'      => $tagClass,
             'tagLabel'      => $tagLabel,

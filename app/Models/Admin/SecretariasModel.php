@@ -21,6 +21,12 @@ class SecretariasModel extends Model
         'ds_sigla_secretaria',
         'ds_email_secretaria',
         'ds_telefone_secretaria',
+        'ds_rua',
+        'nm_numero',
+        'ds_complemento',
+        'ds_bairro',
+        'ds_email',
+        'ds_atendimento'
         
         
      ];
