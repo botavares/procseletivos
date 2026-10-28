@@ -117,4 +117,14 @@ class ProcessosDocumentosService implements IProcessosDocumentos
     {
         return $this->model->porFaixaDeTempo($dataInicio, $dataFim);
     }
+
+    public function listarPorProcessoId(int $idProcesso): array
+    {
+        return $this->model->porProcessoId($idProcesso);
+    }
+
+    public function existeEditalAbertura(int $idProcesso, ?int $excetoId = null): bool
+    {
+        return $this->model->existeEditalAbertura($idProcesso, $excetoId);
+    }
 }

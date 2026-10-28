@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Admin\Controllers;
 
 use App\Controllers\Admin\ProcessosDocumentos;
-use App\Services\Admin\ProcessosDocumentos\ProcessosDocumentosService;
+use App\Services\ProcessosDocumentos\ProcessosDocumentosService;
 use CodeIgniter\Test\CIUnitTestCase;
 
 /**

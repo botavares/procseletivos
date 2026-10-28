@@ -1,39 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="" tests="102" assertions="141" errors="28" warnings="0" failures="0" skipped="0" time="1.784567">
-    <testsuite name="App" tests="102" assertions="141" errors="28" warnings="0" failures="0" skipped="0" time="1.784567">
-      <testsuite name="Tests\Admin\Controllers\ProcessosDocumentosControllerTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Controllers\ProcessosDocumentosControllerTest.php" tests="2" assertions="1" errors="1" warnings="0" failures="0" skipped="0" time="0.548781">
-        <testcase name="testControllerInstanciaComService" class="Tests\Admin\Controllers\ProcessosDocumentosControllerTest" classname="Tests.Admin.Controllers.ProcessosDocumentosControllerTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Controllers\ProcessosDocumentosControllerTest.php" line="16" assertions="0" time="0.500929">
-          <error type="PHPUnit\Framework\MockObject\UnknownTypeException">Tests\Admin\Controllers\ProcessosDocumentosControllerTest::testControllerInstanciaComService
-PHPUnit\Framework\MockObject\UnknownTypeException: Class or interface "App\Services\Admin\ProcessosDocumentos\ProcessosDocumentosService" does not exist
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Controllers\ProcessosDocumentosControllerTest.php:18</error>
-        </testcase>
-        <testcase name="testControllerInstanciaSemServiceUsaServicePadrao" class="Tests\Admin\Controllers\ProcessosDocumentosControllerTest" classname="Tests.Admin.Controllers.ProcessosDocumentosControllerTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Controllers\ProcessosDocumentosControllerTest.php" line="28" assertions="1" time="0.047852"/>
-      </testsuite>
-      <testsuite name="Tests\Admin\Controllers\ProcessosSeletivosControllerTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Controllers\ProcessosSeletivosControllerTest.php" tests="2" assertions="1" errors="1" warnings="0" failures="0" skipped="0" time="0.003644">
-        <testcase name="testControllerInstanciaComService" class="Tests\Admin\Controllers\ProcessosSeletivosControllerTest" classname="Tests.Admin.Controllers.ProcessosSeletivosControllerTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Controllers\ProcessosSeletivosControllerTest.php" line="16" assertions="0" time="0.001390">
-          <error type="PHPUnit\Framework\MockObject\UnknownTypeException">Tests\Admin\Controllers\ProcessosSeletivosControllerTest::testControllerInstanciaComService
-PHPUnit\Framework\MockObject\UnknownTypeException: Class or interface "App\Services\Admin\ProcessosSeletivos\ProcessosSeletivosService" does not exist
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Controllers\ProcessosSeletivosControllerTest.php:18</error>
-        </testcase>
-        <testcase name="testControllerInstanciaSemServiceUsaServicePadrao" class="Tests\Admin\Controllers\ProcessosSeletivosControllerTest" classname="Tests.Admin.Controllers.ProcessosSeletivosControllerTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Controllers\ProcessosSeletivosControllerTest.php" line="28" assertions="1" time="0.002254"/>
-      </testsuite>
-      <testsuite name="Tests\Admin\DTOs\ProcessosDocumentosDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\DTOs\ProcessosDocumentosDTOTest.php" tests="3" assertions="16" errors="0" warnings="0" failures="0" skipped="0" time="0.071016">
-        <testcase name="testFromArrayMapeiaCamposCorretamente" class="Tests\Admin\DTOs\ProcessosDocumentosDTOTest" classname="Tests.Admin.DTOs.ProcessosDocumentosDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\DTOs\ProcessosDocumentosDTOTest.php" line="15" assertions="10" time="0.030806"/>
-        <testcase name="testToArrayRetornaEstruturaCorreta" class="Tests\Admin\DTOs\ProcessosDocumentosDTOTest" classname="Tests.Admin.DTOs.ProcessosDocumentosDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\DTOs\ProcessosDocumentosDTOTest.php" line="44" assertions="5" time="0.039010"/>
-        <testcase name="testFromArraySemIdDocumento" class="Tests\Admin\DTOs\ProcessosDocumentosDTOTest" classname="Tests.Admin.DTOs.ProcessosDocumentosDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\DTOs\ProcessosDocumentosDTOTest.php" line="68" assertions="1" time="0.001200"/>
-      </testsuite>
-      <testsuite name="Tests\Admin\Enums\TiposDocumentosEnumTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Enums\TiposDocumentosEnumTest.php" tests="4" assertions="15" errors="0" warnings="0" failures="0" skipped="0" time="0.089617">
-        <testcase name="testValoresEnum" class="Tests\Admin\Enums\TiposDocumentosEnumTest" classname="Tests.Admin.Enums.TiposDocumentosEnumTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Enums\TiposDocumentosEnumTest.php" line="15" assertions="6" time="0.001299"/>
-        <testcase name="testLabels" class="Tests\Admin\Enums\TiposDocumentosEnumTest" classname="Tests.Admin.Enums.TiposDocumentosEnumTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Enums\TiposDocumentosEnumTest.php" line="25" assertions="6" time="0.001056"/>
-        <testcase name="testTryFromValido" class="Tests\Admin\Enums\TiposDocumentosEnumTest" classname="Tests.Admin.Enums.TiposDocumentosEnumTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Enums\TiposDocumentosEnumTest.php" line="35" assertions="2" time="0.085870"/>
-        <testcase name="testTryFromInvalido" class="Tests\Admin\Enums\TiposDocumentosEnumTest" classname="Tests.Admin.Enums.TiposDocumentosEnumTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Enums\TiposDocumentosEnumTest.php" line="42" assertions="1" time="0.001391"/>
-      </testsuite>
-      <testsuite name="Tests\Admin\Integration\ProcessosDocumentosIntegrationTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Integration\ProcessosDocumentosIntegrationTest.php" tests="3" assertions="0" errors="3" warnings="0" failures="0" skipped="0" time="0.034061">
-        <testcase name="testCadastroDocumento" class="Tests\Admin\Integration\ProcessosDocumentosIntegrationTest" classname="Tests.Admin.Integration.ProcessosDocumentosIntegrationTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Integration\ProcessosDocumentosIntegrationTest.php" line="93" assertions="0" time="0.029247">
-          <error type="CodeIgniter\Database\Exceptions\DatabaseException">Tests\Admin\Integration\ProcessosDocumentosIntegrationTest::testCadastroDocumento
+  <testsuite name="C:\laragon\www\servicos\procseletivos\tests\Admin" tests="37" assertions="51" errors="3" warnings="0" failures="0" skipped="0" time="0.147898">
+    <testsuite name="Tests\Admin\Controllers\ProcessosDocumentosControllerTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Controllers\ProcessosDocumentosControllerTest.php" tests="2" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="0.077877">
+      <testcase name="testControllerInstanciaComService" class="Tests\Admin\Controllers\ProcessosDocumentosControllerTest" classname="Tests.Admin.Controllers.ProcessosDocumentosControllerTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Controllers\ProcessosDocumentosControllerTest.php" line="16" assertions="1" time="0.075045"/>
+      <testcase name="testControllerInstanciaSemServiceUsaServicePadrao" class="Tests\Admin\Controllers\ProcessosDocumentosControllerTest" classname="Tests.Admin.Controllers.ProcessosDocumentosControllerTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Controllers\ProcessosDocumentosControllerTest.php" line="28" assertions="1" time="0.002832"/>
+    </testsuite>
+    <testsuite name="Tests\Admin\DTOs\ProcessosDocumentosDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\DTOs\ProcessosDocumentosDTOTest.php" tests="3" assertions="19" errors="0" warnings="0" failures="0" skipped="0" time="0.004415">
+      <testcase name="testFromArrayMapeiaCamposCorretamente" class="Tests\Admin\DTOs\ProcessosDocumentosDTOTest" classname="Tests.Admin.DTOs.ProcessosDocumentosDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\DTOs\ProcessosDocumentosDTOTest.php" line="15" assertions="11" time="0.001421"/>
+      <testcase name="testToArrayRetornaEstruturaCorreta" class="Tests\Admin\DTOs\ProcessosDocumentosDTOTest" classname="Tests.Admin.DTOs.ProcessosDocumentosDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\DTOs\ProcessosDocumentosDTOTest.php" line="46" assertions="7" time="0.001860"/>
+      <testcase name="testFromArraySemIdDocumento" class="Tests\Admin\DTOs\ProcessosDocumentosDTOTest" classname="Tests.Admin.DTOs.ProcessosDocumentosDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\DTOs\ProcessosDocumentosDTOTest.php" line="73" assertions="1" time="0.001134"/>
+    </testsuite>
+    <testsuite name="Tests\Admin\Integration\ProcessosDocumentosIntegrationTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Integration\ProcessosDocumentosIntegrationTest.php" tests="3" assertions="0" errors="3" warnings="0" failures="0" skipped="0" time="0.014481">
+      <testcase name="testCadastroDocumento" class="Tests\Admin\Integration\ProcessosDocumentosIntegrationTest" classname="Tests.Admin.Integration.ProcessosDocumentosIntegrationTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Integration\ProcessosDocumentosIntegrationTest.php" line="94" assertions="0" time="0.007665">
+        <error type="CodeIgniter\Database\Exceptions\DatabaseException">Tests\Admin\Integration\ProcessosDocumentosIntegrationTest::testCadastroDocumento
 CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.&#13;
 Main connection [SQLite3]: Class "SQLite3" not found
 
@@ -41,9 +20,9 @@ C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php:427
 C:\laragon\www\servicos\procseletivos\system\Database\SQLite3\Connection.php:59
 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php:573
 C:\laragon\www\servicos\procseletivos\tests\Admin\Integration\ProcessosDocumentosIntegrationTest.php:30</error>
-        </testcase>
-        <testcase name="testAlteracaoDocumento" class="Tests\Admin\Integration\ProcessosDocumentosIntegrationTest" classname="Tests.Admin.Integration.ProcessosDocumentosIntegrationTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Integration\ProcessosDocumentosIntegrationTest.php" line="120" assertions="0" time="0.002369">
-          <error type="CodeIgniter\Database\Exceptions\DatabaseException">Tests\Admin\Integration\ProcessosDocumentosIntegrationTest::testAlteracaoDocumento
+      </testcase>
+      <testcase name="testAlteracaoDocumento" class="Tests\Admin\Integration\ProcessosDocumentosIntegrationTest" classname="Tests.Admin.Integration.ProcessosDocumentosIntegrationTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Integration\ProcessosDocumentosIntegrationTest.php" line="122" assertions="0" time="0.004536">
+        <error type="CodeIgniter\Database\Exceptions\DatabaseException">Tests\Admin\Integration\ProcessosDocumentosIntegrationTest::testAlteracaoDocumento
 CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.&#13;
 Main connection [SQLite3]: Class "SQLite3" not found
 
@@ -51,9 +30,9 @@ C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php:427
 C:\laragon\www\servicos\procseletivos\system\Database\SQLite3\Connection.php:59
 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php:573
 C:\laragon\www\servicos\procseletivos\tests\Admin\Integration\ProcessosDocumentosIntegrationTest.php:30</error>
-        </testcase>
-        <testcase name="testSoftDeleteDocumento" class="Tests\Admin\Integration\ProcessosDocumentosIntegrationTest" classname="Tests.Admin.Integration.ProcessosDocumentosIntegrationTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Integration\ProcessosDocumentosIntegrationTest.php" line="158" assertions="0" time="0.002446">
-          <error type="CodeIgniter\Database\Exceptions\DatabaseException">Tests\Admin\Integration\ProcessosDocumentosIntegrationTest::testSoftDeleteDocumento
+      </testcase>
+      <testcase name="testSoftDeleteDocumento" class="Tests\Admin\Integration\ProcessosDocumentosIntegrationTest" classname="Tests.Admin.Integration.ProcessosDocumentosIntegrationTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Integration\ProcessosDocumentosIntegrationTest.php" line="162" assertions="0" time="0.002280">
+        <error type="CodeIgniter\Database\Exceptions\DatabaseException">Tests\Admin\Integration\ProcessosDocumentosIntegrationTest::testSoftDeleteDocumento
 CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.&#13;
 Main connection [SQLite3]: Class "SQLite3" not found
 
@@ -61,275 +40,40 @@ C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php:427
 C:\laragon\www\servicos\procseletivos\system\Database\SQLite3\Connection.php:59
 C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php:573
 C:\laragon\www\servicos\procseletivos\tests\Admin\Integration\ProcessosDocumentosIntegrationTest.php:30</error>
-        </testcase>
-      </testsuite>
-      <testsuite name="Tests\Admin\Models\ProcessosSeletivosModelTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Models\ProcessosSeletivosModelTest.php" tests="6" assertions="0" errors="6" warnings="0" failures="0" skipped="0" time="0.014782">
-        <testcase name="testCrudCompleto" class="Tests\Admin\Models\ProcessosSeletivosModelTest" classname="Tests.Admin.Models.ProcessosSeletivosModelTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Models\ProcessosSeletivosModelTest.php" line="57" assertions="0" time="0.002476">
-          <error type="CodeIgniter\Database\Exceptions\DatabaseException">Tests\Admin\Models\ProcessosSeletivosModelTest::testCrudCompleto
-CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.&#13;
-Main connection [SQLite3]: Class "SQLite3" not found
-
-C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php:427
-C:\laragon\www\servicos\procseletivos\system\Database\SQLite3\Connection.php:59
-C:\laragon\www\servicos\procseletivos\system\Test\DatabaseTestTrait.php:74
-C:\laragon\www\servicos\procseletivos\system\Test\DatabaseTestTrait.php:54
-C:\laragon\www\servicos\procseletivos\system\Test\CIUnitTestCase.php:248
-C:\laragon\www\servicos\procseletivos\tests\Admin\Models\ProcessosSeletivosModelTest.php:24</error>
-        </testcase>
-        <testcase name="testPorAno" class="Tests\Admin\Models\ProcessosSeletivosModelTest" classname="Tests.Admin.Models.ProcessosSeletivosModelTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Models\ProcessosSeletivosModelTest.php" line="105" assertions="0" time="0.002423">
-          <error type="CodeIgniter\Database\Exceptions\DatabaseException">Tests\Admin\Models\ProcessosSeletivosModelTest::testPorAno
-CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.&#13;
-Main connection [SQLite3]: Class "SQLite3" not found
-
-C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php:427
-C:\laragon\www\servicos\procseletivos\system\Database\SQLite3\Connection.php:59
-C:\laragon\www\servicos\procseletivos\system\Test\DatabaseTestTrait.php:74
-C:\laragon\www\servicos\procseletivos\system\Test\DatabaseTestTrait.php:54
-C:\laragon\www\servicos\procseletivos\system\Test\CIUnitTestCase.php:248
-C:\laragon\www\servicos\procseletivos\tests\Admin\Models\ProcessosSeletivosModelTest.php:24</error>
-        </testcase>
-        <testcase name="testPorSecretaria" class="Tests\Admin\Models\ProcessosSeletivosModelTest" classname="Tests.Admin.Models.ProcessosSeletivosModelTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Models\ProcessosSeletivosModelTest.php" line="118" assertions="0" time="0.002068">
-          <error type="CodeIgniter\Database\Exceptions\DatabaseException">Tests\Admin\Models\ProcessosSeletivosModelTest::testPorSecretaria
-CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.&#13;
-Main connection [SQLite3]: Class "SQLite3" not found
-
-C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php:427
-C:\laragon\www\servicos\procseletivos\system\Database\SQLite3\Connection.php:59
-C:\laragon\www\servicos\procseletivos\system\Test\DatabaseTestTrait.php:74
-C:\laragon\www\servicos\procseletivos\system\Test\DatabaseTestTrait.php:54
-C:\laragon\www\servicos\procseletivos\system\Test\CIUnitTestCase.php:248
-C:\laragon\www\servicos\procseletivos\tests\Admin\Models\ProcessosSeletivosModelTest.php:24</error>
-        </testcase>
-        <testcase name="testPorNumeroEAno" class="Tests\Admin\Models\ProcessosSeletivosModelTest" classname="Tests.Admin.Models.ProcessosSeletivosModelTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Models\ProcessosSeletivosModelTest.php" line="129" assertions="0" time="0.002260">
-          <error type="CodeIgniter\Database\Exceptions\DatabaseException">Tests\Admin\Models\ProcessosSeletivosModelTest::testPorNumeroEAno
-CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.&#13;
-Main connection [SQLite3]: Class "SQLite3" not found
-
-C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php:427
-C:\laragon\www\servicos\procseletivos\system\Database\SQLite3\Connection.php:59
-C:\laragon\www\servicos\procseletivos\system\Test\DatabaseTestTrait.php:74
-C:\laragon\www\servicos\procseletivos\system\Test\DatabaseTestTrait.php:54
-C:\laragon\www\servicos\procseletivos\system\Test\CIUnitTestCase.php:248
-C:\laragon\www\servicos\procseletivos\tests\Admin\Models\ProcessosSeletivosModelTest.php:24</error>
-        </testcase>
-        <testcase name="testPorSituacao" class="Tests\Admin\Models\ProcessosSeletivosModelTest" classname="Tests.Admin.Models.ProcessosSeletivosModelTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Models\ProcessosSeletivosModelTest.php" line="140" assertions="0" time="0.002925">
-          <error type="CodeIgniter\Database\Exceptions\DatabaseException">Tests\Admin\Models\ProcessosSeletivosModelTest::testPorSituacao
-CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.&#13;
-Main connection [SQLite3]: Class "SQLite3" not found
-
-C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php:427
-C:\laragon\www\servicos\procseletivos\system\Database\SQLite3\Connection.php:59
-C:\laragon\www\servicos\procseletivos\system\Test\DatabaseTestTrait.php:74
-C:\laragon\www\servicos\procseletivos\system\Test\DatabaseTestTrait.php:54
-C:\laragon\www\servicos\procseletivos\system\Test\CIUnitTestCase.php:248
-C:\laragon\www\servicos\procseletivos\tests\Admin\Models\ProcessosSeletivosModelTest.php:24</error>
-        </testcase>
-        <testcase name="testPorFaixaDeTempo" class="Tests\Admin\Models\ProcessosSeletivosModelTest" classname="Tests.Admin.Models.ProcessosSeletivosModelTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Models\ProcessosSeletivosModelTest.php" line="151" assertions="0" time="0.002630">
-          <error type="CodeIgniter\Database\Exceptions\DatabaseException">Tests\Admin\Models\ProcessosSeletivosModelTest::testPorFaixaDeTempo
-CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.&#13;
-Main connection [SQLite3]: Class "SQLite3" not found
-
-C:\laragon\www\servicos\procseletivos\system\Database\BaseConnection.php:427
-C:\laragon\www\servicos\procseletivos\system\Database\SQLite3\Connection.php:59
-C:\laragon\www\servicos\procseletivos\system\Test\DatabaseTestTrait.php:74
-C:\laragon\www\servicos\procseletivos\system\Test\DatabaseTestTrait.php:54
-C:\laragon\www\servicos\procseletivos\system\Test\CIUnitTestCase.php:248
-C:\laragon\www\servicos\procseletivos\tests\Admin\Models\ProcessosSeletivosModelTest.php:24</error>
-        </testcase>
-      </testsuite>
-      <testsuite name="Tests\Admin\Repositories\CandidatoRepositoryTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Repositories\CandidatoRepositoryTest.php" tests="5" assertions="5" errors="0" warnings="0" failures="0" skipped="0" time="0.744604">
-        <testcase name="testBuscarPorEditalCargoDelegaParaModel" class="Tests\Admin\Repositories\CandidatoRepositoryTest" classname="Tests.Admin.Repositories.CandidatoRepositoryTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Repositories\CandidatoRepositoryTest.php" line="24" assertions="1" time="0.737583"/>
-        <testcase name="testBuscarPorCpfDelegaParaModel" class="Tests\Admin\Repositories\CandidatoRepositoryTest" classname="Tests.Admin.Repositories.CandidatoRepositoryTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Repositories\CandidatoRepositoryTest.php" line="36" assertions="1" time="0.001425"/>
-        <testcase name="testBuscarPorIdDelegaParaModel" class="Tests\Admin\Repositories\CandidatoRepositoryTest" classname="Tests.Admin.Repositories.CandidatoRepositoryTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Repositories\CandidatoRepositoryTest.php" line="48" assertions="1" time="0.001258"/>
-        <testcase name="testContarPorAnoDelegaParaModel" class="Tests\Admin\Repositories\CandidatoRepositoryTest" classname="Tests.Admin.Repositories.CandidatoRepositoryTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Repositories\CandidatoRepositoryTest.php" line="60" assertions="1" time="0.002497"/>
-        <testcase name="testBuscarExperienciasDelegaParaModel" class="Tests\Admin\Repositories\CandidatoRepositoryTest" classname="Tests.Admin.Repositories.CandidatoRepositoryTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Repositories\CandidatoRepositoryTest.php" line="71" assertions="1" time="0.001842"/>
-      </testsuite>
-      <testsuite name="Tests\Admin\Repositories\ClassificacaoRepositoryTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Repositories\ClassificacaoRepositoryTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.003455">
-        <testcase name="testListarPorEditalCargoDelegaParaModel" class="Tests\Admin\Repositories\ClassificacaoRepositoryTest" classname="Tests.Admin.Repositories.ClassificacaoRepositoryTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Repositories\ClassificacaoRepositoryTest.php" line="24" assertions="1" time="0.003455"/>
-      </testsuite>
-      <testsuite name="Tests\Admin\Repositories\ContratoRepositoryTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Repositories\ContratoRepositoryTest.php" tests="7" assertions="7" errors="0" warnings="0" failures="0" skipped="0" time="0.068311">
-        <testcase name="testListarTodosDelegaParaModel" class="Tests\Admin\Repositories\ContratoRepositoryTest" classname="Tests.Admin.Repositories.ContratoRepositoryTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Repositories\ContratoRepositoryTest.php" line="24" assertions="1" time="0.021058"/>
-        <testcase name="testBuscarPorIdDelegaParaModel" class="Tests\Admin\Repositories\ContratoRepositoryTest" classname="Tests.Admin.Repositories.ContratoRepositoryTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Repositories\ContratoRepositoryTest.php" line="35" assertions="1" time="0.001283"/>
-        <testcase name="testBuscarPorCandidatoDelegaParaModel" class="Tests\Admin\Repositories\ContratoRepositoryTest" classname="Tests.Admin.Repositories.ContratoRepositoryTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Repositories\ContratoRepositoryTest.php" line="47" assertions="1" time="0.001162"/>
-        <testcase name="testInserirDelegaParaModel" class="Tests\Admin\Repositories\ContratoRepositoryTest" classname="Tests.Admin.Repositories.ContratoRepositoryTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Repositories\ContratoRepositoryTest.php" line="59" assertions="1" time="0.040940"/>
-        <testcase name="testAtualizarDelegaParaModel" class="Tests\Admin\Repositories\ContratoRepositoryTest" classname="Tests.Admin.Repositories.ContratoRepositoryTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Repositories\ContratoRepositoryTest.php" line="71" assertions="1" time="0.001393"/>
-        <testcase name="testBuscarAtivosDelegaParaModel" class="Tests\Admin\Repositories\ContratoRepositoryTest" classname="Tests.Admin.Repositories.ContratoRepositoryTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Repositories\ContratoRepositoryTest.php" line="83" assertions="1" time="0.001245"/>
-        <testcase name="testObterUltimoIdDelegaParaModel" class="Tests\Admin\Repositories\ContratoRepositoryTest" classname="Tests.Admin.Repositories.ContratoRepositoryTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Repositories\ContratoRepositoryTest.php" line="94" assertions="1" time="0.001228"/>
-      </testsuite>
-      <testsuite name="Tests\Admin\Services\Classificacao\DesempateConfigDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\Classificacao\DesempateConfigDTOTest.php" tests="6" assertions="6" errors="0" warnings="0" failures="0" skipped="0" time="0.033840">
-        <testcase name="testChaveScorePontuacaoTotal" class="Tests\Admin\Services\Classificacao\DesempateConfigDTOTest" classname="Tests.Admin.Services.Classificacao.DesempateConfigDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\Classificacao\DesempateConfigDTOTest.php" line="13" assertions="1" time="0.001379"/>
-        <testcase name="testChaveScoreExperienciaEspecifica" class="Tests\Admin\Services\Classificacao\DesempateConfigDTOTest" classname="Tests.Admin.Services.Classificacao.DesempateConfigDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\Classificacao\DesempateConfigDTOTest.php" line="19" assertions="1" time="0.001020"/>
-        <testcase name="testChaveScoreEscolaridadeEspecifica" class="Tests\Admin\Services\Classificacao\DesempateConfigDTOTest" classname="Tests.Admin.Services.Classificacao.DesempateConfigDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\Classificacao\DesempateConfigDTOTest.php" line="25" assertions="1" time="0.001493"/>
-        <testcase name="testChaveScoreIdade" class="Tests\Admin\Services\Classificacao\DesempateConfigDTOTest" classname="Tests.Admin.Services.Classificacao.DesempateConfigDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\Classificacao\DesempateConfigDTOTest.php" line="31" assertions="1" time="0.002733"/>
-        <testcase name="testChaveScorePne" class="Tests\Admin\Services\Classificacao\DesempateConfigDTOTest" classname="Tests.Admin.Services.Classificacao.DesempateConfigDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\Classificacao\DesempateConfigDTOTest.php" line="37" assertions="1" time="0.002160"/>
-        <testcase name="testChaveScoreTipoDesconhecidoLancaExcecao" class="Tests\Admin\Services\Classificacao\DesempateConfigDTOTest" classname="Tests.Admin.Services.Classificacao.DesempateConfigDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\Classificacao\DesempateConfigDTOTest.php" line="43" assertions="1" time="0.025055"/>
-      </testsuite>
-      <testsuite name="Tests\Admin\Services\Classificacao\OrdenacaoDinamicaServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\Classificacao\OrdenacaoDinamicaServiceTest.php" tests="5" assertions="11" errors="0" warnings="0" failures="0" skipped="0" time="0.018868">
-        <testcase name="testOrdenacaoPorPontuacaoTotalDesc" class="Tests\Admin\Services\Classificacao\OrdenacaoDinamicaServiceTest" classname="Tests.Admin.Services.Classificacao.OrdenacaoDinamicaServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\Classificacao\OrdenacaoDinamicaServiceTest.php" line="26" assertions="3" time="0.005753"/>
-        <testcase name="testDesempatePorExperiencias" class="Tests\Admin\Services\Classificacao\OrdenacaoDinamicaServiceTest" classname="Tests.Admin.Services.Classificacao.OrdenacaoDinamicaServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\Classificacao\OrdenacaoDinamicaServiceTest.php" line="51" assertions="2" time="0.003072"/>
-        <testcase name="testDesempatePorIdadeAscMaisVelhoPrimeiro" class="Tests\Admin\Services\Classificacao\OrdenacaoDinamicaServiceTest" classname="Tests.Admin.Services.Classificacao.OrdenacaoDinamicaServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\Classificacao\OrdenacaoDinamicaServiceTest.php" line="73" assertions="2" time="0.003330"/>
-        <testcase name="testDesempatePorPneDesc" class="Tests\Admin\Services\Classificacao\OrdenacaoDinamicaServiceTest" classname="Tests.Admin.Services.Classificacao.OrdenacaoDinamicaServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\Classificacao\OrdenacaoDinamicaServiceTest.php" line="95" assertions="2" time="0.003141"/>
-        <testcase name="testAtribuicaoDePosicoes" class="Tests\Admin\Services\Classificacao\OrdenacaoDinamicaServiceTest" classname="Tests.Admin.Services.Classificacao.OrdenacaoDinamicaServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\Classificacao\OrdenacaoDinamicaServiceTest.php" line="119" assertions="2" time="0.003572"/>
-      </testsuite>
-      <testsuite name="Tests\Admin\Services\Classificacao\PontuacaoCalculatorServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\Classificacao\PontuacaoCalculatorServiceTest.php" tests="4" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="0.007286">
-        <testcase name="testAplicarTetoPreservaPontuacaoAbaixoDoLimite" class="Tests\Admin\Services\Classificacao\PontuacaoCalculatorServiceTest" classname="Tests.Admin.Services.Classificacao.PontuacaoCalculatorServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\Classificacao\PontuacaoCalculatorServiceTest.php" line="27" assertions="1" time="0.003666"/>
-        <testcase name="testAplicarTetoLimitaPontuacaoAcimaDoLimite" class="Tests\Admin\Services\Classificacao\PontuacaoCalculatorServiceTest" classname="Tests.Admin.Services.Classificacao.PontuacaoCalculatorServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\Classificacao\PontuacaoCalculatorServiceTest.php" line="39" assertions="1" time="0.001221"/>
-        <testcase name="testAplicarTetoSemLimitePreservaPontuacao" class="Tests\Admin\Services\Classificacao\PontuacaoCalculatorServiceTest" classname="Tests.Admin.Services.Classificacao.PontuacaoCalculatorServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\Classificacao\PontuacaoCalculatorServiceTest.php" line="51" assertions="1" time="0.001209"/>
-        <testcase name="testAplicarTetoZeroNaoLimita" class="Tests\Admin\Services\Classificacao\PontuacaoCalculatorServiceTest" classname="Tests.Admin.Services.Classificacao.PontuacaoCalculatorServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\Classificacao\PontuacaoCalculatorServiceTest.php" line="63" assertions="1" time="0.001189"/>
-      </testsuite>
-      <testsuite name="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" tests="9" assertions="0" errors="9" warnings="0" failures="0" skipped="0" time="0.032020">
-        <testcase name="testCriarDocumento" class="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" classname="Tests.Admin.Services.ProcessosDocumentos.ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" line="30" assertions="0" time="0.021416">
-          <error type="Error">Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest::testCriarDocumento
-Error: Class "App\Services\Admin\ProcessosDocumentos\ProcessosDocumentosService" not found
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php:27</error>
-        </testcase>
-        <testcase name="testAtualizarDocumento" class="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" classname="Tests.Admin.Services.ProcessosDocumentos.ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" line="46" assertions="0" time="0.001479">
-          <error type="Error">Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest::testAtualizarDocumento
-Error: Class "App\Services\Admin\ProcessosDocumentos\ProcessosDocumentosService" not found
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php:27</error>
-        </testcase>
-        <testcase name="testDeletarDocumento" class="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" classname="Tests.Admin.Services.ProcessosDocumentos.ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" line="78" assertions="0" time="0.001560">
-          <error type="Error">Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest::testDeletarDocumento
-Error: Class "App\Services\Admin\ProcessosDocumentos\ProcessosDocumentosService" not found
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php:27</error>
-        </testcase>
-        <testcase name="testBuscarPorId" class="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" classname="Tests.Admin.Services.ProcessosDocumentos.ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" line="92" assertions="0" time="0.001288">
-          <error type="Error">Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest::testBuscarPorId
-Error: Class "App\Services\Admin\ProcessosDocumentos\ProcessosDocumentosService" not found
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php:27</error>
-        </testcase>
-        <testcase name="testListarPorSecretaria" class="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" classname="Tests.Admin.Services.ProcessosDocumentos.ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" line="104" assertions="0" time="0.001344">
-          <error type="Error">Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest::testListarPorSecretaria
-Error: Class "App\Services\Admin\ProcessosDocumentos\ProcessosDocumentosService" not found
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php:27</error>
-        </testcase>
-        <testcase name="testListarPorTipo" class="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" classname="Tests.Admin.Services.ProcessosDocumentos.ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" line="116" assertions="0" time="0.001238">
-          <error type="Error">Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest::testListarPorTipo
-Error: Class "App\Services\Admin\ProcessosDocumentos\ProcessosDocumentosService" not found
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php:27</error>
-        </testcase>
-        <testcase name="testListarPorNumeroProcesso" class="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" classname="Tests.Admin.Services.ProcessosDocumentos.ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" line="128" assertions="0" time="0.001209">
-          <error type="Error">Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest::testListarPorNumeroProcesso
-Error: Class "App\Services\Admin\ProcessosDocumentos\ProcessosDocumentosService" not found
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php:27</error>
-        </testcase>
-        <testcase name="testListarPorNumeroDocumentoEAno" class="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" classname="Tests.Admin.Services.ProcessosDocumentos.ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" line="140" assertions="0" time="0.001131">
-          <error type="Error">Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest::testListarPorNumeroDocumentoEAno
-Error: Class "App\Services\Admin\ProcessosDocumentos\ProcessosDocumentosService" not found
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php:27</error>
-        </testcase>
-        <testcase name="testListarPorFaixaDeTempo" class="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" classname="Tests.Admin.Services.ProcessosDocumentos.ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" line="152" assertions="0" time="0.001356">
-          <error type="Error">Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest::testListarPorFaixaDeTempo
-Error: Class "App\Services\Admin\ProcessosDocumentos\ProcessosDocumentosService" not found
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php:27</error>
-        </testcase>
-      </testsuite>
-      <testsuite name="Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest.php" tests="8" assertions="0" errors="8" warnings="0" failures="0" skipped="0" time="0.032842">
-        <testcase name="testCriarProcesso" class="Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest" classname="Tests.Admin.Services.ProcessosSeletivos.ProcessosSeletivosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest.php" line="30" assertions="0" time="0.024100">
-          <error type="Error">Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest::testCriarProcesso
-Error: Class "App\Services\Admin\ProcessosSeletivos\ProcessosSeletivosService" not found
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest.php:27</error>
-        </testcase>
-        <testcase name="testAtualizarProcesso" class="Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest" classname="Tests.Admin.Services.ProcessosSeletivos.ProcessosSeletivosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest.php" line="46" assertions="0" time="0.001270">
-          <error type="Error">Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest::testAtualizarProcesso
-Error: Class "App\Services\Admin\ProcessosSeletivos\ProcessosSeletivosService" not found
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest.php:27</error>
-        </testcase>
-        <testcase name="testDeletarProcesso" class="Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest" classname="Tests.Admin.Services.ProcessosSeletivos.ProcessosSeletivosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest.php" line="79" assertions="0" time="0.001207">
-          <error type="Error">Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest::testDeletarProcesso
-Error: Class "App\Services\Admin\ProcessosSeletivos\ProcessosSeletivosService" not found
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest.php:27</error>
-        </testcase>
-        <testcase name="testListarPorSecretaria" class="Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest" classname="Tests.Admin.Services.ProcessosSeletivos.ProcessosSeletivosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest.php" line="93" assertions="0" time="0.001200">
-          <error type="Error">Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest::testListarPorSecretaria
-Error: Class "App\Services\Admin\ProcessosSeletivos\ProcessosSeletivosService" not found
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest.php:27</error>
-        </testcase>
-        <testcase name="testListarPorAno" class="Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest" classname="Tests.Admin.Services.ProcessosSeletivos.ProcessosSeletivosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest.php" line="105" assertions="0" time="0.001216">
-          <error type="Error">Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest::testListarPorAno
-Error: Class "App\Services\Admin\ProcessosSeletivos\ProcessosSeletivosService" not found
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest.php:27</error>
-        </testcase>
-        <testcase name="testBuscarPorNumeroEAno" class="Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest" classname="Tests.Admin.Services.ProcessosSeletivos.ProcessosSeletivosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest.php" line="117" assertions="0" time="0.001481">
-          <error type="Error">Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest::testBuscarPorNumeroEAno
-Error: Class "App\Services\Admin\ProcessosSeletivos\ProcessosSeletivosService" not found
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest.php:27</error>
-        </testcase>
-        <testcase name="testListarPorSituacao" class="Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest" classname="Tests.Admin.Services.ProcessosSeletivos.ProcessosSeletivosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest.php" line="129" assertions="0" time="0.001221">
-          <error type="Error">Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest::testListarPorSituacao
-Error: Class "App\Services\Admin\ProcessosSeletivos\ProcessosSeletivosService" not found
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest.php:27</error>
-        </testcase>
-        <testcase name="testListarPorFaixaDeTempo" class="Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest" classname="Tests.Admin.Services.ProcessosSeletivos.ProcessosSeletivosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest.php" line="141" assertions="0" time="0.001147">
-          <error type="Error">Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest::testListarPorFaixaDeTempo
-Error: Class "App\Services\Admin\ProcessosSeletivos\ProcessosSeletivosService" not found
-
-C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosServiceTest.php:27</error>
-        </testcase>
-      </testsuite>
-      <testsuite name="Tests\Admin\Validation\ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" tests="16" assertions="17" errors="0" warnings="0" failures="0" skipped="0" time="0.044992">
-        <testcase name="testApenasNumerosAceitaDigitos" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="23" assertions="1" time="0.001363"/>
-        <testcase name="testApenasNumerosRejeitaLetras" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="28" assertions="1" time="0.019245"/>
-        <testcase name="testApenasNumerosRejeitaVazio" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="33" assertions="2" time="0.001166"/>
-        <testcase name="testAnoAtualOuFuturoAceitaAnoAtual" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="39" assertions="1" time="0.001224"/>
-        <testcase name="testAnoAtualOuFuturoAceitaAnoFuturo" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="44" assertions="1" time="0.001792"/>
-        <testcase name="testAnoAtualOuFuturoRejeitaAnoPassado" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="49" assertions="1" time="0.001624"/>
-        <testcase name="testArquivoPdfCondicionalAceitaPdfParaEditalAbertura" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="54" assertions="1" time="0.001513"/>
-        <testcase name="testArquivoPdfCondicionalRejeitaDocParaEditalAbertura" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="60" assertions="1" time="0.002253"/>
-        <testcase name="testArquivoPdfCondicionalRejeitaArquivoParaResultadoParcial" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="66" assertions="1" time="0.001632"/>
-        <testcase name="testArquivoPdfCondicionalAceitaVazioParaResultadoParcial" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="72" assertions="1" time="0.001322"/>
-        <testcase name="testVersaoVigenteRegraRejeitaValorParaRetificacao" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="78" assertions="1" time="0.001297"/>
-        <testcase name="testVersaoVigenteRegraAceitaZeroParaRetificacao" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="84" assertions="1" time="0.001872"/>
-        <testcase name="testVersaoVigenteRegraAceitaValorParaOutroTipo" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="90" assertions="1" time="0.002741"/>
-        <testcase name="testDocumentoRetificadoRegraRejeitaValorParaNaoRetificacao" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="96" assertions="1" time="0.002251"/>
-        <testcase name="testDocumentoRetificadoRegraAceitaZeroParaNaoRetificacao" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="102" assertions="1" time="0.001801"/>
-        <testcase name="testDocumentoRetificadoRegraAceitaValorParaRetificacao" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="108" assertions="1" time="0.001896"/>
-      </testsuite>
-      <testsuite name="Tests\Unit\DTOs\Admin\ProcessosSeletivosDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\DTOs\Admin\ProcessosSeletivosDTOTest.php" tests="4" assertions="22" errors="0" warnings="0" failures="0" skipped="0" time="0.010714">
-        <testcase name="testConstrutor" class="Tests\Unit\DTOs\Admin\ProcessosSeletivosDTOTest" classname="Tests.Unit.DTOs.Admin.ProcessosSeletivosDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\DTOs\Admin\ProcessosSeletivosDTOTest.php" line="15" assertions="11" time="0.002021"/>
-        <testcase name="testFromArray" class="Tests\Unit\DTOs\Admin\ProcessosSeletivosDTOTest" classname="Tests.Unit.DTOs.Admin.ProcessosSeletivosDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\DTOs\Admin\ProcessosSeletivosDTOTest.php" line="44" assertions="6" time="0.001856"/>
-        <testcase name="testToArraySemId" class="Tests\Unit\DTOs\Admin\ProcessosSeletivosDTOTest" classname="Tests.Unit.DTOs.Admin.ProcessosSeletivosDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\DTOs\Admin\ProcessosSeletivosDTOTest.php" line="70" assertions="3" time="0.001295"/>
-        <testcase name="testToArrayComId" class="Tests\Unit\DTOs\Admin\ProcessosSeletivosDTOTest" classname="Tests.Unit.DTOs.Admin.ProcessosSeletivosDTOTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\DTOs\Admin\ProcessosSeletivosDTOTest.php" line="92" assertions="2" time="0.005543"/>
-      </testsuite>
-      <testsuite name="Tests\Unit\Enums\Admin\ProrrogacaoProcessoEnumTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Enums\Admin\ProrrogacaoProcessoEnumTest.php" tests="2" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="0.002819">
-        <testcase name="testValoresEnum" class="Tests\Unit\Enums\Admin\ProrrogacaoProcessoEnumTest" classname="Tests.Unit.Enums.Admin.ProrrogacaoProcessoEnumTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Enums\Admin\ProrrogacaoProcessoEnumTest.php" line="15" assertions="2" time="0.001592"/>
-        <testcase name="testLabels" class="Tests\Unit\Enums\Admin\ProrrogacaoProcessoEnumTest" classname="Tests.Unit.Enums.Admin.ProrrogacaoProcessoEnumTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Enums\Admin\ProrrogacaoProcessoEnumTest.php" line="21" assertions="2" time="0.001227"/>
-      </testsuite>
-      <testsuite name="Tests\Unit\Enums\Admin\SituacaoProcessosEnumTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Enums\Admin\SituacaoProcessosEnumTest.php" tests="4" assertions="13" errors="0" warnings="0" failures="0" skipped="0" time="0.004949">
-        <testcase name="testValoresEnum" class="Tests\Unit\Enums\Admin\SituacaoProcessosEnumTest" classname="Tests.Unit.Enums.Admin.SituacaoProcessosEnumTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Enums\Admin\SituacaoProcessosEnumTest.php" line="15" assertions="5" time="0.001507"/>
-        <testcase name="testLabels" class="Tests\Unit\Enums\Admin\SituacaoProcessosEnumTest" classname="Tests.Unit.Enums.Admin.SituacaoProcessosEnumTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Enums\Admin\SituacaoProcessosEnumTest.php" line="24" assertions="5" time="0.001116"/>
-        <testcase name="testTryFromValorValido" class="Tests\Unit\Enums\Admin\SituacaoProcessosEnumTest" classname="Tests.Unit.Enums.Admin.SituacaoProcessosEnumTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Enums\Admin\SituacaoProcessosEnumTest.php" line="33" assertions="2" time="0.001126"/>
-        <testcase name="testTryFromValorInvalido" class="Tests\Unit\Enums\Admin\SituacaoProcessosEnumTest" classname="Tests.Unit.Enums.Admin.SituacaoProcessosEnumTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Enums\Admin\SituacaoProcessosEnumTest.php" line="40" assertions="1" time="0.001199"/>
-      </testsuite>
-      <testsuite name="Tests\Unit\Validation\ProcessosSeletivosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Validation\ProcessosSeletivosRulesTest.php" tests="11" assertions="18" errors="0" warnings="0" failures="0" skipped="0" time="0.017966">
-        <testcase name="testApenasNumerosComValorValido" class="Tests\Unit\Validation\ProcessosSeletivosRulesTest" classname="Tests.Unit.Validation.ProcessosSeletivosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Validation\ProcessosSeletivosRulesTest.php" line="23" assertions="2" time="0.002098"/>
-        <testcase name="testApenasNumerosComValorInvalido" class="Tests\Unit\Validation\ProcessosSeletivosRulesTest" classname="Tests.Unit.Validation.ProcessosSeletivosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Validation\ProcessosSeletivosRulesTest.php" line="29" assertions="4" time="0.001484"/>
-        <testcase name="testAnoAtualOuFuturoComAnoAtual" class="Tests\Unit\Validation\ProcessosSeletivosRulesTest" classname="Tests.Unit.Validation.ProcessosSeletivosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Validation\ProcessosSeletivosRulesTest.php" line="37" assertions="1" time="0.002418"/>
-        <testcase name="testAnoAtualOuFuturoComAnoFuturo" class="Tests\Unit\Validation\ProcessosSeletivosRulesTest" classname="Tests.Unit.Validation.ProcessosSeletivosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Validation\ProcessosSeletivosRulesTest.php" line="43" assertions="1" time="0.001695"/>
-        <testcase name="testAnoAtualOuFuturoComAnoPassado" class="Tests\Unit\Validation\ProcessosSeletivosRulesTest" classname="Tests.Unit.Validation.ProcessosSeletivosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Validation\ProcessosSeletivosRulesTest.php" line="49" assertions="1" time="0.001498"/>
-        <testcase name="testAnoAtualOuFuturoComValorInvalido" class="Tests\Unit\Validation\ProcessosSeletivosRulesTest" classname="Tests.Unit.Validation.ProcessosSeletivosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Validation\ProcessosSeletivosRulesTest.php" line="55" assertions="3" time="0.001203"/>
-        <testcase name="testDataFimMaiorIgualInicioComDataFimIgual" class="Tests\Unit\Validation\ProcessosSeletivosRulesTest" classname="Tests.Unit.Validation.ProcessosSeletivosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Validation\ProcessosSeletivosRulesTest.php" line="62" assertions="1" time="0.001328"/>
-        <testcase name="testDataFimMaiorIgualInicioComDataFimMaior" class="Tests\Unit\Validation\ProcessosSeletivosRulesTest" classname="Tests.Unit.Validation.ProcessosSeletivosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Validation\ProcessosSeletivosRulesTest.php" line="67" assertions="1" time="0.001116"/>
-        <testcase name="testDataFimMaiorIgualInicioComDataFimMenor" class="Tests\Unit\Validation\ProcessosSeletivosRulesTest" classname="Tests.Unit.Validation.ProcessosSeletivosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Validation\ProcessosSeletivosRulesTest.php" line="72" assertions="1" time="0.001592"/>
-        <testcase name="testDataFimMaiorIgualInicioComParametroAusente" class="Tests\Unit\Validation\ProcessosSeletivosRulesTest" classname="Tests.Unit.Validation.ProcessosSeletivosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Validation\ProcessosSeletivosRulesTest.php" line="77" assertions="1" time="0.001370"/>
-        <testcase name="testDataFimMaiorIgualInicioComValorVazio" class="Tests\Unit\Validation\ProcessosSeletivosRulesTest" classname="Tests.Unit.Validation.ProcessosSeletivosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\unit\Validation\ProcessosSeletivosRulesTest.php" line="82" assertions="2" time="0.002162"/>
-      </testsuite>
+      </testcase>
+    </testsuite>
+    <testsuite name="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" tests="9" assertions="9" errors="0" warnings="0" failures="0" skipped="0" time="0.027011">
+      <testcase name="testCriarDocumento" class="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" classname="Tests.Admin.Services.ProcessosDocumentos.ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" line="30" assertions="1" time="0.014050"/>
+      <testcase name="testAtualizarDocumento" class="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" classname="Tests.Admin.Services.ProcessosDocumentos.ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" line="46" assertions="1" time="0.002561"/>
+      <testcase name="testDeletarDocumento" class="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" classname="Tests.Admin.Services.ProcessosDocumentos.ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" line="78" assertions="1" time="0.001198"/>
+      <testcase name="testBuscarPorId" class="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" classname="Tests.Admin.Services.ProcessosDocumentos.ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" line="92" assertions="1" time="0.001128"/>
+      <testcase name="testListarPorSecretaria" class="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" classname="Tests.Admin.Services.ProcessosDocumentos.ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" line="104" assertions="1" time="0.001555"/>
+      <testcase name="testListarPorTipo" class="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" classname="Tests.Admin.Services.ProcessosDocumentos.ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" line="116" assertions="1" time="0.001372"/>
+      <testcase name="testListarPorNumeroProcesso" class="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" classname="Tests.Admin.Services.ProcessosDocumentos.ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" line="128" assertions="1" time="0.001201"/>
+      <testcase name="testListarPorNumeroDocumentoEAno" class="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" classname="Tests.Admin.Services.ProcessosDocumentos.ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" line="140" assertions="1" time="0.001690"/>
+      <testcase name="testListarPorFaixaDeTempo" class="Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest" classname="Tests.Admin.Services.ProcessosDocumentos.ProcessosDocumentosServiceTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosServiceTest.php" line="152" assertions="1" time="0.002256"/>
+    </testsuite>
+    <testsuite name="Tests\Admin\Validation\ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" tests="20" assertions="21" errors="0" warnings="0" failures="0" skipped="0" time="0.024114">
+      <testcase name="testApenasNumerosAceitaDigitos" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="23" assertions="1" time="0.001559"/>
+      <testcase name="testApenasNumerosRejeitaLetras" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="28" assertions="1" time="0.001388"/>
+      <testcase name="testApenasNumerosRejeitaVazio" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="33" assertions="2" time="0.001018"/>
+      <testcase name="testAnoAtualOuFuturoAceitaAnoAtual" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="39" assertions="1" time="0.001014"/>
+      <testcase name="testAnoAtualOuFuturoAceitaAnoFuturo" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="44" assertions="1" time="0.001009"/>
+      <testcase name="testAnoAtualOuFuturoRejeitaAnoPassado" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="49" assertions="1" time="0.001020"/>
+      <testcase name="testArquivoPdfCondicionalAceitaPdfParaEditalAbertura" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="54" assertions="1" time="0.001226"/>
+      <testcase name="testArquivoPdfCondicionalRejeitaDocParaEditalAbertura" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="60" assertions="1" time="0.001022"/>
+      <testcase name="testArquivoPdfCondicionalRejeitaPdfParaResultadoParcial" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="66" assertions="1" time="0.001025"/>
+      <testcase name="testArquivoPdfCondicionalAceitaVazioParaResultadoParcial" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="72" assertions="1" time="0.001565"/>
+      <testcase name="testArquivoPdfCondicionalAceitaPdfParaRepublicacao" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="78" assertions="1" time="0.001980"/>
+      <testcase name="testArquivoPdfCondicionalRejeitaVazioParaRepublicacao" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="84" assertions="1" time="0.001563"/>
+      <testcase name="testArquivoPdfCondicionalRejeitaArquivoParaComunicado" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="90" assertions="1" time="0.001360"/>
+      <testcase name="testArquivoPdfCondicionalAceitaVazioParaComunicado" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="96" assertions="1" time="0.001157"/>
+      <testcase name="testVersaoVigenteRegraRejeitaValorParaRetificacao" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="102" assertions="1" time="0.001061"/>
+      <testcase name="testVersaoVigenteRegraAceitaZeroParaRetificacao" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="108" assertions="1" time="0.001068"/>
+      <testcase name="testVersaoVigenteRegraAceitaValorParaOutroTipo" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="114" assertions="1" time="0.001016"/>
+      <testcase name="testDocumentoRetificadoRegraRejeitaValorParaNaoRetificacao" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="120" assertions="1" time="0.001045"/>
+      <testcase name="testDocumentoRetificadoRegraAceitaZeroParaNaoRetificacao" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="126" assertions="1" time="0.001023"/>
+      <testcase name="testDocumentoRetificadoRegraAceitaValorParaRetificacao" class="Tests\Admin\Validation\ProcessosDocumentosRulesTest" classname="Tests.Admin.Validation.ProcessosDocumentosRulesTest" file="C:\laragon\www\servicos\procseletivos\tests\Admin\Validation\ProcessosDocumentosRulesTest.php" line="132" assertions="1" time="0.000994"/>
     </testsuite>
   </testsuite>
 </testsuites>

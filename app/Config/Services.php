@@ -826,4 +826,23 @@ class Services extends BaseService
                 service('logsService', false)
             );
     }
+
+    public static function processosCargosModel(bool $getShared = true): \App\Models\Admin\ProcessosCargosModel
+    {
+        return $getShared ? static::getSharedInstance('processosCargosModel') : new \App\Models\Admin\ProcessosCargosModel();
+    }
+
+    public static function processosCargosRepository(bool $getShared = true): \App\Repositories\Admin\Interfaces\IProcessosCargosRepository
+    {
+        return $getShared
+            ? static::getSharedInstance('processosCargosRepository')
+            : new \App\Repositories\Admin\ProcessosCargosRepository(service('processosCargosModel'));
+    }
+
+    public static function processosCargosService(bool $getShared = true): \App\Services\Admin\ProcessosCargos\ProcessosCargosService
+    {
+        return $getShared
+            ? static::getSharedInstance('processosCargosService')
+            : new \App\Services\Admin\ProcessosCargos\ProcessosCargosService(service('processosCargosRepository'));
+    }
 }

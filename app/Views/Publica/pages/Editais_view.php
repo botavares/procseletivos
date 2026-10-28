@@ -70,14 +70,9 @@
                                 <div class="br-card hover h-100">
                                     <div class="card-header">
                                         <?php 
-                                        // Formata o número do edital com a máscara 012026 para 01/2026
-                                            $ano = substr($edital->ds_numero_edital, -4);            // últimos 4 dígitos → ano
-                                            $numero = substr($edital->ds_numero_edital, 0, -4);      // o que sobra → número do edital
-                                            // remove zeros à esquerda
-                                            $numero = ltrim($numero, "0");
-                                            $editalFormatado = "Edital " .$numero . '/' . $ano;
+                                            $editalFormatado = 'Edital ' . formatarNumeroEdital($edital->ds_numero_edital);
                                         ?>
-                                        <h5 class="card-title bold font-em-1"><?= $editalFormatado; ?></h5>
+                                        <h5 class="card-title bold font-em-1"><?= esc($editalFormatado); ?></h5>
                                     </div>
                                     <div class="card-content text-center bold font-24 font-blue">
                                         <p class="card-text font-em-1"><?= "início: " . esc(date("d/m/Y",strtotime($edital->ds_data_inicial))) ?></p>
@@ -119,12 +114,9 @@
                                 <div class="br-card hover h-100">
                                     <div class="card-header">
                                         <?php 
-                                            $ano = substr($edital->ds_numero_edital, -4);
-                                            $numero = substr($edital->ds_numero_edital, 0, -4);
-                                            $numero = ltrim($numero, "0");
-                                            $editalFormatado = "Edital " .$numero . '/' . $ano;
+                                            $editalFormatado = 'Edital ' . formatarNumeroEdital($edital->ds_numero_edital);
                                         ?>
-                                        <h5 class="card-title bold font-em-1 text-secondary"><?= $editalFormatado; ?></h5>
+                                        <h5 class="card-title bold font-em-1 text-secondary"><?= esc($editalFormatado); ?></h5>
                                     </div>
                                     <div class="card-content text-center bold font-24 text-secondary" style="font-size: 0.95em;">
                                         <p class="card-text font-em-1"><?= "início: " . esc(date("d/m/Y",strtotime($edital->ds_data_inicial))) ?></p>

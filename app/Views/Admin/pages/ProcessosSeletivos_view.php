@@ -59,7 +59,7 @@
 								<tbody>
 									<?php foreach ($processos as $proc): ?>
 										<tr>
-											<td class="text-center"><?= esc($proc->nm_numero_processo . '/' . $proc->nm_ano_processo) ?></td>
+											<td class="text-center"><?= esc(formatarNumeroEdital(($proc->nm_numero_processo ?? '') . ($proc->nm_ano_processo ?? ''))) ?></td>
 											<td class="text-center"><?= esc($proc->situacao_label ?? $proc->nm_situacao) ?></td>
 											<td class="text-center"><?= esc($proc->dt_inicio_inscricao ? date('d/m/Y', strtotime($proc->dt_inicio_inscricao)) : '-') ?></td>
 											<td class="text-center"><?= esc($proc->dt_fim_inscricao ? date('d/m/Y', strtotime($proc->dt_fim_inscricao)) : '-') ?></td>
@@ -70,7 +70,7 @@
 											</td>
 											<td class="text-center">
 												<button type="button" class="btn btn-danger btn-sm deleteItem"
-														data-id="<?php echo $proc->pk_id_processo . '|' . $proc->nm_numero_processo . '/' . $proc->nm_ano_processo ?>">
+														data-id="<?php echo $proc->pk_id_processo . '|' . formatarNumeroEdital(($proc->nm_numero_processo ?? '') . ($proc->nm_ano_processo ?? '')) ?>">
 													<i class="fas fa-trash"></i>
 												</button>
 											</td>

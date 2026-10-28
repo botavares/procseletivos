@@ -59,9 +59,9 @@
 								<tbody>
 									<?php foreach ($documentos as $doc): ?>
 										<tr>
-											<td class="text-center"><?= esc(($doc->nm_numero_processo ?? '') . '/' . ($doc->nm_ano_processo ?? '')) ?></td>
+											<td class="text-center"><?= esc(formatarNumeroEdital(($doc->nm_numero_processo ?? '') . ($doc->nm_ano_processo ?? ''))) ?></td>
 											<td class="text-center"><?= esc($doc->tipo_label ?? 'Desconhecido') ?></td>
-											<td class="text-center"><?= esc(($doc->nm_numero_documento ?? '') . '/' . ($doc->nm_ano_documento ?? '')) ?></td>
+											<td class="text-center"><?= esc(formatarNumeroEdital(($doc->nm_numero_documento ?? '') . ($doc->nm_ano_documento ?? ''))) ?></td>
 											<td><?= esc($doc->ds_codigo_oficial ?? '') ?></td>
 											<td class="text-center">
 												<a class="btn btn-info btn-sm" href="<?php echo base_url_adm('ProcessosDocumentos/formularioAlteracao/' . $doc->pk_id_documento) ?>">

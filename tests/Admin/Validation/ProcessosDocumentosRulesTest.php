@@ -63,7 +63,7 @@ final class ProcessosDocumentosRulesTest extends CIUnitTestCase
         $this->assertFalse($this->rules->arquivo_pdf_condicional('doc.docx', null, $data));
     }
 
-    public function testArquivoPdfCondicionalRejeitaArquivoParaResultadoParcial(): void
+    public function testArquivoPdfCondicionalRejeitaPdfParaResultadoParcial(): void
     {
         $data = ['nm_tipo' => '3'];
         $this->assertFalse($this->rules->arquivo_pdf_condicional('doc.pdf', null, $data));
@@ -72,6 +72,30 @@ final class ProcessosDocumentosRulesTest extends CIUnitTestCase
     public function testArquivoPdfCondicionalAceitaVazioParaResultadoParcial(): void
     {
         $data = ['nm_tipo' => '3'];
+        $this->assertTrue($this->rules->arquivo_pdf_condicional('', null, $data));
+    }
+
+    public function testArquivoPdfCondicionalAceitaPdfParaRepublicacao(): void
+    {
+        $data = ['nm_tipo' => '7'];
+        $this->assertTrue($this->rules->arquivo_pdf_condicional('doc.pdf', null, $data));
+    }
+
+    public function testArquivoPdfCondicionalRejeitaVazioParaRepublicacao(): void
+    {
+        $data = ['nm_tipo' => '7'];
+        $this->assertFalse($this->rules->arquivo_pdf_condicional('', null, $data));
+    }
+
+    public function testArquivoPdfCondicionalRejeitaArquivoParaComunicado(): void
+    {
+        $data = ['nm_tipo' => '6'];
+        $this->assertFalse($this->rules->arquivo_pdf_condicional('doc.pdf', null, $data));
+    }
+
+    public function testArquivoPdfCondicionalAceitaVazioParaComunicado(): void
+    {
+        $data = ['nm_tipo' => '6'];
         $this->assertTrue($this->rules->arquivo_pdf_condicional('', null, $data));
     }
 

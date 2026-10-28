@@ -215,7 +215,7 @@
                     <option value="">Selecione um Edital</option>
                     <?php foreach ($todosEditais as $edital): ?>
                         <option value="<?= $edital->pk_id_edital; ?>">
-                            <?= substr_replace($edital->ds_numero_edital, '/', -4, 0) ?>
+                            <?= formatarNumeroEdital($edital->ds_numero_edital) ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
@@ -255,7 +255,7 @@
                     <option value="">Selecione um Edital</option>
                     <?php foreach ($todosEditais as $edital): ?>
                         <option value="<?= $edital->pk_id_edital; ?>">
-                            <?= substr_replace($edital->ds_numero_edital, '/', -4, 0) ?>
+                            <?= formatarNumeroEdital($edital->ds_numero_edital) ?>
                             <?= ($edital->ds_status == 1) ? ' (Ativo)' : ' (Inativo)' ?>
                         </option>
                     <?php endforeach; ?>
@@ -296,7 +296,7 @@
                     <option value="">Selecione um Edital</option>
                     <?php foreach ($editais as $edital): ?>
                         <option value="<?= $edital->pk_id_edital; ?>">
-                            <?= substr_replace($edital->ds_numero_edital, '/', -4, 0) ?>
+                            <?= formatarNumeroEdital($edital->ds_numero_edital) ?>
                         </option>
                     <?php endforeach; ?>
                 </select>

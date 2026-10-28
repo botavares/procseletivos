@@ -98,7 +98,7 @@ class ProcessosSeletivos extends BaseController
             $dados = $this->service->buscarPorId((int) $config['id']);
             if (!$dados) {
                 return redirect()
-                    ->route('ProcessosSeletivos')
+                    ->route('AdminProcessosSeletivos')
                     ->with('mensagemError', 'Processo Seletivo não encontrado.');
             }
         }
@@ -131,7 +131,7 @@ class ProcessosSeletivos extends BaseController
                 'nm_numero_processo'   => 'required|integer',
                 'nm_ano_processo'      => 'required|integer|ano_atual_ou_futuro',
                 'ds_objeto'            => 'required|string|max_length[255]',
-                'nm_situacao'          => 'required|integer|in_list[1,2,3,4,5]',
+                'nm_situacao'          => 'required|integer|in_list[1,2,3,4,5,6]',
                 'dt_inicio_inscricao'  => 'required|valid_date[d/m/Y]',
                 'dt_fim_inscricao'     => 'required|valid_date[d/m/Y]|data_fim_maior_igual_inicio[dt_inicio_inscricao]',
                 'dt_divulga_resultado' => 'permit_empty|valid_date[d/m/Y]',
@@ -245,12 +245,12 @@ class ProcessosSeletivos extends BaseController
             $this->service->deletar($id);
 
             return redirect()
-                ->route('ProcessosSeletivos')
+                ->route('AdminProcessosSeletivos')
                 ->with('mensagemSuccess', 'Registro excluído com sucesso');
 
         } catch (\Throwable $e) {
             return redirect()
-                ->route('ProcessosSeletivos')
+                ->route('AdminProcessosSeletivos')
                 ->with('mensagemError', $e->getMessage());
         }
     }

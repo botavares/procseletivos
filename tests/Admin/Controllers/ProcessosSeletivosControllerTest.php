@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Admin\Controllers;
 
 use App\Controllers\Admin\ProcessosSeletivos;
-use App\Services\Admin\ProcessosSeletivos\ProcessosSeletivosService;
+use App\Services\ProcessosSeletivos\ProcessosSeletivosService;
 use CodeIgniter\Test\CIUnitTestCase;
 
 /**

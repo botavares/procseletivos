@@ -50,7 +50,7 @@ $routes->post('/Cadastros/registrarDadosClassificatorios', 'Cadastros::registrar
 // Editais
 $routes->get('/ProcessosSeletivos', 'ProcessosSeletivos::index');
 $routes->get('/ProcessosSeletivos/detalhes/(:num)', 'ProcessosSeletivos::detalhes/$1', ['as' => 'detalhesEdital']);
-$routes->get('/ProcessosSeletivos/obterEdital/(:any)', 'ProcessosSeletivos::obterEdital/$1');
+$routes->get('/ProcessosSeletivos/obterEdital/(:any)/(:any)', 'ProcessosSeletivos::obterEdital/$1/$2', ['as' => 'obterEdital']);
 $routes->get('/ProcessosSeletivos/autenticarEdital/(:any)', 'ProcessosSeletivos::autenticarEdital/$1');
 
 // Perguntas Frequentes
@@ -243,7 +243,7 @@ $routes->group('adm', ['namespace' => 'App\Controllers\Admin'], function($routes
     /* ============================================================
      * Processos Seletivos
      * ============================================================ */
-    $routes->get('ProcessosSeletivos', 'ProcessosSeletivos::index', ['as' => 'ProcessosSeletivos']);
+    $routes->get('ProcessosSeletivos', 'ProcessosSeletivos::index', ['as' => 'AdminProcessosSeletivos']);
     $routes->get('ProcessosSeletivos/formularioCadastro', 'ProcessosSeletivos::formularioCadastro', ['as' => 'ProcessosSeletivos.formularioCadastro']);
     $routes->get('ProcessosSeletivos/formularioAlteracao/(:num)', 'ProcessosSeletivos::formularioAlteracao/$1', ['as' => 'ProcessosSeletivos.formularioAlteracao']);
     $routes->post('ProcessosSeletivos/registrar', 'ProcessosSeletivos::registrar');
@@ -265,6 +265,13 @@ $routes->group('adm', ['namespace' => 'App\Controllers\Admin'], function($routes
     $routes->get('ProcessosDocumentos/buscarPorNumeroProcesso/(:num)/(:num)', 'ProcessosDocumentos::buscarPorNumeroProcesso/$1/$2');
     $routes->get('ProcessosDocumentos/buscarPorNumeroDocumentoEAno/(:num)/(:num)', 'ProcessosDocumentos::buscarPorNumeroDocumentoEAno/$1/$2');
     $routes->get('ProcessosDocumentos/buscarPorFaixaDeTempo/(:any)/(:any)', 'ProcessosDocumentos::buscarPorFaixaDeTempo/$1/$2');
+    /* ============================================================
+     * Processos Cargos
+     * ============================================================ */
+    $routes->get('ProcessosCargos', 'ProcessosCargos::index', ['as' => 'ProcessosCargos']);
+    $routes->post('ProcessosCargos/registrar', 'ProcessosCargos::registrar');
+    $routes->post('ProcessosCargos/deletar', 'ProcessosCargos::deletar');
+    $routes->get('ProcessosCargos/buscarPorProcesso/(:num)', 'ProcessosCargos::buscarPorProcesso/$1');
     /* ============================================================
      * Rotas de Configuração de Critérios de Desempate por Cargo
      * ============================================================ */

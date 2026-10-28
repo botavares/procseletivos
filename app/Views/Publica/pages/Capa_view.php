@@ -24,7 +24,7 @@
             <div class="home-hero">
                 <div class="home-hero__top">
                     <div>
-                        <h4><?= esc($processo->ds_nome_secretaria ?? 'SEPLAG') ?> · Processo Seletivo Simplificado nº <?= esc($processo->nm_numero_processo) ?>/<?= esc($processo->nm_ano_processo) ?></h4>
+                        <h4><?= esc($processo->ds_nome_secretaria ?? 'SEPLAG') ?> · Processo Seletivo Simplificado nº <?= esc(formatarNumeroEdital(($processo->nm_numero_processo ?? '') . ($processo->nm_ano_processo ?? ''))) ?></h4>
                         <div class="home-hero__meta">
                             <p style="margin:0 0 6px 0;font-size:13px;color:var(--home-texto2);line-height:1.6"><?= esc($processo->ds_cargos ?? 'Não informado') ?></p>
                             <b>Inscrições de <?= esc(date('d/m/Y', strtotime($processo->dt_inicio_inscricao))) ?> a <?= esc(date('d/m/Y', strtotime($processo->dt_fim_inscricao))) ?></b>

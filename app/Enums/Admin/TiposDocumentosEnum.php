@@ -12,6 +12,7 @@ enum TiposDocumentosEnum: int
     case HOMOLOGACAO        = 4;
     case EDITAL_CONVOCACAO  = 5;
     case COMUNICADO         = 6;
+    case REPUBLICACAO       = 7;
 
     public function label(): string
     {
@@ -22,6 +23,7 @@ enum TiposDocumentosEnum: int
             self::HOMOLOGACAO       => 'Homologação',
             self::EDITAL_CONVOCACAO => 'Edital de Convocação',
             self::COMUNICADO        => 'Comunicado',
+            self::REPUBLICACAO      => 'Republicação Consolidada',
         };
     }
 }

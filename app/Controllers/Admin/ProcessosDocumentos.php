@@ -9,15 +9,18 @@ use App\DTOs\Admin\ProcessosDocumentosDTO;
 use App\Enums\Admin\TiposDocumentosEnum;
 use App\Services\ProcessosDocumentos\ProcessosDocumentosService;
 use App\Models\ProcessosSeletivosModel;
+use App\Models\Admin\SecretariasModel;
 
 class ProcessosDocumentos extends BaseController
 {
     public function __construct(
         protected ?ProcessosDocumentosService $service = null,
         protected ?ProcessosSeletivosModel $processosModel = null,
+        protected ?SecretariasModel $secretariasModel = null,
     ) {
         $this->service ??= service('processosDocumentosService');
         $this->processosModel ??= new ProcessosSeletivosModel();
+        $this->secretariasModel ??= new SecretariasModel();
     }
 
     /* =============================================================
@@ -93,6 +96,7 @@ class ProcessosDocumentos extends BaseController
             'camada1'     => 'pages',
             'camada2'     => 'cadastros',
             'page'        => 'formProcessosDocumentos',
+            'returnTo'    => null,
         ], $config);
 
         $this->validarView($config['camada1'], $config['camada2'], $config['page']);
@@ -148,11 +152,10 @@ class ProcessosDocumentos extends BaseController
 
             $rules = [
                 'fk_processo_referencia'  => 'required|integer',
-                'nm_tipo'                 => 'required|integer|in_list[1,2,3,4,5,6]',
+                'nm_tipo'                 => 'required|integer|in_list[1,2,3,4,5,6,7]',
                 'nm_numero_documento'     => 'required|integer|apenas_numeros',
                 'nm_ano_documento'        => 'required|integer|ano_atual_ou_futuro',
                 'ds_codigo_oficial'       => 'required|string|max_length[255]',
-                'ds_link'                 => 'permit_empty|string|max_length[500]',
                 'ds_arquivo'              => 'permit_empty|arquivo_pdf_condicional',
                 'nm_versao_vigente'       => 'required|integer|versao_vigente_regra',
                 'nm_documento_retificado' => 'required|integer|documento_retificado_regra',
@@ -166,7 +169,7 @@ class ProcessosDocumentos extends BaseController
                 'nm_tipo' => [
                     'required' => 'O campo Tipo é obrigatório.',
                     'integer'  => 'O campo Tipo deve ser um número inteiro.',
-                    'in_list'  => 'O campo Tipo deve ser um valor válido.',
+                    'in_list'  => 'O campo Tipo deve ser um valor válido (1 a 7).',
                 ],
                 'nm_numero_documento' => [
                     'required'      => 'O campo Número do Documento é obrigatório.',
@@ -182,11 +185,8 @@ class ProcessosDocumentos extends BaseController
                     'required'   => 'O campo Código Oficial é obrigatório.',
                     'max_length' => 'O campo Código Oficial deve ter no máximo 255 caracteres.',
                 ],
-                'ds_link' => [
-                    'max_length' => 'O campo Link deve ter no máximo 500 caracteres.',
-                ],
                 'ds_arquivo' => [
-                    'arquivo_pdf_condicional' => 'O arquivo só é permitido para Edital de Abertura ou Retificação e deve ser PDF.',
+                    'arquivo_pdf_condicional' => 'O arquivo PDF é obrigatório para Edital de Abertura, Retificação e Republicação Consolidada.',
                 ],
                 'nm_versao_vigente' => [
                     'required'            => 'O campo Versão Vigente é obrigatório.',
@@ -207,17 +207,66 @@ class ProcessosDocumentos extends BaseController
                     ->with('errors', $this->validator->getErrors());
             }
 
-            // Tratar upload de arquivo
+            $fkProcessoReferencia = (int) $this->request->getPost('fk_processo_referencia');
+            $tipoDocumento = (int) $this->request->getPost('nm_tipo');
+            $idDocumentoAtual = $acao === 'update' ? (int) $this->request->getPost('pk_id_documento') : null;
+
+            // Validar unicidade de Edital de Abertura por processo
+            if ($tipoDocumento === TiposDocumentosEnum::EDITAL_ABERTURA->value) {
+                if ($this->service->existeEditalAbertura($fkProcessoReferencia, $idDocumentoAtual)) {
+                    return redirect()
+                        ->back()
+                        ->withInput()
+                        ->with('mensagemError', 'Ja existe um Edital de Abertura para este processo seletivo.');
+                }
+            }
+
+            // Tratar upload de arquivo - salva em subpastas por tipo
             $arquivoNome = '';
             $arquivoAtual = $acao === 'update' ? ($this->request->getPost('ds_arquivo_atual') ?? '') : '';
             $arquivoUpload = $this->request->getFile('ds_arquivo');
+            $tipoDocumento = (int) $this->request->getPost('nm_tipo');
 
             if ($arquivoUpload && $arquivoUpload->isValid() && !$arquivoUpload->hasMoved()) {
-                $diretorio = WRITEPATH . 'uploads/documentos';
+                // Buscar dados do processo e secretaria para nomenclatura do arquivo
+                $processo = $this->processosModel->find($fkProcessoReferencia);
+                $siglaSecretaria = '';
+                if ($processo) {
+                    $secretaria = $this->secretariasModel->find($processo->fk_id_secretaria);
+                    if ($secretaria) {
+                        $siglaSecretaria = $secretaria->ds_sigla_secretaria ?? '';
+                    }
+                }
+
+                $nmDocumento = (int) $this->request->getPost('nm_numero_documento');
+                $nmAno = (int) $this->request->getPost('nm_ano_documento');
+                $nmProcesso = (int) ($processo->nm_numero_processo ?? 0);
+                $anoProcesso = (int) ($processo->nm_ano_processo ?? 0);
+
+                $novoNome = $this->gerarNomeArquivo(
+                    $tipoDocumento,
+                    $nmDocumento,
+                    $nmAno,
+                    $nmProcesso,
+                    $anoProcesso,
+                    $siglaSecretaria
+                );
+
+                // Mapear tipo para pasta
+                $pastas = [
+                    TiposDocumentosEnum::EDITAL_ABERTURA->value   => 'original',
+                    TiposDocumentosEnum::RETIFICACAO->value       => 'retificacoes',
+                    TiposDocumentosEnum::RESULTADO_PARCIAL->value => 'republicacoes',
+                    TiposDocumentosEnum::HOMOLOGACAO->value       => 'republicacoes',
+                    TiposDocumentosEnum::EDITAL_CONVOCACAO->value => 'republicacoes',
+                    TiposDocumentosEnum::COMUNICADO->value        => 'anexos',
+                    TiposDocumentosEnum::REPUBLICACAO->value      => 'republicacoes',
+                ];
+                $pasta = $pastas[$tipoDocumento] ?? 'anexos';
+                $diretorio = WRITEPATH . 'uploads/editais/' . $pasta;
                 if (!is_dir($diretorio)) {
                     mkdir($diretorio, 0755, true);
                 }
-                $novoNome = $arquivoUpload->getRandomName();
                 $arquivoUpload->move($diretorio, $novoNome);
                 $arquivoNome = $novoNome;
             } else {
@@ -226,15 +275,16 @@ class ProcessosDocumentos extends BaseController
 
             $dto = new ProcessosDocumentosDTO(
                 idDocumento: $acao === 'update' ? (int) $this->request->getPost('pk_id_documento') : null,
-                processoReferencia: (int) $this->request->getPost('fk_processo_referencia'),
-                tipo: (int) $this->request->getPost('nm_tipo'),
+                processoReferencia: $fkProcessoReferencia,
+                tipo: $tipoDocumento,
                 numeroDocumento: (int) $this->request->getPost('nm_numero_documento'),
                 anoDocumento: (int) $this->request->getPost('nm_ano_documento'),
                 codigoOficial: (string) $this->request->getPost('ds_codigo_oficial'),
-                link: (string) ($this->request->getPost('ds_link') ?? ''),
+                link: '',
                 arquivo: $arquivoNome,
                 versaoVigente: (int) $this->request->getPost('nm_versao_vigente'),
                 documentoRetificado: (int) $this->request->getPost('nm_documento_retificado'),
+                dataPublicacao: date('Y-m-d H:i:s'),
             );
 
             if ($acao === 'update' && $dto->idDocumento) {
@@ -302,6 +352,59 @@ class ProcessosDocumentos extends BaseController
     public function buscarPorFaixaDeTempo(string $inicio, string $fim)
     {
         return $this->response->setJSON($this->service->listarPorFaixaDeTempo($inicio, $fim));
+    }
+
+    /* =====================================================
+     * GERENCIAMENTO DE NOMENCLATURA DE ARQUIVOS
+     * ===================================================== */
+    private function gerarNomeArquivo(int $tipo, int $numeroDocumento, int $anoDocumento, int $numeroProcesso, int $anoProcesso, string $siglaSecretaria): string
+    {
+        $sigla = $this->sanitizarNomeArquivo($siglaSecretaria);
+
+        $slugs = [
+            TiposDocumentosEnum::EDITAL_ABERTURA->value   => 'edital_abertura',
+            TiposDocumentosEnum::RETIFICACAO->value       => 'retificacao',
+            TiposDocumentosEnum::RESULTADO_PARCIAL->value => 'resultado_parcial',
+            TiposDocumentosEnum::HOMOLOGACAO->value       => 'homologacao',
+            TiposDocumentosEnum::EDITAL_CONVOCACAO->value => 'edital_convocacao',
+            TiposDocumentosEnum::COMUNICADO->value        => 'comunicado',
+            TiposDocumentosEnum::REPUBLICACAO->value      => 'republicacao',
+        ];
+
+        $slug = strtoupper($slugs[$tipo] ?? 'documento');
+
+        $numeroDocFmt = str_pad((string) $numeroDocumento, 2, '0', STR_PAD_LEFT);
+        $numeroProcFmt = str_pad((string) $numeroProcesso, 2, '0', STR_PAD_LEFT);
+
+        if ($tipo === TiposDocumentosEnum::EDITAL_ABERTURA->value) {
+            return sprintf(
+                '%s_PSS_%s_%s_%s.pdf',
+                $slug,
+                $sigla,
+                $numeroProcFmt,
+                $anoProcesso
+            );
+        }
+
+        return sprintf(
+            '%s_%s_%s_PSS_%s_%s_%s.pdf',
+            $slug,
+            $numeroDocFmt,
+            $anoDocumento,
+            $sigla,
+            $numeroProcFmt,
+            $anoProcesso
+        );
+    }
+
+    private function sanitizarNomeArquivo(string $nome): string
+    {
+        $nome = mb_strtoupper($nome, 'UTF-8');
+        // Remove acentos
+        $nome = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $nome);
+        // Remove qualquer caractere que nao seja letra, numero, underscore ou hifen
+        $nome = preg_replace('/[^A-Z0-9_-]/', '', $nome);
+        return $nome;
     }
 
     /* =====================================================

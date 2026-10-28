@@ -71,14 +71,11 @@ class HomeService
             ];
         }
 
-        $ano = substr($editaisCursos->ds_numero_edital, -4);
-        $numero = ltrim(substr($editaisCursos->ds_numero_edital, 0, -4), "0");
-
         return [
             'layout' => 'Publica/layoutLogado',
             'labelCaption' => 'Seus dados',
             'dataSession' => $usuario,
-            'edital' => $numero . '/' . $ano,
+            'edital' => formatarNumeroEdital($editaisCursos->ds_numero_edital),
             'status' => 'vinculado',
         ];
     }

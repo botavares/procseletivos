@@ -100,16 +100,43 @@ Painéis
     <!-- Edital e retificações -->
     <h4 class="home-sub">Edital e retificações</h4>
     <div class="home-box" style="padding:4px 18px">
-        <div class="home-doc">
-            <div>
-                <div class="home-doc__d">
-                    <b>Edital nº <?= esc($processoNum) ?></b> — versão original
-                    <span class="home-mini home-mini--vig">VIGENTE</span>
+        <?php if (!empty($editais) || !empty($retificacoes)) : ?>
+            <?php foreach ($editais as $edital) : ?>
+                <div class="home-doc">
+                    <div>
+                        <div class="home-doc__d">
+                            <b>Edital nº <?= esc($edital['numero_formatado']) ?></b> — versão original
+                            <?php if ($edital['vigente']) : ?>
+                                <span class="home-mini home-mini--vig">VIGENTE</span>
+                            <?php endif; ?>
+                        </div>
+                        <div class="home-doc__dt">Código oficial: <?= esc($edital['codigo']) ?></div>
+                    </div>
+                    <?php if (!empty($edital['arquivo'])) : ?>
+                        <a href="<?= site_url('ProcessosSeletivos/obterEdital/original/' . $edital['arquivo']) ?>" class="home-btn home-btn--outline">Ver edital (PDF) ↗</a>
+                    <?php endif; ?>
                 </div>
-                <div class="home-doc__dt">Publicado no Diário Oficial dos Municípios · <a href="#">ver publicação ↗</a></div>
-            </div>
-            <a href="#" class="home-btn home-btn--outline">Ver edital (PDF) ↗</a>
-        </div>
+            <?php endforeach; ?>
+            
+            <?php foreach ($retificacoes as $ret) : ?>
+                <div class="home-doc">
+                    <div>
+                        <div class="home-doc__d">
+                            <b>Retificação nº <?= esc($ret['numero_formatado']) ?></b>
+                            <?php if ($ret['vigente']) : ?>
+                                <span class="home-mini home-mini--vig">VIGENTE</span>
+                            <?php endif; ?>
+                        </div>
+                        <div class="home-doc__dt">Código oficial: <?= esc($ret['codigo']) ?></div>
+                    </div>
+                    <?php if (!empty($ret['arquivo'])) : ?>
+                        <a href="<?= site_url('ProcessosSeletivos/obterEdital/retificacoes/' . $ret['arquivo']) ?>" class="home-btn home-btn--outline">Ver retificação (PDF) ↗</a>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <div class="home-vazio" style="border:0; padding: 20px 0;">Nenhum documento publicado ainda.</div>
+        <?php endif; ?>
     </div>
 
     <!-- Cargos ofertados -->
@@ -157,15 +184,16 @@ Painéis
                 <div class="home-doc">
                     <div>
                         <div class="home-doc__d">
-                            <b><?= esc($r['t'] ?? 'Resultado') ?></b>
-                            <span class="home-mini home-mini--vig">VIGENTE</span>
+                            <b><?= esc($r['tipo']) ?> nº <?= esc($r['numero_formatado']) ?></b>
+                            <?php if ($r['vigente']) : ?>
+                                <span class="home-mini home-mini--vig">VIGENTE</span>
+                            <?php endif; ?>
                         </div>
-                        <div class="home-doc__dt">
-                            <?= esc($r['tp'] ?? '') ?> · publicado em <?= esc($r['dt'] ?? '') ?>
-                            · <a href="#">ver publicação ↗</a>
-                        </div>
+                        <div class="home-doc__dt">Código oficial: <?= esc($r['codigo']) ?></div>
                     </div>
-                    <span class="home-btn home-btn--outline">Abrir (PDF) ↗</span>
+                    <?php if (!empty($r['arquivo'])) : ?>
+                        <a href="<?= site_url('ProcessosSeletivos/obterEdital/republicacoes/' . $r['arquivo']) ?>" class="home-btn home-btn--outline">Abrir (PDF) ↗</a>
+                    <?php endif; ?>
                 </div>
             <?php endforeach; ?>
         </div>

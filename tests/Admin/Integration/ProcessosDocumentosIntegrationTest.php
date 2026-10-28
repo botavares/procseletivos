@@ -8,7 +8,7 @@ use App\DTOs\Admin\ProcessosDocumentosDTO;
 use App\Enums\Admin\TiposDocumentosEnum;
 use App\Models\Admin\ProcessosDocumentosModel;
 use App\Services\Admin\LogsService;
-use App\Services\Admin\ProcessosDocumentos\ProcessosDocumentosService;
+use App\Services\ProcessosDocumentos\ProcessosDocumentosService;
 use CodeIgniter\Test\CIUnitTestCase;
 
 /**
@@ -56,6 +56,7 @@ final class ProcessosDocumentosIntegrationTest extends CIUnitTestCase
                 ds_arquivo TEXT NOT NULL,
                 nm_versao_vigente INTEGER NOT NULL DEFAULT 0,
                 nm_documento_retificado INTEGER NOT NULL DEFAULT 0,
+                dt_data_publicacao TEXT,
                 is_deletado TEXT
             )
         ");
@@ -103,6 +104,7 @@ final class ProcessosDocumentosIntegrationTest extends CIUnitTestCase
             arquivo: 'doc.pdf',
             versaoVigente: 1,
             documentoRetificado: 0,
+            dataPublicacao: '2026-10-28 10:00:00',
         );
 
         $id = $this->service->criar($dto);
@@ -130,6 +132,7 @@ final class ProcessosDocumentosIntegrationTest extends CIUnitTestCase
             arquivo: 'doc.pdf',
             versaoVigente: 1,
             documentoRetificado: 0,
+            dataPublicacao: '2026-10-28 10:00:00',
         );
 
         $id = $this->service->criar($dto);
@@ -145,6 +148,7 @@ final class ProcessosDocumentosIntegrationTest extends CIUnitTestCase
             arquivo: 'doc.pdf',
             versaoVigente: 1,
             documentoRetificado: 0,
+            dataPublicacao: '2026-10-28 11:00:00',
         );
 
         $resultado = $this->service->atualizar($id, $dtoAtualizado);
@@ -168,6 +172,7 @@ final class ProcessosDocumentosIntegrationTest extends CIUnitTestCase
             arquivo: 'doc.pdf',
             versaoVigente: 1,
             documentoRetificado: 0,
+            dataPublicacao: '2026-10-28 10:00:00',
         );
 
         $id = $this->service->criar($dto);

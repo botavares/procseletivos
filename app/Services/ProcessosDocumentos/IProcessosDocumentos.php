@@ -18,4 +18,6 @@ interface IProcessosDocumentos
     public function listarPorNumeroProcesso(int $numero, int $ano): array;
     public function listarPorNumeroDocumentoEAno(int $numero, int $ano): array;
     public function listarPorFaixaDeTempo(string $dataInicio, string $dataFim): array;
+    public function listarPorProcessoId(int $idProcesso): array;
+    public function existeEditalAbertura(int $idProcesso, ?int $excetoId = null): bool;
 }

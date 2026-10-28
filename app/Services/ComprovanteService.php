@@ -69,7 +69,7 @@ class ComprovanteService implements IComprovanteService
             'brasao'        => imageToBase64(ROOTPATH . '/public/publica/external/img/brasao.png'),
             'fundo'         => imageToBase64(ROOTPATH . '/public/publica/external/img/fundo.jpg'),
             'nomeCargo'     => $nomeCargo->ds_nome_cargo ?? null,
-            'edital'        => $this->formatarNumeroEdital($dadosEdital->ds_numero_edital ?? ''),
+            'edital'        => 'Edital ' . formatarNumeroEdital($dadosEdital->ds_numero_edital ?? ''),
             'protocolo'     => $dadosProtocolos->ds_protocolo,
             'dadosPessoais' => $dadosCandidatos,
             'nascimento'    => date('d/m/Y', strtotime($dadosCandidatos->ds_nascimento)),
@@ -77,12 +77,5 @@ class ComprovanteService implements IComprovanteService
             'dataCadastro'  => date('d/m/Y', strtotime($dadosProtocolos->ds_data_protocolo)),
             'horaCadastro'  => date('H:i:s', strtotime($dadosProtocolos->ds_hora_protocolo)),
         ];
-    }
-
-    private function formatarNumeroEdital(string $numero): string
-    {
-        $ano = substr($numero, -4);
-        $num = ltrim(substr($numero, 0, -4), "0");
-        return "Edital {$num}/{$ano}";
     }
 }

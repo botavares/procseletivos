@@ -11,15 +11,7 @@ class RecursoFormatter
      */
     public static function formatarNumeroEdital(string $dsNumeroEdital): string
     {
-        if (empty($dsNumeroEdital)) {
-            return '';
-        }
-
-        $ano = substr($dsNumeroEdital, -4);
-        $numero = substr($dsNumeroEdital, 0, -4);
-        $numero = ltrim($numero, '0');
-
-        return $numero . '/' . $ano;
+        return \formatarNumeroEdital($dsNumeroEdital) ?? '';
     }
 
     /**

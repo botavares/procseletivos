@@ -25,6 +25,7 @@ final class ProcessosDocumentosDTOTest extends CIUnitTestCase
             'ds_arquivo'              => 'arquivo.pdf',
             'nm_versao_vigente'       => 2,
             'nm_documento_retificado' => 0,
+            'dt_data_publicacao'      => '2026-10-28 10:00:00',
         ];
 
         $dto = ProcessosDocumentosDTO::fromArray($data);
@@ -39,6 +40,7 @@ final class ProcessosDocumentosDTOTest extends CIUnitTestCase
         $this->assertSame('arquivo.pdf', $dto->arquivo);
         $this->assertSame(2, $dto->versaoVigente);
         $this->assertSame(0, $dto->documentoRetificado);
+        $this->assertSame('2026-10-28 10:00:00', $dto->dataPublicacao);
     }
 
     public function testToArrayRetornaEstruturaCorreta(): void
@@ -54,6 +56,7 @@ final class ProcessosDocumentosDTOTest extends CIUnitTestCase
             arquivo: '',
             versaoVigente: 1,
             documentoRetificado: 0,
+            dataPublicacao: '2026-10-28 10:00:00',
         );
 
         $array = $dto->toArray();
@@ -61,8 +64,10 @@ final class ProcessosDocumentosDTOTest extends CIUnitTestCase
         $this->assertArrayHasKey('pk_id_documento', $array);
         $this->assertArrayHasKey('fk_processo_referencia', $array);
         $this->assertArrayHasKey('nm_tipo', $array);
+        $this->assertArrayHasKey('dt_data_publicacao', $array);
         $this->assertNull($array['pk_id_documento']);
         $this->assertSame(1, $array['fk_processo_referencia']);
+        $this->assertSame('2026-10-28 10:00:00', $array['dt_data_publicacao']);
     }
 
     public function testFromArraySemIdDocumento(): void

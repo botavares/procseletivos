@@ -21,7 +21,7 @@
     <option value="">Editais</option>
     <?php foreach ($editais as $edital): ?>
       <option value="<?= esc($edital->pk_id_edital) ?>">
-        <?= esc(substr_replace($edital->ds_numero_edital, '/', -4, 0)) ?>
+        <?= esc(formatarNumeroEdital($edital->ds_numero_edital)) ?>
       </option>
     <?php endforeach ?>
   </select>

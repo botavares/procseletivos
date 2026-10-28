@@ -117,11 +117,7 @@
       <?php 
         foreach($cargosAtivos as $cargo){
             if($cargo->fk_id_cargo != null){
-                $ano = substr($cargo->ds_numero_edital, -4);            // últimos 4 dígitos → ano
-                        $numero = substr($cargo->ds_numero_edital, 0, -4);      // o que sobra → número do edital
-                        // remove zeros à esquerda
-                        $numero = ltrim($numero, "0");
-                        $numeroEdital =  $numero . '/' . $ano;
+                $numeroEdital = formatarNumeroEdital($cargo->ds_numero_edital);
       ?>
     <div class="col-12 col-md-6 col-lg-6 mb-3">
       <a href="<?= base_url("Cadastros/dadosClassificatorios/".$cargo->fk_id_edital."/".$cargo->fk_id_cargo."/".$candidato) ?>" class="text-decoration-none">
@@ -161,9 +157,7 @@
   <legend>Meus Cadastros</legend>
 
   <?php foreach($recursos as $recurso): 
-      $anoRec = substr($recurso->ds_numero_edital, -4);
-      $numeroRec = ltrim(substr($recurso->ds_numero_edital, 0, -4), "0");
-      $numeroEditalRec = $numeroRec . '/' . $anoRec;
+      $numeroEditalRec = formatarNumeroEdital($recurso->ds_numero_edital);
   ?>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
       <a href="<?= base_url("Cadastros/detalhesRecurso/" . $recurso->ds_numero_protocolo) ?>" class="text-decoration-none">
@@ -197,11 +191,7 @@
     foreach($protocolos as $protocolo){
         
        
-        $ano = substr($protocolo->ds_numero_edital, -4);            // últimos 4 dígitos → ano
-                $numero = substr($protocolo->ds_numero_edital, 0, -4);      // o que sobra → número do edital
-                // remove zeros à esquerda
-                $numero = ltrim($numero, "0");
-                $numeroEdital =  $numero . '/' . $ano;
+        $numeroEdital = formatarNumeroEdital($protocolo->ds_numero_edital);
   ?>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
       <a href="<?= base_url("Cadastros/gerarComprovante/".$protocolo->fk_id_edital."/".$protocolo->fk_id_cargo."/".$protocolo->fk_id_cadastrado) ?>" class="text-decoration-none">

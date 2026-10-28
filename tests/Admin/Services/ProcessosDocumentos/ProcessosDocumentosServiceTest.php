@@ -7,7 +7,7 @@ namespace Tests\Admin\Services\ProcessosDocumentos;
 use App\DTOs\Admin\ProcessosDocumentosDTO;
 use App\Models\Admin\ProcessosDocumentosModel;
 use App\Services\Admin\LogsService;
-use App\Services\Admin\ProcessosDocumentos\ProcessosDocumentosService;
+use App\Services\ProcessosDocumentos\ProcessosDocumentosService;
 use CodeIgniter\Test\CIUnitTestCase;
 
 /**
@@ -174,6 +174,7 @@ final class ProcessosDocumentosServiceTest extends CIUnitTestCase
             arquivo: 'doc.pdf',
             versaoVigente: 1,
             documentoRetificado: 0,
+            dataPublicacao: '2026-10-28 10:00:00',
         );
     }
 }

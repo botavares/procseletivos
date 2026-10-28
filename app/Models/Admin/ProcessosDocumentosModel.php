@@ -26,17 +26,18 @@ class ProcessosDocumentosModel extends Model
         'ds_arquivo',
         'nm_versao_vigente',
         'nm_documento_retificado',
+        'dt_data_publicacao',
     ];
 
     protected $validationRules = [
         'fk_processo_referencia'  => 'required|integer',
-        'nm_tipo'                 => 'required|integer|in_list[1,2,3,4,5,6]',
+        'nm_tipo'                 => 'required|integer|in_list[1,2,3,4,5,6,7]',
         'nm_numero_documento'     => 'required|integer',
         'nm_ano_documento'        => 'required|integer',
         'ds_codigo_oficial'       => 'required|string|max_length[255]',
         'ds_link'                 => 'permit_empty|string|max_length[500]',
         'ds_arquivo'              => 'permit_empty|string|max_length[255]',
-        'nm_versao_vigente'       => 'required|integer',
+        'nm_versao_vigente'       => 'required|integer|in_list[0,1]',
         'nm_documento_retificado' => 'required|integer',
     ];
 
@@ -135,5 +136,33 @@ class ProcessosDocumentosModel extends Model
                     ->where('tb_processos.fk_id_secretaria', $idSecretaria)
                     ->orderBy('tb_processos_documentos.pk_id_documento', 'DESC')
                     ->findAll();
+    }
+
+    /**
+     * Lista documentos vinculados a um processo pelo ID do processo.
+     */
+    public function porProcessoId(int $idProcesso): array
+    {
+        return $this->where('fk_processo_referencia', $idProcesso)
+                    ->where('is_deletado IS NULL')
+                    ->orderBy('nm_tipo', 'ASC')
+                    ->orderBy('nm_numero_documento', 'DESC')
+                    ->findAll();
+    }
+
+    /**
+     * Verifica se j� existe um documento do tipo Edital de Abertura (1) para o processo informado.
+     */
+    public function existeEditalAbertura(int $idProcesso, ?int $excetoId = null): bool
+    {
+        $builder = $this->where('fk_processo_referencia', $idProcesso)
+                       ->where('nm_tipo', 1)
+                       ->where('is_deletado IS NULL');
+
+        if ($excetoId) {
+            $builder->where('pk_id_documento !=', $excetoId);
+        }
+
+        return $builder->countAllResults() > 0;
     }
 }

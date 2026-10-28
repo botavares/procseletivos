@@ -7,7 +7,7 @@ namespace Tests\Admin\Services\ProcessosSeletivos;
 use App\DTOs\Admin\ProcessosSeletivosDTO;
 use App\Models\ProcessosSeletivosModel;
 use App\Services\Admin\LogsService;
-use App\Services\Admin\ProcessosSeletivos\ProcessosSeletivosService;
+use App\Services\ProcessosSeletivos\ProcessosSeletivosService;
 use CodeIgniter\Test\CIUnitTestCase;
 
 /**

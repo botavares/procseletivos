@@ -17,6 +17,7 @@ readonly class ProcessosDocumentosDTO
         public string $arquivo,
         public int $versaoVigente,
         public int $documentoRetificado,
+        public ?string $dataPublicacao = null,
     ) {}
 
     public static function fromArray(array $data): self
@@ -32,6 +33,7 @@ readonly class ProcessosDocumentosDTO
             arquivo: (string) ($data['ds_arquivo'] ?? ''),
             versaoVigente: (int) ($data['nm_versao_vigente'] ?? 0),
             documentoRetificado: (int) ($data['nm_documento_retificado'] ?? 0),
+            dataPublicacao: isset($data['dt_data_publicacao']) ? (string) $data['dt_data_publicacao'] : null,
         );
     }
 
@@ -48,6 +50,7 @@ readonly class ProcessosDocumentosDTO
             'ds_arquivo'              => $this->arquivo,
             'nm_versao_vigente'       => $this->versaoVigente,
             'nm_documento_retificado' => $this->documentoRetificado,
+            'dt_data_publicacao'      => $this->dataPublicacao,
         ];
     }
 }

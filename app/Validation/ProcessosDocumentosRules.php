@@ -36,21 +36,27 @@ class ProcessosDocumentosRules
     }
 
     /**
-     * Arquivo só pode ser preenchido se o tipo for EDITAL_ABERTURA ou RETIFICACAO.
-     * E deve ser PDF.
+     * Arquivo é obrigatório para EDITAL_ABERTURA, RETIFICACAO e REPUBLICACAO.
+     * Deve ser PDF.
      */
     public function arquivo_pdf_condicional(?string $value = null, ?string $params = null, array $data = []): bool
     {
         $tipo = isset($data['nm_tipo']) ? (int) $data['nm_tipo'] : 0;
 
-        // Se não é EDITAL_ABERTURA nem RETIFICACAO, o arquivo deve estar vazio
-        if ($tipo !== TiposDocumentosEnum::EDITAL_ABERTURA->value && $tipo !== TiposDocumentosEnum::RETIFICACAO->value) {
+        $tiposComArquivoObrigatorio = [
+            TiposDocumentosEnum::EDITAL_ABERTURA->value,
+            TiposDocumentosEnum::RETIFICACAO->value,
+            TiposDocumentosEnum::REPUBLICACAO->value,
+        ];
+
+        // Se não é um tipo com arquivo obrigatório, o arquivo deve estar vazio
+        if (!in_array($tipo, $tiposComArquivoObrigatorio, true)) {
             return $value === null || $value === '';
         }
 
-        // Se é EDITAL_ABERTURA ou RETIFICACAO e o arquivo está vazio, é válido (pode ser opcional)
+        // Se é um tipo com arquivo obrigatório e o arquivo está vazio, é inválido
         if ($value === null || $value === '') {
-            return true;
+            return false;
         }
 
         // Deve terminar com .pdf
