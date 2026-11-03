@@ -75,6 +75,24 @@
                                     </div>
                                 </div>
 
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label>Cargo vinculado</label>
+                                        <select class="form-control" name="fk_id_cargo">
+                                            <option value="">Todas as experiências</option>
+                                            <?php foreach ($cargos as $cargo): ?>
+                                                <option value="<?= esc($cargo->pk_id_cargo) ?>"
+                                                    <?= (old('fk_id_cargo', $dados->fk_id_cargo ?? '') == $cargo->pk_id_cargo) ? 'selected' : '' ?>>
+                                                    <?= esc($cargo->ds_nome_cargo) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <small class="form-text text-muted">
+                                            Selecione o cargo ao qual esta experiência será vinculada. Deixe em branco para que a experiência esteja disponível para todos os cargos.
+                                        </small>
+                                    </div>
+                                </div>
+
                                 <hr>
 
                                 <!-- FOOTER -->

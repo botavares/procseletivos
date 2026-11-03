@@ -13,6 +13,8 @@ class AperfeicoamentosModel extends Model{
     ];
 
     protected $returnType = 'object';
+    protected $useTimestamps = false;
+    protected $useSoftDeletes = false;
 
     public function listarStatusAperfeicoamentos($cargo = null, $status = null){
     return $this->db->table('tb_cargos_aperfeicoamentos_editais')
@@ -40,5 +42,7 @@ class AperfeicoamentosModel extends Model{
         ->getResultArray();
     }
 
-
+    public function listarAperfeicoamentosPorCargo(int $idCargo){
+        return service('aperfeicoamentosCargosElegiveisModel')->listarAperfeicoamentosPorCargo($idCargo);
+    }
 }

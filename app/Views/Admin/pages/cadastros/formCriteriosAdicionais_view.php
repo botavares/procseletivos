@@ -50,6 +50,24 @@
                                                required>
                                     </div>
                                 </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label>Cargo vinculado</label>
+                                        <select class="form-control" name="fk_id_cargo">
+                                            <option value="">Todos os critérios</option>
+                                            <?php foreach ($cargos as $cargo): ?>
+                                                <option value="<?= esc($cargo->pk_id_cargo) ?>"
+                                                    <?= (old('fk_id_cargo', $dados->fk_id_cargo ?? '') == $cargo->pk_id_cargo) ? 'selected' : '' ?>>
+                                                    <?= esc($cargo->ds_nome_cargo) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <small class="form-text text-muted">
+                                            Selecione o cargo ao qual este critério será vinculado. Deixe em branco para que o critério esteja disponível para todos os cargos.
+                                        </small>
+                                    </div>
+                                </div>
                                 <hr>
                                 <div class="text-right mt-4">
                                     <button type="reset" class="btn btn-secondary mr-2">

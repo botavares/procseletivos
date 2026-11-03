@@ -21,6 +21,10 @@ class CriterioAdicionalService
         return $this->transactional(function () use ($data) {
             $model = new CriteriosAdicionaisModel();
 
+            if (isset($data['fk_id_cargo']) && $data['fk_id_cargo'] === '') {
+                $data['fk_id_cargo'] = null;
+            }
+
             if (! $model->save($data)) {
                 throw new \RuntimeException(
                     'Erro ao salvar Critério Adicional: ' . implode('; ', $model->errors())
@@ -41,6 +45,10 @@ class CriterioAdicionalService
     {
         $this->transactional(function () use ($id, $data) {
             $model = new CriteriosAdicionaisModel();
+
+            if (isset($data['fk_id_cargo']) && $data['fk_id_cargo'] === '') {
+                $data['fk_id_cargo'] = null;
+            }
 
             if (! $model->update($id, $data)) {
                 throw new \RuntimeException('Erro ao atualizar critério adicional');

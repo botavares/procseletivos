@@ -18,7 +18,7 @@
                         <!-- TOOLBOX -->
                         <div class="card-toolbox mt-2 mb-2 d-flex flex-row">
                             <div class="mb-2 ml-1 mr-2">
-                                <a href="<?= base_url_adm('Cargos') ?>"
+                                <a href="<?= !empty($idProcesso) ? base_url_adm('ProcessosCargos/classificatorios/' . $idProcesso . '/' . ($cargo->pk_id_cargo ?? 0)) : base_url_adm('Cargos') ?>"
                                    class="btn btn-warning btn-sm">
                                     <i class="fas fa-arrow-left mr-1"></i> Voltar
                                 </a>
@@ -45,6 +45,7 @@
 
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="fk_id_cargo" value="<?= esc($cargo->pk_id_cargo) ?>">
+                                <input type="hidden" name="fk_id_processo" value="<?= esc($idProcesso ?? '') ?>">
                                 <input type="hidden" name="pk_id_cargos_experiencia" id="pk_id_cargos_experiencia" value="">
                                 <input type="hidden" name="acao" id="acao" value="<?= esc($acao) ?>">
 

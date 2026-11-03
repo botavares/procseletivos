@@ -56,6 +56,7 @@
 									<?php foreach ($criterios as $item): ?>
 										<tr>
 											<td><?php echo esc($item->ds_nome_criterio) ?></td>
+											<td class="text-center"><?php echo esc($item->ds_nome_cargo ?? 'Todos os critérios') ?></td>
 											<td class="text-center">
 												<a class="btn btn-info btn-sm" href="<?php echo base_url_adm('/CriteriosAdicionais/formularioAlteracao/' . $item->pk_id_criterio) ?>">
 													<i class="fas fa-edit"></i>

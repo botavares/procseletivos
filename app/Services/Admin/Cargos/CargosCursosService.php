@@ -29,10 +29,15 @@ class CargosCursosService
                 return (int) $pk;
             }
 
-            $existente = $model
+            $builderExistente = $model
                 ->where('fk_id_cargo', $data['fk_id_cargo'])
-                ->where('fk_id_curso', $data['fk_id_curso'])
-                ->first();
+                ->where('fk_id_curso', $data['fk_id_curso']);
+
+            if (isset($data['fk_id_processos_seletivo']) && $data['fk_id_processos_seletivo'] !== '' && $data['fk_id_processos_seletivo'] !== null) {
+                $builderExistente->where('fk_id_processos_seletivo', $data['fk_id_processos_seletivo']);
+            }
+
+            $existente = $builderExistente->first();
 
             if ($existente) {
                 $id = is_array($existente) ? $existente['pk_id_cargo_aperfeicoamento'] : $existente->pk_id_cargo_aperfeicoamento;

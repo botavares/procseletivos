@@ -62,6 +62,23 @@
                                         </select>
                                     </div>
                                 </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label>Cargos elegíveis</label>
+                                        <select class="form-control" name="cargos_vinculados[]" multiple size="8">
+                                            <?php foreach ($cargos as $cargo): ?>
+                                                <option value="<?= esc($cargo->pk_id_cargo) ?>"
+                                                    <?= in_array((int) $cargo->pk_id_cargo, $cargosVinculadosIds, true) ? 'selected' : '' ?>>
+                                                    <?= esc($cargo->ds_nome_cargo) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <small class="form-text text-muted">
+                                            Selecione um ou mais cargos aos quais esta escolaridade será elegível. Deixe em branco para que a escolaridade esteja disponível para todos os cargos.
+                                        </small>
+                                    </div>
+                                </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label>Instrução</label>

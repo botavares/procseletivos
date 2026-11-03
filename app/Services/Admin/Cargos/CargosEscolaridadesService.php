@@ -29,10 +29,15 @@ class CargosEscolaridadesService
                 return (int) $pk;
             }
 
-            $existente = $model
+            $builderExistente = $model
                 ->where('fk_id_cargo', $data['fk_id_cargo'])
-                ->where('fk_id_escolaridade', $data['fk_id_escolaridade'])
-                ->first();
+                ->where('fk_id_escolaridade', $data['fk_id_escolaridade']);
+
+            if (isset($data['fk_id_processo_seletivo']) && $data['fk_id_processo_seletivo'] !== '' && $data['fk_id_processo_seletivo'] !== null) {
+                $builderExistente->where('fk_id_processo_seletivo', $data['fk_id_processo_seletivo']);
+            }
+
+            $existente = $builderExistente->first();
 
             if ($existente) {
                 $id = is_array($existente) ? $existente['pk_id_cargos_escolaridade'] : $existente->pk_id_cargos_escolaridade;

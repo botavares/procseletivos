@@ -61,6 +61,7 @@
 											<td><?php echo esc($item->ds_nome_escolaridade) ?></td>
 											<td><?php echo esc($item->ds_instrucao) ?></td>
 											<td class="text-center"><?php echo esc($item->fk_id_nivel) ?></td>
+											<td class="text-center"><?php echo esc($item->ds_nome_cargo ?? 'Todas as escolaridades') ?></td>
 											<td class="text-center">
 												<a class="btn btn-info btn-sm" href="<?php echo base_url_adm('/Escolaridades/formularioAlteracao/' . $item->pk_id_escolaridade) ?>">
 													<i class="fas fa-edit"></i>

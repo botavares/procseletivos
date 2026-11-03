@@ -39,3 +39,32 @@ if (!function_exists('formatarNumeroEdital')) {
         return $numero . '/' . $ano;
     }
 }
+
+if (!function_exists('pasta_tipo_documento')) {
+    /**
+     * Retorna o nome da pasta de uploads para um tipo de documento.
+     */
+    function pasta_tipo_documento(int $tipo): string
+    {
+        return match ($tipo) {
+            1       => 'original',
+            2       => 'retificacoes',
+            3, 4, 5, 7 => 'republicacoes',
+            6       => 'anexos',
+            default => 'anexos',
+        };
+    }
+}
+
+if (!function_exists('url_diario_oficial')) {
+    /**
+     * Monta o link do Diário Oficial a partir do código oficial.
+     */
+    function url_diario_oficial(?string $codigo): string
+    {
+        if (empty($codigo)) {
+            return '#';
+        }
+        return rtrim(DIARIO_OFICIAL_URL_BASE, '/') . '/' . rawurlencode($codigo);
+    }
+}

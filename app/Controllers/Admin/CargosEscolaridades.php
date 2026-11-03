@@ -30,8 +30,14 @@ class CargosEscolaridades extends BaseController{
       
     }
 
-    public function formularioCargosEscolaridade($id, $camada1 = 'pages', $camada2 = 'cadastros', $page = 'formCargosEscolaridade'){
+    public function formularioCargosEscolaridade($idProcesso, $id = null, $camada1 = 'pages', $camada2 = 'cadastros', $page = 'formCargosEscolaridade'){
         $this->validarSessao();
+
+        // Compatibilidade com chamada antiga: /formularioCargosEscolaridade/{cargo}
+        if ($id === null) {
+            $id = $idProcesso;
+            $idProcesso = null;
+        }
 
         $cargo = $this->cargosModel->find($id);
         
@@ -41,17 +47,18 @@ class CargosEscolaridades extends BaseController{
                 ->with('mensagemError', 'Cargo não encontrado');
         }
 
-        $escolaridades = $this->escolaridadesModel->listarEscolaridadesOrdenadas();
+        $escolaridades = $this->escolaridadesModel->listarEscolaridadesPorCargo((int) $id);
         
         // Form sempre inicia em branco para nova associação
         $action = 'create';
         $cargoEscolaridade = null;
 
-        // Busca TODAS as escolaridades já associadas a esse cargo
-        $escolaridadesDoCargo = $this->cargosEscolaridadesModel->listarEscolaridadesDoCargo($id);
+        // Busca as escolaridades associadas ao cargo (e ao processo, quando informado)
+        $escolaridadesDoCargo = $this->cargosEscolaridadesModel->listarEscolaridadesDoCargo($id, $idProcesso);
 
         return $this->renderFormulario([
                                         'id'                    => $id,
+                                        'idProcesso'            => $idProcesso,
                                         'acao'                  => $action,
                                         'camada1'               => 'pages',
                                         'camada2'               => 'cadastros',
@@ -131,6 +138,7 @@ class CargosEscolaridades extends BaseController{
             $acao = $this->request->getPost('acao') ?? 'create';
             $data = [
                 'pk_id_cargos_escolaridade' => $this->request->getPost('pk_id_cargos_escolaridade'),
+                'fk_id_processo_seletivo'   => $this->request->getPost('fk_id_processo') ?: null,
                 'fk_id_cargo'               => $this->request->getPost('fk_id_cargo'),
                 'fk_id_escolaridade'         => $this->request->getPost('fk_id_escolaridade'),
                 'ds_pontuacao_minima'      => $this->request->getPost('ds_pontuacao_minima'),
@@ -159,8 +167,15 @@ class CargosEscolaridades extends BaseController{
 
             service('cargosEscolaridadesService')->salvar($data, $acao);
 
+            $idProcesso = $this->request->getPost('fk_id_processo');
+            if (!empty($idProcesso) && is_numeric($idProcesso)) {
+                return redirect()
+                    ->route('CargosEscolaridades.formularioCargosEscolaridade', [(int) $idProcesso, (int) $data['fk_id_cargo']])
+                    ->with('mensagemSuccess', 'Escolaridade associada ao cargo com sucesso');
+            }
+
             return redirect()
-                ->route('CargosEscolaridades.formularioCargosEscolaridade', [$data['fk_id_cargo']])
+                ->route('CargosEscolaridades.formularioCargosEscolaridade.cargo', [(int) $data['fk_id_cargo']])
                 ->with('mensagemSuccess', 'Escolaridade associada ao cargo com sucesso');
 
         } catch (\Exception $e) {

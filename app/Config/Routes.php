@@ -125,19 +125,29 @@ $routes->group('adm', ['namespace' => 'App\Controllers\Admin'], function($routes
     $routes->post('CriteriosAdicionais/registrar', 'CriteriosAdicionais::registrar');
     $routes->get('CriteriosAdicionais/formularioAlteracao/(:num)', 'CriteriosAdicionais::formularioAlteracao/$1', ['as'=>'CriteriosAdicionais.formularioAlteracao']);
     $routes->post('CriteriosAdicionais/deletar', 'CriteriosAdicionais::deletar');
-    $routes->get('CargosExperiencias/formularioCargosExperiencia/(:num)', 'CargosExperiencias::formularioCargosExperiencia/$1', ['as'=>'CargosExperiencias.formularioCargosExperiencia']);
+    $routes->get('CargosExperiencias/formularioCargosExperiencia/(:num)/(:num)', 'CargosExperiencias::formularioCargosExperiencia/$1/$2', ['as'=>'CargosExperiencias.formularioCargosExperiencia']);
+    $routes->get('CargosExperiencias/formularioCargosExperiencia/(:num)', 'CargosExperiencias::formularioCargosExperiencia/$1', ['as'=>'CargosExperiencias.formularioCargosExperiencia.cargo']);
     $routes->post('CargosExperiencias/registrarAssociacaoCargoExperiencia', 'CargosExperiencias::registrarAssociacaoCargoExperiencia');
     $routes->post('CargosExperiencias/deletarAssociacaoCargoExperiencia', 'CargosExperiencias::deletarAssociacaoCargoExperiencia');
     $routes->get('CargosExperiencias/buscarAssociacao/(:num)', 'CargosExperiencias::buscarAssociacao/$1');
-    $routes->get('CargosEscolaridades/formularioCargosEscolaridade/(:num)', 'CargosEscolaridades::formularioCargosEscolaridade/$1', ['as'=>'CargosEscolaridades.formularioCargosEscolaridade']);
+    $routes->get('CargosEscolaridades/formularioCargosEscolaridade/(:num)/(:num)', 'CargosEscolaridades::formularioCargosEscolaridade/$1/$2', ['as'=>'CargosEscolaridades.formularioCargosEscolaridade']);
+    $routes->get('CargosEscolaridades/formularioCargosEscolaridade/(:num)', 'CargosEscolaridades::formularioCargosEscolaridade/$1', ['as'=>'CargosEscolaridades.formularioCargosEscolaridade.cargo']);
     $routes->post('CargosEscolaridades/registrarAssociacaoCargoEscolaridade', 'CargosEscolaridades::registrarAssociacaoCargoEscolaridade');
     $routes->post('CargosEscolaridades/deletarAssociacaoCargoEscolaridade', 'CargosEscolaridades::deletarAssociacaoCargoEscolaridade');
     $routes->get('CargosEscolaridades/buscarAssociacao/(:num)', 'CargosEscolaridades::buscarAssociacao/$1');
-    $routes->get('CargosCursos/formularioCargosCurso/(:num)', 'CargosCursos::formularioCargosCurso/$1', ['as'=>'CargosCursos.formularioCargosCurso']);
+    $routes->get('CargosCursos/formularioCargosCurso/(:num)/(:num)', 'CargosCursos::formularioCargosCurso/$1/$2', ['as'=>'CargosCursos.formularioCargosCurso']);
+    $routes->get('CargosCursos/formularioCargosCurso/(:num)', 'CargosCursos::formularioCargosCurso/$1', ['as'=>'CargosCursos.formularioCargosCurso.cargo']);
     $routes->post('CargosCursos/registrarAssociacaoCargoCursos', 'CargosCursos::registrarAssociacaoCargoCursos');
     $routes->post('CargosCursos/deletarAssociacaoCargoCursos', 'CargosCursos::deletarAssociacaoCargoCursos');
     $routes->get('CargosCursos/buscarAssociacao/(:num)', 'CargosCursos::buscarAssociacao/$1');
-    $routes->get('CargosCriterios/formularioCargosCriterio/(:num)', 'CargosCriterios::formularioCargosCriterio/$1', ['as'=>'CargosCriterios.formularioCargosCriterio']);
+    $routes->get('CargosCriterios/formularioCargosCriterio/(:num)/(:num)', 'CargosCriterios::formularioCargosCriterio/$1/$2', ['as'=>'CargosCriterios.formularioCargosCriterio']);
+    $routes->get('CargosCriterios/formularioCargosCriterio/(:num)', 'CargosCriterios::formularioCargosCriterio/$1', ['as'=>'CargosCriterios.formularioCargosCriterio.cargo']);
+
+    /* =============================================================
+     * PROCESSOS CLASSIFICATÓRIOS
+     * Tela central de acesso aos dados classificatórios de um cargo vinculado a um processo seletivo.
+     ============================================================= */
+    $routes->get('ProcessosCargos/classificatorios/(:num)/(:num)', 'ProcessosCargos::classificatorios/$1/$2', ['as' => 'ProcessosCargos.classificatorios']);
     $routes->post('CargosCriterios/registrarAssociacaoCargoCriterio', 'CargosCriterios::registrarAssociacaoCargoCriterio');
     $routes->post('CargosCriterios/deletarAssociacaoCargoCriterio', 'CargosCriterios::deletarAssociacaoCargoCriterio');
     $routes->get('CargosCriterios/buscarAssociacao/(:num)', 'CargosCriterios::buscarAssociacao/$1');
@@ -257,7 +267,7 @@ $routes->group('adm', ['namespace' => 'App\Controllers\Admin'], function($routes
     $routes->get('ProcessosDocumentos', 'ProcessosDocumentos::index', ['as' => 'ProcessosDocumentos']);
     $routes->get('ProcessosDocumentos/formularioCadastro', 'ProcessosDocumentos::formularioCadastro', ['as' => 'ProcessosDocumentos.formularioCadastro']);
     $routes->get('ProcessosDocumentos/formularioCadastro/(:num)', 'ProcessosDocumentos::formularioCadastro/$1', ['as' => 'ProcessosDocumentos.formularioCadastro.id']);
-    $routes->get('ProcessosDocumentos/formularioCadastro/(:num)/returnTo/(:any)', 'ProcessosDocumentos::formularioCadastro/$1/$2', ['as' => 'ProcessosDocumentos.formularioCadastro.return']);
+    $routes->get('ProcessosDocumentos/formularioCadastro/(:num)/from/(:any)', 'ProcessosDocumentos::formularioCadastro/$1/$2', ['as' => 'ProcessosDocumentos.formularioCadastro.return']);
     $routes->get('ProcessosDocumentos/formularioAlteracao/(:num)', 'ProcessosDocumentos::formularioAlteracao/$1', ['as' => 'ProcessosDocumentos.formularioAlteracao']);
     $routes->post('ProcessosDocumentos/registrar', 'ProcessosDocumentos::registrar');
     $routes->post('ProcessosDocumentos/deletar', 'ProcessosDocumentos::deletar');
@@ -269,14 +279,20 @@ $routes->group('adm', ['namespace' => 'App\Controllers\Admin'], function($routes
      * Processos Cargos
      * ============================================================ */
     $routes->get('ProcessosCargos', 'ProcessosCargos::index', ['as' => 'ProcessosCargos']);
+    $routes->get('ProcessosCargos/vincular/(:num)/from/(:any)', 'ProcessosCargos::vincular/$1/$2', ['as' => 'ProcessosCargos.vincular']);
+    $routes->get('ProcessosCargos/formularioCadastro/(:num)/(:num)', 'ProcessosCargos::formularioCadastro/$1/$2', ['as' => 'ProcessosCargos.formularioCadastro']);
+    $routes->get('ProcessosCargos/formularioCadastro/(:num)/(:num)/returnTo/(:any)', 'ProcessosCargos::formularioCadastro/$1/$2/$3', ['as' => 'ProcessosCargos.formularioCadastro.return']);
+    $routes->get('ProcessosCargos/formularioAlteracao/(:num)', 'ProcessosCargos::formularioAlteracao/$1', ['as' => 'ProcessosCargos.formularioAlteracao']);
+    $routes->get('ProcessosCargos/formularioAlteracao/(:num)/returnTo/(:any)', 'ProcessosCargos::formularioAlteracao/$1/$2', ['as' => 'ProcessosCargos.formularioAlteracao.return']);
     $routes->post('ProcessosCargos/registrar', 'ProcessosCargos::registrar');
     $routes->post('ProcessosCargos/deletar', 'ProcessosCargos::deletar');
     $routes->get('ProcessosCargos/buscarPorProcesso/(:num)', 'ProcessosCargos::buscarPorProcesso/$1');
     /* ============================================================
      * Rotas de Configuração de Critérios de Desempate por Cargo
      * ============================================================ */
-    $routes->get('CargosDesempateConfig', 'CargosDesempateConfig::index', ['as' => 'CargosDesempateConfig']);
+    $routes->get('CargosDesempateConfig/(:num)/(:num)', 'CargosDesempateConfig::index/$1/$2', ['as' => 'CargosDesempateConfig']);
     $routes->get('CargosDesempateConfig/(:num)', 'CargosDesempateConfig::index/$1', ['as' => 'CargosDesempateConfig.cargo']);
+    $routes->get('CargosDesempateConfig', 'CargosDesempateConfig::index', ['as' => 'CargosDesempateConfig.semCargo']);
     $routes->get('CargosDesempateConfig/listar/(:num)', 'CargosDesempateConfig::listar/$1', ['as' => 'CargosDesempateConfig.listar']);
     $routes->post('CargosDesempateConfig/salvar', 'CargosDesempateConfig::salvar', ['as' => 'CargosDesempateConfig.salvar']);
     $routes->post('CargosDesempateConfig/reordenar', 'CargosDesempateConfig::reordenar', ['as' => 'CargosDesempateConfig.reordenar']);

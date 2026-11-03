@@ -60,6 +60,7 @@
 										<tr>
 											<td><?php echo esc($item->ds_nome_experiencia) ?></td>
 											<td class="text-center"><?php echo esc($item->ds_tipo_experiencia) ?></td>
+											<td class="text-center"><?php echo esc($item->ds_nome_cargo ?? 'Todas as experiências') ?></td>
 											<td class="text-center">
 												<a class="btn btn-info btn-sm" href="<?php echo base_url_adm('/Experiencias/formularioAlteracao/' . $item->pk_id_experiencia) ?>">
 													<i class="fas fa-edit"></i>

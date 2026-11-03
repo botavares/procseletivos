@@ -81,12 +81,16 @@ class Experiencias extends BaseController
             $dados = $this->experienciasModel->find($config['id']);
         }
 
+        $cargosModel = new \App\Models\Admin\CargosModel();
+        $cargos = $cargosModel->orderBy('ds_nome_cargo', 'asc')->findAll();
+
         $viewData = [
             'camada1' => $config['camada1'],
             'camada2' => $config['camada2'],
             'pagina'  => $config['page'],
             'acao'    => $config['acao'],
             'dados'   => $dados,
+            'cargos'  => $cargos,
             'user'    => session('nome'),
         ];
 
@@ -105,6 +109,7 @@ class Experiencias extends BaseController
         try {
             $data = [
                 'pk_id_experiencia'  => $this->request->getPost('pk_id_experiencia'),
+                'fk_id_cargo'         => $this->request->getPost('fk_id_cargo') ?: null,
                 'ds_nome_experiencia' => $this->request->getPost('ds_nome_experiencia'),
                 'ds_tipo_experiencia' => $this->request->getPost('ds_tipo_experiencia'),
             ];

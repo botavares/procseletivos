@@ -94,12 +94,17 @@ class ProcessosCargosModel extends Model
     }
 
     /**
-     * Busca cargos por processo seletivo.
+     * Busca cargos por processo seletivo, juntando os dados do cargo.
      */
     public function buscarPorProcesso(int $processoId): array
     {
-        return $this->where('fk_id_processo', $processoId)
-                    ->findAll();
+        return $this->db->table('tb_processos_cargos')
+            ->select('tb_processos_cargos.*, tb_cargos.ds_nome_cargo')
+            ->join('tb_cargos', 'tb_cargos.pk_id_cargo = tb_processos_cargos.fk_id_cargo')
+            ->where('tb_processos_cargos.fk_id_processo', $processoId)
+            ->orderBy('tb_cargos.ds_nome_cargo', 'ASC')
+            ->get()
+            ->getResult();
     }
 
     /**

@@ -9,6 +9,7 @@ class CargosEscolaridadesModel extends Model{
     protected $primaryKey = 'pk_id_cargos_escolaridade';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
+        'fk_id_processo_seletivo',
         'fk_id_cargo',
         'fk_id_escolaridade',
         'ds_pontuacao_minima',
@@ -24,8 +25,8 @@ class CargosEscolaridadesModel extends Model{
         'ds_tipo_campo'         => 'required',
     ];
 
-    public function listarEscolaridadesDoCargo($idCargo){
-        return $this->db->table('tb_cargos_escolaridades')
+    public function listarEscolaridadesDoCargo($idCargo, ?int $idProcesso = null){
+        $builder = $this->db->table('tb_cargos_escolaridades')
             ->select([
                 'tb_cargos_escolaridades.pk_id_cargos_escolaridade',
                 'tb_cargos_escolaridades.fk_id_cargo',
@@ -36,8 +37,13 @@ class CargosEscolaridadesModel extends Model{
                 'tb_escolaridades.ds_nome_escolaridade'
             ])
             ->join('tb_escolaridades', 'tb_escolaridades.pk_id_escolaridade = tb_cargos_escolaridades.fk_id_escolaridade')
-            ->where('tb_cargos_escolaridades.fk_id_cargo', $idCargo)
-            ->orderBy('tb_escolaridades.ds_nome_escolaridade', 'ASC')
+            ->where('tb_cargos_escolaridades.fk_id_cargo', $idCargo);
+
+        if ($idProcesso !== null) {
+            $builder->where('tb_cargos_escolaridades.fk_id_processo_seletivo', $idProcesso);
+        }
+
+        return $builder->orderBy('tb_escolaridades.ds_nome_escolaridade', 'ASC')
             ->get()
             ->getResult();
     }

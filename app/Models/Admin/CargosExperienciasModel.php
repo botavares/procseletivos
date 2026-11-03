@@ -9,6 +9,7 @@ class CargosExperienciasModel extends Model{
     protected $primaryKey = 'pk_id_cargos_experiencia';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
+        'fk_id_processo_seletivo',
         'fk_id_cargo',
         'fk_id_experiencia',
         'ds_pontuacao_minima',
@@ -23,9 +24,9 @@ class CargosExperienciasModel extends Model{
         'ds_tipo_campo' => 'required',
     ];
 
-    public function listarExperienciasDoCargo($idCargo){
+    public function listarExperienciasDoCargo($idCargo, ?int $idProcesso = null){
         try {
-            return $this->db->table('tb_cargos_experiencias')
+            $builder = $this->db->table('tb_cargos_experiencias')
                 ->select([
                     'tb_cargos_experiencias.pk_id_cargos_experiencia',
                     'tb_cargos_experiencias.fk_id_cargo',
@@ -36,8 +37,13 @@ class CargosExperienciasModel extends Model{
                     'tb_experiencias.ds_nome_experiencia',
                 ])
                 ->join('tb_experiencias', 'tb_experiencias.pk_id_experiencia = tb_cargos_experiencias.fk_id_experiencia')
-                ->where('tb_cargos_experiencias.fk_id_cargo', $idCargo)
-                ->orderBy('tb_experiencias.ds_nome_experiencia', 'ASC')
+                ->where('tb_cargos_experiencias.fk_id_cargo', $idCargo);
+
+            if ($idProcesso !== null) {
+                $builder->where('tb_cargos_experiencias.fk_id_processo_seletivo', $idProcesso);
+            }
+
+            return $builder->orderBy('tb_experiencias.ds_nome_experiencia', 'ASC')
                 ->get()
                 ->getResult();
         } catch (\Exception $e) {

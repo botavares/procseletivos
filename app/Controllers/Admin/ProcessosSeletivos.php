@@ -7,6 +7,8 @@ namespace App\Controllers\Admin;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use App\DTOs\Admin\ProcessosSeletivosDTO;
 use App\Enums\Admin\SituacaoProcessosEnum;
+use App\Services\Admin\ProcessosCargos\ProcessosCargosService;
+use App\Services\ProcessosDocumentos\ProcessosDocumentosService;
 use App\Services\ProcessosSeletivos\ProcessosSeletivosService;
 use App\Utils\Formatador;
 
@@ -14,8 +16,12 @@ class ProcessosSeletivos extends BaseController
 {
     public function __construct(
         protected ?ProcessosSeletivosService $service = null,
+        protected ?ProcessosCargosService $processosCargosService = null,
+        protected ?ProcessosDocumentosService $processosDocumentosService = null,
     ) {
         $this->service ??= service('processosSeletivosService');
+        $this->processosCargosService ??= service('processosCargosService');
+        $this->processosDocumentosService ??= service('processosDocumentosService');
     }
 
     /* =============================================================
@@ -103,14 +109,38 @@ class ProcessosSeletivos extends BaseController
             }
         }
 
+        $idProcesso = !empty($dados->pk_id_processo) ? (int) $dados->pk_id_processo : null;
+
+        $cargos = [];
+        $documentos = [];
+        if ($idProcesso) {
+            $cargos = $this->processosCargosService->buscarPorProcesso($idProcesso);
+            $documentos = $this->processosDocumentosService->listarPorProcessoId($idProcesso);
+        }
+
+        // Enriquece documentos com label do tipo
+        foreach ($documentos as $doc) {
+            $enum = \App\Enums\Admin\TiposDocumentosEnum::tryFrom((int) $doc->nm_tipo);
+            $doc->tipo_label = $enum?->label() ?? 'Desconhecido';
+        }
+
+        $situacaoLabel = null;
+        if ($dados) {
+            $enum = SituacaoProcessosEnum::tryFrom((int) $dados->nm_situacao);
+            $situacaoLabel = $enum?->label() ?? 'Desconhecido';
+        }
+
         return view('Admin/layoutDash', [
-            'camada1' => $config['camada1'],
-            'camada2' => $config['camada2'],
-            'pagina'  => $config['page'],
-            'acao'    => $config['acao'],
-            'dados'   => $dados,
-            'titulo'  => ($config['acao'] === 'update' ? 'Alterar' : 'Cadastrar') . ' Processo Seletivo',
-            'user'    => session('nome'),
+            'camada1'       => $config['camada1'],
+            'camada2'       => $config['camada2'],
+            'pagina'        => $config['page'],
+            'acao'          => $config['acao'],
+            'dados'         => $dados,
+            'cargos'        => $cargos,
+            'documentos'    => $documentos,
+            'situacaoLabel' => $situacaoLabel,
+            'titulo'        => ($config['acao'] === 'update' ? 'Alterar' : 'Cadastrar') . ' Processo Seletivo',
+            'user'          => session('nome'),
         ]);
     }
 

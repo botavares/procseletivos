@@ -15,6 +15,7 @@ class CargosCriteriosAdicionaisModel extends Model
     protected $useTimestamps = false;
     protected $useSoftDeletes = false;
     protected $allowedFields = [
+        'fk_id_processo_seletivo',
         'fk_id_cargo',
         'fk_id_criterio',
         'ds_pontuacao_minima',

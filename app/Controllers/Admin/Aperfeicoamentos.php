@@ -81,13 +81,25 @@ class Aperfeicoamentos extends BaseController
             $dados = $this->aperfeicoamentosModel->find($config['id']);
         }
 
+        $cargosModel = new \App\Models\Admin\CargosModel();
+        $cargos = $cargosModel->orderBy('ds_nome_cargo', 'asc')->findAll();
+
+        $cargosVinculadosIds = [];
+        if ($config['acao'] === 'update' && $config['id']) {
+            foreach (service('aperfeicoamentosCargosElegiveisModel')->where('fk_id_curso', $config['id'])->findAll() as $vinc) {
+                $cargosVinculadosIds[] = (int) $vinc->fk_id_cargo;
+            }
+        }
+
         $viewData = [
-            'camada1' => $config['camada1'],
-            'camada2' => $config['camada2'],
-            'pagina'  => $config['page'],
-            'acao'    => $config['acao'],
-            'dados'   => $dados,
-            'user'    => session('nome'),
+            'camada1'             => $config['camada1'],
+            'camada2'             => $config['camada2'],
+            'pagina'              => $config['page'],
+            'acao'                => $config['acao'],
+            'dados'               => $dados,
+            'cargos'              => $cargos,
+            'cargosVinculadosIds' => $cargosVinculadosIds,
+            'user'                => session('nome'),
         ];
 
         $padroes = ['id', 'acao', 'camada1', 'camada2', 'page', 'titulo'];
@@ -107,6 +119,10 @@ class Aperfeicoamentos extends BaseController
                 'pk_id_curso'   => $this->request->getPost('pk_id_curso'),
                 'ds_nome_curso' => $this->request->getPost('ds_nome_curso'),
             ];
+            $cargosVinculados = $this->request->getPost('cargos_vinculados');
+            if (! is_array($cargosVinculados)) {
+                $cargosVinculados = [];
+            }
             $acao = $this->request->getPost('action') ?? 'create';
 
             if (empty($data['ds_nome_curso'])) {
@@ -117,9 +133,12 @@ class Aperfeicoamentos extends BaseController
 
             if ($acao === 'update') {
                 $service->atualizar((int)$data['pk_id_curso'], $data);
+                $id = (int) $data['pk_id_curso'];
             } else {
                 $id = $service->salvar($data);
             }
+
+            service('aperfeicoamentosCargosElegiveisModel')->sincronizarCargos($id, $cargosVinculados);
 
             return redirect()->route('Aperfeicoamentos')
                 ->with('mensagemSuccess', 'Registro salvo com sucesso');

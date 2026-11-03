@@ -38,6 +38,7 @@
 								  enctype="multipart/form-data">
 								<input type="hidden" name="acao" id="acao" value="<?= esc($acao) ?>" />
 								<input type="hidden" name="pk_id_documento" value="<?= esc($dados->pk_id_documento ?? '') ?>" />
+								<input type="hidden" name="return_to" value="<?= esc($returnUrl ?? '') ?>" />
 								<input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
 
 								<div class="row">
@@ -142,6 +143,99 @@
 								</div>
 							</form>
 
+							<!-- GRID DE DOCUMENTOS DO PROCESSO -->
+							<div class="card card-outline card-success mt-4">
+								<div class="card-header py-2 d-flex justify-content-between align-items-center">
+									<h3 class="card-title m-0">
+										<i class="fas fa-file-alt mr-2"></i>
+										Documentos do Processo
+										<?php if (!empty($processoSelecionado)): ?>
+											<strong>
+												<?= esc(formatarNumeroEdital(($processoSelecionado->nm_numero_processo ?? '') . ($processoSelecionado->nm_ano_processo ?? ''))) ?>
+											</strong>
+										<?php endif; ?>
+									</h3>
+								</div>
+								<div class="card-body p-2">
+									<?php if (empty($documentosProcesso)): ?>
+										<div class="alert alert-info mb-0">
+											<i class="fas fa-info-circle mr-1"></i>
+											Nenhum documento registrado para este processo.
+										</div>
+									<?php else: ?>
+										<div class="table-responsive">
+											<table class="table table-sm table-bordered table-striped table-hover mb-0">
+												<thead class="thead-light">
+													<tr>
+														<th class="text-left">Tipo</th>
+														<th class="text-center">Nº/Ano</th>
+														<th class="text-left">Código Oficial</th>
+														<th class="text-center">Vigente</th>
+														<th class="text-center" style="width: 120px;">Visualizar</th>
+														<th class="text-center" style="width: 120px;">Alterar</th>
+														<th class="text-center" style="width: 120px;">Excluir</th>
+													</tr>
+												</thead>
+												<tbody>
+													<?php foreach ($documentosProcesso as $doc): ?>
+														<?php
+															$pasta = pasta_tipo_documento((int) ($doc->nm_tipo ?? 0));
+															$caminhoArquivo = WRITEPATH . 'uploads/editais/' . $pasta . '/' . ($doc->ds_arquivo ?? '');
+															$existeArquivo = !empty($doc->ds_arquivo) && file_exists($caminhoArquivo) && is_file($caminhoArquivo);
+														?>
+														<tr>
+															<td class="align-middle"><?= esc($doc->tipo_label ?? 'Documento') ?></td>
+															<td class="text-center align-middle"><?= esc(($doc->nm_numero_documento ?? '-') . '/' . ($doc->nm_ano_documento ?? '-')) ?></td>
+															<td class="align-middle"><?= esc($doc->ds_codigo_oficial ?? '-') ?></td>
+															<td class="text-center align-middle">
+																<?php if ((int) ($doc->nm_versao_vigente ?? 0) === 1): ?>
+																	<span class="badge badge-success">Sim</span>
+																<?php else: ?>
+																	<span class="badge badge-secondary">Não</span>
+																<?php endif; ?>
+															</td>
+															<td class="text-center align-middle">
+																<?php if ($existeArquivo): ?>
+																	<a href="<?= base_url('ProcessosSeletivos/obterEdital/' . $pasta . '/' . rawurlencode($doc->ds_arquivo)) ?>"
+																	   target="_blank"
+																	   class="btn btn-outline-primary btn-sm"
+																	   title="Visualizar arquivo">
+																		<i class="fas fa-eye"></i>
+																	</a>
+																<?php else: ?>
+																	<a href="<?= url_diario_oficial($doc->ds_codigo_oficial ?? '') ?>"
+																	   target="_blank"
+																	   class="btn btn-outline-secondary btn-sm"
+																	   title="Abrir no Diário Oficial">
+																		<i class="fas fa-external-link-alt"></i>
+																	</a>
+																<?php endif; ?>
+															</td>
+															<td class="text-center align-middle">
+																<a href="<?= base_url_adm('ProcessosDocumentos/formularioAlteracao/' . $doc->pk_id_documento) ?>"
+																   class="btn btn-info btn-sm"
+																   title="Alterar documento">
+																	<i class="fas fa-edit"></i>
+																</a>
+															</td>
+															<td class="text-center align-middle">
+																<button type="button"
+																		class="btn btn-danger btn-sm deleteDocumento"
+																		data-id="<?= $doc->pk_id_documento ?>"
+																		title="Excluir documento">
+																		<i class="fas fa-trash"></i>
+																	</button>
+															</td>
+														</tr>
+													<?php endforeach; ?>
+												</tbody>
+											</table>
+										</div>
+									<?php endif; ?>
+								</div>
+							</div>
+							<!-- /GRID DE DOCUMENTOS -->
+
 							<script>
 								(function () {
 									const tipoSelect = document.getElementById('nm_tipo');
@@ -240,6 +334,15 @@
 									tipoSelect.addEventListener('change', ajustarFormulario);
 									ajustarFormulario();
 								})();
+
+								// Modal de exclusão de documentos
+								$(function () {
+									$('.deleteDocumento').on('click', function () {
+										var id = $(this).data('id');
+										$('#chavePrimariaDocumento').val(id);
+										$('#modalDeleteDocumento').modal('show');
+									});
+								});
 							</script>
 						</div>
 					</div>
@@ -247,4 +350,31 @@
 			</div>
 		</div>
 	</section>
+</div>
+
+<!-- Modal de Confirmação de Exclusão de Documento -->
+<div class="modal fade" id="modalDeleteDocumento" tabindex="-1" role="dialog" aria-labelledby="modalLabelDocumento" aria-hidden="true">
+	<div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<form method="POST" action="<?= base_url_adm('ProcessosDocumentos/deletar') ?>">
+				<div class="modal-header py-2 bg-danger">
+					<h5 class="modal-title text-white" id="modalLabelDocumento">
+						<i class="fas fa-exclamation-triangle mr-2"></i>Excluir
+					</h5>
+					<button type="button" class="close text-white" data-dismiss="modal" aria-label="Fechar">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body py-3">
+					<input id="chavePrimariaDocumento" type="hidden" name="chavePrimaria" />
+					<input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
+					<p class="mb-0">Deseja realmente excluir este documento?</p>
+				</div>
+				<div class="modal-footer py-2">
+					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-danger btn-sm botao-refresh">Excluir</button>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>

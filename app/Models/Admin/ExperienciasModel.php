@@ -8,6 +8,7 @@ class ExperienciasModel extends Model{
     protected $primaryKey = 'pk_id_experiencia';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
+        'fk_id_cargo',
         'ds_nome_experiencia',
         'ds_tipo_experiencia'
     ];
@@ -16,5 +17,12 @@ class ExperienciasModel extends Model{
 
     public function listarExperienciasOrdenadas(){
         return $this->orderBy('ds_nome_experiencia', 'ASC')->findAll();
+    }
+
+    public function listarExperienciasPorCargo(int $idCargo){
+        return $this->where('fk_id_cargo', $idCargo)
+                    ->orWhere('fk_id_cargo IS NULL')
+                    ->orderBy('ds_nome_experiencia', 'ASC')
+                    ->findAll();
     }
 }

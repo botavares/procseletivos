@@ -9,6 +9,7 @@ class CargosCriteriosAdicionaisModel extends Model{
     protected $primaryKey = 'pk_id_cargo_criterio';
     protected $useAutoIncrement = false;
     protected $allowedFields = [
+        'fk_id_processo_seletivo',
         'fk_id_cargo',
         'fk_id_criterio',
         'ds_pontuacao_minima',
@@ -26,8 +27,8 @@ class CargosCriteriosAdicionaisModel extends Model{
 
     
 
-    public function listarCriteriosDoCargo($idCargo){
-        return $this->db->table('tb_cargos_criterios_adicionais')
+    public function listarCriteriosDoCargo($idCargo, ?int $idProcesso = null){
+        $builder = $this->db->table('tb_cargos_criterios_adicionais')
             ->select([
                 'tb_cargos_criterios_adicionais.pk_id_cargo_criterio',
                 'tb_cargos_criterios_adicionais.fk_id_cargo',
@@ -38,8 +39,13 @@ class CargosCriteriosAdicionaisModel extends Model{
                 'tb_criterios_adicionais.ds_nome_criterio'
             ])
             ->join('tb_criterios_adicionais', 'tb_criterios_adicionais.pk_id_criterio = tb_cargos_criterios_adicionais.fk_id_criterio')
-            ->where('tb_cargos_criterios_adicionais.fk_id_cargo', $idCargo)
-            ->orderBy('tb_criterios_adicionais.ds_nome_criterio', 'ASC')
+            ->where('tb_cargos_criterios_adicionais.fk_id_cargo', $idCargo);
+
+        if ($idProcesso !== null) {
+            $builder->where('tb_cargos_criterios_adicionais.fk_id_processo_seletivo', $idProcesso);
+        }
+
+        return $builder->orderBy('tb_criterios_adicionais.ds_nome_criterio', 'ASC')
             ->get()
             ->getResult();
     }

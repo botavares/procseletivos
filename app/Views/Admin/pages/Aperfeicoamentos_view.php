@@ -56,6 +56,7 @@
 									<?php foreach ($aperfeicoamentos as $item): ?>
 										<tr>
 											<td><?php echo esc($item->ds_nome_curso) ?></td>
+											<td class="text-center"><?php echo esc($item->ds_nome_cargo ?? 'Todos os cursos') ?></td>
 											<td class="text-center">
 												<a class="btn btn-info btn-sm" href="<?php echo base_url_adm('/Aperfeicoamentos/formularioAlteracao/' . $item->pk_id_curso) ?>">
 													<i class="fas fa-edit"></i>

@@ -15,11 +15,13 @@ class ExperienciasModel extends Model
     protected $useTimestamps = false;
     protected $useSoftDeletes = false;
     protected $allowedFields = [
+        'fk_id_cargo',
         'ds_nome_experiencia',
         'ds_tipo_experiencia',
     ];
 
     protected $validationRules = [
+        'fk_id_cargo' => 'permit_empty|integer',
         'ds_nome_experiencia' => 'required|string',
         'ds_tipo_experiencia' => 'required|string',
     ];
@@ -44,5 +46,13 @@ class ExperienciasModel extends Model
             ->orderBy('tb_experiencias.ds_tipo_experiencia', 'ASC')
             ->get()
             ->getResult();
+    }
+
+    public function listarExperienciasPorCargo(int $idCargo)
+    {
+        return $this->where('fk_id_cargo', $idCargo)
+                    ->orWhere('fk_id_cargo IS NULL')
+                    ->orderBy('ds_nome_experiencia', 'ASC')
+                    ->findAll();
     }
 }

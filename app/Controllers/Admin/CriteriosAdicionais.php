@@ -81,12 +81,16 @@ class CriteriosAdicionais extends BaseController
             $dados = $this->criteriosAdicionaisModel->find($config['id']);
         }
 
+        $cargosModel = new \App\Models\Admin\CargosModel();
+        $cargos = $cargosModel->orderBy('ds_nome_cargo', 'asc')->findAll();
+
         $viewData = [
             'camada1' => $config['camada1'],
             'camada2' => $config['camada2'],
             'pagina'  => $config['page'],
             'acao'    => $config['acao'],
             'dados'   => $dados,
+            'cargos'  => $cargos,
             'user'    => session('nome'),
         ];
 
@@ -105,6 +109,7 @@ class CriteriosAdicionais extends BaseController
         try {
             $data = [
                 'pk_id_criterio'  => $this->request->getPost('pk_id_criterio'),
+                'fk_id_cargo'      => $this->request->getPost('fk_id_cargo') ?: null,
                 'ds_nome_criterio' => $this->request->getPost('ds_nome_criterio'),
             ];
             $acao = $this->request->getPost('action') ?? 'create';

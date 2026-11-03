@@ -13,8 +13,14 @@ class EscolaridadesModel extends Model{
     ];
 
     protected $returnType = 'object';
+    protected $useTimestamps = false;
+    protected $useSoftDeletes = false;
 
      public function listarEscolaridadesOrdenadas(){
         return $this->orderBy('ds_nome_escolaridade', 'ASC')->findAll();
+    }
+
+    public function listarEscolaridadesPorCargo(int $idCargo){
+        return service('escolaridadesCargosElegiveisModel')->listarEscolaridadesPorCargo($idCargo);
     }
 }

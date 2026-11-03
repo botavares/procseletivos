@@ -85,15 +85,26 @@ class Escolaridades extends BaseController
         }
 
         $niveis = $this->niveisEscolaridadeModel->findAll();
+        $cargosModel = new \App\Models\Admin\CargosModel();
+        $cargos = $cargosModel->orderBy('ds_nome_cargo', 'asc')->findAll();
+
+        $cargosVinculadosIds = [];
+        if ($config['acao'] === 'update' && $config['id']) {
+            foreach (service('escolaridadesCargosElegiveisModel')->where('fk_id_escolaridade', $config['id'])->findAll() as $vinc) {
+                $cargosVinculadosIds[] = (int) $vinc->fk_id_cargo;
+            }
+        }
 
         $viewData = [
-            'camada1' => $config['camada1'],
-            'camada2' => $config['camada2'],
-            'pagina'  => $config['page'],
-            'acao'    => $config['acao'],
-            'dados'   => $dados,
-            'niveis'  => $niveis,
-            'user'    => session('nome'),
+            'camada1'             => $config['camada1'],
+            'camada2'             => $config['camada2'],
+            'pagina'              => $config['page'],
+            'acao'                => $config['acao'],
+            'dados'               => $dados,
+            'niveis'              => $niveis,
+            'cargos'              => $cargos,
+            'cargosVinculadosIds' => $cargosVinculadosIds,
+            'user'                => session('nome'),
         ];
 
         $padroes = ['id', 'acao', 'camada1', 'camada2', 'page', 'titulo'];
@@ -115,6 +126,10 @@ class Escolaridades extends BaseController
                 'ds_instrucao'        => $this->request->getPost('ds_instrucao'),
                 'fk_id_nivel'         => $this->request->getPost('fk_id_nivel'),
             ];
+            $cargosVinculados = $this->request->getPost('cargos_vinculados');
+            if (! is_array($cargosVinculados)) {
+                $cargosVinculados = [];
+            }
             $acao = $this->request->getPost('action') ?? 'create';
 
             if (empty($data['ds_nome_escolaridade'])) {
@@ -128,9 +143,12 @@ class Escolaridades extends BaseController
 
             if ($acao === 'update') {
                 $service->atualizar((int)$data['pk_id_escolaridade'], $data);
+                $id = (int) $data['pk_id_escolaridade'];
             } else {
                 $id = $service->salvar($data);
             }
+
+            service('escolaridadesCargosElegiveisModel')->sincronizarCargos($id, $cargosVinculados);
 
             return redirect()->route('Escolaridades')
                 ->with('mensagemSuccess', 'Registro salvo com sucesso');

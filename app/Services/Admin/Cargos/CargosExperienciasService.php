@@ -33,11 +33,16 @@ class CargosExperienciasService
                 return (int) $pk;
             }
 
-            // Verifica se já existe associação para o mesmo cargo + experiência
-            $existente = $model
+            // Verifica se já existe associação para o mesmo processo + cargo + experiência
+            $builderExistente = $model
                 ->where('fk_id_cargo', $data['fk_id_cargo'])
-                ->where('fk_id_experiencia', $data['fk_id_experiencia'])
-                ->first();
+                ->where('fk_id_experiencia', $data['fk_id_experiencia']);
+
+            if (isset($data['fk_id_processo_seletivo']) && $data['fk_id_processo_seletivo'] !== '' && $data['fk_id_processo_seletivo'] !== null) {
+                $builderExistente->where('fk_id_processo_seletivo', $data['fk_id_processo_seletivo']);
+            }
+
+            $existente = $builderExistente->first();
 
             if ($existente) {
                 $id = is_array($existente) ? $existente['pk_id_cargos_experiencia'] : $existente->pk_id_cargos_experiencia;

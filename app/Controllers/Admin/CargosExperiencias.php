@@ -29,8 +29,14 @@ class CargosExperiencias extends BaseController{
       
     }
 
-    public function formularioCargosExperiencia($id, $camada1 = 'pages', $camada2 = 'cadastros', $page = 'formCargosExperiencia'){
+    public function formularioCargosExperiencia($idProcesso, $id = null, $camada1 = 'pages', $camada2 = 'cadastros', $page = 'formCargosExperiencia'){
         $this->validarSessao();
+
+        // Compatibilidade com chamada antiga: /formularioCargosExperiencia/{cargo}
+        if ($id === null) {
+            $id = $idProcesso;
+            $idProcesso = null;
+        }
 
         $cargo = $this->cargosModel->find($id);
         
@@ -40,17 +46,18 @@ class CargosExperiencias extends BaseController{
                 ->with('mensagemError', 'Cargo não encontrado');
         }
 
-        $experiencias = $this->experienciasModel->listarExperienciasOrdenadas();
+        $experiencias = $this->experienciasModel->listarExperienciasPorCargo((int) $id);
         
         // Form sempre inicia em branco para nova associação
         $action = 'create';
         $cargoExperiencia = null;
 
-        // Busca TODAS as experiências já associadas a esse cargo
-        $experienciasDoCargo = $this->cargosExperienciasModel->listarExperienciasDoCargo($id);
+        // Busca as experiências associadas ao cargo (e ao processo, quando informado)
+        $experienciasDoCargo = $this->cargosExperienciasModel->listarExperienciasDoCargo($id, $idProcesso);
 
         return $this->renderFormulario([
                                         'id'                    => $id,
+                                        'idProcesso'            => $idProcesso,
                                         'acao'                  => $action,
                                         'camada1'               => 'pages',
                                         'camada2'               => 'cadastros',
@@ -130,6 +137,7 @@ class CargosExperiencias extends BaseController{
             $acao = $this->request->getPost('acao') ?? 'create';
             $data = [
                 'pk_id_cargos_experiencia' => $this->request->getPost('pk_id_cargos_experiencia'),
+                'fk_id_processo_seletivo'   => $this->request->getPost('fk_id_processo') ?: null,
                 'fk_id_cargo'               => $this->request->getPost('fk_id_cargo'),
                 'fk_id_experiencia'         => $this->request->getPost('fk_id_experiencia'),
                 'ds_pontuacao_minima'      => $this->request->getPost('ds_pontuacao_minima'),
@@ -158,8 +166,15 @@ class CargosExperiencias extends BaseController{
 
             service('cargosExperienciasService')->salvar($data, $acao);
 
+            $idProcesso = $this->request->getPost('fk_id_processo');
+            if (!empty($idProcesso) && is_numeric($idProcesso)) {
+                return redirect()
+                    ->route('CargosExperiencias.formularioCargosExperiencia', [(int) $idProcesso, (int) $data['fk_id_cargo']])
+                    ->with('mensagemSuccess', 'Experiência associada ao cargo com sucesso');
+            }
+
             return redirect()
-                ->route('CargosExperiencias.formularioCargosExperiencia', [$data['fk_id_cargo']])
+                ->route('CargosExperiencias.formularioCargosExperiencia.cargo', [(int) $data['fk_id_cargo']])
                 ->with('mensagemSuccess', 'Experiência associada ao cargo com sucesso');
 
         } catch (\Exception $e) {

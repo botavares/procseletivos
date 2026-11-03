@@ -52,32 +52,38 @@
 										<th class="text-center">Situação</th>
 										<th class="text-center">Início</th>
 										<th class="text-center">Término</th>
-										<th class="text-center" style="width: 70px;">Alterar</th>
+										<th class="text-center" style="width: 100px;">Alterar</th>
+										<th class="text-center" style="width: 100px;">Vincular Cargos</th>
 										<th class="text-center" style="width: 70px;">Excluir</th>
 									</tr>
-								</thead>
-								<tbody>
-									<?php foreach ($processos as $proc): ?>
-										<tr>
-											<td class="text-center"><?= esc(formatarNumeroEdital(($proc->nm_numero_processo ?? '') . ($proc->nm_ano_processo ?? ''))) ?></td>
-											<td class="text-center"><?= esc($proc->situacao_label ?? $proc->nm_situacao) ?></td>
-											<td class="text-center"><?= esc($proc->dt_inicio_inscricao ? date('d/m/Y', strtotime($proc->dt_inicio_inscricao)) : '-') ?></td>
-											<td class="text-center"><?= esc($proc->dt_fim_inscricao ? date('d/m/Y', strtotime($proc->dt_fim_inscricao)) : '-') ?></td>
-											<td class="text-center">
-												<a class="btn btn-info btn-sm" href="<?php echo base_url_adm('ProcessosSeletivos/formularioAlteracao/' . $proc->pk_id_processo) ?>">
-													<i class="fas fa-edit"></i>
-												</a>
-											</td>
-											<td class="text-center">
-												<button type="button" class="btn btn-danger btn-sm deleteItem"
-														data-id="<?php echo $proc->pk_id_processo . '|' . formatarNumeroEdital(($proc->nm_numero_processo ?? '') . ($proc->nm_ano_processo ?? '')) ?>">
-													<i class="fas fa-trash"></i>
-												</button>
-											</td>
-										</tr>
-									<?php endforeach; ?>
-								</tbody>
-							</table>
+									</thead>
+									<tbody>
+										<?php foreach ($processos as $proc): ?>
+											<tr>
+												<td class="text-center"><?= esc(formatarNumeroEdital(($proc->nm_numero_processo ?? '') . ($proc->nm_ano_processo ?? ''))) ?></td>
+												<td class="text-center"><?= esc($proc->situacao_label ?? $proc->nm_situacao) ?></td>
+												<td class="text-center"><?= esc($proc->dt_inicio_inscricao ? date('d/m/Y', strtotime($proc->dt_inicio_inscricao)) : '-') ?></td>
+												<td class="text-center"><?= esc($proc->dt_fim_inscricao ? date('d/m/Y', strtotime($proc->dt_fim_inscricao)) : '-') ?></td>
+												<td class="text-center">
+													<a class="btn btn-info btn-sm" href="<?php echo base_url_adm('ProcessosSeletivos/formularioAlteracao/' . $proc->pk_id_processo) ?>">
+														<i class="fas fa-edit"></i>
+													</a>
+												</td>
+												<td class="text-center">
+													<a class="btn btn-success btn-sm" href="<?php echo base_url_adm('ProcessosCargos/vincular/' . $proc->pk_id_processo . '/from/lista') ?>" title="Vincular cargos">
+														<i class="fas fa-link"></i>
+													</a>
+												</td>
+												<td class="text-center">
+													<button type="button" class="btn btn-danger btn-sm deleteItem"
+															data-id="<?php echo $proc->pk_id_processo . '|' . formatarNumeroEdital(($proc->nm_numero_processo ?? '') . ($proc->nm_ano_processo ?? '')) ?>">
+														<i class="fas fa-trash"></i>
+													</button>
+												</td>
+											</tr>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
 						</div>
 					</div>
 				</div>

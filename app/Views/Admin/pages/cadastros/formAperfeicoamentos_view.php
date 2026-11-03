@@ -50,6 +50,24 @@
                                                required>
                                     </div>
                                 </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label>Cargos elegíveis</label>
+                                        <select class="form-control" name="cargos_vinculados[]" multiple size="8">
+                                            <option value="">Todos os cursos</option>
+                                            <?php foreach ($cargos as $cargo): ?>
+                                                <option value="<?= esc($cargo->pk_id_cargo) ?>"
+                                                    <?= in_array((int) $cargo->pk_id_cargo, $cargosVinculadosIds, true) ? 'selected' : '' ?>>
+                                                    <?= esc($cargo->ds_nome_cargo) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <small class="form-text text-muted">
+                                            Selecione um ou mais cargos aos quais este curso será elegível. Deixe em branco para que o curso esteja disponível para todos os cargos.
+                                        </small>
+                                    </div>
+                                </div>
                                 <hr>
                                 <div class="text-right mt-4">
                                     <button type="reset" class="btn btn-secondary mr-2">

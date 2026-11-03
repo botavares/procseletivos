@@ -15,6 +15,7 @@ class CargosDesempateConfigModel extends Model
     protected $useTimestamps = false;
     protected $useSoftDeletes = false;
     protected $allowedFields = [
+        'fk_id_processo_seletivo',
         'fk_id_cargo',
         'ds_ordem',
         'ds_tipo_criterio',

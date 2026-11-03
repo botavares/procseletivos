@@ -9,6 +9,7 @@ class CargosCursosModel extends Model{
     protected $primaryKey = 'pk_id_cargo_aperfeicoamento';
     protected $useAutoIncrement = false;
     protected $allowedFields = [
+        'fk_id_processos_seletivo',
         'fk_id_cargo',
         'fk_id_curso',
         'ds_pontuacao_minima',
@@ -23,8 +24,8 @@ class CargosCursosModel extends Model{
         'ds_tipo_campo' => 'required',
     ];
 
-    public function listarCursosDoCargo($idCargo){
-        return $this->db->table('tb_cargos_aperfeicoamentos')
+    public function listarCursosDoCargo($idCargo, ?int $idProcesso = null){
+        $builder = $this->db->table('tb_cargos_aperfeicoamentos')
             ->select([
                 'tb_cargos_aperfeicoamentos.pk_id_cargo_aperfeicoamento',
                 'tb_cargos_aperfeicoamentos.fk_id_cargo',
@@ -35,8 +36,13 @@ class CargosCursosModel extends Model{
                 'tb_cursos_aperfeicoamentos.ds_nome_curso',
             ])
             ->join('tb_cursos_aperfeicoamentos', 'tb_cursos_aperfeicoamentos.pk_id_curso = tb_cargos_aperfeicoamentos.fk_id_curso')
-            ->where('tb_cargos_aperfeicoamentos.fk_id_cargo', $idCargo)
-            ->orderBy('tb_cursos_aperfeicoamentos.ds_nome_curso', 'ASC')
+            ->where('tb_cargos_aperfeicoamentos.fk_id_cargo', $idCargo);
+
+        if ($idProcesso !== null) {
+            $builder->where('tb_cargos_aperfeicoamentos.fk_id_processos_seletivo', $idProcesso);
+        }
+
+        return $builder->orderBy('tb_cursos_aperfeicoamentos.ds_nome_curso', 'ASC')
             ->get()
             ->getResult();
     }

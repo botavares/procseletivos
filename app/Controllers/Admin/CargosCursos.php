@@ -29,8 +29,14 @@ class CargosCursos extends BaseController{
       
     }
 
-    public function formularioCargosCurso($id, $camada1 = 'pages', $camada2 = 'cadastros', $page = 'formCargosCursos'){
+    public function formularioCargosCurso($idProcesso, $id = null, $camada1 = 'pages', $camada2 = 'cadastros', $page = 'formCargosCursos'){
         $this->validarSessao();
+
+        // Compatibilidade com chamada antiga: /formularioCargosCurso/{cargo}
+        if ($id === null) {
+            $id = $idProcesso;
+            $idProcesso = null;
+        }
 
         $cargo = $this->cargosModel->find($id);
         
@@ -46,11 +52,12 @@ class CargosCursos extends BaseController{
         $action = 'create';
         $cargoCurso = null;
 
-        // Busca TODAS os cursos já associados a esse cargo
-        $cursosDoCargo = $this->cargosCursosModel->listarCursosDoCargo($id);
+        // Busca os cursos associados ao cargo (e ao processo, quando informado)
+        $cursosDoCargo = $this->cargosCursosModel->listarCursosDoCargo($id, $idProcesso);
 
         return $this->renderFormulario([
                                         'id'                    => $id,
+                                        'idProcesso'            => $idProcesso,
                                         'acao'                  => $action,
                                         'camada1'               => 'pages',
                                         'camada2'               => 'cadastros',
@@ -130,6 +137,7 @@ class CargosCursos extends BaseController{
             $acao = $this->request->getPost('acao') ?? 'create';
             $data = [
                 'pk_id_cargo_aperfeicoamento' => $this->request->getPost('pk_id_cargo_aperfeicoamento'),
+                'fk_id_processos_seletivo'    => $this->request->getPost('fk_id_processo') ?: null,
                 'fk_id_cargo'               => $this->request->getPost('fk_id_cargo'),
                 'fk_id_curso'                => $this->request->getPost('fk_id_curso'),
                 'ds_pontuacao_minima'      => $this->request->getPost('ds_pontuacao_minima'),
@@ -158,8 +166,15 @@ class CargosCursos extends BaseController{
 
             service('cargosCursosService')->salvar($data, $acao);
 
+            $idProcesso = $this->request->getPost('fk_id_processo');
+            if (!empty($idProcesso) && is_numeric($idProcesso)) {
+                return redirect()
+                    ->route('CargosCursos.formularioCargosCurso', [(int) $idProcesso, (int) $data['fk_id_cargo']])
+                    ->with('mensagemSuccess', 'Curso associado ao cargo com sucesso');
+            }
+
             return redirect()
-                ->route('CargosCursos.formularioCargosCurso', [$data['fk_id_cargo']])
+                ->route('CargosCursos.formularioCargosCurso.cargo', [(int) $data['fk_id_cargo']])
                 ->with('mensagemSuccess', 'Curso associado ao cargo com sucesso');
 
         } catch (\Exception $e) {

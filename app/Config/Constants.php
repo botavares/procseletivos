@@ -92,3 +92,14 @@ define('EVENT_PRIORITY_NORMAL', 100);
  * @deprecated Use \CodeIgniter\Events\Events::PRIORITY_HIGH instead.
  */
 define('EVENT_PRIORITY_HIGH', 10);
+
+/*
+ | --------------------------------------------------------------------------
+ | URL base do Diário Oficial
+ | --------------------------------------------------------------------------
+ |
+ | Usada para montar links de documentos que não possuem arquivo anexado,
+ | apenas código oficial (ds_codigo_oficial).
+ |
+ */
+defined('DIARIO_OFICIAL_URL_BASE') || define('DIARIO_OFICIAL_URL_BASE', 'https://nomedodiariooficial/algumacoisa');

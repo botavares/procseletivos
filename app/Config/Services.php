@@ -505,6 +505,11 @@ class Services extends BaseService
         return $getShared ? static::getSharedInstance('adminEscolaridadeService') : new \App\Services\Admin\Escolaridades\EscolaridadeService();
     }
 
+    public static function escolaridadesCargosElegiveisModel(bool $getShared = true): \App\Models\Admin\EscolaridadesCargosElegiveisModel
+    {
+        return $getShared ? static::getSharedInstance('escolaridadesCargosElegiveisModel') : new \App\Models\Admin\EscolaridadesCargosElegiveisModel();
+    }
+
     public static function experienciaGridService(bool $getShared = true)
     {
         return $getShared ? static::getSharedInstance('experienciaGridService') : new \App\Services\Admin\Experiencias\ExperienciaGridService();
@@ -523,6 +528,11 @@ class Services extends BaseService
     public static function adminAperfeicoamentoService(bool $getShared = true)
     {
         return $getShared ? static::getSharedInstance('adminAperfeicoamentoService') : new \App\Services\Admin\Aperfeicoamentos\AperfeicoamentoService();
+    }
+
+    public static function aperfeicoamentosCargosElegiveisModel(bool $getShared = true): \App\Models\Admin\AperfeicoamentosCargosElegiveisModel
+    {
+        return $getShared ? static::getSharedInstance('aperfeicoamentosCargosElegiveisModel') : new \App\Models\Admin\AperfeicoamentosCargosElegiveisModel();
     }
 
     /* ================================================================

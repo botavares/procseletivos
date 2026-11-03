@@ -33,19 +33,30 @@ class CargosDesempateConfig extends BaseController
 
     /**
      * Tela principal de configuracao de desempate.
+     * Aceita:
+     *   /CargosDesempateConfig/{idProcesso}/{idCargo}
+     *   /CargosDesempateConfig/{idCargo}         (legacy)
+     *   /CargosDesempateConfig?cargo={idCargo}   (legacy)
      */
-    public function index($idCargo = null)
+    public function index($idProcesso = null, $idCargo = null)
     {
         if (!session()->get('logged_in')) {
             return redirect()->to('home');
         }
 
-        // Aceita tanto /CargosDesempateConfig/5 quanto ?cargo=5
+        // Quando só um parâmetro é passado, interpreta como cargo (legacy)
+        if ($idProcesso !== null && $idCargo === null) {
+            $idCargo = $idProcesso;
+            $idProcesso = null;
+        }
+
+        // Aceita ?cargo=5 como fallback
         if (!$idCargo) {
             $idCargo = $this->request->getGet('cargo');
         }
 
         $cargoSelecionado = null;
+        $processo = null;
         $configuracoes = [];
         $referencias = [
             'experiencias'      => [],
@@ -53,6 +64,11 @@ class CargosDesempateConfig extends BaseController
             'criterios'         => [],
             'aperfeicoamentos'  => [],
         ];
+
+        if ($idProcesso) {
+            $processoModel = new \App\Models\Admin\ProcessosSeletivosModel();
+            $processo = $processoModel->find($idProcesso);
+        }
 
         if ($idCargo) {
             $cargoSelecionado = $this->cargosModel->find($idCargo);
@@ -72,6 +88,9 @@ class CargosDesempateConfig extends BaseController
             'titulo'           => 'Configuração de Critérios de Desempate',
             'cargos'           => $this->cargosModel->findAll(),
             'cargoSelecionado' => $cargoSelecionado,
+            'processo'         => $processo,
+            'idProcesso'       => $idProcesso,
+            'idCargo'          => $idCargo,
             'configuracoes'    => $configuracoes,
             'referencias'      => $referencias,
             'user'             => session('nome'),

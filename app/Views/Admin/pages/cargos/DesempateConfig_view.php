@@ -20,13 +20,29 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="card">
-						<div class="card-header">
-							<h3 class="card-title">Selecione o Cargo</h3>
+						<div class="card-header d-flex justify-content-between align-items-center py-2">
+							<h3 class="card-title m-0">Selecione o Cargo</h3>
+							<?php if (!empty($idProcesso) && !empty($cargoSelecionado)): ?>
+								<a href="<?= base_url_adm('ProcessosCargos/classificatorios/' . $idProcesso . '/' . $cargoSelecionado->pk_id_cargo) ?>"
+								   class="btn btn-warning btn-sm">
+									<i class="fas fa-arrow-left mr-1"></i> Voltar
+								</a>
+							<?php endif; ?>
 						</div>
 						<div class="card-body">
+							<?php if (!empty($idProcesso) && !empty($cargoSelecionado)): ?>
+								<div class="alert alert-info mb-3 py-2">
+									<i class="fas fa-info-circle mr-1"></i>
+									Configurando desempate do cargo <strong><?= esc($cargoSelecionado->ds_nome_cargo) ?></strong>
+									vinculado ao processo seletivo
+									<strong>
+										<?= esc(formatarNumeroEdital(($processo->nm_numero_processo ?? '') . ($processo->nm_ano_processo ?? ''))) ?>
+									</strong>.
+								</div>
+							<?php endif; ?>
 							<div class="form-group">
 								<label for="cargo">Cargo:</label>
-								<select class="form-control" name="cargo" id="cargo" onchange="if(this.value) window.location.href = '<?= base_url_adm('CargosDesempateConfig') ?>/' + this.value;">
+								<select class="form-control" name="cargo" id="cargo" onchange="if(this.value) window.location.href = '<?= !empty($idProcesso) ? base_url_adm('CargosDesempateConfig') . '/' . $idProcesso : base_url_adm('CargosDesempateConfig') ?>/' + this.value;">
 									<option value="">-- Selecione --</option>
 									<?php foreach ($cargos as $cargo): ?>
 											<option value="<?= $cargo->pk_id_cargo ?>" <?= ($cargoSelecionado && $cargoSelecionado->pk_id_cargo == $cargo->pk_id_cargo) ? 'selected' : '' ?>>
@@ -121,6 +137,7 @@
 							<div class="card-body">
 								<form id="form-desempate">
 									<input type="hidden" name="fk_id_cargo" value="<?= $cargoSelecionado->pk_id_cargo ?>">
+									<input type="hidden" name="fk_id_processo" value="<?= esc($idProcesso ?? '') ?>">
 									<input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>">
 
 									<div class="row">
@@ -213,6 +230,7 @@
 				<div class="modal-body">
 					<input type="hidden" name="pk_id_desempate" id="edit_id_desempate">
 					<input type="hidden" name="fk_id_cargo" value="<?= $cargoSelecionado->pk_id_cargo ?? '' ?>">
+					<input type="hidden" name="fk_id_processo" value="<?= esc($idProcesso ?? '') ?>">
 					<input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>">
 
 					<div class="row">

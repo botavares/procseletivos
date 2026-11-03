@@ -15,6 +15,7 @@ class CargosExperienciasModel extends Model
     protected $useTimestamps = false;
     protected $useSoftDeletes = false;
     protected $allowedFields = [
+        'fk_id_processo_seletivo',
         'fk_id_cargo',
         'fk_id_experiencia',
         'ds_pontuacao_minima',

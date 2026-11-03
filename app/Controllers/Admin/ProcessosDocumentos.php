@@ -64,12 +64,12 @@ class ProcessosDocumentos extends BaseController
     /* =============================================================
      * FORMULÁRIOS
      ============================================================= */
-    public function formularioCadastro($idProcesso = null, $returnTo = null, $camada1 = 'pages', $camada2 = 'cadastros', $page = 'formProcessosDocumentos')
+    public function formularioCadastro($idProcesso = null, $from = null, $camada1 = 'pages', $camada2 = 'cadastros', $page = 'formProcessosDocumentos')
     {
         return $this->renderFormulario([
             'acao'        => 'create',
             'idProcesso'  => $idProcesso,
-            'returnTo'    => $returnTo,
+            'from'        => $from,
             'camada1'     => $camada1,
             'camada2'     => $camada2,
             'page'        => $page,
@@ -96,7 +96,7 @@ class ProcessosDocumentos extends BaseController
             'camada1'     => 'pages',
             'camada2'     => 'cadastros',
             'page'        => 'formProcessosDocumentos',
-            'returnTo'    => null,
+            'from'        => null,
         ], $config);
 
         $this->validarView($config['camada1'], $config['camada2'], $config['page']);
@@ -121,19 +121,39 @@ class ProcessosDocumentos extends BaseController
 
         $processos = $this->processosModel->porSecretaria($fkIdSecretaria);
 
-        $returnUrl = $config['returnTo'] ? str_replace('~', '/', $config['returnTo']) : 'ProcessosDocumentos';
+        $returnUrl = match ($config['from']) {
+            'alteracao' => 'ProcessosSeletivos/formularioAlteracao/' . ($config['idProcesso'] ?? 0),
+            default     => 'ProcessosDocumentos',
+        };
+
+        $fkProcessoSelecionado = (int) ($dados->fk_processo_referencia ?? $config['idProcesso'] ?? 0);
+
+        $documentosProcesso = [];
+        $processoSelecionado = null;
+        if ($fkProcessoSelecionado > 0) {
+            $documentosProcesso = $this->service->listarPorProcessoId($fkProcessoSelecionado);
+            $processoSelecionado = $this->processosModel->find($fkProcessoSelecionado);
+        }
+
+        // Enriquecer documentos com label do tipo
+        foreach ($documentosProcesso as $doc) {
+            $enum = TiposDocumentosEnum::tryFrom((int) $doc->nm_tipo);
+            $doc->tipo_label = $enum?->label() ?? 'Desconhecido';
+        }
 
         return view('Admin/layoutDash', [
-            'camada1'     => $config['camada1'],
-            'camada2'     => $config['camada2'],
-            'pagina'      => $config['page'],
-            'acao'        => $config['acao'],
-            'dados'       => $dados,
-            'processos'   => $processos,
-            'idProcesso'  => $config['idProcesso'],
-            'returnUrl'   => $returnUrl,
-            'titulo'      => ($config['acao'] === 'update' ? 'Alterar' : 'Cadastrar') . ' Documento',
-            'user'        => session('nome'),
+            'camada1'               => $config['camada1'],
+            'camada2'               => $config['camada2'],
+            'pagina'                => $config['page'],
+            'acao'                  => $config['acao'],
+            'dados'                 => $dados,
+            'processos'             => $processos,
+            'idProcesso'            => $config['idProcesso'],
+            'returnUrl'             => $returnUrl,
+            'processoSelecionado'   => $processoSelecionado,
+            'documentosProcesso'    => $documentosProcesso,
+            'titulo'                => ($config['acao'] === 'update' ? 'Alterar' : 'Cadastrar') . ' Documento',
+            'user'                  => session('nome'),
         ]);
     }
 
@@ -296,8 +316,11 @@ class ProcessosDocumentos extends BaseController
                 $id = $this->service->criar($dto);
             }
 
+            $returnTo = $this->request->getPost('return_to');
+            $returnUrl = $returnTo ?: 'ProcessosDocumentos';
+
             return redirect()
-                ->route('ProcessosDocumentos')
+                ->to(base_url_adm($returnUrl))
                 ->with('mensagemSuccess', 'Registro salvo com sucesso');
 
         } catch (\Exception $e) {

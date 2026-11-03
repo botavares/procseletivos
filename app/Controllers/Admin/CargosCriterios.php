@@ -30,8 +30,14 @@ class CargosCriterios extends BaseController{
       
     }
 
-    public function formularioCargosCriterio($id, $camada1 = 'pages', $camada2 = 'cadastros', $page = 'formCargosCriterios'){
+    public function formularioCargosCriterio($idProcesso, $id = null, $camada1 = 'pages', $camada2 = 'cadastros', $page = 'formCargosCriterios'){
         $this->validarSessao();
+
+        // Compatibilidade com chamada antiga: /formularioCargosCriterio/{cargo}
+        if ($id === null) {
+            $id = $idProcesso;
+            $idProcesso = null;
+        }
 
         $cargo = $this->cargosModel->find($id);
         
@@ -41,17 +47,18 @@ class CargosCriterios extends BaseController{
                 ->with('mensagemError', 'Cargo não encontrado');
         }
 
-        $Criterios = $this->criteriosAdicionaisModel->listarCriteriosOrdenados();
+        $Criterios = $this->criteriosAdicionaisModel->listarCriteriosPorCargo((int) $id);
         
         // Form sempre inicia em branco para nova associação
         $action = 'create';
         $cargoCriterio = null;
 
-        // Busca TODAS as Criterios já associadas a esse cargo
-        $CriteriosDoCargo = $this->cargosCriteriosAdicionaisModel->listarCriteriosDoCargo($id);
+        // Busca os critérios associados ao cargo (e ao processo, quando informado)
+        $CriteriosDoCargo = $this->cargosCriteriosAdicionaisModel->listarCriteriosDoCargo($id, $idProcesso);
 
         return $this->renderFormulario([
                                         'id'                    => $id,
+                                        'idProcesso'            => $idProcesso,
                                         'acao'                  => $action,
                                         'camada1'               => 'pages',
                                         'camada2'               => 'cadastros',
@@ -130,7 +137,8 @@ class CargosCriterios extends BaseController{
         try {
             $acao = $this->request->getPost('acao') ?? 'create';
             $data = [
-                'pk_id_cargo_criterio' => $this->request->getPost('pk_id_cargo_criterio'),
+                'pk_id_cargo_criterio'    => $this->request->getPost('pk_id_cargo_criterio'),
+                'fk_id_processo_seletivo' => $this->request->getPost('fk_id_processo') ?: null,
                 'fk_id_cargo'          => $this->request->getPost('fk_id_cargo'),
                 'fk_id_criterio'       => $this->request->getPost('fk_id_criterio'),
                 'ds_pontuacao_minima'  => $this->request->getPost('ds_pontuacao_minima'),
@@ -159,8 +167,15 @@ class CargosCriterios extends BaseController{
 
             service('cargosCriteriosService')->salvar($data, $acao);
 
+            $idProcesso = $this->request->getPost('fk_id_processo');
+            if (!empty($idProcesso) && is_numeric($idProcesso)) {
+                return redirect()
+                    ->route('CargosCriterios.formularioCargosCriterio', [(int) $idProcesso, (int) $data['fk_id_cargo']])
+                    ->with('mensagemSuccess', 'Criterio associado ao cargo com sucesso');
+            }
+
             return redirect()
-                ->route('CargosCriterios.formularioCargosCriterio', [$data['fk_id_cargo']])
+                ->route('CargosCriterios.formularioCargosCriterio.cargo', [(int) $data['fk_id_cargo']])
                 ->with('mensagemSuccess', 'Criterio associado ao cargo com sucesso');
 
         } catch (\Exception $e) {

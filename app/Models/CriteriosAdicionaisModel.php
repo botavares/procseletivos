@@ -15,12 +15,22 @@ class CriteriosAdicionaisModel extends Model
     protected $useTimestamps = false;
     protected $useSoftDeletes = false;
     protected $allowedFields = [
+        'fk_id_cargo',
         'ds_nome_criterio',
     ];
 
     protected $validationRules = [
+        'fk_id_cargo' => 'permit_empty|integer',
         'ds_nome_criterio' => 'required|string',
     ];
+
+    public function listarCriteriosPorCargo(int $idCargo)
+    {
+        return $this->where('fk_id_cargo', $idCargo)
+                    ->orWhere('fk_id_cargo IS NULL')
+                    ->orderBy('ds_nome_criterio', 'ASC')
+                    ->findAll();
+    }
 
     /**
      * Retorna os critérios adicionais vinculados a um edital específico.

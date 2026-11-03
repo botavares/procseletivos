@@ -21,6 +21,10 @@ class ExperienciaService
         return $this->transactional(function () use ($data) {
             $model = new ExperienciasModel();
 
+            if (isset($data['fk_id_cargo']) && $data['fk_id_cargo'] === '') {
+                $data['fk_id_cargo'] = null;
+            }
+
             if (! $model->save($data)) {
                 throw new \RuntimeException(
                     'Erro ao salvar Experiência: ' . implode('; ', $model->errors())
@@ -41,6 +45,10 @@ class ExperienciaService
     {
         $this->transactional(function () use ($id, $data) {
             $model = new ExperienciasModel();
+
+            if (isset($data['fk_id_cargo']) && $data['fk_id_cargo'] === '') {
+                $data['fk_id_cargo'] = null;
+            }
 
             if (! $model->update($id, $data)) {
                 throw new \RuntimeException('Erro ao atualizar experiência');
