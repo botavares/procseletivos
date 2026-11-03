@@ -138,7 +138,7 @@
 								<form id="form-desempate">
 									<input type="hidden" name="fk_id_cargo" value="<?= $cargoSelecionado->pk_id_cargo ?>">
 									<input type="hidden" name="fk_id_processo" value="<?= esc($idProcesso ?? '') ?>">
-									<input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>">
+									<input type="hidden" id="csrf-desempate" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>">
 
 									<div class="row">
 										<div class="col-md-1">
@@ -231,7 +231,7 @@
 					<input type="hidden" name="pk_id_desempate" id="edit_id_desempate">
 					<input type="hidden" name="fk_id_cargo" value="<?= $cargoSelecionado->pk_id_cargo ?? '' ?>">
 					<input type="hidden" name="fk_id_processo" value="<?= esc($idProcesso ?? '') ?>">
-					<input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>">
+					<input type="hidden" id="csrf-desempate-editar" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>">
 
 					<div class="row">
 						<div class="col-md-2">
@@ -326,10 +326,10 @@ function atualizarReferencia() {
     select.innerHTML = '<option value="">-- Selecione --</option>';
 
     const mapaTipos = {
-        'EXPERIENCIA_ESPECIFICA':     { dados: referencias.experiencias,     campoId: 'fk_id_experiencia',     campoNome: 'ds_nome_experiencia' },
-        'ESCOLARIDADE_ESPECIFICA':    { dados: referencias.escolaridades,    campoId: 'fk_id_escolaridade',    campoNome: 'ds_nome_escolaridade' },
-        'CRITERIO_ADICIONAL':         { dados: referencias.criterios,        campoId: 'fk_id_criterio',       campoNome: 'ds_nome_criterio' },
-        'APERFEICOAMENTO_ESPECIFICO': { dados: referencias.aperfeicoamentos, campoId: 'fk_id_curso',          campoNome: 'ds_nome_curso' }
+        'EXPERIENCIA_ESPECIFICA':     { dados: referencias.experiencias,     campoId: 'pk_id_experiencia',     campoNome: 'ds_nome_experiencia' },
+        'ESCOLARIDADE_ESPECIFICA':    { dados: referencias.escolaridades,    campoId: 'pk_id_escolaridade',    campoNome: 'ds_nome_escolaridade' },
+        'CRITERIO_ADICIONAL':         { dados: referencias.criterios,        campoId: 'pk_id_criterio',       campoNome: 'ds_nome_criterio' },
+        'APERFEICOAMENTO_ESPECIFICO': { dados: referencias.aperfeicoamentos, campoId: 'pk_id_curso',          campoNome: 'ds_nome_curso' }
     };
 
     const config = mapaTipos[tipoCriterio];
@@ -366,10 +366,10 @@ function atualizarReferenciaEdicao(valorSelecionado = null) {
     select.innerHTML = '<option value="">-- Selecione --</option>';
 
     const mapaTipos = {
-        'EXPERIENCIA_ESPECIFICA':     { dados: referencias.experiencias,     campoId: 'fk_id_experiencia',     campoNome: 'ds_nome_experiencia' },
-        'ESCOLARIDADE_ESPECIFICA':    { dados: referencias.escolaridades,    campoId: 'fk_id_escolaridade',    campoNome: 'ds_nome_escolaridade' },
-        'CRITERIO_ADICIONAL':         { dados: referencias.criterios,        campoId: 'fk_id_criterio',       campoNome: 'ds_nome_criterio' },
-        'APERFEICOAMENTO_ESPECIFICO': { dados: referencias.aperfeicoamentos, campoId: 'fk_id_curso',          campoNome: 'ds_nome_curso' }
+        'EXPERIENCIA_ESPECIFICA':     { dados: referencias.experiencias,     campoId: 'pk_id_experiencia',     campoNome: 'ds_nome_experiencia' },
+        'ESCOLARIDADE_ESPECIFICA':    { dados: referencias.escolaridades,    campoId: 'pk_id_escolaridade',    campoNome: 'ds_nome_escolaridade' },
+        'CRITERIO_ADICIONAL':         { dados: referencias.criterios,        campoId: 'pk_id_criterio',       campoNome: 'ds_nome_criterio' },
+        'APERFEICOAMENTO_ESPECIFICO': { dados: referencias.aperfeicoamentos, campoId: 'pk_id_curso',          campoNome: 'ds_nome_curso' }
     };
 
     const config = mapaTipos[tipoCriterio];
@@ -401,8 +401,43 @@ function atualizarReferenciaEdicao(valorSelecionado = null) {
     }
 }
 
+
+
+async function atualizarCsrf() {
+    try {
+        const response = await fetch('<?= base_url_adm("seguranca/csrf") ?>', {
+            method: 'GET',
+            credentials: 'same-origin',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        });
+        const data = await response.json();
+        const csrfKey = Object.keys(data).find(k => k.startsWith('csrf_'));
+        if (csrfKey) {
+            document.querySelectorAll('input[type="hidden"][name^="csrf_"]').forEach(function(input) {
+                input.name = csrfKey;
+                input.value = data[csrfKey];
+            });
+        }
+    } catch (err) {
+        console.error('Erro ao atualizar token CSRF:', err);
+    }
+}
+
+function atualizarCsrfPorResposta(data) {
+    const csrfKey = Object.keys(data).find(k => k.startsWith('csrf_'));
+    if (csrfKey) {
+        document.querySelectorAll('input[type="hidden"][name^="csrf_"]').forEach(function(input) {
+            input.name = csrfKey;
+            input.value = data[csrfKey];
+        });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     atualizarReferencia();
+    atualizarCsrf();
 });
 
 document.getElementById('form-desempate')?.addEventListener('submit', async function(e) {
@@ -422,6 +457,7 @@ document.getElementById('form-desempate')?.addEventListener('submit', async func
         const response = await fetch('<?= base_url_adm("CargosDesempateConfig/salvar") ?>', {
             method: 'POST',
             body: formData,
+            credentials: 'same-origin',
             headers: {
                 'X-Requested-With': 'XMLHttpRequest'
             }
@@ -439,6 +475,7 @@ document.getElementById('form-desempate')?.addEventListener('submit', async func
 
         if (data.success) {
             alert('Criterio salvo com sucesso!');
+            atualizarCsrfPorResposta(data);
             location.reload();
         } else {
             alert('Erro: ' + (data.message || 'Erro desconhecido'));
@@ -453,6 +490,7 @@ function excluirCriterio(idDesempate) {
 
     fetch('<?= base_url_adm("CargosDesempateConfig/excluir") ?>/' + idDesempate, {
         method: 'GET',
+        credentials: 'same-origin',
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
         }
@@ -514,6 +552,7 @@ document.getElementById('form-editar')?.addEventListener('submit', async functio
         const response = await fetch('<?= base_url_adm("CargosDesempateConfig/salvar") ?>', {
             method: 'POST',
             body: formData,
+            credentials: 'same-origin',
             headers: {
                 'X-Requested-With': 'XMLHttpRequest'
             }
@@ -531,6 +570,7 @@ document.getElementById('form-editar')?.addEventListener('submit', async functio
 
         if (data.success) {
             alert('Criterio atualizado com sucesso!');
+            atualizarCsrfPorResposta(data);
             $('#modalEditar').modal('hide');
             location.reload();
         } else {
@@ -546,6 +586,7 @@ function moverCriterio(idDesempate, direcao) {
 
     fetch('<?= base_url_adm("CargosDesempateConfig/mover") ?>/' + idDesempate + '?direcao=' + direcao, {
         method: 'GET',
+        credentials: 'same-origin',
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
         }

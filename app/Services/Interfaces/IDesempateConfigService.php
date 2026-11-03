@@ -9,9 +9,13 @@ use App\Services\Classificacao\DTO\DesempateConfigDTO;
 interface IDesempateConfigService
 {
     /**
+     * @param int|null $processo
      * @return DesempateConfigDTO[]
      */
-    public function buscarConfiguracao(int $cargo): array;
+    public function buscarConfiguracao(int $cargo, ?int $processo = null): array;
 
-    public function cargoPossuiConfiguracao(int $cargo): bool;
+    /**
+     * @param int|null $processo
+     */
+    public function cargoPossuiConfiguracao(int $cargo, ?int $processo = null): bool;
 }

@@ -24,6 +24,7 @@ class Classificacoes extends BaseController{
         $this->cargosModel        = new \App\Models\Admin\CargosModel();
         $this->editaisModel       = new \App\Models\Admin\EditaisModel();
         $this->protocolosModel    = new \App\Models\Admin\ProtocolosModel();
+        $this->db                = \Config\Database::connect();
     }
     public function index($idEdital = null, $idCargo = null, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'Classificacoes'){
         if (!is_file(APPPATH . 'Views/Admin/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
@@ -37,8 +38,11 @@ class Classificacoes extends BaseController{
         $dadosCargo = service('cargoService')->listarCargosId($idCargo);
         $classificacoes = service('classificacaoService')->listarClassificacao($idEdital, $idCargo);
 
+        // Resolve o processo seletivo vinculado ao edital para filtrar a config de desempate
+        $idProcesso = $this->resolverProcessoPorEdital((int)$idEdital);
+
         // Verifica se há desempate dinâmico configurado
-        $configDesempate = service('adminDesempateConfigService')->buscarConfiguracao((int)$idCargo);
+        $configDesempate = service('adminDesempateConfigService')->buscarConfiguracao((int)$idCargo, $idProcesso);
         // Remove PONTUACAO_TOTAL da exibição (já existe coluna fixa "Total de Pontos")
         $configDesempate = array_values(array_filter($configDesempate, fn($c) => $c->tipoCriterio !== 'PONTUACAO_TOTAL'));
         $usaDesempateDinamico = !empty($configDesempate);
@@ -163,7 +167,8 @@ class Classificacoes extends BaseController{
 
     private function obterDadosExportacao(int $edital, int $cargo, array $classificacoes): array
     {
-        $configDesempate = service('adminDesempateConfigService')->buscarConfiguracao($cargo);
+        $idProcesso = $this->resolverProcessoPorEdital($edital);
+        $configDesempate = service('adminDesempateConfigService')->buscarConfiguracao($cargo, $idProcesso);
         $configDesempate = array_values(array_filter($configDesempate, fn($c) => $c->tipoCriterio !== 'PONTUACAO_TOTAL'));
         $usaDesempateDinamico = !empty($configDesempate);
 
@@ -252,5 +257,41 @@ class Classificacoes extends BaseController{
     public function salvarEscolha(){
         return redirect()->to(base_url("Classificacoes/{$this->request->getPost('edital')}/{$this->request->getPost('cargo')}"));
     }
-    
+
+    /**
+     * Resolve o id do processo seletivo a partir do numero/ano do edital.
+     */
+    private function resolverProcessoPorEdital(int $idEdital): ?int
+    {
+        $edital = $this->editaisModel->find($idEdital);
+        if (empty($edital->ds_numero_edital)) {
+            return null;
+        }
+
+        $numeroCompleto = (string) $edital->ds_numero_edital;
+        if (strlen($numeroCompleto) < 5) {
+            return null;
+        }
+
+        $ano    = (int) substr($numeroCompleto, -4);
+        $numero = (int) substr($numeroCompleto, 0, -4);
+
+        $row = $this->db
+            ->table('tb_processos')
+            ->select('pk_id_processo')
+            ->where([
+                'nm_numero_processo' => $numero,
+                'nm_ano_processo'    => $ano,
+            ])
+            ->where("(is_deletado IS NULL OR is_deletado = '0000-00-00 00:00:00')", null, false)
+            ->get()
+            ->getRow();
+
+        return $row ? (int) $row->pk_id_processo : null;
+    }
+
+    /**
+     * @var \CodeIgniter\Database\BaseConnection
+     */
+    private $db;
 }

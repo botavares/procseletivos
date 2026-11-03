@@ -294,6 +294,7 @@ $routes->group('adm', ['namespace' => 'App\Controllers\Admin'], function($routes
     $routes->get('CargosDesempateConfig/(:num)', 'CargosDesempateConfig::index/$1', ['as' => 'CargosDesempateConfig.cargo']);
     $routes->get('CargosDesempateConfig', 'CargosDesempateConfig::index', ['as' => 'CargosDesempateConfig.semCargo']);
     $routes->get('CargosDesempateConfig/listar/(:num)', 'CargosDesempateConfig::listar/$1', ['as' => 'CargosDesempateConfig.listar']);
+    $routes->get('CargosDesempateConfig/listar/(:num)/(:num)', 'CargosDesempateConfig::listar/$1/$2', ['as' => 'CargosDesempateConfig.listarProcesso']);
     $routes->post('CargosDesempateConfig/salvar', 'CargosDesempateConfig::salvar', ['as' => 'CargosDesempateConfig.salvar']);
     $routes->post('CargosDesempateConfig/reordenar', 'CargosDesempateConfig::reordenar', ['as' => 'CargosDesempateConfig.reordenar']);
     $routes->post('CargosDesempateConfig/excluir/(:num)', 'CargosDesempateConfig::excluir/$1', ['as' => 'CargosDesempateConfig.excluir']);

@@ -38,7 +38,8 @@ class ClassificacaoProcessorService
      */
     public function processar(int $edital, int $cargo): array
     {
-        $configDesempate = $this->desempateConfigService->buscarConfiguracao($cargo);
+        $processoId = $this->buscarProcessoPorEdital($edital);
+        $configDesempate = $this->desempateConfigService->buscarConfiguracao($cargo, $processoId);
         $usaConfiguracaoDinamica = !empty($configDesempate);
 
         $candidatos = $this->buscarCandidatos($edital, $cargo);
@@ -177,6 +178,39 @@ class ClassificacaoProcessorService
         }
 
         return $this->ordenarEClassificar($resultadosDTO);
+    }
+
+    /**
+     * Descobre o processo seletivo vinculado ao edital a partir do numero/ano.
+     */
+    private function buscarProcessoPorEdital(int $edital): ?int
+    {
+        $editalService = new EditalService();
+        $dadosEdital = $editalService->listarEditalId($edital);
+
+        if (empty($dadosEdital->ds_numero_edital)) {
+            return null;
+        }
+
+        $numeroCompleto = (string) $dadosEdital->ds_numero_edital;
+        if (strlen($numeroCompleto) < 5) {
+            return null;
+        }
+
+        $ano    = (int) substr($numeroCompleto, -4);
+        $numero = (int) substr($numeroCompleto, 0, -4);
+
+        $row = $this->db->table('tb_processos')
+            ->select('pk_id_processo')
+            ->where([
+                'nm_numero_processo' => $numero,
+                'nm_ano_processo'    => $ano,
+            ])
+            ->where("(is_deletado IS NULL OR is_deletado = '0000-00-00 00:00:00')", null, false)
+            ->get()
+            ->getRow();
+
+        return $row ? (int) $row->pk_id_processo : null;
     }
 
     /**

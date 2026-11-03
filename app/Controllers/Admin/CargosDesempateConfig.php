@@ -3,32 +3,46 @@
 namespace App\Controllers\Admin;
 
 use CodeIgniter\Controller;
+use CodeIgniter\HTTP\ResponseInterface;
+use CodeIgniter\Model;
 use App\Models\Admin\CargosDesempateConfigModel;
 use App\Models\Admin\CargosModel;
 use App\Models\Admin\CargosExperienciasModel;
+use App\Models\Admin\ExperienciasModel;
 use App\Models\Admin\CargosEscolaridadesModel;
+use App\Models\Admin\EscolaridadesModel;
 use App\Models\Admin\CargosCriteriosAdicionaisModel;
 use App\Models\Admin\CargosCursosModel;
+use App\Models\Admin\AperfeicoamentosModel;
+use App\Models\Admin\CriteriosAdicionaisModel;
 use App\Services\Admin\Classificacao\DesempateConfigService;
 
 class CargosDesempateConfig extends BaseController
 {
-    protected $helpers = ['url', 'form'];
+    protected $helpers = ['url', 'form', 'edital'];
 
     protected $cargosModel;
     protected $cargosDesempateConfigModel;
     protected $cargosExperienciasModel;
+    protected $experienciasModel;
     protected $cargosEscolaridadesModel;
+    protected $escolaridadesModel;
     protected $cargosCriteriosAdicionaisModel;
     protected $cargosCursosModel;
+    protected $aperfeicoamentosModel;
+    protected $criteriosAdicionaisModel;
 
     public function __construct() {
         $this->cargosModel                   = new \App\Models\Admin\CargosModel();
         $this->cargosDesempateConfigModel      = new \App\Models\Admin\CargosDesempateConfigModel();
         $this->cargosExperienciasModel        = new \App\Models\Admin\CargosExperienciasModel();
+        $this->experienciasModel             = new \App\Models\Admin\ExperienciasModel();
         $this->cargosEscolaridadesModel       = new \App\Models\Admin\CargosEscolaridadesModel();
+        $this->escolaridadesModel            = new \App\Models\Admin\EscolaridadesModel();
         $this->cargosCriteriosAdicionaisModel = new \App\Models\Admin\CargosCriteriosAdicionaisModel();
         $this->cargosCursosModel             = new \App\Models\Admin\CargosCursosModel();
+        $this->aperfeicoamentosModel        = new \App\Models\Admin\AperfeicoamentosModel();
+        $this->criteriosAdicionaisModel      = new \App\Models\Admin\CriteriosAdicionaisModel();
     }
 
     /**
@@ -66,19 +80,22 @@ class CargosDesempateConfig extends BaseController
         ];
 
         if ($idProcesso) {
-            $processoModel = new \App\Models\Admin\ProcessosSeletivosModel();
+            $processoModel = new \App\Models\ProcessosSeletivosModel();
             $processo = $processoModel->find($idProcesso);
         }
 
         if ($idCargo) {
             $cargoSelecionado = $this->cargosModel->find($idCargo);
-            $configuracoes = service('adminDesempateConfigService')->buscarConfiguracao((int)$idCargo);
+            $configuracoes = service('adminDesempateConfigService')->buscarConfiguracao(
+                (int)$idCargo,
+                $idProcesso ? (int)$idProcesso : null
+            );
 
             // Carrega referencias do cargo para os dropdowns
-            $referencias['experiencias'] = $this->cargosExperienciasModel->listarExperienciasDoCargo((int)$idCargo);
-            $referencias['escolaridades'] = $this->cargosEscolaridadesModel->listarEscolaridadesDoCargo((int)$idCargo);
-            $referencias['criterios'] = $this->cargosCriteriosAdicionaisModel->listarCriteriosDoCargo((int)$idCargo);
-            $referencias['aperfeicoamentos'] = $this->cargosCursosModel->listarCursosDoCargo((int)$idCargo);
+            $referencias['experiencias'] = $this->experienciasModel->listarExperienciasPorCargo((int)$idCargo);
+            $referencias['escolaridades'] = $this->escolaridadesModel->listarEscolaridadesPorCargo((int)$idCargo);
+            $referencias['criterios'] = $this->criteriosAdicionaisModel->listarCriteriosPorCargo((int)$idCargo);
+            $referencias['aperfeicoamentos'] = $this->aperfeicoamentosModel->listarAperfeicoamentosPorCargo((int)$idCargo);
         }
 
         return view('Admin/layoutDash', [
@@ -99,10 +116,16 @@ class CargosDesempateConfig extends BaseController
 
     /**
      * Lista configuracoes de desempate para um cargo (AJAX/JSON).
+     *
+     * @param int|string $idCargo
+     * @param int|string|null $idProcesso
      */
-    public function listar($idCargo)
+    public function listar($idCargo, $idProcesso = null)
     {
-        $config = service('adminDesempateConfigService')->buscarConfiguracao((int)$idCargo);
+        $config = service('adminDesempateConfigService')->buscarConfiguracao(
+            (int)$idCargo,
+            $idProcesso ? (int)$idProcesso : null
+        );
 
         return $this->response->setJSON([
             'success' => true,
@@ -114,12 +137,13 @@ class CargosDesempateConfig extends BaseController
      * Salva um criterio de desempate (novo ou atualizacao).
      * Valida que PONTUACAO_TOTAL deve ser sempre o primeiro critério.
      */
-    public function salvar()
+    public function salvar(): ResponseInterface
     {
         $model = $this->cargosDesempateConfigModel;
 
         $idDesempate = $this->request->getPost('pk_id_desempate');
         $cargoId = $this->request->getPost('fk_id_cargo');
+        $processoId = $this->request->getPost('fk_id_processo');
         $tipoCriterio = $this->request->getPost('ds_tipo_criterio');
         $ordem = (int) $this->request->getPost('ds_ordem');
 
@@ -128,13 +152,12 @@ class CargosDesempateConfig extends BaseController
             return $this->response->setJSON([
                 'success' => false,
                 'message' => 'O primeiro critério (ordem 1) deve ser obrigatoriamente "Pontuacao Total" (PONTUACAO_TOTAL).',
+                csrf_token() => csrf_hash(),
             ]);
         }
 
         // Se já existe config para este cargo, verificar se ordem 1 é PONTUACAO_TOTAL
-        $configsExistentes = $model->where('fk_id_cargo', $cargoId)
-                              ->orderBy('ds_ordem', 'ASC')
-                              ->findAll();
+        $configsExistentes = $this->buscarConfiguracoesExistentes($model, $cargoId, $processoId);
 
         if (!empty($configsExistentes)) {
             $primeiro = $configsExistentes[0];
@@ -143,6 +166,7 @@ class CargosDesempateConfig extends BaseController
                 return $this->response->setJSON([
                     'success' => false,
                     'message' => 'Configuração inválida detectada: o primeiro critério existente não é Pontuação Total. Por favor, exclua todos os critérios e recomece com PONTUACAO_TOTAL na ordem 1.',
+                    csrf_token() => csrf_hash(),
                 ]);
             }
         }
@@ -152,6 +176,7 @@ class CargosDesempateConfig extends BaseController
             return $this->response->setJSON([
                 'success' => false,
                 'message' => 'O primeiro critério deve ser obrigatoriamente "Pontuacao Total" (PONTUACAO_TOTAL).',
+                csrf_token() => csrf_hash(),
             ]);
         }
 
@@ -162,18 +187,39 @@ class CargosDesempateConfig extends BaseController
                 return $this->response->setJSON([
                     'success' => false,
                     'message' => 'O primeiro critério existente não é "Pontuacao Total". Por favor, configure PONTUACAO_TOTAL na ordem 1 primeiro.',
+                    csrf_token() => csrf_hash(),
                 ]);
             }
         }
 
+        $referencia = $this->request->getPost('fk_id_referencia');
+        $referencia = ($referencia === '' || $referencia === null || $referencia === 'undefined')
+            ? null
+            : (int) $referencia;
+
+        $precisaReferencia = [
+            'EXPERIENCIA_ESPECIFICA',
+            'ESCOLARIDADE_ESPECIFICA',
+            'CRITERIO_ADICIONAL',
+            'APERFEICOAMENTO_ESPECIFICO',
+        ];
+        if (in_array($tipoCriterio, $precisaReferencia, true) && $referencia === null) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Por favor, selecione uma referencia para este tipo de criterio.',
+                csrf_token() => csrf_hash(),
+            ]);
+        }
+
         $data = [
-            'fk_id_cargo'        => $cargoId,
-            'ds_ordem'           => $ordem,
-            'ds_tipo_criterio'   => $tipoCriterio,
-            'fk_id_referencia'   => $this->request->getPost('fk_id_referencia') ?: null,
-            'ds_direcao'         => $this->request->getPost('ds_direcao') ?: 'DESC',
-            'ds_descricao'       => $this->request->getPost('ds_descricao'),
-            'ds_parametro_extra' => $this->request->getPost('ds_parametro_extra') ?: null,
+            'fk_id_cargo'             => $cargoId,
+            'fk_id_processo_seletivo' => $processoId ? (int) $processoId : null,
+            'ds_ordem'                => $ordem,
+            'ds_tipo_criterio'        => $tipoCriterio,
+            'fk_id_referencia'        => $referencia,
+            'ds_direcao'              => $this->request->getPost('ds_direcao') ?: 'DESC',
+            'ds_descricao'            => $this->request->getPost('ds_descricao'),
+            'ds_parametro_extra'      => $this->request->getPost('ds_parametro_extra') ?: null,
         ];
 
         if ($idDesempate) {
@@ -182,6 +228,7 @@ class CargosDesempateConfig extends BaseController
                 return $this->response->setJSON([
                     'success' => true,
                     'message' => 'Criterio atualizado com sucesso.',
+                    csrf_token() => csrf_hash(),
                 ]);
             }
         } else {
@@ -190,14 +237,54 @@ class CargosDesempateConfig extends BaseController
                 return $this->response->setJSON([
                     'success' => true,
                     'message' => 'Criterio salvo com sucesso.',
+                    csrf_token() => csrf_hash(),
                 ]);
             }
         }
 
+        $erro = $this->obterErroModel($model) ?? 'Erro ao salvar criterio.';
+        log_message('error', '[CargosDesempateConfig::salvar] Falha ao salvar: ' . $erro . ' | Dados: ' . json_encode($data));
+
         return $this->response->setJSON([
             'success' => false,
-            'message' => 'Erro ao salvar criterio.',
+            'message' => $erro,
+            csrf_token() => csrf_hash(),
         ]);
+    }
+
+    /**
+     * Retorna erros do model como string, ou null se nao houver erro.
+     */
+    private function obterErroModel(Model $model): ?string
+    {
+        $erros = $model->errors();
+        if (empty($erros)) {
+            return null;
+        }
+
+        $mensagens = [];
+        foreach ($erros as $campo => $erro) {
+            $mensagens[] = is_array($erro) ? implode(', ', $erro) : $erro;
+        }
+
+        return implode(' | ', $mensagens);
+    }
+
+    /**
+     * Busca configuracoes existentes respeitando o escopo de processo.
+     */
+    private function buscarConfiguracoesExistentes(Model $model, $cargoId, $processoId): array
+    {
+        $queryExistentes = $model->where('fk_id_cargo', $cargoId);
+
+        if ($processoId) {
+            $queryExistentes->where('fk_id_processo_seletivo', (int) $processoId);
+        } else {
+            $queryExistentes->where('fk_id_processo_seletivo IS NULL');
+        }
+
+        return $queryExistentes->orderBy('ds_ordem', 'ASC')
+                               ->findAll();
     }
 
     /**
@@ -349,16 +436,16 @@ class CargosDesempateConfig extends BaseController
 
         switch ($tipo) {
             case 'experiencia':
-                $resultado = $this->cargosExperienciasModel->listarExperienciasDoCargo((int)$idCargo);
+                $resultado = $this->experienciasModel->listarExperienciasPorCargo((int)$idCargo);
                 break;
             case 'escolaridade':
-                $resultado = $this->cargosEscolaridadesModel->listarEscolaridadesDoCargo((int)$idCargo);
+                $resultado = $this->escolaridadesModel->listarEscolaridadesPorCargo((int)$idCargo);
                 break;
             case 'criterio_adicional':
-                $resultado = $this->cargosCriteriosAdicionaisModel->listarCriteriosDoCargo((int)$idCargo);
+                $resultado = $this->criteriosAdicionaisModel->listarCriteriosPorCargo((int)$idCargo);
                 break;
             case 'aperfeicoamento':
-                $resultado = $this->cargosCursosModel->listarCursosDoCargo((int)$idCargo);
+                $resultado = $this->aperfeicoamentosModel->listarAperfeicoamentosPorCargo((int)$idCargo);
                 break;
         }
 

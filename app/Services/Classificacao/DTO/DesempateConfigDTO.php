@@ -10,7 +10,8 @@ class DesempateConfigDTO
         public readonly ?int $idReferencia,
         public readonly string $direcao,
         public readonly ?string $parametroExtra,
-        public readonly string $descricao
+        public readonly string $descricao,
+        public readonly ?int $processoSeletivoId = null
     ) {}
 
     /**

@@ -75,9 +75,9 @@ class TransparenciaPresenter
     /**
      * Resolve labels legíveis para colunas dinâmicas
      */
-    public function resolverLabelsColunasDinamicas(array $rows, int $cargo): array
+    public function resolverLabelsColunasDinamicas(array $rows, int $cargo, ?int $processo = null): array
     {
-        $configDesempate = $this->desempateConfigService->buscarConfiguracao($cargo);
+        $configDesempate = $this->desempateConfigService->buscarConfiguracao($cargo, $processo);
         $labelsConfig = [];
         $tiposCriterio = [];
 
