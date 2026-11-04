@@ -46,6 +46,11 @@ class Filters extends BaseConfig
      * before or after URI patterns.
      */
     public array $filters = [
-        'csrf' => ['except' => ['api/*']], // APIs nao exigem token CSRF
+        'csrf' => [
+            'except' => [
+                'api/*',
+                'adm/seguranca/csrf',
+            ],
+        ], // APIs e endpoint de refresh CSRF nao exigem token CSRF
     ];
 }

@@ -5,17 +5,17 @@ Control: Contratos.php
 
 namespace App\Controllers\Admin;
 
-use App\Models\Admin\EditaisModel;
+use App\Services\ProcessosSeletivos\ProcessosSeletivosService;
 
 use CodeIgniter\Controller;
 
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Dashboard extends BaseController{
-    protected $editaisModel;
+    protected $ProcessosSeletivosService;
 
     public function __construct(){
-        $this->editaisModel = new \App\Models\Admin\EditaisModel();
+        $this->ProcessosSeletivosService = service('ProcessosSeletivosService');
     }
     public function index($camada1 = '', $camada2 = 'pages', $page = 'Dashboard'){
         if (! is_file(APPPATH . 'Views/Admin/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
@@ -26,18 +26,18 @@ class Dashboard extends BaseController{
             return redirect()->route('home')->with('error','Sua sessão expirou');
         }
         
-        $editaisAtivos = $this->editaisModel->getEditaisAtivos();
-        $todosEditais = $this->editaisModel->getTodosEditais();
-        $cargosComContagem = $this->editaisModel->getCargosComContagemCandidatosPorEditalAtivo();
+        $processosAtivos = $this->ProcessosSeletivosService->listarAtivosComSituacao();
+        $todosProcessos = $this->ProcessosSeletivosService->listarTodos();
+        //$cargosComContagem = $this->ProcessosSeletivosService->getCargosComContagemCandidatosPorEditalAtivo();
         
 
         $parametros = [
             'camada1'           =>  $camada1,
             'camada2'           =>  $camada2,
             'pagina'            =>  $page,
-            'editais'           =>  $editaisAtivos,
-            'todosEditais'      =>  $todosEditais,
-            'cargosContagem'    =>  $cargosComContagem,
+            'processosAtivos'   =>  $processosAtivos,
+            'todosProcessos'    =>  $todosProcessos,
+            //'cargosContagem'    =>  $cargosComContagem,
             'perfil'            =>  session('perfil'),
             'administrador'     =>  session('administrador'),
 			'user'		        =>	session('nome'),

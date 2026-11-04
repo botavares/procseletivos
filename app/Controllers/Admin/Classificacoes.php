@@ -6,27 +6,27 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 use App\Enums\Admin\ClassificacaoStatusEnum;
 use App\Models\Admin\ClassificacaoModel;
 use App\Models\Admin\CargosModel;
-use App\Models\Admin\EditaisModel;
 use App\Models\Admin\ProtocolosModel;
 use App\Models\Admin\CadastrosExperienciasModel;
 use App\Models\Admin\CadastrosEscolaridadesModel;
 use App\Models\Admin\CadastrosAperfeicoamentosModel;
+use App\Models\ProcessosSeletivosModel;
 
 class Classificacoes extends BaseController{
 
     protected $classificacaoModel;
     protected $cargosModel;
-    protected $editaisModel;
+    protected $processosSeletivosModel;
     protected $protocolosModel;
 
     public function __construct(){
-        $this->classificacaoModel = new \App\Models\Admin\ClassificacaoModel();
-        $this->cargosModel        = new \App\Models\Admin\CargosModel();
-        $this->editaisModel       = new \App\Models\Admin\EditaisModel();
-        $this->protocolosModel    = new \App\Models\Admin\ProtocolosModel();
-        $this->db                = \Config\Database::connect();
+        $this->classificacaoModel     = new \App\Models\Admin\ClassificacaoModel();
+        $this->cargosModel             = new \App\Models\Admin\CargosModel();
+        $this->processosSeletivosModel = new \App\Models\ProcessosSeletivosModel();
+        $this->protocolosModel        = new \App\Models\Admin\ProtocolosModel();
     }
-    public function index($idEdital = null, $idCargo = null, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'Classificacoes'){
+
+    public function index($idProcesso = null, $idCargo = null, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'Classificacoes'){
         if (!is_file(APPPATH . 'Views/Admin/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
             throw new PageNotFoundException("Página não encontrada: " . $page);
         }
@@ -35,27 +35,34 @@ class Classificacoes extends BaseController{
             return redirect()->route('home')->with('error','Sua sessão expirou');
         }
 
-        $dadosCargo = service('cargoService')->listarCargosId($idCargo);
-        $classificacoes = service('classificacaoService')->listarClassificacao($idEdital, $idCargo);
+        if (!$idProcesso || !$idCargo) {
+            return redirect()->to(base_url('home'))->with('error', 'Processo ou cargo não informado.');
+        }
 
-        // Resolve o processo seletivo vinculado ao edital para filtrar a config de desempate
-        $idProcesso = $this->resolverProcessoPorEdital((int)$idEdital);
+        $dadosCargo   = service('cargoService')->listarCargosId($idCargo);
+        $dadosProcesso = $this->processosSeletivosModel->find($idProcesso);
+
+        if (!$dadosCargo || !$dadosProcesso) {
+            return redirect()->to(base_url('home'))->with('error', 'Cargo ou Processo não encontrado.');
+        }
+
+        $classificacoes = service('classificacaoService')->listarClassificacao((int)$idProcesso, (int)$idCargo);
 
         // Verifica se há desempate dinâmico configurado
-        $configDesempate = service('adminDesempateConfigService')->buscarConfiguracao((int)$idCargo, $idProcesso);
+        $configDesempate = service('adminDesempateConfigService')->buscarConfiguracao((int)$idCargo, (int)$idProcesso);
         // Remove PONTUACAO_TOTAL da exibição (já existe coluna fixa "Total de Pontos")
         $configDesempate = array_values(array_filter($configDesempate, fn($c) => $c->tipoCriterio !== 'PONTUACAO_TOTAL'));
         $usaDesempateDinamico = !empty($configDesempate);
 
-        // Colunas dinâmicas baseadas nas configurações do cargo
+        // Colunas dinâmicas baseadas nas configurações do cargo (filtradas por processo)
         $colunasService = service('classificacaoColunasService');
-        $colunasDinamicas = $colunasService->obterColunas((int)$idCargo);
+        $colunasDinamicas = $colunasService->obterColunas((int)$idCargo, (int)$idProcesso);
 
         // Busca dados dinâmicos dos candidatos
         $dadosDinamicos = [];
         if (!empty($classificacoes)) {
             $idsCandidatos = array_column($classificacoes, 'fk_id_candidato');
-            $dadosDinamicos = $colunasService->obterDadosDinamicos((int)$idEdital, (int)$idCargo, $idsCandidatos);
+            $dadosDinamicos = $colunasService->obterDadosDinamicos((int)$idProcesso, (int)$idCargo, $idsCandidatos);
         }
 
         $parametros = [
@@ -63,9 +70,10 @@ class Classificacoes extends BaseController{
             'camada2'       => $camada2,
             'pagina'        => $page,
             'classificacoes' => $classificacoes,
-            'idEdital'      => $idEdital,
+            'idProcesso'    => $idProcesso,
             'idCargo'       => $idCargo,
             'nomeCargo'     => $dadosCargo->ds_nome_cargo,
+            'nomeProcesso'  => $this->formatarNumeroProcesso($dadosProcesso),
             'perfil'        => session('perfil'),
             'user'          => session('nome'),
             'titulo'        => "Classificação ",
@@ -76,16 +84,25 @@ class Classificacoes extends BaseController{
         ];
 
         echo view('Admin/layoutDash', $parametros);
-        
     }
 
-    public function reprocessar($edital, $cargo){
-        service('classificacaoService')->reprocessar((int)$edital, (int)$cargo);
+    private function formatarNumeroProcesso($processo): string
+    {
+        if (empty($processo)) {
+            return '';
+        }
+        $numero = str_pad((string)($processo->nm_numero_processo ?? ''), 3, '0', STR_PAD_LEFT);
+        $ano    = $processo->nm_ano_processo ?? '';
+        return $ano ? "{$numero}/{$ano}" : $numero;
+    }
+
+    public function reprocessar($processo, $cargo){
+        service('classificacaoService')->reprocessar((int)$processo, (int)$cargo);
         return redirect()->back()->with('success', 'Classificação reprocessada com sucesso.');
     }
 
-    public function gerarClassificacao($secretaria, $edital, $cargo){
-        $protocolos = $this->protocolosModel->protocolosCadastradosEdital($secretaria, $edital, $cargo);
+    public function gerarClassificacao($secretaria, $processo, $cargo){
+        $protocolos = $this->protocolosModel->protocolosCadastradosProcesso($secretaria, $processo, $cargo);
 
         foreach ($protocolos as $protocolo) {
             $idCandidato = $protocolo->fk_id_cadastrado;
@@ -93,13 +110,13 @@ class Classificacoes extends BaseController{
             // Limpa classificação anterior
             $this->classificacaoModel->where([
                 'fk_id_candidato' => $idCandidato,
-                'fk_id_edital'    => $edital,
+                'fk_id_processo'  => $processo,
                 'fk_id_cargo'     => $cargo,
             ])->delete();
 
             // Experiências
             $experiencias = (new CadastrosExperienciasModel())
-                ->buscarExperienciasParaClassificacao($idCandidato, $edital, $cargo);
+                ->buscarExperienciasParaClassificacao($idCandidato, $processo, $cargo);
             foreach ($experiencias as $exp) {
                 if ((int) $exp->ds_status !== ClassificacaoStatusEnum::CLASSIFICATORIA->value) continue;
                 $total = (float) $exp->ds_quantidade * (float) $exp->ds_multiplicador;
@@ -107,7 +124,7 @@ class Classificacoes extends BaseController{
                 if ($max > 0 && $total > $max) $total = $max;
                 $this->classificacaoModel->insert([
                     'fk_id_candidato'          => $idCandidato,
-                    'fk_id_edital'             => $edital,
+                    'fk_id_processo'           => $processo,
                     'fk_id_cargo'              => $cargo,
                     'ds_tipo_classificacao'    => 'EXP',
                     'fk_id_tipo_classificacao' => $exp->fk_id_experiencia,
@@ -119,7 +136,7 @@ class Classificacoes extends BaseController{
 
             // Escolaridades
             $escolaridades = (new CadastrosEscolaridadesModel())
-                ->buscarEscolaridadesParaClassificacao($idCandidato, $edital, $cargo);
+                ->buscarEscolaridadesParaClassificacao($idCandidato, $processo, $cargo);
             foreach ($escolaridades as $esc) {
                 if ((int) $esc->ds_status !== ClassificacaoStatusEnum::CLASSIFICATORIA->value) continue;
                 $total = (float) $esc->ds_quantidade * (float) $esc->ds_multiplicador;
@@ -127,7 +144,7 @@ class Classificacoes extends BaseController{
                 if ($max > 0 && $total > $max) $total = $max;
                 $this->classificacaoModel->insert([
                     'fk_id_candidato'          => $idCandidato,
-                    'fk_id_edital'             => $edital,
+                    'fk_id_processo'           => $processo,
                     'fk_id_cargo'              => $cargo,
                     'ds_tipo_classificacao'    => 'ESC',
                     'fk_id_tipo_classificacao' => $esc->fk_id_escolaridade,
@@ -139,7 +156,7 @@ class Classificacoes extends BaseController{
 
             // Aperfeiçoamentos
             $aperfeicoamentos = (new CadastrosAperfeicoamentosModel())
-                ->buscarAperfeicoamentosParaClassificacao($idCandidato, $edital, $cargo);
+                ->buscarAperfeicoamentosParaClassificacao($idCandidato, $processo, $cargo);
             foreach ($aperfeicoamentos as $ape) {
                 if ((int) $ape->ds_status !== ClassificacaoStatusEnum::CLASSIFICATORIA->value) continue;
                 $total = (float) $ape->ds_quantidade * (float) $ape->ds_multiplicador;
@@ -147,7 +164,7 @@ class Classificacoes extends BaseController{
                 if ($max > 0 && $total > $max) $total = $max;
                 $this->classificacaoModel->insert([
                     'fk_id_candidato'          => $idCandidato,
-                    'fk_id_edital'             => $edital,
+                    'fk_id_processo'           => $processo,
                     'fk_id_cargo'              => $cargo,
                     'ds_tipo_classificacao'    => 'APE',
                     'fk_id_tipo_classificacao' => $ape->fk_id_curso,
@@ -158,17 +175,17 @@ class Classificacoes extends BaseController{
             }
         }
     }
-    public function gerarRanking($edital, $cargo){
+
+    public function gerarRanking($processo, $cargo){
         $service = service('classificacaoService');
-        $service->reprocessar((int)$edital, (int)$cargo);
+        $service->reprocessar((int)$processo, (int)$cargo);
 
         return redirect()->back()->with('success', 'Ranking reprocessado com sucesso.');
     }
 
-    private function obterDadosExportacao(int $edital, int $cargo, array $classificacoes): array
+    private function obterDadosExportacao(int $processo, int $cargo, array $classificacoes): array
     {
-        $idProcesso = $this->resolverProcessoPorEdital($edital);
-        $configDesempate = service('adminDesempateConfigService')->buscarConfiguracao($cargo, $idProcesso);
+        $configDesempate = service('adminDesempateConfigService')->buscarConfiguracao($cargo, $processo);
         $configDesempate = array_values(array_filter($configDesempate, fn($c) => $c->tipoCriterio !== 'PONTUACAO_TOTAL'));
         $usaDesempateDinamico = !empty($configDesempate);
 
@@ -176,13 +193,16 @@ class Classificacoes extends BaseController{
         $dadosDinamicos   = [];
         if (!$usaDesempateDinamico) {
             $colunasService   = service('classificacaoColunasService');
-            $colunasDinamicas = $colunasService->obterColunas($cargo);
-            $dadosDinamicos   = $colunasService->obterDadosDinamicos($edital, $cargo, array_column($classificacoes, 'fk_id_candidato'));
+            $colunasDinamicas = $colunasService->obterColunas($cargo, $processo);
+            $dadosDinamicos   = $colunasService->obterDadosDinamicos($processo, $cargo, array_column($classificacoes, 'fk_id_candidato'));
         }
 
+        $dadosProcesso = $this->processosSeletivosModel->find($processo);
+        $dadosCargo    = $this->cargosModel->find($cargo);
+
         return [
-            'nomeEdital'     => $this->editaisModel->find($edital)->ds_numero_edital ?? 'edital',
-            'nomeCargo'      => $this->cargosModel->find($cargo)->ds_nome_cargo   ?? 'cargo',
+            'nomeProcesso'   => $this->formatarNumeroProcesso($dadosProcesso),
+            'nomeCargo'      => $dadosCargo->ds_nome_cargo   ?? 'cargo',
             'configDesempate' => $configDesempate,
             'usaDesempateDinamico' => $usaDesempateDinamico,
             'colunasDinamicas' => $colunasDinamicas,
@@ -190,9 +210,9 @@ class Classificacoes extends BaseController{
         ];
     }
 
-    public function exportarXlsx($edital, $cargo)
+    public function exportarXlsx($processo, $cargo)
     {
-        $classificacoes = service('classificacaoService')->listarClassificacao((int)$edital, (int)$cargo);
+        $classificacoes = service('classificacaoService')->listarClassificacao((int)$processo, (int)$cargo);
 
         if (empty($classificacoes)) {
             return redirect()->back()->with('error', 'A classificação está vazia. Execute o reprocessamento antes de exportar.');
@@ -206,11 +226,11 @@ class Classificacoes extends BaseController{
             }
         }
 
-        $dados = $this->obterDadosExportacao((int)$edital, (int)$cargo, $classificacoes);
+        $dados = $this->obterDadosExportacao((int)$processo, (int)$cargo, $classificacoes);
 
         service('excelExportService')->exportarClassificacao(
             $classificacoes,
-            ['edital' => $dados['nomeEdital'], 'cargo' => $dados['nomeCargo']],
+            ['processo' => $dados['nomeProcesso'], 'cargo' => $dados['nomeCargo']],
             $dados['configDesempate'],
             $dados['colunasDinamicas'],
             $dados['dadosDinamicos'],
@@ -219,18 +239,18 @@ class Classificacoes extends BaseController{
         );
     }
 
-    public function gerarPdf($edital, $cargo){
-        $classificacoes = service('classificacaoService')->listarClassificacao((int)$edital, (int)$cargo);
+    public function gerarPdf($processo, $cargo){
+        $classificacoes = service('classificacaoService')->listarClassificacao((int)$processo, (int)$cargo);
 
         if (empty($classificacoes)) {
             return redirect()->back()->with('error', 'A classificação está vazia. Execute o reprocessamento antes de gerar o PDF.');
         }
 
-        $dados = $this->obterDadosExportacao((int)$edital, (int)$cargo, $classificacoes);
+        $dados = $this->obterDadosExportacao((int)$processo, (int)$cargo, $classificacoes);
 
         service('pdfExportService')->gerarPdf('ClassificacaoPorCargo', [
             'classificacoes'       => $classificacoes,
-            'nomeEdital'           => $dados['nomeEdital'],
+            'nomeProcesso'         => $dados['nomeProcesso'],
             'nomeCargo'            => $dados['nomeCargo'],
             'dataGeracao'          => date('d/m/Y H:i:s'),
             'usaDesempateDinamico' => $dados['usaDesempateDinamico'],
@@ -240,7 +260,7 @@ class Classificacoes extends BaseController{
         ], 'ClassificacaoPorCargo');
     }
 
-    public function exportarTabela($edital, $cargo){
+    public function exportarTabela($processo, $cargo){
         $dados   = json_decode($this->request->getPost('dados'), true);
         $titulos = json_decode($this->request->getPost('titulos'), true);
 
@@ -248,50 +268,16 @@ class Classificacoes extends BaseController{
             return redirect()->back()->with('error', 'Nenhum dado foi recebido para exportação. Verifique se a tabela possui registros.');
         }
 
+        $dadosProcesso = $this->processosSeletivosModel->find($processo);
+        $dadosCargo    = $this->cargosModel->find($cargo);
+
         service('excelExportService')->exportarTabela($dados, $titulos, [
-            'edital' => $this->editaisModel->find($edital)->ds_numero_edital ?? 'edital',
-            'cargo'  => $this->cargosModel->find($cargo)->ds_nome_cargo   ?? 'cargo',
+            'processo' => $this->formatarNumeroProcesso($dadosProcesso),
+            'cargo'    => $dadosCargo->ds_nome_cargo   ?? 'cargo',
         ]);
     }
 
     public function salvarEscolha(){
-        return redirect()->to(base_url("Classificacoes/{$this->request->getPost('edital')}/{$this->request->getPost('cargo')}"));
+        return redirect()->to(base_url_adm("Classificacoes/{$this->request->getPost('processo')}/{$this->request->getPost('cargo')}"));
     }
-
-    /**
-     * Resolve o id do processo seletivo a partir do numero/ano do edital.
-     */
-    private function resolverProcessoPorEdital(int $idEdital): ?int
-    {
-        $edital = $this->editaisModel->find($idEdital);
-        if (empty($edital->ds_numero_edital)) {
-            return null;
-        }
-
-        $numeroCompleto = (string) $edital->ds_numero_edital;
-        if (strlen($numeroCompleto) < 5) {
-            return null;
-        }
-
-        $ano    = (int) substr($numeroCompleto, -4);
-        $numero = (int) substr($numeroCompleto, 0, -4);
-
-        $row = $this->db
-            ->table('tb_processos')
-            ->select('pk_id_processo')
-            ->where([
-                'nm_numero_processo' => $numero,
-                'nm_ano_processo'    => $ano,
-            ])
-            ->where("(is_deletado IS NULL OR is_deletado = '0000-00-00 00:00:00')", null, false)
-            ->get()
-            ->getRow();
-
-        return $row ? (int) $row->pk_id_processo : null;
-    }
-
-    /**
-     * @var \CodeIgniter\Database\BaseConnection
-     */
-    private $db;
 }

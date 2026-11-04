@@ -15,7 +15,7 @@
                         <!-- TOOLBOX -->
                         <div class="card-toolbox mt-2 mb-2 d-flex flex-row">
                             <div class="mb-2 ml-1 mr-2">
-                                <a href="<?php echo base_url_adm('Candidatos/exibirDados/' . $dadosRecursos['idEdital'] . '/' . $dadosRecursos['idCargo'] . '/' . $dadosRecursos['idCandidato']); ?>"
+                                <a href="<?php echo base_url_adm('Candidatos/exibirDados/' . $dadosRecursos['idProcesso'] . '/' . $dadosRecursos['idCargo'] . '/' . $dadosRecursos['idCandidato']); ?>"
                                    class="btn btn-warning btn-sm">
                                     <i class="fas fa-arrow-left mr-1"></i> Voltar
                                 </a>
@@ -37,7 +37,7 @@
                             <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                             <input type="hidden" name="recurso-aberto" value="true">
                             <input type="hidden" name="action" value="<?= $acao ?>">
-                            <input type="hidden" name="pk_id_edital" value="<?= $edital ?>">
+                            <input type="hidden" name="pk_id_processo" value="<?= $edital ?>">
                             <input type="hidden" name="pk_id_cargo" value="<?= $cargo ?>">
                             <input type="hidden" name="pk_id_candidato" value="<?= $dadosRecursos['candidato']->pk_id_cadastrado ?>">
                             <input type="hidden" name="ds_nome" value="<?= esc($dadosRecursos['candidato']->ds_nome) ?>">
@@ -238,7 +238,7 @@
                             <!-- /card-body -->
 
                             <div class="card-footer text-right">
-                                <a href="<?php echo base_url_adm('Candidatos/exibirDados/' . $dadosRecursos['idEdital'] . '/' . $dadosRecursos['idCargo'] . '/' . $dadosRecursos['idCandidato']); ?>" class="btn btn-warning">
+                                <a href="<?php echo base_url_adm('Candidatos/exibirDados/' . $dadosRecursos['idProcesso'] . '/' . $dadosRecursos['idCargo'] . '/' . $dadosRecursos['idCandidato']); ?>" class="btn btn-warning">
                                     <i class="fas fa-arrow-left mr-1"></i> Voltar
                                 </a>
                                 <button type="submit" class="btn btn-success ml-2">

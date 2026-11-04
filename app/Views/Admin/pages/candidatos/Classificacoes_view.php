@@ -92,9 +92,23 @@
 													<?php
 														$chave = $config->chaveScore();
 														$scoreData = $classificacao['_scores'][$chave] ?? null;
-														$valor = is_array($scoreData) ? ($scoreData['nr_valor'] ?? 0) : ($scoreData ?? 0);
+														if (is_array($scoreData) && !empty($scoreData['ds_valor_texto'])) {
+															$valor = $scoreData['ds_valor_texto'];
+														} elseif (is_array($scoreData)) {
+															$valor = $scoreData['nr_valor'] ?? 0;
+														} else {
+															$valor = $scoreData ?? 0;
+														}
 													?>
-														<td class="text-center"><?= is_numeric($valor) ? number_format((float)$valor, 2, ',', '.') : esc($valor) ?></td>
+														<td class="text-center">
+															<?php if (is_string($valor) && preg_match('/^\d{4}-\d{2}-\d{2}$/', $valor)): ?>
+																<?= date('d/m/Y', strtotime($valor)) ?>
+															<?php elseif (is_numeric($valor)): ?>
+																<?= number_format((float)$valor, 2, ',', '.') ?>
+															<?php else: ?>
+																<?= esc($valor) ?>
+															<?php endif; ?>
+														</td>
 												<?php endforeach; ?>
 												<td class="text-center"><?= date('d/m/Y', strtotime($classificacao['dt_nascimento'])) ?></td>
 												<td class="text-center"><?= esc($classificacao['nr_total_pontos']) ?></td>
@@ -118,7 +132,7 @@
 
 											<td class="text-center">
 												<a class="btn btn-info btn-sm" 
-												   href="<?php echo base_url_adm('Candidatos/exibirDados/' . $classificacao['fk_id_edital'] . '/' . $classificacao['fk_id_cargo'] . '/' . $classificacao['fk_id_candidato']) ?>"
+												   href="<?php echo base_url_adm('Candidatos/exibirDados/' . $idProcesso . '/' . $classificacao['fk_id_cargo'] . '/' . $classificacao['fk_id_candidato']) ?>"
 												   title="Exibir Dados">
 													<i class="fas fa-user"></i>
 												</a>
@@ -137,11 +151,11 @@
 
 <script>
 document.getElementById('btnExportarPlanilha').addEventListener('click', function () {
-	window.location.href = '<?php echo base_url_adm("Classificacoes/exportarXlsx/" . $idEdital . "/" . $idCargo) ?>';
+	window.location.href = '<?php echo base_url_adm("Classificacoes/exportarXlsx/" . $idProcesso . "/" . $idCargo) ?>';
 });
 
 document.getElementById('btnExportarPlanilhaPcd').addEventListener('click', function () {
-	window.location.href = '<?php echo base_url_adm("Classificacoes/exportarXlsx/" . $idEdital . "/" . $idCargo . "?pcd=1") ?>';
+	window.location.href = '<?php echo base_url_adm("Classificacoes/exportarXlsx/" . $idProcesso . "/" . $idCargo . "?pcd=1") ?>';
 });
 
 $(document).ready(function () {

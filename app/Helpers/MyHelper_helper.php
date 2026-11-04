@@ -49,6 +49,28 @@ if(! function_exists('sendMeAuth')){
 		
 	}
 	
+	if (!function_exists('mask')) {
+		/**
+		 * Aplica uma máscara a uma string, substituindo '#' pelos caracteres informados.
+		 * Exemplo: mask('31999999999', '(##) #####-####') => '(31) 99999-9999'
+		 */
+		function mask(string $val, string $mask): string
+		{
+			$val = preg_replace('/\D/', '', $val);
+			$result = '';
+			$k = 0;
 
+			for ($i = 0; $i < strlen($mask); $i++) {
+				if ($mask[$i] === '#') {
+					if (isset($val[$k])) {
+						$result .= $val[$k++];
+					}
+				} else {
+					$result .= $mask[$i];
+				}
+			}
 
+			return $result;
+		}
+	}
 }

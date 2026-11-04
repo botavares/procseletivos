@@ -171,7 +171,7 @@ class ExcelExportService implements ExportadorInterface
         bool $usaDesempateDinamico,
         bool $somentePcd = false
     ): void {
-        $nomeEdital = $metadados['edital'] ?? 'edital';
+        $nomeEdital = $metadados['processo'] ?? $metadados['edital'] ?? 'edital';
         $nomeCargo  = $metadados['cargo']  ?? 'cargo';
 
         $safeEdital = preg_replace('/[^A-Za-z0-9_-]/', '_', $nomeEdital);
@@ -208,9 +208,21 @@ class ExcelExportService implements ExportadorInterface
                 foreach ($configDesempate as $config) {
                     $chave = method_exists($config, 'chaveScore') ? $config->chaveScore() : ($config->chave ?? '');
                     $scoreData = $classificacao['_scores'][$chave] ?? null;
-                    $valor = is_array($scoreData) ? ($scoreData['nr_valor'] ?? 0) : ($scoreData ?? 0);
+                    if (is_array($scoreData) && !empty($scoreData['ds_valor_texto'])) {
+                        $valor = $scoreData['ds_valor_texto'];
+                    } elseif (is_array($scoreData)) {
+                        $valor = $scoreData['nr_valor'] ?? 0;
+                    } else {
+                        $valor = $scoreData ?? 0;
+                    }
                     $colName = $config->descricao ?: $config->tipoCriterio;
-                    $linha[$colName] = is_numeric($valor) ? number_format((float)$valor, 2, ',', '.') : esc($valor);
+                    if (is_string($valor) && preg_match('/^\d{4}-\d{2}-\d{2}$/', $valor)) {
+                        $linha[$colName] = date('d/m/Y', strtotime($valor));
+                    } elseif (is_numeric($valor)) {
+                        $linha[$colName] = number_format((float)$valor, 2, ',', '.');
+                    } else {
+                        $linha[$colName] = esc($valor);
+                    }
                 }
                 $linha['Nascimento']      = date('d/m/Y', strtotime($classificacao['dt_nascimento'] ?? ''));
                 $linha['Total de Pontos'] = $classificacao['nr_total_pontos'] ?? 0;
@@ -235,7 +247,7 @@ class ExcelExportService implements ExportadorInterface
             'tituloAba'           => 'Classificação',
             'headers'             => $headers,
             'linhas'              => $linhas,
-            'subtitulo'           => "Edital: {$nomeEdital}  |  Cargo: {$nomeCargo}",
+            'subtitulo'           => "Processo: {$nomeEdital}  |  Cargo: {$nomeCargo}",
             'dataGeracao'         => 'Classificação gerada em ' . date('d/m/Y H:i:s'),
         ]);
     }
@@ -245,7 +257,7 @@ class ExcelExportService implements ExportadorInterface
      */
     public function exportarTabela(array $dados, array $titulos, array $metadados): void
     {
-        $nomeEdital = $metadados['edital'] ?? 'edital';
+        $nomeEdital = $metadados['processo'] ?? $metadados['edital'] ?? 'edital';
         $nomeCargo  = $metadados['cargo']  ?? 'cargo';
 
         $safeEdital = preg_replace('/[^A-Za-z0-9_-]/', '_', $nomeEdital);
@@ -266,7 +278,7 @@ class ExcelExportService implements ExportadorInterface
             'tituloAba'           => 'Classificação',
             'headers'             => $titulos,
             'linhas'              => $linhas,
-            'subtitulo'           => "Edital: {$nomeEdital}  |  Cargo: {$nomeCargo}",
+            'subtitulo'           => "Processo: {$nomeEdital}  |  Cargo: {$nomeCargo}",
             'dataGeracao'         => 'Classificação gerada em ' . date('d/m/Y H:i:s'),
         ]);
     }

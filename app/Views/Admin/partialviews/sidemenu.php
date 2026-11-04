@@ -60,7 +60,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link" data-toggle="modal" data-target="#escolhaEditais">
+                        <a href="#" class="nav-link" data-toggle="modal" data-target="#escolhaProcessos">
                             <i class="nav-icon fas fa-users"></i>
                             <p>Candidatos</p>
                         </a>
@@ -216,9 +216,9 @@
                 <form id="formRelatorioClassificacao">
                     <input type="hidden" id="csrf-classificacao" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                     <div class="form-group">
-                        <label for="edital-classificacao">Edital</label>
-                        <select class="form-control" id="edital-classificacao" name="edital" required>
-                            <option value="">Selecione um Edital</option>
+                        <label for="processo-classificacao">Processo Seletivo</label>
+                        <select class="form-control" id="processo-classificacao" name="processo" required>
+                            <option value="">Selecione um Processo Seletivo</option>
                         </select>
                     </div>
                     <div class="form-group">

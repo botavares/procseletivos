@@ -83,18 +83,24 @@ $(document).ready(function($){
 		$(this).find(".diaConsultas").html('').end();
 		$(this).find(".tbody-desvincular").html('').end();
 	});
-	$('.modal').on('shown.bs.modal', function () {
-   			$.getJSON(path + 'seguranca/csrf', function (response) {
-       		var csrfKey = Object.keys(response).find(k => k.startsWith('csrf_'));
-       		if (csrfKey) {
-					$('input[type="hidden"]').each(function() {
-						if ($(this).attr('name') && $(this).attr('name').startsWith('csrf_')) {
-							$(this).attr('name', csrfKey);
-							$(this).val(response[csrfKey]);
-						}
-					});
-       		}
-   		});
+
+	/*==============================================================================
+	ATUALIZA O CSRF DOS FORMULÁRIOS DE MODAL AO ABRIR
+	===============================================================================*/
+	$(document).on('shown.bs.modal', '.modal', function () {
+		var $form = $(this).find('form');
+		if (!$form.length) return;
+
+		$.getJSON(path + 'seguranca/csrf', function (response) {
+			var csrfKey = Object.keys(response).find(k => k.startsWith('csrf_'));
+			if (csrfKey) {
+				$form.find('input[type="hidden"]').each(function() {
+					if ($(this).attr('name') && $(this).attr('name').startsWith('csrf_')) {
+						$(this).attr('name', csrfKey).val(response[csrfKey]);
+					}
+				});
+			}
+		});
 	});
 
    /*=====================================================================================
@@ -192,7 +198,7 @@ $(document).ready(function($){
 	===============================================================================*/
 	$('#select-cargo').on('change', function () {
 		var idCargo = $(this).val();
-		var idEdital = $('#input-edital').val();
+		var idProcesso = $('#input-processo').val();
 		var csrfElement = $('#csrf');
 		var csrfName = csrfElement.attr('name');
 		var csrfHash = csrfElement.val();
@@ -203,13 +209,13 @@ $(document).ready(function($){
 		}
 
 		$.ajax({
-			url: path + 'Candidatos/getCandidatosByCargoAndEdital',
+			url: path + 'Candidatos/getCandidatosProcessoCargo',
 			dataType: 'json',
 			type: 'POST',
 			data: {
 				[csrfName]: csrfHash,
 				idCargo: idCargo,
-				idEdital: idEdital
+				idProcesso: idProcesso
 			},
 			success: function (response) {
 				//console.log("Resposta recebida:", response); // DEBUG
@@ -288,44 +294,45 @@ $(document).ready(function($){
 	
 
 	/*==============================================================================
-	PREENCHE RELAÇÃO DE CURSOS DE ACORDO COM EDITAL SELECIONADO
+	PREENCHE RELAÇÃO DE CARGOS DE ACORDO COM O PROCESSO SELETIVO SELECIONADO
 	===============================================================================*/
-	$('.select-edital').on('change', function () {
-		var numeroEdital = $(this).val();
+	$('.select-processo').on('change', function () {
+		var idProcesso = $(this).val();
 		var targetSelect = $(this).data('target');
-		var csrfElement = $(this).closest('form').find('input[type="hidden"][name^="csrf_"]');
+		var csrfElement = $(this).closest('form').find('input[type="hidden"]');
 		var csrfName = csrfElement.attr('name');
 		var csrfHash = csrfElement.val();
 		
-		if (numeroEdital === '') {
+		if (idProcesso === '') {
 			$(targetSelect).html('<option value="">Selecione um cargo</option>');
 			return;
 		}
 
 		$.ajax({
-			url: path + 'Editais/getCargosByEdital',
+			url: path + 'ProcessosSeletivos/getCargosByProcesso',
 			dataType: 'json',
 			type: 'POST',
 			data: {
 				[csrfName]: csrfHash,
-				idEdital: numeroEdital
+				idProcesso: idProcesso
 			},
-		success: function (response) {
-			updateCSRF(response);
+			success: function (response) {
+				updateCSRF(response);
 
-		// Monta os options
-		var options = '<option value="">Selecione um cargo</option>';
-		for (var i = 0; i < response.cargos.length; i++) {
-			options += '<option value="' + response.cargos[i].pk_id_cargo + '">' +
-						response.cargos[i].ds_nome_cargo + '</option>';
-		}
-		$(targetSelect).html(options);
-	},
-
-				error: function () {
-					alert('Erro ao buscar cursos. Verifique sua sessão ou token CSRF.');
+				// Monta os options
+				var options = '<option value="">Selecione um cargo</option>';
+				if (response.cargos && response.cargos.length) {
+					for (var i = 0; i < response.cargos.length; i++) {
+						options += '<option value="' + response.cargos[i].pk_id_cargo + '">' +
+								response.cargos[i].ds_nome_cargo + '</option>';
+					}
 				}
-			});
+				$(targetSelect).html(options);
+			},
+			error: function () {
+				alert('Erro ao buscar cargos. Verifique sua sessão ou token CSRF.');
+			}
+		});
 	});
 
 	
@@ -541,68 +548,71 @@ $(document).ready(function($){
 SCRIPT DO MODAL CLASSIFICAÇÃO POR CARGO (sidemenu.php)
 ==================================================================================*/
 $(document).ready(function() {
-    var path = window.location.origin + '/' + window.location.pathname.split('/').slice(1, 4).join('/') + '/';
-    if (!path.endsWith('/')) path += '/';
-
     function updateCSFR(response) {
-        var csrfName = $('#csrf-classificacao').attr('name');
-        if (response[csrfName]) {
-            $('#csrf-classificacao').val(response[csrfName]);
-            console.log('CSRF atualizado:', csrfName, response[csrfName]);
+        var csrfKey = Object.keys(response).find(k => k.startsWith('csrf_'));
+        if (csrfKey) {
+            $('#formRelatorioClassificacao').find('input[type="hidden"]').each(function() {
+                if ($(this).attr('name') && $(this).attr('name').startsWith('csrf_')) {
+                    $(this).attr('name', csrfKey).val(response[csrfKey]);
+                }
+            });
+            console.log('CSRF atualizado:', csrfKey, response[csrfKey]);
         } else {
-            console.warn('CSRF não encontrado na resposta. Nome esperado:', csrfName, 'Chaves:', Object.keys(response));
+            console.warn('CSRF não encontrado na resposta. Chaves:', Object.keys(response));
         }
     }
 
-    // Carrega editais ao abrir o modal
+    // Carrega processos seletivos ao abrir o modal
     $('#escolhaRelatorioClassificacao').on('show.bs.modal', function() {
         // Reseta o select de cargo para evitar dados de consulta anterior
         $('#cargo-class').html('<option value="">Selecione um cargo</option>').prop('disabled', true);
         $('#btn-gerar-pdf, #btn-gerar-csv').addClass('disabled').attr('href', '#');
         
         $.ajax({
-            url: path + 'Editais/editaisTodos',
+            url: path + 'ProcessosSeletivos/processosTodos',
             dataType: 'json',
             type: 'GET',
             success: function(response) {
                 updateCSFR(response);
-                var options = '<option value="">Selecione um Edital</option>';
-                if (response.editais && response.editais.length) {
-                    for (var i = 0; i < response.editais.length; i++) {
-                        var num = response.editais[i].ds_numero_edital;
-                        var fmt = num.substring(0, num.length - 4) + '/' + num.substring(num.length - 4);
-                        var status = (response.editais[i].ds_status == 1) ? ' (Ativo)' : ' (Inativo)';
-                        options += '<option value="' + response.editais[i].pk_id_edital + '">' + fmt + status + '</option>';
+                var options = '<option value="">Selecione um Processo Seletivo</option>';
+                if (response.processos && response.processos.length) {
+                    for (var i = 0; i < response.processos.length; i++) {
+                        var num = String(response.processos[i].nm_numero_processo).padStart(3, '0');
+                        var ano = response.processos[i].nm_ano_processo;
+                        var fmt = num + '/' + ano;
+                        var status = (response.processos[i].nm_situacao == 1) ? ' (Ativo)' : ' (Inativo)';
+                        options += '<option value="' + response.processos[i].pk_id_processo + '">' + fmt + status + '</option>';
                     }
                 }
-                $('#edital-classificacao').html(options);
+                $('#processo-classificacao').html(options);
             },
             error: function(xhr) {
-                console.error('Erro ao carregar editais:', xhr.status, xhr.responseText);
-                $('#edital-classificacao').html('<option value="">Erro ao carregar editais</option>');
+                console.error('Erro ao carregar processos seletivos:', xhr.status, xhr.responseText);
+                $('#processo-classificacao').html('<option value="">Erro ao carregar processos seletivos</option>');
             }
         });
     });
 
-    // Carrega cargos ao trocar edital
-    $(document).on('change', '#edital-classificacao', function() {
-        var idEdital = $(this).val();
-        var csrfName = $('#csrf-classificacao').attr('name');
-        var csrfHash = $('#csrf-classificacao').val();
+    // Carrega cargos ao trocar processo seletivo
+    $(document).on('change', '#processo-classificacao', function() {
+        var idProcesso = $(this).val();
+        var csrfElement = $('#formRelatorioClassificacao').find('input[type="hidden"]');
+        var csrfName = csrfElement.attr('name');
+        var csrfHash = csrfElement.val();
 
-        if (!idEdital) {
+        if (!idProcesso) {
             $('#cargo-class').html('<option value="">Selecione um cargo</option>').prop('disabled', true);
             atualizarLinks();
             return;
         }
 
         $.ajax({
-            url: path + 'Editais/getCargosByEdital',
+            url: path + 'ProcessosSeletivos/getCargosByProcesso',
             dataType: 'json',
             type: 'POST',
             data: {
                 [csrfName]: csrfHash,
-                idEdital: idEdital
+                idProcesso: idProcesso
             },
             success: function(response) {
                 updateCSFR(response);
@@ -626,12 +636,12 @@ $(document).ready(function() {
     $(document).on('change', '#cargo-class', atualizarLinks);
 
     function atualizarLinks() {
-        var edital = $('#edital-classificacao').val();
-        var cargo  = $('#cargo-class').val();
-        var base   = path + 'Classificacoes/';
-        if (edital && cargo) {
-            $('#btn-gerar-pdf').attr('href', base + 'gerarPdf/' + edital + '/' + cargo).removeClass('disabled');
-            $('#btn-gerar-csv').attr('href', base + 'exportarXlsx/' + edital + '/' + cargo).removeClass('disabled');
+        var processo = $('#processo-classificacao').val();
+        var cargo    = $('#cargo-class').val();
+        var base     = path + 'Classificacoes/';
+        if (processo && cargo) {
+            $('#btn-gerar-pdf').attr('href', base + 'gerarPdf/' + processo + '/' + cargo).removeClass('disabled');
+            $('#btn-gerar-csv').attr('href', base + 'exportarXlsx/' + processo + '/' + cargo).removeClass('disabled');
         } else {
             $('#btn-gerar-pdf').attr('href', '#').addClass('disabled');
             $('#btn-gerar-csv').attr('href', '#').addClass('disabled');
@@ -639,10 +649,10 @@ $(document).ready(function() {
     }
 
     window.validarFormClass = function() {
-        var edital = $('#edital-classificacao').val();
-        var cargo  = $('#cargo-class').val();
-        if (!edital || !cargo) {
-            alert('Selecione o edital e o cargo.');
+        var processo = $('#processo-classificacao').val();
+        var cargo    = $('#cargo-class').val();
+        if (!processo || !cargo) {
+            alert('Selecione o processo seletivo e o cargo.');
             return false;
         }
         return true;

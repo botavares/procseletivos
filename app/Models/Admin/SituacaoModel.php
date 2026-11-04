@@ -15,21 +15,21 @@ class SituacaoModel extends Model
     protected $allowedFields = [
         'fk_id_candidato',
         'fk_id_cargo',
-        'fk_id_edital',
+        'fk_id_processo',
         'situacao'
     ];
 
     protected $returnType = 'array';
 
-    public function getSituacaoCandidatoCargoEdital(
-        int $edital,
+    public function getSituacaoCandidatoCargoProcesso(
+        int $processo,
         int $cargo,
         int $candidato
     ): ?array {
 
         $result = $this
             ->where('fk_id_candidato', $candidato)
-            ->where('fk_id_edital', $edital)
+            ->where('fk_id_processo', $processo)
             ->where('fk_id_cargo', $cargo)
             ->first();
 

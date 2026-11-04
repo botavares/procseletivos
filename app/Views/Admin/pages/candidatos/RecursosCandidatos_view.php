@@ -53,7 +53,7 @@
 											<td align="center"><?php echo esc($valueCandidato['ds_protocolo']) ?></td>
 										<td class="text-center">
 											<a class="btn btn-secondary btn-sm" 
-											   href="<?php echo base_url_adm('Recursos/historico?edital=' . $valueCandidato['fk_id_edital'] . '&cargo=' . $valueCandidato['fk_id_cargo'] . '&candidato=' . $valueCandidato['ds_cpf']) ?>"
+											   href="<?php echo base_url_adm('Recursos/historico?processo=' . $valueCandidato['fk_id_processo'] . '&cargo=' . $valueCandidato['fk_id_cargo'] . '&candidato=' . $valueCandidato['ds_cpf']) ?>"
 											   title="Histórico do Recurso">
 												<i class="fas fa-history"></i>
 											</a>

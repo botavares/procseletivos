@@ -2,7 +2,6 @@
 namespace App\Services\Admin\Candidatos;
 
 use App\Services\Admin\Base\TransactionalTrait;
-use RuntimeException;
 use App\Models\Admin\CadastrosExperienciasModel;
 use App\Models\Admin\CadastrosEscolaridadesModel;
 use App\Models\Admin\CadastrosAperfeicoamentosModel;
@@ -11,19 +10,16 @@ use App\Models\Admin\CargosExperienciasModel;
 use App\Models\Admin\CargosEscolaridadesModel;
 use App\Models\Admin\CargosAperfeicoamentosModel;
 use App\Models\Admin\CargosCriteriosAdicionaisModel;
-use Config\Database;
 
 class RecursosService {
 
-    public function aplicarRecursos(int $idEdital, int $idCargo, int $idCandidato, array $recursos){
+    public function aplicarRecursos(int $idProcesso, int $idCargo, int $idCandidato, array $recursos){
         $protocolo = $recursos['ds_protocolo'] ?? '';
-        // A tabela de experiencias usa fk_id_processo; as demais mantem fk_id_edital
-        $idProcesso = $this->resolverProcessoPorEdital($idEdital);
 
-        return $this->transactional(function () use($idEdital, $idProcesso, $idCargo, $idCandidato, $protocolo, $recursos){
+        return $this->transactional(function () use($idProcesso, $idCargo, $idCandidato, $protocolo, $recursos){
             $this->salvarCategoria(
                 'experiencias',
-                $idEdital,
+                $idProcesso,
                 $idCargo,
                 $idCandidato,
                 $protocolo,
@@ -32,13 +28,12 @@ class RecursosService {
                 $recursos['obs_experiencias'] ?? [],
                 'tb_cadastrados_experiencias',
                 'fk_id_experiencia',
-                new CargosExperienciasModel(),
-                $idProcesso
+                new CargosExperienciasModel()
             );
 
             $this->salvarCategoria(
                 'escolaridades',
-                $idEdital,
+                $idProcesso,
                 $idCargo,
                 $idCandidato,
                 $protocolo,
@@ -52,7 +47,7 @@ class RecursosService {
 
             $this->salvarCategoria(
                 'aperfeicoamentos',
-                $idEdital,
+                $idProcesso,
                 $idCargo,
                 $idCandidato,
                 $protocolo,
@@ -66,7 +61,7 @@ class RecursosService {
 
             $this->salvarCategoria(
                 'criterios',
-                $idEdital,
+                $idProcesso,
                 $idCargo,
                 $idCandidato,
                 $protocolo,
@@ -82,39 +77,9 @@ class RecursosService {
         });
     }
 
-    private function resolverProcessoPorEdital(int $idEdital): ?int
-    {
-        $db = Database::connect();
-
-        $edital = $db->table('tb_editais')
-            ->where('pk_id_edital', $idEdital)
-            ->get()
-            ->getRow();
-
-        if (empty($edital->ds_numero_edital) || strlen((string) $edital->ds_numero_edital) < 5) {
-            return null;
-        }
-
-        $numeroCompleto = (string) $edital->ds_numero_edital;
-        $ano    = (int) substr($numeroCompleto, -4);
-        $numero = (int) substr($numeroCompleto, 0, -4);
-
-        $row = $db->table('tb_processos')
-            ->select('pk_id_processo')
-            ->where([
-                'nm_numero_processo' => $numero,
-                'nm_ano_processo'    => $ano,
-            ])
-            ->where("(is_deletado IS NULL OR is_deletado = '0000-00-00 00:00:00')", null, false)
-            ->get()
-            ->getRow();
-
-        return $row ? (int) $row->pk_id_processo : null;
-    }
-
     private function salvarCategoria(
         string $nomeCategoria,
-        int $idEdital,
+        int $idProcesso,
         int $idCargo,
         int $idCandidato,
         string $protocolo,
@@ -123,12 +88,11 @@ class RecursosService {
         array $observacoesPost,
         string $tabelaCadastro,
         string $fkCampo,
-        $modelConfig,
-        ?int $idProcesso = null
+        $modelConfig
     ) {
-        // Experiências migraram para fk_id_processo; as demais mantêm fk_id_edital
-        $colunaReferencia = ($nomeCategoria === 'experiencias' && $idProcesso !== null) ? 'fk_id_processo' : 'fk_id_edital';
-        $idReferencia = ($colunaReferencia === 'fk_id_processo') ? $idProcesso : $idEdital;
+        // Todas as tabelas classificatórias do candidato foram migradas para fk_id_processo
+        $colunaReferencia = 'fk_id_processo';
+        $idReferencia = $idProcesso;
 
         // Busca dados atuais do candidato usando query builder direto
         $dadosBanco = $this->db->table($tabelaCadastro)
@@ -148,7 +112,7 @@ class RecursosService {
 
         // Processa indeferimentos (registra no histórico, não altera cadastro)
         $this->processarIndeferimentos(
-            $idEdital,
+            $idProcesso,
             $idCargo,
             $idCandidato,
             $nomeCategoria,
@@ -181,7 +145,7 @@ class RecursosService {
 
         // Registrar histórico de alterações normais
         if (!empty($alteracoes)) {
-            $this->registrarRecursos($idEdital, $idCargo, $idCandidato, $nomeCategoria, $alteracoes, $protocolo);
+            $this->registrarRecursos($idProcesso, $idCargo, $idCandidato, $nomeCategoria, $alteracoes, $protocolo);
         }
 
         // Buscar configurações do cargo para obter multiplicadores
@@ -282,7 +246,7 @@ class RecursosService {
     }
 
     private function processarIndeferimentos(
-        int $idEdital,
+        int $idProcesso,
         int $idCargo,
         int $idCandidato,
         string $nomeCategoria,
@@ -307,7 +271,7 @@ class RecursosService {
             $observacao = $observacoesPost[$idCampo] ?? '';
 
             $registro = [
-                'fk_id_edital'           => $idEdital,
+                'fk_id_processo'         => $idProcesso,
                 'fk_id_cargo'            => $idCargo,
                 'fk_id_candidato'        => $idCandidato,
                 'ds_campo_alterado'      => $nomeCategoria,
@@ -324,7 +288,7 @@ class RecursosService {
 
             // Verifica se já existe registro indeferido com mesmo protocolo + campo
             $existente = $this->db->table('tb_cadastrados_recursos')
-                ->where('fk_id_edital', $idEdital)
+                ->where('fk_id_processo', $idProcesso)
                 ->where('fk_id_cargo', $idCargo)
                 ->where('fk_id_candidato', $idCandidato)
                 ->where('ds_numero_protocolo', $protocolo)
@@ -415,12 +379,12 @@ class RecursosService {
         return $alteracoes;
     }
 
-    private function registrarRecursos(int $edital, int $cargo, int $candidato, string $nomeCategoria, array $alteracoes, string $protocolo){
+    private function registrarRecursos(int $processo, int $cargo, int $candidato, string $nomeCategoria, array $alteracoes, string $protocolo){
         foreach ($alteracoes as $alteracao) {
             $idCampo = (int) $alteracao['id_campo'];
 
             $registro = [
-                'fk_id_edital'           => $edital,
+                'fk_id_processo'         => $processo,
                 'fk_id_cargo'            => $cargo,
                 'fk_id_candidato'        => $candidato,
                 'ds_campo_alterado'      => $nomeCategoria,
@@ -436,7 +400,7 @@ class RecursosService {
 
             // Verifica se já existe registro com mesmo protocolo + campo (exceto indeferido)
             $existente = $this->db->table('tb_cadastrados_recursos')
-                ->where('fk_id_edital', $edital)
+                ->where('fk_id_processo', $processo)
                 ->where('fk_id_cargo', $cargo)
                 ->where('fk_id_candidato', $candidato)
                 ->where('ds_numero_protocolo', $protocolo)

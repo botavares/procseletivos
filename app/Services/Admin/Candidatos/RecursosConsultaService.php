@@ -6,6 +6,7 @@ use App\Models\Admin\ProtocolosModel;
 use App\Models\Admin\CandidatosModel;
 use App\Models\Admin\EditaisModel;
 use App\Models\Admin\CargosModel;
+use App\Models\ProcessosSeletivosModel;
 
 class RecursosConsultaService
 {
@@ -14,6 +15,7 @@ class RecursosConsultaService
     protected CandidatosModel $candidatosModel;
     protected EditaisModel $editaisModel;
     protected CargosModel $cargosModel;
+    protected ProcessosSeletivosModel $processosModel;
 
     public function __construct()
     {
@@ -22,15 +24,16 @@ class RecursosConsultaService
         $this->candidatosModel = new CandidatosModel();
         $this->editaisModel = new EditaisModel();
         $this->cargosModel = new CargosModel();
+        $this->processosModel = new ProcessosSeletivosModel();
     }
 
     /**
-     * Busca indeferimentos existentes para um candidato/edital/cargo
+     * Busca indeferimentos existentes para um candidato/processo/cargo
      */
-    public function buscarIndeferimentos(int $edital, int $cargo, int $candidato): array
+    public function buscarIndeferimentos(int $processo, int $cargo, int $candidato): array
     {
         $resultados = $this->historicoModel
-            ->where('fk_id_edital', $edital)
+            ->where('fk_id_processo', $processo)
             ->where('fk_id_cargo', $cargo)
             ->where('fk_id_candidato', $candidato)
             ->where('ds_tipo', 'indeferido')
@@ -85,23 +88,34 @@ class RecursosConsultaService
     }
 
     /**
-     * Busca candidatos por edital e cargo
+     * Busca candidatos por processo e cargo
      */
-    public function buscarCandidatosPorEditalCargo(int $edital, int $cargo): array
+    public function buscarCandidatosPorProcessoCargo(int $processo, int $cargo): array
     {
-        return $this->candidatosModel->getCandidatosPorEditalCargo($edital, $cargo);
+        return $this->candidatosModel->getCandidatosPorProcessoCargo($processo, $cargo);
     }
 
     /**
-     * Busca candidatos com recursos por edital e cargo
+     * Busca candidatos com recursos por processo e cargo
      */
-    public function buscarCandidatosComRecursosPorEditalCargo(int $edital, int $cargo): array
+    public function buscarCandidatosComRecursosPorProcessoCargo(int $processo, int $cargo): array
     {
-        return $this->candidatosModel->getCandidatosComRecursosPorEditalCargo($edital, $cargo);
+        return $this->candidatosModel->getCandidatosComRecursosPorProcessoCargo($processo, $cargo);
     }
     public function listarEditais(): array
     {
         return $this->editaisModel->findAll();
+    }
+
+    /**
+     * Lista todos os processos seletivos ativos
+     */
+    public function listarProcessos(): array
+    {
+        return $this->processosModel
+            ->where("(is_deletado IS NULL OR is_deletado = '0000-00-00 00:00:00')", null, false)
+            ->orderBy('pk_id_processo', 'DESC')
+            ->findAll();
     }
 
     /**

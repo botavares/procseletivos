@@ -4,7 +4,7 @@ namespace App\Controllers\Admin;
 
 use CodeIgniter\Exceptions\PageNotFoundException;
 use App\Services\Admin\Candidatos\SituacaoService;
-use App\Models\Admin\EditaisModel;
+use App\Models\ProcessosSeletivosModel;
 use App\Models\Admin\CargosModel;
 use App\Models\Admin\DadosContratosModel;
 use App\Models\Admin\CandidatosModel;
@@ -17,19 +17,19 @@ class Candidatos extends BaseController{
     use RegistrarEventoTrait;
     protected $manifestosData;
 
-    protected $editaisModel;
+    protected $processosSeletivosModel;
     protected $cargosModel;
     protected $candidatosModel;
     protected $dadosContratosModel;
 
     public function __construct(){
-        $this->editaisModel       = new \App\Models\Admin\EditaisModel();
+        $this->processosSeletivosModel = new \App\Models\ProcessosSeletivosModel();
         $this->cargosModel        = new \App\Models\Admin\CargosModel();
         $this->candidatosModel    = new \App\Models\Admin\CandidatosModel();
         $this->dadosContratosModel = new \App\Models\Admin\DadosContratosModel();
     }
 
-    public function index($idEdital = null, $idCargo = null, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'Candidatos'){
+    public function index($idProcesso = null, $idCargo = null, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'Candidatos'){
         if (!is_file(APPPATH . 'Views/Admin/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
             throw new PageNotFoundException("Página não encontrada: " . $page);
         }
@@ -38,18 +38,18 @@ class Candidatos extends BaseController{
             return redirect()->route('home')->with('error','Sua sessão expirou');
         }
 
-        if (!$idEdital || !$idCargo) {
+        if (!$idProcesso || !$idCargo) {
             return redirect()->to(base_url('home'));
         }
 
-        $dadosCargo  = $this->cargosModel->getCargo($idCargo);
-        $dadosEdital = $this->editaisModel->getEdital($idEdital);
+        $dadosCargo   = $this->cargosModel->getCargo($idCargo);
+        $dadosProcesso = $this->processosSeletivosModel->find($idProcesso);
 
-        if (!$dadosCargo || !$dadosEdital) {
-            return redirect()->to(base_url('home'))->with('error', 'Cargo ou Edital não encontrado.');
+        if (!$dadosCargo || !$dadosProcesso) {
+            return redirect()->to(base_url('home'))->with('error', 'Cargo ou Processo não encontrado.');
         }
 
-        $candidatos = $this->candidatosModel->getCandidatosPorEditalCargo($idEdital, $idCargo);
+        $candidatos = $this->candidatosModel->getCandidatosPorProcessoCargo($idProcesso, $idCargo);
         $lista = [];
         foreach ($candidatos as $c) {
             $lista[$c->pk_id_cadastrado] = [
@@ -60,7 +60,7 @@ class Candidatos extends BaseController{
                 'ds_nascimento'    => $c->ds_nascimento,
                 'ds_celular'       => $c->ds_celular,
                 'ds_email'         => $c->ds_email,
-                'fk_id_edital'     => $idEdital,
+                'fk_id_processo'   => $idProcesso,
                 'fk_id_cargo'      => $idCargo,
                 'ds_possui_pne'    => ((int)($c->fk_id_pne ?? 0)) > 1 ? 1 : 0,
             ];
@@ -71,7 +71,7 @@ class Candidatos extends BaseController{
             'camada2'       => $camada2,
             'pagina'        => $page,
             'candidatos'    => $lista,
-            'idEdital'      => $idEdital,
+            'idProcesso'    => $idProcesso,
             'idCargo'       => $idCargo,
             'nomeCargo'     => $dadosCargo->ds_nome_cargo,
             'perfil'        => session('perfil'),
@@ -81,10 +81,10 @@ class Candidatos extends BaseController{
         ]);
     }
     public function salvarEscolha(){
-        return redirect()->to(base_url("Candidatos/{$this->request->getPost('edital')}/{$this->request->getPost('cargo')}"));
+        return redirect()->to(base_url_adm("Candidatos/{$this->request->getPost('processo')}/{$this->request->getPost('cargo')}"));
     }
 
-    public function exibirDados($edital,$cargo,$id, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'dadosCandidato'){
+    public function exibirDados($processo,$cargo,$id, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'dadosCandidato'){
         if (!is_file(APPPATH . 'Views/Admin/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
             throw new PageNotFoundException("Página não encontrada: " . $page);
         }
@@ -92,7 +92,7 @@ class Candidatos extends BaseController{
             return redirect()->route('home')->with('error','Sua sessão expirou');
         }
 
-        $dadosCandidato = service('candidatosService')->listarCandidatoId($edital,$cargo,$id);
+        $dadosCandidato = service('candidatosService')->listarCandidatoId($processo,$cargo,$id);
         if(!$dadosCandidato){
             return redirect()->back()->with('error', 'Candidato não encontrado.');
         }
@@ -108,14 +108,14 @@ class Candidatos extends BaseController{
         ]);
     }   
 
-    public function getCandidatosByCargoAndEdital(){
+    public function getCandidatosByCargoAndProcesso(){
         $idCargo = $this->request->getPost('idCargo');
-        $idEdital = $this->request->getPost('idEdital');
-        $candidatos = $this->candidatosModel->getCandidatosPorEditalCargo($idEdital, $idCargo);
+        $idProcesso = $this->request->getPost('idProcesso');
+        $candidatos = $this->candidatosModel->getCandidatosPorProcessoCargo($idProcesso, $idCargo);
         return $this->response->setJSON($candidatos);
     }
 
-    public function formSituacaoCandidato($edital,$cargo,$id, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'FormSituacaoCandidato'){
+    public function formSituacaoCandidato($processo,$cargo,$id, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'FormSituacaoCandidato'){
         if (!is_file(APPPATH . 'Views/Admin/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
             throw new PageNotFoundException("Página não encontrada: " . $page);
         }
@@ -124,7 +124,7 @@ class Candidatos extends BaseController{
         }
 
         $candidatosService = service('candidatosService');
-        $dadosCandidato = $candidatosService->listarCandidatoId($edital,$cargo,$id);
+        $dadosCandidato = $candidatosService->listarCandidatoId($processo,$cargo,$id);
         if(!$dadosCandidato){
             return redirect()->back()->with('error', 'Candidato não encontrado.');
         }
@@ -133,14 +133,23 @@ class Candidatos extends BaseController{
         $dados = [
             'nomeCandidato' => $dadosCandidato['candidato']->ds_nome,
             'idCandidato'   => $dadosCandidato['idCandidato'],
-            'idEdital'      => $dadosCandidato['idEdital'],
+            'idProcesso'    => $dadosCandidato['idProcesso'],
             'idCargo'       => $dadosCandidato['idCargo'],
             'nomeCargo'     => $cargo->ds_nome_cargo,
         ];
 
         $situacaoService = service('situacaoService');
-        $dadosSituacao = $situacaoService->getCandidatoCargoEdital($dados['idEdital'], $dados['idCargo'], $dados['idCandidato']);
-        $dadosSituacao ??= null;
+        $dadosSituacao = $situacaoService->getCandidatoCargoProcesso(
+            (int) $dadosCandidato['idProcesso'],
+            $dadosCandidato['idCargo'],
+            $dadosCandidato['idCandidato']
+        );
+
+        if ($dadosSituacao === null) {
+            $dadosSituacao = (object) ['situacao' => null];
+        } elseif (is_array($dadosSituacao)) {
+            $dadosSituacao = (object) $dadosSituacao;
+        }
 
         echo view('Admin/layoutDash', array_merge($dados, [
             'camada1'       => $camada1,
@@ -155,18 +164,18 @@ class Candidatos extends BaseController{
     public function registrarSituacao(){
         $idCandidato = $this->request->getPost('id_candidato');
         $idCargo     = $this->request->getPost('id_cargo');
-        $idEdital    = $this->request->getPost('id_edital');
+        $idProcesso  = $this->request->getPost('fk_id_processo');
         $situacao    = $this->request->getPost('situacao');
 
         $data = [
             'fk_id_candidato' => $idCandidato,
             'fk_id_cargo'     => $idCargo,
-            'fk_id_edital'    => $idEdital,
+            'fk_id_processo'  => $idProcesso,
             'situacao'        => $situacao
         ];
 
         $situacaoService = service('situacaoService');
-        $existente = $situacaoService->getCandidatoCargoEdital($idEdital, $idCargo, $idCandidato);
+        $existente = $situacaoService->getCandidatoCargoProcesso((int)$idProcesso, (int)$idCargo, (int)$idCandidato);
 
         if ($existente !== null) {
             if ($situacao > 0) {
@@ -184,11 +193,11 @@ class Candidatos extends BaseController{
         return redirect()->back()->with('mensagemSuccess', "Situação {$msg} com sucesso.");
     }
 
-    public function exportarXlsx($edital, $cargo)
+    public function exportarXlsx($processo, $cargo)
     {
-        $dadosEdital = $this->editaisModel->getEdital($edital);
-        $dadosCargo  = $this->cargosModel->getCargo($cargo);
-        $candidatos  = $this->candidatosModel->getCandidatosPorEditalCargo($edital, $cargo);
+        $dadosProcesso = $this->processosSeletivosModel->find($processo);
+        $dadosCargo    = $this->cargosModel->getCargo($cargo);
+        $candidatos    = $this->candidatosModel->getCandidatosPorProcessoCargo($processo, $cargo);
 
         if (empty($candidatos)) {
             return redirect()->back()->with('error', 'Não há candidatos para exportar.');
@@ -203,9 +212,10 @@ class Candidatos extends BaseController{
         }
 
         service('excelExportService')->exportarCandidatos($candidatos, [
-            'edital'     => $dadosEdital->ds_numero_edital ?? 'edital',
+            'edital'     => ($dadosProcesso->nm_numero_processo ?? '') . '/' . ($dadosProcesso->nm_ano_processo ?? ''),
             'cargo'      => $dadosCargo->ds_nome_cargo   ?? 'cargo',
             'somentePcd' => $somentePcd,
         ]);
     }
+
 }

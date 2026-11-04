@@ -14,7 +14,7 @@ class Recursos extends BaseController{
     /**
      * Exibe formulário de aplicação de recurso
      */
-    public function index($edital = null, $cargo = null, $candidato = null, $camada1 = 'pages',$camada2 = 'candidatos', $page = 'FormRecursos'){
+    public function index($processo = null, $cargo = null, $candidato = null, $camada1 = 'pages',$camada2 = 'candidatos', $page = 'FormRecursos'){
         if (! is_file(APPPATH . 'Views/Admin/'.$camada1.'/'.$camada2.'/'. $page . '_view.php')) {
             throw new PageNotFoundException("página não econtrada: ".$page);
         }
@@ -27,15 +27,20 @@ class Recursos extends BaseController{
         $recursosService     = service('recursosService');
         $consultaService     = service('recursosConsultaService');
 
-        $recurso = $candidatosService->listarCandidatoId($edital, $cargo, $candidato);
+        $recurso = $candidatosService->listarCandidatoId($processo, $cargo, $candidato);
         $camposFormularios = $recursosService->tiposCamposFormulario($cargo);
-        $indeferimentosMap = $consultaService->buscarIndeferimentos((int)$edital, (int)$cargo, (int)$candidato);
+
+        $indeferimentosMap = $consultaService->buscarIndeferimentos(
+            (int)$processo,
+            (int)$cargo,
+            (int)$candidato
+        );
 
         $parametros = [
             'camada1'               =>  $camada1,
             'camada2'               =>  $camada2,
             'pagina'                =>  $page,
-            'edital'                =>  $edital,
+            'edital'                =>  $processo,
             'cargo'                 =>  $cargo,
             'candidato'             =>  $candidato,
             'acao'                  =>  'update',
@@ -92,7 +97,7 @@ class Recursos extends BaseController{
     /**
      * Lista candidatos por edital e cargo para aplicar recursos
      */
-    public function listar($idEdital = null, $idCargo = null, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'RecursosCandidatos'){
+    public function listar($idProcesso = null, $idCargo = null, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'RecursosCandidatos'){
         if (!is_file(APPPATH . 'Views/Admin/' . $camada1 . '/' . $camada2 . '/' . $page . '_view.php')) {
             throw new PageNotFoundException("Página não encontrada: " . $page);
         }
@@ -101,20 +106,20 @@ class Recursos extends BaseController{
             return redirect()->route('home')->with('error','Sua sessão expirou');
         }
 
-        if (!$idEdital || !$idCargo) {
+        if (!$idProcesso || !$idCargo) {
             return redirect()->to(base_url('home'));
         }
 
         $consultaService = service('recursosConsultaService');
 
-        $dadosEdital = $consultaService->buscarDadosEdital((int)$idEdital);
-        $dadosCargo  = $consultaService->buscarDadosCargo((int)$idCargo);
+        $dadosProcesso = (new \App\Models\ProcessosSeletivosModel())->find($idProcesso);
+        $dadosCargo    = $consultaService->buscarDadosCargo((int)$idCargo);
 
-        if (!$dadosEdital || !$dadosCargo) {
-            return redirect()->to(base_url('home'))->with('error', 'Edital ou Cargo não encontrado.');
+        if (!$dadosProcesso || !$dadosCargo) {
+            return redirect()->to(base_url('home'))->with('error', 'Processo ou Cargo não encontrado.');
         }
 
-        $candidatos = $consultaService->buscarCandidatosComRecursosPorEditalCargo((int)$idEdital, (int)$idCargo);
+        $candidatos = $consultaService->buscarCandidatosComRecursosPorProcessoCargo((int)$idProcesso, (int)$idCargo);
 
         $arrayCandidatos = [];
         foreach ($candidatos as $candidato) {
@@ -128,7 +133,7 @@ class Recursos extends BaseController{
                 'ds_celular'       => $candidato->ds_celular,
                 'ds_numero_edital' => $candidato->ds_numero_edital,
                 'ds_protocolo'     => $candidato->ds_protocolo,
-                'fk_id_edital'     => $idEdital,
+                'fk_id_processo'   => $idProcesso,
                 'fk_id_cargo'      => $idCargo,
                 'ds_nome_cargo'    => $dadosCargo->ds_nome_cargo,
             ];
@@ -139,7 +144,7 @@ class Recursos extends BaseController{
             'camada2'       => $camada2,
             'pagina'        => $page,
             'candidatos'    => $arrayCandidatos,
-            'idEdital'      => $idEdital,
+            'idProcesso'    => $idProcesso,
             'idCargo'       => $idCargo,
             'nomeCargo'     => $dadosCargo->ds_nome_cargo,
             'titulosTabela' => ["Edital Ref.","Data de Insc.","Nome do Candidato","Nascimento","Telefone","Email","Protocolo"],
@@ -156,25 +161,26 @@ class Recursos extends BaseController{
         $recursosService = service('recursosService');
         $dados = $this->request->getPost();
 
-        $edital = $dados['pk_id_edital'];
-        $cargo = $dados['pk_id_cargo'];
+        $processo  = $dados['pk_id_processo'];
+        $cargo     = $dados['pk_id_cargo'];
         $candidato = $dados['pk_id_candidato'];
-        $recursosService->aplicarRecursos($edital,$cargo,$candidato,$dados);
+
+        $recursosService->aplicarRecursos((int)$processo, (int)$cargo, (int)$candidato, $dados);
 
         $servicesLogs = service('logsService');
         $servicesLogs->inserirLog('Registrou Recurso', 'Recurso registrado do candidato '.$dados['ds_nome'],'tb_cadastrados_experiencias, tb_cadastrados_escolaridades, tb_cadastrados_aperfeicoamentos, tb_cadastrados_criterios');
 
-        return redirect()->to(base_url("Recursos/listar/{$edital}/{$cargo}"))->with('success', 'Recurso registrado com sucesso!');
+        return redirect()->to(base_url_adm("Recursos/listar/{$processo}/{$cargo}"))->with('success', 'Recurso registrado com sucesso!');
     }
 
     /**
      * Salva escolha de edital e cargo e redireciona para listagem
      */
     public function salvarEscolha(){
-        $idEdital = $this->request->getPost('edital');
-        $idCargo  = $this->request->getPost('cargo');
+        $idProcesso = $this->request->getPost('processo');
+        $idCargo    = $this->request->getPost('cargo');
 
-        return redirect()->to(base_url("Recursos/listar/{$idEdital}/{$idCargo}"));
+        return redirect()->to(base_url_adm("Recursos/listar/{$idProcesso}/{$idCargo}"));
     }
 
     /**
@@ -200,7 +206,7 @@ class Recursos extends BaseController{
                 'candidato'   => $this->request->getPost('candidato'),
                 'data_inicio' => $this->request->getPost('data_inicio'),
                 'data_fim'    => $this->request->getPost('data_fim'),
-                'edital'      => $this->request->getPost('edital'),
+                'processo'    => $this->request->getPost('processo'),
                 'cargo'       => $this->request->getPost('cargo'),
             ];
 
@@ -216,7 +222,7 @@ class Recursos extends BaseController{
             'candidato'   => $this->request->getGet('candidato'),
             'data_inicio' => $this->request->getGet('data_inicio'),
             'data_fim'    => $this->request->getGet('data_fim'),
-            'edital'      => $this->request->getGet('edital'),
+            'processo'    => $this->request->getGet('processo'),
             'cargo'       => $this->request->getGet('cargo'),
         ];
         $getFiltros = array_filter($getFiltros, function($v) {
@@ -234,7 +240,7 @@ class Recursos extends BaseController{
             'titulo'     => 'Histórico de Recursos',
             'historico'  => $historico,
             'filtros'    => $filtros,
-            'editais'    => $consultaService->listarEditais(),
+            'processos'  => $consultaService->listarProcessos(),
             'cargos'     => $consultaService->listarCargos(),
         ];
 
@@ -281,4 +287,5 @@ class Recursos extends BaseController{
 
         echo view('Admin/layoutDash', $parametros);
     }
+
 }

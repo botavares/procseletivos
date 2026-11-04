@@ -18,14 +18,14 @@ class SituacaoService
         $this->db = $db ?? \Config\Database::connect();
     }
 
-    public function getCandidatoCargoEdital(
-        int $edital,
+    public function getCandidatoCargoProcesso(
+        int $processo,
         int $cargo,
         int $candidato
     ){
         return $this->situacaoModel
-            ->getSituacaoCandidatoCargoEdital(
-                $edital,
+            ->getSituacaoCandidatoCargoProcesso(
+                $processo,
                 $cargo,
                 $candidato
             );

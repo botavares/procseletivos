@@ -19,7 +19,7 @@ class CadastrosAperfeicoamentosModel extends Model{
 
     protected $returnType = 'object';
 
-    public function buscarAperfeicoamentosParaClassificacao($cadastrado, $edital, $cargo )
+    public function buscarAperfeicoamentosParaClassificacao($cadastrado, $processo, $cargo )
     {
         return $this->select([
                 'tb_cadastrados_aperfeicoamentos.fk_id_cadastrado',

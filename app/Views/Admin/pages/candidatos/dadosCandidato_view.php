@@ -15,7 +15,7 @@
                         <!-- TOOLBOX -->
                         <div class="card-toolbox mt-2 mb-2 d-flex flex-row">
                             <div class="mb-2 ml-1 mr-2">
-                                <a href="<?php echo base_url_adm('Candidatos/' . $dadosCandidato['idEdital'] . '/' . $dadosCandidato['idCargo']); ?>"
+                                <a href="<?php echo base_url_adm('Candidatos/' . $dadosCandidato['idProcesso'] . '/' . $dadosCandidato['idCargo']); ?>"
                                    class="btn btn-warning btn-sm">
                                     <i class="fas fa-arrow-left mr-1"></i> Voltar
                                 </a>
@@ -165,7 +165,7 @@
 
                             <!-- BOTÕES -->
                             <div class="text-right mt-4">
-                                <a href="<?php echo base_url_adm('Recursos/' . $dadosCandidato['idEdital'] . '/' . $dadosCandidato['idCargo'] . '/' . $dadosCandidato['idCandidato']); ?>"
+                                <a href="<?php echo base_url_adm('Recursos/' . $dadosCandidato['idProcesso'] . '/' . $dadosCandidato['idCargo'] . '/' . $dadosCandidato['idCandidato']); ?>"
                                    class="btn btn-primary">
                                     <i class="fas fa-edit mr-1"></i> Aplicar Recurso
                                 </a>

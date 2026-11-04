@@ -45,9 +45,6 @@ class CandidatoScoreBuilderService
             return;
         }
 
-        // As demais tabelas classificatorias ainda usam fk_id_edital
-        $edital = $this->resolverEditalPorProcesso($processo);
-
         $tiposNecessarios = array_column($configDesempate, 'tipoCriterio');
         $refsExperiencias = $this->extrairIdsReferencia($configDesempate, 'EXPERIENCIA_ESPECIFICA');
         $refsEscolaridades = $this->extrairIdsReferencia($configDesempate, 'ESCOLARIDADE_ESPECIFICA');
@@ -62,20 +59,20 @@ class CandidatoScoreBuilderService
 
         // Carrega escolaridades
         if (!empty($refsEscolaridades) || in_array('PONTUACAO_ESCOLARIDADES', $tiposNecessarios) || in_array('PONTUACAO_GRADUACAO', $tiposNecessarios) || in_array('PONTUACAO_POS_GRADUACAO', $tiposNecessarios) || in_array('PONTUACAO_MESTRADO', $tiposNecessarios) || in_array('PONTUACAO_DOUTORADO', $tiposNecessarios)) {
-            $this->escolaridades = $this->carregarEscolaridades($idsCandidatos, $edital, $cargo, $refsEscolaridades);
+            $this->escolaridades = $this->carregarEscolaridades($idsCandidatos, $processo, $cargo, $refsEscolaridades);
             $this->tetosEscolaridades = $this->carregarTetos('tb_cargos_escolaridades', 'fk_id_escolaridade', $cargo, $refsEscolaridades);
             $this->niveisEscolaridades = $this->carregarNiveisEscolaridades();
         }
 
         // Carrega criterios adicionais
         if (!empty($refsCriterios) || in_array('PONTUACAO_CRITERIOS_ADICIONAIS', $tiposNecessarios)) {
-            $this->criteriosAdicionais = $this->carregarCriteriosAdicionais($idsCandidatos, $edital, $cargo, $refsCriterios);
+            $this->criteriosAdicionais = $this->carregarCriteriosAdicionais($idsCandidatos, $processo, $cargo, $refsCriterios);
             $this->tetosCriterios = $this->carregarTetos('tb_cargos_criterios_adicionais', 'fk_id_criterio', $cargo, $refsCriterios);
         }
 
         // Carrega aperfeicoamentos
         if (!empty($refsAperfeicoamentos) || in_array('PONTUACAO_CURSOS_APERFEICOAMENTOS', $tiposNecessarios) || in_array('PONTUACAO_APERFEICOAMENTOS', $tiposNecessarios)) {
-            $this->aperfeicoamentos = $this->carregarAperfeicoamentos($idsCandidatos, $edital, $cargo, $refsAperfeicoamentos);
+            $this->aperfeicoamentos = $this->carregarAperfeicoamentos($idsCandidatos, $processo, $cargo, $refsAperfeicoamentos);
             $this->tetosAperfeicoamentos = $this->carregarTetos('tb_cargos_aperfeicoamentos', 'fk_id_curso', $cargo, $refsAperfeicoamentos);
         }
 
@@ -230,11 +227,11 @@ class CandidatoScoreBuilderService
         return $dados;
     }
 
-    private function carregarEscolaridades(array $idsCandidatos, int $edital, int $cargo, array $idsEscolaridades): array
+    private function carregarEscolaridades(array $idsCandidatos, int $processo, int $cargo, array $idsEscolaridades): array
     {
         $builder = $this->db->table('tb_cadastrados_escolaridades')
             ->select('fk_id_cadastrado, fk_id_escolaridade, ds_quantidade, ds_multiplicador')
-            ->where('fk_id_edital', $edital)
+            ->where('fk_id_processo', $processo)
             ->where('fk_id_cargo', $cargo)
             ->whereIn('fk_id_cadastrado', $idsCandidatos);
 
@@ -260,11 +257,11 @@ class CandidatoScoreBuilderService
         return $dados;
     }
 
-    private function carregarCriteriosAdicionais(array $idsCandidatos, int $edital, int $cargo, array $idsCriterios): array
+    private function carregarCriteriosAdicionais(array $idsCandidatos, int $processo, int $cargo, array $idsCriterios): array
     {
         $builder = $this->db->table('tb_cadastrados_criterios')
             ->select('fk_id_cadastrado, fk_id_criterio, ds_quantidade, ds_multiplicador')
-            ->where('fk_id_edital', $edital)
+            ->where('fk_id_processo', $processo)
             ->where('fk_id_cargo', $cargo)
             ->whereIn('fk_id_cadastrado', $idsCandidatos);
 
@@ -290,11 +287,11 @@ class CandidatoScoreBuilderService
         return $dados;
     }
 
-    private function carregarAperfeicoamentos(array $idsCandidatos, int $edital, int $cargo, array $idsAperfeicoamentos): array
+    private function carregarAperfeicoamentos(array $idsCandidatos, int $processo, int $cargo, array $idsAperfeicoamentos): array
     {
         $builder = $this->db->table('tb_cadastrados_aperfeicoamentos')
             ->select('fk_id_cadastrado, fk_id_curso, ds_quantidade, ds_multiplicador')
-            ->where('fk_id_edital', $edital)
+            ->where('fk_id_processo', $processo)
             ->where('fk_id_cargo', $cargo)
             ->whereIn('fk_id_cadastrado', $idsCandidatos);
 
@@ -447,35 +444,6 @@ class CandidatoScoreBuilderService
     // -----------------------------------------------------------------------
     // Helpers
     // -----------------------------------------------------------------------
-
-    /**
-     * Resolve o edital vinculado ao processo seletivo (numero/ano).
-     */
-    private function resolverEditalPorProcesso(int $processo): ?int
-    {
-        $row = $this->db
-            ->table('tb_processos')
-            ->select('nm_numero_processo, nm_ano_processo')
-            ->where('pk_id_processo', $processo)
-            ->where("(is_deletado IS NULL OR is_deletado = '0000-00-00 00:00:00')", null, false)
-            ->get()
-            ->getRow();
-
-        if (!$row) {
-            return null;
-        }
-
-        $numeroCompleto = ((int) $row->nm_numero_processo * 10000) + (int) $row->nm_ano_processo;
-
-        $edital = $this->db
-            ->table('tb_editais')
-            ->select('pk_id_edital')
-            ->where('ds_numero_edital', $numeroCompleto)
-            ->get()
-            ->getRow();
-
-        return $edital ? (int) $edital->pk_id_edital : null;
-    }
 
     /**
      * Extrai os IDs de referência de um tipo específico da configuração.

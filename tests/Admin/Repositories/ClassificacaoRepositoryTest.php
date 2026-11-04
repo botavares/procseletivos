@@ -21,7 +21,7 @@ final class ClassificacaoRepositoryTest extends CIUnitTestCase
         $this->repository = new ClassificacaoRepository($this->modelMock);
     }
 
-    public function testListarPorEditalCargoDelegaParaModel(): void
+    public function testListarPorProcessoCargoDelegaParaModel(): void
     {
         $esperado = [['fk_id_candidato' => 1, 'ds_posicao' => 1]];
         $this->modelMock
@@ -29,7 +29,20 @@ final class ClassificacaoRepositoryTest extends CIUnitTestCase
             ->with(10, 20)
             ->willReturn($esperado);
 
-        $resultado = $this->repository->listarPorEditalCargo(10, 20);
+        $resultado = $this->repository->listarPorProcessoCargo(10, 20);
+
+        $this->assertSame($esperado, $resultado);
+    }
+
+    public function testListarPorEditalCargoDelegaParaModel(): void
+    {
+        $esperado = [['fk_id_candidato' => 1, 'ds_posicao' => 1]];
+        $this->modelMock
+            ->method('listarClassificacao')
+            ->with(5, 20)
+            ->willReturn($esperado);
+
+        $resultado = $this->repository->listarPorEditalCargo(5, 20);
 
         $this->assertSame($esperado, $resultado);
     }

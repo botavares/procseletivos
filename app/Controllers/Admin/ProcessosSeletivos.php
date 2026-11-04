@@ -303,6 +303,31 @@ class ProcessosSeletivos extends BaseController
         return $this->response->setJSON($this->service->listarPorFaixaDeTempo($inicio, $fim));
     }
 
+    /**
+     * Retorna todos os processos seletivos (ativos e inativos) para popular selects.
+     */
+    public function processosTodos()
+    {
+        return $this->response->setJSON([
+            'processos' => $this->service->listarTodos(),
+        ]);
+    }
+
+    /**
+     * Retorna os cargos vinculados a um processo seletivo.
+     */
+    public function getCargosByProcesso()
+    {
+        $idProcesso = $this->request->getPost('idProcesso');
+        if (!$idProcesso) {
+            return $this->response->setJSON(['cargos' => []]);
+        }
+
+        return $this->response->setJSON([
+            'cargos' => $this->service->buscarCargosPorProcesso((int) $idProcesso),
+        ]);
+    }
+
     /* =====================================================
      * VALIDAÇÕES AUXILIARES
      * ===================================================== */

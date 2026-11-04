@@ -91,6 +91,8 @@ $routes->group('adm', ['namespace' => 'App\Controllers\Admin'], function($routes
     $routes->post('Classificacoes/exportarTabela/(:num)/(:num)', 'Classificacoes::exportarTabela/$1/$2', ['as'=>'Classificacoes.exportarTabela']);
     $routes->get('Editais/editaisAtivos', 'Editais::editaisAtivos');
     $routes->get('Editais/editaisTodos', 'Editais::editaisTodos');
+    $routes->get('ProcessosSeletivos/processosTodos', 'ProcessosSeletivos::processosTodos');
+    $routes->post('ProcessosSeletivos/getCargosByProcesso', 'ProcessosSeletivos::getCargosByProcesso');
     $routes->post('Classificacoes/salvarEscolha', 'Classificacoes::salvarEscolha');
     $routes->get('Recursos/(:num)/(:num)/(:num)', 'Recursos::index/$1/$2/$3', ['as'=>'Recursos']);
     $routes->post('Recursos/cargosCandidato/', 'Recursos::cargosCandidato', ['as'=>'Recursos.cargosCandidato']);
@@ -174,7 +176,7 @@ $routes->group('adm', ['namespace' => 'App\Controllers\Admin'], function($routes
     $routes->get('Candidatos/atualizarInteresse/(:num)/(:num)/(:num)', 'Candidatos::atualizarInteresse/$1/$2/$3', ['as'=>'Candidatos.atualizarInteresse']);
     $routes->get('Candidatos/formularioAlteracao/(:num)', 'Candidatos::formularioAlteracao/$1', ['as'=>'Candidatos.formularioAlteracao']);
     $routes->post('Candidatos/deletar', 'Candidatos::deletar');
-    $routes->post('Candidatos/getCandidatosByCargoAndEdital', 'Candidatos::getCandidatosByCargoAndEdital');
+    $routes->post('Candidatos/getCandidatosByCargoAndProcesso', 'Candidatos::getCandidatosByCargoAndProcesso');
     $routes->get('Candidatos/formSituacaoCandidato/(:num)/(:num)/(:num)', 'Candidatos::formSituacaoCandidato/$1/$2/$3', ['as'=>'Candidatos.formSituacaoCandidato']);
     $routes->post('Candidatos/registrarSituacao', 'Candidatos::registrarSituacao', ['as'=>'Candidatos.registrarSituacao']);
     $routes->get('Convocados/(:num)/(:num)', 'Convocados::index/$1/$2', ['as'=>'Convocados']);

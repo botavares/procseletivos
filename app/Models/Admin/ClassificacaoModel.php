@@ -12,7 +12,7 @@ class ClassificacaoModel extends Model
     protected $useAutoIncrement = true;
     protected $allowedFields = [
         'ds_posicao',
-        'fk_id_edital',
+        'fk_id_processo',
         'fk_id_cargo',
         'ds_nome_cargo',
         'ds_nome_edital',
@@ -36,11 +36,11 @@ class ClassificacaoModel extends Model
     /**
      * Lista classificacao com scores dinamicos.
      */
-    public function listarClassificacao($idEdital, $idCargo)
+    public function listarClassificacao($idProcesso, $idCargo)
     {
         $classificacoes = $this->db->table($this->table)
             ->select('*')
-            ->where('fk_id_edital', $idEdital)
+            ->where('fk_id_processo', $idProcesso)
             ->where('fk_id_cargo', $idCargo)
             ->orderBy('ds_posicao', 'ASC')
             ->get()

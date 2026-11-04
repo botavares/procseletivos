@@ -76,23 +76,23 @@
                                         <td align="left"><?php echo mask($valueCandidato['ds_celular'], '(##) #####-####') ?></td>
                                         <td align="left"><?php echo esc($valueCandidato['ds_email']) ?></td>
                                         <td class="text-center">
-                                            <a class="btn btn-secondary btn-sm" 
-                                               href="<?php echo base_url_adm('Recursos/' . $valueCandidato['fk_id_edital'] . '/' . $valueCandidato['fk_id_cargo'] . '/' . $valueCandidato['pk_id_cadastrado']) ?>"
+                                            <a class="btn btn-secondary btn-sm"
+                                               href="<?php echo base_url_adm('Recursos/' . $valueCandidato['fk_id_processo'] . '/' . $valueCandidato['fk_id_cargo'] . '/' . $valueCandidato['pk_id_cadastrado']) ?>"
                                                title="Recursos">
                                                 <i class="fas fa-gavel"></i>
                                             </a>
                                         </td>
                                         <td class="text-center"><?= (($valueCandidato['ds_possui_pne'] ?? 0) == 1) ? 'SIM' : 'NÃO' ?></td>
 										<td class="text-center">
-											<a class="btn btn-info btn-sm" 
-											   href="<?php echo base_url_adm('Candidatos/exibirDados/' . $valueCandidato['fk_id_edital'] . '/' . $valueCandidato['fk_id_cargo'] . '/' . $valueCandidato['pk_id_cadastrado']) ?>"
+											<a class="btn btn-info btn-sm"
+											   href="<?php echo base_url_adm('Candidatos/exibirDados/' . $valueCandidato['fk_id_processo'] . '/' . $valueCandidato['fk_id_cargo'] . '/' . $valueCandidato['pk_id_cadastrado']) ?>"
 											   title="Exibir Dados">
 												<i class="fas fa-user"></i>
 											</a>
 										</td>
 										<td class="text-center">
-											<a class="btn btn-primary btn-sm" 
-											   href="<?php echo base_url_adm('Candidatos/formSituacaoCandidato/' . $valueCandidato['fk_id_edital'] . '/' . $valueCandidato['fk_id_cargo'] . '/' . $valueCandidato['pk_id_cadastrado']) ?>"
+											<a class="btn btn-primary btn-sm"
+											   href="<?php echo base_url_adm('Candidatos/formSituacaoCandidato/' . $valueCandidato['fk_id_processo'] . '/' . $valueCandidato['fk_id_cargo'] . '/' . $valueCandidato['pk_id_cadastrado']) ?>"
 											   title="Situação do Candidato">
 												<i class="fas fa-clipboard-check"></i>
 											</a>
@@ -111,11 +111,11 @@
 
 <script>
 document.getElementById('btnExportarPlanilha').addEventListener('click', function () {
-	window.location.href = '<?php echo base_url_adm("Candidatos/exportarXlsx/" . $idEdital . "/" . $idCargo) ?>';
+	window.location.href = '<?php echo base_url_adm("Candidatos/exportarXlsx/" . $idProcesso . "/" . $idCargo) ?>';
 });
 
 document.getElementById('btnExportarPlanilhaPcd').addEventListener('click', function () {
-	window.location.href = '<?php echo base_url_adm("Candidatos/exportarXlsx/" . $idEdital . "/" . $idCargo . "?pcd=1") ?>';
+	window.location.href = '<?php echo base_url_adm("Candidatos/exportarXlsx/" . $idProcesso . "/" . $idCargo . "?pcd=1") ?>';
 });
 
 $(document).ready(function () {

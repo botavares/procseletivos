@@ -19,14 +19,24 @@ class CandidatoRepository implements ICandidatoRepository
         private CandidatosModel $model
     ) {}
 
-    public function buscarPorEditalCargo(int $idEdital, int $idCargo): array
+    public function buscarPorEditalCargo(int $idProcesso, int $idCargo): array
     {
-        return $this->model->getCandidatosPorEditalCargo($idEdital, $idCargo);
+        return $this->model->getCandidatosPorProcessoCargo($idProcesso, $idCargo);
     }
 
-    public function buscarComRecursosPorEditalCargo(int $idEdital, int $idCargo): array
+    public function buscarComRecursosPorEditalCargo(int $idProcesso, int $idCargo): array
     {
-        return $this->model->getCandidatosComRecursosPorEditalCargo($idEdital, $idCargo);
+        return $this->model->getCandidatosComRecursosPorProcessoCargo($idProcesso, $idCargo);
+    }
+
+    public function buscarPorProcessoCargo(int $idProcesso, int $idCargo): array
+    {
+        return $this->model->getCandidatosPorProcessoCargo($idProcesso, $idCargo);
+    }
+
+    public function buscarComRecursosPorProcessoCargo(int $idProcesso, int $idCargo): array
+    {
+        return $this->model->getCandidatosComRecursosPorProcessoCargo($idProcesso, $idCargo);
     }
 
     public function buscarPorCpf(string $cpf): ?object
@@ -34,9 +44,9 @@ class CandidatoRepository implements ICandidatoRepository
         return $this->model->listarCandidatoCpf($cpf);
     }
 
-    public function buscarPorId(int $edital, int $cargo, int $id): ?object
+    public function buscarPorId(int $processo, int $cargo, int $id): ?object
     {
-        return $this->model->listarCandidatoId($edital, $cargo, $id);
+        return $this->model->listarCandidatoId($processo, $cargo, $id);
     }
 
     public function buscarExperiencias(int $processo, int $cargo, int $id): array
@@ -44,19 +54,19 @@ class CandidatoRepository implements ICandidatoRepository
         return $this->model->listarExperienciaCandidato($processo, $cargo, $id);
     }
 
-    public function buscarEscolaridades(int $edital, int $cargo, int $id): array
+    public function buscarEscolaridades(int $processo, int $cargo, int $id): array
     {
-        return $this->model->listarEscolaridadeCandidato($edital, $cargo, $id);
+        return $this->model->listarEscolaridadeCandidato($processo, $cargo, $id);
     }
 
-    public function buscarAperfeicoamentos(int $edital, int $cargo, int $id): array
+    public function buscarAperfeicoamentos(int $processo, int $cargo, int $id): array
     {
-        return $this->model->listarAperfeicoamentoCandidato($edital, $cargo, $id);
+        return $this->model->listarAperfeicoamentoCandidato($processo, $cargo, $id);
     }
 
-    public function buscarCriterios(int $edital, int $cargo, int $id): array
+    public function buscarCriterios(int $processo, int $cargo, int $id): array
     {
-        return $this->model->listarCriteriosCandidato($edital, $cargo, $id);
+        return $this->model->listarCriteriosCandidato($processo, $cargo, $id);
     }
 
     public function contarPorAno(int $ano): int

@@ -74,7 +74,7 @@ class CandidatosModel extends Model{
 
 
     
-    public function getCandidatosPorEditalCargo($idEdital, $idCargo){
+    public function getCandidatosPorProcessoCargo($idProcesso, $idCargo){
         return $this->db->table('tb_cadastrados AS c')
         ->select([
             'c.pk_id_cadastrado',
@@ -86,10 +86,10 @@ class CandidatosModel extends Model{
             'c.ds_email',
             'c.ds_celular',
             'c.fk_id_pne',
-            'p.fk_id_edital',
+            'p.fk_id_processo',
             'p.fk_id_cargo',
             'p.ds_protocolo',
-            'e.ds_numero_edital',
+            "CONCAT(pr.nm_numero_processo, '/', pr.nm_ano_processo) AS ds_numero_edital",
             'cg.pk_id_cargo',
             'cg.ds_nome_cargo'
         ])
@@ -103,10 +103,11 @@ class CandidatosModel extends Model{
             'cg.pk_id_cargo = p.fk_id_cargo',
             'inner'
         )
-        ->join('tb_editais as e', 'e.pk_id_edital = p.fk_id_edital')
+        ->join('tb_processos as pr', 'pr.pk_id_processo = p.fk_id_processo', 'inner')
 
-        ->where('p.fk_id_edital', $idEdital)
+        ->where('p.fk_id_processo', $idProcesso)
         ->where('p.fk_id_cargo', $idCargo)
+        ->where("(pr.is_deletado IS NULL OR pr.is_deletado = '0000-00-00 00:00:00')", null, false)
         ->orderBy('c.ds_nome', 'ASC')
         ->get()
         ->getResult();
@@ -115,7 +116,7 @@ class CandidatosModel extends Model{
 
 
 
-    public function getCandidatosComRecursosPorEditalCargo($idEdital, $idCargo){
+    public function getCandidatosComRecursosPorProcessoCargo($idProcesso, $idCargo){
         return $this->db->table('tb_cadastrados AS c')
         ->select([
             'c.pk_id_cadastrado',
@@ -126,10 +127,10 @@ class CandidatosModel extends Model{
             'c.ds_nascimento',
             'c.ds_email',
             'c.ds_celular',
-            'p.fk_id_edital',
+            'p.fk_id_processo',
             'p.fk_id_cargo',
             'p.ds_protocolo',
-            'e.ds_numero_edital',
+            "CONCAT(pr.nm_numero_processo, '/', pr.nm_ano_processo) AS ds_numero_edital",
             'cg.pk_id_cargo',
             'cg.ds_nome_cargo'
         ])
@@ -143,10 +144,11 @@ class CandidatosModel extends Model{
             'cg.pk_id_cargo = p.fk_id_cargo',
             'inner'
         )
-        ->join('tb_editais as e', 'e.pk_id_edital = p.fk_id_edital')
-        ->join('tb_cadastrados_recursos AS r', 'r.fk_id_candidato = c.pk_id_cadastrado AND r.fk_id_edital = p.fk_id_edital AND r.fk_id_cargo = p.fk_id_cargo', 'inner')
-        ->where('p.fk_id_edital', $idEdital)
+        ->join('tb_processos as pr', 'pr.pk_id_processo = p.fk_id_processo', 'inner')
+        ->join('tb_cadastrados_recursos AS r', 'r.fk_id_candidato = c.pk_id_cadastrado AND r.fk_id_processo = p.fk_id_processo AND r.fk_id_cargo = p.fk_id_cargo', 'inner')
+        ->where('p.fk_id_processo', $idProcesso)
         ->where('p.fk_id_cargo', $idCargo)
+        ->where("(pr.is_deletado IS NULL OR pr.is_deletado = '0000-00-00 00:00:00')", null, false)
         ->groupBy('c.pk_id_cadastrado')
         ->orderBy('c.ds_nome', 'ASC')
         ->get()
@@ -158,7 +160,7 @@ class CandidatosModel extends Model{
         $this->orderBy('tb_cadastrados.ds_cpf', 'asc');
         return $this->first();
     }
-    public function listarCandidatoId($edital,$cargo,$id){
+    public function listarCandidatoId($processo,$cargo,$id){
         $this->select('tb_cadastrados.*');
         $this->where('tb_cadastrados.pk_id_cadastrado', $id);
         return $this->first();
@@ -183,7 +185,7 @@ class CandidatosModel extends Model{
         ->getResult();
     }
 
-    public function listarEscolaridadeCandidato($edital,$cargo,$id){
+    public function listarEscolaridadeCandidato($processo,$cargo,$id){
         return $this->db->table('tb_cadastrados_escolaridades ce')
         ->select("
             ce.fk_id_escolaridade,
@@ -196,12 +198,12 @@ class CandidatosModel extends Model{
             'e.pk_id_escolaridade = ce.fk_id_escolaridade'
         )
         ->where('ce.fk_id_cadastrado', $id)
-        ->where('ce.fk_id_edital', $edital)
+        ->where('ce.fk_id_processo', $processo)
         ->where('ce.fk_id_cargo', $cargo)
         ->get()
         ->getResult();
     }
-    public function listarAperfeicoamentoCandidato($edital,$cargo,$id){
+    public function listarAperfeicoamentoCandidato($processo,$cargo,$id){
         return $this->db->table('tb_cadastrados_aperfeicoamentos ap')
        ->select("
             ap.fk_id_curso,
@@ -214,13 +216,13 @@ class CandidatosModel extends Model{
             'ca.pk_id_curso = ap.fk_id_curso'
         )
         ->where('ap.fk_id_cadastrado', $id)
-        ->where('ap.fk_id_edital', $edital)
+        ->where('ap.fk_id_processo', $processo)
         ->where('ap.fk_id_cargo', $cargo)
         ->get()
         ->getResult();
     }
 
-    public function listarCriteriosCandidato($edital,$cargo,$id){
+    public function listarCriteriosCandidato($processo,$cargo,$id){
         return $this->db->table('tb_cadastrados_criterios cc')
         ->select("
             cc.fk_id_criterio,
@@ -233,7 +235,7 @@ class CandidatosModel extends Model{
             'c.pk_id_criterio = cc.fk_id_criterio'
         )
         ->where('cc.fk_id_cadastrado', $id)
-        ->where('cc.fk_id_edital', $edital)
+        ->where('cc.fk_id_processo', $processo)
         ->where('cc.fk_id_cargo', $cargo)
         ->get()
         ->getResult();

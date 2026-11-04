@@ -16,6 +16,14 @@ class ClassificacaoRepository implements IClassificacaoRepository
         private ClassificacaoModel $model
     ) {}
 
+    public function listarPorProcessoCargo(int $idProcesso, int $idCargo): array
+    {
+        return $this->model->listarClassificacao($idProcesso, $idCargo);
+    }
+
+    /**
+     * @deprecated Mantido para compatibilidade com chamadas antigas que ainda passam edital.
+     */
     public function listarPorEditalCargo(int $idEdital, int $idCargo): array
     {
         return $this->model->listarClassificacao($idEdital, $idCargo);

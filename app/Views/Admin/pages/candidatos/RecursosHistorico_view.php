@@ -52,12 +52,12 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Edital</label>
-                                            <select name="edital" class="form-control">
+                                            <label>Processo Seletivo</label>
+                                            <select name="processo" class="form-control">
                                                 <option value="">Todos</option>
-                                                <?php foreach($editais as $edital): ?>
-                                                <option value="<?= $edital->pk_id_edital ?>" <?php echo (isset($filtros['edital']) && $filtros['edital'] == $edital->pk_id_edital) ? 'selected' : ''; ?>>
-                                                    <?= esc(formatarNumeroEdital($edital->ds_numero_edital)) ?>
+                                                <?php foreach($processos as $processo): ?>
+                                                <option value="<?= $processo->pk_id_processo ?>" <?php echo (isset($filtros['processo']) && $filtros['processo'] == $processo->pk_id_processo) ? 'selected' : ''; ?>>
+                                                    <?= esc(formatarNumeroEdital((int)$processo->nm_numero_processo * 10000 + (int)$processo->nm_ano_processo)) ?>
                                                 </option>
                                                 <?php endforeach; ?>
                                             </select>

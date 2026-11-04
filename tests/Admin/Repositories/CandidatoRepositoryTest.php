@@ -24,11 +24,23 @@ final class CandidatoRepositoryTest extends CIUnitTestCase
     public function testBuscarPorEditalCargoDelegaParaModel(): void
     {
         $esperado = [['pk_id_cadastrado' => 1]];
-        $this->modelMock->method('getCandidatosPorEditalCargo')
+        $this->modelMock->method('getCandidatosPorProcessoCargo')
             ->with(10, 20)
             ->willReturn($esperado);
 
         $resultado = $this->repository->buscarPorEditalCargo(10, 20);
+
+        $this->assertSame($esperado, $resultado);
+    }
+
+    public function testBuscarPorProcessoCargoDelegaParaModel(): void
+    {
+        $esperado = [['pk_id_cadastrado' => 1]];
+        $this->modelMock->method('getCandidatosPorProcessoCargo')
+            ->with(10, 20)
+            ->willReturn($esperado);
+
+        $resultado = $this->repository->buscarPorProcessoCargo(10, 20);
 
         $this->assertSame($esperado, $resultado);
     }

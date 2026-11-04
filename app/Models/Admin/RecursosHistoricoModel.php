@@ -11,7 +11,7 @@ class RecursosHistoricoModel extends Model
     protected $useAutoIncrement = true;
 
     protected $allowedFields = [
-        'fk_id_edital',
+        'fk_id_processo',
         'fk_id_cargo',
         'fk_id_candidato',
         'ds_campo_alterado',
@@ -37,12 +37,13 @@ class RecursosHistoricoModel extends Model
             ->select([
                 'hr.*',
                 'c.ds_nome as ds_nome_candidato',
-                'e.ds_numero_edital',
+                'p.nm_numero_processo',
+                'p.nm_ano_processo',
                 'cg.ds_nome_cargo',
                 'COALESCE(ex.ds_nome_experiencia, esc.ds_nome_escolaridade, ap.ds_nome_curso, cr.ds_nome_criterio) as ds_nome_campo',
             ])
             ->join('tb_cadastrados c', 'c.pk_id_cadastrado = hr.fk_id_candidato', 'left')
-            ->join('tb_editais e', 'e.pk_id_edital = hr.fk_id_edital', 'left')
+            ->join('tb_processos p', 'p.pk_id_processo = hr.fk_id_processo', 'left')
             ->join('tb_cargos cg', 'cg.pk_id_cargo = hr.fk_id_cargo', 'left')
             ->join('tb_experiencias ex', 'ex.pk_id_experiencia = hr.fk_id_campo_alterado AND hr.ds_campo_alterado = \'experiencias\'', 'left')
             ->join('tb_escolaridades esc', 'esc.pk_id_escolaridade = hr.fk_id_campo_alterado AND hr.ds_campo_alterado = \'escolaridades\'', 'left')
@@ -68,8 +69,8 @@ class RecursosHistoricoModel extends Model
             $builder->where('hr.ds_data_alteracao <=', $filtros['data_fim']);
         }
 
-        if (!empty($filtros['edital'])) {
-            $builder->where('hr.fk_id_edital', (int)$filtros['edital']);
+        if (!empty($filtros['processo'])) {
+            $builder->where('hr.fk_id_processo', (int)$filtros['processo']);
         }
 
         if (!empty($filtros['cargo'])) {
@@ -92,12 +93,12 @@ class RecursosHistoricoModel extends Model
                 'hr.*',
                 'c.ds_nome as ds_nome_candidato',
                 'c.ds_cpf',
-                'e.ds_numero_edital',
+                "CONCAT(p.nm_numero_processo, '/', p.nm_ano_processo) as ds_numero_edital",
                 'cg.ds_nome_cargo',
                 'COALESCE(ex.ds_nome_experiencia, esc.ds_nome_escolaridade, ap.ds_nome_curso, cr.ds_nome_criterio) as ds_nome_campo',
             ])
             ->join('tb_cadastrados c', 'c.pk_id_cadastrado = hr.fk_id_candidato', 'left')
-            ->join('tb_editais e', 'e.pk_id_edital = hr.fk_id_edital', 'left')
+            ->join('tb_processos p', 'p.pk_id_processo = hr.fk_id_processo', 'left')
             ->join('tb_cargos cg', 'cg.pk_id_cargo = hr.fk_id_cargo', 'left')
             ->join('tb_experiencias ex', 'ex.pk_id_experiencia = hr.fk_id_campo_alterado AND hr.ds_campo_alterado = \'experiencias\'', 'left')
             ->join('tb_escolaridades esc', 'esc.pk_id_escolaridade = hr.fk_id_campo_alterado AND hr.ds_campo_alterado = \'escolaridades\'', 'left')

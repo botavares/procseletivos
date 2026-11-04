@@ -23,7 +23,7 @@ class ClassificacaoService
      * Reprocessa a classificacao completa.
      * Agora detecta automaticamente se o cargo possui desempate dinamico.
      */
-    public function reprocessar(int $edital, int $cargo): void
+    public function reprocessar(int $processo, int $cargo): void
     {
         $db = Database::connect();
 
@@ -31,17 +31,17 @@ class ClassificacaoService
         $processor  = new ClassificacaoProcessorService($db, $calculator);
         $persist    = new ClassificacaoPersistService($db);
 
-        $dados = $processor->processar($edital, $cargo);
+        $dados = $processor->processar($processo, $cargo);
 
-        $persist->salvar($edital, $cargo, $dados);
+        $persist->salvar($processo, $cargo, $dados);
     }
 
     /**
-     * Lista classificacao por edital e cargo.
+     * Lista classificacao por processo e cargo.
      * Retorna dados com scores dinamicos se existirem.
      */
-    public function listarClassificacao($idEdital, $idCargo)
+    public function listarClassificacao($idProcesso, $idCargo)
     {
-        return $this->classificacaoRepository->listarPorEditalCargo($idEdital, $idCargo);
+        return $this->classificacaoRepository->listarPorProcessoCargo($idProcesso, $idCargo);
     }
 }

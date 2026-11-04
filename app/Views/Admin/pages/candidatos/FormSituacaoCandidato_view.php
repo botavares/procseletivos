@@ -20,7 +20,7 @@
                             </h3>
 							
 						</div>
-						<a href="<?php echo base_url_adm("Candidatos/".$idEdital."/".$idCargo)?>" type="button" class="btn btn-warning col-md-2 mlef20 mtop10 chanfrado" data-dismiss="modal">Voltar</a>
+						<a href="<?php echo base_url_adm("Candidatos/".$idProcesso."/".$idCargo)?>" type="button" class="btn btn-warning col-md-2 mlef20 mtop10 chanfrado" data-dismiss="modal">Voltar</a>
 						<div class="card-body">
 							<form id="formSituacaoCandidato" class="formAdmin form-horizontal col-md-12 col-lg-12" method="POST" action="<?php echo base_url_adm()."/Candidatos/registrarSituacao"?>">
 
@@ -28,7 +28,7 @@
                                 <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
 								<input type="hidden" name="id_candidato" value="<?php echo $idCandidato ?>">
 								<input type="hidden" name="id_cargo" value="<?php echo $idCargo ?>">
-								<input type="hidden" name="id_edital" value="<?php echo $idEdital ?>">
+								<input type="hidden" name="fk_id_processo" value="<?php echo $idProcesso ?>">
                                 
 								<div class="form-group row">
 									<label for="input-nome" class="col-form-label col-sm-2">Candidato</label>

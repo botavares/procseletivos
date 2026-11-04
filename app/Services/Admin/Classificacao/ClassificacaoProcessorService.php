@@ -4,7 +4,6 @@ namespace App\Services\Admin\Classificacao;
 
 use CodeIgniter\Database\BaseConnection;
 use App\Services\Admin\Classificacao\DTO\ResultadoClassificacaoDTO;
-use App\Services\Admin\Editais\EditalService;
 use App\Traits\Admin\FormatarNumeroEditalTrait;
 
 /**
@@ -36,16 +35,19 @@ class ClassificacaoProcessorService
      * @param int $cargo
      * @return array Array de arrays com dados + scores
      */
-    public function processar(int $edital, int $cargo): array
+    public function processar(int $processo, int $cargo): array
     {
-        $processoId = $this->buscarProcessoPorEdital($edital);
-        $configDesempate = $this->desempateConfigService->buscarConfiguracao($cargo, $processoId);
+        $configDesempate = $this->desempateConfigService->buscarConfiguracao($cargo, $processo);
         $usaConfiguracaoDinamica = !empty($configDesempate);
 
-        $candidatos = $this->buscarCandidatos($edital, $cargo);
-        $editalService = new EditalService();
-        $dadosEdital = $editalService->listarEditalId($edital);
-        $nomeEdital = $this->formatarNumeroEdital($dadosEdital->ds_numero_edital);
+        $candidatos = $this->buscarCandidatos($processo, $cargo);
+        $dadosProcesso = $this->db->table('tb_processos')
+            ->where('pk_id_processo', $processo)
+            ->get()
+            ->getRow();
+        $nomeEdital = $this->formatarNumeroEdital(
+            ($dadosProcesso->nm_numero_processo ?? 0) * 10000 + ($dadosProcesso->nm_ano_processo ?? 0)
+        );
 
         // Prepara lista de IDs para carregamento batch (quando dinamico)
         $idsCandidatos = array_column($candidatos, 'fk_id_cadastrado');
@@ -55,12 +57,12 @@ class ClassificacaoProcessorService
         if ($usaConfiguracaoDinamica) {
             // Carrega dados em batch para performance
             $scoreBuilder = new CandidatoScoreBuilderService($this->db);
-            $scoreBuilder->carregarDadosBatch($idsCandidatos, $processoId, $cargo, $configDesempate);
+            $scoreBuilder->carregarDadosBatch($idsCandidatos, $processo, $cargo, $configDesempate);
 
             foreach ($candidatos as $candidato) {
                 $pontuacoes = $this->calculator->calcular(
                     (int) $candidato['fk_id_cadastrado'],
-                    $processoId,
+                    $processo,
                     $cargo
                 );
 
@@ -150,7 +152,7 @@ class ClassificacaoProcessorService
         foreach ($candidatos as $candidato) {
             $pontuacoes = $this->calculator->calcular(
                 (int) $candidato['fk_id_cadastrado'],
-                $processoId,
+                $processo,
                 $cargo
             );
 
@@ -181,42 +183,9 @@ class ClassificacaoProcessorService
     }
 
     /**
-     * Descobre o processo seletivo vinculado ao edital a partir do numero/ano.
+     * Busca todos os candidatos do processo/cargo.
      */
-    private function buscarProcessoPorEdital(int $edital): ?int
-    {
-        $editalService = new EditalService();
-        $dadosEdital = $editalService->listarEditalId($edital);
-
-        if (empty($dadosEdital->ds_numero_edital)) {
-            return null;
-        }
-
-        $numeroCompleto = (string) $dadosEdital->ds_numero_edital;
-        if (strlen($numeroCompleto) < 5) {
-            return null;
-        }
-
-        $ano    = (int) substr($numeroCompleto, -4);
-        $numero = (int) substr($numeroCompleto, 0, -4);
-
-        $row = $this->db->table('tb_processos')
-            ->select('pk_id_processo')
-            ->where([
-                'nm_numero_processo' => $numero,
-                'nm_ano_processo'    => $ano,
-            ])
-            ->where("(is_deletado IS NULL OR is_deletado = '0000-00-00 00:00:00')", null, false)
-            ->get()
-            ->getRow();
-
-        return $row ? (int) $row->pk_id_processo : null;
-    }
-
-    /**
-     * Busca todos os candidatos do edital/cargo.
-     */
-    private function buscarCandidatos(int $edital, int $cargo): array
+    private function buscarCandidatos(int $processo, int $cargo): array
     {
         return $this->db->table('tb_cadastrados_protocolo p')
             ->select('
@@ -228,10 +197,12 @@ class ClassificacaoProcessorService
             ')
             ->join('tb_cadastrados c', 'c.pk_id_cadastrado = p.fk_id_cadastrado')
             ->join('tb_cargos cg', 'cg.pk_id_cargo = p.fk_id_cargo')
+            ->join('tb_processos pr', 'pr.pk_id_processo = p.fk_id_processo', 'inner')
             ->where([
-                'p.fk_id_edital' => $edital,
-                'p.fk_id_cargo'  => $cargo
+                'p.fk_id_processo' => $processo,
+                'p.fk_id_cargo'    => $cargo
             ])
+            ->where("(pr.is_deletado IS NULL OR pr.is_deletado = '0000-00-00 00:00:00')", null, false)
             ->get()
             ->getResultArray();
     }
@@ -269,7 +240,7 @@ class ClassificacaoProcessorService
         foreach ($resultados as $r) {
             $item = [
                 'ds_posicao'                => $posicao++,
-                'fk_id_edital'              => null,
+                'fk_id_processo'            => null,
                 'fk_id_cargo'               => null,
                 'ds_nome_cargo'             => $r->ds_nome_cargo,
                 'fk_id_candidato'           => $r->fk_id_candidato,

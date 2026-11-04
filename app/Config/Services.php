@@ -813,6 +813,12 @@ class Services extends BaseService
             : new \App\Services\Admin\Classificacao\ClassificacaoService(service('classificacaoRepository'));
     }
 
+    public static function classificacaoColunasService(bool $getShared = true){
+        return $getShared
+            ? static::getSharedInstance('classificacaoColunasService')
+            : new \App\Services\Admin\Classificacao\ClassificacaoColunasService();
+    }
+
     public static function adminDesempateConfigService(bool $getShared = true){
         return $getShared ? static::getSharedInstance('adminDesempateConfigService') : new \App\Services\Admin\Classificacao\DesempateConfigService();
     }

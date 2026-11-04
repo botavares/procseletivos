@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 mb-2">
-                        <a href="#" data-toggle="modal" data-target="#escolhaEditais" class="dash-quick-card">
+                        <a href="#" data-toggle="modal" data-target="#escolhaProcessos" class="dash-quick-card">
                             <div class="dash-quick-icon dash-quick-icon--cadastros3"><i class="fas fa-users"></i></div>
                             <h6>Candidatos</h6>
                             <small>Gerenciar candidatos</small>
@@ -98,7 +98,7 @@
                 <i class="fas fa-chart-pie"></i> Indicadores e Estatísticas
             </div>
             <div class="row mb-3">
-                <!-- Card 1: Total de Editais Ativos -->
+                <!-- Card 1: Total de Processos Ativos -->
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-2">
                     <div class="card dash-stat-card">
                         <div class="card-body p-3">
@@ -107,8 +107,8 @@
                                     <i class="fas fa-bullhorn"></i>
                                 </div>
                                 <div>
-                                    <div id="dash-stat-totalEditais" class="dash-stat-value"><?php echo number_format(count($editais ?? []), 0, ',', '.') ?></div>
-                                    <div class="dash-stat-label">Editais Ativos</div>
+                                    <div id="dash-stat-totalProcessos" class="dash-stat-value"><?php echo number_format(count($processos ?? []), 0, ',', '.') ?></div>
+                                    <div class="dash-stat-label">Processos Ativos</div>
                                 </div>
                             </div>
                             <div class="dash-stat-trend text-success mt-1">
@@ -128,7 +128,7 @@
                                 </div>
                                 <div>
                                     <div class="dash-stat-value">Inscrições por Cargo</div>
-                                    <div class="dash-stat-label">Editais Ativos</div>
+                                    <div class="dash-stat-label">Processos Ativos</div>
                                 </div>
                             </div>
                             <div class="dash-stat-trend text-info mt-1" style="max-height: 140px; overflow-y: auto;">
@@ -136,13 +136,13 @@
                                     <ul class="list-unstyled mb-0 small">
                                         <?php foreach ($cargosContagem as $item): ?>
                                             <li class="py-1 border-bottom">
-                                                <strong>Edital <?php echo formatarNumeroEdital($item->ds_numero_edital) ?></strong> - <?php echo esc($item->ds_nome_cargo) ?>: 
+                                                <strong>Processo <?php echo formatarNumeroEdital($item->ds_numero_processo) ?></strong> - <?php echo esc($item->ds_nome_cargo) ?>: 
                                                 <span class="badge badge-info"><?php echo number_format($item->total_candidatos, 0, ',', '.') ?> candidatos</span>
                                             </li>
                                         <?php endforeach; ?>
                                     </ul>
                                 <?php else: ?>
-                                    <div class="text-muted small">Nenhum edital ativo com inscrições.</div>
+                                    <div class="text-muted small">Nenhum processo ativo com inscrições.</div>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -195,13 +195,13 @@
 </div>
 
 <!-- ================================================================
-     MODAL: Escolha Editais (Candidatos)
+     MODAL: Escolha Processos Seletivos (Candidatos)
      ================================================================ -->
-<div class="modal fade dashboard-modal" id="escolhaEditais" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade dashboard-modal" id="escolhaProcessos" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title"><i class="fas fa-users"></i> Escolha o Edital e o Cargo</h5>
+        <h5 class="modal-title"><i class="fas fa-users"></i> Escolha o Processo e o Cargo</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
             <span aria-hidden="true"><i class="fas fa-times"></i></span>
         </button>
@@ -210,12 +210,12 @@
         <form method="post" action="<?= base_url_adm('Candidatos/salvarEscolha') ?>">
             <input type="hidden" id="csrf" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
             <div class="form-group">
-                <label for="edital">Edital</label>
-                <select class="form-control select-edital" data-target="#select-cargo" name="edital" required>
-                    <option value="">Selecione um Edital</option>
-                    <?php foreach ($todosEditais as $edital): ?>
-                        <option value="<?= $edital->pk_id_edital; ?>">
-                            <?= formatarNumeroEdital($edital->ds_numero_edital) ?>
+                <label for="processo">Processo Seletivo</label>
+                <select class="form-control select-processo" data-target="#select-cargo" name="processo" required>
+                    <option value="">Selecione um Processo Seletivo</option>
+                    <?php foreach ($todosProcessos as $processo): ?>
+                        <option value="<?= $processo->pk_id_processo; ?>">
+                            <?= formatarNumeroEdital(($processo->nm_numero_processo ?? '') . ($processo->nm_ano_processo ?? '')) ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
@@ -241,7 +241,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title"><i class="fas fa-trophy"></i> Escolha o Edital e o Cargo</h5>
+        <h5 class="modal-title"><i class="fas fa-trophy"></i> Escolha o Processo e o Cargo</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
             <span aria-hidden="true"><i class="fas fa-times"></i></span>
         </button>
@@ -250,13 +250,13 @@
         <form method="post" action="<?= base_url_adm('Classificacoes/salvarEscolha') ?>">
             <input type="hidden" id="csrf" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
             <div class="form-group">
-                <label for="edital">Edital</label>
-                <select class="form-control select-edital" data-target="#select-cargo-classificacoes" name="edital" required>
-                    <option value="">Selecione um Edital</option>
-                    <?php foreach ($todosEditais as $edital): ?>
-                        <option value="<?= $edital->pk_id_edital; ?>">
-                            <?= formatarNumeroEdital($edital->ds_numero_edital) ?>
-                            <?= ($edital->ds_status == 1) ? ' (Ativo)' : ' (Inativo)' ?>
+                <label for="processo">Processos Seletivos</label>
+                <select class="form-control select-processo" data-target="#select-cargo-classificacoes" name="processo" required>
+                    <option value="">Selecione um Processo Seletivo</option>
+                    <?php foreach ($todosProcessos as $processo): ?>
+                        <option value="<?= $processo->pk_id_processo; ?>">
+                            <?= formatarNumeroEdital(($processo->nm_numero_processo ?? '') . ($processo->nm_ano_processo ?? '')) ?>
+                            <?= ($processo->nm_situacao == 1) ? ' (Ativo)' : ' (Inativo)' ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
@@ -282,7 +282,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title"><i class="fas fa-gavel"></i> Escolha o Edital e o Cargo</h5>
+        <h5 class="modal-title"><i class="fas fa-gavel"></i> Escolha o Processo e o Cargo</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
             <span aria-hidden="true"><i class="fas fa-times"></i></span>
         </button>
@@ -291,12 +291,12 @@
         <form method="post" action="<?= base_url_adm('Recursos/salvarEscolha') ?>">
             <input type="hidden" id="csrf" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
             <div class="form-group">
-                <label for="edital">Edital</label>
-                <select class="form-control select-edital" data-target="#select-cargo-recursos" name="edital" required>
-                    <option value="">Selecione um Edital</option>
-                    <?php foreach ($editais as $edital): ?>
-                        <option value="<?= $edital->pk_id_edital; ?>">
-                            <?= formatarNumeroEdital($edital->ds_numero_edital) ?>
+                <label for="processo">Processo Seletivo</label>
+                <select class="form-control select-processo" data-target="#select-cargo-recursos" name="processo" required>
+                    <option value="">Selecione um Processo</option>
+                    <?php foreach ($todosProcessos as $processo): ?>
+                        <option value="<?= $processo->pk_id_processo; ?>">
+                            <?= formatarNumeroEdital(($processo->nm_numero_processo ?? '') . ($processo->nm_ano_processo ?? '')) ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
@@ -310,79 +310,6 @@
             <button type="submit" class="btn btn-primary">Enviar</button>
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Sair</button>
         </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ================================================================
-     MODAL: Relatórios
-     ================================================================ -->
-<div class="modal fade dashboard-modal" id="relatorios" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-md modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"><i class="fas fa-file-alt"></i> Central de Relatórios</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-            <span aria-hidden="true"><i class="fas fa-times"></i></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p class="text-muted mb-3 text-center">Selecione o relatório que deseja emitir</p>
-        <div class="list-group">
-            <a href="#" data-toggle="modal" data-target="#escolhaRelatorioClassificacao" data-dismiss="modal" class="list-group-item list-group-item-action d-flex align-items-center">
-                <i class="fas fa-trophy fa-lg text-warning mr-3"></i>
-                <div>
-                    <strong>Classificação por Cargo</strong><br>
-                    <small class="text-muted">Gerar classificação em PDF ou CSV</small>
-                </div>
-            </a>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Fechar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ================================================================
-     MODAL: Classificação por Cargo (Relatório)
-     ================================================================ -->
-<div class="modal fade dashboard-modal" id="escolhaRelatorioClassificacao" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-warning">
-        <h5 class="modal-title"><i class="fas fa-trophy"></i> Classificação por Cargo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-            <span aria-hidden="true"><i class="fas fa-times"></i></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="formRelatorioClassificacao">
-            <input type="hidden" id="csrf-classificacao" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
-            <div class="form-group">
-                <label for="edital-classificacao">Edital</label>
-                <select class="form-control" id="edital-classificacao" name="edital" required>
-                    <option value="">Selecione um Edital</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="cargo-class">Cargo</label>
-                <select class="form-control" id="cargo-class" name="cargo" required disabled>
-                    <option value="">Selecione um cargo</option>
-                </select>
-            </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Retornar</button>
-        <a href="#" id="btn-gerar-pdf" class="btn btn-danger disabled" target="_blank" onclick="return validarFormClass();">
-            <i class="fas fa-file-pdf"></i> PDF
-        </a>
-        <a href="#" id="btn-gerar-csv" class="btn btn-success disabled" target="_blank" onclick="return validarFormClass();">
-            <i class="fas fa-file-excel"></i> CSV
-        </a>
       </div>
     </div>
   </div>

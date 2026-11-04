@@ -23,7 +23,7 @@ class ClassificacaoPersistService
      * @param int $cargo
      * @param array $dados Cada item pode ter '_scores' com scores dinamicos
      */
-    public function salvar(int $edital, int $cargo, array $dados): void
+    public function salvar(int $processo, int $cargo, array $dados): void
     {
         if (empty($dados)) {
             return;
@@ -43,15 +43,15 @@ class ClassificacaoPersistService
         // Limpa classificacao anterior (CASCADE limpa scores automaticamente)
         $this->db->table('tb_classificacao')
             ->where([
-                'fk_id_edital' => $edital,
-                'fk_id_cargo'  => $cargo
+                'fk_id_processo' => $processo,
+                'fk_id_cargo'    => $cargo
             ])
             ->delete();
 
         if ($usaScoresDinamicos) {
-            $this->salvarComScores($edital, $cargo, $dados);
+            $this->salvarComScores($processo, $cargo, $dados);
         } else {
-            $this->salvarBatch($edital, $cargo, $dados);
+            $this->salvarBatch($processo, $cargo, $dados);
         }
 
         $this->db->transComplete();
@@ -60,11 +60,11 @@ class ClassificacaoPersistService
     /**
      * Salva usando insertBatch (performance para regra fixa).
      */
-    private function salvarBatch(int $edital, int $cargo, array $dados): void
+    private function salvarBatch(int $processo, int $cargo, array $dados): void
     {
         foreach ($dados as &$row) {
-            $row['fk_id_edital'] = $edital;
-            $row['fk_id_cargo']  = $cargo;
+            $row['fk_id_processo'] = $processo;
+            $row['fk_id_cargo']     = $cargo;
             // Remove scores se existirem (nao deveria, mas garante)
             unset($row['_scores']);
         }
@@ -75,7 +75,7 @@ class ClassificacaoPersistService
     /**
      * Salva com insert individual para obter IDs e persistir scores dinamicos.
      */
-    private function salvarComScores(int $edital, int $cargo, array $dados): void
+    private function salvarComScores(int $processo, int $cargo, array $dados): void
     {
         $scoreModel = new ClassificacaoScoreModel();
 
@@ -83,8 +83,8 @@ class ClassificacaoPersistService
             $scores = $row['_scores'] ?? [];
             unset($row['_scores']);
 
-            $row['fk_id_edital'] = $edital;
-            $row['fk_id_cargo']  = $cargo;
+            $row['fk_id_processo'] = $processo;
+            $row['fk_id_cargo']    = $cargo;
 
             $this->db->table('tb_classificacao')->insert($row);
             $idClassificacao = $this->db->insertID();

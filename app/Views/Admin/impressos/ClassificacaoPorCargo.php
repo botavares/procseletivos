@@ -141,7 +141,7 @@
 
 <div class="titulo">Classificação por Cargo</div>
 <div class="subtitulo">
-    Edital: <?= esc(substr_replace($nomeEdital, '/', -4, 0)) ?> &nbsp;|&nbsp;
+    Processo: <?= esc($nomeProcesso ?? (isset($nomeEdital) ? substr_replace($nomeEdital, '/', -4, 0) : '')) ?> &nbsp;|&nbsp;
     Cargo: <?= esc($nomeCargo) ?>
 </div>
 
@@ -189,9 +189,23 @@
                             <?php
                                 $chave = $config->chaveScore();
                                 $scoreData = $c['_scores'][$chave] ?? null;
-                                $valor = is_array($scoreData) ? ($scoreData['nr_valor'] ?? 0) : ($scoreData ?? 0);
+                                if (is_array($scoreData) && !empty($scoreData['ds_valor_texto'])) {
+                                    $valor = $scoreData['ds_valor_texto'];
+                                } elseif (is_array($scoreData)) {
+                                    $valor = $scoreData['nr_valor'] ?? 0;
+                                } else {
+                                    $valor = $scoreData ?? 0;
+                                }
                             ?>
-                            <td><?= is_numeric($valor) ? number_format((float)$valor, 2, ',', '.') : esc($valor) ?></td>
+                            <td>
+                                <?php if (is_string($valor) && preg_match('/^\d{4}-\d{2}-\d{2}$/', $valor)): ?>
+                                    <?= date('d/m/Y', strtotime($valor)) ?>
+                                <?php elseif (is_numeric($valor)): ?>
+                                    <?= number_format((float)$valor, 2, ',', '.') ?>
+                                <?php else: ?>
+                                    <?= esc($valor) ?>
+                                <?php endif; ?>
+                            </td>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <?php $candDados = $dadosDinamicos[$c['fk_id_candidato']] ?? []; ?>

@@ -10,7 +10,12 @@ namespace App\Repositories\Admin\Interfaces;
 interface IClassificacaoRepository
 {
     /**
-     * Lista classificação do edital/cargo com scores dinâmicos.
+     * Lista classificação do processo/cargo com scores dinâmicos.
+     */
+    public function listarPorProcessoCargo(int $idProcesso, int $idCargo): array;
+
+    /**
+     * @deprecated Mantido para compatibilidade.
      */
     public function listarPorEditalCargo(int $idEdital, int $idCargo): array;
 }
