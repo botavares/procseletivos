@@ -22,7 +22,7 @@
 	</section>
 	<div class="col-md-12 mrg-top-30 mrg-bottom-30 centra-horizontal">
 		<div class="col-md-6 centra-horizontal centra-vertical">
-			<a class="br-button primary col-md-12 ta-center" href="<?php echo base_url("Cadastros/gerarComprovante/$idEdital/$idCargo/$idCandidato/")?>" target="_blank">Obter comprovante de Cadastro</a>
+			<a class="br-button primary col-md-12 ta-center" href="<?php echo base_url("Cadastros/gerarComprovante/$idProcesso/$idCargo/$idCandidato/")?>" target="_blank">Obter comprovante de Cadastro</a>
     	</div>
     </div>
     <div class="col-md-12 mrg-top-30 mrg-bottom-30 centra-horizontal">

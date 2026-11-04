@@ -12,7 +12,16 @@ class AddFkIdCargoToTbEscolaridades extends Migration
     {
         // Remove o vinculo 1:N anterior caso exista
         if ($this->db->fieldExists('fk_id_cargo', 'tb_escolaridades')) {
-            $this->forge->dropForeignKey('tb_escolaridades', 'fk_escolaridades_cargo');
+            $constraints = $this->db->query("
+                SELECT CONSTRAINT_NAME 
+                FROM information_schema.TABLE_CONSTRAINTS 
+                WHERE TABLE_SCHEMA = DATABASE() 
+                AND TABLE_NAME = 'tb_escolaridades' 
+                AND CONSTRAINT_NAME = 'fk_escolaridades_cargo'
+            ")->getRow();
+            if ($constraints) {
+                $this->forge->dropForeignKey('tb_escolaridades', 'fk_escolaridades_cargo');
+            }
             $this->forge->dropColumn('tb_escolaridades', 'fk_id_cargo');
         }
 

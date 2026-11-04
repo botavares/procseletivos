@@ -9,7 +9,8 @@ class CadastrosExperienciasModel extends Model{
     protected $primaryKey = 'pk_id_experiencias';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
-        'fk_id_edital',
+        'fk_id_cadastrado',
+        'fk_id_processo',
         'fk_id_cargo',
         'fk_id_experiencia',
         'ds_status',
@@ -19,11 +20,11 @@ class CadastrosExperienciasModel extends Model{
 
     protected $returnType = 'object';
 
-   public function buscarExperienciasParaClassificacao($cadastrado, $edital, $cargo)
+   public function buscarExperienciasParaClassificacao($cadastrado, $processo, $cargo)
 {
     return $this->select([
         'tb_cadastrados_experiencias.fk_id_cadastrado',
-        'tb_cadastrados_experiencias.fk_id_edital',
+        'tb_cadastrados_experiencias.fk_id_processo',
         'tb_cadastrados_experiencias.fk_id_experiencia',
         'tb_cadastrados_experiencias.ds_status',
         'tb_cadastrados_experiencias.ds_quantidade',
@@ -42,7 +43,7 @@ class CadastrosExperienciasModel extends Model{
         'tb_cadastrados_experiencias.fk_id_experiencia = tb_experiencias.pk_id_experiencia'
     )
     ->where([
-        'tb_cadastrados_experiencias.fk_id_edital'     => $edital,
+        'tb_cadastrados_experiencias.fk_id_processo'     => $processo,
         'tb_cadastrados_experiencias.fk_id_cargo'      => $cargo,
         'tb_cadastrados_experiencias.fk_id_cadastrado' => $cadastrado,
     ])

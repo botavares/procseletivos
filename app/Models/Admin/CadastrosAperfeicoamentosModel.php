@@ -10,7 +10,7 @@ class CadastrosAperfeicoamentosModel extends Model{
     protected $useAutoIncrement = true;
     protected $allowedFields = [
         'fk_id_cadastrado', 
-        'fk_id_edital',
+        'fk_id_processo',
         'fk_id_cargo',
         'fk_id_curso',
         'ds_quantidade',
@@ -23,7 +23,7 @@ class CadastrosAperfeicoamentosModel extends Model{
     {
         return $this->select([
                 'tb_cadastrados_aperfeicoamentos.fk_id_cadastrado',
-                'tb_cadastrados_aperfeicoamentos.fk_id_edital',
+                'tb_cadastrados_aperfeicoamentos.fk_id_processo',
                 'tb_cadastrados_aperfeicoamentos.fk_id_curso',
                 'tb_cadastrados_aperfeicoamentos.ds_status',
                 'tb_cadastrados_aperfeicoamentos.ds_quantidade',
@@ -41,7 +41,7 @@ class CadastrosAperfeicoamentosModel extends Model{
                 'tb_cargos_aperfeicoamentos.fk_id_curso = tb_cursos_aperfeicoamentos.pk_id_curso'
             )
             ->where([
-                'tb_cadastrados_aperfeicoamentos.fk_id_edital'     => $edital,
+                'tb_cadastrados_aperfeicoamentos.fk_id_processo'     => $processo,
                 'tb_cadastrados_aperfeicoamentos.fk_id_cargo'      => $cargo,
                 'tb_cadastrados_aperfeicoamentos.fk_id_cadastrado' => $cadastrado,
             ])

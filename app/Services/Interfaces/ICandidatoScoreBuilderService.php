@@ -6,7 +6,7 @@ namespace App\Services\Interfaces;
 
 interface ICandidatoScoreBuilderService
 {
-    public function carregarDadosBatch(array $idsCandidatos, int $edital, int $cargo, array $configDesempate): void;
+    public function carregarDadosBatch(array $idsCandidatos, int $processo, int $cargo, array $configDesempate): void;
 
     public function construirScores(int $candidato, array $configDesempate): array;
 }

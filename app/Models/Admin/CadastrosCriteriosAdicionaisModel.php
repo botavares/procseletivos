@@ -10,7 +10,7 @@ class CadastrosCriteriosAdicionaisModel extends Model{
     protected $useAutoIncrement = true;
     protected $allowedFields = [
         'fk_id_cadastrado', 
-        'fk_id_edital',
+        'fk_id_processo',
         'fk_id_cargo',
         'fk_id_criterio',
         'ds_quantidade',
@@ -23,7 +23,7 @@ class CadastrosCriteriosAdicionaisModel extends Model{
     {
         return $this->select([
             'tb_cadastrados_criterios.fk_id_cadastrado',
-            'tb_cadastrados_criterios.fk_id_edital',
+            'tb_cadastrados_criterios.fk_id_processo',
             'tb_cadastrados_criterios.fk_id_criterio',
             'tb_cadastrados_criterios.ds_quantidade',
             'tb_cadastrados_criterios.ds_multiplicador',
@@ -40,7 +40,7 @@ class CadastrosCriteriosAdicionaisModel extends Model{
             'tb_cargos_criterios_adicionais.fk_id_criterio = tb_criterios_adicionais.pk_id_criterio'
         )
         ->where([
-            'tb_cadastrados_criterios.fk_id_edital'     => $edital,
+            'tb_cadastrados_criterios.fk_id_processo'     => $processo,
             'tb_cadastrados_criterios.fk_id_cargo'      => $cargo,
             'tb_cadastrados_criterios.fk_id_cadastrado' => $cadastrado,
         ])

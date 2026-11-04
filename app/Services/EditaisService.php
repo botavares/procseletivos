@@ -107,4 +107,51 @@ class EditaisService implements IEditaisService
 
         return true;
     }
+
+    public function estaAtivoPorProcesso(int $idProcesso): bool
+    {
+        $dadosProcesso = $this->db->table('tb_processos')
+            ->where('pk_id_processo', $idProcesso)
+            ->where("(is_deletado IS NULL OR is_deletado = '0000-00-00 00:00:00')", null, false)
+            ->get()
+            ->getRow();
+
+        if (!$dadosProcesso) {
+            throw new EditalForaDoPrazoException('Processo seletivo não encontrado.');
+        }
+
+        $dataInicial = date('d/m/Y', strtotime($dadosProcesso->dt_inicio_inscricao));
+        $dataFinal   = date('d/m/Y', strtotime($dadosProcesso->dt_fim_inscricao));
+
+        $hoje = date('Y-m-d');
+        if ($hoje < $dadosProcesso->dt_inicio_inscricao || $hoje > $dadosProcesso->dt_fim_inscricao) {
+            throw new EditalForaDoPrazoException(
+                "O período de cadastro para este processo seletivo é de {$dataInicial} a {$dataFinal}."
+            );
+        }
+
+        return true;
+    }
+
+    public function buscarEditalPorProcesso(int $idProcesso): ?int
+    {
+        $processo = $this->db->table('tb_processos')
+            ->where('pk_id_processo', $idProcesso)
+            ->where("(is_deletado IS NULL OR is_deletado = '0000-00-00 00:00:00')", null, false)
+            ->get()
+            ->getRow();
+
+        if (!$processo) {
+            return null;
+        }
+
+        $numeroCompleto = ((int) $processo->nm_numero_processo * 10000) + (int) $processo->nm_ano_processo;
+
+        $edital = $this->db->table('tb_editais')
+            ->where('ds_numero_edital', $numeroCompleto)
+            ->get()
+            ->getRow();
+
+        return $edital ? (int) $edital->pk_id_edital : null;
+    }
 }

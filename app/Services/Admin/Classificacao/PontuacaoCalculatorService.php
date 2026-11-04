@@ -21,11 +21,16 @@ class PontuacaoCalculatorService
 
     /**
      * Calcula todas as pontuações de um candidato.
+     *
+     * A tabela tb_cadastrados_experiencias foi migrada para fk_id_processo;
+     * as demais tabelas classificatórias ainda usam fk_id_edital.
      */
-    public function calcular(int $candidato, int $edital, int $cargo): array
+    public function calcular(int $candidato, int $processo, int $cargo): array
     {
+        $edital = $this->resolverEditalPorProcesso($processo);
+
         return [
-            'experiencias'      => $this->calcularExperiencias($candidato, $edital, $cargo),
+            'experiencias'      => $this->calcularExperiencias($candidato, $processo, $cargo),
             'graduacao'         => $this->calcularGraduacao($candidato, $edital, $cargo),
             'posgraduacao'      => $this->calcularPosGraduacao($candidato, $edital, $cargo),
             'mestrado'          => $this->calcularMestrado($candidato, $edital, $cargo),
@@ -33,6 +38,35 @@ class PontuacaoCalculatorService
             'aperfeicoamentos'  => $this->calcularAperfeicoamentos($candidato, $edital, $cargo),
             'criterios_adicionais' => $this->calcularCriteriosAdicionais($candidato, $edital, $cargo),
         ];
+    }
+
+    /**
+     * Resolve o edital vinculado ao processo seletivo (numero/ano).
+     */
+    private function resolverEditalPorProcesso(int $processo): ?int
+    {
+        $row = $this->db
+            ->table('tb_processos')
+            ->select('nm_numero_processo, nm_ano_processo')
+            ->where('pk_id_processo', $processo)
+            ->where("(is_deletado IS NULL OR is_deletado = '0000-00-00 00:00:00')", null, false)
+            ->get()
+            ->getRow();
+
+        if (!$row) {
+            return null;
+        }
+
+        $numeroCompleto = ((int) $row->nm_numero_processo * 10000) + (int) $row->nm_ano_processo;
+
+        $edital = $this->db
+            ->table('tb_editais')
+            ->select('pk_id_edital')
+            ->where('ds_numero_edital', $numeroCompleto)
+            ->get()
+            ->getRow();
+
+        return $edital ? (int) $edital->pk_id_edital : null;
     }
 
     /**
@@ -49,14 +83,14 @@ class PontuacaoCalculatorService
     // ===================================================================
     // Experiências
     // ===================================================================
-    private function calcularExperiencias(int $candidato, int $edital, int $cargo): float
+    private function calcularExperiencias(int $candidato, int $processo, int $cargo): float
     {
         // Busca todas as experiências do candidato
         $rows = $this->db->table('tb_cadastrados_experiencias')
             ->select('fk_id_experiencia, ds_quantidade, ds_multiplicador')
             ->where([
                 'fk_id_cadastrado' => $candidato,
-                'fk_id_edital'     => $edital,
+                'fk_id_processo'   => $processo,
                 'fk_id_cargo'      => $cargo
             ])
             ->get()
@@ -83,7 +117,7 @@ class PontuacaoCalculatorService
         }
 
         // Aplica limite do edital se houver
-        $limiteEdital = $this->obterLimiteEdital($edital, 'ds_total_experiencia');
+        $limiteEdital = $this->obterLimiteEditalPorProcesso($processo, 'ds_total_experiencia');
         if ($limiteEdital > 0) {
             return min($total, $limiteEdital);
         }
@@ -245,5 +279,15 @@ class PontuacaoCalculatorService
             ->getRow();
 
         return (float) ($row->{$campo} ?? 0);
+    }
+
+    private function obterLimiteEditalPorProcesso(int $processo, string $campo): float
+    {
+        $edital = $this->resolverEditalPorProcesso($processo);
+        if (!$edital) {
+            return 0;
+        }
+
+        return $this->obterLimiteEdital($edital, $campo);
     }
 }

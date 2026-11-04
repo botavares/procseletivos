@@ -9,7 +9,7 @@ class CadastrosEscolaridadesModel extends Model{
     protected $primaryKey = 'pk_id_escolaridades';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
-        'fk_id_edital',
+        'fk_id_processo',
         'fk_id_cargo',
         'fk_id_escolaridade',
         'ds_status',
@@ -20,11 +20,11 @@ class CadastrosEscolaridadesModel extends Model{
     protected $returnType = 'object';
 
 
-    public function buscarEscolaridadesParaClassificacao($cadastrado, $edital, $cargo)
+    public function buscarEscolaridadesParaClassificacao($cadastrado, $processo, $cargo)
     {
         return $this->select([
         'tb_cadastrados_escolaridades.fk_id_cadastrado',
-        'tb_cadastrados_escolaridades.fk_id_edital',
+        'tb_cadastrados_escolaridades.fk_id_processo',
         'tb_cadastrados_escolaridades.fk_id_escolaridade',
         'tb_cadastrados_escolaridades.ds_status',
         'tb_cadastrados_escolaridades.ds_quantidade',
@@ -44,7 +44,7 @@ class CadastrosEscolaridadesModel extends Model{
         'tb_cargos_escolaridades.fk_id_escolaridade = tb_escolaridades.pk_id_escolaridade'
     )
     ->where([
-        'tb_cadastrados_escolaridades.fk_id_edital'     => $edital,
+        'tb_cadastrados_escolaridades.fk_id_processo'     => $processo,
         'tb_cadastrados_escolaridades.fk_id_cargo'      => $cargo,
         'tb_cadastrados_escolaridades.fk_id_cadastrado' => $cadastrado,
     ])

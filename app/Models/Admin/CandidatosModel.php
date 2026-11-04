@@ -163,7 +163,7 @@ class CandidatosModel extends Model{
         $this->where('tb_cadastrados.pk_id_cadastrado', $id);
         return $this->first();
     }
-    public function listarExperienciaCandidato($edital,$cargo,$id){
+    public function listarExperienciaCandidato($processo,$cargo,$id){
         return $this->db->table('tb_cadastrados_experiencias exp')
         ->select("
             exp.fk_id_experiencia,
@@ -177,7 +177,7 @@ class CandidatosModel extends Model{
             'e.pk_id_experiencia = exp.fk_id_experiencia'
         )
         ->where('exp.fk_id_cadastrado', $id)
-        ->where('exp.fk_id_edital', $edital)
+        ->where('exp.fk_id_processo', $processo)
         ->where('exp.fk_id_cargo', $cargo)
         ->get()
         ->getResult();

@@ -16,7 +16,7 @@ class CadastradosExperienciasModel extends Model
     protected $useSoftDeletes = false;
     protected $allowedFields = [
         'fk_id_cadastrado',
-        'fk_id_edital',
+        'fk_id_processo',
         'fk_id_cargo',
         'fk_id_experiencia',
         'ds_quantidade',
@@ -25,7 +25,7 @@ class CadastradosExperienciasModel extends Model
 
     protected $validationRules = [
         'fk_id_cadastrado' => 'required|integer',
-        'fk_id_edital' => 'required|integer',
+        'fk_id_processo' => 'required|integer',
         'fk_id_cargo' => 'required|integer',
         'fk_id_experiencia' => 'required|integer',
         'ds_quantidade' => 'permit_empty|string',

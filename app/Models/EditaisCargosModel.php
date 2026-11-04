@@ -27,9 +27,14 @@ class EditaisCargosModel
     public function getEditaisAtivosCargos()
     {
         return $this->db->table('tb_editais_cargos')
-            ->select('tb_editais_cargos.*, tb_editais.*, tb_cargos.*')
+            ->select('tb_editais_cargos.*, tb_editais.*, tb_cargos.*, tb_processos.pk_id_processo AS fk_id_processo')
             ->join('tb_editais', 'tb_editais.pk_id_edital = tb_editais_cargos.fk_id_edital')
             ->join('tb_cargos', 'tb_cargos.pk_id_cargo = tb_editais_cargos.fk_id_cargo')
+            ->join(
+                'tb_processos',
+                "tb_editais.ds_numero_edital = (tb_processos.nm_numero_processo * 10000 + tb_processos.nm_ano_processo) AND (tb_processos.is_deletado IS NULL OR tb_processos.is_deletado = '0000-00-00 00:00:00')",
+                'left'
+            )
             ->where('tb_editais.ds_status', '1')
             ->groupStart()
                 ->where("EXISTS (

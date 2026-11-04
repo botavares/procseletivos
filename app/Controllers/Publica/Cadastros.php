@@ -140,10 +140,10 @@ class Cadastros extends BaseController
         ]);
     }
 
-    public function dadosClassificatorios($edital, $cargo, $id, $camada1 = '', $camada2 = 'pages', $page = 'FormularioClassificatorio')
+    public function dadosClassificatorios($processo, $cargo, $id, $camada1 = '', $camada2 = 'pages', $page = 'FormularioClassificatorio')
     {
         try {
-            $this->editaisService->estaAtivo($edital);
+            $this->editaisService->estaAtivoPorProcesso($processo);
         } catch (EditalForaDoPrazoException $e) {
             return redirect()->route('Cadastros')->with('mensagemError', $e->getMessage());
         }
@@ -154,7 +154,7 @@ class Cadastros extends BaseController
 
         $dataSession = $this->sessaoService->obterUsuario();
         $requisitos  = $this->classificatorioService->buscarRequisitos($cargo);
-        $cadastrados = $this->classificatorioService->buscarDadosCadastrados($id, $cargo, $edital);
+        $cadastrados = $this->classificatorioService->buscarDadosCadastrados($id, $cargo, $processo);
 
         return view('Publica/layoutLogado', [
             'camada1'                              => $camada1,
@@ -176,7 +176,7 @@ class Cadastros extends BaseController
             'idsCriteriosAdicionaisCandidato'      => $cadastrados['idsCriteriosAdicionais'],
             'idCandidato'                            => $id,
             'idCargo'                              => $cargo,
-            'idEdital'                             => $edital,
+            'idProcesso'                           => $processo,
             'titulo'                               => ucfirst('Registrar seus dados acadêmicos e profissionais'),
             'dataAtual'                            => date('d/m/Y'),
             'saudacao'                             => $this->saudacao(),
@@ -211,21 +211,22 @@ class Cadastros extends BaseController
             return redirect()->to('Home');
         }
 
-        $post        = $this->request->getPost();
-        $cargoId     = $post['idCargo'] ?? null;
-        $editalId    = $post['idEdital'] ?? null;
-        $candidatoId = $post['idCandidato'] ?? null;
+        $post         = $this->request->getPost();
+        $cargoId      = $post['idCargo'] ?? null;
+        $processoId   = $post['idProcesso'] ?? null;
+        $candidatoId  = $post['idCandidato'] ?? null;
 
-        $this->classificatorioService->processarFormulario($post, $candidatoId, $cargoId, $editalId);
+        $this->classificatorioService->processarFormulario($post, $candidatoId, $cargoId, $processoId);
 
-        $protocoloDto = $this->protocoloService->buscarOuGerar($candidatoId, $cargoId, $editalId);
+        $editalId = $this->editaisService->buscarEditalPorProcesso((int) $processoId);
+        $protocoloDto = $this->protocoloService->buscarOuGerar($candidatoId, $cargoId, $editalId ?? 0);
         $this->protocoloService->salvar($protocoloDto);
 
-        return redirect()->route('sucessoClassificatorio', [$candidatoId, $cargoId, $editalId])
+        return redirect()->route('sucessoClassificatorio', [$candidatoId, $cargoId, $processoId])
             ->with('mensagemSuccess', 'Registro atualizado com sucesso!');
     }
 
-    public function sucessoClassificatorio($idCandidato, $idCargo, $idEdital, $camada1 = '', $camada2 = 'pages', $page = 'SucessoClassificatorio')
+    public function sucessoClassificatorio($idCandidato, $idCargo, $idProcesso, $camada1 = '', $camada2 = 'pages', $page = 'SucessoClassificatorio')
     {
         return view('Publica/layoutLogado', [
             'camada1'     => $camada1,
@@ -233,15 +234,16 @@ class Cadastros extends BaseController
             'pagina'      => $page,
             'idCandidato' => $idCandidato,
             'idCargo'     => $idCargo,
-            'idEdital'    => $idEdital,
+            'idProcesso'  => $idProcesso,
             'titulo'      => ucfirst('Registro concluído!'),
             'dataAtual'   => date('d/m/Y'),
         ]);
     }
 
-    public function gerarComprovante($idEdital, $idCargo, $idCandidato)
+    public function gerarComprovante($idProcesso, $idCargo, $idCandidato)
     {
-        $comprovante = $this->comprovanteService->gerarComprovanteCompleto($idEdital, $idCargo, $idCandidato);
+        $editalId = $this->editaisService->buscarEditalPorProcesso((int) $idProcesso);
+        $comprovante = $this->comprovanteService->gerarComprovanteCompleto($editalId ?? 0, $idCargo, $idCandidato);
 
         if ($comprovante->erro !== null) {
             return redirect()->route('home')->with('mensagemError', $comprovante->erro);

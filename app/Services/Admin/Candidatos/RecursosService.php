@@ -11,13 +11,16 @@ use App\Models\Admin\CargosExperienciasModel;
 use App\Models\Admin\CargosEscolaridadesModel;
 use App\Models\Admin\CargosAperfeicoamentosModel;
 use App\Models\Admin\CargosCriteriosAdicionaisModel;
+use Config\Database;
 
 class RecursosService {
 
     public function aplicarRecursos(int $idEdital, int $idCargo, int $idCandidato, array $recursos){
         $protocolo = $recursos['ds_protocolo'] ?? '';
+        // A tabela de experiencias usa fk_id_processo; as demais mantem fk_id_edital
+        $idProcesso = $this->resolverProcessoPorEdital($idEdital);
 
-        return $this->transactional(function () use($idEdital, $idCargo, $idCandidato, $protocolo, $recursos){
+        return $this->transactional(function () use($idEdital, $idProcesso, $idCargo, $idCandidato, $protocolo, $recursos){
             $this->salvarCategoria(
                 'experiencias',
                 $idEdital,
@@ -29,7 +32,8 @@ class RecursosService {
                 $recursos['obs_experiencias'] ?? [],
                 'tb_cadastrados_experiencias',
                 'fk_id_experiencia',
-                new CargosExperienciasModel()
+                new CargosExperienciasModel(),
+                $idProcesso
             );
 
             $this->salvarCategoria(
@@ -78,6 +82,36 @@ class RecursosService {
         });
     }
 
+    private function resolverProcessoPorEdital(int $idEdital): ?int
+    {
+        $db = Database::connect();
+
+        $edital = $db->table('tb_editais')
+            ->where('pk_id_edital', $idEdital)
+            ->get()
+            ->getRow();
+
+        if (empty($edital->ds_numero_edital) || strlen((string) $edital->ds_numero_edital) < 5) {
+            return null;
+        }
+
+        $numeroCompleto = (string) $edital->ds_numero_edital;
+        $ano    = (int) substr($numeroCompleto, -4);
+        $numero = (int) substr($numeroCompleto, 0, -4);
+
+        $row = $db->table('tb_processos')
+            ->select('pk_id_processo')
+            ->where([
+                'nm_numero_processo' => $numero,
+                'nm_ano_processo'    => $ano,
+            ])
+            ->where("(is_deletado IS NULL OR is_deletado = '0000-00-00 00:00:00')", null, false)
+            ->get()
+            ->getRow();
+
+        return $row ? (int) $row->pk_id_processo : null;
+    }
+
     private function salvarCategoria(
         string $nomeCategoria,
         int $idEdital,
@@ -89,12 +123,17 @@ class RecursosService {
         array $observacoesPost,
         string $tabelaCadastro,
         string $fkCampo,
-        $modelConfig
+        $modelConfig,
+        ?int $idProcesso = null
     ) {
+        // Experiências migraram para fk_id_processo; as demais mantêm fk_id_edital
+        $colunaReferencia = ($nomeCategoria === 'experiencias' && $idProcesso !== null) ? 'fk_id_processo' : 'fk_id_edital';
+        $idReferencia = ($colunaReferencia === 'fk_id_processo') ? $idProcesso : $idEdital;
+
         // Busca dados atuais do candidato usando query builder direto
         $dadosBanco = $this->db->table($tabelaCadastro)
             ->where('fk_id_cadastrado', $idCandidato)
-            ->where('fk_id_edital', $idEdital)
+            ->where($colunaReferencia, $idReferencia)
             ->where('fk_id_cargo', $idCargo)
             ->get()
             ->getResult();
@@ -215,7 +254,7 @@ class RecursosService {
             if (array_key_exists($idCampoInt, $multiplicadoresBanco)) {
                 $this->db->table($tabelaCadastro)
                     ->where('fk_id_cadastrado', $idCandidato)
-                    ->where('fk_id_edital', $idEdital)
+                    ->where($colunaReferencia, $idReferencia)
                     ->where('fk_id_cargo', $idCargo)
                     ->where($fkCampo, $idCampoInt)
                     ->update([
@@ -223,14 +262,21 @@ class RecursosService {
                     ]);
             } else {
                 // Novo registro: INSERT
-                $this->db->table($tabelaCadastro)->insert([
+                $insertData = [
                     'fk_id_cadastrado' => $idCandidato,
-                    'fk_id_edital'     => $idEdital,
+                    $colunaReferencia  => $idReferencia,
                     'fk_id_cargo'      => $idCargo,
                     $fkCampo           => $idCampoInt,
                     'ds_quantidade'    => $quantidade,
                     'ds_multiplicador' => $ds_multiplicador,
-                ]);
+                ];
+
+                // Compatibilidade: experiências também possuem ds_status
+                if ($nomeCategoria === 'experiencias') {
+                    $insertData['ds_status'] = 1;
+                }
+
+                $this->db->table($tabelaCadastro)->insert($insertData);
             }
         }
     }
@@ -330,7 +376,7 @@ class RecursosService {
 
         $post = [];
         foreach ($dadosPost as $id => $quantidade) {
-            $post[(int)$id] = (int)$quantidade;
+            $post[(int)$id] = (int) $quantidade;
         }
 
         foreach ($banco as $id => $quantidadeAntiga) {

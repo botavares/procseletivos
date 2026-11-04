@@ -40,7 +40,7 @@
 							<input type="hidden" value="<?= csrf_hash(); ?>" name="<?= csrf_token(); ?>" id="csrf">
 							<input type="hidden" name="idCandidato" value="<?php echo $idCandidato?>">
 							<input type="hidden" name="idCargo" value="<?php echo $idCargo?>">
-							<input type="hidden" name="idEdital" value="<?php echo $idEdital?>">
+							<input type="hidden" name="idProcesso" value="<?php echo $idProcesso?>">
 
 							<!-- EXPERIENCIA PROFISSIONAL -->
 							 <?php 

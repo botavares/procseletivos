@@ -10,7 +10,7 @@ interface IClassificatorioService
 
     public function buscarRequisitos(int $cargoId): array;
 
-    public function buscarDadosCadastrados(int $candidatoId, int $cargoId, int $editalId): array;
+    public function buscarDadosCadastrados(int $candidatoId, int $cargoId, int $processoId): array;
 
-    public function processarFormulario(array $post, int $candidatoId, int $cargoId, int $editalId): bool;
+    public function processarFormulario(array $post, int $candidatoId, int $cargoId, int $processoId): bool;
 }

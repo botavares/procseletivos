@@ -29,4 +29,8 @@ interface IEditaisService
     public function autenticarEditalPorToken(string $token): ?object;
 
     public function estaAtivo(int $idEdital): bool;
+
+    public function estaAtivoPorProcesso(int $idProcesso): bool;
+
+    public function buscarEditalPorProcesso(int $idProcesso): ?int;
 }

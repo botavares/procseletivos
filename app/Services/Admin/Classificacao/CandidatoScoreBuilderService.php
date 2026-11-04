@@ -39,11 +39,14 @@ class CandidatoScoreBuilderService
      * @param int $cargo
      * @param array $configDesempate
      */
-    public function carregarDadosBatch(array $idsCandidatos, int $edital, int $cargo, array $configDesempate): void
+    public function carregarDadosBatch(array $idsCandidatos, int $processo, int $cargo, array $configDesempate): void
     {
         if (empty($idsCandidatos)) {
             return;
         }
+
+        // As demais tabelas classificatorias ainda usam fk_id_edital
+        $edital = $this->resolverEditalPorProcesso($processo);
 
         $tiposNecessarios = array_column($configDesempate, 'tipoCriterio');
         $refsExperiencias = $this->extrairIdsReferencia($configDesempate, 'EXPERIENCIA_ESPECIFICA');
@@ -53,7 +56,7 @@ class CandidatoScoreBuilderService
 
         // Carrega experiencias (todos ou especificos)
         if (!empty($refsExperiencias) || in_array('PONTUACAO_EXPERIENCIAS', $tiposNecessarios)) {
-            $this->experiencias = $this->carregarExperiencias($idsCandidatos, $edital, $cargo, $refsExperiencias);
+            $this->experiencias = $this->carregarExperiencias($idsCandidatos, $processo, $cargo, $refsExperiencias);
             $this->tetosExperiencias = $this->carregarTetos('tb_cargos_experiencias', 'fk_id_experiencia', $cargo, $refsExperiencias);
         }
 
@@ -197,11 +200,11 @@ class CandidatoScoreBuilderService
         return $niveis;
     }
 
-    private function carregarExperiencias(array $idsCandidatos, int $edital, int $cargo, array $idsExperiencias): array
+    private function carregarExperiencias(array $idsCandidatos, int $processo, int $cargo, array $idsExperiencias): array
     {
         $builder = $this->db->table('tb_cadastrados_experiencias')
             ->select('fk_id_cadastrado, fk_id_experiencia, ds_quantidade, ds_multiplicador')
-            ->where('fk_id_edital', $edital)
+            ->where('fk_id_processo', $processo)
             ->where('fk_id_cargo', $cargo)
             ->whereIn('fk_id_cadastrado', $idsCandidatos);
 
@@ -444,6 +447,35 @@ class CandidatoScoreBuilderService
     // -----------------------------------------------------------------------
     // Helpers
     // -----------------------------------------------------------------------
+
+    /**
+     * Resolve o edital vinculado ao processo seletivo (numero/ano).
+     */
+    private function resolverEditalPorProcesso(int $processo): ?int
+    {
+        $row = $this->db
+            ->table('tb_processos')
+            ->select('nm_numero_processo, nm_ano_processo')
+            ->where('pk_id_processo', $processo)
+            ->where("(is_deletado IS NULL OR is_deletado = '0000-00-00 00:00:00')", null, false)
+            ->get()
+            ->getRow();
+
+        if (!$row) {
+            return null;
+        }
+
+        $numeroCompleto = ((int) $row->nm_numero_processo * 10000) + (int) $row->nm_ano_processo;
+
+        $edital = $this->db
+            ->table('tb_editais')
+            ->select('pk_id_edital')
+            ->where('ds_numero_edital', $numeroCompleto)
+            ->get()
+            ->getRow();
+
+        return $edital ? (int) $edital->pk_id_edital : null;
+    }
 
     /**
      * Extrai os IDs de referência de um tipo específico da configuração.

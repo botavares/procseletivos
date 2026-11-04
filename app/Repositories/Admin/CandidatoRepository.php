@@ -39,9 +39,9 @@ class CandidatoRepository implements ICandidatoRepository
         return $this->model->listarCandidatoId($edital, $cargo, $id);
     }
 
-    public function buscarExperiencias(int $edital, int $cargo, int $id): array
+    public function buscarExperiencias(int $processo, int $cargo, int $id): array
     {
-        return $this->model->listarExperienciaCandidato($edital, $cargo, $id);
+        return $this->model->listarExperienciaCandidato($processo, $cargo, $id);
     }
 
     public function buscarEscolaridades(int $edital, int $cargo, int $id): array

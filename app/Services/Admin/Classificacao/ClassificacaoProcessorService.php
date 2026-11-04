@@ -55,12 +55,12 @@ class ClassificacaoProcessorService
         if ($usaConfiguracaoDinamica) {
             // Carrega dados em batch para performance
             $scoreBuilder = new CandidatoScoreBuilderService($this->db);
-            $scoreBuilder->carregarDadosBatch($idsCandidatos, $edital, $cargo, $configDesempate);
+            $scoreBuilder->carregarDadosBatch($idsCandidatos, $processoId, $cargo, $configDesempate);
 
             foreach ($candidatos as $candidato) {
                 $pontuacoes = $this->calculator->calcular(
                     (int) $candidato['fk_id_cadastrado'],
-                    $edital,
+                    $processoId,
                     $cargo
                 );
 
@@ -150,7 +150,7 @@ class ClassificacaoProcessorService
         foreach ($candidatos as $candidato) {
             $pontuacoes = $this->calculator->calcular(
                 (int) $candidato['fk_id_cadastrado'],
-                $edital,
+                $processoId,
                 $cargo
             );
 

@@ -32,7 +32,7 @@ interface ICandidatoRepository
     /**
      * Lista experiências profissionais do candidato.
      */
-    public function buscarExperiencias(int $edital, int $cargo, int $id): array;
+    public function buscarExperiencias(int $processo, int $cargo, int $id): array;
 
     /**
      * Lista escolaridades do candidato.

@@ -8,15 +8,17 @@ class AddFkProcessoSeletivoToTbCargosDesempatesConfig extends Migration
 {
     public function up()
     {
-        $this->forge->addColumn('tb_cargos_desempates_config', [
-            'fk_id_processo_seletivo' => [
-                'type'       => 'INT',
-                'constraint' => 11,
-                'unsigned'   => true,
-                'null'       => true,
-                'after'      => 'fk_id_cargo',
-            ],
-        ]);
+        if (! $this->db->fieldExists('fk_id_processo_seletivo', 'tb_cargos_desempates_config')) {
+            $this->forge->addColumn('tb_cargos_desempates_config', [
+                'fk_id_processo_seletivo' => [
+                    'type'       => 'INT',
+                    'constraint' => 11,
+                    'unsigned'   => true,
+                    'null'       => true,
+                    'after'      => 'fk_id_cargo',
+                ],
+            ]);
+        }
 
         $this->forge->addForeignKey('fk_id_processo_seletivo', 'tb_processos', 'pk_id_processo', 'CASCADE', 'CASCADE');
         $this->forge->addKey(['fk_id_processo_seletivo', 'fk_id_cargo', 'ds_ordem']);
@@ -24,7 +26,9 @@ class AddFkProcessoSeletivoToTbCargosDesempatesConfig extends Migration
 
     public function down()
     {
-        $this->forge->dropForeignKey('tb_cargos_desempates_config', 'fk_id_processo_seletivo');
-        $this->forge->dropColumn('tb_cargos_desempates_config', 'fk_id_processo_seletivo');
+        if ($this->db->fieldExists('fk_id_processo_seletivo', 'tb_cargos_desempates_config')) {
+            $this->forge->dropForeignKey('tb_cargos_desempates_config', 'fk_id_processo_seletivo');
+            $this->forge->dropColumn('tb_cargos_desempates_config', 'fk_id_processo_seletivo');
+        }
     }
 }

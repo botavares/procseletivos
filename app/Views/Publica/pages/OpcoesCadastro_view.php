@@ -120,7 +120,7 @@
                 $numeroEdital = formatarNumeroEdital($cargo->ds_numero_edital);
       ?>
     <div class="col-12 col-md-6 col-lg-6 mb-3">
-      <a href="<?= base_url("Cadastros/dadosClassificatorios/".$cargo->fk_id_edital."/".$cargo->fk_id_cargo."/".$candidato) ?>" class="text-decoration-none">
+      <a href="<?= base_url("Cadastros/dadosClassificatorios/".$cargo->fk_id_processo."/".$cargo->fk_id_cargo."/".$candidato) ?>" class="text-decoration-none">
         <div class="br-card hover h-100">
         <div class="card-content">
           <div class="d-flex align-items-center">
@@ -194,7 +194,7 @@
         $numeroEdital = formatarNumeroEdital($protocolo->ds_numero_edital);
   ?>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="<?= base_url("Cadastros/gerarComprovante/".$protocolo->fk_id_edital."/".$protocolo->fk_id_cargo."/".$protocolo->fk_id_cadastrado) ?>" class="text-decoration-none">
+      <a href="<?= base_url("Cadastros/gerarComprovante/".$protocolo->fk_id_processo."/".$protocolo->fk_id_cargo."/".$protocolo->fk_id_cadastrado) ?>" class="text-decoration-none">
         <div class="br-card hover h-100">
           <div class="card-content">
             <div class="d-flex align-items-center">
