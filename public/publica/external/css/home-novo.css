@@ -226,6 +226,32 @@
   line-height: 1.7;
 }
 
+/* ---- filtros ---- */
+.home-filtros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 16px 0 18px;
+}
+.home-filtros__fld label {
+  display: block;
+  font-size: 11.5px;
+  color: var(--home-texto2);
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.home-filtros__fld select,
+.home-filtros__fld input[type="text"] {
+  width: 100%;
+  border: 1px solid var(--home-borda);
+  border-radius: 4px;
+  padding: 9px 11px;
+  font-size: 12.5px;
+  font-family: inherit;
+  color: var(--home-texto);
+  background: var(--home-fundo);
+}
+
 /* ---- editais (cards menores) ---- */
 .home-edital {
   border: 1px solid var(--home-borda);

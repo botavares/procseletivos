@@ -48,6 +48,7 @@ $routes->post('/Cadastros/registrarDadosPessoais', 'Cadastros::registrarDadosPes
 $routes->post('/Cadastros/registrarDadosClassificatorios', 'Cadastros::registrarDadosClassificatorios');
 
 // Editais
+$routes->get('/Editais', 'Editais::index', ['as' => 'editaisPublico']);
 $routes->get('/ProcessosSeletivos', 'ProcessosSeletivos::index');
 $routes->get('/ProcessosSeletivos/detalhes/(:num)', 'ProcessosSeletivos::detalhes/$1', ['as' => 'detalhesEdital']);
 $routes->get('/ProcessosSeletivos/obterEdital/(:any)/(:any)', 'ProcessosSeletivos::obterEdital/$1/$2', ['as' => 'obterEdital']);

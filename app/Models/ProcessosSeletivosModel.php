@@ -113,4 +113,27 @@ class ProcessosSeletivosModel extends Model
             ->get()
             ->getResult();
     }
+
+    /**
+     * Lista todos os processos não deletados com situação atual e secretaria.
+     * Usado pelo portal público de editais.
+     */
+    public function listarComSituacaoESecretaria(): array
+    {
+        return $this->db->table('tb_processos')
+            ->select(
+                'tb_processos.*,' .
+                ' tb_situacao_processos.nm_id_situacao,' .
+                ' tb_situacao_processos.dt_ultima_alteracao,' .
+                ' tb_secretarias.ds_nome_secretaria,' .
+                ' tb_secretarias.ds_sigla_secretaria'
+            )
+            ->join('tb_situacao_processos', 'tb_situacao_processos.fk_id_processo = tb_processos.pk_id_processo', 'left')
+            ->join('tb_secretarias', 'tb_secretarias.pk_id_secretaria = tb_processos.fk_id_secretaria', 'left')
+            ->where("(tb_processos.is_deletado IS NULL OR tb_processos.is_deletado = '0000-00-00 00:00:00')")
+            ->groupBy('tb_processos.pk_id_processo')
+            ->orderBy('tb_processos.pk_id_processo', 'DESC')
+            ->get()
+            ->getResult();
+    }
 }

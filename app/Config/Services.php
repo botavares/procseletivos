@@ -843,6 +843,18 @@ class Services extends BaseService
             );
     }
 
+    public static function editaisPublicoService(bool $getShared = true): \App\Services\Editais\EditaisPublicoService
+    {
+        return $getShared
+            ? static::getSharedInstance('editaisPublicoService')
+            : new \App\Services\Editais\EditaisPublicoService(
+                new \App\Models\ProcessosSeletivosModel(),
+                new \App\Models\Admin\ProcessosDocumentosModel(),
+                new \App\Models\Admin\SecretariasModel(),
+                new \App\Models\CargosModel(),
+            );
+    }
+
     public static function processosCargosModel(bool $getShared = true): \App\Models\Admin\ProcessosCargosModel
     {
         return $getShared ? static::getSharedInstance('processosCargosModel') : new \App\Models\Admin\ProcessosCargosModel();
