@@ -49,6 +49,7 @@ $routes->post('/Cadastros/registrarDadosClassificatorios', 'Cadastros::registrar
 
 // Editais
 $routes->get('/Editais', 'Editais::index', ['as' => 'editaisPublico']);
+$routes->get('/Editais/filtrar', 'Editais::filtrar', ['as' => 'editaisFiltrar']);
 $routes->get('/ProcessosSeletivos', 'ProcessosSeletivos::index');
 $routes->get('/ProcessosSeletivos/detalhes/(:num)', 'ProcessosSeletivos::detalhes/$1', ['as' => 'detalhesEdital']);
 $routes->get('/ProcessosSeletivos/obterEdital/(:any)/(:any)', 'ProcessosSeletivos::obterEdital/$1/$2', ['as' => 'obterEdital']);
@@ -61,7 +62,7 @@ $routes->get('/PerguntasFrequentes/buscarRespostas', 'PerguntasFrequentes::busca
 // Transparência
 $routes->get('/transparencia', 'Transparencia::index');
 $routes->get('/transparencia/carregarTabela', 'Transparencia::carregarTabela');
-$routes->get('/transparencia/carregarCargosPorEdital', 'Transparencia::carregarCargosPorEdital');
+$routes->get('/transparencia/carregarCargosPorProcesso', 'Transparencia::carregarCargosPorProcesso');
 
 // API
 $routes->get('api/cep', 'Api\CepController::buscar');
@@ -95,6 +96,7 @@ $routes->group('adm', ['namespace' => 'App\Controllers\Admin'], function($routes
     $routes->get('ProcessosSeletivos/processosTodos', 'ProcessosSeletivos::processosTodos');
     $routes->post('ProcessosSeletivos/getCargosByProcesso', 'ProcessosSeletivos::getCargosByProcesso');
     $routes->post('Classificacoes/salvarEscolha', 'Classificacoes::salvarEscolha');
+    $routes->post('Classificacoes/disparar', 'Classificacoes::disparar', ['as' => 'Classificacoes.disparar']);
     $routes->get('Recursos/(:num)/(:num)/(:num)', 'Recursos::index/$1/$2/$3', ['as'=>'Recursos']);
     $routes->post('Recursos/cargosCandidato/', 'Recursos::cargosCandidato', ['as'=>'Recursos.cargosCandidato']);
     $routes->post('Recursos/registrar', 'Recursos::registrar', ['as'=>'Recursos.registrar']);

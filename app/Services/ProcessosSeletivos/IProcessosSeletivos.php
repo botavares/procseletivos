@@ -33,6 +33,8 @@ interface IProcessosSeletivos
      */
     public function listarTodos(): array;
 
+    public function listarTodosPorSecretaria(int $idSecretaria): array;
+
     /**
      * Lista processos seletivos por secretaria.
      */
@@ -53,6 +55,8 @@ interface IProcessosSeletivos
      */
     public function listarPorSituacao(int $situacao): array;
 
+    public function listarAtivosComSituacaoPorSecretaria(int $idSecretaria): array;
+
     /**
      * Lista processos seletivos por faixa de tempo de inscrição.
      */
@@ -67,5 +71,11 @@ interface IProcessosSeletivos
     /**
      * Busca cargos vinculados a um processo seletivo.
      */
-    public function buscarCargosPorProcesso(int $processoId): array;
+    public function buscarCargosPorProcesso(int $processoId, ?int $idSecretaria = null): array;
+
+    /**
+     * Lista processos seletivos visiveis para transparencia publica,
+     * considerando situacao de resultado publicado ou vigente.
+     */
+    public function listarProcessosTransparencia(?int $idSecretaria = null): array;
 }

@@ -323,8 +323,10 @@ class ProcessosSeletivos extends BaseController
             return $this->response->setJSON(['cargos' => []]);
         }
 
+        $idSecretaria = (int) session('fk_id_secretaria');
+
         return $this->response->setJSON([
-            'cargos' => $this->service->buscarCargosPorProcesso((int) $idProcesso),
+            'cargos' => $this->service->buscarCargosPorProcesso((int) $idProcesso, $idSecretaria),
         ]);
     }
 

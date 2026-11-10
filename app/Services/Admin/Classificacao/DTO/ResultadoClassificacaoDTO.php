@@ -20,6 +20,11 @@ class ResultadoClassificacaoDTO
      */
     public array $scoreLabels = [];
 
+    /**
+     * Posicao final apos ordenacao (preenchido pelo servico de ordenacao).
+     */
+    public int $ds_posicao = 0;
+
     public function __construct(
         public int $fk_id_candidato,
         public string $ds_nome,
@@ -35,6 +40,7 @@ class ResultadoClassificacaoDTO
         public float $nr_total_criterios_adicionais,
         public float $nr_total_pontos,
         public int $ds_possui_pne = 0,
+        public ?int $fk_id_secretaria = null,
     ) {}
 
     /**

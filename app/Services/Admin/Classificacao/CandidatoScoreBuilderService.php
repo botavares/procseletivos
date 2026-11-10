@@ -39,7 +39,7 @@ class CandidatoScoreBuilderService
      * @param int $cargo
      * @param array $configDesempate
      */
-    public function carregarDadosBatch(array $idsCandidatos, int $processo, int $cargo, array $configDesempate): void
+    public function carregarDadosBatch(array $idsCandidatos, int $processo, int $cargo, array $configDesempate, ?int $secretaria = null): void
     {
         if (empty($idsCandidatos)) {
             return;
@@ -53,27 +53,27 @@ class CandidatoScoreBuilderService
 
         // Carrega experiencias (todos ou especificos)
         if (!empty($refsExperiencias) || in_array('PONTUACAO_EXPERIENCIAS', $tiposNecessarios)) {
-            $this->experiencias = $this->carregarExperiencias($idsCandidatos, $processo, $cargo, $refsExperiencias);
-            $this->tetosExperiencias = $this->carregarTetos('tb_cargos_experiencias', 'fk_id_experiencia', $cargo, $refsExperiencias);
+            $this->experiencias = $this->carregarExperiencias($idsCandidatos, $processo, $cargo, $refsExperiencias, $secretaria);
+            $this->tetosExperiencias = $this->carregarTetos('tb_cargos_experiencias', 'fk_id_experiencia', $cargo, $refsExperiencias, $secretaria);
         }
 
         // Carrega escolaridades
         if (!empty($refsEscolaridades) || in_array('PONTUACAO_ESCOLARIDADES', $tiposNecessarios) || in_array('PONTUACAO_GRADUACAO', $tiposNecessarios) || in_array('PONTUACAO_POS_GRADUACAO', $tiposNecessarios) || in_array('PONTUACAO_MESTRADO', $tiposNecessarios) || in_array('PONTUACAO_DOUTORADO', $tiposNecessarios)) {
-            $this->escolaridades = $this->carregarEscolaridades($idsCandidatos, $processo, $cargo, $refsEscolaridades);
-            $this->tetosEscolaridades = $this->carregarTetos('tb_cargos_escolaridades', 'fk_id_escolaridade', $cargo, $refsEscolaridades);
+            $this->escolaridades = $this->carregarEscolaridades($idsCandidatos, $processo, $cargo, $refsEscolaridades, $secretaria);
+            $this->tetosEscolaridades = $this->carregarTetos('tb_cargos_escolaridades', 'fk_id_escolaridade', $cargo, $refsEscolaridades, $secretaria);
             $this->niveisEscolaridades = $this->carregarNiveisEscolaridades();
         }
 
         // Carrega criterios adicionais
         if (!empty($refsCriterios) || in_array('PONTUACAO_CRITERIOS_ADICIONAIS', $tiposNecessarios)) {
-            $this->criteriosAdicionais = $this->carregarCriteriosAdicionais($idsCandidatos, $processo, $cargo, $refsCriterios);
-            $this->tetosCriterios = $this->carregarTetos('tb_cargos_criterios_adicionais', 'fk_id_criterio', $cargo, $refsCriterios);
+            $this->criteriosAdicionais = $this->carregarCriteriosAdicionais($idsCandidatos, $processo, $cargo, $refsCriterios, $secretaria);
+            $this->tetosCriterios = $this->carregarTetos('tb_cargos_criterios_adicionais', 'fk_id_criterio', $cargo, $refsCriterios, $secretaria);
         }
 
         // Carrega aperfeicoamentos
         if (!empty($refsAperfeicoamentos) || in_array('PONTUACAO_CURSOS_APERFEICOAMENTOS', $tiposNecessarios) || in_array('PONTUACAO_APERFEICOAMENTOS', $tiposNecessarios)) {
-            $this->aperfeicoamentos = $this->carregarAperfeicoamentos($idsCandidatos, $processo, $cargo, $refsAperfeicoamentos);
-            $this->tetosAperfeicoamentos = $this->carregarTetos('tb_cargos_aperfeicoamentos', 'fk_id_curso', $cargo, $refsAperfeicoamentos);
+            $this->aperfeicoamentos = $this->carregarAperfeicoamentos($idsCandidatos, $processo, $cargo, $refsAperfeicoamentos, $secretaria);
+            $this->tetosAperfeicoamentos = $this->carregarTetos('tb_cargos_aperfeicoamentos', 'fk_id_curso', $cargo, $refsAperfeicoamentos, $secretaria);
         }
 
         // Carrega dados basicos dos candidatos (nascimento, PNE)
@@ -162,11 +162,15 @@ class CandidatoScoreBuilderService
     /**
      * Carrega os tetos (ds_pontuacao_maxima) de uma tabela de configuração do cargo.
      */
-    private function carregarTetos(string $tabela, string $campoFk, int $cargo, array $idsReferencia): array
+    private function carregarTetos(string $tabela, string $campoFk, int $cargo, array $idsReferencia, ?int $secretaria = null): array
     {
         $builder = $this->db->table($tabela)
             ->select("{$campoFk}, ds_pontuacao_maxima")
             ->where('fk_id_cargo', $cargo);
+
+        if ($secretaria !== null) {
+            $builder->where('fk_id_secretaria', $secretaria);
+        }
 
         if (!empty($idsReferencia)) {
             $builder->whereIn($campoFk, $idsReferencia);
@@ -197,13 +201,17 @@ class CandidatoScoreBuilderService
         return $niveis;
     }
 
-    private function carregarExperiencias(array $idsCandidatos, int $processo, int $cargo, array $idsExperiencias): array
+    private function carregarExperiencias(array $idsCandidatos, int $processo, int $cargo, array $idsExperiencias, ?int $secretaria = null): array
     {
         $builder = $this->db->table('tb_cadastrados_experiencias')
             ->select('fk_id_cadastrado, fk_id_experiencia, ds_quantidade, ds_multiplicador')
             ->where('fk_id_processo', $processo)
             ->where('fk_id_cargo', $cargo)
             ->whereIn('fk_id_cadastrado', $idsCandidatos);
+
+        if ($secretaria !== null) {
+            $builder->where('fk_id_secretaria', $secretaria);
+        }
 
         if (!empty($idsExperiencias)) {
             $builder->whereIn('fk_id_experiencia', $idsExperiencias);
@@ -227,13 +235,17 @@ class CandidatoScoreBuilderService
         return $dados;
     }
 
-    private function carregarEscolaridades(array $idsCandidatos, int $processo, int $cargo, array $idsEscolaridades): array
+    private function carregarEscolaridades(array $idsCandidatos, int $processo, int $cargo, array $idsEscolaridades, ?int $secretaria = null): array
     {
         $builder = $this->db->table('tb_cadastrados_escolaridades')
             ->select('fk_id_cadastrado, fk_id_escolaridade, ds_quantidade, ds_multiplicador')
             ->where('fk_id_processo', $processo)
             ->where('fk_id_cargo', $cargo)
             ->whereIn('fk_id_cadastrado', $idsCandidatos);
+
+        if ($secretaria !== null) {
+            $builder->where('fk_id_secretaria', $secretaria);
+        }
 
         if (!empty($idsEscolaridades)) {
             $builder->whereIn('fk_id_escolaridade', $idsEscolaridades);
@@ -257,13 +269,17 @@ class CandidatoScoreBuilderService
         return $dados;
     }
 
-    private function carregarCriteriosAdicionais(array $idsCandidatos, int $processo, int $cargo, array $idsCriterios): array
+    private function carregarCriteriosAdicionais(array $idsCandidatos, int $processo, int $cargo, array $idsCriterios, ?int $secretaria = null): array
     {
         $builder = $this->db->table('tb_cadastrados_criterios')
             ->select('fk_id_cadastrado, fk_id_criterio, ds_quantidade, ds_multiplicador')
             ->where('fk_id_processo', $processo)
             ->where('fk_id_cargo', $cargo)
             ->whereIn('fk_id_cadastrado', $idsCandidatos);
+
+        if ($secretaria !== null) {
+            $builder->where('fk_id_secretaria', $secretaria);
+        }
 
         if (!empty($idsCriterios)) {
             $builder->whereIn('fk_id_criterio', $idsCriterios);
@@ -287,13 +303,17 @@ class CandidatoScoreBuilderService
         return $dados;
     }
 
-    private function carregarAperfeicoamentos(array $idsCandidatos, int $processo, int $cargo, array $idsAperfeicoamentos): array
+    private function carregarAperfeicoamentos(array $idsCandidatos, int $processo, int $cargo, array $idsAperfeicoamentos, ?int $secretaria = null): array
     {
         $builder = $this->db->table('tb_cadastrados_aperfeicoamentos')
             ->select('fk_id_cadastrado, fk_id_curso, ds_quantidade, ds_multiplicador')
             ->where('fk_id_processo', $processo)
             ->where('fk_id_cargo', $cargo)
             ->whereIn('fk_id_cadastrado', $idsCandidatos);
+
+        if ($secretaria !== null) {
+            $builder->where('fk_id_secretaria', $secretaria);
+        }
 
         if (!empty($idsAperfeicoamentos)) {
             $builder->whereIn('fk_id_curso', $idsAperfeicoamentos);

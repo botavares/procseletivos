@@ -74,8 +74,8 @@ class CandidatosModel extends Model{
 
 
     
-    public function getCandidatosPorProcessoCargo($idProcesso, $idCargo){
-        return $this->db->table('tb_cadastrados AS c')
+    public function getCandidatosPorProcessoCargo($idProcesso, $idCargo, $idSecretaria = null){
+        $builder = $this->db->table('tb_cadastrados AS c')
         ->select([
             'c.pk_id_cadastrado',
             'c.ds_nome',
@@ -88,6 +88,7 @@ class CandidatosModel extends Model{
             'c.fk_id_pne',
             'p.fk_id_processo',
             'p.fk_id_cargo',
+            'p.fk_id_secretaria',
             'p.ds_protocolo',
             "CONCAT(pr.nm_numero_processo, '/', pr.nm_ano_processo) AS ds_numero_edital",
             'cg.pk_id_cargo',
@@ -107,7 +108,13 @@ class CandidatosModel extends Model{
 
         ->where('p.fk_id_processo', $idProcesso)
         ->where('p.fk_id_cargo', $idCargo)
-        ->where("(pr.is_deletado IS NULL OR pr.is_deletado = '0000-00-00 00:00:00')", null, false)
+        ->where("(pr.is_deletado IS NULL OR pr.is_deletado = '0000-00-00 00:00:00')", null, false);
+
+        if ($idSecretaria !== null) {
+            $builder->where('p.fk_id_secretaria', $idSecretaria);
+        }
+
+        return $builder
         ->orderBy('c.ds_nome', 'ASC')
         ->get()
         ->getResult();
@@ -116,8 +123,8 @@ class CandidatosModel extends Model{
 
 
 
-    public function getCandidatosComRecursosPorProcessoCargo($idProcesso, $idCargo){
-        return $this->db->table('tb_cadastrados AS c')
+    public function getCandidatosComRecursosPorProcessoCargo($idProcesso, $idCargo, $idSecretaria = null){
+        $builder = $this->db->table('tb_cadastrados AS c')
         ->select([
             'c.pk_id_cadastrado',
             'c.ds_nome',
@@ -129,6 +136,7 @@ class CandidatosModel extends Model{
             'c.ds_celular',
             'p.fk_id_processo',
             'p.fk_id_cargo',
+            'p.fk_id_secretaria',
             'p.ds_protocolo',
             "CONCAT(pr.nm_numero_processo, '/', pr.nm_ano_processo) AS ds_numero_edital",
             'cg.pk_id_cargo',
@@ -148,7 +156,13 @@ class CandidatosModel extends Model{
         ->join('tb_cadastrados_recursos AS r', 'r.fk_id_candidato = c.pk_id_cadastrado AND r.fk_id_processo = p.fk_id_processo AND r.fk_id_cargo = p.fk_id_cargo', 'inner')
         ->where('p.fk_id_processo', $idProcesso)
         ->where('p.fk_id_cargo', $idCargo)
-        ->where("(pr.is_deletado IS NULL OR pr.is_deletado = '0000-00-00 00:00:00')", null, false)
+        ->where("(pr.is_deletado IS NULL OR pr.is_deletado = '0000-00-00 00:00:00')", null, false);
+
+        if ($idSecretaria !== null) {
+            $builder->where('p.fk_id_secretaria', $idSecretaria);
+        }
+
+        return $builder
         ->groupBy('c.pk_id_cadastrado')
         ->orderBy('c.ds_nome', 'ASC')
         ->get()

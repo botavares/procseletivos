@@ -71,11 +71,11 @@ class CreateTbCargosDesempatesConfig extends Migration
         $this->forge->addForeignKey('fk_id_cargo', 'tb_cargos', 'pk_id_cargo', 'CASCADE', 'CASCADE');
         $this->forge->addKey(['fk_id_cargo', 'ds_ordem']);
 
-        $this->forge->createTable('tb_cargos_desempates_config', true);
+        $this->forge->createTable('tb_classificacao_desempates_config', true);
     }
 
     public function down()
     {
-        $this->forge->dropTable('tb_cargos_desempates_config', true);
+        $this->forge->dropTable('tb_classificacao_desempates_config', true);
     }
 }

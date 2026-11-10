@@ -38,10 +38,14 @@ class Editais extends BaseController
             throw new PageNotFoundException("página não encontrada: " . $pagina);
         }
 
+        $situacao   = $this->request->getGet('situacao');
+        $secretaria = $this->request->getGet('secretaria');
+        $cargo      = $this->request->getGet('cargo');
+
         $filtros = [
-            'situacao'   => $this->request->getGet('situacao') ?: 'Vigentes',
-            'secretaria' => $this->request->getGet('secretaria') ?: '',
-            'cargo'      => $this->request->getGet('cargo') ?: 'Todos',
+            'situacao'   => $situacao   !== null && $situacao   !== '' ? (string) $situacao   : 'Todas',
+            'secretaria' => $secretaria !== null && $secretaria !== '' ? (string) $secretaria : '',
+            'cargo'      => $cargo      !== null && $cargo      !== '' ? (string) $cargo      : 'Todos',
         ];
 
         $editais    = $this->editaisPublicoService->listarEditais($filtros);
@@ -63,5 +67,29 @@ class Editais extends BaseController
         ];
 
         return view($layout, $parametros);
+    }
+
+    /**
+     * Retorna apenas o fragmento HTML da lista de editais para atualização via AJAX.
+     */
+    public function filtrar()
+    {
+        if (!$this->request->isAJAX()) {
+            throw new PageNotFoundException('Acesso inválido.');
+        }
+
+        $situacao   = $this->request->getGet('situacao');
+        $secretaria = $this->request->getGet('secretaria');
+        $cargo      = $this->request->getGet('cargo');
+
+        $filtros = [
+            'situacao'   => $situacao   !== null && $situacao   !== '' ? (string) $situacao   : 'Todas',
+            'secretaria' => $secretaria !== null && $secretaria !== '' ? (string) $secretaria : '',
+            'cargo'      => $cargo      !== null && $cargo      !== '' ? (string) $cargo      : 'Todos',
+        ];
+
+        $editais = $this->editaisPublicoService->listarEditais($filtros);
+
+        return view('Publica/pages/Editais/_listaEditais_view', ['editais' => $editais]);
     }
 }

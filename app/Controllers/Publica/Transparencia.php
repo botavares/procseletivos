@@ -5,12 +5,8 @@ namespace App\Controllers\Publica;
 use App\Controllers\BaseController;
 
 use CodeIgniter\Exceptions\PageNotFoundException;
-use Config\Database;
 
 use App\Modules\Breadcrumbs\Breadcrumbs;
-
-use App\Models\CargosModel;
-use App\Models\EditaisModel;
 
 use App\Services\Transparencia\TransparenciaService;
 use App\Services\Transparencia\TransparenciaFormService;
@@ -58,7 +54,7 @@ class Transparencia extends BaseController
             'page'     => $this->request->getGet('page'),
             'per_page' => $this->request->getGet('per_page'),
             'search'   => $this->request->getGet('search'),
-            'edital'   => $this->request->getGet('edital'),
+            'processo' => $this->request->getGet('processo'),
             'cargo'    => $this->request->getGet('cargo'),
         ];
 
@@ -100,19 +96,19 @@ class Transparencia extends BaseController
     }
 
     /* =====================================================
-     * Retorna os cargos de um edital via AJAX
+     * Retorna os cargos de um processo seletivo via AJAX
      * ===================================================== */
-    public function carregarCargosPorEdital()
+    public function carregarCargosPorProcesso()
     {
         if (!$this->request->isAJAX()) {
             throw new PageNotFoundException();
         }
 
-        $editalId = (int) $this->request->getGet('edital');
+        $processoId = (int) $this->request->getGet('processo');
 
-        $cargos = $editalId > 0
-            ? service('editaisService')->listarCargosPorEdital($editalId)
-            : service('editaisService')->listarCargosEditaisAtivos();
+        $cargos = $processoId > 0
+            ? service('processosSeletivosService')->buscarCargosPorProcesso($processoId)
+            : [];
 
         return $this->response->setJSON($cargos);
     }

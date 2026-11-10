@@ -11,6 +11,12 @@ use DateTime;
 
 class Recursos extends BaseController{
 
+    protected $cargosModel;
+
+    public function __construct(){
+        $this->cargosModel = new \App\Models\Admin\CargosModel();
+    }
+
     /**
      * Exibe formulário de aplicação de recurso
      */
@@ -106,6 +112,8 @@ class Recursos extends BaseController{
             return redirect()->route('home')->with('error','Sua sessão expirou');
         }
 
+        $idSecretaria = (int) session('fk_id_secretaria');
+
         if (!$idProcesso || !$idCargo) {
             return redirect()->to(base_url('home'));
         }
@@ -115,11 +123,15 @@ class Recursos extends BaseController{
         $dadosProcesso = (new \App\Models\ProcessosSeletivosModel())->find($idProcesso);
         $dadosCargo    = $consultaService->buscarDadosCargo((int)$idCargo);
 
+        if (!$dadosCargo || (int) $dadosCargo->fk_id_secretaria !== $idSecretaria) {
+            return redirect()->to(base_url('home'))->with('error', 'Cargo não pertence à secretaria do usuário logado.');
+        }
+
         if (!$dadosProcesso || !$dadosCargo) {
             return redirect()->to(base_url('home'))->with('error', 'Processo ou Cargo não encontrado.');
         }
 
-        $candidatos = $consultaService->buscarCandidatosComRecursosPorProcessoCargo((int)$idProcesso, (int)$idCargo);
+        $candidatos = $consultaService->buscarCandidatosComRecursosPorProcessoCargo((int)$idProcesso, (int)$idCargo, $idSecretaria);
 
         $arrayCandidatos = [];
         foreach ($candidatos as $candidato) {
@@ -177,8 +189,14 @@ class Recursos extends BaseController{
      * Salva escolha de edital e cargo e redireciona para listagem
      */
     public function salvarEscolha(){
-        $idProcesso = $this->request->getPost('processo');
-        $idCargo    = $this->request->getPost('cargo');
+        $idSecretaria = (int) session('fk_id_secretaria');
+        $idProcesso = (int) $this->request->getPost('processo');
+        $idCargo    = (int) $this->request->getPost('cargo');
+
+        $dadosCargo = $this->cargosModel->find($idCargo);
+        if (!$dadosCargo || (int) $dadosCargo->fk_id_secretaria !== $idSecretaria) {
+            return redirect()->to(base_url_adm('Dashboard'))->with('error', 'Cargo não pertence à secretaria do usuário logado.');
+        }
 
         return redirect()->to(base_url_adm("Recursos/listar/{$idProcesso}/{$idCargo}"));
     }

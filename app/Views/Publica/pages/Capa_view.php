@@ -7,18 +7,19 @@
         <span class="linha"></span>
     </div>
 
-    <?php if (!empty($processosSeletivos)) : ?>
-        <?php foreach ($processosSeletivos as $processo) : ?>
+    <?php
+    $abertos = array_filter(
+        $processosSeletivos,
+        fn($p) => (int) ($p->nm_id_situacao ?? 0) === SituacaoProcessosEnum::INSCRICOES_ABERTAS->value
+    );
+    ?>
+
+    <?php if (!empty($abertos)) : ?>
+        <?php foreach ($abertos as $processo) : ?>
             <?php
             $situacaoId = (int) ($processo->nm_id_situacao ?? 0);
             $enum = SituacaoProcessosEnum::tryFrom($situacaoId);
-            $tagClass = match ($situacaoId) {
-                1 => 'home-tag--aberto',
-                2 => 'home-tag--encerrado',
-                3 => 'home-tag--vigente',
-                6 => 'home-tag--aberto',
-                default => 'home-tag--encerrado',
-            };
+            $tagClass = 'home-tag--aberto';
             $tagLabel = $enum?->label() ?? 'Status não encontrado';
             ?>
             <div class="home-hero">

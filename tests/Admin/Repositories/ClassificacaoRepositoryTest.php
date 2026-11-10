@@ -26,7 +26,7 @@ final class ClassificacaoRepositoryTest extends CIUnitTestCase
         $esperado = [['fk_id_candidato' => 1, 'ds_posicao' => 1]];
         $this->modelMock
             ->method('listarClassificacao')
-            ->with(10, 20)
+            ->with(10, 20, null)
             ->willReturn($esperado);
 
         $resultado = $this->repository->listarPorProcessoCargo(10, 20);
@@ -39,7 +39,7 @@ final class ClassificacaoRepositoryTest extends CIUnitTestCase
         $esperado = [['fk_id_candidato' => 1, 'ds_posicao' => 1]];
         $this->modelMock
             ->method('listarClassificacao')
-            ->with(5, 20)
+            ->with(5, 20, null)
             ->willReturn($esperado);
 
         $resultado = $this->repository->listarPorEditalCargo(5, 20);

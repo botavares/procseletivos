@@ -16,7 +16,7 @@ class SituacaoModel extends Model
         'fk_id_candidato',
         'fk_id_cargo',
         'fk_id_processo',
-        'situacao'
+        'nm_id_situacao',
     ];
 
     protected $returnType = 'array';

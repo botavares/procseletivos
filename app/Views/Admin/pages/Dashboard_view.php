@@ -76,6 +76,14 @@
                     </div>
 
                     <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 mb-2">
+                        <a href="#" data-toggle="modal" data-target="#disparoClassificacao" class="dash-quick-card">
+                            <div class="dash-quick-icon dash-quick-icon--cadastros4"><i class="fas fa-play-circle"></i></div>
+                            <h6>Disparar Classificação</h6>
+                            <small>Preliminar / Homologação</small>
+                        </a>
+                    </div>
+
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 mb-2">
                         <a href="#" data-toggle="modal" data-target="#escolhaRecursos" class="dash-quick-card">
                             <div class="dash-quick-icon dash-quick-icon--consultas2"><i class="fas fa-gavel"></i></div>
                             <h6>Recursos</h6>
@@ -196,7 +204,7 @@
 
 <!-- ================================================================
      MODAL: Escolha Processos Seletivos (Candidatos)
-     ================================================================ -->
+================================================================ -->
 <div class="modal fade dashboard-modal" id="escolhaProcessos" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -308,6 +316,62 @@
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Sair</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     MODAL: Disparo de Classificação
+     ================================================================ -->
+<div class="modal fade dashboard-modal" id="disparoClassificacao" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title"><i class="fas fa-play-circle"></i> Disparar Classificação</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true"><i class="fas fa-times"></i></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="<?= base_url_adm('Classificacoes/disparar') ?>">
+            <input type="hidden" id="csrf-disparo" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
+            <div class="form-group">
+                <label for="processo-disparo">Processo Seletivo</label>
+                <select class="form-control select-processo" id="processo-disparo" data-target="#cargo-disparo" name="processo" required>
+                    <option value="">Selecione um Processo Seletivo</option>
+                    <?php foreach ($todosProcessos as $processo): ?>
+                        <option value="<?= $processo->pk_id_processo; ?>">
+                            <?= formatarNumeroEdital(($processo->nm_numero_processo ?? '') . ($processo->nm_ano_processo ?? '')) ?>
+                            <?= ($processo->nm_situacao == 1) ? ' (Ativo)' : ' (Inativo)' ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cargo-disparo">Selecione o Cargo</label>
+                <select class="form-control select-cargo" id="cargo-disparo" name="cargo" required>
+                    <option value="">Selecione um cargo</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Tipo de Classificação</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tipo_classificacao" id="tipo-preliminar" value="preliminar" checked>
+                    <label class="form-check-label" for="tipo-preliminar">
+                        Preliminar <small class="text-muted">(situação: Resultado Publicado)</small>
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tipo_classificacao" id="tipo-homologacao" value="homologacao">
+                    <label class="form-check-label" for="tipo-homologacao">
+                        Homologação <small class="text-muted">(situação: Vigente)</small>
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-play"></i> Classificar</button>
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Sair</button>
         </form>
       </div>

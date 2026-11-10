@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Repositories\Interfaces\IProtocoloRepository;
-use App\Models\ProtocolosModel;
+use App\Models\Admin\ProtocolosModel;
 
 class ProtocoloRepository implements IProtocoloRepository
 {
@@ -19,7 +19,7 @@ class ProtocoloRepository implements IProtocoloRepository
     public function buscarProtocolosDoCandidato(int $idCandidato): array
     {
         return $this->model
-            ->select('tb_cadastrados_protocolo.*, tb_editais.ds_numero_edital, tb_cargos.ds_nome_cargo, tb_processos.pk_id_processo AS fk_id_processo')
+            ->select('tb_cadastrados_protocolo.*, tb_editais.ds_numero_edital, tb_cargos.ds_nome_cargo, tb_cargos.fk_id_secretaria, tb_processos.pk_id_processo AS fk_id_processo')
             ->join('tb_editais', 'tb_editais.pk_id_edital = tb_cadastrados_protocolo.fk_id_edital')
             ->join(
                 'tb_processos',

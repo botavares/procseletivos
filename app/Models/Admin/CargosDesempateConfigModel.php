@@ -6,9 +6,10 @@ use CodeIgniter\Model;
 
 class CargosDesempateConfigModel extends Model
 {
-    protected $table = 'tb_cargos_desempates_config';
+    protected $table = 'tb_classificacao_desempates_config';
     protected $primaryKey = 'pk_id_desempate';
     protected $allowedFields = [
+        'fk_id_secretaria',
         'fk_id_cargo',
         'fk_id_processo_seletivo',
         'ds_ordem',
@@ -27,9 +28,13 @@ class CargosDesempateConfigModel extends Model
      * @param int|null $processo
      * @return array
      */
-    public function listarPorCargo(int $cargo, ?int $processo = null): array
+    public function listarPorCargo(int $cargo, ?int $processo = null, ?int $secretaria = null): array
     {
         $builder = $this->where('fk_id_cargo', $cargo);
+
+        if ($secretaria !== null) {
+            $builder->where('fk_id_secretaria', $secretaria);
+        }
 
         if ($processo !== null) {
             $builder->where('fk_id_processo_seletivo', $processo);
@@ -46,11 +51,16 @@ class CargosDesempateConfigModel extends Model
      *
      * @param int $cargo
      * @param int|null $processo
+     * @param int|null $secretaria
      * @return bool
      */
-    public function limparPorCargo(int $cargo, ?int $processo = null): bool
+    public function limparPorCargo(int $cargo, ?int $processo = null, ?int $secretaria = null): bool
     {
         $builder = $this->where('fk_id_cargo', $cargo);
+
+        if ($secretaria !== null) {
+            $builder->where('fk_id_secretaria', $secretaria);
+        }
 
         if ($processo !== null) {
             $builder->where('fk_id_processo_seletivo', $processo);

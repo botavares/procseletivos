@@ -104,7 +104,7 @@ A solucao se baseia em **configuracao dinamica de criterios de desempate por car
                │
                ▼
 ┌─────────────────────────────────────────────────────────────┐
-│  TABELA: tb_cargos_desempates_config                        │
+│  TABELA: tb_classificacao_desempates_config                        │
 │  (Configuracao persistida no banco)                         │
 └──────────────┬──────────────────────────────────────────────┘
                │
@@ -119,7 +119,7 @@ A solucao se baseia em **configuracao dinamica de criterios de desempate por car
 
 ### 2.2 Novas Estruturas
 
-#### Tabela: `tb_cargos_desempates_config`
+#### Tabela: `tb_classificacao_desempates_config`
 
 | Coluna | Tipo | Descricao |
 |--------|------|-----------|
@@ -392,10 +392,10 @@ Assim, a view pode renderizar dinamicamente as colunas que forem relevantes para
 
 ### Fase 1: Banco de Dados
 
-**1.1. Criar a tabela `tb_cargos_desempates_config`**
+**1.1. Criar a tabela `tb_classificacao_desempates_config`**
 
 ```sql
-CREATE TABLE tb_cargos_desempates_config (
+CREATE TABLE tb_classificacao_desempates_config (
     pk_id_desempate INT AUTO_INCREMENT PRIMARY KEY,
     fk_id_cargo INT NOT NULL,
     ds_ordem INT NOT NULL DEFAULT 1,
@@ -413,7 +413,7 @@ CREATE TABLE tb_cargos_desempates_config (
 
 **1.2. (Opcional) Adicionar coluna `ds_desempate` nas tabelas de relacionamento**
 
-Note: As tabelas `tb_cargos_experiencias_editais`, `tb_cargos_escolaridades_editais`, `tb_cargos_aperfeicoamentos_editais` ja possuem a coluna `ds_desempate`. Verifique se ela sera utilizada ou se a nova tabela `tb_cargos_desempates_config` substituira essa funcao. Recomendacao: **manter `ds_desempate` como legado** e usar a nova tabela como fonte principal.
+Note: As tabelas `tb_cargos_experiencias_editais`, `tb_cargos_escolaridades_editais`, `tb_cargos_aperfeicoamentos_editais` ja possuem a coluna `ds_desempate`. Verifique se ela sera utilizada ou se a nova tabela `tb_classificacao_desempates_config` substituira essa funcao. Recomendacao: **manter `ds_desempate` como legado** e usar a nova tabela como fonte principal.
 
 ---
 
@@ -426,7 +426,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 
 class CargosDesempateConfigModel extends Model {
-    protected $table = 'tb_cargos_desempates_config';
+    protected $table = 'tb_classificacao_desempates_config';
     protected $primaryKey = 'pk_id_desempate';
     protected $allowedFields = [
         'fk_id_cargo', 'ds_ordem', 'ds_tipo_criterio',
@@ -820,7 +820,7 @@ public function salvarComScores(int $edital, int $cargo, array $resultados): voi
 
 ### Fase 7: Backward Compatibility (Regra Padrao)
 
-Se um cargo **nao tiver configuracao** em `tb_cargos_desempates_config`, o sistema deve continuar funcionando exatamente como hoje.
+Se um cargo **nao tiver configuracao** em `tb_classificacao_desempates_config`, o sistema deve continuar funcionando exatamente como hoje.
 
 Para isso:
 - No inicio de `ClassificacaoProcessorService::processar()`:
@@ -1068,7 +1068,7 @@ Renderiza tabela com colunas relevantes para aquele cargo
 - **Estrategia recomendada:** Carregar todos os registros de experiencias, escolaridades, criterios adicionais e aperfeicoamentos dos candidatos do edital/cargo em queries unicas ANTES do loop, e passar como arrays para o builder.
 
 ### 6.2. Backward Compatibility
-- **Crucial:** Cargos sem configuracao em `tb_cargos_desempates_config` devem continuar usando a regra fixa atual.
+- **Crucial:** Cargos sem configuracao em `tb_classificacao_desempates_config` devem continuar usando a regra fixa atual.
 - Isso garante que editais antigos e cargos ja existentes nao sejam afetados.
 
 ### 6.3. Multiplas Referencias
@@ -1180,7 +1180,7 @@ Isso e correto e esperado.
 A implementacao ja foi concluida com sucesso. Abaixo o resumo do que foi entregue:
 
 ### Estruturas Criadas
-- `tb_cargos_desempates_config` - Tabela de configuracao de criterios de desempate por cargo
+- `tb_classificacao_desempates_config` - Tabela de configuracao de criterios de desempate por cargo
 - `tb_classificacao_scores` - Tabela de scores dinamicos persistidos para transparencia
 
 ### Arquivos Criados (Novos)

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\DTOs\ProtocoloDTO;
-use App\Models\ProtocolosModel;
-use App\Models\CandidatosModel;
-use App\Models\CargosModel;
+use App\Models\Admin\ProtocolosModel;
+use App\Models\Admin\CandidatosModel;
+use App\Models\Admin\CargosModel;
 use App\Repositories\Interfaces\IProtocoloRepository;
 use App\Services\Interfaces\IProtocoloService;
 
@@ -32,6 +32,7 @@ class ProtocoloService implements IProtocoloService{
             ->where('fk_id_cadastrado', $candidatoId)
             ->where('fk_id_cargo', $cargoId)
             ->where('fk_id_edital', $editalId)
+            ->where('fk_id_secretaria', $secretariaId)
             ->first();
 
         $candidato = $this->candidatoModel
@@ -69,6 +70,7 @@ class ProtocoloService implements IProtocoloService{
             ->where('fk_id_cadastrado', $dto->idCadastrado)
             ->where('fk_id_cargo', $dto->idCargo)
             ->where('fk_id_edital', $dto->idEdital)
+            ->where('fk_id_secretaria', $dto->idSecretaria)
             ->first();
 
         if ($existe) {
@@ -76,6 +78,7 @@ class ProtocoloService implements IProtocoloService{
                 ->where('fk_id_cadastrado', $dto->idCadastrado)
                 ->where('fk_id_cargo', $dto->idCargo)
                 ->where('fk_id_edital', $dto->idEdital)
+                ->where('fk_id_secretaria', $dto->idSecretaria)
                 ->set($dados)
                 ->update() !== false;
         }

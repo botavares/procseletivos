@@ -25,7 +25,7 @@ class ClassificacaoColunasService
      * @param int|null $processo Filtra pelas configurações do processo seletivo (NULL = geral).
      * @return array Array de colunas com: chave, label, tipo, id_referencia
      */
-    public function obterColunas(int $cargo, ?int $processo = null): array
+    public function obterColunas(int $cargo, ?int $processo = null, ?int $secretaria = null): array
     {
         $colunas = [];
 
@@ -36,6 +36,7 @@ class ClassificacaoColunasService
             ->where('ce.fk_id_cargo', $cargo)
             ->orderBy('e.ds_nome_experiencia', 'ASC');
         $this->aplicarFiltroProcesso($builder, $processo, 'ce');
+        $this->aplicarFiltroSecretaria($builder, $secretaria, 'ce');
         $experiencias = $builder->get()->getResultArray();
 
         foreach ($experiencias as $exp) {
@@ -54,6 +55,7 @@ class ClassificacaoColunasService
             ->where('ce.fk_id_cargo', $cargo)
             ->orderBy('e.ds_nome_escolaridade', 'ASC');
         $this->aplicarFiltroProcesso($builder, $processo, 'ce');
+        $this->aplicarFiltroSecretaria($builder, $secretaria, 'ce');
         $escolaridades = $builder->get()->getResultArray();
 
         foreach ($escolaridades as $esc) {
@@ -72,6 +74,7 @@ class ClassificacaoColunasService
             ->where('ca.fk_id_cargo', $cargo)
             ->orderBy('c.ds_nome_curso', 'ASC');
         $this->aplicarFiltroProcesso($builder, $processo, 'ca', 'fk_id_processos_seletivo');
+        $this->aplicarFiltroSecretaria($builder, $secretaria, 'ca');
         $aperfeicoamentos = $builder->get()->getResultArray();
 
         foreach ($aperfeicoamentos as $ap) {
@@ -90,6 +93,7 @@ class ClassificacaoColunasService
             ->where('cc.fk_id_cargo', $cargo)
             ->orderBy('c.ds_nome_criterio', 'ASC');
         $this->aplicarFiltroProcesso($builder, $processo, 'cc');
+        $this->aplicarFiltroSecretaria($builder, $secretaria, 'cc');
         $criterios = $builder->get()->getResultArray();
 
         foreach ($criterios as $crit) {
@@ -122,6 +126,16 @@ class ClassificacaoColunasService
     }
 
     /**
+     * Aplica filtro por secretaria em uma query de configuração de cargo.
+     */
+    private function aplicarFiltroSecretaria($builder, ?int $secretaria, string $alias, string $coluna = 'fk_id_secretaria'): void
+    {
+        if ($secretaria !== null) {
+            $builder->where("{$alias}.{$coluna}", $secretaria);
+        }
+    }
+
+    /**
      * Carrega os valores dinâmicos dos candidatos em batch.
      *
      * @param int $processo
@@ -129,7 +143,7 @@ class ClassificacaoColunasService
      * @param array $idsCandidatos
      * @return array [candidatoId => [chave => valor]]
      */
-    public function obterDadosDinamicos(int $processo, int $cargo, array $idsCandidatos): array
+    public function obterDadosDinamicos(int $processo, int $cargo, array $idsCandidatos, ?int $secretaria = null): array
     {
         if (empty($idsCandidatos)) {
             return [];
@@ -141,19 +155,23 @@ class ClassificacaoColunasService
         }
 
         // Carrega tetos do cargo para cada tipo
-        $tetosExperiencias     = $this->carregarTetos('tb_cargos_experiencias', 'fk_id_experiencia', $cargo);
-        $tetosEscolaridades    = $this->carregarTetos('tb_cargos_escolaridades', 'fk_id_escolaridade', $cargo);
-        $tetosAperfeicoamentos = $this->carregarTetos('tb_cargos_aperfeicoamentos', 'fk_id_curso', $cargo);
-        $tetosCriterios        = $this->carregarTetos('tb_cargos_criterios_adicionais', 'fk_id_criterio', $cargo);
+        $tetosExperiencias     = $this->carregarTetos('tb_cargos_experiencias', 'fk_id_experiencia', $cargo, $secretaria);
+        $tetosEscolaridades    = $this->carregarTetos('tb_cargos_escolaridades', 'fk_id_escolaridade', $cargo, $secretaria);
+        $tetosAperfeicoamentos = $this->carregarTetos('tb_cargos_aperfeicoamentos', 'fk_id_curso', $cargo, $secretaria);
+        $tetosCriterios        = $this->carregarTetos('tb_cargos_criterios_adicionais', 'fk_id_criterio', $cargo, $secretaria);
 
         // Experiências dos candidatos
-        $rows = $this->db->table('tb_cadastrados_experiencias')
+        $builderExp = $this->db->table('tb_cadastrados_experiencias')
             ->select('fk_id_cadastrado, fk_id_experiencia, ds_quantidade, ds_multiplicador')
             ->where('fk_id_processo', $processo)
             ->where('fk_id_cargo', $cargo)
-            ->whereIn('fk_id_cadastrado', $idsCandidatos)
-            ->get()
-            ->getResultArray();
+            ->whereIn('fk_id_cadastrado', $idsCandidatos);
+
+        if ($secretaria !== null) {
+            $builderExp->where('fk_id_secretaria', $secretaria);
+        }
+
+        $rows = $builderExp->get()->getResultArray();
 
         foreach ($rows as $row) {
             $idCand = (int)$row['fk_id_cadastrado'];
@@ -168,13 +186,17 @@ class ClassificacaoColunasService
         }
 
         // Escolaridades dos candidatos
-        $rows = $this->db->table('tb_cadastrados_escolaridades')
+        $builderEsc = $this->db->table('tb_cadastrados_escolaridades')
             ->select('fk_id_cadastrado, fk_id_escolaridade, ds_quantidade, ds_multiplicador')
             ->where('fk_id_processo', $processo)
             ->where('fk_id_cargo', $cargo)
-            ->whereIn('fk_id_cadastrado', $idsCandidatos)
-            ->get()
-            ->getResultArray();
+            ->whereIn('fk_id_cadastrado', $idsCandidatos);
+
+        if ($secretaria !== null) {
+            $builderEsc->where('fk_id_secretaria', $secretaria);
+        }
+
+        $rows = $builderEsc->get()->getResultArray();
 
         foreach ($rows as $row) {
             $idCand = (int)$row['fk_id_cadastrado'];
@@ -189,13 +211,17 @@ class ClassificacaoColunasService
         }
 
         // Aperfeiçoamentos dos candidatos
-        $rows = $this->db->table('tb_cadastrados_aperfeicoamentos')
+        $builderApe = $this->db->table('tb_cadastrados_aperfeicoamentos')
             ->select('fk_id_cadastrado, fk_id_curso, ds_quantidade, ds_multiplicador')
             ->where('fk_id_processo', $processo)
             ->where('fk_id_cargo', $cargo)
-            ->whereIn('fk_id_cadastrado', $idsCandidatos)
-            ->get()
-            ->getResultArray();
+            ->whereIn('fk_id_cadastrado', $idsCandidatos);
+
+        if ($secretaria !== null) {
+            $builderApe->where('fk_id_secretaria', $secretaria);
+        }
+
+        $rows = $builderApe->get()->getResultArray();
 
         foreach ($rows as $row) {
             $idCand  = (int)$row['fk_id_cadastrado'];
@@ -210,13 +236,17 @@ class ClassificacaoColunasService
         }
 
         // Critérios adicionais dos candidatos
-        $rows = $this->db->table('tb_cadastrados_criterios')
+        $builderCrit = $this->db->table('tb_cadastrados_criterios')
             ->select('fk_id_cadastrado, fk_id_criterio, ds_quantidade, ds_multiplicador')
             ->where('fk_id_processo', $processo)
             ->where('fk_id_cargo', $cargo)
-            ->whereIn('fk_id_cadastrado', $idsCandidatos)
-            ->get()
-            ->getResultArray();
+            ->whereIn('fk_id_cadastrado', $idsCandidatos);
+
+        if ($secretaria !== null) {
+            $builderCrit->where('fk_id_secretaria', $secretaria);
+        }
+
+        $rows = $builderCrit->get()->getResultArray();
 
         foreach ($rows as $row) {
             $idCand  = (int)$row['fk_id_cadastrado'];
@@ -236,14 +266,18 @@ class ClassificacaoColunasService
     /**
      * Carrega os tetos (pontuação máxima) de uma tabela de configuração do cargo.
      */
-    private function carregarTetos(string $tabela, string $campoFk, int $cargo): array
+    private function carregarTetos(string $tabela, string $campoFk, int $cargo, ?int $secretaria = null): array
     {
-        $rows = $this->db->table($tabela)
+        $builderTetos = $this->db->table($tabela)
             ->select("{$campoFk}, ds_pontuacao_maxima")
             ->where('fk_id_cargo', $cargo)
-            ->where('ds_pontuacao_maxima >', 0)
-            ->get()
-            ->getResultArray();
+            ->where('ds_pontuacao_maxima >', 0);
+
+        if ($secretaria !== null) {
+            $builderTetos->where('fk_id_secretaria', $secretaria);
+        }
+
+        $rows = $builderTetos->get()->getResultArray();
 
         $tetos = [];
         foreach ($rows as $row) {

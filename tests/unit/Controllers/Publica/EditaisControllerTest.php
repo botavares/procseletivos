@@ -43,7 +43,7 @@ final class EditaisControllerTest extends CIUnitTestCase
     public function testPaginaEditaisRenderizaComFiltrosPadrao(): void
     {
         $this->serviceMock->method('listarEditais')
-            ->with(['situacao' => 'Vigentes', 'secretaria' => '', 'cargo' => 'Todos'])
+            ->with(['situacao' => 'Todas', 'secretaria' => '', 'cargo' => 'Todos'])
             ->willReturn([$this->criarEditalStub()]);
 
         $this->serviceMock->method('obterSecretariasFiltro')->willReturn([]);
@@ -57,6 +57,7 @@ final class EditaisControllerTest extends CIUnitTestCase
         $resultado->assertSee('Processo Seletivo Simplificado nº 003/2026');
         $resultado->assertSee('Agente Administrativo');
         $resultado->assertSee('Ver processo completo');
+        $resultado->assertSee('value="Todas" selected');
     }
 
     public function testFiltroSituacaoEncerradosEhRespeitado(): void
@@ -72,7 +73,30 @@ final class EditaisControllerTest extends CIUnitTestCase
         $resultado = $this->get('/Editais?situacao=Encerrados');
 
         $resultado->assertOK();
-        $resultado->assertSee('Nenhum edital encontrado');
+        $resultado->assertSee('value="Encerrados" selected');
+        $resultado->assertSee('Nenhum edital encontrado para esta combinação de secretaria, cargo e situação.');
+    }
+
+    public function testMensagemDeVazioApareceComFiltrosCombinados(): void
+    {
+        $secretaria = (object) ['pk_id_secretaria' => 1, 'ds_nome_secretaria' => 'SEPLAG'];
+        $cargo      = (object) ['pk_id_cargo' => 1, 'ds_nome_cargo' => 'Agente Administrativo'];
+
+        $this->serviceMock->method('listarEditais')
+            ->with(['situacao' => 'Vigentes', 'secretaria' => '1', 'cargo' => 'Agente Administrativo'])
+            ->willReturn([]);
+
+        $this->serviceMock->method('obterSecretariasFiltro')->willReturn([$secretaria]);
+        $this->serviceMock->method('obterCargosFiltro')->willReturn([$cargo]);
+        $this->sessaoMock->method('estaLogado')->willReturn(false);
+
+        $resultado = $this->get('/Editais?situacao=Vigentes&secretaria=1&cargo=Agente%20Administrativo');
+
+        $resultado->assertOK();
+        $resultado->assertSee('Nenhum edital encontrado para esta combinação de secretaria, cargo e situação.');
+        $resultado->assertSee('value="Vigentes" selected');
+        $resultado->assertSee('value="1" selected');
+        $resultado->assertSee('value="Agente Administrativo" selected');
     }
 
     public function testFiltroPorCargoRenderizaOpcoes(): void

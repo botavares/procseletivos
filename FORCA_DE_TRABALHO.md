@@ -115,7 +115,7 @@
 ## Etapa 9: Configuração de Desempates (Migração)
 **Tempo:** 20 horas (2,5 dias)
 
-- Alterar `tb_cargos_desempates_config` para incluir `fk_id_processo`.
+- Alterar `tb_classificacao_desempates_config` para incluir `fk_id_processo`.
 - Controller `Admin/ProcessosDesempateConfig`.
 - Service e Model adaptados.
 - Tela inicial mostrando apenas cargos do processo.

@@ -1,50 +1,41 @@
 <?php
 
-// LOG TEMPORÁRIO PARA DEBUG
-$debugLog = __DIR__ . '/debug_request.log';
-$debugData = sprintf(
-    "[%s] URI: %s | QS: %s | SN: %s | PI: %s | SCRIPT_FILENAME: %s\n",
-    date('Y-m-d H:i:s'),
-    $_SERVER['REQUEST_URI'] ?? 'N/A',
-    $_SERVER['QUERY_STRING'] ?? 'N/A',
-    $_SERVER['SCRIPT_NAME'] ?? 'N/A',
-    $_SERVER['PATH_INFO'] ?? 'N/A',
-    $_SERVER['SCRIPT_FILENAME'] ?? 'N/A'
-);
-file_put_contents($debugLog, $debugData, FILE_APPEND | LOCK_EX);
-
 // Correção para FastCGI no Windows: SCRIPT_NAME vem com caminho absoluto do disco
 // Isso quebra a detecção de URI do CI4. Forçamos o valor correto.
 if (isset($_SERVER['SCRIPT_NAME']) && (strpos($_SERVER['SCRIPT_NAME'], 'C:/') === 0 || strpos($_SERVER['SCRIPT_NAME'], 'c:/') === 0)) {
     $_SERVER['SCRIPT_NAME'] = '/servicos/procseletivos/public/index.php';
 }
 
-// Correção para FastCGI: quando a query string contém path + parâmetros
-// (ex: /adm/CargosDesempateConfig&cargo=3&honeypot=), separa o path dos parâmetros reais
-// para que o CI4 consiga rotear corretamente com uriProtocol = 'QUERY_STRING'
+// Correção para FastCGi no Windows:
+// A QUERY_STRING pode vir no formato "path&param1=val1&param2=val2".
+// Separamos o path (usado para roteamento via REQUEST_URI) dos parâmetros
+// (usados para popular $_GET via parse_str do CI4).
 if (isset($_SERVER['QUERY_STRING']) && strpos($_SERVER['QUERY_STRING'], '/') === 0) {
     $qs = $_SERVER['QUERY_STRING'];
     $ampPos = strpos($qs, '&');
     if ($ampPos !== false) {
-        $pathPart  = substr($qs, 0, $ampPos);    // ex: /adm/CargosDesempateConfig
-        $queryPart = substr($qs, $ampPos + 1);  // ex: cargo=3&honeypot=
+        $pathPart  = substr($qs, 0, $ampPos);    // ex: /adm/CargosDesempateConfig ou /Editais/filtrar
+        $queryPart = substr($qs, $ampPos + 1);   // ex: situacao=Vigentes&secretaria=2
 
-        // Mantém apenas o PATH no QUERY_STRING para o CI4 rotear corretamente
-        // O PHP já parseou os parâmetros reais em $_GET, mas incluiu o path como chave espúria
-        $_SERVER['QUERY_STRING'] = $pathPart;
+        // O PHP criou uma chave espúria em $_GET com o nome do path; removemos.
         unset($_GET[$pathPart]);
 
-        // Repopula $_GET para garantir que o CI4 consiga ler os parâmetros via getGet()
+        // QUERY_STRING deve conter apenas os parâmetros reais para que o CI4
+        // popule $_GET corretamente em system/HTTP/IncomingRequest.php.
+        $_SERVER['QUERY_STRING'] = $queryPart;
+
+        // Repopula $_GET imediatamente (o CI4 fará parse_str novamente depois).
         parse_str($queryPart, $paramsGet);
         $_GET = array_merge($_GET, $paramsGet);
 
-        // Reconstrói REQUEST_URI para refletir o path correto + parâmetros reais
+        // Reconstrói REQUEST_URI com path correto + parâmetros reais para o roteamento.
         $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
         $qPos = strpos($requestUri, '?');
         if ($qPos !== false) {
             $requestUri = substr($requestUri, 0, $qPos);
         }
         $_SERVER['REQUEST_URI'] = $requestUri . '?' . $queryPart;
+
     }
 }
 

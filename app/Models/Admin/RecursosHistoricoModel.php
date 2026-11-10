@@ -11,6 +11,7 @@ class RecursosHistoricoModel extends Model
     protected $useAutoIncrement = true;
 
     protected $allowedFields = [
+        'fk_id_secretaria',
         'fk_id_processo',
         'fk_id_cargo',
         'fk_id_candidato',
@@ -75,6 +76,10 @@ class RecursosHistoricoModel extends Model
 
         if (!empty($filtros['cargo'])) {
             $builder->where('hr.fk_id_cargo', (int)$filtros['cargo']);
+        }
+
+        if (!empty($filtros['secretaria'])) {
+            $builder->where('hr.fk_id_secretaria', (int)$filtros['secretaria']);
         }
 
         return $builder->orderBy('hr.ds_data_alteracao', 'DESC')

@@ -155,6 +155,7 @@ class RecursosService {
             $configs = $this->db->table('tb_cargos_experiencias')
                 ->select('fk_id_experiencia, ds_pontuacao_minima')
                 ->where('fk_id_cargo', $idCargo)
+                ->where('fk_id_secretaria', (int) session('fk_id_secretaria'))
                 ->get()->getResult();
             foreach ($configs as $c) {
                 $configMap[(int)$c->fk_id_experiencia] = $c;
@@ -163,6 +164,7 @@ class RecursosService {
             $configs = $this->db->table('tb_cargos_escolaridades')
                 ->select('fk_id_escolaridade, ds_pontuacao_minima')
                 ->where('fk_id_cargo', $idCargo)
+                ->where('fk_id_secretaria', (int) session('fk_id_secretaria'))
                 ->get()->getResult();
             foreach ($configs as $c) {
                 $configMap[(int)$c->fk_id_escolaridade] = $c;
@@ -171,6 +173,7 @@ class RecursosService {
             $configs = $this->db->table('tb_cargos_aperfeicoamentos')
                 ->select('fk_id_curso, ds_pontuacao_minima')
                 ->where('fk_id_cargo', $idCargo)
+                ->where('fk_id_secretaria', (int) session('fk_id_secretaria'))
                 ->get()->getResult();
             foreach ($configs as $c) {
                 $configMap[(int)$c->fk_id_curso] = $c;
@@ -179,6 +182,7 @@ class RecursosService {
             $configs = $this->db->table('tb_cargos_criterios_adicionais')
                 ->select('fk_id_criterio, ds_pontuacao_minima')
                 ->where('fk_id_cargo', $idCargo)
+                ->where('fk_id_secretaria', (int) session('fk_id_secretaria'))
                 ->get()->getResult();
             foreach ($configs as $c) {
                 $configMap[(int)$c->fk_id_criterio] = $c;
@@ -221,6 +225,7 @@ class RecursosService {
                     ->where($colunaReferencia, $idReferencia)
                     ->where('fk_id_cargo', $idCargo)
                     ->where($fkCampo, $idCampoInt)
+                    ->where('fk_id_secretaria', (int) session('fk_id_secretaria'))
                     ->update([
                         'ds_quantidade' => $quantidade,
                     ]);
@@ -228,6 +233,7 @@ class RecursosService {
                 // Novo registro: INSERT
                 $insertData = [
                     'fk_id_cadastrado' => $idCandidato,
+                    'fk_id_secretaria' => (int) session('fk_id_secretaria'),
                     $colunaReferencia  => $idReferencia,
                     'fk_id_cargo'      => $idCargo,
                     $fkCampo           => $idCampoInt,
@@ -271,6 +277,7 @@ class RecursosService {
             $observacao = $observacoesPost[$idCampo] ?? '';
 
             $registro = [
+                'fk_id_secretaria'       => (int) session('fk_id_secretaria'),
                 'fk_id_processo'         => $idProcesso,
                 'fk_id_cargo'            => $idCargo,
                 'fk_id_candidato'        => $idCandidato,
@@ -288,6 +295,7 @@ class RecursosService {
 
             // Verifica se já existe registro indeferido com mesmo protocolo + campo
             $existente = $this->db->table('tb_cadastrados_recursos')
+                ->where('fk_id_secretaria', (int) session('fk_id_secretaria'))
                 ->where('fk_id_processo', $idProcesso)
                 ->where('fk_id_cargo', $idCargo)
                 ->where('fk_id_candidato', $idCandidato)
@@ -380,10 +388,13 @@ class RecursosService {
     }
 
     private function registrarRecursos(int $processo, int $cargo, int $candidato, string $nomeCategoria, array $alteracoes, string $protocolo){
+        $fkIdSecretaria = (int) session('fk_id_secretaria');
+
         foreach ($alteracoes as $alteracao) {
             $idCampo = (int) $alteracao['id_campo'];
 
             $registro = [
+                'fk_id_secretaria'       => $fkIdSecretaria,
                 'fk_id_processo'         => $processo,
                 'fk_id_cargo'            => $cargo,
                 'fk_id_candidato'        => $candidato,
@@ -400,6 +411,7 @@ class RecursosService {
 
             // Verifica se já existe registro com mesmo protocolo + campo (exceto indeferido)
             $existente = $this->db->table('tb_cadastrados_recursos')
+                ->where('fk_id_secretaria', $fkIdSecretaria)
                 ->where('fk_id_processo', $processo)
                 ->where('fk_id_cargo', $cargo)
                 ->where('fk_id_candidato', $candidato)

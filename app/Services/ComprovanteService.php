@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Formatters\DeficienciaFormatter;
-use App\Models\CargosModel;
-use App\Models\CandidatosModel;
-use App\Models\ProtocolosModel;
-use App\Models\EditaisModel;
+use App\Models\Admin\CargosModel;
+use App\Models\Admin\CandidatosModel;
+use App\Models\Admin\ProtocolosModel;
+use App\Models\Admin\EditaisModel;
 use App\Services\Interfaces\IComprovanteService;
 use App\Services\Interfaces\IPdfService;
 

@@ -25,16 +25,16 @@ class PontuacaoCalculatorService
      * As tabelas classificatórias do candidato foram migradas para fk_id_processo;
      * os tetos por processo ainda são lidos via edital legado (tb_pontuacoes_edital).
      */
-    public function calcular(int $candidato, int $processo, int $cargo): array
+    public function calcular(int $candidato, int $processo, int $cargo, ?int $secretaria = null): array
     {
         return [
-            'experiencias'      => $this->calcularExperiencias($candidato, $processo, $cargo),
-            'graduacao'         => $this->calcularGraduacao($candidato, $processo, $cargo),
-            'posgraduacao'      => $this->calcularPosGraduacao($candidato, $processo, $cargo),
-            'mestrado'          => $this->calcularMestrado($candidato, $processo, $cargo),
-            'doutorado'         => $this->calcularDoutorado($candidato, $processo, $cargo),
-            'aperfeicoamentos'  => $this->calcularAperfeicoamentos($candidato, $processo, $cargo),
-            'criterios_adicionais' => $this->calcularCriteriosAdicionais($candidato, $processo, $cargo),
+            'experiencias'      => $this->calcularExperiencias($candidato, $processo, $cargo, $secretaria),
+            'graduacao'         => $this->calcularGraduacao($candidato, $processo, $cargo, $secretaria),
+            'posgraduacao'      => $this->calcularPosGraduacao($candidato, $processo, $cargo, $secretaria),
+            'mestrado'          => $this->calcularMestrado($candidato, $processo, $cargo, $secretaria),
+            'doutorado'         => $this->calcularDoutorado($candidato, $processo, $cargo, $secretaria),
+            'aperfeicoamentos'  => $this->calcularAperfeicoamentos($candidato, $processo, $cargo, $secretaria),
+            'criterios_adicionais' => $this->calcularCriteriosAdicionais($candidato, $processo, $cargo, $secretaria),
         ];
     }
 
@@ -43,13 +43,14 @@ class PontuacaoCalculatorService
      */
     private function resolverEditalPorProcesso(int $processo): ?int
     {
-        $row = $this->db
+        $query = $this->db
             ->table('tb_processos')
             ->select('nm_numero_processo, nm_ano_processo')
             ->where('pk_id_processo', $processo)
             ->where("(is_deletado IS NULL OR is_deletado = '0000-00-00 00:00:00')", null, false)
-            ->get()
-            ->getRow();
+            ->get();
+
+        $row = $query ? $query->getRow() : null;
 
         if (!$row) {
             return null;
@@ -57,12 +58,13 @@ class PontuacaoCalculatorService
 
         $numeroCompleto = ((int) $row->nm_numero_processo * 10000) + (int) $row->nm_ano_processo;
 
-        $edital = $this->db
+        $queryEdital = $this->db
             ->table('tb_editais')
             ->select('pk_id_edital')
             ->where('ds_numero_edital', $numeroCompleto)
-            ->get()
-            ->getRow();
+            ->get();
+
+        $edital = $queryEdital ? $queryEdital->getRow() : null;
 
         return $edital ? (int) $edital->pk_id_edital : null;
     }
@@ -81,27 +83,35 @@ class PontuacaoCalculatorService
     // ===================================================================
     // Experiências
     // ===================================================================
-    private function calcularExperiencias(int $candidato, int $processo, int $cargo): float
+    private function calcularExperiencias(int $candidato, int $processo, int $cargo, ?int $secretaria = null): float
     {
         // Busca todas as experiências do candidato
-        $rows = $this->db->table('tb_cadastrados_experiencias')
+        $builder = $this->db->table('tb_cadastrados_experiencias')
             ->select('fk_id_experiencia, ds_quantidade, ds_multiplicador')
             ->where([
                 'fk_id_cadastrado' => $candidato,
                 'fk_id_processo'   => $processo,
                 'fk_id_cargo'      => $cargo
-            ])
-            ->get()
-            ->getResultArray();
+            ]);
+
+        if ($secretaria !== null && $secretaria > 0) {
+            $builder->where('fk_id_secretaria', $secretaria);
+        }
+
+        $rows = $builder->get()->getResultArray();
 
         // Carrega tetos do cargo
         $tetos = [];
-        $tetosRows = $this->db->table('tb_cargos_experiencias')
+        $tetosBuilder = $this->db->table('tb_cargos_experiencias')
             ->select('fk_id_experiencia, ds_pontuacao_maxima')
             ->where('fk_id_cargo', $cargo)
-            ->where('ds_pontuacao_maxima >', 0)
-            ->get()
-            ->getResultArray();
+            ->where('ds_pontuacao_maxima >', 0);
+
+        if ($secretaria !== null && $secretaria > 0) {
+            $tetosBuilder->where('fk_id_secretaria', $secretaria);
+        }
+
+        $tetosRows = $tetosBuilder->get()->getResultArray();
         foreach ($tetosRows as $row) {
             $tetos[(int) $row['fk_id_experiencia']] = (float) $row['ds_pontuacao_maxima'];
         }
@@ -126,9 +136,9 @@ class PontuacaoCalculatorService
     // ===================================================================
     // Escolaridades (por nível)
     // ===================================================================
-    private function calcularEscolaridadesPorNivel(int $candidato, int $processo, int $cargo, int $nivel): float
+    private function calcularEscolaridadesPorNivel(int $candidato, int $processo, int $cargo, int $nivel, ?int $secretaria = null): float
     {
-        $rows = $this->db->table('tb_cadastrados_escolaridades escol')
+        $builder = $this->db->table('tb_cadastrados_escolaridades escol')
             ->select('escol.fk_id_escolaridade, escol.ds_quantidade, escol.ds_multiplicador')
             ->join('tb_escolaridades e', 'e.pk_id_escolaridade = escol.fk_id_escolaridade')
             ->where([
@@ -136,18 +146,26 @@ class PontuacaoCalculatorService
                 'escol.fk_id_processo'   => $processo,
                 'escol.fk_id_cargo'      => $cargo,
                 'e.fk_id_nivel'          => $nivel
-            ])
-            ->get()
-            ->getResultArray();
+            ]);
+
+        if ($secretaria !== null && $secretaria > 0) {
+            $builder->where('escol.fk_id_secretaria', $secretaria);
+        }
+
+        $rows = $builder->get()->getResultArray();
 
         // Carrega tetos do cargo
         $tetos = [];
-        $tetosRows = $this->db->table('tb_cargos_escolaridades')
+        $tetosBuilder = $this->db->table('tb_cargos_escolaridades')
             ->select('fk_id_escolaridade, ds_pontuacao_maxima')
             ->where('fk_id_cargo', $cargo)
-            ->where('ds_pontuacao_maxima >', 0)
-            ->get()
-            ->getResultArray();
+            ->where('ds_pontuacao_maxima >', 0);
+
+        if ($secretaria !== null && $secretaria > 0) {
+            $tetosBuilder->where('fk_id_secretaria', $secretaria);
+        }
+
+        $tetosRows = $tetosBuilder->get()->getResultArray();
         foreach ($tetosRows as $row) {
             $tetos[(int) $row['fk_id_escolaridade']] = (float) $row['ds_pontuacao_maxima'];
         }
@@ -162,30 +180,30 @@ class PontuacaoCalculatorService
         return $total;
     }
 
-    private function calcularGraduacao(int $candidato, int $processo, int $cargo): float
+    private function calcularGraduacao(int $candidato, int $processo, int $cargo, ?int $secretaria = null): float
     {
-        $total = $this->calcularEscolaridadesPorNivel($candidato, $processo, $cargo, 3);
+        $total = $this->calcularEscolaridadesPorNivel($candidato, $processo, $cargo, 3, $secretaria);
         $limiteEdital = $this->obterLimiteEditalPorProcesso($processo, 'ds_total_graduacao');
         return $limiteEdital > 0 ? min($total, $limiteEdital) : $total;
     }
 
-    private function calcularPosGraduacao(int $candidato, int $processo, int $cargo): float
+    private function calcularPosGraduacao(int $candidato, int $processo, int $cargo, ?int $secretaria = null): float
     {
-        $total = $this->calcularEscolaridadesPorNivel($candidato, $processo, $cargo, 4);
+        $total = $this->calcularEscolaridadesPorNivel($candidato, $processo, $cargo, 4, $secretaria);
         $limiteEdital = $this->obterLimiteEditalPorProcesso($processo, 'ds_total_pos_graduacao');
         return $limiteEdital > 0 ? min($total, $limiteEdital) : $total;
     }
 
-    private function calcularMestrado(int $candidato, int $processo, int $cargo): float
+    private function calcularMestrado(int $candidato, int $processo, int $cargo, ?int $secretaria = null): float
     {
-        $total = $this->calcularEscolaridadesPorNivel($candidato, $processo, $cargo, 5);
+        $total = $this->calcularEscolaridadesPorNivel($candidato, $processo, $cargo, 5, $secretaria);
         $limiteEdital = $this->obterLimiteEditalPorProcesso($processo, 'ds_total_mestrado');
         return $limiteEdital > 0 ? min($total, $limiteEdital) : $total;
     }
 
-    private function calcularDoutorado(int $candidato, int $processo, int $cargo): float
+    private function calcularDoutorado(int $candidato, int $processo, int $cargo, ?int $secretaria = null): float
     {
-        $total = $this->calcularEscolaridadesPorNivel($candidato, $processo, $cargo, 6);
+        $total = $this->calcularEscolaridadesPorNivel($candidato, $processo, $cargo, 6, $secretaria);
         $limiteEdital = $this->obterLimiteEditalPorProcesso($processo, 'ds_total_doutorado');
         return $limiteEdital > 0 ? min($total, $limiteEdital) : $total;
     }
@@ -193,26 +211,34 @@ class PontuacaoCalculatorService
     // ===================================================================
     // Aperfeiçoamentos
     // ===================================================================
-    private function calcularAperfeicoamentos(int $candidato, int $processo, int $cargo): float
+    private function calcularAperfeicoamentos(int $candidato, int $processo, int $cargo, ?int $secretaria = null): float
     {
-        $rows = $this->db->table('tb_cadastrados_aperfeicoamentos')
+        $builder = $this->db->table('tb_cadastrados_aperfeicoamentos')
             ->select('fk_id_curso, ds_quantidade, ds_multiplicador')
             ->where([
                 'fk_id_cadastrado' => $candidato,
                 'fk_id_processo'   => $processo,
                 'fk_id_cargo'      => $cargo
-            ])
-            ->get()
-            ->getResultArray();
+            ]);
+
+        if ($secretaria !== null && $secretaria > 0) {
+            $builder->where('fk_id_secretaria', $secretaria);
+        }
+
+        $rows = $builder->get()->getResultArray();
 
         // Carrega tetos do cargo
         $tetos = [];
-        $tetosRows = $this->db->table('tb_cargos_aperfeicoamentos')
+        $tetosBuilder = $this->db->table('tb_cargos_aperfeicoamentos')
             ->select('fk_id_curso, ds_pontuacao_maxima')
             ->where('fk_id_cargo', $cargo)
-            ->where('ds_pontuacao_maxima >', 0)
-            ->get()
-            ->getResultArray();
+            ->where('ds_pontuacao_maxima >', 0);
+
+        if ($secretaria !== null && $secretaria > 0) {
+            $tetosBuilder->where('fk_id_secretaria', $secretaria);
+        }
+
+        $tetosRows = $tetosBuilder->get()->getResultArray();
         foreach ($tetosRows as $row) {
             $tetos[(int) $row['fk_id_curso']] = (float) $row['ds_pontuacao_maxima'];
         }
@@ -231,26 +257,34 @@ class PontuacaoCalculatorService
     // ===================================================================
     // Critérios Adicionais (NOVO - estava faltando!)
     // ===================================================================
-    private function calcularCriteriosAdicionais(int $candidato, int $processo, int $cargo): float
+    private function calcularCriteriosAdicionais(int $candidato, int $processo, int $cargo, ?int $secretaria = null): float
     {
-        $rows = $this->db->table('tb_cadastrados_criterios')
+        $builder = $this->db->table('tb_cadastrados_criterios')
             ->select('fk_id_criterio, ds_quantidade, ds_multiplicador')
             ->where([
                 'fk_id_cadastrado' => $candidato,
                 'fk_id_processo'   => $processo,
                 'fk_id_cargo'      => $cargo
-            ])
-            ->get()
-            ->getResultArray();
+            ]);
+
+        if ($secretaria !== null && $secretaria > 0) {
+            $builder->where('fk_id_secretaria', $secretaria);
+        }
+
+        $rows = $builder->get()->getResultArray();
 
         // Carrega tetos do cargo
         $tetos = [];
-        $tetosRows = $this->db->table('tb_cargos_criterios_adicionais')
+        $tetosBuilder = $this->db->table('tb_cargos_criterios_adicionais')
             ->select('fk_id_criterio, ds_pontuacao_maxima')
             ->where('fk_id_cargo', $cargo)
-            ->where('ds_pontuacao_maxima >', 0)
-            ->get()
-            ->getResultArray();
+            ->where('ds_pontuacao_maxima >', 0);
+
+        if ($secretaria !== null && $secretaria > 0) {
+            $tetosBuilder->where('fk_id_secretaria', $secretaria);
+        }
+
+        $tetosRows = $tetosBuilder->get()->getResultArray();
         foreach ($tetosRows as $row) {
             $tetos[(int) $row['fk_id_criterio']] = (float) $row['ds_pontuacao_maxima'];
         }
@@ -270,11 +304,12 @@ class PontuacaoCalculatorService
     // ===================================================================
     private function obterLimiteEdital(int $edital, string $campo): float
     {
-        $row = $this->db->table('tb_pontuacoes_edital')
+        $query = $this->db->table('tb_pontuacoes_edital')
             ->select($campo)
             ->where('fk_id_edital', $edital)
-            ->get()
-            ->getRow();
+            ->get();
+
+        $row = $query ? $query->getRow() : null;
 
         return (float) ($row->{$campo} ?? 0);
     }

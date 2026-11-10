@@ -51,56 +51,37 @@
         </style>
     </head>
     <body>
-        <h2>Editais Controller (Tests\Unit\Controllers\Publica\EditaisController)</h2>
+        <h2>Desempate Config DTO (Tests\Admin\Services\Classificacao\DesempateConfigDTO)</h2>
         <ul>
-            <li class="success">Pagina editais renderiza com filtros padrao</li>
-            <li class="success">Filtro situacao encerrados eh respeitado</li>
-            <li class="success">Filtro por cargo renderiza opcoes</li>
-            <li class="success">Retificacao eh exibida com badge vigente</li>
+            <li class="success">Chave score pontuacao total</li>
+            <li class="success">Chave score experiencia especifica</li>
+            <li class="success">Chave score escolaridade especifica</li>
+            <li class="success">Chave score idade</li>
+            <li class="success">Chave score pne</li>
+            <li class="success">Chave score tipo desconhecido lanca excecao</li>
         </ul>
-        <h2>Processos Seletivos DTO (Tests\Unit\DTOs\Admin\ProcessosSeletivosDTO)</h2>
+        <h2>Disparo Classificacao Service (Tests\Admin\Services\Classificacao\DisparoClassificacaoService)</h2>
         <ul>
-            <li class="success">Construtor</li>
-            <li class="success">From array</li>
-            <li class="success">To array sem id</li>
-            <li class="success">To array com id</li>
+            <li class="success">Disparo preliminar atualiza situacao e reprocessa</li>
+            <li class="success">Disparo homologacao insere situacao quando nao existe</li>
+            <li class="success">Disparo com tipo invalido lanca excecao</li>
+            <li class="success">Disparo por nao administrador lanca excecao</li>
+            <li class="success">Disparo com usuario inexistente lanca excecao</li>
         </ul>
-        <h2>Prorrogacao Processo Enum (Tests\Unit\Enums\Admin\ProrrogacaoProcessoEnum)</h2>
+        <h2>Ordenacao Dinamica Service (Tests\Admin\Services\Classificacao\OrdenacaoDinamicaService)</h2>
         <ul>
-            <li class="success">Valores enum</li>
-            <li class="success">Labels</li>
+            <li class="success">Ordenacao por pontuacao total desc</li>
+            <li class="success">Desempate por experiencias</li>
+            <li class="success">Desempate por idade asc mais velho primeiro</li>
+            <li class="success">Desempate por pne desc</li>
+            <li class="success">Atribuicao de posicoes</li>
         </ul>
-        <h2>Situacao Processos Enum (Tests\Unit\Enums\Admin\SituacaoProcessosEnum)</h2>
+        <h2>Pontuacao Calculator Service (Tests\Admin\Services\Classificacao\PontuacaoCalculatorService)</h2>
         <ul>
-            <li class="success">Valores enum</li>
-            <li class="success">Labels</li>
-            <li class="success">Try from valor valido</li>
-            <li class="success">Try from valor invalido</li>
-        </ul>
-        <h2>Editais Publico Service (Tests\Unit\Services\Editais\EditaisPublicoService)</h2>
-        <ul>
-            <li class="success">Listar editais retorna estrutura esperada</li>
-            <li class="success">Filtro situacao encerrados oculta abertos</li>
-            <li class="success">Filtro por secretaria</li>
-            <li class="success">Filtro por cargo</li>
-            <li class="success">Retificacoes sao exibidas separadas do edital</li>
-            <li class="success">Listar editais vazio quando nenhum processo</li>
-            <li class="success">Obter secretarias filtro</li>
-            <li class="success">Obter cargos filtro</li>
-        </ul>
-        <h2>Processos Seletivos Rules (Tests\Unit\Validation\ProcessosSeletivosRules)</h2>
-        <ul>
-            <li class="success">Apenas numeros com valor valido</li>
-            <li class="success">Apenas numeros com valor invalido</li>
-            <li class="success">Ano atual ou futuro com ano atual</li>
-            <li class="success">Ano atual ou futuro com ano futuro</li>
-            <li class="success">Ano atual ou futuro com ano passado</li>
-            <li class="success">Ano atual ou futuro com valor invalido</li>
-            <li class="success">Data fim maior igual inicio com data fim igual</li>
-            <li class="success">Data fim maior igual inicio com data fim maior</li>
-            <li class="success">Data fim maior igual inicio com data fim menor</li>
-            <li class="success">Data fim maior igual inicio com parametro ausente</li>
-            <li class="success">Data fim maior igual inicio com valor vazio</li>
+            <li class="success">Aplicar teto preserva pontuacao abaixo do limite</li>
+            <li class="success">Aplicar teto limita pontuacao acima do limite</li>
+            <li class="success">Aplicar teto sem limite preserva pontuacao</li>
+            <li class="success">Aplicar teto zero nao limita</li>
         </ul>
     </body>
 </html>

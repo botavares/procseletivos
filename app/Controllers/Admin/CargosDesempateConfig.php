@@ -84,11 +84,20 @@ class CargosDesempateConfig extends BaseController
             $processo = $processoModel->find($idProcesso);
         }
 
+        $fkIdSecretaria = (int) session('fk_id_secretaria');
+
         if ($idCargo) {
             $cargoSelecionado = $this->cargosModel->find($idCargo);
+
+            // Restringe configuração de desempate à secretaria do usuário
+            if (!$cargoSelecionado || (int) $cargoSelecionado->fk_id_secretaria !== $fkIdSecretaria) {
+                return redirect()->to(base_url_adm('Dashboard'))->with('error', 'Cargo não pertence à secretaria do usuário logado.');
+            }
+
             $configuracoes = service('adminDesempateConfigService')->buscarConfiguracao(
                 (int)$idCargo,
-                $idProcesso ? (int)$idProcesso : null
+                $idProcesso ? (int)$idProcesso : null,
+                $fkIdSecretaria
             );
 
             // Carrega referencias do cargo para os dropdowns
@@ -103,7 +112,7 @@ class CargosDesempateConfig extends BaseController
             'camada2'          => 'cargos',
             'pagina'           => 'DesempateConfig',
             'titulo'           => 'Configuração de Critérios de Desempate',
-            'cargos'           => $this->cargosModel->findAll(),
+            'cargos'           => $this->cargosModel->where('fk_id_secretaria', $fkIdSecretaria)->findAll(),
             'cargoSelecionado' => $cargoSelecionado,
             'processo'         => $processo,
             'idProcesso'       => $idProcesso,
@@ -122,9 +131,20 @@ class CargosDesempateConfig extends BaseController
      */
     public function listar($idCargo, $idProcesso = null)
     {
+        $fkIdSecretaria = (int) session('fk_id_secretaria');
+
+        $cargo = $this->cargosModel->find($idCargo);
+        if (!$cargo || (int) $cargo->fk_id_secretaria !== $fkIdSecretaria) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Cargo não pertence à secretaria do usuário logado.',
+            ]);
+        }
+
         $config = service('adminDesempateConfigService')->buscarConfiguracao(
             (int)$idCargo,
-            $idProcesso ? (int)$idProcesso : null
+            $idProcesso ? (int)$idProcesso : null,
+            $fkIdSecretaria
         );
 
         return $this->response->setJSON([
@@ -211,7 +231,20 @@ class CargosDesempateConfig extends BaseController
             ]);
         }
 
+        $fkIdSecretaria = (int) session('fk_id_secretaria');
+
+        // Valida que o cargo pertence à secretaria do usuário logado
+        $cargo = $this->cargosModel->find($cargoId);
+        if (!$cargo || (int) $cargo->fk_id_secretaria !== $fkIdSecretaria) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Cargo não pertence à secretaria do usuário logado.',
+                csrf_token() => csrf_hash(),
+            ]);
+        }
+
         $data = [
+            'fk_id_secretaria'        => $fkIdSecretaria,
             'fk_id_cargo'             => $cargoId,
             'fk_id_processo_seletivo' => $processoId ? (int) $processoId : null,
             'ds_ordem'                => $ordem,
@@ -275,7 +308,9 @@ class CargosDesempateConfig extends BaseController
      */
     private function buscarConfiguracoesExistentes(Model $model, $cargoId, $processoId): array
     {
-        $queryExistentes = $model->where('fk_id_cargo', $cargoId);
+        $fkIdSecretaria = (int) session('fk_id_secretaria');
+        $queryExistentes = $model->where('fk_id_cargo', $cargoId)
+                                 ->where('fk_id_secretaria', $fkIdSecretaria);
 
         if ($processoId) {
             $queryExistentes->where('fk_id_processo_seletivo', (int) $processoId);
@@ -294,6 +329,7 @@ class CargosDesempateConfig extends BaseController
     {
         $model = $this->cargosDesempateConfigModel;
         $ordens = $this->request->getPost('ordens');
+        $fkIdSecretaria = (int) session('fk_id_secretaria');
 
         if (empty($ordens) || !is_array($ordens)) {
             return $this->response->setJSON([
@@ -306,7 +342,10 @@ class CargosDesempateConfig extends BaseController
         $db->transStart();
 
         foreach ($ordens as $index => $idDesempate) {
-            $model->update($idDesempate, ['ds_ordem' => $index + 1]);
+            $item = $model->find($idDesempate);
+            if ($item && (int) $item->fk_id_secretaria === $fkIdSecretaria) {
+                $model->update($idDesempate, ['ds_ordem' => $index + 1]);
+            }
         }
 
         $db->transComplete();
@@ -332,6 +371,14 @@ class CargosDesempateConfig extends BaseController
             ]);
         }
 
+        $fkIdSecretaria = (int) session('fk_id_secretaria');
+        if ((int) $item->fk_id_secretaria !== $fkIdSecretaria) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Critério não pertence à secretaria do usuário logado.',
+            ]);
+        }
+
         $cargoId = $item->fk_id_cargo;
         $ordem = (int) $item->ds_ordem;
 
@@ -341,7 +388,8 @@ class CargosDesempateConfig extends BaseController
         $model->delete($idDesempate);
 
         // Reordenar os demais: decrementar ordens maiores
-        $model->where('fk_id_cargo', $cargoId)
+        $model->where('fk_id_secretaria', $fkIdSecretaria)
+              ->where('fk_id_cargo', $cargoId)
               ->where('ds_ordem >', $ordem)
               ->set('ds_ordem', 'ds_ordem - 1', false)
               ->update();
@@ -363,11 +411,20 @@ class CargosDesempateConfig extends BaseController
         $model = $this->cargosDesempateConfigModel;
         $direcao = $this->request->getGet('direcao');
 
+        $fkIdSecretaria = (int) session('fk_id_secretaria');
+
         $item = $model->find($idDesempate);
         if (!$item || !in_array($direcao, ['subir', 'descer'])) {
             return $this->response->setJSON([
                 'success' => false,
                 'message' => 'Requisicao invalida.',
+            ]);
+        }
+
+        if ((int) $item->fk_id_secretaria !== $fkIdSecretaria) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Critério não pertence à secretaria do usuário logado.',
             ]);
         }
 
@@ -385,7 +442,8 @@ class CargosDesempateConfig extends BaseController
 
         // Nao permite mover outro critério para cima além do segundo lugar
         // (ou seja, ninguém pode passar a ficar na frente do primeiro critério)
-        $configs = $model->where('fk_id_cargo', $cargoId)
+        $configs = $model->where('fk_id_secretaria', $fkIdSecretaria)
+                        ->where('fk_id_cargo', $cargoId)
                         ->orderBy('ds_ordem', 'ASC')
                         ->findAll();
 
@@ -404,13 +462,15 @@ class CargosDesempateConfig extends BaseController
         if ($direcao === 'subir') {
             $novaOrdem = $ordemAtual - 1;
             // Encontra o item acima e troca com ele
-            $model->where('fk_id_cargo', $cargoId)
+            $model->where('fk_id_secretaria', $fkIdSecretaria)
+                  ->where('fk_id_cargo', $cargoId)
                   ->where('ds_ordem', $novaOrdem)
                   ->set('ds_ordem', $ordemAtual)
                   ->update();
         } else {
             $novaOrdem = $ordemAtual + 1;
-            $model->where('fk_id_cargo', $cargoId)
+            $model->where('fk_id_secretaria', $fkIdSecretaria)
+                  ->where('fk_id_cargo', $cargoId)
                   ->where('ds_ordem', $novaOrdem)
                   ->set('ds_ordem', $ordemAtual)
                   ->update();

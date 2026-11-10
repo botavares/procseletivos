@@ -18,11 +18,12 @@ class DesempateConfigService implements IDesempateConfigService
      * Busca a configuracao de desempate ordenada para um cargo.
      *
      * @param int|null $processo
+     * @param int|null $secretaria
      * @return DesempateConfigDTO[]
      */
-    public function buscarConfiguracao(int $cargo, ?int $processo = null): array
+    public function buscarConfiguracao(int $cargo, ?int $processo = null, ?int $secretaria = null): array
     {
-        $rows = $this->model->listarPorCargo($cargo, $processo);
+        $rows = $this->model->listarPorCargo($cargo, $processo, $secretaria);
         $config = [];
 
         foreach ($rows as $row) {
@@ -45,9 +46,13 @@ class DesempateConfigService implements IDesempateConfigService
      *
      * @param int|null $processo
      */
-    public function cargoPossuiConfiguracao(int $cargo, ?int $processo = null): bool
+    public function cargoPossuiConfiguracao(int $cargo, ?int $processo = null, ?int $secretaria = null): bool
     {
         $builder = $this->model->where('fk_id_cargo', $cargo);
+
+        if ($secretaria !== null) {
+            $builder->where('fk_id_secretaria', $secretaria);
+        }
 
         if ($processo !== null) {
             $builder->where('fk_id_processo_seletivo', $processo);

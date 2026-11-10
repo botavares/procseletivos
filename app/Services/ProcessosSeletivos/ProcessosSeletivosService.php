@@ -94,6 +94,11 @@ class ProcessosSeletivosService implements IProcessosSeletivos
         return $this->model->listarTodos();
     }
 
+    public function listarTodosPorSecretaria(int $idSecretaria): array
+    {
+        return $this->model->listarTodos($idSecretaria);
+    }
+
     public function listarPorSecretaria(int $idSecretaria): array
     {
         return $this->model->porSecretaria($idSecretaria);
@@ -125,11 +130,15 @@ class ProcessosSeletivosService implements IProcessosSeletivos
      */
     public function listarAtivosComSituacao(): array
     {
+        return $this->listarAtivosComSituacaoPorSecretaria(0);
+    }
+
+    public function listarAtivosComSituacaoPorSecretaria(int $idSecretaria): array
+    {
         $db = \Config\Database::connect();
         $builder = $db->table('tb_processos');
 
-        return $builder
-            ->select(
+        $builder->select(
                 'tb_processos.*,' .
                 ' tb_situacao_processos.nm_id_situacao,' .
                 ' tb_situacao_processos.dt_ultima_alteracao,' .
@@ -141,7 +150,44 @@ class ProcessosSeletivosService implements IProcessosSeletivos
             ->join('tb_processos_cargos', 'tb_processos_cargos.fk_id_processo = tb_processos.pk_id_processo', 'left')
             ->join('tb_cargos', 'tb_cargos.pk_id_cargo = tb_processos_cargos.fk_id_cargo', 'left')
             ->where("(tb_processos.is_deletado IS NULL OR tb_processos.is_deletado = '0000-00-00 00:00:00')")
-            ->whereNotIn('tb_situacao_processos.nm_id_situacao', [4, 5]) // exclui VIGENTE e ENCERRADO
+            ->whereNotIn('tb_situacao_processos.nm_id_situacao', [4, 5]); // exclui VIGENTE e ENCERRADO
+
+        if ($idSecretaria > 0) {
+            $builder->where('tb_processos.fk_id_secretaria', $idSecretaria);
+        }
+
+        return $builder
+            ->groupBy('tb_processos.pk_id_processo')
+            ->orderBy('tb_processos.pk_id_processo', 'DESC')
+            ->get()
+            ->getResult();
+    }
+
+    /**
+     * Lista processos seletivos visiveis para transparencia publica,
+     * considerando situacao de resultado publicado ou vigente.
+     */
+    public function listarProcessosTransparencia(?int $idSecretaria = null): array
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('tb_processos');
+
+        $builder->select(
+                'tb_processos.*,' .
+                ' tb_situacao_processos.nm_id_situacao,' .
+                ' tb_situacao_processos.dt_ultima_alteracao,' .
+                ' tb_secretarias.ds_nome_secretaria'
+            )
+            ->join('tb_situacao_processos', 'tb_situacao_processos.fk_id_processo = tb_processos.pk_id_processo', 'left')
+            ->join('tb_secretarias', 'tb_secretarias.pk_id_secretaria = tb_processos.fk_id_secretaria', 'left')
+            ->where("(tb_processos.is_deletado IS NULL OR tb_processos.is_deletado = '0000-00-00 00:00:00')")
+            ->whereIn('tb_situacao_processos.nm_id_situacao', [3, 4]); // RESULTADO PUBLICADO ou VIGENTE
+
+        if ($idSecretaria !== null && $idSecretaria > 0) {
+            $builder->where('tb_processos.fk_id_secretaria', $idSecretaria);
+        }
+
+        return $builder
             ->groupBy('tb_processos.pk_id_processo')
             ->orderBy('tb_processos.pk_id_processo', 'DESC')
             ->get()
@@ -151,8 +197,8 @@ class ProcessosSeletivosService implements IProcessosSeletivos
     /**
      * Busca cargos vinculados a um processo seletivo.
      */
-    public function buscarCargosPorProcesso(int $processoId): array{
-        return $this->model->cargosPorProcesso($processoId);
+    public function buscarCargosPorProcesso(int $processoId, ?int $idSecretaria = null): array{
+        return $this->model->cargosPorProcesso($processoId, $idSecretaria);
     }
 
     public function calcularValidade(int $idProcesso): ?string

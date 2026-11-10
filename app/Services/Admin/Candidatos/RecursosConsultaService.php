@@ -32,7 +32,9 @@ class RecursosConsultaService
      */
     public function buscarIndeferimentos(int $processo, int $cargo, int $candidato): array
     {
+        $fkIdSecretaria = (int) session('fk_id_secretaria');
         $resultados = $this->historicoModel
+            ->where('fk_id_secretaria', $fkIdSecretaria)
             ->where('fk_id_processo', $processo)
             ->where('fk_id_cargo', $cargo)
             ->where('fk_id_candidato', $candidato)
@@ -98,9 +100,9 @@ class RecursosConsultaService
     /**
      * Busca candidatos com recursos por processo e cargo
      */
-    public function buscarCandidatosComRecursosPorProcessoCargo(int $processo, int $cargo): array
+    public function buscarCandidatosComRecursosPorProcessoCargo(int $processo, int $cargo, ?int $secretaria = null): array
     {
-        return $this->candidatosModel->getCandidatosComRecursosPorProcessoCargo($processo, $cargo);
+        return $this->candidatosModel->getCandidatosComRecursosPorProcessoCargo($processo, $cargo, $secretaria);
     }
     public function listarEditais(): array
     {
@@ -112,8 +114,10 @@ class RecursosConsultaService
      */
     public function listarProcessos(): array
     {
+        $fkIdSecretaria = (int) session('fk_id_secretaria');
         return $this->processosModel
             ->where("(is_deletado IS NULL OR is_deletado = '0000-00-00 00:00:00')", null, false)
+            ->where('fk_id_secretaria', $fkIdSecretaria)
             ->orderBy('pk_id_processo', 'DESC')
             ->findAll();
     }
@@ -123,7 +127,8 @@ class RecursosConsultaService
      */
     public function listarCargos(): array
     {
-        return $this->cargosModel->findAll();
+        $fkIdSecretaria = (int) session('fk_id_secretaria');
+        return $this->cargosModel->where('fk_id_secretaria', $fkIdSecretaria)->findAll();
     }
 
     /**
@@ -131,6 +136,7 @@ class RecursosConsultaService
      */
     public function buscarHistorico(array $filtros): array
     {
+        $filtros['secretaria'] = (int) session('fk_id_secretaria');
         return $this->historicoModel->listarHistorico($filtros);
     }
 

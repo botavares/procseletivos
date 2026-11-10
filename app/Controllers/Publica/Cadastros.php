@@ -84,6 +84,11 @@ class Cadastros extends BaseController
         if ($idCandidato !== null) {
             $protocolos = $this->protocoloService->buscarPorCandidato($idCandidato);
             $recursos   = $this->candidatoRecursoService->buscarResumoRecursosPorCandidato($idCandidato);
+
+            // Filtra protocolos e recursos que ainda não possuem secretaria preenchida
+            // (compatibilidade com registros antigos antes da segregação por secretaria)
+            $protocolos = array_values(array_filter($protocolos, fn($p) => isset($p->fk_id_secretaria)));
+            $recursos   = array_values(array_filter($recursos, fn($r) => isset($r->fk_id_secretaria)));
         } else {
             $protocolos = [];
             $recursos   = [];

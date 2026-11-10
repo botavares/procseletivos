@@ -124,9 +124,9 @@ class Services extends BaseService
         }
 
         return new \App\Services\ProtocoloService(
-            new \App\Models\ProtocolosModel(),
-            new \App\Models\CandidatosModel(),
-            new \App\Models\CargosModel(),
+            new \App\Models\Admin\ProtocolosModel(),
+            new \App\Models\Admin\CandidatosModel(),
+            new \App\Models\Admin\CargosModel(),
             service('protocoloRepository', false),
         );
     }
@@ -156,10 +156,10 @@ class Services extends BaseService
         }
 
         return new \App\Services\ComprovanteService(
-            new \App\Models\CandidatosModel(),
-            new \App\Models\CargosModel(),
-            new \App\Models\ProtocolosModel(),
-            new \App\Models\EditaisModel(),
+            new \App\Models\Admin\CandidatosModel(),
+            new \App\Models\Admin\CargosModel(),
+            new \App\Models\Admin\ProtocolosModel(),
+            new \App\Models\Admin\EditaisModel(),
             service('pdfService', false),
         );
     }
@@ -252,8 +252,6 @@ class Services extends BaseService
 
         return new \App\Services\Transparencia\TransparenciaFormService(
             \Config\Services::incomingrequest(),
-            new \App\Models\CargosModel(),
-            new \App\Models\EditaisModel(),
         );
     }
     public static function cepService(bool $getShared = true): \App\Services\Endereco\CepService
@@ -404,7 +402,7 @@ class Services extends BaseService
         }
 
         return new \App\Repositories\ProtocoloRepository(
-            new \App\Models\ProtocolosModel()
+            new \App\Models\Admin\ProtocolosModel()
         );
     }
 
@@ -562,7 +560,7 @@ class Services extends BaseService
     {
         return $getShared
             ? static::getSharedInstance('adminCandidatoRepository')
-            : new \App\Repositories\Admin\CandidatoRepository(service('candidatosModel'));
+            : new \App\Repositories\Admin\CandidatoRepository(new \App\Models\Admin\CandidatosModel());
     }
 
     public static function adminEditalRepository(bool $getShared = true): \App\Repositories\Admin\Interfaces\IEditalRepository
@@ -630,7 +628,7 @@ class Services extends BaseService
     {
         return $getShared
             ? static::getSharedInstance('candidatosService')
-            : new \App\Services\Admin\Candidatos\CandidatosService(service('candidatoRepository'));
+            : new \App\Services\Admin\Candidatos\CandidatosService(service('adminCandidatoRepository'));
     }
     public static function cargoFormService($getShared = true)
     {
@@ -817,6 +815,18 @@ class Services extends BaseService
         return $getShared
             ? static::getSharedInstance('classificacaoColunasService')
             : new \App\Services\Admin\Classificacao\ClassificacaoColunasService();
+    }
+
+    public static function disparoClassificacaoService(bool $getShared = true){
+        return $getShared
+            ? static::getSharedInstance('disparoClassificacaoService')
+            : new \App\Services\Admin\Classificacao\DisparoClassificacaoService(
+                null,
+                null,
+                null,
+                null,
+                service('classificacaoService', false),
+            );
     }
 
     public static function adminDesempateConfigService(bool $getShared = true){

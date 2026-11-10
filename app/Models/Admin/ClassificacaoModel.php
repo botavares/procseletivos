@@ -11,6 +11,7 @@ class ClassificacaoModel extends Model
     protected $primaryKey = 'pk_id_classificacao';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
+        'fk_id_secretaria',
         'ds_posicao',
         'fk_id_processo',
         'fk_id_cargo',
@@ -36,13 +37,18 @@ class ClassificacaoModel extends Model
     /**
      * Lista classificacao com scores dinamicos.
      */
-    public function listarClassificacao($idProcesso, $idCargo)
+    public function listarClassificacao($idProcesso, $idCargo, ?int $idSecretaria = null)
     {
-        $classificacoes = $this->db->table($this->table)
+        $builder = $this->db->table($this->table)
             ->select('*')
             ->where('fk_id_processo', $idProcesso)
-            ->where('fk_id_cargo', $idCargo)
-            ->orderBy('ds_posicao', 'ASC')
+            ->where('fk_id_cargo', $idCargo);
+
+        if ($idSecretaria !== null) {
+            $builder->where('fk_id_secretaria', $idSecretaria);
+        }
+
+        $classificacoes = $builder->orderBy('ds_posicao', 'ASC')
             ->get()
             ->getResultArray();
 

@@ -38,14 +38,19 @@ class ClassificacaoScoreModel extends Model
      * @param int $cargo
      * @return array
      */
-    public function listarPorEditalCargo(int $edital, int $cargo): array
+    public function listarPorEditalCargo(int $edital, int $cargo, ?int $secretaria = null): array
     {
-        return $this->db->table('tb_classificacao_scores s')
+        $builder = $this->db->table('tb_classificacao_scores s')
             ->select('s.*')
             ->join('tb_classificacao c', 'c.pk_id_classificacao = s.fk_id_classificacao')
             ->where('c.fk_id_edital', $edital)
-            ->where('c.fk_id_cargo', $cargo)
-            ->orderBy('s.pk_id_score', 'ASC')
+            ->where('c.fk_id_cargo', $cargo);
+
+        if ($secretaria !== null) {
+            $builder->where('c.fk_id_secretaria', $secretaria);
+        }
+
+        return $builder->orderBy('s.pk_id_score', 'ASC')
             ->get()
             ->getResult();
     }

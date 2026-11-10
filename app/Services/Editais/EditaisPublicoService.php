@@ -42,6 +42,7 @@ class EditaisPublicoService implements IEditaisPublicoService
 
         foreach ($processos as $processo) {
             $situacaoId = (int) ($processo->nm_id_situacao ?? 0);
+            $secretariaIdProcesso = (int) ($processo->fk_id_secretaria ?? 0);
 
             // Filtro por situação (Vigentes / Encerrados / Todas)
             if (!$this->situacaoPermitida($situacaoId, $situacaoFiltro)) {
@@ -49,7 +50,7 @@ class EditaisPublicoService implements IEditaisPublicoService
             }
 
             // Filtro por secretaria
-            if ($secretariaFiltro !== null && (int) ($processo->fk_id_secretaria ?? 0) !== $secretariaFiltro) {
+            if ($secretariaFiltro !== null && $secretariaIdProcesso !== $secretariaFiltro) {
                 continue;
             }
 
@@ -231,9 +232,14 @@ class EditaisPublicoService implements IEditaisPublicoService
     private function situacaoPermitida(int $situacaoId, string $filtro): bool
     {
         return match ($filtro) {
-            'Vigentes'   => $situacaoId !== SituacaoProcessosEnum::ENCERRADO->value,
-            'Encerrados' => $situacaoId === SituacaoProcessosEnum::ENCERRADO->value,
-            default      => true,
+            'Vigentes' => $situacaoId === SituacaoProcessosEnum::VIGENTE->value,
+            // Para o portal público, "Encerrados" engloba tanto processos com
+            // inscrições encerradas quanto processos formalmente encerrados.
+            'Encerrados' => in_array($situacaoId, [
+                SituacaoProcessosEnum::INSCRICOES_ENCERRADAS->value,
+                SituacaoProcessosEnum::ENCERRADO->value,
+            ], true),
+            default => true,
         };
     }
 

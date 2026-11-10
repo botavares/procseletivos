@@ -71,18 +71,53 @@ final class EditaisPublicoServiceTest extends CIUnitTestCase
 
     public function testFiltroSituacaoEncerradosOcultaAbertos(): void
     {
-        $aberto   = $this->criarProcessoStub(id: 1, situacao: 1);
-        $encerrado = $this->criarProcessoStub(id: 2, situacao: 5);
+        $aberto              = $this->criarProcessoStub(id: 1, situacao: 1);
+        $inscricoesEncerradas = $this->criarProcessoStub(id: 2, situacao: 2);
+        $encerrado            = $this->criarProcessoStub(id: 3, situacao: 5);
 
-        $this->processosModel->method('listarComSituacaoESecretaria')->willReturn([$aberto, $encerrado]);
+        $this->processosModel->method('listarComSituacaoESecretaria')->willReturn([$aberto, $inscricoesEncerradas, $encerrado]);
         $this->processosModel->method('cargosPorProcesso')->willReturn([]);
         $this->documentosModel->method('porProcessoId')->willReturn([]);
 
         $resultado = $this->service->listarEditais(['situacao' => 'Encerrados']);
 
+        $this->assertCount(2, $resultado);
+        $this->assertSame(2, $resultado[0]['id']);
+        $this->assertSame('Inscrições Encerradas', $resultado[0]['situacao_label']);
+        $this->assertSame(3, $resultado[1]['id']);
+        $this->assertSame('Encerrado', $resultado[1]['situacao_label']);
+    }
+
+    public function testFiltroSituacaoTodasExibeTodasAsSituacoes(): void
+    {
+        $aberto    = $this->criarProcessoStub(id: 1, situacao: 1);
+        $vigente   = $this->criarProcessoStub(id: 2, situacao: 4);
+        $encerrado = $this->criarProcessoStub(id: 3, situacao: 5);
+
+        $this->processosModel->method('listarComSituacaoESecretaria')->willReturn([$aberto, $vigente, $encerrado]);
+        $this->processosModel->method('cargosPorProcesso')->willReturn([]);
+        $this->documentosModel->method('porProcessoId')->willReturn([]);
+
+        $resultado = $this->service->listarEditais(['situacao' => 'Todas']);
+
+        $this->assertCount(3, $resultado);
+    }
+
+    public function testFiltroSituacaoVigentesSohExibeVigentes(): void
+    {
+        $aberto    = $this->criarProcessoStub(id: 1, situacao: 1);   // Inscrições abertas
+        $vigente   = $this->criarProcessoStub(id: 2, situacao: 4);   // Vigente
+        $encerrado = $this->criarProcessoStub(id: 3, situacao: 5);   // Encerrado
+
+        $this->processosModel->method('listarComSituacaoESecretaria')->willReturn([$aberto, $vigente, $encerrado]);
+        $this->processosModel->method('cargosPorProcesso')->willReturn([]);
+        $this->documentosModel->method('porProcessoId')->willReturn([]);
+
+        $resultado = $this->service->listarEditais(['situacao' => 'Vigentes']);
+
         $this->assertCount(1, $resultado);
         $this->assertSame(2, $resultado[0]['id']);
-        $this->assertSame('Encerrado', $resultado[0]['situacao_label']);
+        $this->assertSame('Vigente', $resultado[0]['situacao_label']);
     }
 
     public function testFiltroPorSecretaria(): void

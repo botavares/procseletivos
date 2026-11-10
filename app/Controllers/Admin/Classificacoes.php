@@ -46,23 +46,25 @@ class Classificacoes extends BaseController{
             return redirect()->to(base_url('home'))->with('error', 'Cargo ou Processo não encontrado.');
         }
 
-        $classificacoes = service('classificacaoService')->listarClassificacao((int)$idProcesso, (int)$idCargo);
+        $idSecretaria = (int) session('fk_id_secretaria');
+
+        $classificacoes = service('classificacaoService')->listarClassificacao((int)$idProcesso, (int)$idCargo, $idSecretaria);
 
         // Verifica se há desempate dinâmico configurado
-        $configDesempate = service('adminDesempateConfigService')->buscarConfiguracao((int)$idCargo, (int)$idProcesso);
+        $configDesempate = service('adminDesempateConfigService')->buscarConfiguracao((int)$idCargo, (int)$idProcesso, $idSecretaria);
         // Remove PONTUACAO_TOTAL da exibição (já existe coluna fixa "Total de Pontos")
         $configDesempate = array_values(array_filter($configDesempate, fn($c) => $c->tipoCriterio !== 'PONTUACAO_TOTAL'));
         $usaDesempateDinamico = !empty($configDesempate);
 
         // Colunas dinâmicas baseadas nas configurações do cargo (filtradas por processo)
         $colunasService = service('classificacaoColunasService');
-        $colunasDinamicas = $colunasService->obterColunas((int)$idCargo, (int)$idProcesso);
+        $colunasDinamicas = $colunasService->obterColunas((int)$idCargo, (int)$idProcesso, $idSecretaria);
 
         // Busca dados dinâmicos dos candidatos
         $dadosDinamicos = [];
         if (!empty($classificacoes)) {
             $idsCandidatos = array_column($classificacoes, 'fk_id_candidato');
-            $dadosDinamicos = $colunasService->obterDadosDinamicos((int)$idProcesso, (int)$idCargo, $idsCandidatos);
+            $dadosDinamicos = $colunasService->obterDadosDinamicos((int)$idProcesso, (int)$idCargo, $idsCandidatos, $idSecretaria);
         }
 
         $parametros = [
@@ -97,11 +99,53 @@ class Classificacoes extends BaseController{
     }
 
     public function reprocessar($processo, $cargo){
-        service('classificacaoService')->reprocessar((int)$processo, (int)$cargo);
+        $idSecretaria = (int) session('fk_id_secretaria');
+        service('classificacaoService')->reprocessar((int)$processo, (int)$cargo, $idSecretaria);
         return redirect()->back()->with('success', 'Classificação reprocessada com sucesso.');
     }
 
+    /**
+     * Dispara a classificacao (preliminar ou homologacao) para o processo/cargo selecionados.
+     * Apenas administradores podem executar essa acao.
+     */
+    public function disparar()
+    {
+        if (!checklogged()) {
+            return redirect()->route('home')->with('error', 'Sua sessão expirou');
+        }
+
+        if (session('administrador') != '1') {
+            return redirect()->to(base_url_adm('Dashboard'))->with('mensagemError', 'Apenas administradores podem disparar a classificação.');
+        }
+
+        $processo = (int) $this->request->getPost('processo');
+        $cargo    = (int) $this->request->getPost('cargo');
+        $tipo     = (string) $this->request->getPost('tipo_classificacao');
+
+        if ($processo <= 0 || $cargo <= 0 || !in_array($tipo, ['preliminar', 'homologacao'], true)) {
+            return redirect()->to(base_url_adm('Dashboard'))->with('mensagemError', 'Processo, cargo ou tipo de classificação inválidos.');
+        }
+
+        try {
+            service('disparoClassificacaoService')->disparar(
+                $processo,
+                $cargo,
+                $tipo,
+                (int) session('id')
+            );
+
+            $labelTipo = $tipo === 'preliminar' ? 'preliminar' : 'homologação';
+            return redirect()->to(base_url_adm('Dashboard'))->with('mensagemSuccess', "Classificação {$labelTipo} disparada com sucesso.");
+        } catch (\Exception $e) {
+            return redirect()->to(base_url_adm('Dashboard'))->with('mensagemError', $e->getMessage());
+        }
+    }
+
     public function gerarClassificacao($secretaria, $processo, $cargo){
+        if ((int) $secretaria !== (int) session('fk_id_secretaria')) {
+            return redirect()->to(base_url('home'))->with('error', 'Secretaria inválida para o usuário logado.');
+        }
+
         $protocolos = $this->protocolosModel->protocolosCadastradosProcesso($secretaria, $processo, $cargo);
 
         foreach ($protocolos as $protocolo) {
@@ -109,9 +153,10 @@ class Classificacoes extends BaseController{
 
             // Limpa classificação anterior
             $this->classificacaoModel->where([
-                'fk_id_candidato' => $idCandidato,
-                'fk_id_processo'  => $processo,
-                'fk_id_cargo'     => $cargo,
+                'fk_id_secretaria' => $secretaria,
+                'fk_id_candidato'  => $idCandidato,
+                'fk_id_processo'   => $processo,
+                'fk_id_cargo'      => $cargo,
             ])->delete();
 
             // Experiências
@@ -123,6 +168,7 @@ class Classificacoes extends BaseController{
                 $max   = (float) ($exp->ds_quantidade_maxima ?? 0);
                 if ($max > 0 && $total > $max) $total = $max;
                 $this->classificacaoModel->insert([
+                    'fk_id_secretaria'         => $secretaria,
                     'fk_id_candidato'          => $idCandidato,
                     'fk_id_processo'           => $processo,
                     'fk_id_cargo'              => $cargo,
@@ -143,6 +189,7 @@ class Classificacoes extends BaseController{
                 $max   = (float) ($esc->ds_pontuacao_maxima ?? 0);
                 if ($max > 0 && $total > $max) $total = $max;
                 $this->classificacaoModel->insert([
+                    'fk_id_secretaria'         => $secretaria,
                     'fk_id_candidato'          => $idCandidato,
                     'fk_id_processo'           => $processo,
                     'fk_id_cargo'              => $cargo,
@@ -163,6 +210,7 @@ class Classificacoes extends BaseController{
                 $max   = (float) ($ape->ds_pontuacao_maxima ?? 0);
                 if ($max > 0 && $total > $max) $total = $max;
                 $this->classificacaoModel->insert([
+                    'fk_id_secretaria'         => $secretaria,
                     'fk_id_candidato'          => $idCandidato,
                     'fk_id_processo'           => $processo,
                     'fk_id_cargo'              => $cargo,
@@ -177,15 +225,18 @@ class Classificacoes extends BaseController{
     }
 
     public function gerarRanking($processo, $cargo){
+        $idSecretaria = (int) session('fk_id_secretaria');
         $service = service('classificacaoService');
-        $service->reprocessar((int)$processo, (int)$cargo);
+        $service->reprocessar((int)$processo, (int)$cargo, $idSecretaria);
 
         return redirect()->back()->with('success', 'Ranking reprocessado com sucesso.');
     }
 
     private function obterDadosExportacao(int $processo, int $cargo, array $classificacoes): array
     {
-        $configDesempate = service('adminDesempateConfigService')->buscarConfiguracao($cargo, $processo);
+        $idSecretaria = (int) session('fk_id_secretaria');
+
+        $configDesempate = service('adminDesempateConfigService')->buscarConfiguracao($cargo, $processo, $idSecretaria);
         $configDesempate = array_values(array_filter($configDesempate, fn($c) => $c->tipoCriterio !== 'PONTUACAO_TOTAL'));
         $usaDesempateDinamico = !empty($configDesempate);
 
@@ -193,8 +244,8 @@ class Classificacoes extends BaseController{
         $dadosDinamicos   = [];
         if (!$usaDesempateDinamico) {
             $colunasService   = service('classificacaoColunasService');
-            $colunasDinamicas = $colunasService->obterColunas($cargo, $processo);
-            $dadosDinamicos   = $colunasService->obterDadosDinamicos($processo, $cargo, array_column($classificacoes, 'fk_id_candidato'));
+            $colunasDinamicas = $colunasService->obterColunas($cargo, $processo, $idSecretaria);
+            $dadosDinamicos   = $colunasService->obterDadosDinamicos($processo, $cargo, array_column($classificacoes, 'fk_id_candidato'), $idSecretaria);
         }
 
         $dadosProcesso = $this->processosSeletivosModel->find($processo);
@@ -212,7 +263,8 @@ class Classificacoes extends BaseController{
 
     public function exportarXlsx($processo, $cargo)
     {
-        $classificacoes = service('classificacaoService')->listarClassificacao((int)$processo, (int)$cargo);
+        $idSecretaria   = (int) session('fk_id_secretaria');
+        $classificacoes = service('classificacaoService')->listarClassificacao((int)$processo, (int)$cargo, $idSecretaria);
 
         if (empty($classificacoes)) {
             return redirect()->back()->with('error', 'A classificação está vazia. Execute o reprocessamento antes de exportar.');
@@ -240,7 +292,8 @@ class Classificacoes extends BaseController{
     }
 
     public function gerarPdf($processo, $cargo){
-        $classificacoes = service('classificacaoService')->listarClassificacao((int)$processo, (int)$cargo);
+        $idSecretaria   = (int) session('fk_id_secretaria');
+        $classificacoes = service('classificacaoService')->listarClassificacao((int)$processo, (int)$cargo, $idSecretaria);
 
         if (empty($classificacoes)) {
             return redirect()->back()->with('error', 'A classificação está vazia. Execute o reprocessamento antes de gerar o PDF.');
@@ -278,6 +331,16 @@ class Classificacoes extends BaseController{
     }
 
     public function salvarEscolha(){
-        return redirect()->to(base_url_adm("Classificacoes/{$this->request->getPost('processo')}/{$this->request->getPost('cargo')}"));
+        $idSecretaria = (int) session('fk_id_secretaria');
+        $processo = (int) $this->request->getPost('processo');
+        $cargo    = (int) $this->request->getPost('cargo');
+
+        // Valida se o cargo pertence à secretaria do usuário logado
+        $dadosCargo = $this->cargosModel->find($cargo);
+        if (!$dadosCargo || (int) $dadosCargo->fk_id_secretaria !== $idSecretaria) {
+            return redirect()->to(base_url_adm('Dashboard'))->with('error', 'Cargo não pertence à secretaria do usuário logado.');
+        }
+
+        return redirect()->to(base_url_adm("Classificacoes/{$processo}/{$cargo}"));
     }
 }

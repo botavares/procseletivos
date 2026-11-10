@@ -23,7 +23,7 @@ class ClassificacaoPersistService
      * @param int $cargo
      * @param array $dados Cada item pode ter '_scores' com scores dinamicos
      */
-    public function salvar(int $processo, int $cargo, array $dados): void
+    public function salvar(int $processo, int $cargo, array $dados, ?int $secretaria = null): void
     {
         if (empty($dados)) {
             return;
@@ -41,17 +41,21 @@ class ClassificacaoPersistService
         $this->db->transStart();
 
         // Limpa classificacao anterior (CASCADE limpa scores automaticamente)
+        $where = [
+            'fk_id_processo' => $processo,
+            'fk_id_cargo'    => $cargo
+        ];
+        if ($secretaria !== null) {
+            $where['fk_id_secretaria'] = $secretaria;
+        }
         $this->db->table('tb_classificacao')
-            ->where([
-                'fk_id_processo' => $processo,
-                'fk_id_cargo'    => $cargo
-            ])
+            ->where($where)
             ->delete();
 
         if ($usaScoresDinamicos) {
-            $this->salvarComScores($processo, $cargo, $dados);
+            $this->salvarComScores($processo, $cargo, $dados, $secretaria);
         } else {
-            $this->salvarBatch($processo, $cargo, $dados);
+            $this->salvarBatch($processo, $cargo, $dados, $secretaria);
         }
 
         $this->db->transComplete();
@@ -60,11 +64,14 @@ class ClassificacaoPersistService
     /**
      * Salva usando insertBatch (performance para regra fixa).
      */
-    private function salvarBatch(int $processo, int $cargo, array $dados): void
+    private function salvarBatch(int $processo, int $cargo, array $dados, ?int $secretaria = null): void
     {
         foreach ($dados as &$row) {
             $row['fk_id_processo'] = $processo;
             $row['fk_id_cargo']     = $cargo;
+            if ($secretaria !== null && empty($row['fk_id_secretaria'])) {
+                $row['fk_id_secretaria'] = $secretaria;
+            }
             // Remove scores se existirem (nao deveria, mas garante)
             unset($row['_scores']);
         }
@@ -75,7 +82,7 @@ class ClassificacaoPersistService
     /**
      * Salva com insert individual para obter IDs e persistir scores dinamicos.
      */
-    private function salvarComScores(int $processo, int $cargo, array $dados): void
+    private function salvarComScores(int $processo, int $cargo, array $dados, ?int $secretaria = null): void
     {
         $scoreModel = new ClassificacaoScoreModel();
 
@@ -85,6 +92,9 @@ class ClassificacaoPersistService
 
             $row['fk_id_processo'] = $processo;
             $row['fk_id_cargo']    = $cargo;
+            if ($secretaria !== null && empty($row['fk_id_secretaria'])) {
+                $row['fk_id_secretaria'] = $secretaria;
+            }
 
             $this->db->table('tb_classificacao')->insert($row);
             $idClassificacao = $this->db->insertID();

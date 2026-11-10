@@ -8,13 +8,14 @@ use CodeIgniter\Model;
 
 class CargosDesempateConfigModel extends Model
 {
-    protected $table = 'tb_cargos_desempates_config';
+    protected $table = 'tb_classificacao_desempates_config';
     protected $primaryKey = 'pk_id_desempate';
     protected $useAutoIncrement = true;
     protected $returnType = 'object';
     protected $useTimestamps = false;
     protected $useSoftDeletes = false;
     protected $allowedFields = [
+        'fk_id_secretaria',
         'fk_id_processo_seletivo',
         'fk_id_cargo',
         'ds_ordem',
@@ -39,12 +40,25 @@ class CargosDesempateConfigModel extends Model
      * Lista a configuracao de desempate ordenada por ds_ordem.
      *
      * @param int $cargo
+     * @param int|null $processo
+     * @param int|null $secretaria
      * @return array
      */
-    public function listarPorCargo(int $cargo): array
+    public function listarPorCargo(int $cargo, ?int $processo = null, ?int $secretaria = null): array
     {
-        return $this->where('fk_id_cargo', $cargo)
-                    ->orderBy('ds_ordem', 'ASC')
+        $builder = $this->where('fk_id_cargo', $cargo);
+
+        if ($secretaria !== null) {
+            $builder->where('fk_id_secretaria', $secretaria);
+        }
+
+        if ($processo !== null) {
+            $builder->where('fk_id_processo_seletivo', $processo);
+        } else {
+            $builder->where('fk_id_processo_seletivo IS NULL');
+        }
+
+        return $builder->orderBy('ds_ordem', 'ASC')
                     ->findAll();
     }
 
@@ -52,10 +66,24 @@ class CargosDesempateConfigModel extends Model
      * Remove todos os criterios de desempate de um cargo.
      *
      * @param int $cargo
+     * @param int|null $processo
+     * @param int|null $secretaria
      * @return bool
      */
-    public function limparPorCargo(int $cargo): bool
+    public function limparPorCargo(int $cargo, ?int $processo = null, ?int $secretaria = null): bool
     {
-        return $this->where('fk_id_cargo', $cargo)->delete();
+        $builder = $this->where('fk_id_cargo', $cargo);
+
+        if ($secretaria !== null) {
+            $builder->where('fk_id_secretaria', $secretaria);
+        }
+
+        if ($processo !== null) {
+            $builder->where('fk_id_processo_seletivo', $processo);
+        } else {
+            $builder->where('fk_id_processo_seletivo IS NULL');
+        }
+
+        return $builder->delete();
     }
 }

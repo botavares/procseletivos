@@ -18,6 +18,7 @@ class RecursoRepository implements IRecursoRepository
                 'hr.ds_numero_protocolo',
                 'hr.fk_id_edital',
                 'hr.fk_id_cargo',
+                'hr.fk_id_secretaria',
                 'e.ds_numero_edital',
                 'cg.ds_nome_cargo',
             ])

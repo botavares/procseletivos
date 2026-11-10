@@ -7,7 +7,7 @@
 
 ## 1. Estruturas Criadas no Banco de Dados
 
-### 1.1. Tabela `tb_cargos_desempates_config`
+### 1.1. Tabela `tb_classificacao_desempates_config`
 
 Responsavel por armazenar a configuracao de desempate por cargo.
 
@@ -67,7 +67,7 @@ Responsavel por persistir os scores dinamicos de cada candidato classificado, pe
 
 | Arquivo | Descricao |
 |---------|-----------|
-| `app/Database/Migrations/2026-09-09-130000_CreateTbCargosDesempatesConfig.php` | Migration da tabela `tb_cargos_desempates_config` |
+| `app/Database/Migrations/2026-09-09-130000_CreateTbCargosDesempatesConfig.php` | Migration da tabela `tb_classificacao_desempates_config` |
 | `app/Database/Migrations/2026-09-09-130001_CreateTbClassificacaoScores.php` | Migration da tabela `tb_classificacao_scores` |
 
 ### 2.2. Models
@@ -196,7 +196,7 @@ O `CandidatoScoreBuilderService` calcula os scores da seguinte forma:
 
 ### 4.3. Backward Compatibility
 
-**Cargos sem configuracao em `tb_cargos_desempates_config` continuam usando a regra fixa:**
+**Cargos sem configuracao em `tb_classificacao_desempates_config` continuam usando a regra fixa:**
 
 1. Maior pontuacao total
 2. Maior pontuacao em experiencias

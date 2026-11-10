@@ -93,23 +93,33 @@ class ProcessosSeletivosModel extends Model
     /**
      * Retorna todos os processos não deletados ordenados pelo ID descendente.
      */
-    public function listarTodos(): array
+    public function listarTodos(?int $idSecretaria = null): array
     {
-        return $this->orderBy('pk_id_processo', 'DESC')
-                    ->findAll();
+        $builder = $this->orderBy('pk_id_processo', 'DESC');
+
+        if ($idSecretaria !== null && $idSecretaria > 0) {
+            $builder = $this->where('fk_id_secretaria', $idSecretaria);
+        }
+
+        return $builder->findAll();
     }
 
     /**
      * Busca cargos vinculados a um processo seletivo.
      */
-    public function cargosPorProcesso(int $processoId): array
+    public function cargosPorProcesso(int $processoId, ?int $idSecretaria = null): array
     {
-        return $this->db->table('tb_processos_cargos')
-            ->select('tb_cargos.pk_id_cargo, tb_cargos.ds_nome_cargo, tb_processos_cargos.nm_vagas, tb_processos_cargos.nm_vagas_pcd,tb_processos_cargos.nm_remuneracao,
+        $builder = $this->db->table('tb_processos_cargos')
+            ->select('tb_cargos.pk_id_cargo, tb_cargos.ds_nome_cargo, tb_cargos.fk_id_secretaria, tb_processos_cargos.nm_vagas, tb_processos_cargos.nm_vagas_pcd,tb_processos_cargos.nm_remuneracao,
             tb_processos_cargos.nm_carga_horaria,tb_processos_cargos.nm_tipo_carga_horaria,tb_processos_cargos.ds_requisito_provimento')
             ->join('tb_cargos', 'tb_cargos.pk_id_cargo = tb_processos_cargos.fk_id_cargo')
-            ->where('tb_processos_cargos.fk_id_processo', $processoId)
-            ->orderBy('tb_cargos.ds_nome_cargo', 'ASC')
+            ->where('tb_processos_cargos.fk_id_processo', $processoId);
+
+        if ($idSecretaria !== null && $idSecretaria > 0) {
+            $builder->where('tb_cargos.fk_id_secretaria', $idSecretaria);
+        }
+
+        return $builder->orderBy('tb_cargos.ds_nome_cargo', 'ASC')
             ->get()
             ->getResult();
     }

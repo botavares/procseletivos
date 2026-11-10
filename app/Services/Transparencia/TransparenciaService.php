@@ -22,42 +22,34 @@ class TransparenciaService implements ITransparenciaService
         $pagina    = max(1, (int) ($params['page'] ?? 1));
         $porPagina = max(1, (int) ($params['per_page'] ?? 10));
         $cargo     = (int) ($params['cargo'] ?? 0);
-        $edital    = (int) ($params['edital'] ?? 0);
+        $processo  = (int) ($params['processo'] ?? 0);
         $busca     = trim((string) ($params['search'] ?? ''));
-
-        $editaisAtivos = [];
-        if ($edital <= 0) {
-            $editaisAtivos = $this->transparenciaRepository->buscarEditaisAtivos();
-        }
-
-        $idProcesso = $this->resolverProcessoPorEdital($edital);
 
         $usaDesempateDinamico = false;
         $colunasDinamicas = [];
         if ($cargo > 0) {
-            $usaDesempateDinamico = $this->desempateConfigService->cargoPossuiConfiguracao($cargo, $idProcesso);
+            $usaDesempateDinamico = $this->desempateConfigService->cargoPossuiConfiguracao($cargo, $processo > 0 ? $processo : null, null);
             if ($usaDesempateDinamico) {
-                $colunasDinamicas = $this->montarColunasDinamicas($cargo, $edital, $busca, $editaisAtivos, $idProcesso);
+                $colunasDinamicas = $this->montarColunasDinamicas($cargo, $busca, $processo > 0 ? $processo : null);
             }
         }
 
         $colunasOcultas = [];
         $criteriosAdicionais = [];
         if (!$usaDesempateDinamico) {
-            $colunasOcultas = $this->transparenciaRepository->obterColunasOcultas($cargo, $edital, $busca, $editaisAtivos);
-            $criteriosAdicionais = $this->transparenciaRepository->obterCriteriosAdicionaisAtivos($cargo, $edital, $busca, $editaisAtivos);
+            $colunasOcultas = $this->transparenciaRepository->obterColunasOcultas($cargo, $busca, $processo > 0 ? $processo : null);
+            $criteriosAdicionais = $this->transparenciaRepository->obterCriteriosAdicionaisAtivos($cargo, $busca, $processo > 0 ? $processo : null);
         }
 
         $resultado = $this->transparenciaRepository->listarClassificacao(
             $pagina,
             $porPagina,
             $cargo,
-            $edital,
             $busca,
-            $editaisAtivos,
             $usaDesempateDinamico,
             $colunasDinamicas,
-            $criteriosAdicionais
+            $criteriosAdicionais,
+            $processo > 0 ? $processo : null
         );
 
         $dados = $this->presenter->processarSituacaoCandidatos($resultado['dados']);
@@ -74,47 +66,9 @@ class TransparenciaService implements ITransparenciaService
         ];
     }
 
-    /**
-     * Resolve o processo seletivo vinculado ao edital pelo numero/ano.
-     */
-    private function resolverProcessoPorEdital(int $edital): ?int
+    private function montarColunasDinamicas(int $cargo, string $busca, ?int $idProcesso = null): array
     {
-        $db = \Config\Database::connect();
-
-        $editalRow = $db->table('tb_editais')
-            ->select('ds_numero_edital')
-            ->where('pk_id_edital', $edital)
-            ->get()
-            ->getRow();
-
-        if (empty($editalRow->ds_numero_edital)) {
-            return null;
-        }
-
-        $numeroCompleto = (string) $editalRow->ds_numero_edital;
-        if (strlen($numeroCompleto) < 5) {
-            return null;
-        }
-
-        $ano    = (int) substr($numeroCompleto, -4);
-        $numero = (int) substr($numeroCompleto, 0, -4);
-
-        $row = $db->table('tb_processos')
-            ->select('pk_id_processo')
-            ->where([
-                'nm_numero_processo' => $numero,
-                'nm_ano_processo'    => $ano,
-            ])
-            ->where("(is_deletado IS NULL OR is_deletado = '0000-00-00 00:00:00')", null, false)
-            ->get()
-            ->getRow();
-
-        return $row ? (int) $row->pk_id_processo : null;
-    }
-
-    private function montarColunasDinamicas(int $cargo, int $edital, string $busca, array $editaisAtivos, ?int $idProcesso = null): array
-    {
-        $rows = $this->transparenciaRepository->buscarColunasDinamicas($cargo, $edital, $busca, $editaisAtivos);
+        $rows = $this->transparenciaRepository->buscarColunasDinamicas($cargo, $busca, $idProcesso);
         $meta = $this->presenter->resolverLabelsColunasDinamicas($rows, $cargo, $idProcesso);
         $labelsConfig = $meta['labels'];
         $tiposCriterio = $meta['tipos'];

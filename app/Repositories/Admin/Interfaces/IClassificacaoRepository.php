@@ -12,10 +12,10 @@ interface IClassificacaoRepository
     /**
      * Lista classificação do processo/cargo com scores dinâmicos.
      */
-    public function listarPorProcessoCargo(int $idProcesso, int $idCargo): array;
+    public function listarPorProcessoCargo(int $idProcesso, int $idCargo, ?int $idSecretaria = null): array;
 
     /**
      * @deprecated Mantido para compatibilidade.
      */
-    public function listarPorEditalCargo(int $idEdital, int $idCargo): array;
+    public function listarPorEditalCargo(int $idEdital, int $idCargo, ?int $idSecretaria = null): array;
 }

@@ -53,17 +53,18 @@
 								<div class="form-group row">
 									<label for="input-nome" class="col-form-label col-sm-2">Situação</label>
 									<div class="col-sm-10">
-										<span class="text text-danger"><?php echo session()->getFlashdata('errors')['situacao'] ?? ''?></span> 
-                                        <select class="form-control" name="situacao" required>
+										<span class="text text-danger"><?php echo session()->getFlashdata('errors')['nm_id_situacao'] ?? ''?></span> 
+                                        <select class="form-control" name="nm_id_situacao" required>
 											<option value="">Selecione</option>
-											<?php if($dadosSituacao->situacao == null):?>
-												<option value="0" selected>AGUARDANDO</option>
-											<?php else: ?>
-												<option value="0" <?= $dadosSituacao->situacao == 0 ? 'selected' : '' ?>>AGUARDANDO</option>
-											<?php endif ?>
-                                            <option value="1" <?= $dadosSituacao->situacao == 1 ? 'selected' : '' ?>>CONVOCADO</option>
-											<option value="2" <?= $dadosSituacao->situacao == 2 ? 'selected' : '' ?>>CONTRATADO</option>
-											<option value="3" <?= $dadosSituacao->situacao == 3 ? 'selected' : '' ?>>DESCLASSIFICADO</option>
+											<?php foreach (\App\Enums\SituacaoCandidatosEnum::cases() as $situacaoEnum): ?>
+												<?php
+													$selecionado = ($dadosSituacao->situacao === null && $situacaoEnum->value === \App\Enums\SituacaoCandidatosEnum::AGUARDANDO->value)
+														|| ($dadosSituacao->situacao !== null && (int) $dadosSituacao->situacao === $situacaoEnum->value);
+												?>
+												<option value="<?= $situacaoEnum->value ?>" <?= $selecionado ? 'selected' : '' ?>>
+													<?= strtoupper($situacaoEnum->label()) ?>
+												</option>
+											<?php endforeach; ?>
                                         </select>
                                     </div>
 									<?php if(isset($error['situacao'])):?>

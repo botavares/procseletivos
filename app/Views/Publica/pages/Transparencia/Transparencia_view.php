@@ -9,19 +9,20 @@
   $currentPage = $pag['paginaAtual'] ?? 1;
   $totalPages = $pag['totalPaginas'] ?? 1;
   $start = $pag['inicio'] ?? 1;
-  $end = $pag['fim'] ?? 1; 
-  $filtros = $filtros ?? []; 
+  $end = $pag['fim'] ?? 1;
+  $filtros = $filtros ?? [];
   $queryBase = [ 'search' => $filtros['search'] ?? '',
   'per_page' => $filtros['per_page'] ?? ($pag['porPagina'] ?? 10), ];
-   ?> 
+   ?>
 
 <div class="br-input">
-  <label>Selecione o edital</label>
-  <select id="filtro-edital">
-    <option value="">Editais</option>
-    <?php foreach ($editais as $edital): ?>
-      <option value="<?= esc($edital->pk_id_edital) ?>">
-        <?= esc(formatarNumeroEdital($edital->ds_numero_edital)) ?>
+  <label>Selecione o processo seletivo</label>
+  <select id="filtro-processo">
+    <option value="">Processos Seletivos</option>
+    <?php foreach ($processos as $processo): ?>
+      <option value="<?= esc($processo->pk_id_processo) ?>">
+        <?= esc(formatarNumeroEdital(($processo->nm_numero_processo ?? '') . ($processo->nm_ano_processo ?? ''))) ?>
+        <?= !empty($processo->ds_nome_secretaria) ? ' - ' . esc($processo->ds_nome_secretaria) : '' ?>
       </option>
     <?php endforeach ?>
   </select>
@@ -34,34 +35,33 @@
 </div>
 <div class="br-input">
   <label for="busca-transparencia">Buscar candidato</label>
-  <input id="busca-transparencia" 
-         type="text" 
+  <input id="busca-transparencia"
+         type="text"
          placeholder="Digite o nome do candidato">
 </div>
 <div id="tabela-container">
-  <div class="text-center mt-3"><p>Selecione o edital e o cargo</p></div>
+  <div class="text-center mt-3"><p>Selecione o processo seletivo e o cargo</p></div>
 </div>
-    
 
 
 <script>
 function carregarTabela(page = 1) {
-    const edital = document.getElementById('filtro-edital').value;
+    const processo = document.getElementById('filtro-processo').value;
     const cargo = document.getElementById('filtro-cargo').value;
     const busca = document.getElementById('busca-transparencia')?.value || '';
     const perPage = 10;
     const container = document.getElementById('tabela-container');
 
-    // So carrega dados se edital e cargo estiverem selecionados
-    if (!edital || !cargo) {
-        container.innerHTML = '<div class="text-center mt-3"><p>Selecione o edital e o cargo</p></div>';
+    // So carrega dados se processo e cargo estiverem selecionados
+    if (!processo || !cargo) {
+        container.innerHTML = '<div class="text-center mt-3"><p>Selecione o processo seletivo e o cargo</p></div>';
         return;
     }
 
     const url = new URL('<?= site_url("transparencia/carregarTabela") ?>');
 
     url.searchParams.set('page', page);
-    url.searchParams.set('edital', edital);
+    url.searchParams.set('processo', processo);
     url.searchParams.set('cargo', cargo);
     url.searchParams.set('search', busca);
     url.searchParams.set('per_page', perPage);
@@ -74,9 +74,9 @@ function carregarTabela(page = 1) {
         });
 }
 
-function carregarCargosPorEdital(editalId) {
-    const url = new URL('<?= site_url("transparencia/carregarCargosPorEdital") ?>');
-    url.searchParams.set('edital', editalId);
+function carregarCargosPorProcesso(processoId) {
+    const url = new URL('<?= site_url("transparencia/carregarCargosPorProcesso") ?>');
+    url.searchParams.set('processo', processoId);
 
     fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
         .then(r => r.json())
@@ -104,18 +104,18 @@ function carregarCargosPorEdital(editalId) {
         });
 }
 
-// filtro edital
-document.getElementById('filtro-edital')
+// filtro processo seletivo
+document.getElementById('filtro-processo')
   ?.addEventListener('change', function() {
-      const editalId = this.value;
+      const processoId = this.value;
       const selectCargo = document.getElementById('filtro-cargo');
 
-      if (editalId) {
-          // Carrega os cargos do edital selecionado
-          carregarCargosPorEdital(editalId);
+      if (processoId) {
+          // Carrega os cargos do processo selecionado
+          carregarCargosPorProcesso(processoId);
       } else {
           // Volta ao estado inicial
-          selectCargo.innerHTML = '<option value="">Selecione um edital</option>';
+          selectCargo.innerHTML = '<option value="">Selecione um processo seletivo</option>';
       }
 
       // Recarrega a tabela (sem cargo)

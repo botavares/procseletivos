@@ -26,8 +26,10 @@ class Dashboard extends BaseController{
             return redirect()->route('home')->with('error','Sua sessão expirou');
         }
         
-        $processosAtivos = $this->ProcessosSeletivosService->listarAtivosComSituacao();
-        $todosProcessos = $this->ProcessosSeletivosService->listarTodos();
+        $idSecretaria = (int) session('fk_id_secretaria');
+
+        $processosAtivos = $this->ProcessosSeletivosService->listarAtivosComSituacaoPorSecretaria($idSecretaria);
+        $todosProcessos = $this->ProcessosSeletivosService->listarTodosPorSecretaria($idSecretaria);
         //$cargosComContagem = $this->ProcessosSeletivosService->getCargosComContagemCandidatosPorEditalAtivo();
         
 

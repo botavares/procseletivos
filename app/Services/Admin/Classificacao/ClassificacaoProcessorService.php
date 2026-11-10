@@ -37,14 +37,20 @@ class ClassificacaoProcessorService
      */
     public function processar(int $processo, int $cargo): array
     {
-        $configDesempate = $this->desempateConfigService->buscarConfiguracao($cargo, $processo);
-        $usaConfiguracaoDinamica = !empty($configDesempate);
-
-        $candidatos = $this->buscarCandidatos($processo, $cargo);
         $dadosProcesso = $this->db->table('tb_processos')
             ->where('pk_id_processo', $processo)
             ->get()
             ->getRow();
+        $dadosCargo = $this->db->table('tb_cargos')
+            ->where('pk_id_cargo', $cargo)
+            ->get()
+            ->getRow();
+        $fkIdSecretaria = (int) ($dadosCargo->fk_id_secretaria ?? $dadosProcesso->fk_id_secretaria ?? 0);
+
+        $configDesempate = $this->desempateConfigService->buscarConfiguracao($cargo, $processo, $fkIdSecretaria);
+        $usaConfiguracaoDinamica = !empty($configDesempate);
+
+        $candidatos = $this->buscarCandidatos($processo, $cargo, $fkIdSecretaria);
         $nomeEdital = $this->formatarNumeroEdital(
             ($dadosProcesso->nm_numero_processo ?? 0) * 10000 + ($dadosProcesso->nm_ano_processo ?? 0)
         );
@@ -57,13 +63,14 @@ class ClassificacaoProcessorService
         if ($usaConfiguracaoDinamica) {
             // Carrega dados em batch para performance
             $scoreBuilder = new CandidatoScoreBuilderService($this->db);
-            $scoreBuilder->carregarDadosBatch($idsCandidatos, $processo, $cargo, $configDesempate);
+            $scoreBuilder->carregarDadosBatch($idsCandidatos, $processo, $cargo, $configDesempate, $fkIdSecretaria);
 
             foreach ($candidatos as $candidato) {
                 $pontuacoes = $this->calculator->calcular(
                     (int) $candidato['fk_id_cadastrado'],
                     $processo,
-                    $cargo
+                    $cargo,
+                    $fkIdSecretaria
                 );
 
                 $totalGeral = array_sum($pontuacoes);
@@ -83,7 +90,8 @@ class ClassificacaoProcessorService
                     $pontuacoes['aperfeicoamentos'] ?? 0,
                     $pontuacoes['criterios_adicionais'] ?? 0,
                     $totalGeral,
-                    $dsPossuiPne
+                    $dsPossuiPne,
+                    $fkIdSecretaria
                 );
 
                 // Calcula scores dinamicos
@@ -143,7 +151,7 @@ class ClassificacaoProcessorService
             // Ordenacao dinamica
             $resultadosDTO = $this->ordenacaoDinamicaService->ordenar($resultadosDTO, $configDesempate);
 
-            return $this->converterParaArray($resultadosDTO, true, $configDesempate);
+            return $this->converterParaArray($resultadosDTO, true, $fkIdSecretaria);
         }
 
         // ======================================
@@ -153,7 +161,8 @@ class ClassificacaoProcessorService
             $pontuacoes = $this->calculator->calcular(
                 (int) $candidato['fk_id_cadastrado'],
                 $processo,
-                $cargo
+                $cargo,
+                $fkIdSecretaria
             );
 
             $totalGeral = array_sum($pontuacoes);
@@ -173,21 +182,22 @@ class ClassificacaoProcessorService
                 $pontuacoes['aperfeicoamentos'] ?? 0,
                 $pontuacoes['criterios_adicionais'] ?? 0,
                 $totalGeral,
-                $dsPossuiPne
+                $dsPossuiPne,
+                $fkIdSecretaria
             );
 
             $resultadosDTO[] = $dto;
         }
 
-        return $this->ordenarEClassificar($resultadosDTO);
+        return $this->ordenarEClassificar($resultadosDTO, $fkIdSecretaria);
     }
 
     /**
      * Busca todos os candidatos do processo/cargo.
      */
-    private function buscarCandidatos(int $processo, int $cargo): array
+    private function buscarCandidatos(int $processo, int $cargo, ?int $secretaria = null): array
     {
-        return $this->db->table('tb_cadastrados_protocolo p')
+        $builder = $this->db->table('tb_cadastrados_protocolo p')
             ->select('
                 p.fk_id_cadastrado,
                 c.ds_nome,
@@ -202,15 +212,19 @@ class ClassificacaoProcessorService
                 'p.fk_id_processo' => $processo,
                 'p.fk_id_cargo'    => $cargo
             ])
-            ->where("(pr.is_deletado IS NULL OR pr.is_deletado = '0000-00-00 00:00:00')", null, false)
-            ->get()
-            ->getResultArray();
+            ->where("(pr.is_deletado IS NULL OR pr.is_deletado = '0000-00-00 00:00:00')", null, false);
+
+        if ($secretaria !== null && $secretaria > 0) {
+            $builder->where('p.fk_id_secretaria', $secretaria);
+        }
+
+        return $builder->get()->getResultArray();
     }
 
     /**
      * Ordena por pontuacao e gera posicao (regra fixa - backward compatibility).
      */
-    private function ordenarEClassificar(array $resultados): array
+    private function ordenarEClassificar(array $resultados, ?int $fkIdSecretaria = null): array
     {
         usort($resultados, function (ResultadoClassificacaoDTO $a, ResultadoClassificacaoDTO $b) {
             return
@@ -222,7 +236,7 @@ class ClassificacaoProcessorService
                 ?: strtotime($a->ds_nascimento) <=> strtotime($b->ds_nascimento);
         });
 
-        return $this->converterParaArray($resultados, false);
+        return $this->converterParaArray($resultados, false, $fkIdSecretaria);
     }
 
     /**
@@ -232,13 +246,14 @@ class ClassificacaoProcessorService
      * @param bool $incluirScores
      * @return array
      */
-    private function converterParaArray(array $resultados, bool $incluirScores): array
+    private function converterParaArray(array $resultados, bool $incluirScores, ?int $fkIdSecretaria = null): array
     {
         $dados = [];
         $posicao = 1;
 
         foreach ($resultados as $r) {
             $item = [
+                'fk_id_secretaria'          => $r->fk_id_secretaria ?? $fkIdSecretaria,
                 'ds_posicao'                => $posicao++,
                 'fk_id_processo'            => null,
                 'fk_id_cargo'               => null,

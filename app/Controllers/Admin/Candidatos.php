@@ -49,7 +49,11 @@ class Candidatos extends BaseController{
             return redirect()->to(base_url('home'))->with('error', 'Cargo ou Processo não encontrado.');
         }
 
-        $candidatos = $this->candidatosModel->getCandidatosPorProcessoCargo($idProcesso, $idCargo);
+        if ((int) $dadosCargo->fk_id_secretaria !== (int) session('fk_id_secretaria')) {
+            return redirect()->to(base_url('home'))->with('error', 'Cargo não pertence à secretaria do usuário logado.');
+        }
+
+        $candidatos = $this->candidatosModel->getCandidatosPorProcessoCargo($idProcesso, $idCargo, (int) session('fk_id_secretaria'));
         $lista = [];
         foreach ($candidatos as $c) {
             $lista[$c->pk_id_cadastrado] = [
@@ -81,7 +85,16 @@ class Candidatos extends BaseController{
         ]);
     }
     public function salvarEscolha(){
-        return redirect()->to(base_url_adm("Candidatos/{$this->request->getPost('processo')}/{$this->request->getPost('cargo')}"));
+        $idSecretaria = (int) session('fk_id_secretaria');
+        $processo = (int) $this->request->getPost('processo');
+        $cargo    = (int) $this->request->getPost('cargo');
+
+        $dadosCargo = $this->cargosModel->find($cargo);
+        if (!$dadosCargo || (int) $dadosCargo->fk_id_secretaria !== $idSecretaria) {
+            return redirect()->to(base_url_adm('Dashboard'))->with('error', 'Cargo não pertence à secretaria do usuário logado.');
+        }
+
+        return redirect()->to(base_url_adm("Candidatos/{$processo}/{$cargo}"));
     }
 
     public function exibirDados($processo,$cargo,$id, $camada1 = 'pages', $camada2 = 'candidatos', $page = 'dadosCandidato'){
@@ -92,9 +105,17 @@ class Candidatos extends BaseController{
             return redirect()->route('home')->with('error','Sua sessão expirou');
         }
 
+        $idSecretaria = (int) session('fk_id_secretaria');
         $dadosCandidato = service('candidatosService')->listarCandidatoId($processo,$cargo,$id);
         if(!$dadosCandidato){
             return redirect()->back()->with('error', 'Candidato não encontrado.');
+        }
+
+        // Valida se o candidato possui protocolo para a secretaria do usuário logado
+        $protocolo = $this->candidatosModel->getCandidatosPorProcessoCargo($processo, $cargo, $idSecretaria);
+        $encontrado = array_filter($protocolo, fn($p) => (int) $p->pk_id_cadastrado === (int) $id);
+        if (empty($encontrado)) {
+            return redirect()->to(base_url('home'))->with('error', 'Candidato não encontrado para a secretaria do usuário logado.');
         }
 
         echo view('Admin/layoutDash', [
@@ -111,7 +132,8 @@ class Candidatos extends BaseController{
     public function getCandidatosByCargoAndProcesso(){
         $idCargo = $this->request->getPost('idCargo');
         $idProcesso = $this->request->getPost('idProcesso');
-        $candidatos = $this->candidatosModel->getCandidatosPorProcessoCargo($idProcesso, $idCargo);
+        $idSecretaria = (int) session('fk_id_secretaria');
+        $candidatos = $this->candidatosModel->getCandidatosPorProcessoCargo($idProcesso, $idCargo, $idSecretaria);
         return $this->response->setJSON($candidatos);
     }
 
@@ -131,6 +153,7 @@ class Candidatos extends BaseController{
 
         $cargo = $this->cargosModel->where('pk_id_cargo', $dadosCandidato['idCargo'])->first();
         $dados = [
+            'candidato'     => $dadosCandidato['candidato']->ds_nome,
             'nomeCandidato' => $dadosCandidato['candidato']->ds_nome,
             'idCandidato'   => $dadosCandidato['idCandidato'],
             'idProcesso'    => $dadosCandidato['idProcesso'],
@@ -165,13 +188,13 @@ class Candidatos extends BaseController{
         $idCandidato = $this->request->getPost('id_candidato');
         $idCargo     = $this->request->getPost('id_cargo');
         $idProcesso  = $this->request->getPost('fk_id_processo');
-        $situacao    = $this->request->getPost('situacao');
+        $situacao    = $this->request->getPost('nm_id_situacao');
 
         $data = [
             'fk_id_candidato' => $idCandidato,
             'fk_id_cargo'     => $idCargo,
             'fk_id_processo'  => $idProcesso,
-            'situacao'        => $situacao
+            'nm_id_situacao'  => $situacao
         ];
 
         $situacaoService = service('situacaoService');
@@ -195,9 +218,15 @@ class Candidatos extends BaseController{
 
     public function exportarXlsx($processo, $cargo)
     {
+        $idSecretaria = (int) session('fk_id_secretaria');
         $dadosProcesso = $this->processosSeletivosModel->find($processo);
         $dadosCargo    = $this->cargosModel->getCargo($cargo);
-        $candidatos    = $this->candidatosModel->getCandidatosPorProcessoCargo($processo, $cargo);
+
+        if (!$dadosCargo || (int) $dadosCargo->fk_id_secretaria !== $idSecretaria) {
+            return redirect()->to(base_url('home'))->with('error', 'Cargo não pertence à secretaria do usuário logado.');
+        }
+
+        $candidatos    = $this->candidatosModel->getCandidatosPorProcessoCargo($processo, $cargo, $idSecretaria);
 
         if (empty($candidatos)) {
             return redirect()->back()->with('error', 'Não há candidatos para exportar.');

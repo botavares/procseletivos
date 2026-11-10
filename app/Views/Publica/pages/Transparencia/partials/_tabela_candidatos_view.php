@@ -50,7 +50,7 @@ $colspan += 3; // Nascimento + Pontuação + Situação
             <th>Class</th>
             <th width="40%">Nome</th>
             <th width="20%">Cargo</th>
-            <th>Edital</th>
+            <th>Processos</th>
 
             <!-- Critérios dinâmicos de desempate -->
             <?php if ($usaDesempateDinamico && !empty($colunasDinamicas)): ?>
@@ -88,7 +88,15 @@ $colspan += 3; // Nascimento + Pontuação + Situação
     <td><?= esc($c->ds_posicao) ?></td>
     <td><?= esc($c->ds_nome_candidato) ?></td>
     <td><?= esc($c->ds_nome_cargo) ?></td>
-    <td><?= esc($c->ds_nome_edital) ?></td>
+    <td>
+        <?php
+        $numProc = $c->nm_numero_processo ?? '';
+        $anoProc = $c->nm_ano_processo ?? '';
+        echo $numProc !== '' && $anoProc !== ''
+            ? esc(formatarNumeroEdital((string) $numProc . (string) $anoProc) ?? ($c->ds_nome_edital ?? ''))
+            : esc($c->ds_nome_edital ?? '');
+        ?>
+    </td>
 
     <!-- Critérios dinâmicos de desempate -->
     <?php if ($usaDesempateDinamico && !empty($colunasDinamicas)): ?>

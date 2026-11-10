@@ -1,45 +1,28 @@
-Editais Controller (Tests\Unit\Controllers\Publica\EditaisController)
- [x] Pagina editais renderiza com filtros padrao
- [x] Filtro situacao encerrados eh respeitado
- [x] Filtro por cargo renderiza opcoes
- [x] Retificacao eh exibida com badge vigente
+Desempate Config DTO (Tests\Admin\Services\Classificacao\DesempateConfigDTO)
+ [x] Chave score pontuacao total
+ [x] Chave score experiencia especifica
+ [x] Chave score escolaridade especifica
+ [x] Chave score idade
+ [x] Chave score pne
+ [x] Chave score tipo desconhecido lanca excecao
 
-Processos Seletivos DTO (Tests\Unit\DTOs\Admin\ProcessosSeletivosDTO)
- [x] Construtor
- [x] From array
- [x] To array sem id
- [x] To array com id
+Disparo Classificacao Service (Tests\Admin\Services\Classificacao\DisparoClassificacaoService)
+ [x] Disparo preliminar atualiza situacao e reprocessa
+ [x] Disparo homologacao insere situacao quando nao existe
+ [x] Disparo com tipo invalido lanca excecao
+ [x] Disparo por nao administrador lanca excecao
+ [x] Disparo com usuario inexistente lanca excecao
 
-Prorrogacao Processo Enum (Tests\Unit\Enums\Admin\ProrrogacaoProcessoEnum)
- [x] Valores enum
- [x] Labels
+Ordenacao Dinamica Service (Tests\Admin\Services\Classificacao\OrdenacaoDinamicaService)
+ [x] Ordenacao por pontuacao total desc
+ [x] Desempate por experiencias
+ [x] Desempate por idade asc mais velho primeiro
+ [x] Desempate por pne desc
+ [x] Atribuicao de posicoes
 
-Situacao Processos Enum (Tests\Unit\Enums\Admin\SituacaoProcessosEnum)
- [x] Valores enum
- [x] Labels
- [x] Try from valor valido
- [x] Try from valor invalido
-
-Editais Publico Service (Tests\Unit\Services\Editais\EditaisPublicoService)
- [x] Listar editais retorna estrutura esperada
- [x] Filtro situacao encerrados oculta abertos
- [x] Filtro por secretaria
- [x] Filtro por cargo
- [x] Retificacoes sao exibidas separadas do edital
- [x] Listar editais vazio quando nenhum processo
- [x] Obter secretarias filtro
- [x] Obter cargos filtro
-
-Processos Seletivos Rules (Tests\Unit\Validation\ProcessosSeletivosRules)
- [x] Apenas numeros com valor valido
- [x] Apenas numeros com valor invalido
- [x] Ano atual ou futuro com ano atual
- [x] Ano atual ou futuro com ano futuro
- [x] Ano atual ou futuro com ano passado
- [x] Ano atual ou futuro com valor invalido
- [x] Data fim maior igual inicio com data fim igual
- [x] Data fim maior igual inicio com data fim maior
- [x] Data fim maior igual inicio com data fim menor
- [x] Data fim maior igual inicio com parametro ausente
- [x] Data fim maior igual inicio com valor vazio
+Pontuacao Calculator Service (Tests\Admin\Services\Classificacao\PontuacaoCalculatorService)
+ [x] Aplicar teto preserva pontuacao abaixo do limite
+ [x] Aplicar teto limita pontuacao acima do limite
+ [x] Aplicar teto sem limite preserva pontuacao
+ [x] Aplicar teto zero nao limita
 
