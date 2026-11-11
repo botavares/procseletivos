@@ -10,8 +10,8 @@ class AddTipoClassificacaoToTbClassificacao extends Migration
 {
     public function up(): void
     {
-        if (! ->db->fieldExists('ds_tipo_classificacao', 'tb_classificacao')) {
-            ->forge->addColumn('tb_classificacao', [
+        if (! $this->db->fieldExists('ds_tipo_classificacao', 'tb_classificacao')) {
+            $this->forge->addColumn('tb_classificacao', [
                 'ds_tipo_classificacao' => [
                     'type'       => 'VARCHAR',
                     'constraint' => 20,
@@ -25,8 +25,8 @@ class AddTipoClassificacaoToTbClassificacao extends Migration
 
     public function down(): void
     {
-        if (->db->fieldExists('ds_tipo_classificacao', 'tb_classificacao')) {
-            ->forge->dropColumn('tb_classificacao', 'ds_tipo_classificacao');
+        if ($this->db->fieldExists('ds_tipo_classificacao', 'tb_classificacao')) {
+            $this->forge->dropColumn('tb_classificacao', 'ds_tipo_classificacao');
         }
     }
 }

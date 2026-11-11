@@ -172,6 +172,7 @@ class ProcessosDocumentos extends BaseController
 
             $rules = [
                 'fk_processo_referencia'  => 'required|integer',
+                'fk_id_secretaria'        => 'required|integer',
                 'nm_tipo'                 => 'required|integer|in_list[1,2,3,4,5,6,7]',
                 'nm_numero_documento'     => 'required|integer|apenas_numeros',
                 'nm_ano_documento'        => 'required|integer|ano_atual_ou_futuro',
@@ -185,6 +186,10 @@ class ProcessosDocumentos extends BaseController
                 'fk_processo_referencia' => [
                     'required' => 'O campo Processo de Referência é obrigatório.',
                     'integer'  => 'O campo Processo de Referência deve ser um número inteiro.',
+                ],
+                'fk_id_secretaria' => [
+                    'required' => 'A secretaria vinculada não foi identificada.',
+                    'integer'  => 'A secretaria vinculada deve ser um número inteiro.',
                 ],
                 'nm_tipo' => [
                     'required' => 'O campo Tipo é obrigatório.',
@@ -206,7 +211,7 @@ class ProcessosDocumentos extends BaseController
                     'max_length' => 'O campo Código Oficial deve ter no máximo 255 caracteres.',
                 ],
                 'ds_arquivo' => [
-                    'arquivo_pdf_condicional' => 'O arquivo PDF é obrigatório para Edital de Abertura, Retificação e Republicação Consolidada.',
+                    'arquivo_pdf_condicional' => 'O arquivo PDF é obrigatório apenas para Edital de Abertura e Retificação.',
                 ],
                 'nm_versao_vigente' => [
                     'required'            => 'O campo Versão Vigente é obrigatório.',
@@ -221,10 +226,13 @@ class ProcessosDocumentos extends BaseController
             ];
 
             if (!$this->validate($rules, $messages)) {
+                $erros = $this->validator->getErrors();
+                log_message('warning', '[ProcessosDocumentos::registrar] Validação falhou: ' . json_encode($erros));
                 return redirect()
                     ->back()
                     ->withInput()
-                    ->with('errors', $this->validator->getErrors());
+                    ->with('errors', $erros)
+                    ->with('mensagemError', 'Verifique os campos destacados e tente novamente.');
             }
 
             $fkProcessoReferencia = (int) $this->request->getPost('fk_processo_referencia');
@@ -293,8 +301,14 @@ class ProcessosDocumentos extends BaseController
                 $arquivoNome = $arquivoAtual;
             }
 
+            $fkIdSecretariaPost = (int) $this->request->getPost('fk_id_secretaria');
+            if ($fkIdSecretariaPost <= 0) {
+                $fkIdSecretariaPost = $fkIdSecretaria;
+            }
+
             $dto = new ProcessosDocumentosDTO(
                 idDocumento: $acao === 'update' ? (int) $this->request->getPost('pk_id_documento') : null,
+                secretaria: $fkIdSecretariaPost,
                 processoReferencia: $fkProcessoReferencia,
                 tipo: $tipoDocumento,
                 numeroDocumento: (int) $this->request->getPost('nm_numero_documento'),
@@ -319,12 +333,15 @@ class ProcessosDocumentos extends BaseController
             $returnTo = $this->request->getPost('return_to');
             $returnUrl = $returnTo ?: 'ProcessosDocumentos';
 
+            $idSalvo = $dto->idDocumento ?? $id ?? null;
+            log_message('info', '[ProcessosDocumentos::registrar] Registro salvo com sucesso. Ação: ' . $acao . ', ID: ' . ($idSalvo ?? 'novo'));
+
             return redirect()
                 ->to(base_url_adm($returnUrl))
                 ->with('mensagemSuccess', 'Registro salvo com sucesso');
 
-        } catch (\Exception $e) {
-            log_message('error', '[ProcessosDocumentos::registrar] ERRO: ' . $e->getMessage());
+        } catch (\Throwable $e) {
+            log_message('error', '[ProcessosDocumentos::registrar] ERRO: ' . $e->getMessage() . "\n" . $e->getTraceAsString());
             return redirect()
                 ->back()
                 ->withInput()

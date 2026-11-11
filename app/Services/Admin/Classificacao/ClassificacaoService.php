@@ -23,7 +23,7 @@ class ClassificacaoService
      * Reprocessa a classificacao completa.
      * Agora detecta automaticamente se o cargo possui desempate dinamico.
      */
-    public function reprocessar(int $processo, int $cargo, ?int $secretaria = null): void
+    public function reprocessar(int $processo, int $cargo, ?int $secretaria = null, ?string $tipo = null): void
     {
         $db = Database::connect();
 
@@ -36,6 +36,12 @@ class ClassificacaoService
         }
 
         $dados = $processor->processar($processo, $cargo);
+
+        if ($tipo !== null) {
+            foreach ($dados as $i => $row) {
+                $dados[$i]['ds_tipo_classificacao'] = $tipo;
+            }
+        }
 
         $persist->salvar($processo, $cargo, $dados, $secretaria);
     }

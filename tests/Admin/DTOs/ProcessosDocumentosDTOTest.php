@@ -16,6 +16,7 @@ final class ProcessosDocumentosDTOTest extends CIUnitTestCase
     {
         $data = [
             'pk_id_documento'         => 10,
+            'fk_id_secretaria'      => 3,
             'fk_processo_referencia'  => 5,
             'nm_tipo'                 => 1,
             'nm_numero_documento'     => 123,
@@ -31,6 +32,7 @@ final class ProcessosDocumentosDTOTest extends CIUnitTestCase
         $dto = ProcessosDocumentosDTO::fromArray($data);
 
         $this->assertSame(10, $dto->idDocumento);
+        $this->assertSame(3, $dto->secretaria);
         $this->assertSame(5, $dto->processoReferencia);
         $this->assertSame(1, $dto->tipo);
         $this->assertSame(123, $dto->numeroDocumento);
@@ -47,6 +49,7 @@ final class ProcessosDocumentosDTOTest extends CIUnitTestCase
     {
         $dto = new ProcessosDocumentosDTO(
             idDocumento: null,
+            secretaria: 3,
             processoReferencia: 1,
             tipo: 1,
             numeroDocumento: 100,
@@ -62,10 +65,12 @@ final class ProcessosDocumentosDTOTest extends CIUnitTestCase
         $array = $dto->toArray();
 
         $this->assertArrayHasKey('pk_id_documento', $array);
+        $this->assertArrayHasKey('fk_id_secretaria', $array);
         $this->assertArrayHasKey('fk_processo_referencia', $array);
         $this->assertArrayHasKey('nm_tipo', $array);
         $this->assertArrayHasKey('dt_data_publicacao', $array);
         $this->assertNull($array['pk_id_documento']);
+        $this->assertSame(3, $array['fk_id_secretaria']);
         $this->assertSame(1, $array['fk_processo_referencia']);
         $this->assertSame('2026-10-28 10:00:00', $array['dt_data_publicacao']);
     }
@@ -73,6 +78,7 @@ final class ProcessosDocumentosDTOTest extends CIUnitTestCase
     public function testFromArraySemIdDocumento(): void
     {
         $dto = ProcessosDocumentosDTO::fromArray([
+            'fk_id_secretaria' => 1,
             'fk_processo_referencia' => 1,
             'nm_tipo' => 2,
             'nm_numero_documento' => 1,

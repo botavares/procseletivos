@@ -28,7 +28,8 @@ class ClassificacaoModel extends Model
         'nr_total_aperfeicoamentos',
         'dt_nascimento',
         'dt_processamento',
-        'ds_possui_pne'
+        'ds_possui_pne',
+        'ds_tipo_classificacao'
     ];
 
     protected $validationRules = [];

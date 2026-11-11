@@ -62,7 +62,7 @@ class DisparoClassificacaoService
 
         $this->atualizarSituacaoProcesso($processo, $novaSituacao);
 
-        $this->classificacaoService->reprocessar($processo, $cargo);
+        $this->classificacaoService->reprocessar($processo, $cargo, null, $tipo);
 
         $this->registrarLog(
             $processo,

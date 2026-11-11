@@ -8,6 +8,7 @@ readonly class ProcessosDocumentosDTO
 {
     public function __construct(
         public ?int $idDocumento,
+        public int $secretaria,
         public int $processoReferencia,
         public int $tipo,
         public int $numeroDocumento,
@@ -18,12 +19,18 @@ readonly class ProcessosDocumentosDTO
         public int $versaoVigente,
         public int $documentoRetificado,
         public ?string $dataPublicacao = null,
-    ) {}
+        public ?string $dataSubstituicao = null
+    ) {
+        if ($this->secretaria <= 0) {
+            throw new \InvalidArgumentException('A secretaria vinculada ao documento é obrigatória.');
+        }
+    }
 
     public static function fromArray(array $data): self
     {
         return new self(
             idDocumento: isset($data['pk_id_documento']) ? (int) $data['pk_id_documento'] : null,
+            secretaria: (int) ($data['fk_id_secretaria'] ?? 0),
             processoReferencia: (int) ($data['fk_processo_referencia'] ?? 0),
             tipo: (int) ($data['nm_tipo'] ?? 0),
             numeroDocumento: (int) ($data['nm_numero_documento'] ?? 0),
@@ -34,6 +41,7 @@ readonly class ProcessosDocumentosDTO
             versaoVigente: (int) ($data['nm_versao_vigente'] ?? 0),
             documentoRetificado: (int) ($data['nm_documento_retificado'] ?? 0),
             dataPublicacao: isset($data['dt_data_publicacao']) ? (string) $data['dt_data_publicacao'] : null,
+            dataSubstituicao: isset($data['dt_data_substituicao']) ? (string) $data['dt_data_substituicao'] : null
         );
     }
 
@@ -41,6 +49,7 @@ readonly class ProcessosDocumentosDTO
     {
         return [
             'pk_id_documento'         => $this->idDocumento,
+            'fk_id_secretaria'        => $this->secretaria,
             'fk_processo_referencia'  => $this->processoReferencia,
             'nm_tipo'                 => $this->tipo,
             'nm_numero_documento'     => $this->numeroDocumento,
@@ -51,6 +60,7 @@ readonly class ProcessosDocumentosDTO
             'nm_versao_vigente'       => $this->versaoVigente,
             'nm_documento_retificado' => $this->documentoRetificado,
             'dt_data_publicacao'      => $this->dataPublicacao,
+            'dt_data_substituicao'    => $this->dataSubstituicao,
         ];
     }
 }

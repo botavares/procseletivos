@@ -23,6 +23,13 @@
 						<div class="alert alert-danger alert-dismissible fade show mb-3 py-2">
 							<button type="button" class="close" data-dismiss="alert"></button>
 							<?= esc(session('mensagemError')) ?>
+							<?php if (session()->has('errors')): ?>
+								<ul class="mb-0 pl-3 mt-2">
+									<?php foreach (session('errors') as $erro): ?>
+										<li><?= esc($erro) ?></li>
+									<?php endforeach; ?>
+								</ul>
+							<?php endif; ?>
 						</div>
 					<?php endif; ?>
 
@@ -38,6 +45,8 @@
 								  enctype="multipart/form-data">
 								<input type="hidden" name="acao" id="acao" value="<?= esc($acao) ?>" />
 								<input type="hidden" name="pk_id_documento" value="<?= esc($dados->pk_id_documento ?? '') ?>" />
+								<input type="hidden" name="fk_id_secretaria" id="fk_id_secretaria" value="<?= esc(session('fk_id_secretaria') ?? '') ?>" />
+								<input type="hidden" name="ds_arquivo_atual" value="<?= esc($dados->ds_arquivo ?? '') ?>" />
 								<input type="hidden" name="return_to" value="<?= esc($returnUrl ?? '') ?>" />
 								<input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
 
@@ -109,20 +118,10 @@
 										<label for="nm_documento_retificado">Documento a Retificar</label>
 										<select class="form-control" id="nm_documento_retificado" name="nm_documento_retificado">
 											<option value="0">Selecione...</option>
-											<?php foreach ($processos as $proc): ?>
-												<?php
-													$selected = '';
-													if (old('nm_documento_retificado')) {
-														$selected = old('nm_documento_retificado') == $proc->pk_id_processo ? 'selected' : '';
-													} elseif (!empty($dados->nm_documento_retificado)) {
-														$selected = $dados->nm_documento_retificado == $proc->pk_id_processo ? 'selected' : '';
-													}
-												?>
-												<option value="<?= $proc->pk_id_processo ?>" <?= $selected ?>>
-													<?= esc(formatarNumeroEdital(($proc->nm_numero_processo ?? '') . ($proc->nm_ano_processo ?? ''))) ?>
-												</option>
-											<?php endforeach; ?>
 										</select>
+										<small id="avisoSemEdital" class="form-text text-danger" style="display: none;">
+											Não existe Edital de Abertura para este processo.
+										</small>
 									</div>
 								</div>
 
@@ -247,6 +246,7 @@
 									const processoSelect = document.getElementById('fk_processo_referencia');
 									const numeroDocInput = document.getElementById('nm_numero_documento');
 									const anoDocInput = document.getElementById('nm_ano_documento');
+									const grupoArquivo = arquivoInput.closest('.form-group');
 
 									// Dados dos processos seletivos para autopreenchimento
 									const processos = <?php echo json_encode(array_map(fn($p) => [
@@ -255,13 +255,56 @@
 										'ano' => (int) $p->nm_ano_processo,
 									], $processos ?? [])) ?>;
 
-									// Tipos que exigem arquivo obrigatorio: 1 (Edital Abertura), 2 (Retificacao), 7 (Republicacao Consolidada)
-									const tiposComArquivoObrigatorio = ['1', '2', '7'];
-									// Versao vigente so para editais e republicacao consolidada: 1 e 7
-									const tiposComVersaoVigente = ['1', '7'];
+									// Documentos do processo selecionado para autopreenchimento da retificacao
+									const documentosProcesso = <?php echo json_encode(array_map(fn($d) => [
+										'id' => (int) $d->pk_id_documento,
+										'tipo' => (int) $d->nm_tipo,
+										'numero' => (int) $d->nm_numero_documento,
+										'ano' => (int) $d->nm_ano_documento,
+										'label' => ($d->tipo_label ?? 'Documento'),
+									], $documentosProcesso ?? [])) ?>;
+
+									const retificarInicial = <?= json_encode((int) old('nm_documento_retificado', $dados->nm_documento_retificado ?? 0)) ?>;
+									const avisoSemEdital = document.getElementById('avisoSemEdital');
+
+									// Tipos que exigem arquivo obrigatorio: 1 (Edital Abertura) e 2 (Retificacao)
+									const tiposComArquivoObrigatorio = ['1', '2'];
+									// Versao vigente so para edital de abertura
+									const tiposComVersaoVigente = ['1'];
 
 									function buscarProcesso(id) {
 										return processos.find(p => p.id === id) || null;
+									}
+
+									function buscarEditaisDoProcesso() {
+										return documentosProcesso.filter(d => d.tipo === 1);
+									}
+
+									function atualizarSelectRetificar() {
+										retificarSelect.innerHTML = '<option value="0">Selecione...</option>';
+										const editais = buscarEditaisDoProcesso();
+
+										if (editais.length === 0) {
+											avisoSemEdital.style.display = '';
+											retificarSelect.value = '0';
+											return;
+										}
+
+										avisoSemEdital.style.display = 'none';
+										editais.forEach(edital => {
+											const option = document.createElement('option');
+											option.value = edital.id;
+											option.textContent = edital.label + ' ' + edital.numero + '/' + edital.ano;
+											retificarSelect.appendChild(option);
+										});
+
+										// Prefere valor ja preenchido (old/dados); senao seleciona o ultimo edital
+										const idsEditais = editais.map(e => e.id);
+										if (retificarInicial > 0 && idsEditais.includes(retificarInicial)) {
+											retificarSelect.value = String(retificarInicial);
+										} else {
+											retificarSelect.value = String(editais[editais.length - 1].id);
+										}
 									}
 
 									function definirReadOnlyCamposDoc(readOnly) {
@@ -289,11 +332,14 @@
 
 										// Arquivo obrigatorio?
 										if (tiposComArquivoObrigatorio.includes(tipo)) {
+											grupoArquivo.style.display = '';
 											arquivoInput.setAttribute('required', 'required');
-											arquivoInput.closest('.form-group').querySelector('label').innerHTML = 'Arquivo (PDF) <span class="text-danger">*</span>';
+											grupoArquivo.querySelector('label').innerHTML = 'Arquivo (PDF) <span class="text-danger">*</span>';
 										} else {
+											grupoArquivo.style.display = 'none';
 											arquivoInput.removeAttribute('required');
-											arquivoInput.closest('.form-group').querySelector('label').innerHTML = 'Arquivo (PDF)';
+											arquivoInput.value = '';
+											grupoArquivo.querySelector('label').innerHTML = 'Arquivo (PDF)';
 										}
 
 										// Versao vigente visivel/aplicavel?
@@ -310,14 +356,16 @@
 										if (tipo === '2') {
 											grupoRetificar.style.display = '';
 											retificarSelect.setAttribute('required', 'required');
+											atualizarSelectRetificar();
 										} else {
 											grupoRetificar.style.display = 'none';
 											retificarSelect.removeAttribute('required');
 											retificarSelect.value = '0';
+											avisoSemEdital.style.display = 'none';
 										}
 
-										// Autopreencher e bloquear Nº Documento / Ano Documento para Edital de Abertura (1)
-										if (tipo === '1') {
+										// Autopreencher e bloquear Nº Documento / Ano Documento para Edital de Abertura (1) e Retificacao (2)
+										if (tipo === '1' || tipo === '2') {
 											preencherCamposDoProcesso();
 											definirReadOnlyCamposDoc(true);
 										} else {
@@ -326,8 +374,11 @@
 									}
 
 									processoSelect.addEventListener('change', function () {
-										if (tipoSelect.value === '1') {
+										if (tipoSelect.value === '1' || tipoSelect.value === '2') {
 											preencherCamposDoProcesso();
+										}
+										if (tipoSelect.value === '2') {
+											atualizarSelectRetificar();
 										}
 									});
 

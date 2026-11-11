@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\Admin;
 
+use App\Enums\Admin\TiposDocumentosEnum;
 use CodeIgniter\Model;
 
 class ProcessosDocumentosModel extends Model
@@ -17,6 +18,7 @@ class ProcessosDocumentosModel extends Model
     protected $deletedField     = 'is_deletado';
 
     protected $allowedFields = [
+        'fk_id_secretaria',
         'fk_processo_referencia',
         'nm_tipo',
         'nm_numero_documento',
@@ -27,10 +29,12 @@ class ProcessosDocumentosModel extends Model
         'nm_versao_vigente',
         'nm_documento_retificado',
         'dt_data_publicacao',
+        'dt_data_substituicao',
     ];
 
     protected $validationRules = [
-        'fk_processo_referencia'  => 'required|integer',
+        'fk_id_secretaria'       => 'required|integer',
+        'fk_processo_referencia' => 'required|integer',
         'nm_tipo'                 => 'required|integer|in_list[1,2,3,4,5,6,7]',
         'nm_numero_documento'     => 'required|integer',
         'nm_ano_documento'        => 'required|integer',
@@ -42,6 +46,10 @@ class ProcessosDocumentosModel extends Model
     ];
 
     protected $validationMessages = [
+        'fk_id_secretaria' => [
+            'required' => 'A secretaria vinculada ao documento é obrigatória.',
+            'integer'  => 'A secretaria vinculada deve ser um número inteiro.',
+        ],
         'fk_processo_referencia' => [
             'required' => 'O campo Processo de Referência é obrigatório.',
             'integer'  => 'O campo Processo de Referência deve ser um número inteiro.',
@@ -156,7 +164,7 @@ class ProcessosDocumentosModel extends Model
     public function existeEditalAbertura(int $idProcesso, ?int $excetoId = null): bool
     {
         $builder = $this->where('fk_processo_referencia', $idProcesso)
-                       ->where('nm_tipo', 1)
+                       ->where('nm_tipo', TiposDocumentosEnum::EDITAL_ABERTURA->value)
                        ->where('is_deletado IS NULL');
 
         if ($excetoId) {
@@ -164,5 +172,17 @@ class ProcessosDocumentosModel extends Model
         }
 
         return $builder->countAllResults() > 0;
+    }
+
+    /**
+     * Retorna o edital de abertura mais recente de um processo.
+     */
+    public function buscarEditalAberturaPorProcesso(int $idProcesso): ?object
+    {
+        return $this->where('fk_processo_referencia', $idProcesso)
+                    ->where('nm_tipo', TiposDocumentosEnum::EDITAL_ABERTURA->value)
+                    ->where('is_deletado IS NULL')
+                    ->orderBy('pk_id_documento', 'DESC')
+                    ->first() ?: null;
     }
 }

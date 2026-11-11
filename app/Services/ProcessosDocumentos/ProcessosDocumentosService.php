@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services\ProcessosDocumentos;
 
 use App\DTOs\Admin\ProcessosDocumentosDTO;
+use App\Enums\Admin\TiposDocumentosEnum;
 use App\Models\Admin\ProcessosDocumentosModel;
 use App\Services\Admin\LogsService;
 
@@ -18,6 +19,10 @@ class ProcessosDocumentosService implements IProcessosDocumentos
 
     public function criar(ProcessosDocumentosDTO $dto): int
     {
+        if ($dto->tipo === TiposDocumentosEnum::RETIFICACAO->value) {
+            $dto = $this->aplicarSubstituicaoEdital($dto);
+        }
+
         $id = $this->model->insert($dto->toArray());
 
         if ($id) {
@@ -36,6 +41,10 @@ class ProcessosDocumentosService implements IProcessosDocumentos
         $anterior = $this->model->find($id);
         if (!$anterior) {
             return false;
+        }
+
+        if ($dto->tipo === TiposDocumentosEnum::RETIFICACAO->value) {
+            $dto = $this->aplicarSubstituicaoEdital($dto);
         }
 
         $atual = $dto->toArray();
@@ -126,5 +135,38 @@ class ProcessosDocumentosService implements IProcessosDocumentos
     public function existeEditalAbertura(int $idProcesso, ?int $excetoId = null): bool
     {
         return $this->model->existeEditalAbertura($idProcesso, $excetoId);
+    }
+
+    /**
+     * Para retificações, localiza o edital de abertura do processo, grava a data
+     * de substituição no edital antigo e devolve um DTO com data de publicação
+     * igual à data de substituição e vínculo ao edital retificado.
+     */
+    private function aplicarSubstituicaoEdital(ProcessosDocumentosDTO $dto): ProcessosDocumentosDTO
+    {
+        $edital = $this->model->buscarEditalAberturaPorProcesso($dto->processoReferencia);
+
+        if (!$edital) {
+            throw new \RuntimeException('Não existe Edital de Abertura para este processo. Cadastre-o antes de criar uma retificação.');
+        }
+
+        $dataAtual = date('Y-m-d H:i:s');
+        $this->model->update((int) $edital->pk_id_documento, ['dt_data_substituicao' => $dataAtual]);
+
+        return new ProcessosDocumentosDTO(
+            idDocumento:      $dto->idDocumento,
+            secretaria:       $dto->secretaria,
+            processoReferencia: $dto->processoReferencia,
+            tipo:             $dto->tipo,
+            numeroDocumento:  $dto->numeroDocumento,
+            anoDocumento:     $dto->anoDocumento,
+            codigoOficial:    $dto->codigoOficial,
+            link:             $dto->link,
+            arquivo:          $dto->arquivo,
+            versaoVigente:    0,
+            documentoRetificado: (int) $edital->pk_id_documento,
+            dataPublicacao:   $dataAtual,
+            dataSubstituicao: null,
+        );
     }
 }

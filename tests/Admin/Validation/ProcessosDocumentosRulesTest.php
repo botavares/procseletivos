@@ -5,7 +5,12 @@ declare(strict_types=1);
 namespace Tests\Admin\Validation;
 
 use App\Validation\ProcessosDocumentosRules;
+use CodeIgniter\HTTP\IncomingRequest;
+use CodeIgniter\HTTP\URI;
+use CodeIgniter\HTTP\UserAgent;
 use CodeIgniter\Test\CIUnitTestCase;
+use Config\App;
+use Config\Services;
 
 /**
  * @internal
@@ -87,6 +92,18 @@ final class ProcessosDocumentosRulesTest extends CIUnitTestCase
         $this->assertFalse($this->rules->arquivo_pdf_condicional('', null, $data));
     }
 
+    public function testArquivoPdfCondicionalAceitaPdfParaRetificacao(): void
+    {
+        $data = ['nm_tipo' => '2'];
+        $this->assertTrue($this->rules->arquivo_pdf_condicional('doc.pdf', null, $data));
+    }
+
+    public function testArquivoPdfCondicionalRejeitaVazioParaRetificacao(): void
+    {
+        $data = ['nm_tipo' => '2'];
+        $this->assertFalse($this->rules->arquivo_pdf_condicional('', null, $data));
+    }
+
     public function testArquivoPdfCondicionalRejeitaArquivoParaComunicado(): void
     {
         $data = ['nm_tipo' => '6'];
@@ -133,5 +150,36 @@ final class ProcessosDocumentosRulesTest extends CIUnitTestCase
     {
         $data = ['nm_tipo' => '2'];
         $this->assertTrue($this->rules->documento_retificado_regra('5', null, $data));
+    }
+
+    public function testDocumentoRetificadoRegraUsaRequestQuandoDataVazio(): void
+    {
+        $request = new IncomingRequest(new App(), new URI('http://example.com'), 'php://input', new UserAgent());
+        $request->setMethod('POST');
+        $request->setGlobal('post', ['nm_tipo' => '2']);
+        Services::injectMock('request', $request);
+
+        // Sem $data a regra faz fallback no request POST
+        $this->assertTrue($this->rules->documento_retificado_regra('5', null, []));
+    }
+
+    public function testVersaoVigenteRegraUsaRequestQuandoDataVazio(): void
+    {
+        $request = new IncomingRequest(new App(), new URI('http://example.com'), 'php://input', new UserAgent());
+        $request->setMethod('POST');
+        $request->setGlobal('post', ['nm_tipo' => '2']);
+        Services::injectMock('request', $request);
+
+        $this->assertTrue($this->rules->versao_vigente_regra('0', null, []));
+    }
+
+    public function testArquivoPdfCondicionalUsaRequestQuandoDataVazio(): void
+    {
+        $request = new IncomingRequest(new App(), new URI('http://example.com'), 'php://input', new UserAgent());
+        $request->setMethod('POST');
+        $request->setGlobal('post', ['nm_tipo' => '2']);
+        Services::injectMock('request', $request);
+
+        $this->assertTrue($this->rules->arquivo_pdf_condicional('doc.pdf', null, []));
     }
 }

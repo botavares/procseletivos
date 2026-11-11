@@ -116,7 +116,21 @@ class ProcessosSeletivos extends BaseController
         $editais = array_values(array_filter($documentosFormatados, fn($d) => $d['tipo_id'] == TiposDocumentosEnum::EDITAL_ABERTURA->value));
         $retificacoes = array_values(array_filter($documentosFormatados, fn($d) => $d['tipo_id'] == TiposDocumentosEnum::RETIFICACAO->value));
         $resultados = array_values(array_filter($documentosFormatados, fn($d) => in_array($d['tipo_id'], [TiposDocumentosEnum::RESULTADO_PARCIAL->value, TiposDocumentosEnum::HOMOLOGACAO->value])));
-        
+
+        // Em "Edital e retificações", unir editais e retificações em uma única lista
+        // ordenada do mais novo para o mais antigo (maior ID primeiro). Apenas o
+        // documento mais recente recebe a tag "Vigente".
+        $editaisERetificacoes = array_merge($editais, $retificacoes);
+        usort($editaisERetificacoes, fn($a, $b) => $b['id'] <=> $a['id']);
+
+        if (!empty($editaisERetificacoes)) {
+            $editaisERetificacoes[0]['vigente'] = true;
+
+            for ($i = 1; $i < count($editaisERetificacoes); $i++) {
+                $editaisERetificacoes[$i]['vigente'] = false;
+            }
+        }
+
 
         
         $parametros = [
@@ -136,10 +150,9 @@ class ProcessosSeletivos extends BaseController
             'situacaoId'    => $situacaoId,
             'tagClass'      => $tagClass,
             'tagLabel'      => $tagLabel,
-            'cargos'        => $cargosDoProcesso,
-            'editais'       => $editais,
-            'retificacoes'  => $retificacoes,
-            'resultados'    => $resultados,
+            'cargos'             => $cargosDoProcesso,
+            'editaisERetificacoes' => $editaisERetificacoes,
+            'resultados'         => $resultados,
             'convocacoes'   => [],
             'contratos'     => [],
             'dataAtual'     => date('d/m/Y'),

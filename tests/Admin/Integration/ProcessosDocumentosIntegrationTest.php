@@ -47,6 +47,7 @@ final class ProcessosDocumentosIntegrationTest extends CIUnitTestCase
         $this->dbConnection->query("
             CREATE TABLE IF NOT EXISTS db_tb_processos_documentos (
                 pk_id_documento INTEGER PRIMARY KEY AUTOINCREMENT,
+                fk_id_secretaria INTEGER,
                 fk_processo_referencia INTEGER NOT NULL,
                 nm_tipo INTEGER NOT NULL DEFAULT 0,
                 nm_numero_documento INTEGER NOT NULL,
@@ -57,6 +58,7 @@ final class ProcessosDocumentosIntegrationTest extends CIUnitTestCase
                 nm_versao_vigente INTEGER NOT NULL DEFAULT 0,
                 nm_documento_retificado INTEGER NOT NULL DEFAULT 0,
                 dt_data_publicacao TEXT,
+                dt_data_substituicao TEXT,
                 is_deletado TEXT
             )
         ");
@@ -95,6 +97,7 @@ final class ProcessosDocumentosIntegrationTest extends CIUnitTestCase
     {
         $dto = new ProcessosDocumentosDTO(
             idDocumento: null,
+            secretaria: 1,
             processoReferencia: 1,
             tipo: TiposDocumentosEnum::EDITAL_ABERTURA->value,
             numeroDocumento: 100,
@@ -113,6 +116,7 @@ final class ProcessosDocumentosIntegrationTest extends CIUnitTestCase
 
         $registro = $this->model->find($id);
         $this->assertNotNull($registro);
+        $this->assertSame(1, (int) $registro->fk_id_secretaria);
         $this->assertSame(100, (int) $registro->nm_numero_documento);
         $this->assertSame(2026, (int) $registro->nm_ano_documento);
         $this->assertSame('COD-001', $registro->ds_codigo_oficial);
@@ -123,6 +127,7 @@ final class ProcessosDocumentosIntegrationTest extends CIUnitTestCase
     {
         $dto = new ProcessosDocumentosDTO(
             idDocumento: null,
+            secretaria: 1,
             processoReferencia: 1,
             tipo: TiposDocumentosEnum::EDITAL_ABERTURA->value,
             numeroDocumento: 100,
@@ -139,6 +144,7 @@ final class ProcessosDocumentosIntegrationTest extends CIUnitTestCase
 
         $dtoAtualizado = new ProcessosDocumentosDTO(
             idDocumento: $id,
+            secretaria: 1,
             processoReferencia: 1,
             tipo: TiposDocumentosEnum::EDITAL_ABERTURA->value,
             numeroDocumento: 101,
@@ -163,6 +169,7 @@ final class ProcessosDocumentosIntegrationTest extends CIUnitTestCase
     {
         $dto = new ProcessosDocumentosDTO(
             idDocumento: null,
+            secretaria: 1,
             processoReferencia: 1,
             tipo: TiposDocumentosEnum::EDITAL_ABERTURA->value,
             numeroDocumento: 100,
@@ -188,5 +195,77 @@ final class ProcessosDocumentosIntegrationTest extends CIUnitTestCase
         $registroDeletado = $this->model->withDeleted()->find($id);
         $this->assertNotNull($registroDeletado);
         $this->assertNotNull($registroDeletado->is_deletado);
+    }
+
+    public function testRetificacaoAtualizaEditalDeAbertura(): void
+    {
+        // Cria edital de abertura
+        $edital = new ProcessosDocumentosDTO(
+            idDocumento: null,
+            secretaria: 1,
+            processoReferencia: 1,
+            tipo: TiposDocumentosEnum::EDITAL_ABERTURA->value,
+            numeroDocumento: 999,
+            anoDocumento: 2026,
+            codigoOficial: 'COD-EDITAL',
+            link: 'https://exemplo.com',
+            arquivo: 'edital.pdf',
+            versaoVigente: 1,
+            documentoRetificado: 0,
+            dataPublicacao: '2026-10-28 10:00:00',
+        );
+
+        $idEdital = $this->service->criar($edital);
+        $this->assertGreaterThan(0, $idEdital);
+
+        // Cria retificacao
+        $retificacao = new ProcessosDocumentosDTO(
+            idDocumento: null,
+            secretaria: 1,
+            processoReferencia: 1,
+            tipo: TiposDocumentosEnum::RETIFICACAO->value,
+            numeroDocumento: 999,
+            anoDocumento: 2026,
+            codigoOficial: 'COD-RETIFICACAO',
+            link: 'https://exemplo.com',
+            arquivo: 'retificacao.pdf',
+            versaoVigente: 0,
+            documentoRetificado: 0,
+        );
+
+        $idRetificacao = $this->service->criar($retificacao);
+        $this->assertGreaterThan(0, $idRetificacao);
+
+        $registroEdital = $this->model->find($idEdital);
+        $registroRetificacao = $this->model->find($idRetificacao);
+
+        // Edital antigo deve ter data de substituicao preenchida
+        $this->assertNotNull($registroEdital->dt_data_substituicao);
+        // Nova retificacao deve ter data de publicacao igual a data de substituicao do edital
+        $this->assertSame($registroEdital->dt_data_substituicao, $registroRetificacao->dt_data_publicacao);
+        // Retificacao deve estar vinculada ao edital antigo
+        $this->assertSame($idEdital, (int) $registroRetificacao->nm_documento_retificado);
+    }
+
+    public function testRetificacaoSemEditalDeAberturaLancaExcecao(): void
+    {
+        $retificacao = new ProcessosDocumentosDTO(
+            idDocumento: null,
+            secretaria: 1,
+            processoReferencia: 1,
+            tipo: TiposDocumentosEnum::RETIFICACAO->value,
+            numeroDocumento: 999,
+            anoDocumento: 2026,
+            codigoOficial: 'COD-RETIFICACAO',
+            link: 'https://exemplo.com',
+            arquivo: 'retificacao.pdf',
+            versaoVigente: 0,
+            documentoRetificado: 0,
+        );
+
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Não existe Edital de Abertura para este processo.');
+
+        $this->service->criar($retificacao);
     }
 }

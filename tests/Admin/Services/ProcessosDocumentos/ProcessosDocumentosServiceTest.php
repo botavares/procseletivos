@@ -161,18 +161,51 @@ final class ProcessosDocumentosServiceTest extends CIUnitTestCase
         $this->assertSame($esperado, $resultado);
     }
 
-    private function criarDto(?int $id = null): ProcessosDocumentosDTO
+    public function testCriarRetificacaoAtualizaEditalDeAbertura(): void
+    {
+        $edital = (object) [
+            'pk_id_documento' => 10,
+            'fk_processo_referencia' => 1,
+            'nm_tipo' => 1,
+            'nm_numero_documento' => 123,
+            'nm_ano_documento' => 2026,
+        ];
+
+        $this->modelMock->method('buscarEditalAberturaPorProcesso')
+            ->with(1)
+            ->willReturn($edital);
+        $this->modelMock->method('update')
+            ->with(10, $this->callback(function ($data) {
+                return isset($data['dt_data_substituicao']);
+            }));
+        $this->modelMock->method('insert')
+            ->with($this->callback(function (array $data) {
+                return $data['nm_documento_retificado'] === 10
+                    && $data['dt_data_publicacao'] !== null
+                    && $data['nm_versao_vigente'] === 0
+                    && $data['fk_id_secretaria'] === 1;
+            }))
+            ->willReturn(20);
+
+        $dto = $this->criarDto(tipo: 2, versaoVigente: 0);
+
+        $id = $this->service->criar($dto);
+        $this->assertSame(20, $id);
+    }
+
+    private function criarDto(?int $id = null, int $tipo = 1, int $versaoVigente = 1): ProcessosDocumentosDTO
     {
         return new ProcessosDocumentosDTO(
             idDocumento: $id,
+            secretaria: 1,
             processoReferencia: 1,
-            tipo: 1,
+            tipo: $tipo,
             numeroDocumento: 123,
             anoDocumento: 2026,
             codigoOficial: 'COD-001',
             link: 'https://exemplo.com',
             arquivo: 'doc.pdf',
-            versaoVigente: 1,
+            versaoVigente: $versaoVigente,
             documentoRetificado: 0,
             dataPublicacao: '2026-10-28 10:00:00',
         );

@@ -100,37 +100,28 @@ Painéis
     <!-- Edital e retificações -->
     <h4 class="home-sub">Edital e retificações</h4>
     <div class="home-box" style="padding:4px 18px">
-        <?php if (!empty($editais) || !empty($retificacoes)) : ?>
-            <?php foreach ($editais as $edital) : ?>
+        <?php if (!empty($editaisERetificacoes)) : ?>
+            <?php foreach ($editaisERetificacoes as $doc) : ?>
                 <div class="home-doc">
                     <div>
                         <div class="home-doc__d">
-                            <b>Edital nº <?= esc($edital['numero_formatado']) ?></b> — versão original
-                            <?php if ($edital['vigente']) : ?>
+                            <?php if ($doc['tipo_id'] == 1) : ?>
+                                <b>Edital nº <?= esc($doc['numero_formatado']) ?></b> — versão original
+                            <?php else : ?>
+                                <b>Retificação nº <?= esc($doc['numero_formatado']) ?></b>
+                            <?php endif; ?>
+                            <?php if ($doc['vigente']) : ?>
                                 <span class="home-mini home-mini--vig">VIGENTE</span>
                             <?php endif; ?>
                         </div>
-                        <div class="home-doc__dt">Código oficial: <?= esc($edital['codigo']) ?></div>
+                        <div class="home-doc__dt">Código oficial: <?= esc($doc['codigo']) ?></div>
                     </div>
-                    <?php if (!empty($edital['arquivo'])) : ?>
-                        <a href="<?= site_url('ProcessosSeletivos/obterEdital/original/' . $edital['arquivo']) ?>" class="home-btn home-btn--outline">Ver edital (PDF) ↗</a>
-                    <?php endif; ?>
-                </div>
-            <?php endforeach; ?>
-            
-            <?php foreach ($retificacoes as $ret) : ?>
-                <div class="home-doc">
-                    <div>
-                        <div class="home-doc__d">
-                            <b>Retificação nº <?= esc($ret['numero_formatado']) ?></b>
-                            <?php if ($ret['vigente']) : ?>
-                                <span class="home-mini home-mini--vig">VIGENTE</span>
-                            <?php endif; ?>
-                        </div>
-                        <div class="home-doc__dt">Código oficial: <?= esc($ret['codigo']) ?></div>
-                    </div>
-                    <?php if (!empty($ret['arquivo'])) : ?>
-                        <a href="<?= site_url('ProcessosSeletivos/obterEdital/retificacoes/' . $ret['arquivo']) ?>" class="home-btn home-btn--outline">Ver retificação (PDF) ↗</a>
+                    <?php if (!empty($doc['arquivo'])) : ?>
+                        <?php if ($doc['tipo_id'] == 1) : ?>
+                            <a href="<?= site_url('ProcessosSeletivos/obterEdital/original/' . $doc['arquivo']) ?>" class="home-btn home-btn--outline">Ver edital (PDF) ↗</a>
+                        <?php else : ?>
+                            <a href="<?= site_url('ProcessosSeletivos/obterEdital/retificacoes/' . $doc['arquivo']) ?>" class="home-btn home-btn--outline">Ver retificação (PDF) ↗</a>
+                        <?php endif; ?>
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>

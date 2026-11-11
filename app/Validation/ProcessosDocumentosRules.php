@@ -5,9 +5,27 @@ declare(strict_types=1);
 namespace App\Validation;
 
 use App\Enums\Admin\TiposDocumentosEnum;
+use Config\Services;
 
 class ProcessosDocumentosRules
 {
+    /**
+     * Recupera o tipo de documento a partir dos dados repassados pela CI4.
+     * Quando a regra é invocada sem parâmetros (ex.: documento_retificado_regra),
+     * o framework não envia o array $data. Neste caso, faz fallback no POST
+     * da requisição para manter a validação consistente com o formulário.
+     */
+    private function obterTipoDocumento(array $data): int
+    {
+        if (isset($data['nm_tipo']) && $data['nm_tipo'] !== '') {
+            return (int) $data['nm_tipo'];
+        }
+
+        $tipo = Services::request()->getPost('nm_tipo');
+
+        return $tipo !== null && $tipo !== '' ? (int) $tipo : 0;
+    }
+
     /**
      * Verifica se o valor contém apenas números.
      */
@@ -41,7 +59,7 @@ class ProcessosDocumentosRules
      */
     public function arquivo_pdf_condicional(?string $value = null, ?string $params = null, array $data = []): bool
     {
-        $tipo = isset($data['nm_tipo']) ? (int) $data['nm_tipo'] : 0;
+        $tipo = $this->obterTipoDocumento($data);
 
         $tiposComArquivoObrigatorio = [
             TiposDocumentosEnum::EDITAL_ABERTURA->value,
@@ -68,7 +86,7 @@ class ProcessosDocumentosRules
      */
     public function versao_vigente_regra(?string $value = null, ?string $params = null, array $data = []): bool
     {
-        $tipo = isset($data['nm_tipo']) ? (int) $data['nm_tipo'] : 0;
+        $tipo = $this->obterTipoDocumento($data);
 
         if ($tipo === TiposDocumentosEnum::RETIFICACAO->value) {
             return $value === null || $value === '' || (int) $value === 0;
@@ -82,7 +100,7 @@ class ProcessosDocumentosRules
      */
     public function documento_retificado_regra(?string $value = null, ?string $params = null, array $data = []): bool
     {
-        $tipo = isset($data['nm_tipo']) ? (int) $data['nm_tipo'] : 0;
+        $tipo = $this->obterTipoDocumento($data);
 
         if ($tipo !== TiposDocumentosEnum::RETIFICACAO->value) {
             return $value === null || $value === '' || (int) $value === 0;
