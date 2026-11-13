@@ -211,17 +211,6 @@ class ProcessosSeletivos extends BaseController
 
     public function autenticarProcesso($token)
     {
-        $edital = $this->editaisService->autenticarEditalPorToken($token);
-
-        if (!$edital) {
-            throw new PageNotFoundException('Edital não encontrado ou token inválido.');
-        }
-
-        $parametros = [
-            'titulo' => 'Autenticação de Edital',
-            'edital' => $edital,
-        ];
-
-        return view('Publica/editais/autenticar_edital_view', $parametros);
+        throw new PageNotFoundException('Funcionalidade descontinuada. Utilize os detalhes do processo seletivo.');
     }
 }

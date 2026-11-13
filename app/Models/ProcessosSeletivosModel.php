@@ -146,4 +146,48 @@ class ProcessosSeletivosModel extends Model
             ->get()
             ->getResult();
     }
+
+    /**
+     * Retorna os cargos dos processos seletivos com inscrições abertas ou agendadas,
+     * unindo com as requisitos classificatórios existentes.
+     */
+    public function cargosPorProcessosAtivos(): array
+    {
+        return $this->db->table('tb_processos_cargos')
+            ->select(
+                'tb_processos_cargos.*,' .
+                ' tb_cargos.ds_nome_cargo,' .
+                ' tb_processos.nm_numero_processo,' .
+                ' tb_processos.nm_ano_processo,' .
+                ' tb_processos.pk_id_processo AS fk_id_processo,' .
+                ' (tb_processos.nm_numero_processo * 10000 + tb_processos.nm_ano_processo) AS ds_numero_edital'
+            )
+            ->join('tb_cargos', 'tb_cargos.pk_id_cargo = tb_processos_cargos.fk_id_cargo')
+            ->join('tb_processos', 'tb_processos.pk_id_processo = tb_processos_cargos.fk_id_processo')
+            ->join('tb_situacao_processos', 'tb_situacao_processos.fk_id_processo = tb_processos.pk_id_processo')
+            ->where("(tb_processos.is_deletado IS NULL OR tb_processos.is_deletado = '0000-00-00 00:00:00')")
+            ->whereIn('tb_situacao_processos.nm_id_situacao', [1, 6]) // INSCRICOES_ABERTAS ou AGENDADO
+            ->groupStart()
+                ->where("EXISTS (
+                    SELECT 1 FROM tb_cargos_experiencias e
+                    WHERE e.fk_id_cargo = tb_processos_cargos.fk_id_cargo
+                )", null, false)
+                ->orWhere("EXISTS (
+                    SELECT 1 FROM tb_cargos_aperfeicoamentos a
+                    WHERE a.fk_id_cargo = tb_processos_cargos.fk_id_cargo
+                )", null, false)
+                ->orWhere("EXISTS (
+                    SELECT 1 FROM tb_cargos_escolaridades s
+                    WHERE s.fk_id_cargo = tb_processos_cargos.fk_id_cargo
+                )", null, false)
+                ->orWhere("EXISTS (
+                    SELECT 1 FROM tb_cargos_criterios_adicionais c
+                    WHERE c.fk_id_cargo = tb_processos_cargos.fk_id_cargo
+                )", null, false)
+            ->groupEnd()
+            ->orderBy('tb_processos.nm_numero_processo', 'DESC')
+            ->orderBy('tb_cargos.ds_nome_cargo', 'ASC')
+            ->get()
+            ->getResult();
+    }
 }

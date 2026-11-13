@@ -59,11 +59,16 @@
 									</thead>
 									<tbody>
 										<?php foreach ($processos as $proc): ?>
-											<tr>
-												<td class="text-center"><?= esc(formatarNumeroEdital(($proc->nm_numero_processo ?? '') . ($proc->nm_ano_processo ?? ''))) ?></td>
-												<td class="text-center"><?= esc($proc->situacao_label ?? $proc->nm_situacao) ?></td>
-												<td class="text-center"><?= esc($proc->dt_inicio_inscricao ? date('d/m/Y', strtotime($proc->dt_inicio_inscricao)) : '-') ?></td>
-												<td class="text-center"><?= esc($proc->dt_fim_inscricao ? date('d/m/Y', strtotime($proc->dt_fim_inscricao)) : '-') ?></td>
+												<tr>
+													<td class="text-center">
+														<?= esc(formatarNumeroEdital(($proc->nm_numero_processo ?? '') . ($proc->nm_ano_processo ?? ''))) ?>
+														<?php if (!empty($proc->alertas)): ?>
+															<i class="fas fa-exclamation-triangle text-danger ml-1" title="<?= esc(implode(' | ', $proc->alertas)) ?>"></i>
+														<?php endif; ?>
+													</td>
+													<td class="text-center"><?= esc($proc->situacao_label ?? $proc->nm_situacao) ?></td>
+													<td class="text-center"><?= esc($proc->dt_inicio_inscricao ? date('d/m/Y', strtotime($proc->dt_inicio_inscricao)) : '-') ?></td>
+													<td class="text-center"><?= esc($proc->dt_fim_inscricao ? date('d/m/Y', strtotime($proc->dt_fim_inscricao)) : '-') ?></td>
 												<td class="text-center">
 													<a class="btn btn-info btn-sm" href="<?php echo base_url_adm('ProcessosSeletivos/formularioAlteracao/' . $proc->pk_id_processo) ?>">
 														<i class="fas fa-edit"></i>
@@ -83,14 +88,33 @@
 											</tr>
 										<?php endforeach; ?>
 									</tbody>
-								</table>
+										</table>
+
+										<?php if (!empty($processos)): ?>
+											<?php
+											$processosComAlertas = array_filter($processos, static fn ($p) => !empty($p->alertas));
+											if (!empty($processosComAlertas)):
+											?>
+												<div class="alert alert-danger mt-2 mb-0 py-2">
+													<i class="fas fa-exclamation-triangle"></i> <strong>Atenção:</strong> os processos abaixo não estão aptos para exibição pública:
+													<ul class="mb-0 mt-1 pl-4">
+														<?php foreach ($processosComAlertas as $proc): ?>
+															<li>
+																<strong><?= esc(formatarNumeroEdital(($proc->nm_numero_processo ?? '') . ($proc->nm_ano_processo ?? ''))) ?>:</strong>
+																<?= esc(implode('; ', $proc->alertas)) ?>
+															</li>
+														<?php endforeach; ?>
+													</ul>
+												</div>
+											<?php endif; ?>
+										<?php endif; ?>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
+				</section>
 			</div>
-		</div>
-	</section>
-</div>
 
 <!-- Modal de Confirmação de Exclusão -->
 <div class="modal fade" id="modalDeleteItens" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">

@@ -7,21 +7,8 @@
         <span class="linha"></span>
     </div>
 
-    <?php
-    $abertos = array_filter(
-        $processosSeletivos,
-        fn($p) => (int) ($p->nm_id_situacao ?? 0) === SituacaoProcessosEnum::INSCRICOES_ABERTAS->value
-    );
-    ?>
-
-    <?php if (!empty($abertos)) : ?>
-        <?php foreach ($abertos as $processo) : ?>
-            <?php
-            $situacaoId = (int) ($processo->nm_id_situacao ?? 0);
-            $enum = SituacaoProcessosEnum::tryFrom($situacaoId);
-            $tagClass = 'home-tag--aberto';
-            $tagLabel = $enum?->label() ?? 'Status não encontrado';
-            ?>
+    <?php if (!empty($processosSeletivos)) : ?>
+        <?php foreach ($processosSeletivos as $processo) : ?>
             <div class="home-hero">
                 <div class="home-hero__top">
                     <div>
@@ -31,7 +18,7 @@
                             <b>Inscrições de <?= esc(date('d/m/Y', strtotime($processo->dt_inicio_inscricao))) ?> a <?= esc(date('d/m/Y', strtotime($processo->dt_fim_inscricao))) ?></b>
                         </div>
                     </div>
-                    <span class="home-tag <?= $tagClass ?>"><?= esc($tagLabel) ?></span>
+                    <span class="home-tag home-tag--aberto"><?= esc(SituacaoProcessosEnum::INSCRICOES_ABERTAS->label()) ?></span>
                 </div>
                 <div class="home-hero__acoes">
                     <a href="<?= base_url("Cadastros") ?>" class="home-btn">Inscrever-se</a>

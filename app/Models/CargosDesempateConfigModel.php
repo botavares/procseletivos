@@ -86,4 +86,19 @@ class CargosDesempateConfigModel extends Model
 
         return $builder->delete();
     }
+
+    /**
+     * Verifica se existe configuração de desempate vinculada ao processo/cargo/secretaria.
+     */
+    public function existePorProcessoCargo(int $idProcesso, int $idCargo, ?int $idSecretaria = null): bool
+    {
+        $builder = $this->where('fk_id_processo_seletivo', $idProcesso)
+                        ->where('fk_id_cargo', $idCargo);
+
+        if ($idSecretaria !== null && $idSecretaria > 0) {
+            $builder->where('fk_id_secretaria', $idSecretaria);
+        }
+
+        return $builder->first() !== null;
+    }
 }

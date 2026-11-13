@@ -8,7 +8,6 @@ use App\Formatters\DeficienciaFormatter;
 use App\Models\Admin\CargosModel;
 use App\Models\Admin\CandidatosModel;
 use App\Models\Admin\ProtocolosModel;
-use App\Models\Admin\EditaisModel;
 use App\Services\Interfaces\IComprovanteService;
 use App\Services\Interfaces\IPdfService;
 
@@ -18,7 +17,6 @@ class ComprovanteService implements IComprovanteService
         private CandidatosModel $modelCandidatos,
         private CargosModel $modelCargos,
         private ProtocolosModel $modelProtocolos,
-        private EditaisModel $modelEditais,
         private IPdfService $pdfService,
     ) {}
 
@@ -49,7 +47,6 @@ class ComprovanteService implements IComprovanteService
     {
         $dadosCandidatos = $this->modelCandidatos->where('pk_id_cadastrado', $idCandidato)->first();
         $nomeCargo       = $this->modelCargos->where('pk_id_cargo', $idCargo)->select('ds_nome_cargo')->first();
-        $dadosEdital     = $this->modelEditais->where('pk_id_edital', $idEdital)->first();
         $dadosProtocolos = $this->modelProtocolos
             ->where('fk_id_cadastrado', $idCandidato)
             ->where('fk_id_cargo', $idCargo)
@@ -69,7 +66,7 @@ class ComprovanteService implements IComprovanteService
             'brasao'        => imageToBase64(ROOTPATH . '/public/publica/external/img/brasao.png'),
             'fundo'         => imageToBase64(ROOTPATH . '/public/publica/external/img/fundo.jpg'),
             'nomeCargo'     => $nomeCargo->ds_nome_cargo ?? null,
-            'edital'        => 'Edital ' . formatarNumeroEdital($dadosEdital->ds_numero_edital ?? ''),
+            'edital'        => 'Processo Seletivo',
             'protocolo'     => $dadosProtocolos->ds_protocolo,
             'dadosPessoais' => $dadosCandidatos,
             'nascimento'    => date('d/m/Y', strtotime($dadosCandidatos->ds_nascimento)),

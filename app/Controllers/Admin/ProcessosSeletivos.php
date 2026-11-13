@@ -46,10 +46,11 @@ class ProcessosSeletivos extends BaseController
 
         $processos = $this->service->listarPorSecretaria($fkIdSecretaria);
 
-        // Enriquecer com label de situação
+        // Enriquecer com label de situação e alertas de aptidão
         foreach ($processos as $proc) {
             $enum = SituacaoProcessosEnum::tryFrom((int) $proc->nm_situacao);
             $proc->situacao_label = $enum?->label() ?? 'Desconhecido';
+            $proc->alertas = $this->service->obterAlertasAptidaoProcesso($proc);
         }
 
         return view('Admin/layoutDash', [

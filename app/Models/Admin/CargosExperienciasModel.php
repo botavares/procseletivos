@@ -9,6 +9,7 @@ class CargosExperienciasModel extends Model{
     protected $primaryKey = 'pk_id_cargos_experiencia';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
+        'fk_id_secretaria',
         'fk_id_processo_seletivo',
         'fk_id_cargo',
         'fk_id_experiencia',

@@ -9,33 +9,35 @@ use App\Exceptions\Domain\EditalForaDoPrazoException;
 use App\Services\Base\SessaoService;
 use App\Services\CandidatoService;
 use App\Services\ClassificatorioService;
-use App\Services\EditaisService;
 use App\Services\ComprovanteService;
 use App\Services\ProtocoloService;
 use App\Services\GovBrService;
 use App\Services\CandidatoRecursoService;
+use App\Services\ProcessosSeletivos\ProcessosSeletivosService;
 
 class Cadastros extends BaseController
 {
     protected CandidatoService        $candidatoService;
     protected ClassificatorioService  $classificatorioService;
-    protected EditaisService          $editaisService;
+    protected ProcessosSeletivosService $processosSeletivosService;
     protected ComprovanteService      $comprovanteService;
     protected ProtocoloService        $protocoloService;
     protected GovBrService            $govBrService;
     protected SessaoService           $sessaoService;
     protected CandidatoRecursoService $candidatoRecursoService;
+    protected string                  $loginMode;
 
     public function __construct()
     {
         $this->candidatoService        = service('candidatoService');
         $this->classificatorioService  = service('classificatorioService');
-        $this->editaisService          = service('editaisService');
+        $this->processosSeletivosService = service('processosSeletivosService');
         $this->comprovanteService       = service('comprovanteService');
         $this->protocoloService        = service('protocoloService');
         $this->govBrService            = service('govBrService');
         $this->sessaoService            = service('sessao');
         $this->candidatoRecursoService  = service('candidatoRecursoService');
+        $this->loginMode              = env('LOGIN_MODE', 'govbr');
     }
 
     /* ---------- Métodos auxiliares privados ---------- */
@@ -68,12 +70,23 @@ class Cadastros extends BaseController
         }
 
         if (!checklogged()) {
+            if ($this->loginMode === 'local') {
+                return $this->loginLocal();
+            }
+
             return redirect()->to(
                 'https://app.prefeituradivinopolis.com.br/app/7ddde5c6897f39b7b139238d0dd94d7f?destino=Cadastros'
             );
         }
 
         $dataSession = $this->sessaoService->obterUsuario();
+
+        if (empty($dataSession['cpf'])) {
+            $this->sessaoService->destruir();
+            return redirect()->to('Home')
+                ->with('mensagemError', 'Não foi possível identificar o CPF da sessão. Por favor, faça login novamente.');
+        }
+
         $candidato   = $this->candidatoService->buscarPorCpf($dataSession['cpf']);
         $idCandidato = $candidato->pk_id_cadastrado ?? null;
 
@@ -99,7 +112,7 @@ class Cadastros extends BaseController
             'camada2'      => $camada2,
             'pagina'       => $page,
             'status'       => $candidato ? 'registrado' : 'naoregistrado',
-            'cargosAtivos' => $this->editaisService->buscarEditaisAtivosCargos(),
+            'cargosAtivos' => $this->processosSeletivosService->buscarCargosAtivos(),
             'candidato'    => $idCandidato,
             'params'       => $dataSession,
             'protocolos'   => $protocolos,
@@ -112,10 +125,21 @@ class Cadastros extends BaseController
     public function dadosCandidato($camada1 = '', $camada2 = 'pages', $page = 'FormularioPessoais')
     {
         if (!checklogged()) {
+            if ($this->loginMode === 'local') {
+                return $this->loginLocal();
+            }
+
             return redirect()->to('Home');
         }
 
         $dataSession = $this->sessaoService->obterUsuario();
+
+        if (empty($dataSession['cpf'])) {
+            $this->sessaoService->destruir();
+            return redirect()->to('Home')
+                ->with('mensagemError', 'Não foi possível identificar o CPF da sessão. Por favor, faça login novamente.');
+        }
+
         $candidato   = $this->candidatoService->buscarPorCpf($dataSession['cpf']);
         $acao        = $candidato ? 'update' : 'create';
         $id          = $candidato ? $candidato->pk_id_cadastrado : null;
@@ -148,16 +172,26 @@ class Cadastros extends BaseController
     public function dadosClassificatorios($processo, $cargo, $id, $camada1 = '', $camada2 = 'pages', $page = 'FormularioClassificatorio')
     {
         try {
-            $this->editaisService->estaAtivoPorProcesso($processo);
+            $this->processosSeletivosService->estaAtivoPorProcesso($processo);
         } catch (EditalForaDoPrazoException $e) {
             return redirect()->route('Cadastros')->with('mensagemError', $e->getMessage());
         }
 
         if (!checklogged()) {
+            if ($this->loginMode === 'local') {
+                return $this->loginLocal();
+            }
+
             return redirect()->to('Home');
         }
 
         $dataSession = $this->sessaoService->obterUsuario();
+
+        if (empty($dataSession['cpf'])) {
+            $this->sessaoService->destruir();
+            return redirect()->to('Home')
+                ->with('mensagemError', 'Não foi possível identificar o CPF da sessão. Por favor, faça login novamente.');
+        }
         $requisitos  = $this->classificatorioService->buscarRequisitos($cargo);
         $cadastrados = $this->classificatorioService->buscarDadosCadastrados($id, $cargo, $processo);
 
@@ -223,7 +257,7 @@ class Cadastros extends BaseController
 
         $this->classificatorioService->processarFormulario($post, $candidatoId, $cargoId, $processoId);
 
-        $editalId = $this->editaisService->buscarEditalPorProcesso((int) $processoId);
+        $editalId = $this->processosSeletivosService->buscarEditalIdPorProcesso((int) $processoId);
         $protocoloDto = $this->protocoloService->buscarOuGerar($candidatoId, $cargoId, $editalId ?? 0);
         $this->protocoloService->salvar($protocoloDto);
 
@@ -247,7 +281,7 @@ class Cadastros extends BaseController
 
     public function gerarComprovante($idProcesso, $idCargo, $idCandidato)
     {
-        $editalId = $this->editaisService->buscarEditalPorProcesso((int) $idProcesso);
+        $editalId = $this->processosSeletivosService->buscarEditalIdPorProcesso((int) $idProcesso);
         $comprovante = $this->comprovanteService->gerarComprovanteCompleto($editalId ?? 0, $idCargo, $idCandidato);
 
         if ($comprovante->erro !== null) {
@@ -287,6 +321,13 @@ class Cadastros extends BaseController
         }
 
         $dataSession = $this->govBrService->prepararDadosSessao($resultado->dados, $user);
+
+        if (empty($dataSession['cpf'])) {
+            log_message('error', 'Gov.BR Auth Error: CPF não retornado na resposta da API');
+            return redirect()->to('Home')
+                ->with('mensagemError', 'Não foi possível obter o CPF da autenticação Gov.BR. Tente novamente.');
+        }
+
         $this->sessaoService->definirUsuario($dataSession);
         log_message('info', "Usuário {$dataSession['nome']} ({$dataSession['cpf']}) autenticado via Gov.BR");
 
@@ -302,6 +343,27 @@ class Cadastros extends BaseController
         return redirect()->route('home');
     }
 
+    /**
+     * Login automático para ambiente de desenvolvimento local.
+     */
+    public function loginLocal()
+    {
+        $dataSession = [
+            'su'        => '1234567',
+            'id'        => '69',
+            'email'     => 'breno.o.tavares@gmail.com',
+            'nome'      => 'Breno Oliveira Tavares',
+            'cpf'       => '03455783686',
+            'logged_in' => true,
+        ];
+
+        $this->sessaoService->definirUsuario($dataSession);
+
+        $destino = $this->request->getVar('destino') ?? 'Cadastros';
+
+        return redirect()->to(base_url($destino));
+    }
+
     public function detalhesRecurso($protocolo, $camada1 = '', $camada2 = 'pages', $page = 'DetalhesRecurso')
     {
         if (!is_file(APPPATH . "Views/Publica/{$camada1}/{$camada2}/{$page}_view.php")) {
@@ -309,10 +371,21 @@ class Cadastros extends BaseController
         }
 
         if (!checklogged()) {
+            if ($this->loginMode === 'local') {
+                return $this->loginLocal();
+            }
+
             return redirect()->to('Home');
         }
 
         $dataSession = $this->sessaoService->obterUsuario();
+
+        if (empty($dataSession['cpf'])) {
+            $this->sessaoService->destruir();
+            return redirect()->to('Home')
+                ->with('mensagemError', 'Não foi possível identificar o CPF da sessão. Por favor, faça login novamente.');
+        }
+
         $candidato   = $this->candidatoService->buscarPorCpf($dataSession['cpf']);
         $detalhes    = $this->candidatoRecursoService->buscarDetalhesRecurso($protocolo);
 

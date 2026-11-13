@@ -235,7 +235,7 @@
             <li class="success">Listar classificacao aplica filtro secretaria quando processo e cargo informados</li>
             <li class="success">Listar classificacao nao aplica filtro secretaria sem cargo</li>
         </ul>
-        <h2>Editais Publico Service (Tests\Unit\Services\Editais\EditaisPublicoService)</h2>
+        <h2>Processos Seletivos Publico Service (Tests\Unit\Services\ProcessosSeletivos\ProcessosSeletivosPublicoService)</h2>
         <ul>
             <li class="success">Listar editais retorna estrutura esperada</li>
             <li class="success">Filtro situacao encerrados oculta abertos</li>
@@ -245,6 +245,12 @@
             <li class="success">Filtro por cargo</li>
             <li class="success">Retificacoes sao exibidas separadas do edital</li>
             <li class="success">Listar editais vazio quando nenhum processo</li>
+            <li class="success">Listar abertos para home exibe apenas processos com edital e cargos</li>
+            <li class="success">Listar abertos para home oculta cargo sem dados classificatorios</li>
+            <li class="success">Listar abertos para home oculta cargo sem desempate</li>
+            <li class="success">Obter alertas aptidao processo retorna todas as mensagens esperadas</li>
+            <li class="success">Obter alertas aptidao processo detecta dados classificatorios e desempate ausentes</li>
+            <li class="success">Listar abertos para home retorna vazio quando nenhum processo</li>
             <li class="success">Obter secretarias filtro</li>
             <li class="success">Obter cargos filtro</li>
         </ul>

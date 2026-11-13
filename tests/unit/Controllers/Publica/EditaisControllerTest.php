@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Controllers\Publica;
 
 use App\Services\Base\SessaoService;
-use App\Services\Editais\EditaisPublicoService;
+use App\Services\ProcessosSeletivos\ProcessosSeletivosService;
 use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\FeatureTestTrait;
 use Config\Services;
@@ -17,7 +17,7 @@ final class EditaisControllerTest extends CIUnitTestCase
 {
     use FeatureTestTrait;
 
-    private EditaisPublicoService $serviceMock;
+    private ProcessosSeletivosService $serviceMock;
     private SessaoService $sessaoMock;
 
     protected function setUp(): void
@@ -26,11 +26,11 @@ final class EditaisControllerTest extends CIUnitTestCase
 
         helper('edital');
 
-        $this->serviceMock = $this->createMock(EditaisPublicoService::class);
+        $this->serviceMock = $this->createMock(ProcessosSeletivosService::class);
         $this->sessaoMock  = $this->createMock(SessaoService::class);
 
         // Substitui os serviços compartilhados para não bater no banco durante o teste de feature.
-        Services::injectMock('editaisPublicoService', $this->serviceMock);
+        Services::injectMock('processosSeletivosService', $this->serviceMock);
         Services::injectMock('sessao', $this->sessaoMock);
     }
 

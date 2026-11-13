@@ -6,7 +6,7 @@ namespace App\Controllers\Publica;
 
 use App\Controllers\BaseController;
 use App\Services\Base\SessaoService;
-use App\Services\Editais\EditaisPublicoService;
+use App\Services\ProcessosSeletivos\ProcessosSeletivosService;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 /**
@@ -14,14 +14,14 @@ use CodeIgniter\Exceptions\PageNotFoundException;
  */
 class Editais extends BaseController
 {
-    protected EditaisPublicoService $editaisPublicoService;
+    protected ProcessosSeletivosService $processosSeletivosService;
     protected SessaoService $sessaoService;
 
     public function __construct(
-        ?EditaisPublicoService $editaisPublicoService = null,
+        ?ProcessosSeletivosService $processosSeletivosService = null,
         ?SessaoService $sessaoService = null,
     ) {
-        $this->editaisPublicoService = $editaisPublicoService ?? service('editaisPublicoService');
+        $this->processosSeletivosService = $processosSeletivosService ?? service('processosSeletivosService');
         $this->sessaoService = $sessaoService ?? service('sessao');
     }
 
@@ -48,9 +48,9 @@ class Editais extends BaseController
             'cargo'      => $cargo      !== null && $cargo      !== '' ? (string) $cargo      : 'Todos',
         ];
 
-        $editais    = $this->editaisPublicoService->listarEditais($filtros);
-        $secretarias = $this->editaisPublicoService->obterSecretariasFiltro();
-        $cargos     = $this->editaisPublicoService->obterCargosFiltro();
+        $editais    = $this->processosSeletivosService->listarEditais($filtros);
+        $secretarias = $this->processosSeletivosService->obterSecretariasFiltro();
+        $cargos     = $this->processosSeletivosService->obterCargosFiltro();
 
         $layout = $this->sessaoService->estaLogado() ? 'Publica/layoutLogado' : 'Publica/layoutSimples';
 
@@ -88,7 +88,7 @@ class Editais extends BaseController
             'cargo'      => $cargo      !== null && $cargo      !== '' ? (string) $cargo      : 'Todos',
         ];
 
-        $editais = $this->editaisPublicoService->listarEditais($filtros);
+        $editais = $this->processosSeletivosService->listarEditais($filtros);
 
         return view('Publica/pages/Editais/_listaEditais_view', ['editais' => $editais]);
     }

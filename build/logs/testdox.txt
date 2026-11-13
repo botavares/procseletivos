@@ -160,7 +160,7 @@ Transparencia Repository (Tests\Unit\Repositories\TransparenciaRepository)
  [x] Listar classificacao aplica filtro secretaria quando processo e cargo informados
  [x] Listar classificacao nao aplica filtro secretaria sem cargo
 
-Editais Publico Service (Tests\Unit\Services\Editais\EditaisPublicoService)
+Processos Seletivos Publico Service (Tests\Unit\Services\ProcessosSeletivos\ProcessosSeletivosPublicoService)
  [x] Listar editais retorna estrutura esperada
  [x] Filtro situacao encerrados oculta abertos
  [x] Filtro situacao todas exibe todas as situacoes
@@ -169,6 +169,12 @@ Editais Publico Service (Tests\Unit\Services\Editais\EditaisPublicoService)
  [x] Filtro por cargo
  [x] Retificacoes sao exibidas separadas do edital
  [x] Listar editais vazio quando nenhum processo
+ [x] Listar abertos para home exibe apenas processos com edital e cargos
+ [x] Listar abertos para home oculta cargo sem dados classificatorios
+ [x] Listar abertos para home oculta cargo sem desempate
+ [x] Obter alertas aptidao processo retorna todas as mensagens esperadas
+ [x] Obter alertas aptidao processo detecta dados classificatorios e desempate ausentes
+ [x] Listar abertos para home retorna vazio quando nenhum processo
  [x] Obter secretarias filtro
  [x] Obter cargos filtro
 

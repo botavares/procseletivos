@@ -69,6 +69,21 @@ interface IProcessosSeletivos
     public function listarAtivosComSituacao(): array;
 
     /**
+     * Lista processos seletivos com inscrições abertas aptos a aparecer na home
+     * pública, garantindo que possuam edital de abertura, cargos vinculados,
+     * dados classificatórios e critérios de desempate configurados.
+     */
+    public function listarAbertosParaHome(): array;
+
+    /**
+     * Retorna os alertas de aptidão de um processo para exibição no admin.
+     *
+     * @param object $processo
+     * @return string[]
+     */
+    public function obterAlertasAptidaoProcesso(object $processo): array;
+
+    /**
      * Busca cargos vinculados a um processo seletivo.
      */
     public function buscarCargosPorProcesso(int $processoId, ?int $idSecretaria = null): array;
@@ -78,4 +93,46 @@ interface IProcessosSeletivos
      * considerando situacao de resultado publicado ou vigente.
      */
     public function listarProcessosTransparencia(?int $idSecretaria = null): array;
+
+    /**
+     * Retorna a lista de processos seletivos formatada para o portal público,
+     * aplicando filtros de situação, secretaria e cargo.
+     *
+     * @param array<string, string> $filtros
+     * @return array<int, array<string, mixed>>
+     */
+    public function listarEditais(array $filtros = []): array;
+
+    /**
+     * Retorna as secretarias disponíveis para o filtro da página pública.
+     *
+     * @return array<int, object>
+     */
+    public function obterSecretariasFiltro(): array;
+
+    /**
+     * Retorna os cargos disponíveis para o filtro da página pública.
+     *
+     * @return array<int, object>
+     */
+    public function obterCargosFiltro(): array;
+
+    /**
+     * Retorna os cargos dos processos seletivos ativos para exibição na área logada.
+     *
+     * @return array<int, object>
+     */
+    public function buscarCargosAtivos(): array;
+
+    /**
+     * Verifica se o processo seletivo está dentro do período de inscrição.
+     *
+     * @throws \App\Exceptions\Domain\EditalForaDoPrazoException
+     */
+    public function estaAtivoPorProcesso(int $idProcesso): bool;
+
+    /**
+     * Retorna o ID do edital legado associado ao processo seletivo, se existir.
+     */
+    public function buscarEditalIdPorProcesso(int $idProcesso): ?int;
 }

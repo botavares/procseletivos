@@ -9,6 +9,7 @@ class CargosCriteriosAdicionaisModel extends Model{
     protected $primaryKey = 'pk_id_cargo_criterio';
     protected $useAutoIncrement = false;
     protected $allowedFields = [
+        'fk_id_secretaria',
         'fk_id_processo_seletivo',
         'fk_id_cargo',
         'fk_id_criterio',

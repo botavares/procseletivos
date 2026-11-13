@@ -15,6 +15,7 @@ class CargosCriteriosAdicionaisModel extends Model
     protected $useTimestamps = false;
     protected $useSoftDeletes = false;
     protected $allowedFields = [
+        'fk_id_secretaria',
         'fk_id_processo_seletivo',
         'fk_id_cargo',
         'fk_id_criterio',
@@ -30,4 +31,19 @@ class CargosCriteriosAdicionaisModel extends Model
         'ds_pontuacao_maxima' => 'permit_empty|string',
         'ds_tipo_campo' => 'permit_empty|string',
     ];
+
+    /**
+     * Verifica se existe registro vinculado ao processo/cargo/secretaria.
+     */
+    public function existePorProcessoCargo(int $idProcesso, int $idCargo, ?int $idSecretaria = null): bool
+    {
+        $builder = $this->where('fk_id_processo_seletivo', $idProcesso)
+                        ->where('fk_id_cargo', $idCargo);
+
+        if ($idSecretaria !== null && $idSecretaria > 0) {
+            $builder->where('fk_id_secretaria', $idSecretaria);
+        }
+
+        return $builder->first() !== null;
+    }
 }

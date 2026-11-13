@@ -5,16 +5,12 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Models\CandidatosModel;
-use App\Models\EditaisModel;
-use App\Models\EditaisCandidatosModel;
 use App\Services\Base\SessaoService;
 
 class HomeService
 {
     public function __construct(
         private CandidatosModel $candidatosModel,
-        private EditaisModel $editaisModel,
-        private EditaisCandidatosModel $editaisCandidatosModel,
         private SessaoService $sessaoService,
     ) {}
 
@@ -43,40 +39,12 @@ class HomeService
             ];
         }
 
-        $idCurso = $dadosCandidatos->fk_id_curso;
-        $editaisCursos = $this->editaisModel->editaisPorCurso($idCurso);
-
-        if (!$editaisCursos) {
-            return [
-                'layout' => 'Publica/layoutLogado',
-                'labelCaption' => 'Seus dados',
-                'dataSession' => $usuario,
-                'edital' => null,
-                'status' => 'naovinculado',
-            ];
-        }
-
-        $verificaVinculo = $this->editaisCandidatosModel->verificarVinculos(
-            $usuario['id'],
-            $editaisCursos->fk_id_edital
-        );
-
-        if (!$verificaVinculo) {
-            return [
-                'layout' => 'Publica/layoutLogado',
-                'labelCaption' => 'Seus dados',
-                'dataSession' => $usuario,
-                'edital' => $editaisCursos->fk_id_edital,
-                'status' => 'naovinculado',
-            ];
-        }
-
         return [
             'layout' => 'Publica/layoutLogado',
             'labelCaption' => 'Seus dados',
             'dataSession' => $usuario,
-            'edital' => formatarNumeroEdital($editaisCursos->ds_numero_edital),
-            'status' => 'vinculado',
+            'edital' => null,
+            'status' => 'registrado',
         ];
     }
 }

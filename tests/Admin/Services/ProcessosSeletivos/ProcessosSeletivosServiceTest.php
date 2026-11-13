@@ -24,7 +24,13 @@ final class ProcessosSeletivosServiceTest extends CIUnitTestCase
         parent::setUp();
         $this->modelMock = $this->createMock(ProcessosSeletivosModel::class);
         $this->logsMock  = $this->createMock(LogsService::class);
-        $this->service   = new ProcessosSeletivosService($this->modelMock, $this->logsMock);
+        $this->service   = new ProcessosSeletivosService(
+            $this->modelMock,
+            $this->logsMock,
+            null,
+            null,
+            null,
+        );
     }
 
     public function testCriarProcesso(): void

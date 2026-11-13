@@ -7,7 +7,6 @@ namespace App\Controllers\Publica;
 use App\Controllers\BaseController;
 use App\Services\Base\SessaoService;
 use App\Services\HomeService;
-use App\Services\EditaisService;
 use App\Services\ProcessosSeletivos\ProcessosSeletivosService;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
@@ -15,14 +14,12 @@ class Home extends BaseController
 {
     protected HomeService $homeService;
     protected SessaoService $sessaoService;
-    protected EditaisService $editaisService;
     protected ProcessosSeletivosService $processosSeletivosService;
 
     public function __construct()
     {
         $this->homeService = service('homeService');
         $this->sessaoService = service('sessao');
-        $this->editaisService = service('editaisService');
         $this->processosSeletivosService = service('processosSeletivosService');
     }
 
@@ -33,7 +30,7 @@ class Home extends BaseController
         }
 
         $dadosHome = $this->homeService->obterDadosHome();
-        $processosSeletivos = $this->processosSeletivosService->listarAtivosComSituacao();
+        $processosSeletivos = $this->processosSeletivosService->listarAbertosParaHome();
 
         $parametros = [
             'camada1'            => $camada1,

@@ -42,6 +42,7 @@
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="fk_id_cargo" value="<?= esc($cargo->pk_id_cargo) ?>">
                                 <input type="hidden" name="fk_id_processo" value="<?= esc($idProcesso ?? '') ?>">
+                                <input type="hidden" name="fk_id_secretaria" value="<?= esc(session('fk_id_secretaria')) ?>">
                                 <input type="hidden" name="pk_id_cargo_criterio" id="pk_id_cargo_criterio" value="">
                                 <input type="hidden" name="acao" id="acao" value="<?= esc($acao) ?>">
 

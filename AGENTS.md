@@ -9,6 +9,30 @@ Este repositório abriga **uma única aplicação CodeIgniter 4 unificada** que 
 
 Após o **Sprint 8**, todo o código-fonte do admin reside em `app/` (Models, Controllers, Services, Views, Repositories, Enums, Exceptions, Traits). A pasta `adm/` permanece apenas como **entry point de deploy** (`adm/public/index.php` aponta para a aplicação unificada da raiz).
 
+# Regras de Economia de Tokens — Projeto CodeIgniter 4
+
+## Estrutura Padrão (Vá direto ao ponto, não explore o projeto)
+- Rotas: `app/Config/Routes.php`
+- Controllers: `app/Controllers/`
+- Models: `app/Models/`
+- Views: `app/Views/`
+- Filtros / Middlewares: `app/Filters/`
+- Migrations / Seeds: `app/Database/Migrations/` e `app/Database/Seeds/`
+- Configurações e Ambiente: `app/Config/` e `.env` (nunca leia o `.env` sem permissão explícita)
+
+## Leitura e Busca Cirúrgica
+- **Nunca leia arquivos inteiros** se tiverem mais de 100 linhas; use `grep` para achar o método/rota e leia apenas o trecho com `offset` e `limit`.
+- **Pastas estritamente proibidas:** nunca liste, busque ou leia arquivos dentro de `vendor/`, `writable/logs/`, `writable/cache/`, `writable/session/`, `writable/debugbar/`, `node_modules/` ou `.git/`.
+- Ao investigar erros, leia apenas as últimas 30 linhas do arquivo de log mais recente em `writable/logs/` usando `offset` e `limit` (ou `Get-Content -Tail 30` no PowerShell).
+
+## Comandos e Banco de Dados
+- Use o CLI nativo do framework (`php spark`) com flags silenciosas ou saídas filtradas (ex: `php spark routes | Select-String "termo"` no PowerShell).
+- Não rode `composer install` ou `composer update` sem solicitação explícita.
+
+## Estilo de Código e Resposta
+- Siga o padrão PSR-12 e as convenções nativas do CodeIgniter 4 (`Query Builder`, `Validation`, `Services`).
+- Seja objetivo: mostre apenas os métodos alterados ou criados, sem reescrever arquivos inteiros no chat.
+
 ---
 
 ## Estrutura de Diretórios (pós-Sprint 8 — Unificada)

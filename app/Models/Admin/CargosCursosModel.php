@@ -9,6 +9,7 @@ class CargosCursosModel extends Model{
     protected $primaryKey = 'pk_id_cargo_aperfeicoamento';
     protected $useAutoIncrement = false;
     protected $allowedFields = [
+        'fk_id_secretaria',
         'fk_id_processos_seletivo',
         'fk_id_cargo',
         'fk_id_curso',

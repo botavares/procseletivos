@@ -104,19 +104,6 @@ class Services extends BaseService
         );
     }
 
-    public static function editaisService(bool $getShared = true): \App\Services\EditaisService
-    {
-        if ($getShared) {
-            return static::getSharedInstance('editaisService');
-        }
-
-        return new \App\Services\EditaisService(
-            new \App\Models\EditaisModel(),
-            new \App\Models\CargosModel(),
-            service('editalRepository', false),
-        );
-    }
-
     public static function protocoloService(bool $getShared = true): \App\Services\ProtocoloService
     {
         if ($getShared) {
@@ -159,7 +146,6 @@ class Services extends BaseService
             new \App\Models\Admin\CandidatosModel(),
             new \App\Models\Admin\CargosModel(),
             new \App\Models\Admin\ProtocolosModel(),
-            new \App\Models\Admin\EditaisModel(),
             service('pdfService', false),
         );
     }
@@ -207,8 +193,6 @@ class Services extends BaseService
 
         return new \App\Services\HomeService(
             new \App\Models\CandidatosModel(),
-            new \App\Models\EditaisModel(),
-            new \App\Models\EditaisCandidatosModel(),
             service('sessao', false),
         );
     }
@@ -316,9 +300,8 @@ class Services extends BaseService
 
         return new \App\Services\VinculoCandidatoService(
             new \App\Models\AcademicosModel(),
-            new \App\Models\CursosModel(),
-            new \App\Models\EditaisCandidatosModel(),
-            new \App\Models\EditaisCursosModel(),
+            new \App\Models\Admin\CursosModel(),
+            new \App\Models\Admin\EditaisCandidatosModel(),
         );
     }
 
@@ -379,19 +362,6 @@ class Services extends BaseService
 
         return new \App\Repositories\ConvocadoRepository(
             new \App\Models\ConvocadosModel()
-        );
-    }
-
-    public static function editalRepository(bool $getShared = true): \App\Repositories\EditalRepository
-    {
-        if ($getShared) {
-            return static::getSharedInstance('editalRepository');
-        }
-
-        return new \App\Repositories\EditalRepository(
-            new \App\Models\EditaisCargosModel(),
-            new \App\Models\EditaisCandidatosModel(),
-            new \App\Models\EditaisModel()
         );
     }
 
@@ -475,7 +445,7 @@ class Services extends BaseService
     {
         return $getShared
             ? static::getSharedInstance('editalService')
-            : new \App\Services\Admin\Editais\EditalService(service('editalRepository'));
+            : new \App\Services\Admin\Editais\EditalService(service('adminEditalRepository'));
     }
 
     public static function editalUploadService(bool $getShared = true): \App\Services\Admin\Editais\EditalUploadService
@@ -839,7 +809,15 @@ class Services extends BaseService
             ? static::getSharedInstance('processosSeletivosService')
             : new \App\Services\ProcessosSeletivos\ProcessosSeletivosService(
                 new \App\Models\ProcessosSeletivosModel(),
-                service('logsService', false)
+                service('logsService', false),
+                new \App\Models\Admin\ProcessosDocumentosModel(),
+                new \App\Models\Admin\SecretariasModel(),
+                new \App\Models\CargosModel(),
+                new \App\Models\CargosEscolaridadesModel(),
+                new \App\Models\CargosExperienciasModel(),
+                new \App\Models\CargosAperfeicoamentosModel(),
+                new \App\Models\CargosCriteriosAdicionaisModel(),
+                new \App\Models\CargosDesempateConfigModel(),
             );
     }
 
@@ -850,18 +828,6 @@ class Services extends BaseService
             : new \App\Services\ProcessosDocumentos\ProcessosDocumentosService(
                 new \App\Models\Admin\ProcessosDocumentosModel(),
                 service('logsService', false)
-            );
-    }
-
-    public static function editaisPublicoService(bool $getShared = true): \App\Services\Editais\EditaisPublicoService
-    {
-        return $getShared
-            ? static::getSharedInstance('editaisPublicoService')
-            : new \App\Services\Editais\EditaisPublicoService(
-                new \App\Models\ProcessosSeletivosModel(),
-                new \App\Models\Admin\ProcessosDocumentosModel(),
-                new \App\Models\Admin\SecretariasModel(),
-                new \App\Models\CargosModel(),
             );
     }
 

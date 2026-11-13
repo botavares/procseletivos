@@ -138,6 +138,7 @@ class CargosExperiencias extends BaseController{
             $data = [
                 'pk_id_cargos_experiencia' => $this->request->getPost('pk_id_cargos_experiencia'),
                 'fk_id_processo_seletivo'   => $this->request->getPost('fk_id_processo') ?: null,
+                'fk_id_secretaria'          => $this->request->getPost('fk_id_secretaria') ?: session('fk_id_secretaria'),
                 'fk_id_cargo'               => $this->request->getPost('fk_id_cargo'),
                 'fk_id_experiencia'         => $this->request->getPost('fk_id_experiencia'),
                 'ds_pontuacao_minima'      => $this->request->getPost('ds_pontuacao_minima'),

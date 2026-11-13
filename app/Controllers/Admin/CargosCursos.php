@@ -138,6 +138,7 @@ class CargosCursos extends BaseController{
             $data = [
                 'pk_id_cargo_aperfeicoamento' => $this->request->getPost('pk_id_cargo_aperfeicoamento'),
                 'fk_id_processos_seletivo'    => $this->request->getPost('fk_id_processo') ?: null,
+                'fk_id_secretaria'            => $this->request->getPost('fk_id_secretaria') ?: session('fk_id_secretaria'),
                 'fk_id_cargo'               => $this->request->getPost('fk_id_cargo'),
                 'fk_id_curso'                => $this->request->getPost('fk_id_curso'),
                 'ds_pontuacao_minima'      => $this->request->getPost('ds_pontuacao_minima'),

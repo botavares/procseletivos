@@ -13,37 +13,49 @@ class RecursoRepository implements IRecursoRepository
 
     public function buscarResumoRecursosPorCandidato(int $candidatoId): array
     {
-        return $this->db->table('tb_cadastrados_recursos hr')
-            ->select([
-                'hr.ds_numero_protocolo',
-                'hr.fk_id_edital',
-                'hr.fk_id_cargo',
-                'hr.fk_id_secretaria',
-                'e.ds_numero_edital',
-                'cg.ds_nome_cargo',
-            ])
-            ->join('tb_editais e', 'e.pk_id_edital = hr.fk_id_edital', 'left')
-            ->join('tb_cargos cg', 'cg.pk_id_cargo = hr.fk_id_cargo', 'left')
-            ->where('hr.fk_id_candidato', $candidatoId)
-            ->groupBy('hr.ds_numero_protocolo')
-            ->orderBy('hr.ds_numero_protocolo', 'DESC')
-            ->get()
-            ->getResult();
+        try {
+            $query = $this->db->table('tb_cadastrados_recursos hr')
+                ->select([
+                    'hr.ds_numero_protocolo',
+                    'hr.fk_id_edital',
+                    'hr.fk_id_cargo',
+                    'hr.fk_id_secretaria',
+                    'e.ds_numero_edital',
+                    'cg.ds_nome_cargo',
+                ])
+                ->join('tb_editais e', 'e.pk_id_edital = hr.fk_id_edital', 'left')
+                ->join('tb_cargos cg', 'cg.pk_id_cargo = hr.fk_id_cargo', 'left')
+                ->where('hr.fk_id_candidato', $candidatoId)
+                ->groupBy('hr.ds_numero_protocolo')
+                ->orderBy('hr.ds_numero_protocolo', 'DESC')
+                ->get();
+
+            return $query ? $query->getResult() : [];
+        } catch (\Exception $e) {
+            log_message('error', 'Erro ao buscar resumo de recursos do candidato ' . $candidatoId . ': ' . $e->getMessage());
+            return [];
+        }
     }
 
     public function buscarDetalhesRecurso(string $protocolo): array
     {
-        return $this->db->table('tb_cadastrados_recursos hr')
-            ->select([
-                'hr.*',
-                'e.ds_numero_edital',
-                'cg.ds_nome_cargo',
-            ])
-            ->join('tb_editais e', 'e.pk_id_edital = hr.fk_id_edital', 'left')
-            ->join('tb_cargos cg', 'cg.pk_id_cargo = hr.fk_id_cargo', 'left')
-            ->where('hr.ds_numero_protocolo', $protocolo)
-            ->get()
-            ->getResult();
+        try {
+            $query = $this->db->table('tb_cadastrados_recursos hr')
+                ->select([
+                    'hr.*',
+                    'e.ds_numero_edital',
+                    'cg.ds_nome_cargo',
+                ])
+                ->join('tb_editais e', 'e.pk_id_edital = hr.fk_id_edital', 'left')
+                ->join('tb_cargos cg', 'cg.pk_id_cargo = hr.fk_id_cargo', 'left')
+                ->where('hr.ds_numero_protocolo', $protocolo)
+                ->get();
+
+            return $query ? $query->getResult() : [];
+        } catch (\Exception $e) {
+            log_message('error', 'Erro ao buscar detalhes do recurso ' . $protocolo . ': ' . $e->getMessage());
+            return [];
+        }
     }
 
     public function buscarNomeCampo(string $categoria, int $idCampo): string
@@ -76,13 +88,19 @@ class RecursoRepository implements IRecursoRepository
             return 'Campo desconhecido';
         }
 
-        $row = $this->db->table($tabela)
-            ->select($campoNome)
-            ->where($pk, $idCampo)
-            ->get()
-            ->getRow();
+        try {
+            $query = $this->db->table($tabela)
+                ->select($campoNome)
+                ->where($pk, $idCampo)
+                ->get();
 
-        return $row ? ($row->{$campoNome} ?? 'Campo não encontrado') : 'Campo não encontrado';
+            $row = $query ? $query->getRow() : null;
+
+            return $row ? ($row->{$campoNome} ?? 'Campo não encontrado') : 'Campo não encontrado';
+        } catch (\Exception $e) {
+            log_message('error', 'Erro ao buscar nome do campo ' . $categoria . '/' . $idCampo . ': ' . $e->getMessage());
+            return 'Campo não encontrado';
+        }
     }
 
     public function buscarTipoCampo(string $categoria, int $idCargo, int $idCampo): string
@@ -111,13 +129,19 @@ class RecursoRepository implements IRecursoRepository
             return 'INPUT';
         }
 
-        $row = $this->db->table($config['tabela'])
-            ->select('ds_tipo_campo')
-            ->where('fk_id_cargo', $idCargo)
-            ->where($config['fk'], $idCampo)
-            ->get()
-            ->getRow();
+        try {
+            $query = $this->db->table($config['tabela'])
+                ->select('ds_tipo_campo')
+                ->where('fk_id_cargo', $idCargo)
+                ->where($config['fk'], $idCampo)
+                ->get();
 
-        return $row ? ($row->ds_tipo_campo ?? 'INPUT') : 'INPUT';
+            $row = $query ? $query->getRow() : null;
+
+            return $row ? ($row->ds_tipo_campo ?? 'INPUT') : 'INPUT';
+        } catch (\Exception $e) {
+            log_message('error', 'Erro ao buscar tipo do campo ' . $categoria . '/' . $idCargo . '/' . $idCampo . ': ' . $e->getMessage());
+            return 'INPUT';
+        }
     }
 }

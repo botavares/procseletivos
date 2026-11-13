@@ -9,6 +9,7 @@ class CargosEscolaridadesModel extends Model{
     protected $primaryKey = 'pk_id_cargos_escolaridade';
     protected $useAutoIncrement = true;
     protected $allowedFields = [
+        'fk_id_secretaria',
         'fk_id_processo_seletivo',
         'fk_id_cargo',
         'fk_id_escolaridade',
