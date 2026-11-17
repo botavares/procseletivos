@@ -1,3 +1,6 @@
+Convocados Controller (Tests\Admin\Controllers\ConvocadosController)
+ [x] Controller pode ser instanciado
+
 Processos Cargos Controller (Tests\Admin\Controllers\ProcessosCargosController)
  [x] Controller pode ser instanciado
 
@@ -84,6 +87,11 @@ Pontuacao Calculator Service (Tests\Admin\Services\Classificacao\PontuacaoCalcul
  [x] Aplicar teto sem limite preserva pontuacao
  [x] Aplicar teto zero nao limita
 
+Processos Convocacao Service (Tests\Admin\Services\ProcessosConvocacao\ProcessosConvocacaoService)
+ [x] Listar por processo delega para model
+ [x] Buscar por id retorna primeiro registro
+ [x] Buscar por id retorna null quando nao encontra
+
 Processos Documentos Service (Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosService)
  [x] Criar documento
  [x] Atualizar documento
@@ -94,7 +102,13 @@ Processos Documentos Service (Tests\Admin\Services\ProcessosDocumentos\Processos
  [x] Listar por numero processo
  [x] Listar por numero documento e ano
  [x] Listar por faixa de tempo
+ [x] Listar por processo id para grid define mais recente para resultado parcial
+ [x] Listar por processo id para grid mostra substituicao para edital antigo
  [x] Criar retificacao atualiza edital de abertura
+ [x] Criar retificacao desativa retificacao anterior
+ [x] Criar resultado parcial sincroniza data divulgacao e situacao
+ [x] Criar homologacao sincroniza data homologacao e situacao
+ [x] Atualizar resultado parcial sobrescreve data divulgacao
 
 Processos Seletivos Service (Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosService)
  [x] Criar processo
@@ -123,7 +137,7 @@ Processos Documentos Rules (Tests\Admin\Validation\ProcessosDocumentosRules)
  [x] Arquivo pdf condicional rejeita vazio para retificacao
  [x] Arquivo pdf condicional rejeita arquivo para comunicado
  [x] Arquivo pdf condicional aceita vazio para comunicado
- [x] Versao vigente regra rejeita valor para retificacao
+ [x] Versao vigente regra aceita valor para retificacao
  [x] Versao vigente regra aceita zero para retificacao
  [x] Versao vigente regra aceita valor para outro tipo
  [x] Documento retificado regra rejeita valor para nao retificacao

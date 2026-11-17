@@ -41,7 +41,22 @@
 
                             <form id="formExperienciasCargo"
                                   method="POST"
-                                  action="<?= base_url_adm('CargosExperiencias/registrarAssociacaoCargoExperiencia') ?>">
+                                  action="<?= base_url_adm('CargosExperiencias/registrarAssociacaoCargoExperiencia') ?>"
+                                  data-iniciar="associacao-cargo"
+                                  data-table="#tabela-experiencias-cargo"
+                                  data-btn-alterar=".btn-alterar-experiencia"
+                                  data-btn-retirar=".btn-retirar-experiencia"
+                                  data-campo-pk="#pk_id_cargos_experiencia"
+                                  data-campo-item="#fk_id_experiencia"
+                                  data-campo-min="#ds_pontuacao_minima"
+                                  data-campo-max="#ds_pontuacao_maxima"
+                                  data-campo-tipo="input[name='ds_tipo_campo']"
+                                  data-modal-retirar="#modalRetirarExperiencia"
+                                  data-modal-nome="#retirar_nome_experiencia"
+                                  data-url-buscar="<?= base_url_adm('CargosExperiencias/buscarAssociacao') ?>"
+                                  data-nome-entidade="experiência"
+                                  data-valor-input="INPUT"
+                                  data-valor-check="SELECT">
 
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="fk_id_cargo" value="<?= esc($cargo->pk_id_cargo) ?>">
@@ -186,6 +201,8 @@
     </section>
 </div>
 
+<script src="<?= base_url('admin/js/cargoAssociacaoCrud.js') ?>"></script>
+
 <!-- Modal de Confirmação: Retirar Experiência do Cargo -->
 <div class="modal fade" id="modalRetirarExperiencia" tabindex="-1" role="dialog" aria-labelledby="modalRetirarLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -286,11 +303,4 @@
             });
         });
 
-        // Botão Limpar: reseta o formulário para nova associação
-        $('#btnLimpar').on('click', function() {
-            $('#formExperienciasCargo')[0].reset();
-            $('#pk_id_cargos_experiencia').val('');
-            $('#acao').val('create');
-        });
-    });
-</script>
+

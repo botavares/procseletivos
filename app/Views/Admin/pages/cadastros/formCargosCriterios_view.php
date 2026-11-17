@@ -37,7 +37,22 @@
 
                             <form id="formCriteriosCargo"
                                   method="POST"
-                                  action="<?= base_url_adm('CargosCriterios/registrarAssociacaoCargoCriterio') ?>">
+                                  action="<?= base_url_adm('CargosCriterios/registrarAssociacaoCargoCriterio') ?>"
+                                  data-iniciar="associacao-cargo"
+                                  data-table="#tabela-Criterios-cargo"
+                                  data-btn-alterar=".btn-alterar-Criterio"
+                                  data-btn-retirar=".btn-retirar-Criterio"
+                                  data-campo-pk="#pk_id_cargo_criterio"
+                                  data-campo-item="#fk_id_criterio"
+                                  data-campo-min="#ds_pontuacao_minima"
+                                  data-campo-max="#ds_pontuacao_maxima"
+                                  data-campo-tipo="input[name='ds_tipo_campo']"
+                                  data-modal-retirar="#modalRetirarCriterio"
+                                  data-modal-nome="#retirar_nome_criterio"
+                                  data-url-buscar="<?= base_url_adm('CargosCriterios/buscarAssociacao') ?>"
+                                  data-nome-entidade="critério"
+                                  data-valor-input="INPUT"
+                                  data-valor-check="CHECK">
 
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="fk_id_cargo" value="<?= esc($cargo->pk_id_cargo) ?>">
@@ -182,6 +197,8 @@
     </section>
 </div>
 
+<script src="<?= base_url('admin/js/cargoAssociacaoCrud.js') ?>"></script>
+
 <!-- Modal de Confirmação: Retirar Criterio do Cargo -->
 <div class="modal fade" id="modalRetirarCriterio" tabindex="-1" role="dialog" aria-labelledby="modalRetirarLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -282,11 +299,4 @@
             });
         });
 
-        // Botão Limpar: reseta o formulário para nova associação
-        $('#btnLimpar').on('click', function() {
-            $('#formCriteriosCargo')[0].reset();
-            $('#pk_id_cargo_criterio').val('');
-            $('#acao').val('create');
-        });
-    });
-</script>
+

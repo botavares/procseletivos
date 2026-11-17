@@ -102,4 +102,4 @@ define('EVENT_PRIORITY_HIGH', 10);
  | apenas código oficial (ds_codigo_oficial).
  |
  */
-defined('DIARIO_OFICIAL_URL_BASE') || define('DIARIO_OFICIAL_URL_BASE', 'https://nomedodiariooficial/algumacoisa');
+defined('DIARIO_OFICIAL_URL_BASE') || define('DIARIO_OFICIAL_URL_BASE', 'https://www.diariomunicipal.com.br/amm-mg/materia/');

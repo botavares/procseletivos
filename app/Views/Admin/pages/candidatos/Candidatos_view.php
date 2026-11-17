@@ -35,7 +35,10 @@
 						</div>
 					<?php endif; ?>
 
-					<div class="card card-outline card-primary">
+					<div class="card card-outline card-primary"
+						 data-iniciar="filtro-pcd-exportacao"
+						 data-url-exportacao="<?= base_url_adm("Candidatos/exportarXlsx/{$idProcesso}/{$idCargo}") ?>"
+						 data-url-exportacao-pcd="<?= base_url_adm("Candidatos/exportarXlsx/{$idProcesso}/{$idCargo}?pcd=1") ?>">
 						<div class="card-header d-flex justify-content-start align-items-center py-2">
 							<div class="d-flex">
 								<a href="<?php echo base_url_adm('Dashboard') ?>" class="btn btn-warning btn-sm mr-2">
@@ -109,44 +112,4 @@
 	</section>
 </div>
 
-<script>
-document.getElementById('btnExportarPlanilha').addEventListener('click', function () {
-	window.location.href = '<?php echo base_url_adm("Candidatos/exportarXlsx/" . $idProcesso . "/" . $idCargo) ?>';
-});
-
-document.getElementById('btnExportarPlanilhaPcd').addEventListener('click', function () {
-	window.location.href = '<?php echo base_url_adm("Candidatos/exportarXlsx/" . $idProcesso . "/" . $idCargo . "?pcd=1") ?>';
-});
-
-$(document).ready(function () {
-	// Captura o índice da coluna PCD
-	const tabela = document.getElementById('tabela-paginada');
-	let pcdColIndex = -1;
-	if (tabela.rows.length > 0) {
-		const headerCells = tabela.rows[0].cells;
-		for (let i = 0; i < headerCells.length; i++) {
-			if ((headerCells[i].textContent || '').trim() === 'PCD') {
-				pcdColIndex = i;
-				break;
-			}
-		}
-	}
-
-	if (pcdColIndex >= 0) {
-		$.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
-			if (!$('#togglePcd').is(':checked')) return true;
-			const valor = (data[pcdColIndex] || '').trim();
-			return valor === 'SIM';
-		});
-	}
-
-	document.getElementById('togglePcd').addEventListener('change', function () {
-		const mostrarApenasPcd = this.checked;
-		$('#tabela-paginada').DataTable().draw();
-
-		// Alterna visibilidade dos botões
-		document.getElementById('btnExportarPlanilha').style.display = mostrarApenasPcd ? 'none' : '';
-		document.getElementById('btnExportarPlanilhaPcd').style.display = mostrarApenasPcd ? '' : 'none';
-	});
-});
-</script>
+<script src="<?= base_url('admin/js/filtroPcdExportacao.js') ?>"></script>

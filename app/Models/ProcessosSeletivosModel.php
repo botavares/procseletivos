@@ -133,7 +133,7 @@ class ProcessosSeletivosModel extends Model
         return $this->db->table('tb_processos')
             ->select(
                 'tb_processos.*,' .
-                ' tb_situacao_processos.nm_id_situacao,' .
+                ' tb_processos.nm_situacao AS nm_id_situacao,' .
                 ' tb_situacao_processos.dt_ultima_alteracao,' .
                 ' tb_secretarias.ds_nome_secretaria,' .
                 ' tb_secretarias.ds_sigla_secretaria'
@@ -164,9 +164,8 @@ class ProcessosSeletivosModel extends Model
             )
             ->join('tb_cargos', 'tb_cargos.pk_id_cargo = tb_processos_cargos.fk_id_cargo')
             ->join('tb_processos', 'tb_processos.pk_id_processo = tb_processos_cargos.fk_id_processo')
-            ->join('tb_situacao_processos', 'tb_situacao_processos.fk_id_processo = tb_processos.pk_id_processo')
             ->where("(tb_processos.is_deletado IS NULL OR tb_processos.is_deletado = '0000-00-00 00:00:00')")
-            ->whereIn('tb_situacao_processos.nm_id_situacao', [1, 6]) // INSCRICOES_ABERTAS ou AGENDADO
+            ->whereIn('tb_processos.nm_situacao', [1, 6]) // INSCRICOES_ABERTAS ou AGENDADO
             ->groupStart()
                 ->where("EXISTS (
                     SELECT 1 FROM tb_cargos_experiencias e

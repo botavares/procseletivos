@@ -187,8 +187,8 @@ $routes->group('adm', ['namespace' => 'App\Controllers\Admin'], function($routes
     $routes->get('Convocados/convocados/', 'Convocados::convocados/', ['as'=>'Convocados.convocados']);
     $routes->post('Convocados/convocarCandidato', 'Convocados::convocarCandidato', ['as'=>'Convocados.convocarCandidato']);
     $routes->post('Convocados/atualizarComparecimento', 'Convocados::atualizarComparecimento', ['as'=>'Convocados.atualizarComparecimento']);
-    $routes->post('Convocados/convocarCandidato', 'Convocados::convocarCandidato', ['as'=>'Convocados.convocarCandidato']);
-    $routes->get('Convocados/convocados/', 'Convocados::convocados/', ['as'=>'Convocados.convocados']);
+    $routes->post('Convocados/salvarEscolha', 'Convocados::salvarEscolha', ['as'=>'Convocados.salvarEscolha']);
+    $routes->post('Convocados/getConvocacoesByProcesso', 'Convocados::getConvocacoesByProcesso', ['as'=>'Convocados.getConvocacoesByProcesso']);
     $routes->get('Vagas', 'Vagas::index', ['as'=>'Vagas']);
     $routes->get('Vagas/formularioCadastro', 'Vagas::formularioCadastro', ['as'=>'Vagas.formularioCadastro']);
     $routes->post('Vagas/registrar', 'Vagas::registrar');
@@ -280,6 +280,7 @@ $routes->group('adm', ['namespace' => 'App\Controllers\Admin'], function($routes
     $routes->get('ProcessosDocumentos/buscarPorNumeroProcesso/(:num)/(:num)', 'ProcessosDocumentos::buscarPorNumeroProcesso/$1/$2');
     $routes->get('ProcessosDocumentos/buscarPorNumeroDocumentoEAno/(:num)/(:num)', 'ProcessosDocumentos::buscarPorNumeroDocumentoEAno/$1/$2');
     $routes->get('ProcessosDocumentos/buscarPorFaixaDeTempo/(:any)/(:any)', 'ProcessosDocumentos::buscarPorFaixaDeTempo/$1/$2');
+    $routes->get('ProcessosDocumentos/proximoNumeroConvocacao/(:num)', 'ProcessosDocumentos::proximoNumeroConvocacao/$1');
     /* ============================================================
      * Processos Cargos
      * ============================================================ */

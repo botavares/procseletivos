@@ -185,4 +185,21 @@ class ProcessosDocumentosModel extends Model
                     ->orderBy('pk_id_documento', 'DESC')
                     ->first() ?: null;
     }
+
+    /**
+     * Retorna a retificação vigente de um processo, se houver.
+     */
+    public function buscarRetificacaoVigente(int $idProcesso, ?int $excetoId = null): ?object
+    {
+        $builder = $this->where('fk_processo_referencia', $idProcesso)
+                        ->where('nm_tipo', TiposDocumentosEnum::RETIFICACAO->value)
+                        ->where('nm_versao_vigente', 1)
+                        ->where('is_deletado IS NULL');
+
+        if ($excetoId) {
+            $builder->where('pk_id_documento !=', $excetoId);
+        }
+
+        return $builder->orderBy('pk_id_documento', 'DESC')->first() ?: null;
+    }
 }

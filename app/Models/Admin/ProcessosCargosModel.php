@@ -108,6 +108,25 @@ class ProcessosCargosModel extends Model
     }
 
     /**
+     * Busca cargos vinculados a uma lista de processos seletivos.
+     * Útil para popular selects dependentes no frontend.
+     */
+    public function buscarPorProcessos(array $processosIds): array
+    {
+        if (empty($processosIds)) {
+            return [];
+        }
+
+        return $this->db->table('tb_processos_cargos')
+            ->select('tb_processos_cargos.fk_id_processo, tb_processos_cargos.fk_id_cargo, tb_cargos.ds_nome_cargo')
+            ->join('tb_cargos', 'tb_cargos.pk_id_cargo = tb_processos_cargos.fk_id_cargo')
+            ->whereIn('tb_processos_cargos.fk_id_processo', $processosIds)
+            ->orderBy('tb_cargos.ds_nome_cargo', 'ASC')
+            ->get()
+            ->getResult();
+    }
+
+    /**
      * Busca registros por cargo.
      */
     public function buscarPorCargo(int $cargoId): array

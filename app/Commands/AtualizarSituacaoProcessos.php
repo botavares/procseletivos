@@ -35,14 +35,36 @@ class AtualizarSituacaoProcessos extends BaseCommand
      */
     protected function extrairOpcao(string $nome, array $params): ?string
     {
-        foreach ($params as $param) {
-            if (strpos($param, "--{$nome}=") === 0) {
-                return substr($param, strlen("--{$nome}="));
-            }
-            if ($param === "--{$nome}" && isset($params[array_search($param, $params) + 1])) {
-                return $params[array_search($param, $params) + 1];
+        // CI4 trata --id=2 como chave 'id=2' com valor null, então normalizamos primeiro
+        foreach ($params as $chave => $valor) {
+            if (is_string($chave) && strpos($chave, '=') !== false) {
+                [$chaveNormalizada, $valorNormalizado] = explode('=', $chave, 2);
+                if ($chaveNormalizada === $nome) {
+                    return $valorNormalizado !== '' ? $valorNormalizado : null;
+                }
             }
         }
+
+        // CI4 também extrai opções como ['id' => '2']
+        if (array_key_exists($nome, $params)) {
+            return $params[$nome] !== null ? (string) $params[$nome] : null;
+        }
+
+        $prefixoIgual = "--{$nome}=";
+        $prefixoFlag  = "--{$nome}";
+
+        foreach ($params as $indice => $param) {
+            $param = (string) $param;
+
+            if (strpos($param, $prefixoIgual) === 0) {
+                return substr($param, strlen($prefixoIgual));
+            }
+
+            if ($param === $prefixoFlag && isset($params[$indice + 1])) {
+                return (string) $params[$indice + 1];
+            }
+        }
+
         return null;
     }
 

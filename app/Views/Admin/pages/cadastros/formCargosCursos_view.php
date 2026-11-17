@@ -41,7 +41,22 @@
 
                             <form id="formCursosCargo"
                                   method="POST"
-                                  action="<?= base_url_adm('CargosCursos/registrarAssociacaoCargoCursos') ?>">
+                                  action="<?= base_url_adm('CargosCursos/registrarAssociacaoCargoCursos') ?>"
+                                  data-iniciar="associacao-cargo"
+                                  data-table="#tabela-cursos-cargo"
+                                  data-btn-alterar=".btn-alterar-curso"
+                                  data-btn-retirar=".btn-retirar-curso"
+                                  data-campo-pk="#pk_id_cargo_aperfeicoamento"
+                                  data-campo-item="#fk_id_curso"
+                                  data-campo-min="#ds_pontuacao_minima"
+                                  data-campo-max="#ds_pontuacao_maxima"
+                                  data-campo-tipo="input[name='ds_tipo_campo']"
+                                  data-modal-retirar="#modalRetirarCurso"
+                                  data-modal-nome="#retirar_nome_curso"
+                                  data-url-buscar="<?= base_url_adm('CargosCursos/buscarAssociacao') ?>"
+                                  data-nome-entidade="curso de aperfeiçoamento"
+                                  data-valor-input="INPUT"
+                                  data-valor-check="SELECT">
 
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="fk_id_cargo" value="<?= esc($cargo->pk_id_cargo) ?>">
@@ -186,6 +201,8 @@
     </section>
 </div>
 
+<script src="<?= base_url('admin/js/cargoAssociacaoCrud.js') ?>"></script>
+
 <!-- Modal de Confirmacao: Retirar Cursos de aperfeicoamento do Cargo -->
 <div class="modal fade" id="modalRetirarCurso" tabindex="-1" role="dialog" aria-labelledby="modalRetirarLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -286,11 +303,4 @@
             });
         });
 
-        // Botao Limpar: reseta o formulario para nova associacao
-        $('#btnLimpar').on('click', function() {
-            $('#formCursosCargo')[0].reset();
-            $('#pk_id_cargo_aperfeicoamento').val('');
-            $('#acao').val('create');
-        });
-    });
-</script>
+

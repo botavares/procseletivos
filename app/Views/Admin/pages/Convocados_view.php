@@ -49,17 +49,19 @@
 
 						<div class="card-body p-2">
 							<table id="tabela-paginada" class="table table-sm table-bordered table-striped table-hover minhaDataTable mb-0">
-								<thead class="thead-light">
-									<tr>
-										<?php foreach ($titulosTabela as $tituloColuna): ?>
-											<th class="text-center"><?php echo esc($tituloColuna) ?></th>
-										<?php endforeach; ?>
-										<th class="text-center" style="width: 110px;">Comparecimento</th>
-										<th class="text-center" style="width: 140px;">Contratar/Encaminhar</th>
-									</tr>
-								</thead>
+                                <thead class="thead-light">
+                                    <tr>
+                                        <?php foreach ($titulosTabela as $tituloColuna): ?>
+                                            <th class="text-center"><?php echo esc($tituloColuna) ?></th>
+                                        <?php endforeach; ?>
+                                        <?php if (empty($modoInscritos)): ?>
+                                            <th class="text-center" style="width: 110px;">Comparecimento</th>
+                                            <th class="text-center" style="width: 140px;">Contratar/Encaminhar</th>
+                                        <?php endif; ?>
+                                    </tr>
+                                </thead>
 								<tbody>
-									<?php foreach ($convocados as $valueConvocados): ?
+									<?php foreach ($convocados as $valueConvocados): ?>
 										<?php
 											$dataNascimento = date('d/m/Y', strtotime($valueConvocados->ds_nascimento));
 											$dataConvocacao = date('d/m/Y', strtotime($valueConvocados->ds_data));
@@ -67,34 +69,38 @@
 												? "<i class='fas fa-thumbs-up text-success' title='Candidato demonstrou interesse pelo email'></i>"
 												: "";
 										?>
-										<tr>
-											<td class="text-center"><?php echo $valueConvocados->ds_periodo ?></td>
-											<td><?php echo $valueConvocados->ds_nome . ' ' . $statusInteresse ?></td>
-											<td class="text-center"><?php echo $dataNascimento ?></td>
-											<td><?php echo mask($valueConvocados->ds_celular, '(##) #####-####') ?></td>
-											<td><?php echo $valueConvocados->ds_email ?></td>
-											<td><?php echo $valueConvocados->ds_nome_curso ?></td>
-											<td class="text-center"><?php echo $dataConvocacao ?></td>
-											<td class="text-center">
-												<div class="custom-control custom-checkbox">
-													<input type="checkbox" class="custom-control-input comparecimento" id="comparecimento-<?php echo $valueConvocados->pk_id_candidato ?>" data-id="<?php echo $valueConvocados->pk_id_candidato ?>" <?php if($valueConvocados->ds_comparecimento == '1'){echo 'checked';} ?> />
-													<label class="custom-control-label" for="comparecimento-<?php echo $valueConvocados->pk_id_candidato ?>"></label>
-												</div>
-												<input type="hidden" id="csrf" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
-											</td>
-											<td class="text-center">
-												<a class="btn btn-info btn-sm" href="<?php echo base_url_adm('/Contratos/formContratar/' . $valueConvocados->pk_id_candidato) ?>">
-													<i class="fas fa-edit"></i>
-												</a>
-											</td>
-										</tr>
+                                        <tr>
+                                            <td class="text-center"><?php echo $valueConvocados->ds_periodo ?></td>
+                                            <td><?php echo $valueConvocados->ds_nome . ' ' . $statusInteresse ?></td>
+                                            <td class="text-center"><?php echo $dataNascimento ?></td>
+                                            <td><?php echo mask($valueConvocados->ds_celular, '(##) #####-####') ?></td>
+                                            <td><?php echo $valueConvocados->ds_email ?></td>
+                                            <td><?php echo $valueConvocados->ds_nome_curso ?></td>
+                                            <td class="text-center"><?php echo $dataConvocacao ?></td>
+                                            <?php if (empty($modoInscritos)): ?>
+                                                <td class="text-center">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input comparecimento" id="comparecimento-<?php echo $valueConvocados->pk_id_candidato ?>" data-id="<?php echo $valueConvocados->pk_id_candidato ?>" <?php if($valueConvocados->ds_comparecimento == '1'){echo 'checked';} ?> />
+                                                        <label class="custom-control-label" for="comparecimento-<?php echo $valueConvocados->pk_id_candidato ?>"></label>
+                                                    </div>
+                                                    <input type="hidden" id="csrf" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
+                                                </td>
+                                                <td class="text-center">
+                                                    <a class="btn btn-info btn-sm" href="<?php echo base_url_adm('/Contratos/formContratar/' . $valueConvocados->pk_id_candidato) ?>">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                </td>
+                                            <?php endif; ?>
+                                        </tr>
 									<?php endforeach; ?>
 								</tbody>
 							</table>
-							<p class="text-danger mb-0 mt-2 small">
-								<i class="fas fa-info-circle mr-1"></i>
-								Após 48 horas da data e hora da convocação, o sistema realizará a "desconvocação" automática dos candidatos que não se manifestaram.
-							</p>
+							<?php if (empty($modoInscritos)): ?>
+								<p class="text-danger mb-0 mt-2 small">
+									<i class="fas fa-info-circle mr-1"></i>
+									Após 48 horas da data e hora da convocação, o sistema realizará a "desconvocação" automática dos candidatos que não se manifestaram.
+								</p>
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>

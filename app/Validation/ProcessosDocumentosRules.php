@@ -82,17 +82,13 @@ class ProcessosDocumentosRules
     }
 
     /**
-     * Versão vigente não pode ser preenchida se o tipo for RETIFICACAO.
+     * Permite qualquer valor inteiro para o campo Versão Vigente.
+     * Retificações passam a ser o documento vigente após substituir
+     * o edital de abertura, portanto o valor 1 também é válido.
      */
     public function versao_vigente_regra(?string $value = null, ?string $params = null, array $data = []): bool
     {
-        $tipo = $this->obterTipoDocumento($data);
-
-        if ($tipo === TiposDocumentosEnum::RETIFICACAO->value) {
-            return $value === null || $value === '' || (int) $value === 0;
-        }
-
-        return true;
+        return $value === null || $value === '' || ctype_digit($value);
     }
 
     /**

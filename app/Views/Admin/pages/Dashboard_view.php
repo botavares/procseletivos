@@ -84,6 +84,14 @@
                     </div>
 
                     <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 mb-2">
+                        <a href="#" data-toggle="modal" data-target="#escolhaConvocacao" class="dash-quick-card">
+                            <div class="dash-quick-icon dash-quick-icon--consultas1"><i class="fas fa-bullhorn"></i></div>
+                            <h6>Convocação</h6>
+                            <small>Listar candidatos inscritos</small>
+                        </a>
+                    </div>
+
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 mb-2">
                         <a href="#" data-toggle="modal" data-target="#escolhaRecursos" class="dash-quick-card">
                             <div class="dash-quick-icon dash-quick-icon--consultas2"><i class="fas fa-gavel"></i></div>
                             <h6>Recursos</h6>
@@ -380,6 +388,46 @@
 </div>
 
 <!-- ================================================================
+     MODAL: Escolha Convocação
+     ================================================================ -->
+<div class="modal fade dashboard-modal" id="escolhaConvocacao" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="fas fa-bullhorn"></i> Escolha o Processo e o Edital de Convocação</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true"><i class="fas fa-times"></i></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="<?= base_url_adm('Convocados/salvarEscolha') ?>">
+            <input type="hidden" id="csrf-convocacao" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
+            <div class="form-group">
+                <label for="processo-convocacao">Processo Seletivo</label>
+                <select class="form-control select-convocacao-processo" data-target="#select-convocacao" id="processo-convocacao" name="processo" required>
+                    <option value="">Selecione um Processo Seletivo</option>
+                    <?php foreach ($todosProcessos as $processo): ?>
+                        <option value="<?= $processo->pk_id_processo; ?>">
+                            <?= formatarNumeroEdital(($processo->nm_numero_processo ?? '') . ($processo->nm_ano_processo ?? '')) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="select-convocacao">Edital de Convocação</label>
+                <select class="form-control select-convocacao" id="select-convocacao" name="convocacao" required>
+                    <option value="">Selecione um edital de convocação</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Sair</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
      MODAL: Erros Genérico
      ================================================================ -->
 <div class="modal fade dashboard-modal" id="modalErros" tabindex="-1" role="dialog" aria-hidden="true">
@@ -400,6 +448,53 @@
         </div>
     </div>
 </div>
+
+<script>
+$(document).ready(function() {
+    $('.select-convocacao-processo').on('change', function () {
+        var idProcesso = $(this).val();
+        var targetSelect = $(this).data('target');
+        var csrfElement = $(this).closest('form').find('input[type="hidden"]');
+        var csrfName = csrfElement.attr('name');
+        var csrfHash = csrfElement.val();
+
+        if (idProcesso === '') {
+            $(targetSelect).html('<option value="">Selecione um edital de convocação</option>');
+            return;
+        }
+
+        $.ajax({
+            url: path + 'Convocados/getConvocacoesByProcesso',
+            dataType: 'json',
+            type: 'POST',
+            data: {
+                [csrfName]: csrfHash,
+                idProcesso: idProcesso
+            },
+            success: function (response) {
+                if (response[csrfName] !== undefined) {
+                    $('[name="' + csrfName + '"]').val(response[csrfName]);
+                }
+
+                var options = '<option value="">Selecione um edital de convocação</option>';
+                if (response.convocacoes && response.convocacoes.length) {
+                    for (var i = 0; i < response.convocacoes.length; i++) {
+                        options += '<option value="' + response.convocacoes[i].pk_id_convocacao + '"\u003e' +
+                                'Edital ' + response.convocacoes[i].nm_numero_convocacao + '/' + response.convocacoes[i].nm_ano_convocacao +
+                                ' - ' + response.convocacoes[i].ds_nome_cargo +
+                                '</option>';
+                    }
+                }
+                $(targetSelect).html(options);
+            },
+            error: function (xhr) {
+                console.error('Erro ao buscar convocações:', xhr.status, xhr.responseText);
+                alert('Erro ao buscar convocações. Verifique o console (F12) para mais detalhes.');
+            }
+        });
+    });
+});
+</script>
 
 <!-- ================================================================
      Footer

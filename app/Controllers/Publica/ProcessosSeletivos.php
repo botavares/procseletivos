@@ -80,9 +80,11 @@ class ProcessosSeletivos extends BaseController
         $situacaoId = (int) ($processo->nm_situacao ?? 0);
         $enum = SituacaoProcessosEnum::tryFrom($situacaoId);
         $tagClass = match ($situacaoId) {
-            1, 6 => 'home-tag--aberto',
-            4     => 'home-tag--vigente',
-            default => 'home-tag--encerrado',
+            SituacaoProcessosEnum::INSCRICOES_ABERTAS->value,
+            SituacaoProcessosEnum::AGENDADO->value          => 'home-tag--aberto',
+            SituacaoProcessosEnum::RESULTADO_PUBLICADO->value,
+            SituacaoProcessosEnum::VIGENTE->value             => 'home-tag--vigente',
+            default                                            => 'home-tag--encerrado',
         };
         $tagLabel = $enum?->label() ?? 'Encerrado';
 
@@ -99,16 +101,18 @@ class ProcessosSeletivos extends BaseController
         foreach ($documentos as $doc) {
             $tipoEnum = TiposDocumentosEnum::tryFrom((int) $doc->nm_tipo);
             $documentosFormatados[] = [
-                'id'        => $doc->pk_id_documento,
-                'tipo'      => $tipoEnum?->label() ?? 'Documento',
-                'tipo_id'   => $doc->nm_tipo,
-                'numero'    => $doc->nm_numero_documento,
-                'ano'       => $doc->nm_ano_documento,
-                'numero_formatado' => formatarNumeroEdital(($doc->nm_numero_documento ?? '') . ($doc->nm_ano_documento ?? '')),
-                'codigo'    => $doc->ds_codigo_oficial,
-                'arquivo'   => $doc->ds_arquivo,
-                'link'      => $doc->ds_link,
-                'vigente'   => (bool) $doc->nm_versao_vigente,
+                'id'                => $doc->pk_id_documento,
+                'tipo'              => $tipoEnum?->label() ?? 'Documento',
+                'tipo_id'           => $doc->nm_tipo,
+                'numero'            => $doc->nm_numero_documento,
+                'ano'               => $doc->nm_ano_documento,
+                'numero_formatado'  => formatarNumeroEdital(($doc->nm_numero_documento ?? '') . ($doc->nm_ano_documento ?? '')),
+                'codigo'            => $doc->ds_codigo_oficial,
+                'arquivo'           => $doc->ds_arquivo,
+                'link'              => $doc->ds_link,
+                'vigente'           => (bool) $doc->nm_versao_vigente,
+                'data_publicacao'   => isset($doc->dt_data_publicacao) ? date('d/m/Y', strtotime($doc->dt_data_publicacao)) : null,
+                'data_substituicao' => isset($doc->dt_data_substituicao) ? date('d/m/Y', strtotime($doc->dt_data_substituicao)) : null,
             ];
         }
 

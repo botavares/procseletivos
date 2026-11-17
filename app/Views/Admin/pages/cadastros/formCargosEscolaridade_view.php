@@ -37,7 +37,22 @@
 
                             <form id="formEscolaridadesCargo"
                                   method="POST"
-                                  action="<?= base_url_adm('CargosEscolaridades/registrarAssociacaoCargoEscolaridade') ?>">
+                                  action="<?= base_url_adm('CargosEscolaridades/registrarAssociacaoCargoEscolaridade') ?>"
+                                  data-iniciar="associacao-cargo"
+                                  data-table="#tabela-escolaridades-cargo"
+                                  data-btn-alterar=".btn-alterar-escolaridade"
+                                  data-btn-retirar=".btn-retirar-escolaridade"
+                                  data-campo-pk="#pk_id_cargos_escolaridade"
+                                  data-campo-item="#fk_id_escolaridade"
+                                  data-campo-min="#ds_pontuacao_minima"
+                                  data-campo-max="#ds_pontuacao_maxima"
+                                  data-campo-tipo="input[name='ds_tipo_campo']"
+                                  data-modal-retirar="#modalRetirarEscolaridade"
+                                  data-modal-nome="#retirar_nome_escolaridade"
+                                  data-url-buscar="<?= base_url_adm('CargosEscolaridades/buscarAssociacao') ?>"
+                                  data-nome-entidade="escolaridade"
+                                  data-valor-input="INPUT"
+                                  data-valor-check="CHECK">
 
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="fk_id_cargo" value="<?= esc($cargo->pk_id_cargo) ?>">
@@ -181,6 +196,8 @@
         </div>
     </section>
 </div>
+
+<script src="<?= base_url('admin/js/cargoAssociacaoCrud.js') ?>"></script>
 
 <!-- Modal de Confirmacao: Retirar Escolaridade do Cargo -->
 <div class="modal fade" id="modalRetirarEscolaridade" tabindex="-1" role="dialog" aria-labelledby="modalRetirarLabel" aria-hidden="true">

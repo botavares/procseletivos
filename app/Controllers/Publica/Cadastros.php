@@ -301,8 +301,7 @@ class Cadastros extends BaseController
             ->setBody($comprovante->conteudo);
     }
 
-    public function loginGovBr()
-    {
+    public function loginGovBr(){
         $user    = $this->request->getVar('user');
         $destino = $this->request->getVar('destino') ?? 'Home';
 

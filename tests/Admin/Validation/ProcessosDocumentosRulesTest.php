@@ -116,10 +116,10 @@ final class ProcessosDocumentosRulesTest extends CIUnitTestCase
         $this->assertTrue($this->rules->arquivo_pdf_condicional('', null, $data));
     }
 
-    public function testVersaoVigenteRegraRejeitaValorParaRetificacao(): void
+    public function testVersaoVigenteRegraAceitaValorParaRetificacao(): void
     {
         $data = ['nm_tipo' => '2'];
-        $this->assertFalse($this->rules->versao_vigente_regra('5', null, $data));
+        $this->assertTrue($this->rules->versao_vigente_regra('1', null, $data));
     }
 
     public function testVersaoVigenteRegraAceitaZeroParaRetificacao(): void

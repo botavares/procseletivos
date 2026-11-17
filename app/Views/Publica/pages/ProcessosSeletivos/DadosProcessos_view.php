@@ -27,13 +27,19 @@ Faixa de destaque
 ---------------------->
 <div class="home-faixa">
     <div class="home-faixa-destaque">
-        <?php if ($situacaoId == 1) : ?>
+        <?php if ($situacaoId == \App\Enums\Admin\SituacaoProcessosEnum::INSCRICOES_ABERTAS->value) : ?>
             <b>Inscrições abertas até <?= esc($dataTermino) ?></b>
             Inscreva-se com seu login gov.br. As inscrições seguem até o prazo final.
-        <?php elseif ($situacaoId == 4) : ?>
+        <?php elseif ($situacaoId == \App\Enums\Admin\SituacaoProcessosEnum::AGENDADO->value) : ?>
+            <b>Agendado — inscrições a partir de <?= esc($dataInicial) ?></b>
+            O processo ainda não está aberto para inscrições.
+        <?php elseif ($situacaoId == \App\Enums\Admin\SituacaoProcessosEnum::RESULTADO_PUBLICADO->value) : ?>
+            <b>Resultado publicado</b>
+            Acompanhe o resultado parcial e aguarde a homologação.
+        <?php elseif ($situacaoId == \App\Enums\Admin\SituacaoProcessosEnum::VIGENTE->value) : ?>
             <b>Processo vigente — convocações em andamento</b>
             Acompanhe as convocações e a situação dos contratados.
-        <?php elseif ($situacaoId == 2) : ?>
+        <?php elseif ($situacaoId == \App\Enums\Admin\SituacaoProcessosEnum::INSCRICOES_ENCERRADAS->value) : ?>
             <b>Inscrições encerradas</b>
             Aguarde a publicação do resultado final e das próximas etapas.
         <?php else : ?>
@@ -41,7 +47,10 @@ Faixa de destaque
             Os documentos permanecem publicados para consulta.
         <?php endif; ?>
     </div>
-    <?php if ($situacaoId == 1) : ?>
+    <?php if (in_array($situacaoId, [
+        \App\Enums\Admin\SituacaoProcessosEnum::INSCRICOES_ABERTAS->value,
+        \App\Enums\Admin\SituacaoProcessosEnum::AGENDADO->value,
+    ], true)) : ?>
         <a href="<?= base_url('Cadastros') ?>" class="home-btn">Inscrever-se</a>
     <?php else : ?>
         <a href="#conv" class="home-btn home-btn--outline">Ver convocações</a>
@@ -83,7 +92,17 @@ Painéis
         <div class="home-prazo-c">
             <div class="home-prazo-c__r">Inscrições</div>
             <div class="home-prazo-c__v"><?= esc($dataInicial) ?> a <?= esc($dataTermino) ?></div>
-            <div class="home-prazo-c__x"><?= $situacaoId == 1 ? 'Inscrições abertas' : 'Encerradas' ?></div>
+            <div class="home-prazo-c__x">
+                <?php if ($situacaoId == \App\Enums\Admin\SituacaoProcessosEnum::INSCRICOES_ABERTAS->value) : ?>
+                    Inscrições abertas
+                <?php elseif ($situacaoId == \App\Enums\Admin\SituacaoProcessosEnum::AGENDADO->value) : ?>
+                    Aguardando abertura
+                <?php elseif ($situacaoId == \App\Enums\Admin\SituacaoProcessosEnum::INSCRICOES_ENCERRADAS->value) : ?>
+                    Encerradas
+                <?php else : ?>
+                    —
+                <?php endif; ?>
+            </div>
         </div>
         <div class="home-prazo-c">
             <div class="home-prazo-c__r">Resultado final (homologação)</div>
@@ -106,15 +125,31 @@ Painéis
                     <div>
                         <div class="home-doc__d">
                             <?php if ($doc['tipo_id'] == 1) : ?>
-                                <b>Edital nº <?= esc($doc['numero_formatado']) ?></b> — versão original
+                                <b>Edital nº <?= esc($doc['numero_formatado']) ?></b>
+                                <?php if (!empty($doc['data_substituicao'])) : ?>
+                                    — Substituído em <?= esc($doc['data_substituicao']) ?> 
+                                <?php else : ?>
+                                    — versão original
+                                <?php endif; ?>
                             <?php else : ?>
-                                <b>Retificação nº <?= esc($doc['numero_formatado']) ?></b>
+                                <b>Retificação <?= esc($doc['data_publicacao'] ?? '') ?></b>
                             <?php endif; ?>
                             <?php if ($doc['vigente']) : ?>
                                 <span class="home-mini home-mini--vig">VIGENTE</span>
                             <?php endif; ?>
                         </div>
-                        <div class="home-doc__dt">Código oficial: <?= esc($doc['codigo']) ?></div>
+                        <div class="home-doc__dt">
+                            <?php if (!empty($doc['data_publicacao'])) : ?>
+                                Publicado em <?= esc($doc['data_publicacao']) ?> - Diário Oficial dos Municípios sob o código oficial: <?= esc($doc['codigo']) ?>
+                                <?php if (!empty($doc['link'])) : ?>
+                                    <a href="<?= esc($doc['link']) ?>" target="_blank" rel="noopener noreferrer">Ver publicação <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
+                                <?php else : ?>
+                                    <a href="<?= url_diario_oficial($doc['codigo']) ?>" target="_blank" rel="noopener noreferrer">Ver publicação <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
+                                <?php endif; ?>
+                            <?php else : ?>
+                                Diário Oficial dos Municípios sob o código oficial: <?= esc($doc['codigo']) ?>
+                            <?php endif; ?>
+                        </div>
                     </div>
                     <?php if (!empty($doc['arquivo'])) : ?>
                         <?php if ($doc['tipo_id'] == 1) : ?>
@@ -180,7 +215,18 @@ Painéis
                                 <span class="home-mini home-mini--vig">VIGENTE</span>
                             <?php endif; ?>
                         </div>
-                        <div class="home-doc__dt">Código oficial: <?= esc($r['codigo']) ?></div>
+                        <div class="home-doc__dt">
+                            <?php if (!empty($r['data_publicacao'])) : ?>
+                                Publicado em <?= esc($r['data_publicacao']) ?> - Diário Oficial dos Municípios sob o código oficial: <?= esc($r['codigo']) ?>
+                                <?php if (!empty($r['link'])) : ?>
+                                    <a href="<?= esc($r['link']) ?>" target="_blank" rel="noopener noreferrer">Ver publicação <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
+                                <?php else : ?>
+                                    <a href="<?= url_diario_oficial(esc($r['codigo'])) ?>" target="_blank" rel="noopener noreferrer">Ver publicação <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
+                                <?php endif; ?>
+                            <?php else : ?>
+                                Diário Oficial dos Municípios sob o código oficial: <?= esc($r['codigo']) ?>
+                            <?php endif; ?>
+                        </div>
                     </div>
                     <?php if (!empty($r['arquivo'])) : ?>
                         <a href="<?= site_url('ProcessosSeletivos/obterEdital/republicacoes/' . $r['arquivo']) ?>" class="home-btn home-btn--outline">Abrir (PDF) ↗</a>
@@ -193,7 +239,17 @@ Painéis
             Esta etapa do processo ainda não aconteceu.<br>Quando houver resultado publicado, ele aparece aqui.
         </div>
     <?php endif; ?>
+    <h4 class="home-sub mt-3">Conferir a própria posição</h4>
+    <div class="home-box" style="margin-top:12px">
+        <div class="box" style="display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap">
+    <div style="font-size:12.5px;color:var(--texto2);line-height:1.6">A Lista Pública de Candidatos é atualizada em tempo real e serve para acompanhamento.<br><b>O documento oficial publicado no Diário Oficial prevalece sobre a consulta em tela.</b></div>
+    <a href="<?= site_url('transparencia') ?>" class="home-btn home-btn--outline">Ver classificação na Lista Pública →</a>
+  </div>
+    </div>
 </div>
+
+    
+
 
 <div class="datas-processos" data-panel="conv">
     <?php if (!empty($convocacoes)) : ?>

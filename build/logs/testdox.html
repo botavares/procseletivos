@@ -51,6 +51,10 @@
         </style>
     </head>
     <body>
+        <h2>Convocados Controller (Tests\Admin\Controllers\ConvocadosController)</h2>
+        <ul>
+            <li class="success">Controller pode ser instanciado</li>
+        </ul>
         <h2>Processos Cargos Controller (Tests\Admin\Controllers\ProcessosCargosController)</h2>
         <ul>
             <li class="success">Controller pode ser instanciado</li>
@@ -151,6 +155,12 @@
             <li class="success">Aplicar teto sem limite preserva pontuacao</li>
             <li class="success">Aplicar teto zero nao limita</li>
         </ul>
+        <h2>Processos Convocacao Service (Tests\Admin\Services\ProcessosConvocacao\ProcessosConvocacaoService)</h2>
+        <ul>
+            <li class="success">Listar por processo delega para model</li>
+            <li class="success">Buscar por id retorna primeiro registro</li>
+            <li class="success">Buscar por id retorna null quando nao encontra</li>
+        </ul>
         <h2>Processos Documentos Service (Tests\Admin\Services\ProcessosDocumentos\ProcessosDocumentosService)</h2>
         <ul>
             <li class="success">Criar documento</li>
@@ -162,7 +172,13 @@
             <li class="success">Listar por numero processo</li>
             <li class="success">Listar por numero documento e ano</li>
             <li class="success">Listar por faixa de tempo</li>
+            <li class="success">Listar por processo id para grid define mais recente para resultado parcial</li>
+            <li class="success">Listar por processo id para grid mostra substituicao para edital antigo</li>
             <li class="success">Criar retificacao atualiza edital de abertura</li>
+            <li class="success">Criar retificacao desativa retificacao anterior</li>
+            <li class="success">Criar resultado parcial sincroniza data divulgacao e situacao</li>
+            <li class="success">Criar homologacao sincroniza data homologacao e situacao</li>
+            <li class="success">Atualizar resultado parcial sobrescreve data divulgacao</li>
         </ul>
         <h2>Processos Seletivos Service (Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosService)</h2>
         <ul>
@@ -193,7 +209,7 @@
             <li class="success">Arquivo pdf condicional rejeita vazio para retificacao</li>
             <li class="success">Arquivo pdf condicional rejeita arquivo para comunicado</li>
             <li class="success">Arquivo pdf condicional aceita vazio para comunicado</li>
-            <li class="success">Versao vigente regra rejeita valor para retificacao</li>
+            <li class="success">Versao vigente regra aceita valor para retificacao</li>
             <li class="success">Versao vigente regra aceita zero para retificacao</li>
             <li class="success">Versao vigente regra aceita valor para outro tipo</li>
             <li class="success">Documento retificado regra rejeita valor para nao retificacao</li>

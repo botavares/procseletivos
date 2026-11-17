@@ -330,7 +330,7 @@ class ProcessosSeletivosService implements IProcessosSeletivos
 
         $builder->select(
                 'tb_processos.*,' .
-                ' tb_situacao_processos.nm_id_situacao,' .
+                ' tb_processos.nm_situacao AS nm_id_situacao,' .
                 ' tb_situacao_processos.dt_ultima_alteracao,' .
                 ' tb_secretarias.ds_nome_secretaria,' .
                 ' GROUP_CONCAT(DISTINCT tb_cargos.ds_nome_cargo ORDER BY tb_cargos.ds_nome_cargo SEPARATOR ", ") AS ds_cargos'
@@ -340,7 +340,7 @@ class ProcessosSeletivosService implements IProcessosSeletivos
             ->join('tb_processos_cargos', 'tb_processos_cargos.fk_id_processo = tb_processos.pk_id_processo', 'left')
             ->join('tb_cargos', 'tb_cargos.pk_id_cargo = tb_processos_cargos.fk_id_cargo', 'left')
             ->where("(tb_processos.is_deletado IS NULL OR tb_processos.is_deletado = '0000-00-00 00:00:00')")
-            ->whereNotIn('tb_situacao_processos.nm_id_situacao', [4, 5]); // exclui VIGENTE e ENCERRADO
+            ->whereNotIn('tb_processos.nm_situacao', [4, 5]); // exclui VIGENTE e ENCERRADO
 
         if ($idSecretaria > 0) {
             $builder->where('tb_processos.fk_id_secretaria', $idSecretaria);
@@ -364,14 +364,14 @@ class ProcessosSeletivosService implements IProcessosSeletivos
 
         $builder->select(
                 'tb_processos.*,' .
-                ' tb_situacao_processos.nm_id_situacao,' .
+                ' tb_processos.nm_situacao AS nm_id_situacao,' .
                 ' tb_situacao_processos.dt_ultima_alteracao,' .
                 ' tb_secretarias.ds_nome_secretaria'
             )
             ->join('tb_situacao_processos', 'tb_situacao_processos.fk_id_processo = tb_processos.pk_id_processo', 'left')
             ->join('tb_secretarias', 'tb_secretarias.pk_id_secretaria = tb_processos.fk_id_secretaria', 'left')
             ->where("(tb_processos.is_deletado IS NULL OR tb_processos.is_deletado = '0000-00-00 00:00:00')")
-            ->whereIn('tb_situacao_processos.nm_id_situacao', [3, 4]); // RESULTADO PUBLICADO ou VIGENTE
+            ->whereIn('tb_processos.nm_situacao', [3, 4]); // RESULTADO PUBLICADO ou VIGENTE
 
         if ($idSecretaria !== null && $idSecretaria > 0) {
             $builder->where('tb_processos.fk_id_secretaria', $idSecretaria);
@@ -526,17 +526,18 @@ class ProcessosSeletivosService implements IProcessosSeletivos
         $tipoEnum = TiposDocumentosEnum::tryFrom((int) $doc->nm_tipo);
 
         return [
-            'id'               => (int) $doc->pk_id_documento,
-            'tipo'             => $tipoEnum?->label() ?? 'Documento',
-            'tipo_id'          => (int) $doc->nm_tipo,
-            'numero'           => (int) $doc->nm_numero_documento,
-            'ano'              => (int) $doc->nm_ano_documento,
-            'numero_formatado' => formatarNumeroEdital(($doc->nm_numero_documento ?? '') . ($doc->nm_ano_documento ?? '')),
-            'codigo'           => $doc->ds_codigo_oficial,
-            'arquivo'          => $doc->ds_arquivo,
-            'link'             => $doc->ds_link,
-            'vigente'          => (bool) $doc->nm_versao_vigente,
-            'data_publicacao'  => isset($doc->dt_data_publicacao) ? date('d/m/Y', strtotime($doc->dt_data_publicacao)) : null,
+            'id'                 => (int) $doc->pk_id_documento,
+            'tipo'               => $tipoEnum?->label() ?? 'Documento',
+            'tipo_id'            => (int) $doc->nm_tipo,
+            'numero'             => (int) $doc->nm_numero_documento,
+            'ano'                => (int) $doc->nm_ano_documento,
+            'numero_formatado'   => formatarNumeroEdital(($doc->nm_numero_documento ?? '') . ($doc->nm_ano_documento ?? '')),
+            'codigo'             => $doc->ds_codigo_oficial,
+            'arquivo'            => $doc->ds_arquivo,
+            'link'               => $doc->ds_link,
+            'vigente'            => (bool) $doc->nm_versao_vigente,
+            'data_publicacao'    => isset($doc->dt_data_publicacao) ? date('d/m/Y', strtotime($doc->dt_data_publicacao)) : null,
+            'data_substituicao'  => isset($doc->dt_data_substituicao) ? date('d/m/Y', strtotime($doc->dt_data_substituicao)) : null,
         ];
     }
 

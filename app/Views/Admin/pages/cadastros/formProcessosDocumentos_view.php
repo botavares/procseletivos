@@ -42,7 +42,29 @@
 						<div class="card-body">
 							<form id="formDocumento" method="POST"
 								  action="<?php echo base_url_adm('ProcessosDocumentos/registrar') ?>"
-								  enctype="multipart/form-data">
+								  enctype="multipart/form-data"
+							  data-processos='<?= json_encode(array_map(fn($p) => [
+								  'id' => (int) $p->pk_id_processo,
+								  'numero' => (int) $p->nm_numero_processo,
+								  'ano' => (int) $p->nm_ano_processo,
+							  ], $processos ?? []), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>'
+							  data-documentos-processo='<?= json_encode(array_map(fn($d) => [
+								  'id' => (int) $d->pk_id_documento,
+								  'tipo' => (int) $d->nm_tipo,
+								  'numero' => (int) $d->nm_numero_documento,
+								  'ano' => (int) $d->nm_ano_documento,
+								  'label' => ($d->tipo_label ?? 'Documento'),
+							  ], $documentosProcesso ?? []), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>'
+							  data-cargos-processo='<?= json_encode(array_map(fn($c) => [
+								  'processoId' => (int) $c->fk_id_processo,
+								  'cargoId' => (int) $c->fk_id_cargo,
+								  'nomeCargo' => $c->ds_nome_cargo,
+							  ], $cargosProcesso ?? []), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>'
+                              data-tipo-edital-convocacao="<?= (int) \App\Enums\Admin\TiposDocumentosEnum::EDITAL_CONVOCACAO->value ?>"
+							  data-cargo-selecionado="<?= (int) old('fk_id_cargo', $convocacaoVinculada->fk_id_cargo ?? 0) ?>"
+								  data-retificar-inicial="<?= (int) old('nm_documento_retificado', $dados->nm_documento_retificado ?? 0) ?>"
+							  data-proximos-numeros-convocacao='<?= json_encode($proximosNumerosConvocacao ?? [], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>'
+							  data-acao="<?= esc($acao) ?>">
 								<input type="hidden" name="acao" id="acao" value="<?= esc($acao) ?>" />
 								<input type="hidden" name="pk_id_documento" value="<?= esc($dados->pk_id_documento ?? '') ?>" />
 								<input type="hidden" name="fk_id_secretaria" id="fk_id_secretaria" value="<?= esc(session('fk_id_secretaria') ?? '') ?>" />
@@ -100,13 +122,31 @@
 								</div>
 
 								<div class="row">
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-4">
 										<label for="ds_codigo_oficial">Código Oficial <span class="text-danger">*</span></label>
 										<input type="text" class="form-control" id="ds_codigo_oficial" name="ds_codigo_oficial"
 											   value="<?= old('ds_codigo_oficial', $dados->ds_codigo_oficial ?? '') ?>" required />
 									</div>
 
-									<div class="form-group col-md-3" id="grupoVersaoVigente">
+								<div class="form-group col-md-3">
+									<label for="dt_data_publicacao">Data da Publicação <span class="text-danger">*</span></label>
+									<input type="text" class="form-control datepicker" id="dt_data_publicacao" name="dt_data_publicacao"
+										   value="<?= old('dt_data_publicacao', isset($dados->dt_data_publicacao) ? date('d/m/Y', strtotime($dados->dt_data_publicacao)) : '') ?>"
+										   placeholder="dd/mm/aaaa" required
+										   inputmode="numeric" maxlength="10" />
+								</div>
+
+								<div class="form-group col-md-3" id="grupoFkIdCargo" style="display: none;">
+									<label for="fk_id_cargo">Cargo vinculado à Convocação <span class="text-danger">*</span></label>
+									<select class="form-control" id="fk_id_cargo" name="fk_id_cargo">
+										<option value="">Selecione...</option>
+									</select>
+									<small id="avisoSemCargo" class="form-text text-danger" style="display: none;">
+										Não existem cargos vinculados a este processo.
+									</small>
+								</div>
+
+								<div class="form-group col-md-2" id="grupoVersaoVigente">
 										<label for="nm_versao_vigente">Versão Vigente <span class="text-danger">*</span></label>
 										<select class="form-control" id="nm_versao_vigente" name="nm_versao_vigente" required>
 											<option value="1" <?= old('nm_versao_vigente', $dados->nm_versao_vigente ?? 1) == 1 ? 'selected' : '' ?>>SIM</option>
@@ -175,22 +215,26 @@
 														<th class="text-center" style="width: 120px;">Excluir</th>
 													</tr>
 												</thead>
-												<tbody>
-													<?php foreach ($documentosProcesso as $doc): ?>
-														<?php
-															$pasta = pasta_tipo_documento((int) ($doc->nm_tipo ?? 0));
-															$caminhoArquivo = WRITEPATH . 'uploads/editais/' . $pasta . '/' . ($doc->ds_arquivo ?? '');
-															$existeArquivo = !empty($doc->ds_arquivo) && file_exists($caminhoArquivo) && is_file($caminhoArquivo);
-														?>
-														<tr>
-															<td class="align-middle"><?= esc($doc->tipo_label ?? 'Documento') ?></td>
-															<td class="text-center align-middle"><?= esc(($doc->nm_numero_documento ?? '-') . '/' . ($doc->nm_ano_documento ?? '-')) ?></td>
-															<td class="align-middle"><?= esc($doc->ds_codigo_oficial ?? '-') ?></td>
+														<tbody>
+															<?php foreach ($documentosProcesso as $doc): ?>
+																<?php
+																	$pasta = pasta_tipo_documento((int) ($doc->nm_tipo ?? 0));
+																	$caminhoArquivo = WRITEPATH . 'uploads/editais/' . $pasta . '/' . ($doc->ds_arquivo ?? '');
+																	$existeArquivo = !empty($doc->ds_arquivo) && file_exists($caminhoArquivo) && is_file($caminhoArquivo);
+																?>
+																<tr>
+																	<td class="align-middle"><?= esc($doc->tipo_label ?? 'Documento') ?></td>
+																	<td class="text-center align-middle"><?= esc(($doc->nm_numero_documento ?? '-') . '/' . ($doc->nm_ano_documento ?? '-')) ?></td>
+																	<td class="align-middle"><?= esc($doc->ds_codigo_oficial ?? '-') ?></td>
 															<td class="text-center align-middle">
-																<?php if ((int) ($doc->nm_versao_vigente ?? 0) === 1): ?>
-																	<span class="badge badge-success">Sim</span>
+																<?php if (!empty($doc->retificacao_link)): ?>
+																	<a href="<?= esc($doc->retificacao_link) ?>" target="_blank" class="text-muted" title="Abrir retificação no Diário Municipal">
+																		<?= esc($doc->vigente_label ?? '-') ?>
+																	</a>
 																<?php else: ?>
-																	<span class="badge badge-secondary">Não</span>
+																	<span class="<?= ($doc->vigente_classe ?? 'badge-secondary') === 'text-muted' ? 'text-muted' : esc('badge ' . ($doc->vigente_classe ?? 'badge-secondary')) ?>">
+																		<?= esc($doc->vigente_label ?? '-') ?>
+																	</span>
 																<?php endif; ?>
 															</td>
 															<td class="text-center align-middle">
@@ -235,166 +279,7 @@
 							</div>
 							<!-- /GRID DE DOCUMENTOS -->
 
-							<script>
-								(function () {
-									const tipoSelect = document.getElementById('nm_tipo');
-									const arquivoInput = document.getElementById('ds_arquivo');
-									const grupoVersaoVigente = document.getElementById('grupoVersaoVigente');
-									const versaoVigenteSelect = document.getElementById('nm_versao_vigente');
-									const grupoRetificar = document.getElementById('grupoDocumentoRetificar');
-									const retificarSelect = document.getElementById('nm_documento_retificado');
-									const processoSelect = document.getElementById('fk_processo_referencia');
-									const numeroDocInput = document.getElementById('nm_numero_documento');
-									const anoDocInput = document.getElementById('nm_ano_documento');
-									const grupoArquivo = arquivoInput.closest('.form-group');
-
-									// Dados dos processos seletivos para autopreenchimento
-									const processos = <?php echo json_encode(array_map(fn($p) => [
-										'id' => (int) $p->pk_id_processo,
-										'numero' => (int) $p->nm_numero_processo,
-										'ano' => (int) $p->nm_ano_processo,
-									], $processos ?? [])) ?>;
-
-									// Documentos do processo selecionado para autopreenchimento da retificacao
-									const documentosProcesso = <?php echo json_encode(array_map(fn($d) => [
-										'id' => (int) $d->pk_id_documento,
-										'tipo' => (int) $d->nm_tipo,
-										'numero' => (int) $d->nm_numero_documento,
-										'ano' => (int) $d->nm_ano_documento,
-										'label' => ($d->tipo_label ?? 'Documento'),
-									], $documentosProcesso ?? [])) ?>;
-
-									const retificarInicial = <?= json_encode((int) old('nm_documento_retificado', $dados->nm_documento_retificado ?? 0)) ?>;
-									const avisoSemEdital = document.getElementById('avisoSemEdital');
-
-									// Tipos que exigem arquivo obrigatorio: 1 (Edital Abertura) e 2 (Retificacao)
-									const tiposComArquivoObrigatorio = ['1', '2'];
-									// Versao vigente so para edital de abertura
-									const tiposComVersaoVigente = ['1'];
-
-									function buscarProcesso(id) {
-										return processos.find(p => p.id === id) || null;
-									}
-
-									function buscarEditaisDoProcesso() {
-										return documentosProcesso.filter(d => d.tipo === 1);
-									}
-
-									function atualizarSelectRetificar() {
-										retificarSelect.innerHTML = '<option value="0">Selecione...</option>';
-										const editais = buscarEditaisDoProcesso();
-
-										if (editais.length === 0) {
-											avisoSemEdital.style.display = '';
-											retificarSelect.value = '0';
-											return;
-										}
-
-										avisoSemEdital.style.display = 'none';
-										editais.forEach(edital => {
-											const option = document.createElement('option');
-											option.value = edital.id;
-											option.textContent = edital.label + ' ' + edital.numero + '/' + edital.ano;
-											retificarSelect.appendChild(option);
-										});
-
-										// Prefere valor ja preenchido (old/dados); senao seleciona o ultimo edital
-										const idsEditais = editais.map(e => e.id);
-										if (retificarInicial > 0 && idsEditais.includes(retificarInicial)) {
-											retificarSelect.value = String(retificarInicial);
-										} else {
-											retificarSelect.value = String(editais[editais.length - 1].id);
-										}
-									}
-
-									function definirReadOnlyCamposDoc(readOnly) {
-										numeroDocInput.readOnly = readOnly;
-										anoDocInput.readOnly = readOnly;
-										if (readOnly) {
-											numeroDocInput.classList.add('bg-light');
-											anoDocInput.classList.add('bg-light');
-										} else {
-											numeroDocInput.classList.remove('bg-light');
-											anoDocInput.classList.remove('bg-light');
-										}
-									}
-
-									function preencherCamposDoProcesso() {
-										const proc = buscarProcesso(parseInt(processoSelect.value, 10));
-										if (proc) {
-											numeroDocInput.value = proc.numero;
-											anoDocInput.value = proc.ano;
-										}
-									}
-
-									function ajustarFormulario() {
-										const tipo = tipoSelect.value;
-
-										// Arquivo obrigatorio?
-										if (tiposComArquivoObrigatorio.includes(tipo)) {
-											grupoArquivo.style.display = '';
-											arquivoInput.setAttribute('required', 'required');
-											grupoArquivo.querySelector('label').innerHTML = 'Arquivo (PDF) <span class="text-danger">*</span>';
-										} else {
-											grupoArquivo.style.display = 'none';
-											arquivoInput.removeAttribute('required');
-											arquivoInput.value = '';
-											grupoArquivo.querySelector('label').innerHTML = 'Arquivo (PDF)';
-										}
-
-										// Versao vigente visivel/aplicavel?
-										if (tiposComVersaoVigente.includes(tipo)) {
-											grupoVersaoVigente.style.display = '';
-											versaoVigenteSelect.setAttribute('required', 'required');
-										} else {
-											grupoVersaoVigente.style.display = 'none';
-											versaoVigenteSelect.removeAttribute('required');
-											versaoVigenteSelect.value = '0';
-										}
-
-										// Mostrar Documento a Retificar apenas para Retificacao (2)
-										if (tipo === '2') {
-											grupoRetificar.style.display = '';
-											retificarSelect.setAttribute('required', 'required');
-											atualizarSelectRetificar();
-										} else {
-											grupoRetificar.style.display = 'none';
-											retificarSelect.removeAttribute('required');
-											retificarSelect.value = '0';
-											avisoSemEdital.style.display = 'none';
-										}
-
-										// Autopreencher e bloquear Nº Documento / Ano Documento para Edital de Abertura (1) e Retificacao (2)
-										if (tipo === '1' || tipo === '2') {
-											preencherCamposDoProcesso();
-											definirReadOnlyCamposDoc(true);
-										} else {
-											definirReadOnlyCamposDoc(false);
-										}
-									}
-
-									processoSelect.addEventListener('change', function () {
-										if (tipoSelect.value === '1' || tipoSelect.value === '2') {
-											preencherCamposDoProcesso();
-										}
-										if (tipoSelect.value === '2') {
-											atualizarSelectRetificar();
-										}
-									});
-
-									tipoSelect.addEventListener('change', ajustarFormulario);
-									ajustarFormulario();
-								})();
-
-								// Modal de exclusão de documentos
-								$(function () {
-									$('.deleteDocumento').on('click', function () {
-										var id = $(this).data('id');
-										$('#chavePrimariaDocumento').val(id);
-										$('#modalDeleteDocumento').modal('show');
-									});
-								});
-							</script>
+							<script src="<?= base_url('admin/js/processosDocumentosForm.js') ?>"></script>
 						</div>
 					</div>
 				</div>

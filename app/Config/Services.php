@@ -831,6 +831,17 @@ class Services extends BaseService
             );
     }
 
+    public static function processosConvocacaoService(bool $getShared = true): \App\Services\Admin\ProcessosConvocacao\ProcessosConvocacaoService
+    {
+        return $getShared
+            ? static::getSharedInstance('processosConvocacaoService')
+            : new \App\Services\Admin\ProcessosConvocacao\ProcessosConvocacaoService(
+                new \App\Models\Admin\ProcessosConvocacaoModel(),
+                new \App\Models\ProcessosSeletivosModel(),
+                service('logsService', false)
+            );
+    }
+
     public static function processosCargosModel(bool $getShared = true): \App\Models\Admin\ProcessosCargosModel
     {
         return $getShared ? static::getSharedInstance('processosCargosModel') : new \App\Models\Admin\ProcessosCargosModel();

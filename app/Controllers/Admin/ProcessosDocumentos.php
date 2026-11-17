@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Controllers\Admin;
 
-use CodeIgniter\Exceptions\PageNotFoundException;
 use App\DTOs\Admin\ProcessosDocumentosDTO;
 use App\Enums\Admin\TiposDocumentosEnum;
-use App\Services\ProcessosDocumentos\ProcessosDocumentosService;
-use App\Models\ProcessosSeletivosModel;
+use App\Models\Admin\ProcessosCargosModel;
 use App\Models\Admin\SecretariasModel;
+use App\Models\ProcessosSeletivosModel;
+use App\Services\Admin\ProcessosConvocacao\ProcessosConvocacaoService;
+use App\Services\ProcessosDocumentos\ProcessosDocumentosService;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class ProcessosDocumentos extends BaseController
 {
@@ -17,10 +19,14 @@ class ProcessosDocumentos extends BaseController
         protected ?ProcessosDocumentosService $service = null,
         protected ?ProcessosSeletivosModel $processosModel = null,
         protected ?SecretariasModel $secretariasModel = null,
+        protected ?ProcessosCargosModel $processosCargosModel = null,
+        protected ?ProcessosConvocacaoService $convocacaoService = null,
     ) {
         $this->service ??= service('processosDocumentosService');
         $this->processosModel ??= new ProcessosSeletivosModel();
         $this->secretariasModel ??= new SecretariasModel();
+        $this->processosCargosModel ??= service('processosCargosModel');
+        $this->convocacaoService ??= service('processosConvocacaoService');
     }
 
     /* =============================================================
@@ -121,6 +127,14 @@ class ProcessosDocumentos extends BaseController
 
         $processos = $this->processosModel->porSecretaria($fkIdSecretaria);
 
+        $proximosNumerosConvocacao = [];
+        foreach ($processos as $proc) {
+            $proximosNumerosConvocacao[(int) $proc->pk_id_processo] = [
+                'numero' => $this->convocacaoService->contarPorProcesso((int) $proc->pk_id_processo) + 1,
+                'ano'    => (int) ($proc->nm_ano_processo ?? 0),
+            ];
+        }
+
         $returnUrl = match ($config['from']) {
             'alteracao' => 'ProcessosSeletivos/formularioAlteracao/' . ($config['idProcesso'] ?? 0),
             default     => 'ProcessosDocumentos',
@@ -130,15 +144,16 @@ class ProcessosDocumentos extends BaseController
 
         $documentosProcesso = [];
         $processoSelecionado = null;
+        $cargosProcesso = [];
+        $convocacaoVinculada = null;
         if ($fkProcessoSelecionado > 0) {
-            $documentosProcesso = $this->service->listarPorProcessoId($fkProcessoSelecionado);
+            $documentosProcesso = $this->service->listarPorProcessoIdParaGrid($fkProcessoSelecionado);
             $processoSelecionado = $this->processosModel->find($fkProcessoSelecionado);
-        }
+            $cargosProcesso = $this->processosCargosModel->buscarPorProcesso($fkProcessoSelecionado);
 
-        // Enriquecer documentos com label do tipo
-        foreach ($documentosProcesso as $doc) {
-            $enum = TiposDocumentosEnum::tryFrom((int) $doc->nm_tipo);
-            $doc->tipo_label = $enum?->label() ?? 'Desconhecido';
+            if ($dados) {
+                $convocacaoVinculada = $this->convocacaoService->buscarPorDocumento((int) $dados->pk_id_documento);
+            }
         }
 
         return view('Admin/layoutDash', [
@@ -148,12 +163,15 @@ class ProcessosDocumentos extends BaseController
             'acao'                  => $config['acao'],
             'dados'                 => $dados,
             'processos'             => $processos,
+            'cargosProcesso'        => $cargosProcesso,
+            'convocacaoVinculada'   => $convocacaoVinculada,
             'idProcesso'            => $config['idProcesso'],
             'returnUrl'             => $returnUrl,
             'processoSelecionado'   => $processoSelecionado,
-            'documentosProcesso'    => $documentosProcesso,
-            'titulo'                => ($config['acao'] === 'update' ? 'Alterar' : 'Cadastrar') . ' Documento',
-            'user'                  => session('nome'),
+            'documentosProcesso'         => $documentosProcesso,
+            'proximosNumerosConvocacao'  => $proximosNumerosConvocacao,
+            'titulo'                     => ($config['acao'] === 'update' ? 'Alterar' : 'Cadastrar') . ' Documento',
+            'user'                       => session('nome'),
         ]);
     }
 
@@ -176,6 +194,7 @@ class ProcessosDocumentos extends BaseController
                 'nm_tipo'                 => 'required|integer|in_list[1,2,3,4,5,6,7]',
                 'nm_numero_documento'     => 'required|integer|apenas_numeros',
                 'nm_ano_documento'        => 'required|integer|ano_atual_ou_futuro',
+                'dt_data_publicacao'      => 'required|valid_date[d/m/Y]',
                 'ds_codigo_oficial'       => 'required|string|max_length[255]',
                 'ds_arquivo'              => 'permit_empty|arquivo_pdf_condicional',
                 'nm_versao_vigente'       => 'required|integer|versao_vigente_regra',
@@ -191,6 +210,10 @@ class ProcessosDocumentos extends BaseController
                     'required' => 'A secretaria vinculada não foi identificada.',
                     'integer'  => 'A secretaria vinculada deve ser um número inteiro.',
                 ],
+                'fk_id_cargo' => [
+                    'required' => 'O campo Cargo é obrigatório para Edital de Convocação.',
+                    'integer'  => 'O campo Cargo deve ser um número inteiro.',
+                ],
                 'nm_tipo' => [
                     'required' => 'O campo Tipo é obrigatório.',
                     'integer'  => 'O campo Tipo deve ser um número inteiro.',
@@ -205,6 +228,10 @@ class ProcessosDocumentos extends BaseController
                     'required'           => 'O campo Ano do Documento é obrigatório.',
                     'integer'              => 'O campo Ano do Documento deve ser um número inteiro.',
                     'ano_atual_ou_futuro'  => 'O campo Ano do Documento deve ser igual ou maior que o ano atual.',
+                ],
+                'dt_data_publicacao' => [
+                    'required'   => 'O campo Data da Publicação é obrigatório.',
+                    'valid_date' => 'O campo Data da Publicação deve ser uma data válida (dd/mm/AAAA).',
                 ],
                 'ds_codigo_oficial' => [
                     'required'   => 'O campo Código Oficial é obrigatório.',
@@ -238,6 +265,19 @@ class ProcessosDocumentos extends BaseController
             $fkProcessoReferencia = (int) $this->request->getPost('fk_processo_referencia');
             $tipoDocumento = (int) $this->request->getPost('nm_tipo');
             $idDocumentoAtual = $acao === 'update' ? (int) $this->request->getPost('pk_id_documento') : null;
+
+            // fk_id_cargo é obrigatório apenas para Edital de Convocação
+            if ($tipoDocumento === TiposDocumentosEnum::EDITAL_CONVOCACAO->value) {
+                $rules['fk_id_cargo'] = 'required|integer';
+
+                $processoConvocacao = $this->processosModel->find($fkProcessoReferencia);
+                if (empty($processoConvocacao->dt_data_homologacao)) {
+                    return redirect()
+                        ->back()
+                        ->withInput()
+                        ->with('mensagemError', 'Não é possível gravar um Edital de Convocação sem uma data de homologação registrada no processo seletivo.');
+                }
+            }
 
             // Validar unicidade de Edital de Abertura por processo
             if ($tipoDocumento === TiposDocumentosEnum::EDITAL_ABERTURA->value) {
@@ -306,6 +346,9 @@ class ProcessosDocumentos extends BaseController
                 $fkIdSecretariaPost = $fkIdSecretaria;
             }
 
+            $dataPublicacaoBr = (string) $this->request->getPost('dt_data_publicacao');
+            $dataPublicacao = $this->converterDataPublicacao($dataPublicacaoBr);
+
             $dto = new ProcessosDocumentosDTO(
                 idDocumento: $acao === 'update' ? (int) $this->request->getPost('pk_id_documento') : null,
                 secretaria: $fkIdSecretariaPost,
@@ -318,26 +361,35 @@ class ProcessosDocumentos extends BaseController
                 arquivo: $arquivoNome,
                 versaoVigente: (int) $this->request->getPost('nm_versao_vigente'),
                 documentoRetificado: (int) $this->request->getPost('nm_documento_retificado'),
-                dataPublicacao: date('Y-m-d H:i:s'),
+                dataPublicacao: $dataPublicacao,
             );
+
+            $fkIdCargo = $tipoDocumento === TiposDocumentosEnum::EDITAL_CONVOCACAO->value
+                ? (int) $this->request->getPost('fk_id_cargo')
+                : 0;
 
             if ($acao === 'update' && $dto->idDocumento) {
                 $sucesso = $this->service->atualizar($dto->idDocumento, $dto);
                 if (!$sucesso) {
                     throw new \Exception('Falha ao atualizar o registro. Verifique se o ID existe.');
                 }
+                $idSalvo = $dto->idDocumento;
             } else {
-                $id = $this->service->criar($dto);
+                $idSalvo = $this->service->criar($dto);
             }
 
-            $returnTo = $this->request->getPost('return_to');
-            $returnUrl = $returnTo ?: 'ProcessosDocumentos';
+            if ($tipoDocumento === TiposDocumentosEnum::EDITAL_CONVOCACAO->value && $idSalvo && $fkIdCargo > 0) {
+                $this->convocacaoService->sincronizarPorDocumento($idSalvo, $fkProcessoReferencia, $fkIdCargo);
+            }
 
-            $idSalvo = $dto->idDocumento ?? $id ?? null;
             log_message('info', '[ProcessosDocumentos::registrar] Registro salvo com sucesso. Ação: ' . $acao . ', ID: ' . ($idSalvo ?? 'novo'));
 
+            $url = $acao === 'update' && $idSalvo
+                ? 'ProcessosDocumentos/formularioAlteracao/' . $idSalvo
+                : 'ProcessosDocumentos/formularioCadastro/' . $fkProcessoReferencia;
+
             return redirect()
-                ->to(base_url_adm($returnUrl))
+                ->to(base_url_adm($url))
                 ->with('mensagemSuccess', 'Registro salvo com sucesso');
 
         } catch (\Throwable $e) {
@@ -377,6 +429,27 @@ class ProcessosDocumentos extends BaseController
     public function buscarPorTipo(int $tipo)
     {
         return $this->response->setJSON($this->service->listarPorTipo($tipo));
+    }
+
+    /**
+     * Retorna o próximo número/ano sugerido para um Edital de Convocação.
+     * Usado para autopreencher os campos no formulário via AJAX.
+     */
+    public function proximoNumeroConvocacao(int $processoId)
+    {
+        $processo = $this->processosModel->find($processoId);
+        if (!$processo) {
+            return $this->response->setStatusCode(404)->setJSON([
+                'error' => 'Processo seletivo não encontrado.',
+            ]);
+        }
+
+        $quantidade = $this->convocacaoService->contarPorProcesso($processoId);
+
+        return $this->response->setJSON([
+            'numero' => $quantidade + 1,
+            'ano'    => (int) ($processo->nm_ano_processo ?? 0),
+        ]);
     }
 
     public function buscarPorNumeroProcesso(int $numero, int $ano)
@@ -445,6 +518,18 @@ class ProcessosDocumentos extends BaseController
         // Remove qualquer caractere que nao seja letra, numero, underscore ou hifen
         $nome = preg_replace('/[^A-Z0-9_-]/', '', $nome);
         return $nome;
+    }
+
+    /**
+     * Converte data de publicação no formato d/m/Y para Y-m-d H:i:s.
+     */
+    private function converterDataPublicacao(string $dataBr): string
+    {
+        $data = \DateTime::createFromFormat('d/m/Y', $dataBr);
+        if (!$data) {
+            throw new \InvalidArgumentException('Data da Publicação inválida.');
+        }
+        return $data->format('Y-m-d H:i:s');
     }
 
     /* =====================================================
