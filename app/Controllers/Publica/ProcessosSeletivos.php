@@ -9,6 +9,7 @@ use App\Enums\Admin\SituacaoProcessosEnum;
 use App\Enums\TipoCargaHorariaEnum;
 use App\Services\Base\SessaoService;
 use App\Services\ProcessosSeletivos\ProcessosSeletivosService;
+use App\Services\Publica\ConvocacoesService;
 use App\Services\ServicoService;
 use App\Services\ProcessosDocumentos\ProcessosDocumentosService;
 use App\Services\SecretariasService;
@@ -19,6 +20,7 @@ class ProcessosSeletivos extends BaseController
 {
     protected ProcessosSeletivosService $processosSeletivosService;
     protected ProcessosDocumentosService $processosDocumentosService;
+    protected ConvocacoesService $convocacoesService;
     protected ServicoService $servicoService;
     protected SessaoService $sessaoService;
     protected SecretariasService $secretariasService;
@@ -27,6 +29,7 @@ class ProcessosSeletivos extends BaseController
     {
         $this->processosSeletivosService = service('processosSeletivosService');
         $this->processosDocumentosService = service('processosDocumentosService');
+        $this->convocacoesService = service('convocacoesService');
         $this->servicoService = service('servicoService');
         $this->sessaoService = service('sessao');
         $this->secretariasService = service('secretariasService');
@@ -157,7 +160,7 @@ class ProcessosSeletivos extends BaseController
             'cargos'             => $cargosDoProcesso,
             'editaisERetificacoes' => $editaisERetificacoes,
             'resultados'         => $resultados,
-            'convocacoes'   => [],
+            'convocacoes'   => $this->convocacoesService->listarPorProcesso($idProcesso),
             'contratos'     => [],
             'dataAtual'     => date('d/m/Y'),
         ];

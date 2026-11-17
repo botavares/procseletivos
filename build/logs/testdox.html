@@ -155,6 +155,24 @@
             <li class="success">Aplicar teto sem limite preserva pontuacao</li>
             <li class="success">Aplicar teto zero nao limita</li>
         </ul>
+        <h2>Convocados Service (Tests\Admin\Services\Convocados\ConvocadosService)</h2>
+        <ul>
+            <li class="success">Buscar convocacao atual retorna primeira nao deletada</li>
+            <li class="success">Buscar convocacao anterior retorna null quando nao existe atual</li>
+            <li class="success">Processar convocacao anterior nao faz nada sem anterior</li>
+            <li class="success">Processar convocacao anterior desclassifica titular nao contratado</li>
+            <li class="success">Processar convocacao anterior mantem titular contratado</li>
+            <li class="success">Processar convocacao anterior aguarda suplente nao contratado e nao convocado atualmente</li>
+            <li class="success">Processar convocacao anterior nao altera suplente na convocacao atual</li>
+            <li class="success">Salvar convocados sincroniza registros</li>
+            <li class="success">Salvar convocados atualiza tipo quando candidato ja existe</li>
+            <li class="success">Salvar convocados ignora ids invalidos</li>
+            <li class="success">Salvar convocados da prioridade a titular sobre suplente</li>
+            <li class="success">Salvar convocados bloqueia suplente que foi titular anteriormente</li>
+            <li class="success">Salvar convocados bloqueia candidato contratado</li>
+            <li class="success">Contratar candidato remove da convocacao atual e salva situacao</li>
+            <li class="success">Contratar candidato atualiza situacao existente</li>
+        </ul>
         <h2>Processos Convocacao Service (Tests\Admin\Services\ProcessosConvocacao\ProcessosConvocacaoService)</h2>
         <ul>
             <li class="success">Listar por processo delega para model</li>
@@ -218,6 +236,12 @@
             <li class="success">Documento retificado regra usa request quando data vazio</li>
             <li class="success">Versao vigente regra usa request quando data vazio</li>
             <li class="success">Arquivo pdf condicional usa request quando data vazio</li>
+        </ul>
+        <h2>Convocacoes Service (Tests\Publica\Services\ConvocacoesService)</h2>
+        <ul>
+            <li class="success">Listar por processo sem convocacoes retorna array vazio</li>
+            <li class="success">Listar por processo monta estrutura esperada</li>
+            <li class="success">Convocado desclassificado nao aparece na lista</li>
         </ul>
         <h2>Editais Controller (Tests\Unit\Controllers\Publica\EditaisController)</h2>
         <ul>

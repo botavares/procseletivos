@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use CodeIgniter\Exceptions\PageNotFoundException;
+use App\Enums\SituacaoCandidatosEnum;
 use App\Services\Admin\Candidatos\SituacaoService;
 use App\Models\ProcessosSeletivosModel;
 use App\Models\Admin\CargosModel;
@@ -184,33 +185,41 @@ class Candidatos extends BaseController{
             'titulo'        => "Situação do Candidato",
         ]));
     }
-    public function registrarSituacao(){
-        $idCandidato = $this->request->getPost('id_candidato');
-        $idCargo     = $this->request->getPost('id_cargo');
-        $idProcesso  = $this->request->getPost('fk_id_processo');
-        $situacao    = $this->request->getPost('nm_id_situacao');
+    public function registrarSituacao()
+    {
+        $idCandidato = (int) $this->request->getPost('id_candidato');
+        $idCargo     = (int) $this->request->getPost('id_cargo');
+        $idProcesso  = (int) $this->request->getPost('fk_id_processo');
+        $situacao    = (int) $this->request->getPost('nm_id_situacao');
 
         $data = [
             'fk_id_candidato' => $idCandidato,
             'fk_id_cargo'     => $idCargo,
             'fk_id_processo'  => $idProcesso,
-            'nm_id_situacao'  => $situacao
+            'nm_id_situacao'  => $situacao,
         ];
 
         $situacaoService = service('situacaoService');
-        $existente = $situacaoService->getCandidatoCargoProcesso((int)$idProcesso, (int)$idCargo, (int)$idCandidato);
+        $existente = $situacaoService->getCandidatoCargoProcesso($idProcesso, $idCargo, $idCandidato);
 
-        if ($existente !== null) {
-            if ($situacao > 0) {
-                $situacaoService->atualizar($existente['pk_id_situacao'] ?? $existente['id'], $data);
-                $msg = 'atualizada';
+        try {
+            if ($situacao === SituacaoCandidatosEnum::CONTRATADO->value) {
+                service('convocadosService')->contratarCandidato($idProcesso, $idCargo, $idCandidato);
+                $msg = 'atualizada e candidato removido da convocação atual';
+            } elseif ($existente !== null) {
+                if ($situacao > 0) {
+                    $situacaoService->atualizar($existente['pk_id_situacao'] ?? $existente['id'], $data);
+                    $msg = 'atualizada';
+                } else {
+                    $situacaoService->excluir($existente['pk_id_situacao'] ?? $existente['id']);
+                    $msg = 'excluída';
+                }
             } else {
-                $situacaoService->excluir($existente['pk_id_situacao'] ?? $existente['id']);
-                $msg = 'excluída';
+                $situacaoService->salvar($data);
+                $msg = 'registrada';
             }
-        } else {
-            $situacaoService->salvar($data);
-            $msg = 'registrada';
+        } catch (\Throwable $e) {
+            return redirect()->back()->with('mensagemError', 'Erro ao registrar situação: ' . $e->getMessage());
         }
 
         return redirect()->back()->with('mensagemSuccess', "Situação {$msg} com sucesso.");

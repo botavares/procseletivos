@@ -379,11 +379,50 @@
 .home-tbl tbody td { padding: 10px 12px; border-bottom: 1px solid #e8e8e8; font-size: 12.5px; vertical-align: middle; }
 .home-tbl tbody tr:last-child td { border-bottom: 0; }
 
+/* Guia "Fui convocado" */
+.home-guia { background: #fff; border: 1px solid var(--home-borda); border-radius: 12px; padding: 18px 20px; margin-bottom: 22px; }
+.home-guia h4 { font-size: 15px; color: var(--home-navy); font-weight: 600; margin-bottom: 14px; }
+.home-prz { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+.home-prz > div { background: var(--home-cinza); border-radius: 8px; padding: 12px 14px; font-size: 11.5px; color: var(--home-texto2); line-height: 1.55; }
+.home-prz b { color: var(--home-navy); display: block; font-size: 13px; margin-bottom: 4px; }
+.home-docs-adm__titulo { font-size: 12px; color: var(--home-az-tx); font-weight: 600; margin-bottom: 7px; }
+.home-docs-adm { font-size: 12px; color: var(--home-texto2); line-height: 1.7; margin-bottom: 14px; }
+.home-docs-adm ul {
+  margin: 0;
+  padding-left: 18px;
+  column-count: 3;
+  column-gap: 28px;
+}
+.home-docs-adm li { margin-bottom: 3px; break-inside: avoid; }
+.home-conv__acoes { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.home-conv__acoes .home-btn { cursor: default; }
+
 /* Convocações */
 .home-conv { margin-bottom: 14px; }
 .home-conv__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 12px; flex-wrap: wrap; }
+.home-conv__info { display: flex; align-items: flex-start; gap: 12px; flex: 1; min-width: 0; }
+.home-conv__toggle {
+  background: transparent;
+  border: 1px solid var(--home-borda);
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--home-azul);
+  flex: none;
+  transition: transform .2s ease, background .15s ease;
+}
+.home-conv__toggle:hover { background: var(--home-az-bg); }
+.home-conv--closed .home-conv__toggle i { transform: rotate(-90deg); }
+.home-conv--open .home-conv__toggle i { transform: rotate(0deg); }
 .home-conv h4 { font-size: 15px; color: var(--home-navy); font-weight: 600; }
 .home-conv__dt { font-size: 11.5px; color: var(--home-sec); margin-top: 4px; }
+.home-conv__tbl { overflow: hidden; transition: max-height .25s ease, opacity .2s ease; }
+.home-conv--closed .home-conv__tbl { max-height: 0; opacity: 0; margin-top: 0; }
+.home-conv--open .home-conv__tbl { max-height: 2000px; opacity: 1; margin-top: 12px; }
 
 /* Condições (titular / suplente) */
 .home-cond { display: inline-block; font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 4px; letter-spacing: .3px; }
@@ -613,7 +652,12 @@
   .home-doc { flex-direction: column; align-items: flex-start; gap: 8px; }
   .home-doc__d { font-size: 12px; word-break: break-word; overflow-wrap: anywhere; }
   
+  .home-prz { grid-template-columns: 1fr; }
+  .home-docs-adm ul { column-count: 1; }
+  .home-conv__acoes { flex-direction: column; align-items: flex-start; gap: 10px; }
   .home-conv__top { flex-direction: column; gap: 10px; }
+  .home-conv__info { align-items: center; }
+  .home-conv__toggle { width: 30px; height: 30px; }
   .home-conv h4 { font-size: 13.5px; }
   
   .home-box { padding: 12px 14px; max-width: 100%; }

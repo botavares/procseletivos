@@ -4,6 +4,7 @@ composer.lock
 
 # Node (se houver)
 /node_modules/
+package-lock.json
 
 # IDEs
 /.idea/
@@ -29,8 +30,9 @@ Thumbs.db
 /build/
 /adm/build/
 
-# Test coverage
+# Test coverage / cache
 *.serialized
+.phpunit.result.cache
 
 # Environment
 .env
@@ -39,6 +41,10 @@ Thumbs.db
 # Backups
 *.bak
 *.old
+
+# Arquivos temporários de trabalho / referência
+/_exemplo.html
+/writable/temp_*.php
 
 # Admin não possui mais vendor/system próprios
 # (mantidos apenas por precaução)

@@ -87,6 +87,23 @@ Pontuacao Calculator Service (Tests\Admin\Services\Classificacao\PontuacaoCalcul
  [x] Aplicar teto sem limite preserva pontuacao
  [x] Aplicar teto zero nao limita
 
+Convocados Service (Tests\Admin\Services\Convocados\ConvocadosService)
+ [x] Buscar convocacao atual retorna primeira nao deletada
+ [x] Buscar convocacao anterior retorna null quando nao existe atual
+ [x] Processar convocacao anterior nao faz nada sem anterior
+ [x] Processar convocacao anterior desclassifica titular nao contratado
+ [x] Processar convocacao anterior mantem titular contratado
+ [x] Processar convocacao anterior aguarda suplente nao contratado e nao convocado atualmente
+ [x] Processar convocacao anterior nao altera suplente na convocacao atual
+ [x] Salvar convocados sincroniza registros
+ [x] Salvar convocados atualiza tipo quando candidato ja existe
+ [x] Salvar convocados ignora ids invalidos
+ [x] Salvar convocados da prioridade a titular sobre suplente
+ [x] Salvar convocados bloqueia suplente que foi titular anteriormente
+ [x] Salvar convocados bloqueia candidato contratado
+ [x] Contratar candidato remove da convocacao atual e salva situacao
+ [x] Contratar candidato atualiza situacao existente
+
 Processos Convocacao Service (Tests\Admin\Services\ProcessosConvocacao\ProcessosConvocacaoService)
  [x] Listar por processo delega para model
  [x] Buscar por id retorna primeiro registro
@@ -146,6 +163,11 @@ Processos Documentos Rules (Tests\Admin\Validation\ProcessosDocumentosRules)
  [x] Documento retificado regra usa request quando data vazio
  [x] Versao vigente regra usa request quando data vazio
  [x] Arquivo pdf condicional usa request quando data vazio
+
+Convocacoes Service (Tests\Publica\Services\ConvocacoesService)
+ [x] Listar por processo sem convocacoes retorna array vazio
+ [x] Listar por processo monta estrutura esperada
+ [x] Convocado desclassificado nao aparece na lista
 
 Editais Controller (Tests\Unit\Controllers\Publica\EditaisController)
  [x] Pagina editais renderiza com filtros padrao

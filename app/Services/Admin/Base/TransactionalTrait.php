@@ -3,6 +3,7 @@
 namespace App\Services\Admin\Base;
 
 use CodeIgniter\Database\BaseConnection;
+use App\Exceptions\Admin\DomainException;
 use RuntimeException;
 use Throwable;
 
@@ -30,6 +31,9 @@ trait TransactionalTrait
             $this->db->transCommit();
             return $result;
 
+        } catch (DomainException $e) {
+            $this->db->transRollback();
+            throw $e;
         } catch (Throwable $e) {
             $this->db->transRollback();
             throw new RuntimeException(

@@ -9,7 +9,7 @@ use CodeIgniter\Model;
 class ConvocadosModel extends Model
 {
     protected $table            = 'tb_convocados';
-    protected $primaryKey       = 'pk_id_convocacao';
+    protected $primaryKey       = 'pk_id_convocado';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
     protected $useTimestamps    = false;

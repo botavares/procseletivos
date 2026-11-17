@@ -253,42 +253,100 @@ Painéis
 
 <div class="datas-processos" data-panel="conv">
     <?php if (!empty($convocacoes)) : ?>
+        <div class="home-guia">
+            <h4>Fui convocado. E agora?</h4>
+            <div class="home-prz">
+                <div><b>48 horas</b> para manifestar interesse na vaga, a contar da convocação</div>
+                <div><b>10 dias</b> para apresentar toda a documentação e assinar o contrato</div>
+                <div><b>Não cumprir os prazos</b> implica desistência da vaga, e novas convocações são realizadas</div>
+            </div>
+            <div class="home-docs-adm__titulo">Documentos exigidos na admissão</div>
+            <div class="home-docs-adm">
+                <ul>
+                    <li>Documento de identidade com foto (RG, CNH ou passaporte);</li>
+                    <li>CPF;</li>
+                    <li>Comprovante de residência;</li>
+                    <li>Título de eleitor e comprovante de quitação eleitoral;</li>
+                    <li>Certificado de reservista (se aplicável);</li>
+                    <li>Certidão de nascimento ou casamento;</li>
+                    <li>Certidão negativa de antecedentes criminais;</li>
+                    <li>Declaração de não acumulação de cargos;</li>
+                    <li>Dados bancários para pagamento;</li>
+                    <li>Comprovantes de escolaridade e demais títulos previstos no edital.</li>
+                </ul>
+            </div>
+            <div class="home-conv__acoes">
+                <span class="home-btn home-btn--outline">Modelos de declaração e manuais ↗</span>
+                <span class="home-lnk">Protocolar documentação ↗</span>
+            </div>
+        </div>
+
         <h4 class="home-sub">Chamamentos publicados</h4>
+        <?php $idx = 0; ?>
         <?php foreach ($convocacoes as $c) : ?>
-            <div class="home-box home-conv">
+            <?php $isAtual = ($idx === 0); ?>
+            <div class="home-box home-conv<?= $isAtual ? ' home-conv--open' : ' home-conv--closed' ?>">
                 <div class="home-conv__top">
-                    <div>
-                        <h4>Edital de Convocação nº <?= esc($c['n'] ?? '') ?></h4>
-                        <div class="home-conv__dt">Publicado em <?= esc($c['dt'] ?? '') ?> · <a href="#">ver publicação ↗</a></div>
+                    <div class="home-conv__info">
+                        <button type="button" class="home-conv__toggle" aria-expanded="<?= $isAtual ? 'true' : 'false' ?>" aria-label="<?= $isAtual ? 'Recolher chamamento' : 'Expandir chamamento' ?>">
+                            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                        </button>
+                        <div>
+                            <h4>Edital de Convocação nº <?= esc($c['n'] ?? '') ?></h4>
+                            <div class="home-conv__dt">
+                                Publicado em <?= esc($c['dt'] ?? '') ?>
+                                <?php if (!empty($c['ed'])) : ?>
+                                    · Diário Oficial dos Municípios, edição <?= esc($c['ed']) ?>
+                                <?php endif; ?>
+                                <?php if (!empty($c['ed']) || !empty($c['link'])) : ?>
+                                    · <a href="<?= esc($c['link'] ?: url_diario_oficial($c['ed'])) ?>" target="_blank" rel="noopener noreferrer">ver publicação ↗</a>
+                                <?php endif; ?>
+                                · <?= (int) ($c['q'] ?? 0) ?> convocado(s)
+                            </div>
+                        </div>
                     </div>
-                    <span class="home-btn home-btn--outline">Abrir edital ↗</span>
+                    <?php if (!empty($c['arquivo'])) : ?>
+                        <a href="<?= site_url('ProcessosSeletivos/obterEdital/republicacoes/' . $c['arquivo']) ?>" class="home-btn home-btn--outline" target="_blank" rel="noopener noreferrer">Abrir edital ↗</a>
+                    <?php else : ?>
+                        <span class="home-btn home-btn--outline">Abrir edital ↗</span>
+                    <?php endif; ?>
                 </div>
                 <?php if (!empty($c['lista'] ?? [])) : ?>
-                    <div class="home-tbl-sc">
-                        <table class="home-tbl">
-                            <thead><tr><th>Class.</th><th>Nome</th><th>Cargo</th><th>Condição</th></tr></thead>
-                            <tbody>
-                                <?php foreach ($c['lista'] as $x) : ?>
+                    <div class="home-conv__tbl">
+                        <div class="home-tbl-sc">
+                            <table class="home-tbl">
+                                <thead>
                                     <tr>
-                                        <td data-r="Class."><?= esc($x['c'] ?? '') ?></td>
-                                        <td data-r="Nome"><?= esc($x['nm'] ?? '') ?></td>
-                                        <td data-r="Cargo"><?= esc($x['cg'] ?? '') ?></td>
-                                        <td data-r="Condição">
-                                            <span class="home-cond <?= ($x['cd'] ?? '') === 'TITULAR' ? 'home-cond--tit' : 'home-cond--sup' ?>">
-                                                <?= esc($x['cd'] ?? '') ?>
-                                            </span>
-                                        </td>
+                                        <th style="width:80px">Class.</th>
+                                        <th>Nome</th>
+                                        <th style="width:200px">Cargo</th>
+                                        <th style="width:130px">Condição</th>
                                     </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($c['lista'] as $x) : ?>
+                                        <tr>
+                                            <td data-r="Classificação"><?= esc($x['c'] ?? '') ?></td>
+                                            <td data-r="Nome"><?= esc($x['nm'] ?? '') ?></td>
+                                            <td data-r="Cargo"><?= esc($x['cg'] ?? '') ?></td>
+                                            <td data-r="Condição">
+                                                <span class="home-cond <?= ($x['cd'] ?? '') === 'TITULAR' ? 'home-cond--tit' : 'home-cond--sup' ?>">
+                                                    <?= esc($x['cd'] ?? '') ?>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 <?php endif; ?>
             </div>
+            <?php $idx++; ?>
         <?php endforeach; ?>
 
         <div class="home-callout">
-            <b>Não encontrou seu nome?</b> As convocações seguem uma ordem de prioridade definida em lei: primeiro são chamados os aprovados do concurso público em cadastro de reserva; somente depois entram os classificados deste processo seletivo. Cada convocação chama o número exato de pessoas necessário, respeitando a classificação.
+            <b>Não encontrou seu nome?</b> As convocações seguem uma ordem de prioridade definida em lei: primeiro são chamados os aprovados do concurso público em cadastro de reserva; somente depois entram os classificados deste processo seletivo. Cada convocação chama o número exato de pessoas necessário, respeitando a classificação. Estar bem classificado indica a <b>ordem de chamada</b> — não a garantia de assumir.
         </div>
     <?php else : ?>
         <div class="home-vazio">
@@ -363,24 +421,34 @@ Painéis
 /* Tabs simples (sem dependência de framework) */
 document.addEventListener('click', function(e) {
     var tab = e.target.closest('.home-aba');
-    if (!tab) return;
+    if (tab) {
+        var tablist = tab.closest('.home-abas');
+        var paneId = tab.dataset.tab;
 
-    var tablist = tab.closest('.home-abas');
-    var paneId = tab.dataset.tab;
+        tablist.querySelectorAll('.home-aba').forEach(function(t) {
+            t.classList.remove('home-aba--on');
+            t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('home-aba--on');
+        tab.setAttribute('aria-selected', 'true');
 
-    tablist.querySelectorAll('.home-aba').forEach(function(t) {
-        t.classList.remove('home-aba--on');
-        t.setAttribute('aria-selected', 'false');
-    });
-    tab.classList.add('home-aba--on');
-    tab.setAttribute('aria-selected', 'true');
+        var container = tablist.parentElement;
+        container.querySelectorAll('.datas-processos').forEach(function(p) {
+            p.classList.remove('datas-processos--on');
+        });
+        var pane = container.querySelector('.datas-processos[data-panel="' + paneId + '"]');
+        if (pane) pane.classList.add('datas-processos--on');
+        return;
+    }
 
-    var container = tablist.parentElement;
-    container.querySelectorAll('.datas-processos').forEach(function(p) {
-        p.classList.remove('datas-processos--on');
-    });
-    var pane = container.querySelector('.datas-processos[data-panel="' + paneId + '"]');
-    if (pane) pane.classList.add('datas-processos--on');
+    var toggle = e.target.closest('.home-conv__toggle');
+    if (toggle) {
+        var card = toggle.closest('.home-conv');
+        var isOpen = card.classList.contains('home-conv--open');
+        card.classList.toggle('home-conv--open', !isOpen);
+        card.classList.toggle('home-conv--closed', isOpen);
+        toggle.setAttribute('aria-expanded', String(!isOpen));
+    }
 });
 </script>
 

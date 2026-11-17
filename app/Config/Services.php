@@ -453,13 +453,18 @@ class Services extends BaseService
         return $getShared ? static::getSharedInstance('editalUploadService') : new \App\Services\Admin\Editais\EditalUploadService();
     }
 
+    public static function situacaoModel(bool $getShared = true): \App\Models\Admin\SituacaoModel
+    {
+        return $getShared ? static::getSharedInstance('situacaoModel') : new \App\Models\Admin\SituacaoModel();
+    }
+
     public static function situacaoService($getShared = true){
         if ($getShared) {
             return static::getSharedInstance('situacaoService');
         }
 
         return new \App\Services\Admin\Candidatos\SituacaoService(
-                new \App\Models\Admin\SituacaoModel()
+                service('situacaoModel')
         );
     }
 
@@ -692,6 +697,17 @@ class Services extends BaseService
         return $getShared ? static::getSharedInstance('convocadosModel') : new \App\Models\Admin\ConvocadosModel();
     }
 
+    public static function convocadosService(bool $getShared = true): \App\Services\Admin\Convocados\ConvocadosService
+    {
+        return $getShared
+            ? static::getSharedInstance('convocadosService')
+            : new \App\Services\Admin\Convocados\ConvocadosService(
+                service('convocadosModel'),
+                service('processosConvocacaoModel'),
+                service('situacaoModel')
+            );
+    }
+
     public static function verificadorModel(bool $getShared = true): \App\Models\Admin\VerificadorModel
     {
         return $getShared ? static::getSharedInstance('verificadorModel') : new \App\Models\Admin\VerificadorModel();
@@ -831,12 +847,39 @@ class Services extends BaseService
             );
     }
 
+    public static function convocacoesRepository(bool $getShared = true): \App\Repositories\Publica\Interfaces\IConvocacoesRepository
+    {
+        return $getShared
+            ? static::getSharedInstance('convocacoesRepository')
+            : new \App\Repositories\Publica\ConvocacoesRepository(
+                new \App\Models\Admin\ProcessosConvocacaoModel(),
+                new \App\Models\Admin\ProcessosDocumentosModel(),
+                new \App\Models\Admin\ConvocadosModel(),
+                new \App\Models\Admin\SituacaoModel(),
+                new \App\Models\Admin\ClassificacaoModel(),
+            );
+    }
+
+    public static function convocacoesService(bool $getShared = true): \App\Services\Publica\Interfaces\IConvocacoesService
+    {
+        return $getShared
+            ? static::getSharedInstance('convocacoesService')
+            : new \App\Services\Publica\ConvocacoesService(
+                service('convocacoesRepository', false)
+            );
+    }
+
+    public static function processosConvocacaoModel(bool $getShared = true): \App\Models\Admin\ProcessosConvocacaoModel
+    {
+        return $getShared ? static::getSharedInstance('processosConvocacaoModel') : new \App\Models\Admin\ProcessosConvocacaoModel();
+    }
+
     public static function processosConvocacaoService(bool $getShared = true): \App\Services\Admin\ProcessosConvocacao\ProcessosConvocacaoService
     {
         return $getShared
             ? static::getSharedInstance('processosConvocacaoService')
             : new \App\Services\Admin\ProcessosConvocacao\ProcessosConvocacaoService(
-                new \App\Models\Admin\ProcessosConvocacaoModel(),
+                service('processosConvocacaoModel'),
                 new \App\Models\ProcessosSeletivosModel(),
                 service('logsService', false)
             );
