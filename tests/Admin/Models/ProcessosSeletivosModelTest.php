@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Admin\Models;
 
-use App\Models\ProcessosSeletivosModel;
+use App\Models\Common\ProcessosSeletivosModel;
 use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\DatabaseTestTrait;
 

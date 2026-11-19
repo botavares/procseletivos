@@ -480,7 +480,7 @@ $(document).ready(function() {
                 if (response.convocacoes && response.convocacoes.length) {
                     for (var i = 0; i < response.convocacoes.length; i++) {
                         options += '<option value="' + response.convocacoes[i].pk_id_convocacao + '"\u003e' +
-                                'Edital ' + response.convocacoes[i].nm_numero_convocacao + '/' + response.convocacoes[i].nm_ano_convocacao +
+                                'Ed. Convocação ' + response.convocacoes[i].nm_numero_convocacao + '/' + response.convocacoes[i].nm_ano_convocacao +
                                 ' - ' + response.convocacoes[i].ds_nome_cargo +
                                 '</option>';
                     }

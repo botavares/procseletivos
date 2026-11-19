@@ -6,8 +6,8 @@ namespace Tests\Admin\Services\Classificacao;
 
 use App\Models\Admin\LogsModel;
 use App\Models\Admin\UsuarioModel;
-use App\Models\ProcessosSeletivosModel;
-use App\Models\SituacaoProcessosModel;
+use App\Models\Common\ProcessosSeletivosModel;
+use App\Models\Common\SituacaoProcessosModel;
 use App\Services\Admin\Classificacao\ClassificacaoService;
 use App\Services\Admin\Classificacao\DisparoClassificacaoService;
 use CodeIgniter\Test\CIUnitTestCase;

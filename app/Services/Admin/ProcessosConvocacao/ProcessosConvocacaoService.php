@@ -6,7 +6,7 @@ namespace App\Services\Admin\ProcessosConvocacao;
 
 use App\DTOs\Admin\ProcessosConvocacaoDTO;
 use App\Models\Admin\ProcessosConvocacaoModel;
-use App\Models\ProcessosSeletivosModel;
+use App\Models\Common\ProcessosSeletivosModel;
 use App\Services\Admin\LogsService;
 
 class ProcessosConvocacaoService

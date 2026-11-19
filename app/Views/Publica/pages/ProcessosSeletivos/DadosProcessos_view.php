@@ -66,9 +66,39 @@ Faixa de destaque
         <span class="home-aba__st"><?= count($cargos ?? []) ?> cargo(s) · <?= array_sum(array_column($cargos ?? [], 'nm_vagas')) ?> vaga(s)</span>
     </button>
 
+    <?php
+    $abaResultadosTexto = 'Ainda não publicado';
+    if (!empty($resultados)) {
+        $resultadoVigente = null;
+        foreach ($resultados as $r) {
+            if ((int) ($r['vigente'] ?? 0) === 1) {
+                $resultadoVigente = $r;
+                break;
+            }
+        }
+        if (!$resultadoVigente) {
+            // Se nenhum marcado como vigente, usa o documento de maior ID (mais recente)
+            $resultadoVigente = $resultados[0];
+            foreach ($resultados as $r) {
+                if ((int) ($r['id'] ?? 0) > (int) ($resultadoVigente['id'] ?? 0)) {
+                    $resultadoVigente = $r;
+                }
+            }
+        }
+        if (!empty($resultadoVigente['data_publicacao'])) {
+            $abaResultadosTexto = match ((int) ($resultadoVigente['tipo_id'] ?? 0)) {
+                \App\Enums\Admin\TiposDocumentosEnum::HOMOLOGACAO->value => 'homologado em ' . $resultadoVigente['data_publicacao'],
+                \App\Enums\Admin\TiposDocumentosEnum::RESULTADO_PARCIAL->value => 'Parcial em ' . $resultadoVigente['data_publicacao'],
+                default => 'Publicado em ' . $resultadoVigente['data_publicacao'],
+            };
+        } else {
+            $abaResultadosTexto = 'Publicado';
+        }
+    }
+    ?>
     <button class="home-aba" data-tab="resultados" role="tab" aria-selected="false">
         <span class="home-aba__nm">Resultados</span>
-        <span class="home-aba__st"><?= !empty($resultados ?? []) ? 'Publicado' : 'Ainda não publicado' ?></span>
+        <span class="home-aba__st"><?= $abaResultadosTexto ?></span>
     </button>
 
     <button class="home-aba" data-tab="conv" role="tab" aria-selected="false">
@@ -217,7 +247,14 @@ Painéis
                         </div>
                         <div class="home-doc__dt">
                             <?php if (!empty($r['data_publicacao'])) : ?>
-                                Publicado em <?= esc($r['data_publicacao']) ?> - Diário Oficial dos Municípios sob o código oficial: <?= esc($r['codigo']) ?>
+                                <?php
+                                $labelResultado = match ((int) $r['tipo_id']) {
+                                    \App\Enums\Admin\TiposDocumentosEnum::HOMOLOGACAO->value => 'homologado em',
+                                    \App\Enums\Admin\TiposDocumentosEnum::RESULTADO_PARCIAL->value => 'Parcial em',
+                                    default => 'Publicado em',
+                                };
+                                ?>
+                                <?= $labelResultado ?> <?= esc($r['data_publicacao']) ?> - Diário Oficial dos Municípios sob o código oficial: <?= esc($r['codigo']) ?>
                                 <?php if (!empty($r['link'])) : ?>
                                     <a href="<?= esc($r['link']) ?>" target="_blank" rel="noopener noreferrer">Ver publicação <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
                                 <?php else : ?>

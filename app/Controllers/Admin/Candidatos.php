@@ -5,7 +5,7 @@ namespace App\Controllers\Admin;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use App\Enums\SituacaoCandidatosEnum;
 use App\Services\Admin\Candidatos\SituacaoService;
-use App\Models\ProcessosSeletivosModel;
+use App\Models\Common\ProcessosSeletivosModel;
 use App\Models\Admin\CargosModel;
 use App\Models\Admin\DadosContratosModel;
 use App\Models\Admin\CandidatosModel;
@@ -24,7 +24,7 @@ class Candidatos extends BaseController{
     protected $dadosContratosModel;
 
     public function __construct(){
-        $this->processosSeletivosModel = new \App\Models\ProcessosSeletivosModel();
+        $this->processosSeletivosModel = new \App\Models\Common\ProcessosSeletivosModel();
         $this->cargosModel        = new \App\Models\Admin\CargosModel();
         $this->candidatosModel    = new \App\Models\Admin\CandidatosModel();
         $this->dadosContratosModel = new \App\Models\Admin\DadosContratosModel();

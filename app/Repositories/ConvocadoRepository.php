@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Repositories\Interfaces\IConvocadoRepository;
-use App\Models\ConvocadosModel;
+use App\Models\Publica\ConvocadosModel;
 
 class ConvocadoRepository implements IConvocadoRepository
 {

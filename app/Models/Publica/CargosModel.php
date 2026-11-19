@@ -1,0 +1,71 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Models\Publica;
+
+use CodeIgniter\Model;
+
+class CargosModel extends Model
+{
+    protected $table = 'tb_cargos';
+    protected $primaryKey = 'pk_id_cargo';
+    protected $useAutoIncrement = true;
+    protected $returnType = 'object';
+    protected $useTimestamps = false;
+    protected $useSoftDeletes = false;
+    protected $allowedFields = [
+        'fk_id_secretaria',
+        'ds_nome_cargo',
+        'ds_carga_horaria',
+        'ds_nivel',
+    ];
+
+    protected $validationRules = [
+        'fk_id_secretaria' => 'required|integer',
+        'ds_nome_cargo' => 'required|string',
+        'ds_carga_horaria' => 'permit_empty|string',
+        'ds_nivel' => 'permit_empty|string',
+    ];
+
+    protected $validationMessages = [
+        'fk_id_secretaria' => [
+            'required' => 'A secretaria deve ser informada.',
+            'integer' => 'A secretaria deve ser informada.',
+        ],
+        'ds_nome_cargo' => [
+            'required' => 'O nome do cargo deve ser informado.',
+            'string' => 'O nome do cargo deve ser informado.',
+        ],
+        'ds_carga_horaria' => [
+            'string' => 'A carga horária deve ser informada.',
+        ],
+        'ds_nivel' => [
+            'string' => 'O nível de escolaridade deve ser informado.',
+        ],
+    ];
+
+    public function cargosEditaisAtivos()
+    {
+        return $this->select('tb_cargos.*')
+            ->join('tb_editais_cargos', 'tb_editais_cargos.fk_id_cargo = tb_cargos.pk_id_cargo')
+            ->join('tb_editais', 'tb_editais.pk_id_edital = tb_editais_cargos.fk_id_edital')
+            ->where('tb_editais.ds_status', '1')
+            ->groupBy('tb_cargos.pk_id_cargo')
+            ->orderBy('tb_cargos.ds_nome_cargo', 'ASC')
+            ->findAll();
+    }
+
+    /**
+     * Retorna os cargos vinculados a um edital específico.
+     */
+    public function cargosPorEdital(int $fk_id_edital)
+    {
+        return $this->select('tb_cargos.*')
+            ->join('tb_editais_cargos', 'tb_editais_cargos.fk_id_cargo = tb_cargos.pk_id_cargo')
+            ->where('tb_editais_cargos.fk_id_edital', $fk_id_edital)
+            ->groupBy('tb_cargos.pk_id_cargo')
+            ->orderBy('tb_cargos.ds_nome_cargo', 'ASC')
+            ->findAll();
+    }
+}

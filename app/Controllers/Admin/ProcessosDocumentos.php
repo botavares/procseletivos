@@ -8,7 +8,7 @@ use App\DTOs\Admin\ProcessosDocumentosDTO;
 use App\Enums\Admin\TiposDocumentosEnum;
 use App\Models\Admin\ProcessosCargosModel;
 use App\Models\Admin\SecretariasModel;
-use App\Models\ProcessosSeletivosModel;
+use App\Models\Common\ProcessosSeletivosModel;
 use App\Services\Admin\ProcessosConvocacao\ProcessosConvocacaoService;
 use App\Services\ProcessosDocumentos\ProcessosDocumentosService;
 use CodeIgniter\Exceptions\PageNotFoundException;

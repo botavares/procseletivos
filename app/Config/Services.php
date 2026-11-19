@@ -22,8 +22,8 @@ class Services extends BaseService
         }
 
         return new \App\Services\CandidatoService(
-            new \App\Models\CandidatosModel(),
-            new \App\Models\DeficienciasModel()
+            new \App\Models\Publica\CandidatosModel(),
+            new \App\Models\Publica\DeficienciasModel()
         );
     }
 
@@ -43,7 +43,7 @@ class Services extends BaseService
         }
 
         return new \App\Services\ClassificatorioService(
-            new \App\Models\CargosModel(),
+            new \App\Models\Publica\CargosModel(),
             service('experienciaService', false),
             service('escolaridadeService', false),
             service('aperfeicoamentoService', false),
@@ -59,9 +59,9 @@ class Services extends BaseService
         }
 
         return new \App\Services\ExperienciaService(
-            new \App\Models\ExperienciasModel(),
-            new \App\Models\CadastradosExperienciasModel(),
-            new \App\Models\CargosExperienciasModel(),
+            new \App\Models\Publica\ExperienciasModel(),
+            new \App\Models\Publica\CadastradosExperienciasModel(),
+            new \App\Models\Publica\CargosExperienciasModel(),
         );
     }
 
@@ -72,9 +72,9 @@ class Services extends BaseService
         }
 
         return new \App\Services\EscolaridadeService(
-            new \App\Models\EscolaridadesModel(),
-            new \App\Models\CadastradosEscolaridadesModel(),
-            new \App\Models\CargosEscolaridadesModel(),
+            new \App\Models\Publica\EscolaridadesModel(),
+            new \App\Models\Publica\CadastradosEscolaridadesModel(),
+            new \App\Models\Publica\CargosEscolaridadesModel(),
         );
     }
 
@@ -85,9 +85,9 @@ class Services extends BaseService
         }
 
         return new \App\Services\AperfeicoamentoService(
-            new \App\Models\AperfeicoamentosModel(),
-            new \App\Models\CadastradosAperfeicoamentosModel(),
-            new \App\Models\CargosAperfeicoamentosModel(),
+            new \App\Models\Publica\AperfeicoamentosModel(),
+            new \App\Models\Publica\CadastradosAperfeicoamentosModel(),
+            new \App\Models\Publica\CargosAperfeicoamentosModel(),
         );
     }
 
@@ -98,9 +98,9 @@ class Services extends BaseService
         }
 
         return new \App\Services\CriterioAdicionalService(
-            new \App\Models\CriteriosAdicionaisModel(),
-            new \App\Models\CadastradosCriteriosAdicionaisModel(),
-            new \App\Models\CargosCriteriosAdicionaisModel(),
+            new \App\Models\Publica\CriteriosAdicionaisModel(),
+            new \App\Models\Publica\CadastradosCriteriosAdicionaisModel(),
+            new \App\Models\Publica\CargosCriteriosAdicionaisModel(),
         );
     }
 
@@ -181,7 +181,7 @@ class Services extends BaseService
         }
 
         return new \App\Services\Classificacao\DesempateConfigService(
-            new \App\Models\CargosDesempateConfigModel(),
+            new \App\Models\Publica\CargosDesempateConfigModel(),
         );
     }
 
@@ -192,7 +192,7 @@ class Services extends BaseService
         }
 
         return new \App\Services\HomeService(
-            new \App\Models\CandidatosModel(),
+            new \App\Models\Publica\CandidatosModel(),
             service('sessao', false),
         );
     }
@@ -204,7 +204,7 @@ class Services extends BaseService
         }
 
         return new \App\Services\PerguntaFrequenteService(
-            new \App\Models\PerguntasFrequentesModel(),
+            new \App\Models\Publica\PerguntasFrequentesModel(),
         );
     }
 
@@ -215,7 +215,7 @@ class Services extends BaseService
         }
 
         return new \App\Services\SetorService(
-            new \App\Models\SetoresModel(),
+            new \App\Models\Publica\SetoresModel(),
         );
     }
 
@@ -254,10 +254,10 @@ class Services extends BaseService
         }
 
         return new \App\Services\VerificarContratosService(
-            new \App\Models\VerificadorModel(),
-            new \App\Models\DadosContratosModel(),
-            new \App\Models\CandidatosModel(),
-            new \App\Models\AcademicosModel(),
+            new \App\Models\Publica\VerificadorModel(),
+            new \App\Models\Publica\DadosContratosModel(),
+            new \App\Models\Publica\CandidatosModel(),
+            new \App\Models\Common\AcademicosModel(),
         );
     }
 
@@ -299,7 +299,7 @@ class Services extends BaseService
         }
 
         return new \App\Services\VinculoCandidatoService(
-            new \App\Models\AcademicosModel(),
+            new \App\Models\Common\AcademicosModel(),
             new \App\Models\Admin\CursosModel(),
             new \App\Models\Admin\EditaisCandidatosModel(),
         );
@@ -312,10 +312,9 @@ class Services extends BaseService
         }
 
         return new \App\Services\DadosContratadoService(
-            new \App\Models\CandidatosModel(),
-            new \App\Models\SetoresModel(),
-            new \App\Models\FeriasModel(),
-            new \App\Models\DadosContratosModel(),
+            new \App\Models\Publica\CandidatosModel(),
+            new \App\Models\Publica\SetoresModel(),
+            new \App\Models\Publica\DadosContratosModel(),
             service('contratoRepository', false),
         );
     }
@@ -339,7 +338,7 @@ class Services extends BaseService
         }
 
         return new \App\Repositories\CandidatoRepository(
-            new \App\Models\CandidatosModel()
+            new \App\Models\Publica\CandidatosModel()
         );
     }
 
@@ -350,7 +349,7 @@ class Services extends BaseService
         }
 
         return new \App\Repositories\ContratoRepository(
-            new \App\Models\DadosContratosModel()
+            new \App\Models\Publica\DadosContratosModel()
         );
     }
 
@@ -361,7 +360,7 @@ class Services extends BaseService
         }
 
         return new \App\Repositories\ConvocadoRepository(
-            new \App\Models\ConvocadosModel()
+            new \App\Models\Publica\ConvocadosModel()
         );
     }
 
@@ -824,16 +823,16 @@ class Services extends BaseService
         return $getShared
             ? static::getSharedInstance('processosSeletivosService')
             : new \App\Services\ProcessosSeletivos\ProcessosSeletivosService(
-                new \App\Models\ProcessosSeletivosModel(),
+                new \App\Models\Common\ProcessosSeletivosModel(),
                 service('logsService', false),
                 new \App\Models\Admin\ProcessosDocumentosModel(),
                 new \App\Models\Admin\SecretariasModel(),
-                new \App\Models\CargosModel(),
-                new \App\Models\CargosEscolaridadesModel(),
-                new \App\Models\CargosExperienciasModel(),
-                new \App\Models\CargosAperfeicoamentosModel(),
-                new \App\Models\CargosCriteriosAdicionaisModel(),
-                new \App\Models\CargosDesempateConfigModel(),
+                new \App\Models\Publica\CargosModel(),
+                new \App\Models\Publica\CargosEscolaridadesModel(),
+                new \App\Models\Publica\CargosExperienciasModel(),
+                new \App\Models\Publica\CargosAperfeicoamentosModel(),
+                new \App\Models\Publica\CargosCriteriosAdicionaisModel(),
+                new \App\Models\Publica\CargosDesempateConfigModel(),
             );
     }
 
@@ -880,7 +879,7 @@ class Services extends BaseService
             ? static::getSharedInstance('processosConvocacaoService')
             : new \App\Services\Admin\ProcessosConvocacao\ProcessosConvocacaoService(
                 service('processosConvocacaoModel'),
-                new \App\Models\ProcessosSeletivosModel(),
+                new \App\Models\Common\ProcessosSeletivosModel(),
                 service('logsService', false)
             );
     }

@@ -80,7 +80,7 @@ class CargosDesempateConfig extends BaseController
         ];
 
         if ($idProcesso) {
-            $processoModel = new \App\Models\ProcessosSeletivosModel();
+            $processoModel = new \App\Models\Common\ProcessosSeletivosModel();
             $processo = $processoModel->find($idProcesso);
         }
 

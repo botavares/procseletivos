@@ -120,7 +120,7 @@ class Recursos extends BaseController{
 
         $consultaService = service('recursosConsultaService');
 
-        $dadosProcesso = (new \App\Models\ProcessosSeletivosModel())->find($idProcesso);
+        $dadosProcesso = (new \App\Models\Common\ProcessosSeletivosModel())->find($idProcesso);
         $dadosCargo    = $consultaService->buscarDadosCargo((int)$idCargo);
 
         if (!$dadosCargo || (int) $dadosCargo->fk_id_secretaria !== $idSecretaria) {

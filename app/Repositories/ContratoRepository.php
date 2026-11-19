@@ -6,7 +6,7 @@ namespace App\Repositories;
 
 use App\Enums\ContratoStatusEnum;
 use App\Repositories\Interfaces\IContratoRepository;
-use App\Models\DadosContratosModel;
+use App\Models\Publica\DadosContratosModel;
 
 class ContratoRepository implements IContratoRepository
 {

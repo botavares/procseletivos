@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Models\AcademicosModel;
+use App\Models\Common\AcademicosModel;
 use App\Models\Admin\CursosModel;
 use App\Models\Admin\EditaisCandidatosModel;
 use App\Services\Interfaces\IVinculoCandidatoService;

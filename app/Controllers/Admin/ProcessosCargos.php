@@ -6,7 +6,7 @@ namespace App\Controllers\Admin;
 
 use App\DTOs\Admin\ProcessosCargosDTO;
 use App\Models\Admin\CargosModel;
-use App\Models\ProcessosSeletivosModel;
+use App\Models\Common\ProcessosSeletivosModel;
 use App\Services\Admin\ProcessosCargos\ProcessosCargosService;
 use CodeIgniter\Exceptions\PageNotFoundException;
 

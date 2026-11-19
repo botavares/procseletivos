@@ -2,7 +2,7 @@
 
 namespace App\Models\Admin;
 
-use App\Common\Models\VerificadorModel as BaseVerificadorModel;
+use App\Models\Common\VerificadorModel as BaseVerificadorModel;
 
 class VerificadorModel extends BaseVerificadorModel
 {

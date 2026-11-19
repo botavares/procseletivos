@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Models\ExperienciasModel;
-use App\Models\CadastradosExperienciasModel;
-use App\Models\CargosExperienciasModel;
+use App\Models\Publica\ExperienciasModel;
+use App\Models\Publica\CadastradosExperienciasModel;
+use App\Models\Publica\CargosExperienciasModel;
 
 class ExperienciaService
 {

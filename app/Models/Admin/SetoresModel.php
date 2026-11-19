@@ -2,7 +2,7 @@
 
 namespace App\Models\Admin;
 
-use App\Common\Models\SetoresModel as BaseSetoresModel;
+use App\Models\Common\SetoresModel as BaseSetoresModel;
 
 class SetoresModel extends BaseSetoresModel
 {

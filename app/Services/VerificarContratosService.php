@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Models\VerificadorModel;
-use App\Models\EditaisCandidatosModel;
-use App\Models\DadosContratosModel;
-use App\Models\CandidatosModel;
-use App\Models\AcademicosModel;
+use App\Models\Publica\VerificadorModel;
+use App\Models\Publica\EditaisCandidatosModel;
+use App\Models\Publica\DadosContratosModel;
+use App\Models\Publica\CandidatosModel;
+use App\Models\Common\AcademicosModel;
 use App\Services\Interfaces\IVerificarContratosService;
 
 class VerificarContratosService implements IVerificarContratosService

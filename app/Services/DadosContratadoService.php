@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Models\CandidatosModel;
-use App\Models\SetoresModel;
-use App\Models\FeriasModel;
-use App\Models\DadosContratosModel;
+use App\Models\Publica\CandidatosModel;
+use App\Models\Publica\SetoresModel;
+use App\Models\Publica\DadosContratosModel;
 use App\Repositories\Interfaces\IContratoRepository;
 use App\Services\Interfaces\IDadosContratadoService;
 
@@ -16,7 +15,6 @@ class DadosContratadoService implements IDadosContratadoService
     public function __construct(
         private CandidatosModel $candidatosModel,
         private SetoresModel $setoresModel,
-        private FeriasModel $feriasModel,
         private DadosContratosModel $dadosContratosModel,
         private IContratoRepository $contratoRepository,
     ) {}
@@ -42,17 +40,7 @@ class DadosContratadoService implements IDadosContratadoService
         $diasTrabalhados = $interval->format('%a');
         $diasFerias = floor($diasTrabalhados / 12);
 
-        $dadosFerias = $this->feriasModel->where('fk_id_estagiario', $dadosContrato->fk_id_candidato)
-            ->where('ds_ano_referente', $dadosContrato->ds_ano_termo)
-            ->where('ds_status', 1)
-            ->first();
-
-        if ($dadosFerias) {
-            $feriasTiradas = $dadosFerias->ds_dias_ferias;
-            $diasFerias = $diasFerias - $feriasTiradas;
-        } else {
-            $feriasTiradas = 0;
-        }
+        $feriasTiradas = 0;
 
         return [
             'diasTrabalhados' => $diasTrabalhados,

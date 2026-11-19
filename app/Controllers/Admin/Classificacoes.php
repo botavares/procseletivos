@@ -10,7 +10,7 @@ use App\Models\Admin\ProtocolosModel;
 use App\Models\Admin\CadastrosExperienciasModel;
 use App\Models\Admin\CadastrosEscolaridadesModel;
 use App\Models\Admin\CadastrosAperfeicoamentosModel;
-use App\Models\ProcessosSeletivosModel;
+use App\Models\Common\ProcessosSeletivosModel;
 
 class Classificacoes extends BaseController{
 
@@ -22,7 +22,7 @@ class Classificacoes extends BaseController{
     public function __construct(){
         $this->classificacaoModel     = new \App\Models\Admin\ClassificacaoModel();
         $this->cargosModel             = new \App\Models\Admin\CargosModel();
-        $this->processosSeletivosModel = new \App\Models\ProcessosSeletivosModel();
+        $this->processosSeletivosModel = new \App\Models\Common\ProcessosSeletivosModel();
         $this->protocolosModel        = new \App\Models\Admin\ProtocolosModel();
     }
 

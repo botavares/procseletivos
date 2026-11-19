@@ -7,7 +7,7 @@ namespace App\Services\ProcessosDocumentos;
 use App\DTOs\Admin\ProcessosDocumentosDTO;
 use App\Enums\Admin\TiposDocumentosEnum;
 use App\Models\Admin\ProcessosDocumentosModel;
-use App\Models\ProcessosSeletivosModel;
+use App\Models\Common\ProcessosSeletivosModel;
 use App\Services\Admin\LogsService;
 use App\Services\SituacaoProcessosService;
 
@@ -32,7 +32,12 @@ class ProcessosDocumentosService implements IProcessosDocumentos
             $dto = $this->aplicarSubstituicaoEdital($dto);
         }
 
-        $id = $this->model->insert($dto->toArray());
+        $dados = $dto->toArray();
+        if ($dto->tipo === TiposDocumentosEnum::HOMOLOGACAO->value) {
+            $dados['nm_versao_vigente'] = 1;
+        }
+
+        $id = $this->model->insert($dados);
 
         if ($id) {
             $this->logsService->inserirLog(
@@ -42,6 +47,7 @@ class ProcessosDocumentosService implements IProcessosDocumentos
             );
 
             $this->sincronizarDatasProcesso($dto);
+            $this->aplicarRegrasHomologacao($dto, (int) $id);
         }
 
         return (int) $id;
@@ -59,10 +65,15 @@ class ProcessosDocumentosService implements IProcessosDocumentos
         }
 
         $atual = $dto->toArray();
+        if ($dto->tipo === TiposDocumentosEnum::HOMOLOGACAO->value) {
+            $atual['nm_versao_vigente'] = 1;
+        }
+
         $resultado = $this->model->update($id, $atual);
 
         if ($resultado) {
             $this->sincronizarDatasProcesso($dto);
+            $this->aplicarRegrasHomologacao($dto, $id);
             $camposAlterados = [];
             foreach ($atual as $campo => $valor) {
                 if (!property_exists($anterior, $campo)) {
@@ -87,6 +98,32 @@ class ProcessosDocumentosService implements IProcessosDocumentos
         }
 
         return (bool) $resultado;
+    }
+
+    /**
+     * Aplica as regras especiais de vigência para Homologação:
+     *  - marca o documento de homologação como vigente (nm_versao_vigente = 1);
+     *  - desativa todos os demais documentos de classificação (Resultados Parciais
+     *    e outras Homologações) vinculados ao mesmo processo.
+     *
+     * Garante que apenas uma classificação de homologação seja vigente por
+     * processo seletivo.
+     */
+    private function aplicarRegrasHomologacao(ProcessosDocumentosDTO $dto, int $idHomologacao): void
+    {
+        if ($dto->tipo !== TiposDocumentosEnum::HOMOLOGACAO->value) {
+            return;
+        }
+
+        $idProcesso = $dto->processoReferencia;
+        if ($idProcesso <= 0) {
+            return;
+        }
+
+        // Garante que a homologação esteja marcada como vigente e desativa
+        // todos os demais documentos de classificação do mesmo processo.
+        $this->model->update($idHomologacao, ['nm_versao_vigente' => 1]);
+        $this->model->desativarClassificacoesExceto($idProcesso, $idHomologacao);
     }
 
     public function deletar(int $id): bool

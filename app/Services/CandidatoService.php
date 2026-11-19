@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\DTOs\CandidatoDTO;
-use App\Models\CandidatosModel;
-use App\Models\DeficienciasModel;
+use App\Models\Publica\CandidatosModel;
+use App\Models\Publica\DeficienciasModel;
 use App\Services\Interfaces\ICandidatoService;
 
 class CandidatoService implements ICandidatoService

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Models\CriteriosAdicionaisModel;
-use App\Models\CadastradosCriteriosAdicionaisModel;
-use App\Models\CargosCriteriosAdicionaisModel;
+use App\Models\Publica\CriteriosAdicionaisModel;
+use App\Models\Publica\CadastradosCriteriosAdicionaisModel;
+use App\Models\Publica\CargosCriteriosAdicionaisModel;
 
 class CriterioAdicionalService
 {

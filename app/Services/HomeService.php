@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Models\CandidatosModel;
+use App\Models\Publica\CandidatosModel;
 use App\Services\Base\SessaoService;
 
 class HomeService

@@ -8,7 +8,7 @@ use App\DTOs\Admin\ProcessosDocumentosDTO;
 use App\Enums\Admin\SituacaoProcessosEnum;
 use App\Enums\Admin\TiposDocumentosEnum;
 use App\Models\Admin\ProcessosDocumentosModel;
-use App\Models\ProcessosSeletivosModel;
+use App\Models\Common\ProcessosSeletivosModel;
 use App\Services\Admin\LogsService;
 use App\Services\ProcessosDocumentos\ProcessosDocumentosService;
 use App\Services\SituacaoProcessosService;
@@ -408,7 +408,19 @@ final class ProcessosDocumentosServiceTest extends CIUnitTestCase
         $processoDepois = clone $processoAntes;
         $processoDepois->dt_data_homologacao = '2026-10-29 10:00:00';
 
-        $this->modelMock->method('insert')->willReturn(60);
+        $this->modelMock->method('insert')
+            ->with($this->callback(function (array $data) {
+                return $data['nm_versao_vigente'] === 1;
+            }))
+            ->willReturn(60);
+
+        $this->modelMock->method('update')
+            ->with(60, ['nm_versao_vigente' => 1])
+            ->willReturn(true);
+
+        $this->modelMock->method('desativarClassificacoesExceto')
+            ->with(1, 60)
+            ->willReturn(true);
 
         $chamadasFind = [$processoAntes, $processoDepois];
         $indiceFind = 0;
@@ -436,6 +448,60 @@ final class ProcessosDocumentosServiceTest extends CIUnitTestCase
         $this->assertSame(60, $id);
         $this->assertSame('2026-10-28 10:00:00', $atualizacoes[0]['dt_data_homologacao']);
         $this->assertSame(SituacaoProcessosEnum::VIGENTE->value, $atualizacoes[1]['nm_situacao']);
+    }
+
+    public function testAtualizarHomologacaoForcaVigenteEDesativaClassificacoes(): void
+    {
+        $dto = $this->criarDto(id: 70, tipo: TiposDocumentosEnum::HOMOLOGACAO->value, versaoVigente: 0);
+        $anterior = (object) [
+            'pk_id_documento'         => 70,
+            'fk_processo_referencia'  => 1,
+            'nm_tipo'                 => TiposDocumentosEnum::HOMOLOGACAO->value,
+            'nm_numero_documento'     => 100,
+            'nm_ano_documento'        => 2025,
+            'ds_codigo_oficial'       => 'COD-OLD',
+            'ds_link'                 => '',
+            'ds_arquivo'              => '',
+            'nm_versao_vigente'       => 0,
+            'nm_documento_retificado' => 0,
+        ];
+
+        $processoAntes = $this->criarProcessoStub();
+        $processoDepois = clone $processoAntes;
+        $processoDepois->dt_data_homologacao = '2026-10-28 10:00:00';
+
+        $this->modelMock->method('find')
+            ->with(70)
+            ->willReturn($anterior);
+
+        $dadosAtualizados = null;
+        $this->modelMock->method('update')
+            ->willReturnCallback(function ($id, $data) use (&$dadosAtualizados) {
+                $dadosAtualizados[$id] = $data;
+                return true;
+            });
+
+        $this->modelMock->method('desativarClassificacoesExceto')
+            ->with(1, 70)
+            ->willReturn(true);
+
+        $chamadasFind = [$processoAntes, $processoDepois];
+        $indiceFind = 0;
+        $this->processosModelMock
+            ->method('find')
+            ->willReturnCallback(function () use (&$chamadasFind, &$indiceFind) {
+                return $chamadasFind[$indiceFind++];
+            });
+
+        $this->situacaoServiceMock
+            ->method('calcularSituacao')
+            ->with($processoDepois)
+            ->willReturn(SituacaoProcessosEnum::VIGENTE);
+
+        $resultado = $this->service->atualizar(70, $dto);
+
+        $this->assertTrue($resultado);
+        $this->assertSame(1, $dadosAtualizados[70]['nm_versao_vigente']);
     }
 
     public function testAtualizarResultadoParcialSobrescreveDataDivulgacao(): void

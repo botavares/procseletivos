@@ -125,6 +125,7 @@ Processos Documentos Service (Tests\Admin\Services\ProcessosDocumentos\Processos
  [x] Criar retificacao desativa retificacao anterior
  [x] Criar resultado parcial sincroniza data divulgacao e situacao
  [x] Criar homologacao sincroniza data homologacao e situacao
+ [x] Atualizar homologacao forca vigente e desativa classificacoes
  [x] Atualizar resultado parcial sobrescreve data divulgacao
 
 Processos Seletivos Service (Tests\Admin\Services\ProcessosSeletivos\ProcessosSeletivosService)

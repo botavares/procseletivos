@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Repositories\Interfaces\ICandidatoRepository;
-use App\Models\CandidatosModel;
+use App\Models\Publica\CandidatosModel;
 
 class CandidatoRepository implements ICandidatoRepository
 {

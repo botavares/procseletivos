@@ -124,6 +124,18 @@ class ProcessosSeletivos extends BaseController
         $retificacoes = array_values(array_filter($documentosFormatados, fn($d) => $d['tipo_id'] == TiposDocumentosEnum::RETIFICACAO->value));
         $resultados = array_values(array_filter($documentosFormatados, fn($d) => in_array($d['tipo_id'], [TiposDocumentosEnum::RESULTADO_PARCIAL->value, TiposDocumentosEnum::HOMOLOGACAO->value])));
 
+        // Ordena para que a Homologação apareça sempre como primeiro resultado
+        // (só pode existir uma por processo e é o documento final), seguida dos
+        // Resultados Parciais do mais recente para o mais antigo.
+        usort($resultados, function ($a, $b) {
+            $aHomologacao = (int) $a['tipo_id'] === TiposDocumentosEnum::HOMOLOGACAO->value ? 1 : 0;
+            $bHomologacao = (int) $b['tipo_id'] === TiposDocumentosEnum::HOMOLOGACAO->value ? 1 : 0;
+            if ($aHomologacao !== $bHomologacao) {
+                return $bHomologacao <=> $aHomologacao;
+            }
+            return (int) ($b['id'] ?? 0) <=> (int) ($a['id'] ?? 0);
+        });
+
         // Em "Edital e retificações", unir editais e retificações em uma única lista
         // ordenada do mais novo para o mais antigo (maior ID primeiro). Apenas o
         // documento mais recente recebe a tag "Vigente".

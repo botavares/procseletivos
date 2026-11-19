@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services\Classificacao;
 
-use App\Models\CargosDesempateConfigModel;
+use App\Models\Publica\CargosDesempateConfigModel;
 use App\Services\Classificacao\DTO\DesempateConfigDTO;
 use App\Services\Interfaces\IDesempateConfigService;
 

@@ -6,8 +6,8 @@ namespace App\Services;
 
 use App\Enums\Admin\SituacaoProcessosEnum;
 use App\Models\Admin\LogsModel;
-use App\Models\ProcessosSeletivosModel;
-use App\Models\SituacaoProcessosModel;
+use App\Models\Common\ProcessosSeletivosModel;
+use App\Models\Common\SituacaoProcessosModel;
 use DateTime;
 use Exception;
 

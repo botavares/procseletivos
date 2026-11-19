@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Admin\Services\ProcessosConvocacao;
 
 use App\Models\Admin\ProcessosConvocacaoModel;
-use App\Models\ProcessosSeletivosModel;
+use App\Models\Common\ProcessosSeletivosModel;
 use App\Services\Admin\LogsService;
 use App\Services\Admin\ProcessosConvocacao\ProcessosConvocacaoService;
 use CodeIgniter\Test\CIUnitTestCase;

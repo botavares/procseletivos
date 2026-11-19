@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Models\AperfeicoamentosModel;
-use App\Models\CadastradosAperfeicoamentosModel;
-use App\Models\CargosAperfeicoamentosModel;
+use App\Models\Publica\AperfeicoamentosModel;
+use App\Models\Publica\CadastradosAperfeicoamentosModel;
+use App\Models\Publica\CargosAperfeicoamentosModel;
 
 class AperfeicoamentoService
 {

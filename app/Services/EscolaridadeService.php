@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Models\EscolaridadesModel;
-use App\Models\CadastradosEscolaridadesModel;
-use App\Models\CargosEscolaridadesModel;
+use App\Models\Publica\EscolaridadesModel;
+use App\Models\Publica\CadastradosEscolaridadesModel;
+use App\Models\Publica\CargosEscolaridadesModel;
 
 class EscolaridadeService
 {

@@ -202,4 +202,26 @@ class ProcessosDocumentosModel extends Model
 
         return $builder->orderBy('pk_id_documento', 'DESC')->first() ?: null;
     }
+
+    /**
+     * Desativa (nm_versao_vigente = 0) todos os documentos de classificação
+     * (Resultado Parcial e Homologação) vinculados ao processo, exceto o
+     * documento informado.
+     */
+    public function desativarClassificacoesExceto(int $idProcesso, int $excetoIdDocumento): bool
+    {
+        return $this->builder()
+            ->where('fk_processo_referencia', $idProcesso)
+            ->where('pk_id_documento !=', $excetoIdDocumento)
+            ->whereIn(
+                'nm_tipo',
+                [
+                    TiposDocumentosEnum::RESULTADO_PARCIAL->value,
+                    TiposDocumentosEnum::HOMOLOGACAO->value,
+                ]
+            )
+            ->where('is_deletado', null)
+            ->set(['nm_versao_vigente' => 0])
+            ->update();
+    }
 }

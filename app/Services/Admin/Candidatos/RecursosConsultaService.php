@@ -6,7 +6,7 @@ use App\Models\Admin\ProtocolosModel;
 use App\Models\Admin\CandidatosModel;
 use App\Models\Admin\EditaisModel;
 use App\Models\Admin\CargosModel;
-use App\Models\ProcessosSeletivosModel;
+use App\Models\Common\ProcessosSeletivosModel;
 
 class RecursosConsultaService
 {
